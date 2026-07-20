@@ -9,10 +9,6 @@ const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const
 
 const ui = {
   tonight: { en: "Tonight's Dinner", fil: "Hapunan Ngayong Gabi" },
-  randomNote: {
-    en: "Random menu each night — 1 meat, 1 vegetable, 1 soup (like Numbers)",
-    fil: "Random na menu bawat gabi — 1 karne, 1 gulay, 1 sabaw (tulad sa Numbers)",
-  },
   recipe: { en: "Recipe", fil: "Recipe" },
   meat: { en: "Meat", fil: "Karne" },
   vegetable: { en: "Vegetable", fil: "Gulay" },
@@ -63,7 +59,6 @@ export function MealsView() {
           {dateStr}
         </p>
         <h2 className="mt-1 text-lg font-bold">{ui.tonight[lang]}</h2>
-        <p className="mt-1 text-sm opacity-90">{ui.randomNote[lang]}</p>
       </div>
 
       <div className="space-y-3">

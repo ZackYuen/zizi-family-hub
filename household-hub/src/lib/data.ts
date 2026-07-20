@@ -6,6 +6,39 @@ import type { AppContent, DinnerRecipe } from "./types";
 const CONTENT_KEY = "content";
 const RECIPES_KEY = "dinner_recipes";
 
+function isGoodTranslation(text?: string): boolean {
+  if (!text?.trim()) return false;
+  if (/@|Email|sportbenzin|salmo\.ee/i.test(text)) return false;
+  if (/orchid|ratio of garlic|rotten|Chiton/i.test(text)) return false;
+  if (/[\u4e00-\u9fff]/.test(text)) return false;
+  return true;
+}
+
+/** Merge nameEn/nameFil from local seed file when Supabase entries are missing or bad */
+function mergeRecipeTranslations(
+  remote: DinnerRecipe[],
+  local: DinnerRecipe[]
+): DinnerRecipe[] {
+  const localMap = new Map(local.map((r) => [r.id, r]));
+  return remote.map((r) => {
+    const seed = localMap.get(r.id);
+    if (!seed) return r;
+    return {
+      ...r,
+      nameEn: isGoodTranslation(seed.nameEn)
+        ? seed.nameEn
+        : isGoodTranslation(r.nameEn)
+          ? r.nameEn
+          : seed.nameEn,
+      nameFil: isGoodTranslation(seed.nameFil)
+        ? seed.nameFil
+        : isGoodTranslation(r.nameFil)
+          ? r.nameFil
+          : seed.nameFil,
+    };
+  });
+}
+
 async function readLocalContent(): Promise<AppContent> {
   const raw = await fs.readFile(
     path.join(process.cwd(), "data", "content.json"),
@@ -73,7 +106,8 @@ export async function getDinnerRecipes(): Promise<DinnerRecipe[]> {
   if (error) throw error;
   if (!data) return readLocalRecipes();
   const parsed = data.data as { recipes: DinnerRecipe[] };
-  return parsed.recipes;
+  const local = await readLocalRecipes();
+  return mergeRecipeTranslations(parsed.recipes, local);
 }
 
 export async function saveDinnerRecipes(recipes: DinnerRecipe[]): Promise<void> {

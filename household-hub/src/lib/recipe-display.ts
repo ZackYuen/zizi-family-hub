@@ -31,31 +31,50 @@ const subCategoryFil: Record<string, string> = {
   "Water Morning Glory": "Kangkong",
 };
 
+function hasCjk(text: string): boolean {
+  return /[\u4e00-\u9fff\u3400-\u4dbf]/.test(text);
+}
+
 function isMostlyLatin(text: string): boolean {
   if (!text) return false;
+  if (hasCjk(text)) return false;
   const latin = (text.match(/[a-zA-Z0-9\s\-',.&()]/g) ?? []).length;
   return latin / text.length > 0.6;
 }
 
+const categoryFil: Record<DinnerRecipe["category"], string> = {
+  Meat: "Ulam na Karne",
+  Vegetable: "Gulay",
+  Soup: "Sabaw",
+};
+
+const categoryEn: Record<DinnerRecipe["category"], string> = {
+  Meat: "Meat dish",
+  Vegetable: "Vegetable dish",
+  Soup: "Soup",
+};
+
 export function getRecipeDisplayName(recipe: DinnerRecipe, lang: Lang): string {
   if (lang === "fil") {
-    if (recipe.nameFil?.trim()) return recipe.nameFil;
+    if (recipe.nameFil?.trim() && !hasCjk(recipe.nameFil)) return recipe.nameFil;
     if (recipe.nameEn?.trim() && isMostlyLatin(recipe.nameEn)) return recipe.nameEn;
     if (recipe.subCategory && subCategoryFil[recipe.subCategory]) {
-      return `${subCategoryFil[recipe.subCategory]} (${recipe.subCategory})`;
+      return `${subCategoryFil[recipe.subCategory]} — ${categoryFil[recipe.category]}`;
     }
-    return recipe.nameEn?.trim() || recipe.subCategory || recipe.category;
+    return categoryFil[recipe.category];
   }
 
   if (recipe.nameEn?.trim() && isMostlyLatin(recipe.nameEn)) return recipe.nameEn;
-  if (recipe.nameEn?.trim()) return recipe.nameEn;
-  if (recipe.subCategory) return `${recipe.subCategory} dish`;
-  return recipe.category;
+  if (recipe.subCategory) return `${recipe.subCategory} ${categoryEn[recipe.category].toLowerCase()}`;
+  return categoryEn[recipe.category];
 }
 
 export function getRecipeSubtitle(recipe: DinnerRecipe, lang: Lang): string | null {
   const display = getRecipeDisplayName(recipe, lang);
-  if (recipe.name && recipe.name !== display && /[\u4e00-\u9fff]/.test(recipe.name)) {
+  // Hide Chinese subtitle when we have a proper translation
+  if (recipe.nameFil?.trim() && !hasCjk(recipe.nameFil) && lang === "fil") return null;
+  if (recipe.nameEn?.trim() && isMostlyLatin(recipe.nameEn) && lang === "en") return null;
+  if (recipe.name && recipe.name !== display && hasCjk(recipe.name)) {
     return recipe.name;
   }
   return null;
