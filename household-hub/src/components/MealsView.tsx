@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { fetchTonightMenu } from "@/lib/dinner-client";
 import type { TonightMenu } from "@/lib/types";
 
 const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const;
@@ -30,12 +29,11 @@ export function MealsView() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchTonightMenu()
-      .then((tonight) => {
-        setMenu(tonight);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    fetch("/api/dinner/tonight")
+      .then((r) => r.json())
+      .then((data) => setMenu(data.tonight))
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {

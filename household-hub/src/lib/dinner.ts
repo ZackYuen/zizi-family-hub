@@ -1,4 +1,3 @@
-import { withBasePath } from "./base-path";
 import type { DinnerRecipe, TonightMenu } from "./types";
 
 function hashSeed(input: string): number {
@@ -10,7 +9,11 @@ function hashSeed(input: string): number {
   return h >>> 0;
 }
 
-function pickByDate(recipes: DinnerRecipe[], dateKey: string, salt: string): DinnerRecipe {
+function pickByDate(
+  recipes: DinnerRecipe[],
+  dateKey: string,
+  salt: string
+): DinnerRecipe {
   const pool = [...recipes].sort((a, b) => a.index - b.index);
   const idx = hashSeed(`${dateKey}:${salt}`) % pool.length;
   return pool[idx];
@@ -30,16 +33,4 @@ export function generateTonightMenu(
     vegetable: pickByDate(vegetables, dateKey, "vegetable"),
     soup: pickByDate(soups, dateKey, "soup"),
   };
-}
-
-export async function fetchDinnerRecipes(): Promise<DinnerRecipe[]> {
-  const res = await fetch(withBasePath("/data/dinner-recipes.json"));
-  if (!res.ok) throw new Error("Failed to load recipes");
-  const data = (await res.json()) as { recipes: DinnerRecipe[] };
-  return data.recipes;
-}
-
-export async function fetchTonightMenu(dateKey?: string): Promise<TonightMenu> {
-  const recipes = await fetchDinnerRecipes();
-  return generateTonightMenu(recipes, dateKey);
 }

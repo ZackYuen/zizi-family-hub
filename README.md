@@ -2,6 +2,6 @@
 
 Household helper web app for Charlene.
 
-**Live app:** https://zackyuen.github.io/zizi-family-hub/ (after GitHub Pages is enabled)
+**Recommended hosting:** [Vercel](https://vercel.com) + [Supabase](https://supabase.com) — see [household-hub/README.md](./household-hub/README.md)
 
-See [household-hub/README.md](./household-hub/README.md) for setup and deployment.
+Legacy GitHub Pages: https://zackyuen.github.io/zizi-family-hub/ (static, manual admin updates)

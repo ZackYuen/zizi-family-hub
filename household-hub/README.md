@@ -2,45 +2,61 @@
 
 Mobile-friendly web app for household helper **Charlene** — ground rules, task schedule, and nightly dinner randomizer. English & Filipino.
 
-## Live site (GitHub Pages)
+## Deploy on Vercel + Supabase (recommended)
 
-After deployment: **https://zackyuen.github.io/zizi-family-hub/**
+### 1. Create Supabase project
 
-- App: `/`
-- Admin: `/admin/`
+1. Go to [supabase.com](https://supabase.com) → New project (free tier)
+2. Open **SQL Editor** → paste and run `supabase/migrations/001_app_data.sql`
+3. Go to **Settings → API** and copy:
+   - Project URL → `NEXT_PUBLIC_SUPABASE_URL`
+   - `anon` public key → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `service_role` secret → `SUPABASE_SERVICE_ROLE_KEY`
 
-## Local development
+### 2. Seed the database
 
 ```bash
 cd household-hub
+npm install
+cp .env.example .env.local   # fill in Supabase keys + ADMIN_PASSWORD
+npm run seed
+```
+
+### 3. Deploy to Vercel
+
+1. Push this repo to GitHub
+2. Go to [vercel.com](https://vercel.com) → **Add New Project** → import `zizi-family-hub`
+3. Set **Root Directory** to `household-hub`
+4. Add environment variables (same as `.env.local`):
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `ADMIN_PASSWORD`
+5. Deploy
+
+Your live URL will be something like `https://zizi-family-hub.vercel.app`
+
+- App: `/`
+- Admin: `/admin/` — save updates instantly (no JSON download needed)
+
+### Local development
+
+Without Supabase keys, the app falls back to local `data/*.json` files (read-only save).
+
+```bash
 npm install
 npm run dev
 ```
 
 Open http://localhost:3000
 
-Default admin password: `charlene2026` (override with `NEXT_PUBLIC_ADMIN_PASSWORD` at build time).
+## Updating content
 
-## Deploy to GitHub Pages
+1. Open `/admin/` on your live Vercel URL
+2. Sign in with `ADMIN_PASSWORD`
+3. Edit rules, schedule, or settings → **Save**
+4. Charlene refreshes the app and sees changes immediately
 
-Deployment runs automatically on push to **`main`** via GitHub Actions.
+## Legacy: GitHub Pages (static, no Supabase)
 
-### One-time GitHub setup
-
-1. Open repo **Settings → Pages**
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**
-3. (Optional) Add repo secret **`ADMIN_PASSWORD`** for the admin login on the live site
-
-### Update content on the live site
-
-1. Edit in **Admin** → click **Download content.json**
-2. Replace `household-hub/data/content.json` in GitHub with the downloaded file
-3. Push to `main` — the site redeploys in ~2 minutes
-
-For recipes, edit `household-hub/data/dinner-recipes.json` the same way.
-
-## Project structure
-
-- `data/content.json` — rules, schedule, settings (source of truth)
-- `data/dinner-recipes.json` — 127 dinner recipes for randomizer
-- `public/data/` — synced copy served to the browser (auto-synced on build)
+Still available via `npm run build:pages` — admin requires manual JSON upload. See git history for GitHub Actions workflow.
