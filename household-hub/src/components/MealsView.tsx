@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
 import type { TonightMenu } from "@/lib/types";
 
 const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const;
@@ -82,7 +83,12 @@ export function MealsView() {
                 </span>
               )}
             </div>
-            <p className="text-base font-semibold text-stone-900">{recipe.name}</p>
+            <p className="text-base font-semibold text-stone-900">
+              {getRecipeDisplayName(recipe, lang)}
+            </p>
+            {getRecipeSubtitle(recipe, lang) && (
+              <p className="text-xs text-stone-400">{getRecipeSubtitle(recipe, lang)}</p>
+            )}
             <a
               href={recipe.link}
               target="_blank"

@@ -44,6 +44,7 @@ export interface DinnerRecipe {
   index: number;
   name: string;
   nameEn?: string;
+  nameFil?: string;
   category: "Meat" | "Vegetable" | "Soup";
   subCategory?: string;
   link: string;

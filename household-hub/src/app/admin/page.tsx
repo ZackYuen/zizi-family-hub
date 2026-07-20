@@ -2,8 +2,15 @@
 
 import { useEffect, useState } from "react";
 import type { AppContent } from "@/lib/types";
+import type { Lang } from "@/lib/types";
+import type { DinnerRecipe } from "@/lib/types";
+import { adminT } from "@/lib/admin-i18n";
+import { ScheduleCalendarAdmin } from "@/components/admin/ScheduleCalendarAdmin";
+import { MealsAdmin } from "@/components/admin/MealsAdmin";
+import { TranslateButton } from "@/components/admin/TranslateButton";
 
 export default function AdminPage() {
+  const [adminLang, setAdminLang] = useState<Lang>("en");
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,6 +21,8 @@ export default function AdminPage() {
   >("rules");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+
+  const lang = adminLang;
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -42,7 +51,7 @@ export default function AdminPage() {
       body: JSON.stringify({ password }),
     });
     if (!res.ok) {
-      setError("Wrong password");
+      setError(adminT("wrongPassword", lang));
       return;
     }
     setAuthed(true);
@@ -57,7 +66,7 @@ export default function AdminPage() {
     setContent(null);
   };
 
-  const save = async (updated: AppContent) => {
+  const saveContent = async (updated: AppContent) => {
     setSaving(true);
     setMessage("");
     const res = await fetch("/api/admin/content", {
@@ -70,19 +79,36 @@ export default function AdminPage() {
       const { content: saved } = await res.json();
       setContent(saved);
       setJsonText(JSON.stringify(saved, null, 2));
-      setMessage("Saved! Charlene will see updates when she refreshes the app.");
+      setMessage(adminT("saved", lang));
     } else {
       const err = await res.json().catch(() => ({}));
-      setMessage(err.error ?? "Failed to save.");
+      setMessage(err.error ?? adminT("saveFailed", lang));
+    }
+  };
+
+  const saveRecipes = async (recipes: DinnerRecipe[]) => {
+    setSaving(true);
+    setMessage("");
+    const res = await fetch("/api/admin/recipes", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ recipes }),
+    });
+    setSaving(false);
+    if (res.ok) {
+      setMessage(adminT("saved", lang));
+    } else {
+      const err = await res.json().catch(() => ({}));
+      setMessage(err.error ?? adminT("saveFailed", lang));
     }
   };
 
   const saveJson = () => {
     try {
       const parsed = JSON.parse(jsonText) as AppContent;
-      save(parsed);
+      saveContent(parsed);
     } catch {
-      setMessage("Invalid JSON — please check formatting.");
+      setMessage(adminT("invalidJson", lang));
     }
   };
 
@@ -99,10 +125,17 @@ export default function AdminPage() {
     URL.revokeObjectURL(url);
   };
 
+  const setRuleFil = (index: number, field: "title" | "description", fil: string) => {
+    if (!content) return;
+    const next = structuredClone(content);
+    next.groundRules[index][field].fil = fil;
+    setContent(next);
+  };
+
   if (authed === null) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-stone-100">
-        <p className="text-stone-500">Loading...</p>
+        <p className="text-stone-500">{adminT("loading", lang)}</p>
       </div>
     );
   }
@@ -114,15 +147,27 @@ export default function AdminPage() {
           onSubmit={login}
           className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-lg ring-1 ring-stone-200"
         >
-          <h1 className="mb-1 text-xl font-bold text-stone-900">Admin Login</h1>
-          <p className="mb-4 text-sm text-stone-500">
-            Manage ground rules, schedule & meals for Charlene
-          </p>
+          <div className="mb-4 flex justify-end gap-1">
+            {(["en", "fil"] as Lang[]).map((l) => (
+              <button
+                key={l}
+                type="button"
+                onClick={() => setAdminLang(l)}
+                className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                  adminLang === l ? "bg-teal-600 text-white" : "bg-stone-100 text-stone-600"
+                }`}
+              >
+                {l === "en" ? "EN" : "FIL"}
+              </button>
+            ))}
+          </div>
+          <h1 className="mb-1 text-xl font-bold text-stone-900">{adminT("login", lang)}</h1>
+          <p className="mb-4 text-sm text-stone-500">{adminT("loginDesc", lang)}</p>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder={adminT("password", lang)}
             className="mb-3 w-full rounded-xl border border-stone-200 px-3 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
           />
           {error && <p className="mb-2 text-sm text-red-600">{error}</p>}
@@ -130,10 +175,10 @@ export default function AdminPage() {
             type="submit"
             className="w-full rounded-xl bg-teal-600 py-2.5 text-sm font-semibold text-white hover:bg-teal-700"
           >
-            Sign In
+            {adminT("signIn", lang)}
           </button>
           <a href="/" className="mt-4 block text-center text-sm text-teal-700">
-            ← Back to app
+            {adminT("backToApp", lang)}
           </a>
         </form>
       </div>
@@ -142,9 +187,14 @@ export default function AdminPage() {
 
   if (!content) return null;
 
-  const updateRule = (index: number, field: "title" | "description", lang: "en" | "fil", value: string) => {
+  const updateRule = (
+    index: number,
+    field: "title" | "description",
+    l: "en" | "fil",
+    value: string
+  ) => {
     const next = structuredClone(content);
-    next.groundRules[index][field][lang] = value;
+    next.groundRules[index][field][l] = value;
     setContent(next);
   };
 
@@ -166,27 +216,49 @@ export default function AdminPage() {
     setContent(next);
   };
 
+  const tabs = [
+    { id: "rules" as const, label: adminT("rules", lang) },
+    { id: "schedule" as const, label: adminT("schedule", lang) },
+    { id: "meals" as const, label: adminT("meals", lang) },
+    { id: "settings" as const, label: adminT("settings", lang) },
+    { id: "json" as const, label: adminT("json", lang) },
+  ];
+
   return (
     <div className="min-h-screen bg-stone-100">
       <header className="border-b border-stone-200 bg-white px-4 py-3">
         <div className="mx-auto flex max-w-4xl items-center justify-between">
           <div>
-            <h1 className="text-lg font-bold text-stone-900">Admin Panel</h1>
+            <h1 className="text-lg font-bold text-stone-900">{adminT("adminPanel", lang)}</h1>
             <p className="text-xs text-stone-500">Zizi Family Household Hub</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
+            <div className="flex rounded-full bg-stone-100 p-0.5">
+              {(["en", "fil"] as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => setAdminLang(l)}
+                  className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                    adminLang === l ? "bg-teal-600 text-white" : "text-stone-600"
+                  }`}
+                >
+                  {l === "en" ? "EN" : "FIL"}
+                </button>
+              ))}
+            </div>
             <a
               href="/"
               className="rounded-lg px-3 py-1.5 text-sm text-teal-700 ring-1 ring-teal-200"
             >
-              View App
+              {adminT("viewApp", lang)}
             </a>
             <button
               type="button"
               onClick={logout}
               className="rounded-lg px-3 py-1.5 text-sm text-stone-600 ring-1 ring-stone-200"
             >
-              Logout
+              {adminT("logout", lang)}
             </button>
           </div>
         </div>
@@ -194,26 +266,24 @@ export default function AdminPage() {
 
       <div className="mx-auto max-w-4xl px-4 py-4">
         <div className="mb-4 flex flex-wrap gap-2">
-          {(["rules", "schedule", "meals", "settings", "json"] as const).map((s) => (
+          {tabs.map((tab) => (
             <button
-              key={s}
+              key={tab.id}
               type="button"
-              onClick={() => setActiveSection(s)}
-              className={`rounded-lg px-3 py-1.5 text-sm font-medium capitalize ${
-                activeSection === s
+              onClick={() => setActiveSection(tab.id)}
+              className={`rounded-lg px-3 py-1.5 text-sm font-medium ${
+                activeSection === tab.id
                   ? "bg-teal-600 text-white"
                   : "bg-white text-stone-600 ring-1 ring-stone-200"
               }`}
             >
-              {s}
+              {tab.label}
             </button>
           ))}
         </div>
 
         {message && (
-          <p className="mb-3 rounded-lg bg-teal-50 px-3 py-2 text-sm text-teal-800">
-            {message}
-          </p>
+          <p className="mb-3 rounded-lg bg-teal-50 px-3 py-2 text-sm text-teal-800">{message}</p>
         )}
 
         {activeSection === "rules" && (
@@ -222,43 +292,57 @@ export default function AdminPage() {
               <div key={rule.id} className="rounded-xl bg-white p-4 ring-1 ring-stone-200">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-semibold text-stone-400">
-                    Rule #{rule.priority} · {rule.category}
+                    #{rule.priority} · {rule.category}
                   </span>
                   <button
                     type="button"
                     onClick={() => deleteRule(i)}
                     className="text-xs text-red-500"
                   >
-                    Delete
+                    {adminT("delete", lang)}
                   </button>
                 </div>
                 <div className="grid gap-2 sm:grid-cols-2">
                   <input
                     value={rule.title.en}
                     onChange={(e) => updateRule(i, "title", "en", e.target.value)}
-                    placeholder="Title (English)"
+                    placeholder={adminT("titleEn", lang)}
                     className="rounded-lg border border-stone-200 px-3 py-2 text-sm"
                   />
-                  <input
-                    value={rule.title.fil}
-                    onChange={(e) => updateRule(i, "title", "fil", e.target.value)}
-                    placeholder="Title (Filipino)"
-                    className="rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                  />
+                  <div className="flex gap-1">
+                    <input
+                      value={rule.title.fil}
+                      onChange={(e) => updateRule(i, "title", "fil", e.target.value)}
+                      placeholder={adminT("titleFil", lang)}
+                      className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
+                    />
+                    <TranslateButton
+                      sourceText={rule.title.en}
+                      onTranslated={(t) => setRuleFil(i, "title", t)}
+                      lang={lang}
+                    />
+                  </div>
                   <textarea
                     value={rule.description.en}
                     onChange={(e) => updateRule(i, "description", "en", e.target.value)}
-                    placeholder="Description (English)"
+                    placeholder={adminT("descEn", lang)}
                     rows={2}
                     className="rounded-lg border border-stone-200 px-3 py-2 text-sm"
                   />
-                  <textarea
-                    value={rule.description.fil}
-                    onChange={(e) => updateRule(i, "description", "fil", e.target.value)}
-                    placeholder="Description (Filipino)"
-                    rows={2}
-                    className="rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                  />
+                  <div className="flex gap-1">
+                    <textarea
+                      value={rule.description.fil}
+                      onChange={(e) => updateRule(i, "description", "fil", e.target.value)}
+                      placeholder={adminT("descFil", lang)}
+                      rows={2}
+                      className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
+                    />
+                    <TranslateButton
+                      sourceText={rule.description.en}
+                      onTranslated={(t) => setRuleFil(i, "description", t)}
+                      lang={lang}
+                    />
+                  </div>
                 </div>
               </div>
             ))}
@@ -267,95 +351,46 @@ export default function AdminPage() {
               onClick={addRule}
               className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-teal-700 ring-1 ring-teal-200"
             >
-              + Add Rule
+              {adminT("addRule", lang)}
             </button>
             <button
               type="button"
               disabled={saving}
-              onClick={() => save(content)}
+              onClick={() => saveContent(content)}
               className="ml-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
             >
-              {saving ? "Saving..." : "Save Rules"}
+              {saving ? adminT("saving", lang) : adminT("saveRules", lang)}
             </button>
           </div>
         )}
 
         {activeSection === "schedule" && (
           <div className="space-y-4">
-            <p className="text-sm text-stone-600">
-              Edit the weekly task schedule. Use the JSON editor for bulk changes from your Numbers spreadsheet.
-            </p>
-            {content.weeklySchedule.map((day, di) => (
-              <details key={day.dayKey} className="rounded-xl bg-white ring-1 ring-stone-200">
-                <summary className="cursor-pointer px-4 py-3 font-semibold text-stone-800">
-                  {day.day.en} / {day.day.fil} ({day.tasks.length} tasks)
-                </summary>
-                <div className="space-y-2 border-t border-stone-100 px-4 py-3">
-                  {day.tasks.map((task, ti) => (
-                    <div key={task.id} className="grid gap-2 sm:grid-cols-4">
-                      <input
-                        value={task.time}
-                        onChange={(e) => {
-                          const next = structuredClone(content);
-                          next.weeklySchedule[di].tasks[ti].time = e.target.value;
-                          setContent(next);
-                        }}
-                        className="rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
-                        placeholder="Time"
-                      />
-                      <input
-                        value={task.task.en}
-                        onChange={(e) => {
-                          const next = structuredClone(content);
-                          next.weeklySchedule[di].tasks[ti].task.en = e.target.value;
-                          setContent(next);
-                        }}
-                        className="rounded-lg border border-stone-200 px-2 py-1.5 text-sm sm:col-span-1"
-                        placeholder="Task (EN)"
-                      />
-                      <input
-                        value={task.task.fil}
-                        onChange={(e) => {
-                          const next = structuredClone(content);
-                          next.weeklySchedule[di].tasks[ti].task.fil = e.target.value;
-                          setContent(next);
-                        }}
-                        className="rounded-lg border border-stone-200 px-2 py-1.5 text-sm sm:col-span-2"
-                        placeholder="Task (FIL)"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </details>
-            ))}
+            <ScheduleCalendarAdmin content={content} setContent={setContent} lang={lang} />
             <button
               type="button"
               disabled={saving}
-              onClick={() => save(content)}
-              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+              onClick={() => saveContent(content)}
+              className="w-full rounded-xl bg-teal-600 py-3 text-sm font-semibold text-white disabled:opacity-50"
             >
-              {saving ? "Saving..." : "Save Schedule"}
+              {saving ? adminT("saving", lang) : adminT("saveSchedule", lang)}
             </button>
           </div>
         )}
 
         {activeSection === "meals" && (
-          <div className="space-y-4 rounded-xl bg-white p-4 ring-1 ring-stone-200">
-            <h2 className="font-semibold text-stone-900">Dinner randomizer</h2>
-            <p className="text-sm text-stone-600">
-              Dinner is auto-generated each night: 1 meat + 1 vegetable + 1 soup.
-              Recipes are stored in Supabase (seeded from dinner-recipes.json).
-            </p>
-            <p className="text-xs text-stone-500">
-              To update recipes, edit via JSON tab or run the seed script with updated data.
-            </p>
-          </div>
+          <MealsAdmin
+            lang={lang}
+            saving={saving}
+            onSave={saveRecipes}
+            setMessage={setMessage}
+          />
         )}
 
         {activeSection === "settings" && (
           <div className="rounded-xl bg-white p-4 ring-1 ring-stone-200">
             <label className="mb-1 block text-sm font-medium text-stone-700">
-              Helper Name
+              {adminT("helperName", lang)}
             </label>
             <input
               value={content.helperName}
@@ -363,7 +398,7 @@ export default function AdminPage() {
               className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
             />
             <label className="mb-1 block text-sm font-medium text-stone-700">
-              Family Name
+              {adminT("familyName", lang)}
             </label>
             <input
               value={content.familyName}
@@ -371,7 +406,7 @@ export default function AdminPage() {
               className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
             />
             <label className="mb-1 block text-sm font-medium text-stone-700">
-              Zizi School (English)
+              {adminT("schoolEn", lang)}
             </label>
             <input
               value={content.ziziSchool?.en ?? ""}
@@ -387,44 +422,57 @@ export default function AdminPage() {
               className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
             />
             <label className="mb-1 block text-sm font-medium text-stone-700">
-              Zizi School (Filipino)
+              {adminT("schoolFil", lang)}
             </label>
-            <input
-              value={content.ziziSchool?.fil ?? ""}
-              onChange={(e) =>
-                setContent({
-                  ...content,
-                  ziziSchool: {
-                    en: content.ziziSchool?.en ?? "",
-                    fil: e.target.value,
-                  },
-                })
-              }
-              className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
-            />
+            <div className="mb-3 flex gap-1">
+              <input
+                value={content.ziziSchool?.fil ?? ""}
+                onChange={(e) =>
+                  setContent({
+                    ...content,
+                    ziziSchool: {
+                      en: content.ziziSchool?.en ?? "",
+                      fil: e.target.value,
+                    },
+                  })
+                }
+                className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
+              />
+              <TranslateButton
+                sourceText={content.ziziSchool?.en ?? ""}
+                onTranslated={(t) =>
+                  setContent({
+                    ...content,
+                    ziziSchool: {
+                      en: content.ziziSchool?.en ?? "",
+                      fil: t,
+                    },
+                  })
+                }
+                lang={lang}
+              />
+            </div>
             <button
               type="button"
               disabled={saving}
-              onClick={() => save(content)}
+              onClick={() => saveContent(content)}
               className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
             >
-              {saving ? "Saving..." : "Save Settings"}
+              {saving ? adminT("saving", lang) : adminT("saveSettings", lang)}
             </button>
             <button
               type="button"
               onClick={downloadBackup}
               className="ml-2 rounded-xl bg-white px-4 py-2 text-sm font-medium text-stone-700 ring-1 ring-stone-200"
             >
-              Download backup
+              {adminT("downloadBackup", lang)}
             </button>
           </div>
         )}
 
         {activeSection === "json" && (
           <div className="space-y-3">
-            <p className="text-sm text-stone-600">
-              Bulk edit JSON. Click Save to publish instantly to Supabase.
-            </p>
+            <p className="text-sm text-stone-600">{adminT("jsonHelp", lang)}</p>
             <textarea
               value={jsonText}
               onChange={(e) => setJsonText(e.target.value)}
@@ -437,7 +485,7 @@ export default function AdminPage() {
               onClick={saveJson}
               className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
             >
-              {saving ? "Saving..." : "Save JSON"}
+              {saving ? adminT("saving", lang) : adminT("saveJson", lang)}
             </button>
           </div>
         )}
