@@ -45,7 +45,7 @@ export function isHongKongPublicHoliday(date = new Date()): boolean {
   return HK_PUBLIC_HOLIDAYS.has(getHongKongDateKey(date));
 }
 
-export function isZiziDayOff(date = new Date()): boolean {
+export function isHelperDayOff(date = new Date()): boolean {
   const day = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Hong_Kong",
     weekday: "long",
@@ -54,3 +54,6 @@ export function isZiziDayOff(date = new Date()): boolean {
     .toLowerCase();
   return day === "sunday" || isHongKongPublicHoliday(date);
 }
+
+/** @deprecated Use isHelperDayOff — Sunday & HK holidays are Charlene's day off */
+export const isZiziDayOff = isHelperDayOff;

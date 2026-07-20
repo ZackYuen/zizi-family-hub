@@ -62,7 +62,13 @@ function isStaleSchedule(content: AppContent): boolean {
     t.task.en.toLowerCase().includes("wake")
   );
   const wakeTime = wake?.startTime ?? wake?.time;
-  return wakeTime === "07:30";
+  if (wakeTime === "07:30") return true;
+  const hasLeaveHome = monday?.tasks?.some((t) =>
+    t.task.en.toLowerCase().includes("leave home")
+  );
+  const schoolNote = content.ziziSchool?.en ?? "";
+  if (!hasLeaveHome || schoolNote.includes("Zizi whole day off")) return true;
+  return false;
 }
 
 function isStaleGroundRules(content: AppContent): boolean {

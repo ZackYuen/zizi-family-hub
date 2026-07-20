@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { isZiziDayOff } from "@/lib/hk-holidays";
+import { isHelperDayOff } from "@/lib/hk-holidays";
 import { getHongKongTimeParts, getTodayDayKey, labels, uiLocale } from "@/lib/i18n";
 import { localized } from "@/lib/localized-text";
 import {
@@ -24,17 +24,17 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
   const todayKeyRef = useRef(todayKey);
   const [selectedDay, setSelectedDay] = useState(todayKey);
   const [nowMinutes, setNowMinutes] = useState(() => getHongKongTimeParts().minutesSinceMidnight);
-  const [isDayOff, setIsDayOff] = useState(() => isZiziDayOff());
+  const [isDayOff, setIsDayOff] = useState(() => isHelperDayOff());
 
   useEffect(() => {
-    if (isZiziDayOff()) setSelectedDay("sunday");
+    if (isHelperDayOff()) setSelectedDay("sunday");
   }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
       setNowMinutes(getHongKongTimeParts().minutesSinceMidnight);
       const currentToday = getTodayDayKey();
-      const dayOff = isZiziDayOff();
+      const dayOff = isHelperDayOff();
       setIsDayOff(dayOff);
 
       if (dayOff) {
@@ -64,9 +64,9 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
 
   const nowLabel = lang === "fil" ? "Ngayon" : "Now";
   const dayOffBanner = {
-    en: "Today is Sunday / HK public holiday (香港勞工假) — Zizi (Seth) whole day off, no kindergarten.",
-    fil: "Ngayon ay Linggo / HK public holiday (香港勞工假) — buong araw na day off si Zizi (Seth), walang eskwela.",
-    zh: "今天是星期日／香港公眾假期（勞工假）— Zizi (Seth) 全日放假，不用上學。",
+    en: "Today is Sunday / HK public holiday (香港勞工假) — Charlene (姐姐) day off.",
+    fil: "Ngayon ay Linggo / HK public holiday (香港勞工假) — day off ni Charlene (姐姐).",
+    zh: "今天是星期日／香港公眾假期（勞工假）— 姐姐放假。",
   };
 
   return (

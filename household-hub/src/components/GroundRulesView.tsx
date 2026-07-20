@@ -31,9 +31,9 @@ const ui = {
     zh: "必須立刻告知僱主，不可隱瞞。以下逐項列明後果。",
   },
   ifBroken: {
-    en: "If broken — consequences",
-    fil: "Kung labag — resulta",
-    zh: "若違反 — 後果",
+    en: "If Broken",
+    fil: "If Broken",
+    zh: "If Broken",
   },
   tellEmployer: {
     en: "Tell employer right away if this happens",
