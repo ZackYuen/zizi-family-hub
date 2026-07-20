@@ -64,9 +64,9 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
 
   const nowLabel = lang === "fil" ? "Ngayon" : "Now";
   const dayOffBanner = {
-    en: "Today is Sunday / HK public holiday (香港勞工假) — Charlene (姐姐) day off.",
-    fil: "Ngayon ay Linggo / HK public holiday (香港勞工假) — day off ni Charlene (姐姐).",
-    zh: "今天是星期日／香港公眾假期（勞工假）— 姐姐放假。",
+    en: "Today is Sunday / HK public holiday (香港勞工假) — Charlene day off.",
+    fil: "Ngayon ay Linggo / HK public holiday (香港勞工假) — day off ni Charlene.",
+    zh: "今天是星期日／香港公眾假期（勞工假）— Charlene 放假。",
   };
 
   return (

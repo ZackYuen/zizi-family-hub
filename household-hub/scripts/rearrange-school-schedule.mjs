@@ -11,8 +11,8 @@ const paths = [
 ];
 
 const ziziSchool = {
-  en: "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene (姐姐) day off.",
-  fil: "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene (姐姐).",
+  en: "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
+  fil: "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene.",
 };
 
 const morningBlock = (prefix) => [
@@ -167,7 +167,7 @@ const mondayEvening = [
   { id: "m15", time: "18:30", startTime: "18:30", endTime: "20:00", task: { en: "ZiZi dinner (6:30–8:00 PM)", fil: "Hapunan ni Zizi (6:30–8:00 PM)" } },
   { id: "m16", time: "20:15", startTime: "20:15", endTime: "20:30", task: { en: "Wash dishes / tidy up kitchen", fil: "Hugasan ang pinggan / ayusin ang kusina" } },
   { id: "m17", time: "20:30", startTime: "20:30", endTime: "21:15", task: { en: "Vacuum floor", fil: "Vacuum ng sahig" } },
-  { id: "m18", time: "21:15", startTime: "21:15", endTime: "21:45", task: { en: "ZiZi shower and milk", fil: "Paligo at gatas ni Zizi" } },
+  { id: "m18", time: "21:15", startTime: "21:15", endTime: "21:45", task: { en: "ZiZi shower", fil: "Paligo ni Zizi" } },
   { id: "m19", time: "21:45", startTime: "21:45", task: { en: "Charlene rest time", fil: "Oras ng pahinga ni Charlene" } },
 ];
 
@@ -178,7 +178,7 @@ const tuesdayEvening = [
   { id: "t15", time: "18:30", startTime: "18:30", endTime: "20:15", task: { en: "ZiZi dinner", fil: "Hapunan ni Zizi" } },
   { id: "t16", time: "20:15", startTime: "20:15", endTime: "20:30", task: { en: "Wash dishes / tidy kitchen", fil: "Hugasan / ayusin ang kusina" } },
   { id: "t17", time: "20:30", startTime: "20:30", endTime: "21:15", task: { en: "Vacuum floor", fil: "Vacuum ng sahig" } },
-  { id: "t18", time: "21:15", startTime: "21:15", endTime: "21:45", task: { en: "ZiZi shower and milk", fil: "Paligo at gatas ni Zizi" } },
+  { id: "t18", time: "21:15", startTime: "21:15", endTime: "21:45", task: { en: "ZiZi shower", fil: "Paligo ni Zizi" } },
   { id: "t19", time: "21:45", startTime: "21:45", task: { en: "Charlene rest time", fil: "Oras ng pahinga ni Charlene" } },
 ];
 
@@ -245,7 +245,7 @@ const saturdayTasks = [
   { id: "s11", time: "18:30", startTime: "18:30", endTime: "20:15", task: { en: "ZiZi dinner", fil: "Hapunan ni Zizi" } },
   { id: "s12", time: "20:15", startTime: "20:15", endTime: "20:30", task: { en: "Wash dishes / tidy kitchen", fil: "Hugasan / ayusin ang kusina" } },
   { id: "s13", time: "20:30", startTime: "20:30", endTime: "21:15", task: { en: "Vacuum floor", fil: "Vacuum ng sahig" } },
-  { id: "s14", time: "21:15", startTime: "21:15", endTime: "21:45", task: { en: "ZiZi shower and milk", fil: "Paligo at gatas ni Zizi" } },
+  { id: "s14", time: "21:15", startTime: "21:15", endTime: "21:45", task: { en: "ZiZi shower", fil: "Paligo ni Zizi" } },
   { id: "s15", time: "21:45", startTime: "21:45", task: { en: "Charlene rest time", fil: "Oras ng pahinga ni Charlene" } },
 ];
 
@@ -256,8 +256,8 @@ const sundayTasks = [
     startTime: "00:00",
     fullDay: true,
     task: {
-      en: "Charlene (姐姐) day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-      fil: "Day off ni Charlene (姐姐) — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
+      en: "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
+      fil: "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
     },
   },
 ];
