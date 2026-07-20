@@ -5,6 +5,7 @@ import type { Lang } from "@/lib/types";
 import type { AppContent, DaySchedule, ScheduleTask } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { getTodayDayKey } from "@/lib/i18n";
+import { getTaskStartTime, sortTasksByTime } from "@/lib/schedule-utils";
 import { TranslateButton } from "./TranslateButton";
 
 const DAY_KEYS = [
@@ -30,7 +31,8 @@ function taskCount(d: DaySchedule) {
 }
 
 function sortTasks(tasks: ScheduleTask[]) {
-  tasks.sort((a, b) => a.time.localeCompare(b.time));
+  const sorted = sortTasksByTime(tasks);
+  tasks.splice(0, tasks.length, ...sorted);
 }
 
 export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
@@ -44,14 +46,24 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 
   const updateTask = (
     taskIndex: number,
-    field: keyof ScheduleTask | "task.en" | "task.fil",
-    value: string
+    field: "startTime" | "endTime" | "fullDay" | "task.en" | "task.fil",
+    value: string | boolean
   ) => {
     const next = structuredClone(content);
     const d = next.weeklySchedule[dayIndex];
-    if (field === "time") d.tasks[taskIndex].time = value;
-    else if (field === "task.en") d.tasks[taskIndex].task.en = value;
-    else if (field === "task.fil") d.tasks[taskIndex].task.fil = value;
+    const task = d.tasks[taskIndex];
+    if (field === "startTime" && typeof value === "string") {
+      task.startTime = value;
+      task.time = value;
+    } else if (field === "endTime" && typeof value === "string") {
+      task.endTime = value || undefined;
+    } else if (field === "fullDay" && typeof value === "boolean") {
+      task.fullDay = value;
+    } else if (field === "task.en" && typeof value === "string") {
+      task.task.en = value;
+    } else if (field === "task.fil" && typeof value === "string") {
+      task.task.fil = value;
+    }
     setContent(next);
   };
 
@@ -60,6 +72,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
     next.weeklySchedule[dayIndex].tasks.push({
       id: `task-${Date.now()}`,
       time: "09:00",
+      startTime: "09:00",
       task: { en: "", fil: "" },
     });
     sortTasks(next.weeklySchedule[dayIndex].tasks);
@@ -78,8 +91,10 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
     sortTasks(tasks);
     const target = taskIndex + direction;
     if (target < 0 || target >= tasks.length) return;
-    const tempTime = tasks[taskIndex].time;
-    tasks[taskIndex].time = tasks[target].time;
+    const tempTime = getTaskStartTime(tasks[taskIndex]);
+    tasks[taskIndex].startTime = getTaskStartTime(tasks[target]);
+    tasks[taskIndex].time = tasks[taskIndex].startTime;
+    tasks[target].startTime = tempTime;
     tasks[target].time = tempTime;
     sortTasks(tasks);
     setContent(next);
@@ -227,24 +242,48 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 
           {/* Timeline for selected day */}
           <div className="space-y-3">
-            {[...day.tasks]
-              .sort((a, b) => a.time.localeCompare(b.time))
-              .map((task, ti, arr) => {
+            {sortTasksByTime(day.tasks).map((task, ti, arr) => {
               const taskIndex = day.tasks.findIndex((t) => t.id === task.id);
+              const startVal = getTaskStartTime(task);
               return (
               <div
                 key={task.id}
                 className="relative rounded-xl bg-white p-3 ring-1 ring-stone-200 sm:p-4"
               >
                 <div className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-teal-500" />
-                <div className="mb-2 flex items-center justify-between pl-2">
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="time"
-                      value={task.time}
-                      onChange={(e) => updateTask(taskIndex, "time", e.target.value)}
-                      className="rounded-lg border border-stone-200 px-2 py-1 text-sm font-bold text-teal-700"
-                    />
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2 pl-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <label className="flex items-center gap-1 text-xs text-stone-500">
+                      <input
+                        type="checkbox"
+                        checked={!!task.fullDay}
+                        onChange={(e) => updateTask(taskIndex, "fullDay", e.target.checked)}
+                        className="rounded"
+                      />
+                      {adminT("fullDay", lang)}
+                    </label>
+                    {!task.fullDay && (
+                      <>
+                        <label className="flex items-center gap-1 text-xs text-stone-500">
+                          {adminT("startTime", lang)}
+                          <input
+                            type="time"
+                            value={startVal}
+                            onChange={(e) => updateTask(taskIndex, "startTime", e.target.value)}
+                            className="rounded-lg border border-stone-200 px-2 py-1 text-sm font-bold text-teal-700"
+                          />
+                        </label>
+                        <label className="flex items-center gap-1 text-xs text-stone-500">
+                          {adminT("endTime", lang)}
+                          <input
+                            type="time"
+                            value={task.endTime ?? ""}
+                            onChange={(e) => updateTask(taskIndex, "endTime", e.target.value)}
+                            className="rounded-lg border border-stone-200 px-2 py-1 text-sm text-teal-700"
+                          />
+                        </label>
+                      </>
+                    )}
                     <div className="flex flex-col">
                       <button
                         type="button"
@@ -328,7 +367,7 @@ function WeekOverview({
 }) {
   const allTimes = new Set<string>();
   for (const d of content.weeklySchedule) {
-    for (const t of d.tasks) allTimes.add(t.time);
+    for (const t of d.tasks) allTimes.add(getTaskStartTime(t));
   }
   const times = [...allTimes].sort((a, b) => a.localeCompare(b));
 
@@ -403,7 +442,7 @@ function WeekGridRow({
     <>
       <div className="flex items-start p-2 text-xs font-bold text-teal-700">{time}</div>
       {days.map((d) => {
-        const task = d.tasks.find((t) => t.time === time);
+        const task = d.tasks.find((t) => getTaskStartTime(t) === time);
         return (
           <button
             key={d.dayKey}
@@ -463,7 +502,9 @@ function DayColumn({
               key={task.id}
               className="flex gap-2 rounded-lg bg-white px-2 py-1.5 ring-1 ring-stone-100"
             >
-              <span className="shrink-0 text-xs font-bold text-teal-700">{task.time}</span>
+              <span className="shrink-0 text-xs font-bold text-teal-700">
+                {task.fullDay ? (lang === "fil" ? "Buong araw" : "All day") : getTaskStartTime(task)}
+              </span>
               <span className="line-clamp-2 text-xs text-stone-700">
                 {task.task[lang] || task.task.en}
               </span>

@@ -56,6 +56,39 @@ async function readLocalRecipes(): Promise<DinnerRecipe[]> {
   return parsed.recipes;
 }
 
+function isStaleSchedule(content: AppContent): boolean {
+  const monday = content.weeklySchedule?.find((d) => d.dayKey === "monday");
+  const wake = monday?.tasks?.find((t) =>
+    t.task.en.toLowerCase().includes("wake")
+  );
+  const wakeTime = wake?.startTime ?? wake?.time;
+  return wakeTime === "07:30";
+}
+
+/** Prefer local schedule when Supabase still has old 07:30 wake-up data */
+function mergeContentFromLocal(
+  remote: AppContent,
+  local: AppContent
+): AppContent {
+  const remoteUpdated = remote.lastUpdated
+    ? new Date(remote.lastUpdated).getTime()
+    : 0;
+  const localUpdated = local.lastUpdated
+    ? new Date(local.lastUpdated).getTime()
+    : 0;
+  const useLocalSchedule =
+    isStaleSchedule(remote) || localUpdated > remoteUpdated;
+
+  if (!useLocalSchedule) return remote;
+
+  return {
+    ...remote,
+    weeklySchedule: local.weeklySchedule,
+    ziziSchool: local.ziziSchool,
+    lastUpdated: local.lastUpdated,
+  };
+}
+
 export async function getContent(): Promise<AppContent> {
   if (!isSupabaseConfigured()) {
     return readLocalContent();
@@ -69,8 +102,17 @@ export async function getContent(): Promise<AppContent> {
     .maybeSingle();
 
   if (error) throw error;
-  if (!data) return readLocalContent();
-  return data.data as AppContent;
+
+  const local = await readLocalContent();
+  if (!data) return local;
+
+  const merged = mergeContentFromLocal(data.data as AppContent, local);
+
+  if (isStaleSchedule(data.data as AppContent)) {
+    saveContent(merged).catch(() => {});
+  }
+
+  return merged;
 }
 
 export async function saveContent(content: AppContent): Promise<AppContent> {

@@ -2,37 +2,19 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { isZiziDayOff } from "@/lib/hk-holidays";
 import { getHongKongTimeParts, getTodayDayKey, labels } from "@/lib/i18n";
-import type { BilingualText, DaySchedule, ScheduleTask } from "@/lib/types";
+import {
+  formatTaskTimeRange,
+  getActiveTaskId,
+  sortTasksByTime,
+} from "@/lib/schedule-utils";
+import type { BilingualText, DaySchedule } from "@/lib/types";
 
 interface ScheduleViewProps {
   schedule: DaySchedule[];
   ziziSchool?: BilingualText;
   monthlyTasks?: BilingualText[];
-}
-
-function parseTimeToMinutes(time: string): number {
-  const [h, m] = time.split(":").map(Number);
-  return h * 60 + m;
-}
-
-function getActiveTaskId(tasks: ScheduleTask[], minutesSinceMidnight: number): string | null {
-  if (tasks.length === 0) return null;
-
-  const sorted = [...tasks].sort(
-    (a, b) => parseTimeToMinutes(a.time) - parseTimeToMinutes(b.time)
-  );
-
-  let active: ScheduleTask | null = null;
-  for (const task of sorted) {
-    if (parseTimeToMinutes(task.time) <= minutesSinceMidnight) {
-      active = task;
-    } else {
-      break;
-    }
-  }
-
-  return active?.id ?? sorted[0]?.id ?? null;
 }
 
 export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleViewProps) {
@@ -41,12 +23,22 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
   const todayKeyRef = useRef(todayKey);
   const [selectedDay, setSelectedDay] = useState(todayKey);
   const [nowMinutes, setNowMinutes] = useState(() => getHongKongTimeParts().minutesSinceMidnight);
+  const [isDayOff, setIsDayOff] = useState(() => isZiziDayOff());
+
+  useEffect(() => {
+    if (isZiziDayOff()) setSelectedDay("sunday");
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
       setNowMinutes(getHongKongTimeParts().minutesSinceMidnight);
       const currentToday = getTodayDayKey();
-      if (currentToday !== todayKeyRef.current) {
+      const dayOff = isZiziDayOff();
+      setIsDayOff(dayOff);
+
+      if (dayOff) {
+        setSelectedDay("sunday");
+      } else if (currentToday !== todayKeyRef.current) {
         setSelectedDay((prev) => (prev === todayKeyRef.current ? currentToday : prev));
         todayKeyRef.current = currentToday;
       }
@@ -54,17 +46,35 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
     return () => clearInterval(id);
   }, []);
 
-  const selected = schedule.find((d) => d.dayKey === selectedDay) ?? schedule[0];
-  const isViewingToday = selectedDay === todayKey;
+  useEffect(() => {
+    if (isDayOff) setSelectedDay("sunday");
+  }, [isDayOff]);
+
+  const effectiveDayKey = isDayOff ? "sunday" : selectedDay;
+  const selected =
+    schedule.find((d) => d.dayKey === effectiveDayKey) ?? schedule[0];
+  const sortedTasks = sortTasksByTime(selected.tasks);
+  const isViewingToday =
+    isDayOff || effectiveDayKey === todayKey;
   const activeTaskId = useMemo(
     () => (isViewingToday ? getActiveTaskId(selected.tasks, nowMinutes) : null),
     [isViewingToday, selected.tasks, nowMinutes]
   );
 
   const nowLabel = lang === "fil" ? "Ngayon" : "Now";
+  const dayOffBanner = {
+    en: "Today is Sunday / HK public holiday (香港勞工假) — Zizi (Seth) whole day off, no kindergarten.",
+    fil: "Ngayon ay Linggo / HK public holiday (香港勞工假) — buong araw na day off si Zizi (Seth), walang eskwela.",
+  };
 
   return (
     <div className="space-y-4">
+      {isDayOff && (
+        <p className="rounded-xl bg-violet-50 px-3 py-2 text-xs font-medium text-violet-900 ring-1 ring-violet-100">
+          🎉 {dayOffBanner[lang]}
+        </p>
+      )}
+
       {ziziSchool && (
         <p className="rounded-xl bg-blue-50 px-3 py-2 text-xs text-blue-900 ring-1 ring-blue-100">
           🏫 {ziziSchool[lang]}
@@ -73,8 +83,9 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
 
       <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
         {schedule.map((day) => {
-          const isToday = day.dayKey === todayKey;
-          const isSelected = day.dayKey === selectedDay;
+          const isToday = !isDayOff && day.dayKey === todayKey;
+          const isSelected = day.dayKey === effectiveDayKey;
+          const isSunday = day.dayKey === "sunday";
           return (
             <button
               key={day.dayKey}
@@ -85,11 +96,13 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
                   ? "bg-teal-600 text-white shadow-md"
                   : isToday
                     ? "bg-teal-50 text-teal-800 ring-2 ring-teal-300"
-                    : "bg-white text-stone-600 ring-1 ring-stone-200"
+                    : isSunday
+                      ? "bg-violet-50 text-violet-800 ring-1 ring-violet-200"
+                      : "bg-white text-stone-600 ring-1 ring-stone-200"
               }`}
             >
               {day.day[lang]}
-              {isToday && (
+              {(isToday || (isDayOff && isSunday)) && (
                 <span className="ml-1 text-[10px] opacity-80">
                   ({labels.today[lang]})
                 </span>
@@ -100,22 +113,24 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
       </div>
 
       <div className="space-y-2">
-        {selected.tasks.map((task) => {
+        {sortedTasks.map((task) => {
           const isNow = isViewingToday && task.id === activeTaskId;
           return (
             <div
               key={task.id}
               className={`flex gap-3 rounded-2xl p-3 shadow-sm ring-1 ${
-                isNow
-                  ? "bg-amber-50 ring-amber-300"
-                  : "bg-white ring-stone-100"
+                task.fullDay
+                  ? "bg-violet-50 ring-violet-200"
+                  : isNow
+                    ? "bg-amber-50 ring-amber-300"
+                    : "bg-white ring-stone-100"
               }`}
             >
-              <div className="w-14 shrink-0">
-                <time className="block pt-0.5 text-sm font-bold text-teal-700">
-                  {task.time}
+              <div className="w-[5.5rem] shrink-0">
+                <time className="block pt-0.5 text-xs font-bold leading-snug text-teal-700">
+                  {formatTaskTimeRange(task, lang)}
                 </time>
-                {isNow && (
+                {isNow && !task.fullDay && (
                   <span className="mt-0.5 block text-[10px] font-bold uppercase text-amber-700">
                     {nowLabel}
                   </span>

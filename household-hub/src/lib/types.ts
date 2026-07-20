@@ -15,7 +15,11 @@ export interface GroundRule {
 
 export interface ScheduleTask {
   id: string;
+  /** @deprecated use startTime — kept for backward compatibility */
   time: string;
+  startTime?: string;
+  endTime?: string;
+  fullDay?: boolean;
   task: BilingualText;
   notes?: BilingualText;
 }
