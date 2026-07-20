@@ -192,7 +192,7 @@ export default function AdminPage() {
 
   const updateRuleField = (
     index: number,
-    field: "title" | "description",
+    field: "title" | "description" | "consequences",
     value: AppContent["groundRules"][0]["title"]
   ) => {
     const next = structuredClone(content);
@@ -206,6 +206,11 @@ export default function AdminPage() {
       id: `rule-${Date.now()}`,
       title: { en: "New Rule", fil: "Bagong Alituntunin", zh: "新規則" },
       description: emptyBilingual(),
+      consequences: {
+        en: "Tell employer immediately. Employment may be terminated depending on severity.",
+        fil: "Sabihin agad sa employer. Maaaring matapos ang trabaho depende sa kalubhaan.",
+        zh: "立即告知僱主。視乎嚴重程度可能終止僱傭。",
+      },
       category: "general",
       priority: next.groundRules.length + 1,
     });
@@ -304,6 +309,14 @@ export default function AdminPage() {
                     <TrilingualFieldEditor
                       value={rule.description}
                       onChange={(v) => updateRuleField(i, "description", v)}
+                      multiline
+                    />
+                  </div>
+                  <div>
+                    <p className="mb-1 text-xs font-bold text-red-700">{adminT("consequences", lang)}</p>
+                    <TrilingualFieldEditor
+                      value={rule.consequences ?? emptyBilingual()}
+                      onChange={(v) => updateRuleField(i, "consequences", v)}
                       multiline
                     />
                   </div>

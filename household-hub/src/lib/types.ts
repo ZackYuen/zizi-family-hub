@@ -10,6 +10,8 @@ export interface GroundRule {
   id: string;
   title: BilingualText;
   description: BilingualText;
+  /** What happens if this rule is broken — must be stated clearly */
+  consequences: BilingualText;
   category: "general" | "kitchen" | "childcare" | "safety";
   priority: number;
 }

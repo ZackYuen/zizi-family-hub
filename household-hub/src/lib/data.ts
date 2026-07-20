@@ -65,7 +65,14 @@ function isStaleSchedule(content: AppContent): boolean {
   return wakeTime === "07:30";
 }
 
-/** Prefer local schedule when Supabase still has old 07:30 wake-up data */
+function isStaleGroundRules(content: AppContent): boolean {
+  return (
+    !content.groundRules?.length ||
+    content.groundRules.some((r) => !r.consequences?.en?.trim())
+  );
+}
+
+/** Prefer local content when Supabase is missing schedule or rule updates */
 function mergeContentFromLocal(
   remote: AppContent,
   local: AppContent
@@ -78,13 +85,17 @@ function mergeContentFromLocal(
     : 0;
   const useLocalSchedule =
     isStaleSchedule(remote) || localUpdated > remoteUpdated;
+  const useLocalRules =
+    isStaleGroundRules(remote) || localUpdated > remoteUpdated;
 
-  if (!useLocalSchedule) return remote;
+  if (!useLocalSchedule && !useLocalRules) return remote;
 
   return {
     ...remote,
-    weeklySchedule: local.weeklySchedule,
-    ziziSchool: local.ziziSchool,
+    ...(useLocalSchedule
+      ? { weeklySchedule: local.weeklySchedule, ziziSchool: local.ziziSchool }
+      : {}),
+    ...(useLocalRules ? { groundRules: local.groundRules } : {}),
     lastUpdated: local.lastUpdated,
   };
 }
@@ -108,7 +119,7 @@ export async function getContent(): Promise<AppContent> {
 
   const merged = mergeContentFromLocal(data.data as AppContent, local);
 
-  if (isStaleSchedule(data.data as AppContent)) {
+  if (isStaleSchedule(data.data as AppContent) || isStaleGroundRules(data.data as AppContent)) {
     saveContent(merged).catch(() => {});
   }
 

@@ -36,6 +36,11 @@ export const adminLabels = {
   titleFil: { en: "Title (Filipino)", fil: "Pamagat (Filipino)" },
   descEn: { en: "Description (English)", fil: "Deskripsyon (English)" },
   descFil: { en: "Description (Filipino)", fil: "Deskripsyon (Filipino)" },
+  consequences: {
+    en: "If broken — consequences (be explicit)",
+    fil: "Kung labag — resulta (maging malinaw)",
+    zh: "若違反 — 後果（請寫清楚）",
+  },
   translateToFil: { en: "Translate EN → FIL", fil: "Isalin EN → FIL" },
   translating: { en: "Translating...", fil: "Nagsasalin..." },
   helperName: { en: "Helper Name", fil: "Pangalan ng Katulong" },
