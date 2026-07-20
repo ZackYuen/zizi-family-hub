@@ -32,12 +32,19 @@ Endpoints:
 
 Set `FORCE_SEED_FROM_LOCAL=1` on the server once, or run `npm run seed`. This overwrites Admin data — use only intentionally.
 
-## WhatsApp bot
+## WhatsApp options
+
+### A) Official Meta Cloud API (no always-on host)
 
 1. Create a Meta WhatsApp Cloud API app + phone number.
-2. Set Vercel env vars (see `.env.example`).
+2. Set Vercel env: `WHATSAPP_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_VERIFY_TOKEN`
 3. Webhook URL: `https://zizi-family-hub.vercel.app/api/whatsapp`
-4. Verify token = `WHATSAPP_VERIFY_TOKEN`
-5. In the group, ask with `?` prefix, e.g. `? Tonight dinner?`
+4. In the group, ask with `?` prefix, e.g. `? Tonight dinner?`
 
-Optional: `OPENROUTER_API_KEY` with model `openrouter/free` (\$0); or `OPENAI_API_KEY`. Without either, built-in FAQ still answers schedule / meals / rules / pickup.
+### B) Baileys bot (QR + spare number, always-on host)
+
+See `whatsapp-bot/README.md`. Runs on a PC/Pi/VPS with `pm2` or Docker, calls `POST /api/ask`.
+
+## LLM (optional)
+
+`OPENROUTER_API_KEY` + `OPENROUTER_MODEL=openrouter/free` (\$0), or `OPENAI_API_KEY`. Without either, built-in FAQ still answers schedule / meals / rules / pickup.

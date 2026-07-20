@@ -1,0 +1,12 @@
+services:
+  zizi-whatsapp-bot:
+    build: .
+    container_name: zizi-whatsapp-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./auth_info:/app/auth_info
+    # First run: attach to see QR in logs
+    # docker compose up
+    # Then: docker compose up -d
