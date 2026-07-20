@@ -70,12 +70,8 @@ export function getRecipeDisplayName(recipe: DinnerRecipe, lang: Lang): string {
 }
 
 export function getRecipeSubtitle(recipe: DinnerRecipe, lang: Lang): string | null {
+  if (!recipe.name?.trim() || !hasCjk(recipe.name)) return null;
   const display = getRecipeDisplayName(recipe, lang);
-  // Hide Chinese subtitle when we have a proper translation
-  if (recipe.nameFil?.trim() && !hasCjk(recipe.nameFil) && lang === "fil") return null;
-  if (recipe.nameEn?.trim() && isMostlyLatin(recipe.nameEn) && lang === "en") return null;
-  if (recipe.name && recipe.name !== display && hasCjk(recipe.name)) {
-    return recipe.name;
-  }
-  return null;
+  if (recipe.name.trim() === display.trim()) return null;
+  return recipe.name;
 }

@@ -62,7 +62,9 @@ export function MealsView() {
       </div>
 
       <div className="space-y-3">
-        {items.map(({ key, label, recipe }) => (
+        {items.map(({ key, label, recipe }) => {
+          const subtitle = getRecipeSubtitle(recipe, lang);
+          return (
           <article
             key={key}
             className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-stone-100"
@@ -81,8 +83,8 @@ export function MealsView() {
             <p className="text-base font-semibold text-stone-900">
               {getRecipeDisplayName(recipe, lang)}
             </p>
-            {getRecipeSubtitle(recipe, lang) && (
-              <p className="text-xs text-stone-400">{getRecipeSubtitle(recipe, lang)}</p>
+            {subtitle && (
+              <p className="mt-0.5 text-sm text-stone-500">{subtitle}</p>
             )}
             <a
               href={recipe.link}
@@ -93,7 +95,8 @@ export function MealsView() {
               {ui.recipe[lang]} →
             </a>
           </article>
-        ))}
+          );
+        })}
       </div>
 
       <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-900 ring-1 ring-amber-100">
