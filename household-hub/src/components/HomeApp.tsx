@@ -14,7 +14,7 @@ import { labels } from "@/lib/i18n";
 
 export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
-  const [activeTab, setActiveTab] = useState<TabId>("rules");
+  const [activeTab, setActiveTab] = useState<TabId>("schedule");
 
   const updated = new Date(content.lastUpdated).toLocaleDateString(
     lang === "fil" ? "fil-PH" : "en-HK",

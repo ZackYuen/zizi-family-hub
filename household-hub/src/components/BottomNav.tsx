@@ -11,9 +11,9 @@ interface BottomNavProps {
 }
 
 const tabs: { id: TabId; icon: string; labelKey: "groundRules" | "schedule" | "meals" }[] = [
-  { id: "rules", icon: "📋", labelKey: "groundRules" },
   { id: "schedule", icon: "🕐", labelKey: "schedule" },
   { id: "meals", icon: "🍽️", labelKey: "meals" },
+  { id: "rules", icon: "📋", labelKey: "groundRules" },
 ];
 
 export function BottomNav({ active, onChange }: BottomNavProps) {
