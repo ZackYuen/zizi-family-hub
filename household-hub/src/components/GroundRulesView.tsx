@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { categoryLabel } from "@/lib/i18n";
+import { localized } from "@/lib/localized-text";
 import type { GroundRule } from "@/lib/types";
 
 const categoryIcons: Record<GroundRule["category"], string> = {
@@ -35,7 +36,7 @@ export function GroundRulesView({ rules }: { rules: GroundRule[] }) {
             </span>
             <div className="min-w-0 flex-1">
               <h3 className="text-base font-semibold text-stone-900">
-                {rule.title[lang]}
+                {localized(rule.title, lang)}
               </h3>
               <span
                 className={`mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${categoryColors[rule.category]}`}
@@ -45,7 +46,7 @@ export function GroundRulesView({ rules }: { rules: GroundRule[] }) {
             </div>
           </div>
           <p className="pl-11 text-sm leading-relaxed text-stone-600">
-            {rule.description[lang]}
+            {localized(rule.description, lang)}
           </p>
         </article>
       ))}

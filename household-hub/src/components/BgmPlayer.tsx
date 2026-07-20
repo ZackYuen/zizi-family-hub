@@ -7,11 +7,12 @@ const BGM_SRC = "/audio/bgm.mp3";
 const VOLUME = 0.12;
 
 const ui = {
-  musicOn: { en: "Music on", fil: "Musika on" },
-  musicOff: { en: "Music off", fil: "Musika off" },
+  musicOn: { en: "Music on", fil: "Musika on", zh: "音樂開" },
+  musicOff: { en: "Music off", fil: "Musika off", zh: "音樂關" },
   tapForMusic: {
     en: "Tap to start music",
     fil: "I-tap para sa musika",
+    zh: "點一下開始音樂",
   },
 };
 

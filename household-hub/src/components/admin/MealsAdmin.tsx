@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DinnerRecipe, Lang } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
-import { TranslateButton } from "./TranslateButton";
+import { TranslateButtons } from "./TranslateButtons";
 
 type Category = DinnerRecipe["category"] | "All";
 
@@ -124,7 +124,7 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
       const res = await fetch("/api/admin/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: en }),
+        body: JSON.stringify({ text: en, from: "en", to: "fil" }),
       });
       if (res.ok) {
         const { translation } = await res.json();
@@ -235,30 +235,58 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 <option value="Vegetable">{adminT("vegetable", lang)}</option>
                 <option value="Soup">{adminT("soup", lang)}</option>
               </select>
-              <input
-                value={editing.name}
-                onChange={(e) => setEditing({ ...editing, name: e.target.value })}
-                placeholder={adminT("nameZh", lang)}
-                className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
-              />
-              <input
-                value={editing.nameEn ?? ""}
-                onChange={(e) => setEditing({ ...editing, nameEn: e.target.value })}
-                placeholder={adminT("nameEn", lang)}
-                className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
-              />
-              <div className="flex gap-1">
-                <input
-                  value={editing.nameFil ?? ""}
-                  onChange={(e) => setEditing({ ...editing, nameFil: e.target.value })}
-                  placeholder={adminT("nameFil", lang)}
-                  className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                />
-                <TranslateButton
-                  sourceText={editing.nameEn ?? editing.name}
-                  onTranslated={(t) => setEditing({ ...editing, nameFil: t })}
-                  lang={lang}
-                />
+              <div className="space-y-2 rounded-lg bg-stone-50 p-2">
+                <div className="flex gap-1">
+                  <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">中文</span>
+                  <input
+                    value={editing.name}
+                    onChange={(e) => setEditing({ ...editing, name: e.target.value })}
+                    placeholder={adminT("nameZh", lang)}
+                    className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
+                  />
+                  <TranslateButtons
+                    sourceText={editing.name}
+                    sourceLang="zh"
+                    onTranslated={(target, text) => {
+                      if (target === "en") setEditing({ ...editing, nameEn: text });
+                      if (target === "fil") setEditing({ ...editing, nameFil: text });
+                    }}
+                  />
+                </div>
+                <div className="flex gap-1">
+                  <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">EN</span>
+                  <input
+                    value={editing.nameEn ?? ""}
+                    onChange={(e) => setEditing({ ...editing, nameEn: e.target.value })}
+                    placeholder={adminT("nameEn", lang)}
+                    className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
+                  />
+                  <TranslateButtons
+                    sourceText={editing.nameEn ?? ""}
+                    sourceLang="en"
+                    onTranslated={(target, text) => {
+                      if (target === "zh") setEditing({ ...editing, name: text });
+                      if (target === "fil") setEditing({ ...editing, nameFil: text });
+                    }}
+                  />
+                </div>
+                <div className="flex gap-1">
+                  <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">FIL</span>
+                  <input
+                    value={editing.nameFil ?? ""}
+                    onChange={(e) => setEditing({ ...editing, nameFil: e.target.value })}
+                    placeholder={adminT("nameFil", lang)}
+                    className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
+                  />
+                  <TranslateButtons
+                    sourceText={editing.nameFil ?? ""}
+                    sourceLang="fil"
+                    onTranslated={(target, text) => {
+                      if (target === "en") setEditing({ ...editing, nameEn: text });
+                      if (target === "zh") setEditing({ ...editing, name: text });
+                    }}
+                  />
+                </div>
               </div>
               <input
                 value={editing.subCategory ?? ""}

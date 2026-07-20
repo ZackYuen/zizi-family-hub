@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { labels } from "@/lib/i18n";
+import { labels, uiLocale } from "@/lib/i18n";
 
 const HK_TZ = "Asia/Hong_Kong";
 
@@ -15,7 +15,7 @@ export function LiveClock() {
     return () => clearInterval(id);
   }, []);
 
-  const locale = lang === "fil" ? "fil-PH" : "en-HK";
+  const locale = uiLocale(lang);
 
   const dateStr = now.toLocaleDateString(locale, {
     timeZone: HK_TZ,

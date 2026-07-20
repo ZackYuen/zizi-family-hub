@@ -1,8 +1,9 @@
-export type Lang = "en" | "fil";
+export type Lang = "en" | "fil" | "zh";
 
 export interface BilingualText {
   en: string;
   fil: string;
+  zh?: string;
 }
 
 export interface GroundRule {

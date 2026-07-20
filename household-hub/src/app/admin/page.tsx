@@ -7,7 +7,11 @@ import type { DinnerRecipe } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { ScheduleCalendarAdmin } from "@/components/admin/ScheduleCalendarAdmin";
 import { MealsAdmin } from "@/components/admin/MealsAdmin";
-import { TranslateButton } from "@/components/admin/TranslateButton";
+import { TrilingualFieldEditor } from "@/components/admin/TrilingualFieldEditor";
+import { emptyBilingual } from "@/lib/localized-text";
+
+const ADMIN_LANGS: Lang[] = ["en", "zh", "fil"];
+const ADMIN_LANG_LABEL: Record<Lang, string> = { en: "EN", zh: "中文", fil: "FIL" };
 
 export default function AdminPage() {
   const [adminLang, setAdminLang] = useState<Lang>("en");
@@ -125,12 +129,22 @@ export default function AdminPage() {
     URL.revokeObjectURL(url);
   };
 
-  const setRuleFil = (index: number, field: "title" | "description", fil: string) => {
-    if (!content) return;
-    const next = structuredClone(content);
-    next.groundRules[index][field].fil = fil;
-    setContent(next);
-  };
+  const AdminLangSwitch = () => (
+    <div className="flex rounded-full bg-stone-100 p-0.5">
+      {ADMIN_LANGS.map((l) => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => setAdminLang(l)}
+          className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+            adminLang === l ? "bg-teal-600 text-white" : "text-stone-600"
+          }`}
+        >
+          {ADMIN_LANG_LABEL[l]}
+        </button>
+      ))}
+    </div>
+  );
 
   if (authed === null) {
     return (
@@ -148,18 +162,7 @@ export default function AdminPage() {
           className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-lg ring-1 ring-stone-200"
         >
           <div className="mb-4 flex justify-end gap-1">
-            {(["en", "fil"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setAdminLang(l)}
-                className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                  adminLang === l ? "bg-teal-600 text-white" : "bg-stone-100 text-stone-600"
-                }`}
-              >
-                {l === "en" ? "EN" : "FIL"}
-              </button>
-            ))}
+            <AdminLangSwitch />
           </div>
           <h1 className="mb-1 text-xl font-bold text-stone-900">{adminT("login", lang)}</h1>
           <p className="mb-4 text-sm text-stone-500">{adminT("loginDesc", lang)}</p>
@@ -187,14 +190,13 @@ export default function AdminPage() {
 
   if (!content) return null;
 
-  const updateRule = (
+  const updateRuleField = (
     index: number,
     field: "title" | "description",
-    l: "en" | "fil",
-    value: string
+    value: AppContent["groundRules"][0]["title"]
   ) => {
     const next = structuredClone(content);
-    next.groundRules[index][field][l] = value;
+    next.groundRules[index][field] = value;
     setContent(next);
   };
 
@@ -202,8 +204,8 @@ export default function AdminPage() {
     const next = structuredClone(content);
     next.groundRules.push({
       id: `rule-${Date.now()}`,
-      title: { en: "New Rule", fil: "Bagong Alituntunin" },
-      description: { en: "", fil: "" },
+      title: { en: "New Rule", fil: "Bagong Alituntunin", zh: "新規則" },
+      description: emptyBilingual(),
       category: "general",
       priority: next.groundRules.length + 1,
     });
@@ -233,20 +235,7 @@ export default function AdminPage() {
             <p className="text-xs text-stone-500">Zizi Family Household Hub</p>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex rounded-full bg-stone-100 p-0.5">
-              {(["en", "fil"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setAdminLang(l)}
-                  className={`rounded-full px-2.5 py-1 text-xs font-medium ${
-                    adminLang === l ? "bg-teal-600 text-white" : "text-stone-600"
-                  }`}
-                >
-                  {l === "en" ? "EN" : "FIL"}
-                </button>
-              ))}
-            </div>
+            <AdminLangSwitch />
             <a
               href="/"
               className="rounded-lg px-3 py-1.5 text-sm text-teal-700 ring-1 ring-teal-200"
@@ -302,45 +291,20 @@ export default function AdminPage() {
                     {adminT("delete", lang)}
                   </button>
                 </div>
-                <div className="grid gap-2 sm:grid-cols-2">
-                  <input
-                    value={rule.title.en}
-                    onChange={(e) => updateRule(i, "title", "en", e.target.value)}
-                    placeholder={adminT("titleEn", lang)}
-                    className="rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                  />
-                  <div className="flex gap-1">
-                    <input
-                      value={rule.title.fil}
-                      onChange={(e) => updateRule(i, "title", "fil", e.target.value)}
-                      placeholder={adminT("titleFil", lang)}
-                      className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                    />
-                    <TranslateButton
-                      sourceText={rule.title.en}
-                      onTranslated={(t) => setRuleFil(i, "title", t)}
-                      lang={lang}
+                <div className="space-y-3">
+                  <div>
+                    <p className="mb-1 text-xs font-medium text-stone-500">{adminT("titleEn", lang).replace("English", "…")}</p>
+                    <TrilingualFieldEditor
+                      value={rule.title}
+                      onChange={(v) => updateRuleField(i, "title", v)}
                     />
                   </div>
-                  <textarea
-                    value={rule.description.en}
-                    onChange={(e) => updateRule(i, "description", "en", e.target.value)}
-                    placeholder={adminT("descEn", lang)}
-                    rows={2}
-                    className="rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                  />
-                  <div className="flex gap-1">
-                    <textarea
-                      value={rule.description.fil}
-                      onChange={(e) => updateRule(i, "description", "fil", e.target.value)}
-                      placeholder={adminT("descFil", lang)}
-                      rows={2}
-                      className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                    />
-                    <TranslateButton
-                      sourceText={rule.description.en}
-                      onTranslated={(t) => setRuleFil(i, "description", t)}
-                      lang={lang}
+                  <div>
+                    <p className="mb-1 text-xs font-medium text-stone-500">{adminT("descEn", lang).replace("English", "…")}</p>
+                    <TrilingualFieldEditor
+                      value={rule.description}
+                      onChange={(v) => updateRuleField(i, "description", v)}
+                      multiline
                     />
                   </div>
                 </div>
@@ -405,53 +369,14 @@ export default function AdminPage() {
               onChange={(e) => setContent({ ...content, familyName: e.target.value })}
               className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
             />
-            <label className="mb-1 block text-sm font-medium text-stone-700">
-              {adminT("schoolEn", lang)}
+            <label className="mb-2 block text-sm font-medium text-stone-700">
+              {adminT("schoolEn", lang).replace("(English)", "")}
             </label>
-            <input
-              value={content.ziziSchool?.en ?? ""}
-              onChange={(e) =>
-                setContent({
-                  ...content,
-                  ziziSchool: {
-                    en: e.target.value,
-                    fil: content.ziziSchool?.fil ?? e.target.value,
-                  },
-                })
-              }
-              className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            <TrilingualFieldEditor
+              value={content.ziziSchool ?? emptyBilingual()}
+              onChange={(ziziSchool) => setContent({ ...content, ziziSchool })}
+              multiline
             />
-            <label className="mb-1 block text-sm font-medium text-stone-700">
-              {adminT("schoolFil", lang)}
-            </label>
-            <div className="mb-3 flex gap-1">
-              <input
-                value={content.ziziSchool?.fil ?? ""}
-                onChange={(e) =>
-                  setContent({
-                    ...content,
-                    ziziSchool: {
-                      en: content.ziziSchool?.en ?? "",
-                      fil: e.target.value,
-                    },
-                  })
-                }
-                className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
-              />
-              <TranslateButton
-                sourceText={content.ziziSchool?.en ?? ""}
-                onTranslated={(t) =>
-                  setContent({
-                    ...content,
-                    ziziSchool: {
-                      en: content.ziziSchool?.en ?? "",
-                      fil: t,
-                    },
-                  })
-                }
-                lang={lang}
-              />
-            </div>
             <button
               type="button"
               disabled={saving}

@@ -3,10 +3,11 @@
 import { useState } from "react";
 import type { Lang } from "@/lib/types";
 import type { AppContent, DaySchedule, ScheduleTask } from "@/lib/types";
+import { localized } from "@/lib/localized-text";
 import { adminT } from "@/lib/admin-i18n";
 import { getTodayDayKey } from "@/lib/i18n";
 import { getTaskStartTime, sortTasksByTime } from "@/lib/schedule-utils";
-import { TranslateButton } from "./TranslateButton";
+import { TrilingualFieldEditor } from "./TrilingualFieldEditor";
 
 const DAY_KEYS = [
   "monday",
@@ -46,7 +47,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 
   const updateTask = (
     taskIndex: number,
-    field: "startTime" | "endTime" | "fullDay" | "task.en" | "task.fil",
+    field: "startTime" | "endTime" | "fullDay",
     value: string | boolean
   ) => {
     const next = structuredClone(content);
@@ -59,11 +60,13 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
       task.endTime = value || undefined;
     } else if (field === "fullDay" && typeof value === "boolean") {
       task.fullDay = value;
-    } else if (field === "task.en" && typeof value === "string") {
-      task.task.en = value;
-    } else if (field === "task.fil" && typeof value === "string") {
-      task.task.fil = value;
     }
+    setContent(next);
+  };
+
+  const setTaskText = (taskIndex: number, taskText: ScheduleTask["task"]) => {
+    const next = structuredClone(content);
+    next.weeklySchedule[dayIndex].tasks[taskIndex].task = taskText;
     setContent(next);
   };
 
@@ -73,7 +76,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
       id: `task-${Date.now()}`,
       time: "09:00",
       startTime: "09:00",
-      task: { en: "", fil: "" },
+      task: { en: "", fil: "", zh: "" },
     });
     sortTasks(next.weeklySchedule[dayIndex].tasks);
     setContent(next);
@@ -97,12 +100,6 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
     tasks[target].startTime = tempTime;
     tasks[target].time = tempTime;
     sortTasks(tasks);
-    setContent(next);
-  };
-
-  const setTaskFil = (taskIndex: number, fil: string) => {
-    const next = structuredClone(content);
-    next.weeklySchedule[dayIndex].tasks[taskIndex].task.fil = fil;
     setContent(next);
   };
 
@@ -173,7 +170,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
               }`}
             >
               <span className="text-[10px] font-medium uppercase sm:text-xs">
-                {d.day[lang].slice(0, 3)}
+                {d.day[lang]?.slice(0, 3) ?? localized(d.day, lang).slice(0, 3)}
               </span>
               <span className="mt-0.5 text-lg font-bold sm:text-xl">
                 {DAY_KEYS.indexOf(d.dayKey) + 1}
@@ -208,7 +205,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
           <div className="rounded-xl bg-white px-4 py-3 ring-1 ring-stone-200">
             <div className="flex flex-wrap items-start justify-between gap-2">
               <div>
-                <h2 className="text-lg font-bold text-stone-900">{day.day[lang]}</h2>
+                <h2 className="text-lg font-bold text-stone-900">{localized(day.day, lang)}</h2>
                 <p className="text-xs text-stone-500">
                   {day.tasks.length} {adminT("tasksShort", lang)}
                 </p>
@@ -224,7 +221,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                     .filter((d) => d.dayKey !== selectedDay)
                     .map((d) => (
                       <option key={d.dayKey} value={d.dayKey}>
-                        {d.day[lang]}
+                        {localized(d.day, lang)}
                       </option>
                     ))}
                 </select>
@@ -313,28 +310,11 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                     {adminT("delete", lang)}
                   </button>
                 </div>
-                <div className="grid gap-2 pl-2 sm:grid-cols-2">
-                  <div>
-                    <input
-                      value={task.task.en}
-                      onChange={(e) => updateTask(taskIndex, "task.en", e.target.value)}
-                      placeholder={adminT("taskEn", lang)}
-                      className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                    />
-                  </div>
-                  <div className="flex gap-1">
-                    <input
-                      value={task.task.fil}
-                      onChange={(e) => updateTask(taskIndex, "task.fil", e.target.value)}
-                      placeholder={adminT("taskFil", lang)}
-                      className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm"
-                    />
-                    <TranslateButton
-                      sourceText={task.task.en}
-                      onTranslated={(t) => setTaskFil(taskIndex, t)}
-                      lang={lang}
-                    />
-                  </div>
+                <div className="pl-2">
+                  <TrilingualFieldEditor
+                    value={task.task}
+                    onChange={(v) => setTaskText(taskIndex, v)}
+                  />
                 </div>
               </div>
               );
@@ -404,7 +384,7 @@ function WeekOverview({
                     : "bg-stone-100 text-stone-700 hover:bg-teal-50"
                 }`}
               >
-                {d.day[lang].slice(0, 3)}
+                {d.day[lang]?.slice(0, 3) ?? localized(d.day, lang).slice(0, 3)}
               </button>
             ))}
 
@@ -456,7 +436,7 @@ function WeekGridRow({
           >
             {task ? (
               <span className="line-clamp-2 text-stone-800">
-                {task.task[lang] || task.task.en || "—"}
+                {task ? localized(task.task, lang) || "—" : "—"}
               </span>
             ) : (
               <span className="text-stone-300">—</span>
@@ -490,7 +470,7 @@ function DayColumn({
         onClick={onSelect}
         className="flex w-full items-center justify-between border-b border-stone-100 px-3 py-2 text-left"
       >
-        <span className="text-sm font-semibold text-stone-900">{day.day[lang]}</span>
+        <span className="text-sm font-semibold text-stone-900">{localized(day.day, lang)}</span>
         <span className="text-xs text-teal-700">{adminT("edit", lang)} →</span>
       </button>
       <div className="space-y-1 p-2">
@@ -506,7 +486,7 @@ function DayColumn({
                 {task.fullDay ? (lang === "fil" ? "Buong araw" : "All day") : getTaskStartTime(task)}
               </span>
               <span className="line-clamp-2 text-xs text-stone-700">
-                {task.task[lang] || task.task.en}
+                {localized(task.task, lang) || task.task.en}
               </span>
             </div>
           ))

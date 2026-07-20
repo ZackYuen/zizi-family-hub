@@ -1,4 +1,5 @@
 import type { DinnerRecipe, Lang } from "./types";
+import { hasCjk } from "./localized-text";
 
 const subCategoryFil: Record<string, string> = {
   Pork: "Baboy",
@@ -31,10 +32,6 @@ const subCategoryFil: Record<string, string> = {
   "Water Morning Glory": "Kangkong",
 };
 
-function hasCjk(text: string): boolean {
-  return /[\u4e00-\u9fff\u3400-\u4dbf]/.test(text);
-}
-
 function isMostlyLatin(text: string): boolean {
   if (!text) return false;
   if (hasCjk(text)) return false;
@@ -54,7 +51,19 @@ const categoryEn: Record<DinnerRecipe["category"], string> = {
   Soup: "Soup",
 };
 
+const categoryZh: Record<DinnerRecipe["category"], string> = {
+  Meat: "肉類",
+  Vegetable: "蔬菜",
+  Soup: "湯",
+};
+
 export function getRecipeDisplayName(recipe: DinnerRecipe, lang: Lang): string {
+  if (lang === "zh") {
+    if (recipe.name?.trim() && hasCjk(recipe.name)) return recipe.name;
+    if (recipe.nameEn?.trim() && isMostlyLatin(recipe.nameEn)) return recipe.nameEn;
+    return categoryZh[recipe.category];
+  }
+
   if (lang === "fil") {
     if (recipe.nameFil?.trim() && !hasCjk(recipe.nameFil)) return recipe.nameFil;
     if (recipe.nameEn?.trim() && isMostlyLatin(recipe.nameEn)) return recipe.nameEn;
@@ -70,8 +79,17 @@ export function getRecipeDisplayName(recipe: DinnerRecipe, lang: Lang): string {
 }
 
 export function getRecipeSubtitle(recipe: DinnerRecipe, lang: Lang): string | null {
-  if (!recipe.name?.trim() || !hasCjk(recipe.name)) return null;
   const display = getRecipeDisplayName(recipe, lang);
+
+  if (lang === "zh") {
+    if (recipe.nameEn?.trim() && isMostlyLatin(recipe.nameEn) && recipe.nameEn !== display) {
+      return recipe.nameEn;
+    }
+    if (recipe.nameFil?.trim() && !hasCjk(recipe.nameFil)) return recipe.nameFil;
+    return null;
+  }
+
+  if (!recipe.name?.trim() || !hasCjk(recipe.name)) return null;
   if (recipe.name.trim() === display.trim()) return null;
   return recipe.name;
 }

@@ -1,9 +1,21 @@
-/** Free MyMemory translation EN → Filipino (Tagalog) */
-export async function translateEnToFil(text: string): Promise<string> {
-  if (!text.trim()) return "";
+import type { Lang } from "./types";
+
+const MYMEMORY: Record<Lang, string> = {
+  en: "en",
+  fil: "tl",
+  zh: "zh-CN",
+};
+
+/** Translate via MyMemory API between English, Filipino, and Chinese */
+export async function translateText(
+  text: string,
+  from: Lang,
+  to: Lang
+): Promise<string> {
+  if (!text.trim() || from === to) return text;
 
   const res = await fetch(
-    `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|tl`
+    `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${MYMEMORY[from]}|${MYMEMORY[to]}`
   );
   const data = (await res.json()) as {
     responseData?: { translatedText?: string };
@@ -14,4 +26,9 @@ export async function translateEnToFil(text: string): Promise<string> {
     return text;
   }
   return translated;
+}
+
+/** @deprecated use translateText(text, "en", "fil") */
+export async function translateEnToFil(text: string): Promise<string> {
+  return translateText(text, "en", "fil");
 }

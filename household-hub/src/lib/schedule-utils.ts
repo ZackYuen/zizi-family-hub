@@ -23,10 +23,10 @@ export function formatTime12h(time: string, locale: string): string {
 
 export function formatTaskTimeRange(task: ScheduleTask, lang: Lang): string {
   if (task.fullDay) {
-    return lang === "fil" ? "Buong araw" : "All day";
+    return lang === "fil" ? "Buong araw" : lang === "zh" ? "全日" : "All day";
   }
 
-  const locale = lang === "fil" ? "fil-PH" : "en-HK";
+  const locale = lang === "fil" ? "fil-PH" : lang === "zh" ? "zh-HK" : "en-HK";
   const start = getTaskStartTime(task);
   const end = getTaskEndTime(task);
 

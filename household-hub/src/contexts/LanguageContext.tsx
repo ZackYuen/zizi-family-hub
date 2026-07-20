@@ -13,13 +13,15 @@ const LanguageContext = createContext<LanguageContextValue>({
   setLang: () => {},
 });
 
+const VALID_LANGS: Lang[] = ["en", "fil", "zh"];
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("household-lang") as Lang | null;
-    if (saved === "en" || saved === "fil") setLangState(saved);
+    if (saved && VALID_LANGS.includes(saved)) setLangState(saved);
     setMounted(true);
   }, []);
 

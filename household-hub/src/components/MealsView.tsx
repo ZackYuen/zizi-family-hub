@@ -3,20 +3,22 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
+import { uiLocale } from "@/lib/i18n";
 import type { TonightMenu } from "@/lib/types";
 
 const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const;
 
 const ui = {
-  tonight: { en: "Tonight's Dinner", fil: "Hapunan Ngayong Gabi" },
-  recipe: { en: "Recipe", fil: "Recipe" },
-  meat: { en: "Meat", fil: "Karne" },
-  vegetable: { en: "Vegetable", fil: "Gulay" },
-  soup: { en: "Soup", fil: "Sabaw" },
-  loading: { en: "Loading tonight's menu...", fil: "Kinukuha ang menu..." },
+  tonight: { en: "Tonight's Dinner", fil: "Hapunan Ngayong Gabi", zh: "今晚晚餐" },
+  recipe: { en: "Recipe", fil: "Recipe", zh: "食譜" },
+  meat: { en: "Meat", fil: "Karne", zh: "肉類" },
+  vegetable: { en: "Vegetable", fil: "Gulay", zh: "蔬菜" },
+  soup: { en: "Soup", fil: "Sabaw", zh: "湯" },
+  loading: { en: "Loading tonight's menu...", fil: "Kinukuha ang menu...", zh: "載入餐單中…" },
   cookAt: {
     en: "Prepare & cook around 6:00 PM for Zizi dinner 6:30–8:00 PM",
     fil: "Maghanda at magluto bandang 6:00 PM — hapunan ni Zizi 6:30–8:00 PM",
+    zh: "約下午 6:00 開始準備及烹調 — Zizi 晚餐 6:30–8:00 PM",
   },
 };
 
@@ -48,7 +50,7 @@ export function MealsView() {
   ];
 
   const dateStr = new Date(menu.date + "T12:00:00").toLocaleDateString(
-    lang === "fil" ? "fil-PH" : "en-HK",
+    uiLocale(lang),
     { weekday: "long", month: "short", day: "numeric" }
   );
 

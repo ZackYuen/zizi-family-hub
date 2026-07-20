@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { isZiziDayOff } from "@/lib/hk-holidays";
-import { getHongKongTimeParts, getTodayDayKey, labels } from "@/lib/i18n";
+import { getHongKongTimeParts, getTodayDayKey, labels, uiLocale } from "@/lib/i18n";
+import { localized } from "@/lib/localized-text";
 import {
   formatTaskTimeRange,
   getActiveTaskId,
@@ -65,6 +66,7 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
   const dayOffBanner = {
     en: "Today is Sunday / HK public holiday (香港勞工假) — Zizi (Seth) whole day off, no kindergarten.",
     fil: "Ngayon ay Linggo / HK public holiday (香港勞工假) — buong araw na day off si Zizi (Seth), walang eskwela.",
+    zh: "今天是星期日／香港公眾假期（勞工假）— Zizi (Seth) 全日放假，不用上學。",
   };
 
   return (
@@ -77,7 +79,7 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
 
       {ziziSchool && (
         <p className="rounded-xl bg-blue-50 px-3 py-2 text-xs text-blue-900 ring-1 ring-blue-100">
-          🏫 {ziziSchool[lang]}
+          🏫 {localized(ziziSchool, lang)}
         </p>
       )}
 
@@ -101,7 +103,7 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
                       : "bg-white text-stone-600 ring-1 ring-stone-200"
               }`}
             >
-              {day.day[lang]}
+              {localized(day.day, lang)}
               {(isToday || (isDayOff && isSunday)) && (
                 <span className="ml-1 text-[10px] opacity-80">
                   ({labels.today[lang]})
@@ -137,9 +139,9 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-stone-900">{task.task[lang]}</p>
+                <p className="text-sm font-medium text-stone-900">{localized(task.task, lang)}</p>
                 {task.notes && (
-                  <p className="mt-0.5 text-xs text-stone-500">{task.notes[lang]}</p>
+                  <p className="mt-0.5 text-xs text-stone-500">{localized(task.notes, lang)}</p>
                 )}
               </div>
             </div>
@@ -155,7 +157,7 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
           <ul className="mt-2 space-y-1 pl-4 text-sm text-stone-600">
             {monthlyTasks.map((item) => (
               <li key={item.en} className="list-disc">
-                {item[lang]}
+                {localized(item, lang)}
               </li>
             ))}
           </ul>

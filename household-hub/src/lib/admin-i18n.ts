@@ -96,5 +96,6 @@ export const adminLabels = {
 } as const;
 
 export function adminT(key: keyof typeof adminLabels, lang: Lang): string {
-  return adminLabels[key][lang];
+  const entry = adminLabels[key] as { en: string; fil: string; zh?: string };
+  return entry[lang] ?? entry.en;
 }

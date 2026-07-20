@@ -10,14 +10,14 @@ import { MealsView } from "./MealsView";
 import { LiveClock } from "./LiveClock";
 import { BgmPlayer } from "./BgmPlayer";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { labels } from "@/lib/i18n";
+import { labels, uiLocale } from "@/lib/i18n";
 
 export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabId>("schedule");
 
   const updated = new Date(content.lastUpdated).toLocaleDateString(
-    lang === "fil" ? "fil-PH" : "en-HK",
+    uiLocale(lang),
     { weekday: "short", year: "numeric", month: "short", day: "numeric" }
   );
 
