@@ -1,18 +1,5 @@
-import fs from "fs/promises";
-import path from "path";
+import { withBasePath } from "./base-path";
 import type { DinnerRecipe, TonightMenu } from "./types";
-
-const RECIPES_PATH = path.join(process.cwd(), "data", "dinner-recipes.json");
-
-interface RecipesFile {
-  recipes: DinnerRecipe[];
-}
-
-export async function getDinnerRecipes(): Promise<DinnerRecipe[]> {
-  const raw = await fs.readFile(RECIPES_PATH, "utf-8");
-  const data = JSON.parse(raw) as RecipesFile;
-  return data.recipes;
-}
 
 function hashSeed(input: string): number {
   let h = 2166136261;
@@ -45,7 +32,14 @@ export function generateTonightMenu(
   };
 }
 
-export async function getTonightMenu(dateKey?: string): Promise<TonightMenu> {
-  const recipes = await getDinnerRecipes();
+export async function fetchDinnerRecipes(): Promise<DinnerRecipe[]> {
+  const res = await fetch(withBasePath("/data/dinner-recipes.json"));
+  if (!res.ok) throw new Error("Failed to load recipes");
+  const data = (await res.json()) as { recipes: DinnerRecipe[] };
+  return data.recipes;
+}
+
+export async function fetchTonightMenu(dateKey?: string): Promise<TonightMenu> {
+  const recipes = await fetchDinnerRecipes();
   return generateTonightMenu(recipes, dateKey);
 }

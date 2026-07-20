@@ -1,38 +1,46 @@
 # Zizi Family Household Hub
 
-A mobile-friendly web app for household helper **Charlene**, with English and Filipino (Tagalog) support.
+Mobile-friendly web app for household helper **Charlene** — ground rules, task schedule, and nightly dinner randomizer. English & Filipino.
 
-## Features
+## Live site (GitHub Pages)
 
-- **Ground Rules** — house rules including no borrowing money, Zizi-first priority, kitchen safety (separate raw/cooked meat tools)
-- **Task Schedule** — daily weekly task schedule with today highlighted
-- **Meals** — weekly meal plan
-- **Admin Panel** — update all content at `/admin`
-- **Bilingual** — toggle between English and Filipino
-- **Mobile-first** — works on iPhone and Android; add to home screen as PWA
+After deployment: **https://zackyuen.github.io/zizi-family-hub/**
 
-## Quick Start
+- App: `/`
+- Admin: `/admin/`
+
+## Local development
 
 ```bash
 cd household-hub
 npm install
-cp .env.example .env.local   # set ADMIN_PASSWORD
 npm run dev
 ```
 
-- App: http://localhost:3000
-- Admin: http://localhost:3000/admin (default password: `charlene2026`)
+Open http://localhost:3000
 
-## Updating Content
+Default admin password: `charlene2026` (override with `NEXT_PUBLIC_ADMIN_PASSWORD` at build time).
 
-1. Go to `/admin` and sign in
-2. Edit ground rules, schedule, or meals in the UI
-3. Or use the **JSON** tab to paste bulk updates (e.g. from your Apple Numbers export)
+## Deploy to GitHub Pages
 
-## Deploy
+Deployment runs automatically on push to **`main`** via GitHub Actions.
 
-Works on Vercel, Railway, or any Node.js host. Set `ADMIN_PASSWORD` environment variable in production.
+### One-time GitHub setup
 
-## Note on Apple Numbers Reference
+1. Open repo **Settings → Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. (Optional) Add repo secret **`ADMIN_PASSWORD`** for the admin login on the live site
 
-Initial content is seeded from typical HK household helper schedules. Update via admin to match your [Apple Numbers schedule](https://www.icloud.com/numbers/010j5qAil0uLECLDCtnNnOyeg#Household_Task_Schedule).
+### Update content on the live site
+
+1. Edit in **Admin** → click **Download content.json**
+2. Replace `household-hub/data/content.json` in GitHub with the downloaded file
+3. Push to `main` — the site redeploys in ~2 minutes
+
+For recipes, edit `household-hub/data/dinner-recipes.json` the same way.
+
+## Project structure
+
+- `data/content.json` — rules, schedule, settings (source of truth)
+- `data/dinner-recipes.json` — 127 dinner recipes for randomizer
+- `public/data/` — synced copy served to the browser (auto-synced on build)

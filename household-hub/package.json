@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/sync-public-data.mjs && next dev",
+    "build": "node scripts/sync-public-data.mjs && next build",
+    "build:pages": "node scripts/sync-public-data.mjs && GITHUB_PAGES=true NEXT_PUBLIC_BASE_PATH=/zizi-family-hub next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync-data": "node scripts/sync-public-data.mjs"
   },
   "dependencies": {
     "next": "16.2.10",

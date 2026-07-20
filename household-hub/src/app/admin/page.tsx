@@ -1,7 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  downloadContent,
+  fetchContent,
+  getAdminPassword,
+} from "@/lib/data-client";
+import { withBasePath } from "@/lib/base-path";
 import type { AppContent } from "@/lib/types";
+
+const AUTH_KEY = "household_admin_session";
 
 export default function AdminPage() {
   const [authed, setAuthed] = useState<boolean | null>(null);
@@ -12,67 +20,55 @@ export default function AdminPage() {
   const [activeSection, setActiveSection] = useState<
     "rules" | "schedule" | "meals" | "settings" | "json"
   >("rules");
-  const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("/api/admin/content")
-      .then((r) => {
-        if (r.ok) {
-          setAuthed(true);
-          return r.json();
-        }
-        setAuthed(false);
-        return null;
-      })
-      .then((data: AppContent | null) => {
-        if (data) {
+    const session = sessionStorage.getItem(AUTH_KEY);
+    if (session === "ok") {
+      setAuthed(true);
+      fetchContent()
+        .then((data) => {
           setContent(data);
           setJsonText(JSON.stringify(data, null, 2));
-        }
-      });
+        })
+        .catch(() => setAuthed(false));
+    } else {
+      setAuthed(false);
+    }
   }, []);
 
-  const login = async (e: React.FormEvent) => {
+  const login = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    if (!res.ok) {
+    if (password !== getAdminPassword()) {
       setError("Wrong password");
       return;
     }
+    sessionStorage.setItem(AUTH_KEY, "ok");
     setAuthed(true);
-    const data = await fetch("/api/admin/content").then((r) => r.json());
-    setContent(data);
-    setJsonText(JSON.stringify(data, null, 2));
+    fetchContent().then((data) => {
+      setContent(data);
+      setJsonText(JSON.stringify(data, null, 2));
+    });
   };
 
-  const logout = async () => {
-    await fetch("/api/auth/logout", { method: "POST" });
+  const logout = () => {
+    sessionStorage.removeItem(AUTH_KEY);
     setAuthed(false);
     setContent(null);
   };
 
-  const save = async (updated: AppContent) => {
-    setSaving(true);
-    setMessage("");
-    const res = await fetch("/api/admin/content", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updated),
-    });
-    setSaving(false);
-    if (res.ok) {
-      setContent(updated);
-      setJsonText(JSON.stringify(updated, null, 2));
-      setMessage("Saved successfully!");
-    } else {
-      setMessage("Failed to save.");
-    }
+  const save = (updated: AppContent) => {
+    const withTimestamp = {
+      ...updated,
+      lastUpdated: new Date().toISOString(),
+    };
+    setContent(withTimestamp);
+    setJsonText(JSON.stringify(withTimestamp, null, 2));
+    downloadContent(withTimestamp);
+    setMessage(
+      "Downloaded content.json — upload it to GitHub at household-hub/data/content.json, then redeploy (or push to main to auto-deploy)."
+    );
   };
 
   const saveJson = () => {
@@ -117,7 +113,7 @@ export default function AdminPage() {
           >
             Sign In
           </button>
-          <a href="/" className="mt-4 block text-center text-sm text-teal-700">
+          <a href={withBasePath("/")} className="mt-4 block text-center text-sm text-teal-700">
             ← Back to app
           </a>
         </form>
@@ -161,7 +157,7 @@ export default function AdminPage() {
           </div>
           <div className="flex gap-2">
             <a
-              href="/"
+              href={withBasePath("/")}
               className="rounded-lg px-3 py-1.5 text-sm text-teal-700 ring-1 ring-teal-200"
             >
               View App
@@ -256,11 +252,11 @@ export default function AdminPage() {
             </button>
             <button
               type="button"
-              disabled={saving}
+              disabled={false}
               onClick={() => save(content)}
               className="ml-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
             >
-              {saving ? "Saving..." : "Save Rules"}
+              Download content.json
             </button>
           </div>
         )}
@@ -315,11 +311,10 @@ export default function AdminPage() {
             ))}
             <button
               type="button"
-              disabled={saving}
               onClick={() => save(content)}
-              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white"
             >
-              {saving ? "Saving..." : "Save Schedule"}
+              Download content.json
             </button>
           </div>
         )}
@@ -328,21 +323,12 @@ export default function AdminPage() {
           <div className="space-y-4 rounded-xl bg-white p-4 ring-1 ring-stone-200">
             <h2 className="font-semibold text-stone-900">Dinner randomizer</h2>
             <p className="text-sm text-stone-600">
-              Dinner is auto-generated each night: 1 meat + 1 vegetable + 1 soup
-              (same logic as your Apple Numbers file). Recipes are stored in{" "}
+              Dinner is auto-generated each night: 1 meat + 1 vegetable + 1 soup.
+              Recipes are in{" "}
               <code className="rounded bg-stone-100 px-1">data/dinner-recipes.json</code>.
             </p>
-            <a
-              href="/api/dinner/tonight"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-sm font-medium text-teal-700 underline"
-            >
-              Preview tonight&apos;s API menu →
-            </a>
             <p className="text-xs text-stone-500">
-              To add/edit recipes, update dinner-recipes.json on the server or ask
-              for a recipe admin tab in a future update.
+              To add/edit recipes, update dinner-recipes.json in GitHub and redeploy.
             </p>
           </div>
         )}
@@ -397,18 +383,12 @@ export default function AdminPage() {
               }
               className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
             />
-            <input
-              value={content.familyName}
-              onChange={(e) => setContent({ ...content, familyName: e.target.value })}
-              className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
-            />
             <button
               type="button"
-              disabled={saving}
               onClick={() => save(content)}
-              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white"
             >
-              Save Settings
+              Download content.json
             </button>
           </div>
         )}
@@ -417,6 +397,7 @@ export default function AdminPage() {
           <div className="space-y-3">
             <p className="text-sm text-stone-600">
               Paste content exported from your Apple Numbers schedule here for bulk updates.
+              Saving downloads a file — upload to GitHub to publish changes.
             </p>
             <textarea
               value={jsonText}
@@ -426,11 +407,10 @@ export default function AdminPage() {
             />
             <button
               type="button"
-              disabled={saving}
               onClick={saveJson}
-              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white"
             >
-              {saving ? "Saving..." : "Save JSON"}
+              Download content.json
             </button>
           </div>
         )}
