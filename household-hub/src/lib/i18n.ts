@@ -48,15 +48,23 @@ export function mealLabel(
   return labels[meal][lang];
 }
 
-export function getTodayDayKey(): string {
-  const days = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-  ];
-  return days[new Date().getDay()];
+export function getTodayDayKey(timeZone = "Asia/Hong_Kong"): string {
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    weekday: "long",
+  }).format(new Date());
+  return weekday.toLowerCase();
+}
+
+export function getHongKongTimeParts(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Hong_Kong",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(date);
+
+  const hour = Number(parts.find((p) => p.type === "hour")?.value ?? 0);
+  const minute = Number(parts.find((p) => p.type === "minute")?.value ?? 0);
+  return { hour, minute, minutesSinceMidnight: hour * 60 + minute };
 }

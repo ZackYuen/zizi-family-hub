@@ -7,6 +7,8 @@ import { BottomNav, type TabId } from "./BottomNav";
 import { GroundRulesView } from "./GroundRulesView";
 import { ScheduleView } from "./ScheduleView";
 import { MealsView } from "./MealsView";
+import { LiveClock } from "./LiveClock";
+import { BgmPlayer } from "./BgmPlayer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels } from "@/lib/i18n";
 
@@ -31,8 +33,12 @@ export function HomeApp({ content }: { content: AppContent }) {
               {labels.welcome[lang]}, {content.helperName} · {labels.forHelper[lang]}
             </p>
           </div>
-          <LanguageToggle />
+          <div className="flex items-center gap-2">
+            <BgmPlayer />
+            <LanguageToggle />
+          </div>
         </div>
+        <LiveClock />
       </header>
 
       <main className="mx-auto max-w-lg px-4 py-4">
