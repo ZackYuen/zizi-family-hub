@@ -147,13 +147,27 @@ async function fetchWebSnippets(query: string): Promise<string> {
   }
 }
 
-async function answerWithOpenAI(
+async function answerWithLlm(
   question: string,
   knowledge: string,
   web: string
 ): Promise<string | null> {
-  const key = process.env.OPENAI_API_KEY;
+  // Prefer OpenRouter (can use free models). Fall back to OpenAI.
+  const openRouterKey = process.env.OPENROUTER_API_KEY;
+  const openAiKey = process.env.OPENAI_API_KEY;
+  const useOpenRouter = Boolean(openRouterKey);
+
+  const key = openRouterKey || openAiKey;
   if (!key) return null;
+
+  const endpoint = useOpenRouter
+    ? "https://openrouter.ai/api/v1/chat/completions"
+    : "https://api.openai.com/v1/chat/completions";
+
+  // openrouter/free = $0 router that picks an available free model
+  const model = useOpenRouter
+    ? process.env.OPENROUTER_MODEL || "openrouter/free"
+    : process.env.OPENAI_MODEL || "gpt-4o-mini";
 
   const system = `You are the Zizi Family household helper assistant for Charlene (helper), Sir, and Mum.
 Answer briefly in the same language as the question (English, Filipino, or Traditional Chinese).
@@ -168,14 +182,21 @@ ${knowledge}
 ${web ? `INTERNET NOTES (optional):\n${web}` : ""}`;
 
   try {
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    const headers: Record<string, string> = {
+      Authorization: `Bearer ${key}`,
+      "Content-Type": "application/json",
+    };
+    if (useOpenRouter) {
+      headers["HTTP-Referer"] =
+        process.env.OPENROUTER_SITE_URL || "https://zizi-family-hub.vercel.app";
+      headers["X-Title"] = process.env.OPENROUTER_APP_NAME || "Zizi Family Hub";
+    }
+
+    const res = await fetch(endpoint, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${key}`,
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({
-        model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+        model,
         temperature: 0.2,
         max_tokens: 500,
         messages: [
@@ -183,14 +204,18 @@ ${web ? `INTERNET NOTES (optional):\n${web}` : ""}`;
           { role: "user", content: question },
         ],
       }),
-      signal: AbortSignal.timeout(20000),
+      signal: AbortSignal.timeout(25000),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      console.error("LLM error", res.status, await res.text().catch(() => ""));
+      return null;
+    }
     const data = (await res.json()) as {
       choices?: { message?: { content?: string } }[];
     };
     return data.choices?.[0]?.message?.content?.trim() || null;
-  } catch {
+  } catch (err) {
+    console.error("LLM call failed", err);
     return null;
   }
 }
@@ -211,11 +236,16 @@ export async function answerFamilyQuestion(
     );
 
   let web = "";
-  if (needsWeb || (!quick && allowInternet && process.env.OPENAI_API_KEY)) {
+  if (
+    needsWeb ||
+    (!quick &&
+      allowInternet &&
+      (process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY))
+  ) {
     web = await fetchWebSnippets(question);
   }
 
-  const ai = await answerWithOpenAI(question, knowledge, web);
+  const ai = await answerWithLlm(question, knowledge, web);
   if (ai) {
     return {
       answer: ai,

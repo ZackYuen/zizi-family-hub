@@ -40,4 +40,4 @@ Set `FORCE_SEED_FROM_LOCAL=1` on the server once, or run `npm run seed`. This ov
 4. Verify token = `WHATSAPP_VERIFY_TOKEN`
 5. In the group, ask with `?` prefix, e.g. `? Tonight dinner?`
 
-Optional: `OPENAI_API_KEY` for smarter answers; without it, built-in FAQ still answers schedule / meals / rules / pickup.
+Optional: `OPENROUTER_API_KEY` with model `openrouter/free` (\$0); or `OPENAI_API_KEY`. Without either, built-in FAQ still answers schedule / meals / rules / pickup.
