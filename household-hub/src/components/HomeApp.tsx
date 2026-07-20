@@ -7,6 +7,7 @@ import { BottomNav, type TabId } from "./BottomNav";
 import { GroundRulesView } from "./GroundRulesView";
 import { ScheduleView } from "./ScheduleView";
 import { MealsView } from "./MealsView";
+import { AskView } from "./AskView";
 import { LiveClock } from "./LiveClock";
 import { BgmPlayer } from "./BgmPlayer";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -51,6 +52,7 @@ export function HomeApp({ content }: { content: AppContent }) {
           />
         )}
         {activeTab === "meals" && <MealsView />}
+        {activeTab === "ask" && <AskView />}
       </main>
 
       <footer className="fixed bottom-16 left-0 right-0 text-center">

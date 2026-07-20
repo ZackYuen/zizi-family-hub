@@ -46,6 +46,15 @@ export interface DayMeals {
   meals: MealItem[];
 }
 
+export interface RecipeIngredient {
+  /** Display name — prefer English for Charlene; optional FIL/ZH */
+  en: string;
+  fil?: string;
+  zh?: string;
+  /** Optional amount, e.g. "300g", "2 pcs" */
+  qty?: string;
+}
+
 export interface DinnerRecipe {
   id: string;
   index: number;
@@ -55,6 +64,8 @@ export interface DinnerRecipe {
   category: "Meat" | "Vegetable" | "Soup";
   subCategory?: string;
   link: string;
+  /** Ingredients for shopping / prep reminder */
+  ingredients?: RecipeIngredient[];
 }
 
 export interface TonightMenu {

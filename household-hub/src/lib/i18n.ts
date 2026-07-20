@@ -8,6 +8,7 @@ export const labels = {
   groundRules: { en: "Ground Rules", fil: "Mga Alituntunin", zh: "守則" },
   schedule: { en: "Task Schedule", fil: "Iskedyul ng Gawain", zh: "日程" },
   meals: { en: "Meals", fil: "Pagkain", zh: "膳食" },
+  ask: { en: "Ask", fil: "Tanong", zh: "提問" },
   today: { en: "Today", fil: "Ngayon", zh: "今天" },
   allDays: { en: "All Days", fil: "Lahat ng Araw", zh: "全部" },
   breakfast: { en: "Breakfast", fil: "Almusal", zh: "早餐" },

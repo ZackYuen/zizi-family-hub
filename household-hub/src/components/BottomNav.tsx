@@ -3,16 +3,21 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels } from "@/lib/i18n";
 
-export type TabId = "rules" | "schedule" | "meals";
+export type TabId = "rules" | "schedule" | "meals" | "ask";
 
 interface BottomNavProps {
   active: TabId;
   onChange: (tab: TabId) => void;
 }
 
-const tabs: { id: TabId; icon: string; labelKey: "groundRules" | "schedule" | "meals" }[] = [
+const tabs: {
+  id: TabId;
+  icon: string;
+  labelKey: "groundRules" | "schedule" | "meals" | "ask";
+}[] = [
   { id: "schedule", icon: "🕐", labelKey: "schedule" },
   { id: "meals", icon: "🍽️", labelKey: "meals" },
+  { id: "ask", icon: "💬", labelKey: "ask" },
   { id: "rules", icon: "📋", labelKey: "groundRules" },
 ];
 

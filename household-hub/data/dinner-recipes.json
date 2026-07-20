@@ -8,7 +8,29 @@
       "category": "Meat",
       "subCategory": "Pork",
       "link": "https://www.youtube.com/watch?v=3qno7f2JOM8",
-      "nameFil": "Ulam na Baboy"
+      "nameFil": "Ulam na Baboy",
+      "ingredients": [
+        {
+          "en": "Dumpling wrappers",
+          "qty": "1 pack"
+        },
+        {
+          "en": "Minced pork",
+          "qty": "300g"
+        },
+        {
+          "en": "Napa cabbage",
+          "qty": "200g"
+        },
+        {
+          "en": "Ginger",
+          "qty": "1 tbsp"
+        },
+        {
+          "en": "Soy sauce",
+          "qty": "2 tbsp"
+        }
+      ]
     },
     {
       "id": "d-14",
@@ -18,7 +40,25 @@
       "category": "Soup",
       "subCategory": "Tofu",
       "link": "https://www.youtube.com/watch?v=hCLPP10Fp14",
-      "nameFil": "Korean kimchi saucepan"
+      "nameFil": "Korean kimchi saucepan",
+      "ingredients": [
+        {
+          "en": "Soft tofu",
+          "qty": "1 block"
+        },
+        {
+          "en": "Kimchi",
+          "qty": "200g"
+        },
+        {
+          "en": "Pork belly (optional)",
+          "qty": "100g"
+        },
+        {
+          "en": "Green onion",
+          "qty": "2 stalks"
+        }
+      ]
     },
     {
       "id": "d-18",
@@ -28,7 +68,25 @@
       "category": "Vegetable",
       "subCategory": "Green Beans",
       "link": "https://www.youtube.com/watch?v=dtZADFyUsQg",
-      "nameFil": "deformities"
+      "nameFil": "deformities",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "3"
+        },
+        {
+          "en": "Green beans",
+          "qty": "200g"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2 cloves"
+        },
+        {
+          "en": "Oil",
+          "qty": "1 tbsp"
+        }
+      ]
     },
     {
       "id": "d-19",
