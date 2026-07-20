@@ -2,8 +2,8 @@
   "helperName": "Charlene",
   "familyName": "Zizi Family",
   "ziziSchool": {
-    "en": "Lam Tin Liang Leung Kindergarten (PM class, arrive by 1:00 PM)",
-    "fil": "Lam Tin Liang Leung Kindergarten (PM class, dumating bago 1:00 PM)"
+    "en": "Lam Tin Liang Leung Kindergarten (PM class, arrive by 1:00 PM). Sundays & public holidays (勞工假): Zizi whole day off.",
+    "fil": "Lam Tin Liang Leung Kindergarten (PM class, dumating bago 1:00 PM). Linggo at public holiday (勞工假): buong araw na day off si Zizi."
   },
   "monthlyTasks": [
     {
@@ -139,15 +139,15 @@
       "tasks": [
         {
           "id": "m1",
-          "time": "07:30",
+          "time": "09:30",
           "task": {
-            "en": "ZiZi wake up",
-            "fil": "Gisingin si Zizi"
+            "en": "Zizi (Seth) wake up",
+            "fil": "Gisingin si Zizi (Seth)"
           }
         },
         {
           "id": "m2",
-          "time": "07:45",
+          "time": "09:45",
           "task": {
             "en": "ZiZi milk / breakfast / brush teeth",
             "fil": "Gatas / almusal / sipilyo ni Zizi"
@@ -155,7 +155,7 @@
         },
         {
           "id": "m3",
-          "time": "09:30",
+          "time": "10:30",
           "task": {
             "en": "Wash clothing (all clothes first, then Charlene's clothes)",
             "fil": "Labada (lahat ng damit muna, tapos damit ni Charlene)"
@@ -163,7 +163,7 @@
         },
         {
           "id": "m4",
-          "time": "10:00",
+          "time": "11:00",
           "task": {
             "en": "Vacuum floor, deep clean floor (mop), toilet",
             "fil": "Vacuum, malalim na pagmop, linis ng toilet"
@@ -300,15 +300,15 @@
       "tasks": [
         {
           "id": "t1",
-          "time": "07:30",
+          "time": "09:30",
           "task": {
-            "en": "ZiZi wake up",
-            "fil": "Gisingin si Zizi"
+            "en": "Zizi (Seth) wake up",
+            "fil": "Gisingin si Zizi (Seth)"
           }
         },
         {
           "id": "t2",
-          "time": "07:45",
+          "time": "09:45",
           "task": {
             "en": "ZiZi milk / breakfast / brush teeth",
             "fil": "Gatas / almusal / sipilyo ni Zizi"
@@ -316,7 +316,7 @@
         },
         {
           "id": "t3",
-          "time": "09:30",
+          "time": "10:30",
           "task": {
             "en": "Clean Zizi toys",
             "fil": "Linisin ang mga laruan ni Zizi"
@@ -324,7 +324,7 @@
         },
         {
           "id": "t4",
-          "time": "10:00",
+          "time": "11:00",
           "task": {
             "en": "Vacuum floor, vacuum/deep clean living room, toilet",
             "fil": "Vacuum, malalim na linis ng sala, toilet"
@@ -461,15 +461,15 @@
       "tasks": [
         {
           "id": "w1",
-          "time": "07:30",
+          "time": "09:30",
           "task": {
-            "en": "ZiZi wake up",
-            "fil": "Gisingin si Zizi"
+            "en": "Zizi (Seth) wake up",
+            "fil": "Gisingin si Zizi (Seth)"
           }
         },
         {
           "id": "w2",
-          "time": "07:45",
+          "time": "09:45",
           "task": {
             "en": "ZiZi milk / breakfast / brush teeth",
             "fil": "Gatas / almusal / sipilyo ni Zizi"
@@ -614,15 +614,15 @@
       "tasks": [
         {
           "id": "th1",
-          "time": "07:30",
+          "time": "09:30",
           "task": {
-            "en": "ZiZi wake up",
-            "fil": "Gisingin si Zizi"
+            "en": "Zizi (Seth) wake up",
+            "fil": "Gisingin si Zizi (Seth)"
           }
         },
         {
           "id": "th2",
-          "time": "07:45",
+          "time": "09:45",
           "task": {
             "en": "ZiZi milk / breakfast / brush teeth",
             "fil": "Gatas / almusal / sipilyo ni Zizi"
@@ -767,15 +767,15 @@
       "tasks": [
         {
           "id": "f1",
-          "time": "07:30",
+          "time": "09:30",
           "task": {
-            "en": "ZiZi wake up",
-            "fil": "Gisingin si Zizi"
+            "en": "Zizi (Seth) wake up",
+            "fil": "Gisingin si Zizi (Seth)"
           }
         },
         {
           "id": "f2",
-          "time": "07:45",
+          "time": "09:45",
           "task": {
             "en": "ZiZi milk / breakfast / brush teeth",
             "fil": "Gatas / almusal / sipilyo ni Zizi"
@@ -920,15 +920,15 @@
       "tasks": [
         {
           "id": "s1",
-          "time": "07:30",
+          "time": "09:30",
           "task": {
-            "en": "ZiZi wake up",
-            "fil": "Gisingin si Zizi"
+            "en": "Zizi (Seth) wake up",
+            "fil": "Gisingin si Zizi (Seth)"
           }
         },
         {
           "id": "s2",
-          "time": "07:45",
+          "time": "09:45",
           "task": {
             "en": "ZiZi milk / breakfast / brush teeth",
             "fil": "Gatas / almusal / sipilyo ni Zizi"
@@ -936,7 +936,7 @@
         },
         {
           "id": "s3",
-          "time": "09:30",
+          "time": "10:30",
           "task": {
             "en": "Vacuum floor, toilet, iron clothing",
             "fil": "Vacuum, toilet, plantsa ng damit"
@@ -1057,15 +1057,23 @@
       "tasks": [
         {
           "id": "su1",
-          "time": "07:30",
+          "time": "09:30",
           "task": {
-            "en": "Charlene day off",
-            "fil": "Day off ni Charlene"
+            "en": "Zizi (Seth) wake up — whole day off, no school (Sunday & 勞工假)",
+            "fil": "Gisingin si Zizi (Seth) — buong araw na day off, walang eskwela (Linggo at 勞工假)"
+          }
+        },
+        {
+          "id": "su1b",
+          "time": "09:45",
+          "task": {
+            "en": "ZiZi milk / breakfast / brush teeth",
+            "fil": "Gatas / almusal / sipilyo ni Zizi"
           }
         },
         {
           "id": "su2",
-          "time": "09:30",
+          "time": "10:30",
           "task": {
             "en": "Wash clothing (light color)",
             "fil": "Labada (magaan na kulay)"
@@ -1073,7 +1081,7 @@
         },
         {
           "id": "su3",
-          "time": "10:00",
+          "time": "11:00",
           "task": {
             "en": "Wash clothing (dark color)",
             "fil": "Labada (madilim na kulay)"
@@ -1091,8 +1099,8 @@
           "id": "su5",
           "time": "12:00",
           "task": {
-            "en": "Family time — focus on Zizi",
-            "fil": "Oras ng pamilya — focus kay Zizi"
+            "en": "Family time — Zizi whole day off, play & rest at home",
+            "fil": "Oras ng pamilya — buong araw na day off si Zizi, maglaro at magpahinga sa bahay"
           }
         },
         {
@@ -1155,12 +1163,12 @@
           "id": "su13",
           "time": "21:45",
           "task": {
-            "en": "Charlene day off",
-            "fil": "Day off ni Charlene"
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
           }
         }
       ]
     }
   ],
-  "lastUpdated": "2026-07-20T07:56:00.000Z"
+  "lastUpdated": "2026-07-20T11:52:24.866Z"
 }
