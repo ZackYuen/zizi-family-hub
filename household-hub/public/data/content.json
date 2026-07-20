@@ -2,8 +2,8 @@
   "helperName": "Charlene",
   "familyName": "Zizi Family",
   "ziziSchool": {
-    "en": "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene (姐姐) day off.",
-    "fil": "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene (姐姐)."
+    "en": "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
+    "fil": "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene."
   },
   "monthlyTasks": [
     {
@@ -333,8 +333,8 @@
           "startTime": "21:15",
           "endTime": "21:45",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
+            "en": "ZiZi shower",
+            "fil": "Paligo ni Zizi"
           }
         },
         {
@@ -511,8 +511,8 @@
           "startTime": "21:15",
           "endTime": "21:45",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
+            "en": "ZiZi shower",
+            "fil": "Paligo ni Zizi"
           }
         },
         {
@@ -689,8 +689,8 @@
           "startTime": "21:15",
           "endTime": "21:45",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
+            "en": "ZiZi shower",
+            "fil": "Paligo ni Zizi"
           }
         },
         {
@@ -867,8 +867,8 @@
           "startTime": "21:15",
           "endTime": "21:45",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
+            "en": "ZiZi shower",
+            "fil": "Paligo ni Zizi"
           }
         },
         {
@@ -1045,8 +1045,8 @@
           "startTime": "21:15",
           "endTime": "21:45",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
+            "en": "ZiZi shower",
+            "fil": "Paligo ni Zizi"
           }
         },
         {
@@ -1203,8 +1203,8 @@
           "startTime": "21:15",
           "endTime": "21:45",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
+            "en": "ZiZi shower",
+            "fil": "Paligo ni Zizi"
           }
         },
         {
@@ -1231,8 +1231,8 @@
           "startTime": "00:00",
           "fullDay": true,
           "task": {
-            "en": "Charlene (姐姐) day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-            "fil": "Day off ni Charlene (姐姐) — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
+            "en": "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
+            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
           }
         }
       ]
