@@ -2,8 +2,8 @@
   "helperName": "Charlene",
   "familyName": "Zizi Family",
   "ziziSchool": {
-    "en": "Lam Tin Liang Leung Kindergarten (PM class, arrive by 1:00 PM). Sundays & HK public holidays (香港勞工假): Zizi whole day off — no school.",
-    "fil": "Lam Tin Liang Leung Kindergarten (PM class, dumating bago 1:00 PM). Linggo at HK public holiday (香港勞工假): buong araw na day off si Zizi — walang eskwela."
+    "en": "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene (姐姐) day off.",
+    "fil": "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene (姐姐)."
   },
   "monthlyTasks": [
     {
@@ -180,191 +180,171 @@
         {
           "id": "m1",
           "time": "09:30",
+          "startTime": "09:30",
+          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
             "fil": "Gisingin si Zizi (Seth)"
-          },
-          "startTime": "09:30",
-          "endTime": "09:45"
+          }
         },
         {
           "id": "m2",
           "time": "09:45",
-          "task": {
-            "en": "ZiZi milk / breakfast / brush teeth",
-            "fil": "Gatas / almusal / sipilyo ni Zizi"
-          },
           "startTime": "09:45",
-          "endTime": "10:15"
+          "endTime": "10:15",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          }
         },
         {
           "id": "m3",
-          "time": "10:30",
+          "time": "10:15",
+          "startTime": "10:15",
+          "endTime": "11:30",
           "task": {
-            "en": "Wash clothing (all clothes first, then Charlene's clothes)",
-            "fil": "Labada (lahat ng damit muna, tapos damit ni Charlene)"
-          },
-          "startTime": "10:30",
-          "endTime": "11:00"
+            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
+            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+          }
         },
         {
           "id": "m4",
-          "time": "11:00",
-          "task": {
-            "en": "Vacuum floor, deep clean floor (mop), toilet",
-            "fil": "Vacuum, malalim na pagmop, linis ng toilet"
-          },
-          "startTime": "11:00",
-          "endTime": "11:30"
-        },
-        {
-          "id": "m5",
           "time": "11:30",
-          "task": {
-            "en": "Flexible / monthly task (see list)",
-            "fil": "Flexible / buwanang gawain (tingnan ang list)"
-          },
           "startTime": "11:30",
-          "endTime": "12:00"
-        },
-        {
-          "id": "m6",
-          "time": "12:00",
-          "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
-          },
-          "startTime": "12:00",
-          "endTime": "12:45"
-        },
-        {
-          "id": "m7",
-          "time": "12:45",
+          "endTime": "12:00",
           "task": {
             "en": "Prepare school bag, shoes, uniform",
             "fil": "Ihanda ang bag, sapatos, uniporme"
-          },
-          "startTime": "12:45",
-          "endTime": "13:00"
+          }
+        },
+        {
+          "id": "m5",
+          "time": "12:00",
+          "startTime": "12:00",
+          "endTime": "12:30",
+          "task": {
+            "en": "ZiZi lunch at home",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          }
+        },
+        {
+          "id": "m6",
+          "time": "12:30",
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "task": {
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
+          }
+        },
+        {
+          "id": "m7",
+          "time": "13:30",
+          "startTime": "13:30",
+          "endTime": "15:30",
+          "task": {
+            "en": "Wash clothing (all clothes first, then Charlene's clothes), vacuum floor, deep clean floor (mop), toilet",
+            "fil": "Labada (lahat ng damit muna, tapos damit ni Charlene), vacuum, mop, linis ng toilet"
+          }
         },
         {
           "id": "m8",
-          "time": "13:00",
+          "time": "15:30",
+          "startTime": "15:30",
+          "endTime": "16:00",
           "task": {
-            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
-            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
-          },
-          "startTime": "13:00",
-          "endTime": "13:00"
+            "en": "Flexible / monthly task (see list)",
+            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+          }
         },
         {
           "id": "m9",
-          "time": "13:00",
-          "task": {
-            "en": "Charlene rest time (while Zizi at school)",
-            "fil": "Oras ng pahinga ni Charlene (habang nasa eskwela si Zizi)"
-          },
-          "startTime": "13:00",
-          "endTime": "14:00"
-        },
-        {
-          "id": "m10",
-          "time": "14:00",
-          "task": {
-            "en": "Buy food",
-            "fil": "Bumili ng pagkain"
-          },
-          "startTime": "14:00",
-          "endTime": "16:00"
-        },
-        {
-          "id": "m11",
           "time": "16:00",
-          "task": {
-            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
-            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
-          },
           "startTime": "16:00",
-          "endTime": "16:30"
+          "endTime": "16:30",
+          "task": {
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
+          }
         },
         {
           "id": "m12",
           "time": "16:30",
+          "startTime": "16:30",
+          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
             "fil": "Merienda ni Zizi"
-          },
-          "startTime": "16:30",
-          "endTime": "17:00"
+          }
         },
         {
           "id": "m13",
           "time": "17:00",
+          "startTime": "17:00",
+          "endTime": "18:00",
           "task": {
             "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
             "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
-          },
-          "startTime": "17:00",
-          "endTime": "18:00"
+          }
         },
         {
           "id": "m14",
           "time": "18:00",
+          "startTime": "18:00",
+          "endTime": "18:30",
           "task": {
             "en": "Cook dinner",
             "fil": "Magluto ng hapunan"
-          },
-          "startTime": "18:00",
-          "endTime": "18:30"
+          }
         },
         {
           "id": "m15",
           "time": "18:30",
+          "startTime": "18:30",
+          "endTime": "20:00",
           "task": {
             "en": "ZiZi dinner (6:30–8:00 PM)",
             "fil": "Hapunan ni Zizi (6:30–8:00 PM)"
-          },
-          "startTime": "18:30",
-          "endTime": "20:00"
+          }
         },
         {
           "id": "m16",
           "time": "20:15",
+          "startTime": "20:15",
+          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy up kitchen",
             "fil": "Hugasan ang pinggan / ayusin ang kusina"
-          },
-          "startTime": "20:15",
-          "endTime": "20:30"
+          }
         },
         {
           "id": "m17",
           "time": "20:30",
+          "startTime": "20:30",
+          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
             "fil": "Vacuum ng sahig"
-          },
-          "startTime": "20:30",
-          "endTime": "21:15"
+          }
         },
         {
           "id": "m18",
           "time": "21:15",
+          "startTime": "21:15",
+          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower and milk",
             "fil": "Paligo at gatas ni Zizi"
-          },
-          "startTime": "21:15",
-          "endTime": "21:45"
+          }
         },
         {
           "id": "m19",
           "time": "21:45",
+          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
             "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "21:45"
+          }
         }
       ]
     },
@@ -378,191 +358,171 @@
         {
           "id": "t1",
           "time": "09:30",
+          "startTime": "09:30",
+          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
             "fil": "Gisingin si Zizi (Seth)"
-          },
-          "startTime": "09:30",
-          "endTime": "09:45"
+          }
         },
         {
           "id": "t2",
           "time": "09:45",
-          "task": {
-            "en": "ZiZi milk / breakfast / brush teeth",
-            "fil": "Gatas / almusal / sipilyo ni Zizi"
-          },
           "startTime": "09:45",
-          "endTime": "10:15"
+          "endTime": "10:15",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          }
         },
         {
           "id": "t3",
-          "time": "10:30",
+          "time": "10:15",
+          "startTime": "10:15",
+          "endTime": "11:30",
           "task": {
-            "en": "Clean Zizi toys",
-            "fil": "Linisin ang mga laruan ni Zizi"
-          },
-          "startTime": "10:30",
-          "endTime": "11:00"
+            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
+            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+          }
         },
         {
           "id": "t4",
-          "time": "11:00",
+          "time": "11:30",
+          "startTime": "11:30",
+          "endTime": "12:00",
           "task": {
-            "en": "Vacuum floor, vacuum/deep clean living room, toilet",
-            "fil": "Vacuum, malalim na linis ng sala, toilet"
-          },
-          "startTime": "11:00",
-          "endTime": "11:30"
+            "en": "Prepare school bag, shoes, uniform",
+            "fil": "Ihanda ang bag, sapatos, uniporme"
+          }
         },
         {
           "id": "t5",
-          "time": "11:30",
-          "task": {
-            "en": "Flexible / monthly task",
-            "fil": "Flexible / buwanang gawain"
-          },
-          "startTime": "11:30",
-          "endTime": "12:00"
-        },
-        {
-          "id": "t6",
           "time": "12:00",
+          "startTime": "12:00",
+          "endTime": "12:30",
           "task": {
             "en": "ZiZi lunch at home",
             "fil": "Tanghalian ni Zizi sa bahay"
-          },
-          "startTime": "12:00",
-          "endTime": "12:45"
+          }
+        },
+        {
+          "id": "t6",
+          "time": "12:30",
+          "startTime": "12:30",
+          "endTime": "13:00",
+          "task": {
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
+          }
         },
         {
           "id": "t7",
-          "time": "12:45",
+          "time": "13:30",
+          "startTime": "13:30",
+          "endTime": "15:30",
           "task": {
-            "en": "Prepare for PM school",
-            "fil": "Maghanda para sa PM na eskwela"
-          },
-          "startTime": "12:45",
-          "endTime": "13:00"
+            "en": "Clean Zizi toys, vacuum floor & living room, toilet, buy food (AEON @ Yau Tong)",
+            "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (AEON @ Yau Tong)"
+          }
         },
         {
           "id": "t8",
-          "time": "13:00",
+          "time": "15:30",
+          "startTime": "15:30",
+          "endTime": "16:00",
           "task": {
-            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
-            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
-          },
-          "startTime": "13:00",
-          "endTime": "13:00"
+            "en": "Flexible / monthly task (see list)",
+            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+          }
         },
         {
           "id": "t9",
-          "time": "13:00",
-          "task": {
-            "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "13:00",
-          "endTime": "14:00"
-        },
-        {
-          "id": "t10",
-          "time": "14:00",
-          "task": {
-            "en": "Buy food (AEON @ Yau Tong)",
-            "fil": "Bumili ng pagkain (AEON @ Yau Tong)"
-          },
-          "startTime": "14:00",
-          "endTime": "16:00"
-        },
-        {
-          "id": "t11",
           "time": "16:00",
-          "task": {
-            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
-            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
-          },
           "startTime": "16:00",
-          "endTime": "16:30"
+          "endTime": "16:30",
+          "task": {
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
+          }
         },
         {
           "id": "t12",
           "time": "16:30",
+          "startTime": "16:30",
+          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
             "fil": "Merienda ni Zizi"
-          },
-          "startTime": "16:30",
-          "endTime": "17:00"
+          }
         },
         {
           "id": "t13",
           "time": "17:00",
+          "startTime": "17:00",
+          "endTime": "18:00",
           "task": {
             "en": "Prepare food & soup — tonight's random menu",
             "fil": "Maghanda ng pagkain at sabaw — random na menu"
-          },
-          "startTime": "17:00",
-          "endTime": "18:00"
+          }
         },
         {
           "id": "t14",
           "time": "18:00",
+          "startTime": "18:00",
+          "endTime": "18:30",
           "task": {
             "en": "Cook",
             "fil": "Magluto"
-          },
-          "startTime": "18:00",
-          "endTime": "18:30"
+          }
         },
         {
           "id": "t15",
           "time": "18:30",
+          "startTime": "18:30",
+          "endTime": "20:15",
           "task": {
             "en": "ZiZi dinner",
             "fil": "Hapunan ni Zizi"
-          },
-          "startTime": "18:30",
-          "endTime": "20:15"
+          }
         },
         {
           "id": "t16",
           "time": "20:15",
+          "startTime": "20:15",
+          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy kitchen",
             "fil": "Hugasan / ayusin ang kusina"
-          },
-          "startTime": "20:15",
-          "endTime": "20:30"
+          }
         },
         {
           "id": "t17",
           "time": "20:30",
+          "startTime": "20:30",
+          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
             "fil": "Vacuum ng sahig"
-          },
-          "startTime": "20:30",
-          "endTime": "21:15"
+          }
         },
         {
           "id": "t18",
           "time": "21:15",
+          "startTime": "21:15",
+          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower and milk",
             "fil": "Paligo at gatas ni Zizi"
-          },
-          "startTime": "21:15",
-          "endTime": "21:45"
+          }
         },
         {
           "id": "t19",
           "time": "21:45",
+          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
             "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "21:45"
+          }
         }
       ]
     },
@@ -576,181 +536,171 @@
         {
           "id": "w1",
           "time": "09:30",
+          "startTime": "09:30",
+          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
             "fil": "Gisingin si Zizi (Seth)"
-          },
-          "startTime": "09:30",
-          "endTime": "09:45"
+          }
         },
         {
           "id": "w2",
           "time": "09:45",
-          "task": {
-            "en": "ZiZi milk / breakfast / brush teeth",
-            "fil": "Gatas / almusal / sipilyo ni Zizi"
-          },
           "startTime": "09:45",
-          "endTime": "10:15"
+          "endTime": "10:15",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          }
         },
         {
           "id": "w3",
-          "time": "10:00",
+          "time": "10:15",
+          "startTime": "10:15",
+          "endTime": "11:30",
           "task": {
-            "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet",
-            "fil": "Vacuum, malalim na linis ng kusina, toilet"
-          },
-          "startTime": "10:00",
-          "endTime": "11:30"
+            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
+            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+          }
         },
         {
           "id": "w4",
           "time": "11:30",
-          "task": {
-            "en": "Flexible / monthly task",
-            "fil": "Flexible / buwanang gawain"
-          },
           "startTime": "11:30",
-          "endTime": "12:00"
+          "endTime": "12:00",
+          "task": {
+            "en": "Prepare school bag, shoes, uniform",
+            "fil": "Ihanda ang bag, sapatos, uniporme"
+          }
         },
         {
           "id": "w5",
           "time": "12:00",
+          "startTime": "12:00",
+          "endTime": "12:30",
           "task": {
             "en": "ZiZi lunch at home",
             "fil": "Tanghalian ni Zizi sa bahay"
-          },
-          "startTime": "12:00",
-          "endTime": "12:45"
+          }
         },
         {
           "id": "w6",
-          "time": "12:45",
+          "time": "12:30",
+          "startTime": "12:30",
+          "endTime": "13:00",
           "task": {
-            "en": "Prepare for PM school",
-            "fil": "Maghanda para sa PM na eskwela"
-          },
-          "startTime": "12:45",
-          "endTime": "13:00"
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
+          }
         },
         {
           "id": "w7",
-          "time": "13:00",
+          "time": "13:30",
+          "startTime": "13:30",
+          "endTime": "15:30",
           "task": {
-            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
-            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
-          },
-          "startTime": "13:00",
-          "endTime": "13:00"
+            "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food",
+            "fil": "Vacuum, malalim na linis ng kusina, toilet, bumili ng pagkain"
+          }
         },
         {
           "id": "w8",
-          "time": "13:00",
+          "time": "15:30",
+          "startTime": "15:30",
+          "endTime": "16:00",
           "task": {
-            "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "13:00",
-          "endTime": "14:00"
+            "en": "Flexible / monthly task (see list)",
+            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+          }
         },
         {
           "id": "w9",
-          "time": "14:00",
-          "task": {
-            "en": "Buy food",
-            "fil": "Bumili ng pagkain"
-          },
-          "startTime": "14:00",
-          "endTime": "16:00"
-        },
-        {
-          "id": "w10",
           "time": "16:00",
-          "task": {
-            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
-            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
-          },
           "startTime": "16:00",
-          "endTime": "16:30"
-        },
-        {
-          "id": "w11",
-          "time": "16:30",
+          "endTime": "16:30",
           "task": {
-            "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi"
-          },
-          "startTime": "16:30",
-          "endTime": "17:00"
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
+          }
         },
         {
           "id": "w12",
-          "time": "17:00",
+          "time": "16:30",
+          "startTime": "16:30",
+          "endTime": "17:00",
           "task": {
-            "en": "Prepare food — tonight's random menu",
-            "fil": "Maghanda — random na menu ng gabi"
-          },
-          "startTime": "17:00",
-          "endTime": "18:00"
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
         },
         {
           "id": "w13",
-          "time": "18:00",
+          "time": "17:00",
+          "startTime": "17:00",
+          "endTime": "18:00",
           "task": {
-            "en": "Cook",
-            "fil": "Magluto"
-          },
-          "startTime": "18:00",
-          "endTime": "18:30"
+            "en": "Prepare food — tonight's random menu",
+            "fil": "Maghanda — random na menu ng gabi"
+          }
         },
         {
           "id": "w14",
-          "time": "18:30",
+          "time": "18:00",
+          "startTime": "18:00",
+          "endTime": "18:30",
           "task": {
-            "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi"
-          },
-          "startTime": "18:30",
-          "endTime": "20:15"
+            "en": "Cook",
+            "fil": "Magluto"
+          }
         },
         {
           "id": "w15",
-          "time": "20:15",
+          "time": "18:30",
+          "startTime": "18:30",
+          "endTime": "20:15",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
-          },
-          "startTime": "20:15",
-          "endTime": "20:30"
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
         },
         {
           "id": "w16",
-          "time": "20:30",
+          "time": "20:15",
+          "startTime": "20:15",
+          "endTime": "20:30",
           "task": {
-            "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig"
-          },
-          "startTime": "20:30",
-          "endTime": "21:15"
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
         },
         {
           "id": "w17",
-          "time": "21:15",
+          "time": "20:30",
+          "startTime": "20:30",
+          "endTime": "21:15",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
-          },
-          "startTime": "21:15",
-          "endTime": "21:45"
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
         },
         {
           "id": "w18",
+          "time": "21:15",
+          "startTime": "21:15",
+          "endTime": "21:45",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "w19",
           "time": "21:45",
+          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
             "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "21:45"
+          }
         }
       ]
     },
@@ -764,181 +714,171 @@
         {
           "id": "th1",
           "time": "09:30",
+          "startTime": "09:30",
+          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
             "fil": "Gisingin si Zizi (Seth)"
-          },
-          "startTime": "09:30",
-          "endTime": "09:45"
+          }
         },
         {
           "id": "th2",
           "time": "09:45",
-          "task": {
-            "en": "ZiZi milk / breakfast / brush teeth",
-            "fil": "Gatas / almusal / sipilyo ni Zizi"
-          },
           "startTime": "09:45",
-          "endTime": "10:15"
+          "endTime": "10:15",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          }
         },
         {
           "id": "th3",
-          "time": "10:00",
+          "time": "10:15",
+          "startTime": "10:15",
+          "endTime": "11:30",
           "task": {
-            "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), toilet",
-            "fil": "Vacuum, malalim na linis ng banyo, toilet"
-          },
-          "startTime": "10:00",
-          "endTime": "11:30"
+            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
+            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+          }
         },
         {
           "id": "th4",
           "time": "11:30",
-          "task": {
-            "en": "Flexible / monthly task",
-            "fil": "Flexible / buwanang gawain"
-          },
           "startTime": "11:30",
-          "endTime": "12:00"
+          "endTime": "12:00",
+          "task": {
+            "en": "Prepare school bag, shoes, uniform",
+            "fil": "Ihanda ang bag, sapatos, uniporme"
+          }
         },
         {
           "id": "th5",
           "time": "12:00",
+          "startTime": "12:00",
+          "endTime": "12:30",
           "task": {
             "en": "ZiZi lunch at home",
             "fil": "Tanghalian ni Zizi sa bahay"
-          },
-          "startTime": "12:00",
-          "endTime": "12:45"
+          }
         },
         {
           "id": "th6",
-          "time": "12:45",
+          "time": "12:30",
+          "startTime": "12:30",
+          "endTime": "13:00",
           "task": {
-            "en": "Prepare for PM school",
-            "fil": "Maghanda para sa PM na eskwela"
-          },
-          "startTime": "12:45",
-          "endTime": "13:00"
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
+          }
         },
         {
           "id": "th7",
-          "time": "13:00",
+          "time": "13:30",
+          "startTime": "13:30",
+          "endTime": "15:30",
           "task": {
-            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
-            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
-          },
-          "startTime": "13:00",
-          "endTime": "13:00"
+            "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food",
+            "fil": "Vacuum, malalim na linis ng banyo, bumili ng pagkain"
+          }
         },
         {
-          "id": "th8",
-          "time": "13:00",
+          "id": "thNaN",
+          "time": "15:30",
+          "startTime": "15:30",
+          "endTime": "16:00",
           "task": {
-            "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "13:00",
-          "endTime": "14:00"
+            "en": "Flexible / monthly task (see list)",
+            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+          }
         },
         {
-          "id": "th9",
-          "time": "14:00",
-          "task": {
-            "en": "Buy food",
-            "fil": "Bumili ng pagkain"
-          },
-          "startTime": "14:00",
-          "endTime": "16:00"
-        },
-        {
-          "id": "th10",
+          "id": "thNaN",
           "time": "16:00",
-          "task": {
-            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
-            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
-          },
           "startTime": "16:00",
-          "endTime": "16:30"
-        },
-        {
-          "id": "th11",
-          "time": "16:30",
+          "endTime": "16:30",
           "task": {
-            "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi"
-          },
-          "startTime": "16:30",
-          "endTime": "17:00"
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
+          }
         },
         {
           "id": "th12",
-          "time": "17:00",
+          "time": "16:30",
+          "startTime": "16:30",
+          "endTime": "17:00",
           "task": {
-            "en": "Prepare food & soup — tonight's random menu",
-            "fil": "Maghanda ng pagkain at sabaw"
-          },
-          "startTime": "17:00",
-          "endTime": "18:00"
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
         },
         {
           "id": "th13",
-          "time": "18:00",
+          "time": "17:00",
+          "startTime": "17:00",
+          "endTime": "18:00",
           "task": {
-            "en": "Cook",
-            "fil": "Magluto"
-          },
-          "startTime": "18:00",
-          "endTime": "18:30"
+            "en": "Prepare food & soup — tonight's random menu",
+            "fil": "Maghanda ng pagkain at sabaw"
+          }
         },
         {
           "id": "th14",
-          "time": "18:30",
+          "time": "18:00",
+          "startTime": "18:00",
+          "endTime": "18:30",
           "task": {
-            "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi"
-          },
-          "startTime": "18:30",
-          "endTime": "20:15"
+            "en": "Cook",
+            "fil": "Magluto"
+          }
         },
         {
           "id": "th15",
-          "time": "20:15",
+          "time": "18:30",
+          "startTime": "18:30",
+          "endTime": "20:15",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
-          },
-          "startTime": "20:15",
-          "endTime": "20:30"
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
         },
         {
           "id": "th16",
-          "time": "20:30",
+          "time": "20:15",
+          "startTime": "20:15",
+          "endTime": "20:30",
           "task": {
-            "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig"
-          },
-          "startTime": "20:30",
-          "endTime": "21:15"
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
         },
         {
           "id": "th17",
-          "time": "21:15",
+          "time": "20:30",
+          "startTime": "20:30",
+          "endTime": "21:15",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
-          },
-          "startTime": "21:15",
-          "endTime": "21:45"
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
         },
         {
           "id": "th18",
+          "time": "21:15",
+          "startTime": "21:15",
+          "endTime": "21:45",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "th19",
           "time": "21:45",
+          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
             "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "21:45"
+          }
         }
       ]
     },
@@ -952,181 +892,171 @@
         {
           "id": "f1",
           "time": "09:30",
+          "startTime": "09:30",
+          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
             "fil": "Gisingin si Zizi (Seth)"
-          },
-          "startTime": "09:30",
-          "endTime": "09:45"
+          }
         },
         {
           "id": "f2",
           "time": "09:45",
-          "task": {
-            "en": "ZiZi milk / breakfast / brush teeth",
-            "fil": "Gatas / almusal / sipilyo ni Zizi"
-          },
           "startTime": "09:45",
-          "endTime": "10:15"
+          "endTime": "10:15",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          }
         },
         {
           "id": "f3",
-          "time": "10:00",
+          "time": "10:15",
+          "startTime": "10:15",
+          "endTime": "11:30",
           "task": {
-            "en": "Vacuum floor, deep clean bedroom, toilet",
-            "fil": "Vacuum, malalim na linis ng kwarto, toilet"
-          },
-          "startTime": "10:00",
-          "endTime": "11:30"
+            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
+            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+          }
         },
         {
           "id": "f4",
           "time": "11:30",
-          "task": {
-            "en": "Flexible / monthly task",
-            "fil": "Flexible / buwanang gawain"
-          },
           "startTime": "11:30",
-          "endTime": "12:00"
+          "endTime": "12:00",
+          "task": {
+            "en": "Prepare school bag, shoes, uniform",
+            "fil": "Ihanda ang bag, sapatos, uniporme"
+          }
         },
         {
           "id": "f5",
           "time": "12:00",
+          "startTime": "12:00",
+          "endTime": "12:30",
           "task": {
             "en": "ZiZi lunch at home",
             "fil": "Tanghalian ni Zizi sa bahay"
-          },
-          "startTime": "12:00",
-          "endTime": "12:45"
+          }
         },
         {
           "id": "f6",
-          "time": "12:45",
+          "time": "12:30",
+          "startTime": "12:30",
+          "endTime": "13:00",
           "task": {
-            "en": "Prepare for PM school",
-            "fil": "Maghanda para sa PM na eskwela"
-          },
-          "startTime": "12:45",
-          "endTime": "13:00"
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
+          }
         },
         {
           "id": "f7",
-          "time": "13:00",
+          "time": "13:30",
+          "startTime": "13:30",
+          "endTime": "15:30",
           "task": {
-            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
-            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
-          },
-          "startTime": "13:00",
-          "endTime": "13:00"
+            "en": "Vacuum floor, deep clean bedroom, toilet, buy food",
+            "fil": "Vacuum, malalim na linis ng kwarto, toilet, bumili ng pagkain"
+          }
         },
         {
           "id": "f8",
-          "time": "13:00",
+          "time": "15:30",
+          "startTime": "15:30",
+          "endTime": "16:00",
           "task": {
-            "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "13:00",
-          "endTime": "14:00"
+            "en": "Flexible / monthly task (see list)",
+            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+          }
         },
         {
           "id": "f9",
-          "time": "14:00",
-          "task": {
-            "en": "Buy food",
-            "fil": "Bumili ng pagkain"
-          },
-          "startTime": "14:00",
-          "endTime": "16:00"
-        },
-        {
-          "id": "f10",
           "time": "16:00",
-          "task": {
-            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
-            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
-          },
           "startTime": "16:00",
-          "endTime": "16:30"
-        },
-        {
-          "id": "f11",
-          "time": "16:30",
+          "endTime": "16:30",
           "task": {
-            "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi"
-          },
-          "startTime": "16:30",
-          "endTime": "17:00"
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
+          }
         },
         {
           "id": "f12",
-          "time": "17:00",
+          "time": "16:30",
+          "startTime": "16:30",
+          "endTime": "17:00",
           "task": {
-            "en": "Prepare food — tonight's random menu",
-            "fil": "Maghanda — random na menu"
-          },
-          "startTime": "17:00",
-          "endTime": "18:00"
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
         },
         {
           "id": "f13",
-          "time": "18:00",
+          "time": "17:00",
+          "startTime": "17:00",
+          "endTime": "18:00",
           "task": {
-            "en": "Cook",
-            "fil": "Magluto"
-          },
-          "startTime": "18:00",
-          "endTime": "18:30"
+            "en": "Prepare food — tonight's random menu",
+            "fil": "Maghanda — random na menu"
+          }
         },
         {
           "id": "f14",
-          "time": "18:30",
+          "time": "18:00",
+          "startTime": "18:00",
+          "endTime": "18:30",
           "task": {
-            "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi"
-          },
-          "startTime": "18:30",
-          "endTime": "20:15"
+            "en": "Cook",
+            "fil": "Magluto"
+          }
         },
         {
           "id": "f15",
-          "time": "20:15",
+          "time": "18:30",
+          "startTime": "18:30",
+          "endTime": "20:15",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
-          },
-          "startTime": "20:15",
-          "endTime": "20:30"
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
         },
         {
           "id": "f16",
-          "time": "20:30",
+          "time": "20:15",
+          "startTime": "20:15",
+          "endTime": "20:30",
           "task": {
-            "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig"
-          },
-          "startTime": "20:30",
-          "endTime": "21:15"
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
         },
         {
           "id": "f17",
-          "time": "21:15",
+          "time": "20:30",
+          "startTime": "20:30",
+          "endTime": "21:15",
           "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
-          },
-          "startTime": "21:15",
-          "endTime": "21:45"
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
         },
         {
           "id": "f18",
+          "time": "21:15",
+          "startTime": "21:15",
+          "endTime": "21:45",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "f19",
           "time": "21:45",
+          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
             "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "21:45"
+          }
         }
       ]
     },
@@ -1140,161 +1070,151 @@
         {
           "id": "s1",
           "time": "09:30",
+          "startTime": "09:30",
+          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
             "fil": "Gisingin si Zizi (Seth)"
-          },
-          "startTime": "09:30",
-          "endTime": "09:45"
+          }
         },
         {
           "id": "s2",
           "time": "09:45",
-          "task": {
-            "en": "ZiZi milk / breakfast / brush teeth",
-            "fil": "Gatas / almusal / sipilyo ni Zizi"
-          },
           "startTime": "09:45",
-          "endTime": "10:15"
+          "endTime": "10:15",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          }
         },
         {
           "id": "s3",
-          "time": "10:30",
+          "time": "10:15",
+          "startTime": "10:15",
+          "endTime": "12:00",
           "task": {
-            "en": "Vacuum floor, toilet, iron clothing",
-            "fil": "Vacuum, toilet, plantsa ng damit"
-          },
-          "startTime": "10:30",
-          "endTime": "11:30"
+            "en": "Prepare Zizi's lunch + play / supervise Zizi at home (no kindergarten — Mon–Fri only)",
+            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan (walang eskwela — Lunes–Biyernes lang)"
+          }
         },
         {
           "id": "s4",
-          "time": "11:30",
+          "time": "12:00",
+          "startTime": "12:00",
+          "endTime": "13:00",
           "task": {
-            "en": "Flexible / monthly task",
-            "fil": "Flexible / buwanang gawain"
-          },
-          "startTime": "11:30",
-          "endTime": "12:00"
+            "en": "ZiZi lunch at home",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          }
         },
         {
           "id": "s5",
-          "time": "12:00",
-          "task": {
-            "en": "Play with ZiZi",
-            "fil": "Maglaro kasama si Zizi"
-          },
-          "startTime": "12:00",
-          "endTime": "13:00"
-        },
-        {
-          "id": "s6",
           "time": "13:00",
+          "startTime": "13:00",
+          "endTime": "14:00",
           "task": {
             "en": "Zizi nap time + clean school bag & shoes",
             "fil": "Oras ng tulog ni Zizi + linisin ang bag at sapatos"
-          },
-          "startTime": "13:00",
-          "endTime": "14:00"
+          }
+        },
+        {
+          "id": "s6",
+          "time": "14:00",
+          "startTime": "14:00",
+          "endTime": "16:00",
+          "task": {
+            "en": "Vacuum floor, toilet, iron clothing, buy food",
+            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain"
+          }
         },
         {
           "id": "s7",
-          "time": "14:00",
-          "task": {
-            "en": "Buy food",
-            "fil": "Bumili ng pagkain"
-          },
-          "startTime": "14:00",
-          "endTime": "16:00"
-        },
-        {
-          "id": "s8",
           "time": "16:00",
+          "startTime": "16:00",
+          "endTime": "16:30",
           "task": {
             "en": "Prepare food",
             "fil": "Maghanda ng pagkain"
-          },
-          "startTime": "16:00",
-          "endTime": "16:30"
+          }
         },
         {
-          "id": "s9",
+          "id": "s8",
           "time": "16:30",
+          "startTime": "16:30",
+          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
             "fil": "Merienda ni Zizi"
-          },
-          "startTime": "16:30",
-          "endTime": "17:00"
+          }
         },
         {
-          "id": "s10",
+          "id": "s9",
           "time": "17:00",
+          "startTime": "17:00",
+          "endTime": "18:00",
           "task": {
             "en": "Play with ZiZi",
             "fil": "Maglaro kasama si Zizi"
-          },
-          "startTime": "17:00",
-          "endTime": "18:00"
+          }
         },
         {
-          "id": "s11",
+          "id": "s10",
           "time": "18:00",
+          "startTime": "18:00",
+          "endTime": "18:30",
           "task": {
             "en": "Cook — tonight's random menu",
             "fil": "Magluto — random na menu"
-          },
-          "startTime": "18:00",
-          "endTime": "18:30"
+          }
         },
         {
-          "id": "s12",
+          "id": "s11",
           "time": "18:30",
+          "startTime": "18:30",
+          "endTime": "20:15",
           "task": {
             "en": "ZiZi dinner",
             "fil": "Hapunan ni Zizi"
-          },
-          "startTime": "18:30",
-          "endTime": "20:15"
+          }
         },
         {
-          "id": "s13",
+          "id": "s12",
           "time": "20:15",
+          "startTime": "20:15",
+          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy kitchen",
             "fil": "Hugasan / ayusin ang kusina"
-          },
-          "startTime": "20:15",
-          "endTime": "20:30"
+          }
         },
         {
-          "id": "s14",
+          "id": "s13",
           "time": "20:30",
+          "startTime": "20:30",
+          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
             "fil": "Vacuum ng sahig"
-          },
-          "startTime": "20:30",
-          "endTime": "21:15"
+          }
         },
         {
-          "id": "s15",
+          "id": "s14",
           "time": "21:15",
+          "startTime": "21:15",
+          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower and milk",
             "fil": "Paligo at gatas ni Zizi"
-          },
-          "startTime": "21:15",
-          "endTime": "21:45"
+          }
         },
         {
-          "id": "s16",
+          "id": "s15",
           "time": "21:45",
+          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
             "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "21:45"
+          }
         }
       ]
     },
@@ -1311,151 +1231,12 @@
           "startTime": "00:00",
           "fullDay": true,
           "task": {
-            "en": "Zizi (Seth) — whole day off, no kindergarten (Sunday & HK public holidays / 香港勞工假)",
-            "fil": "Si Zizi (Seth) — buong araw na day off, walang eskwela (Linggo at HK public holiday / 香港勞工假)"
+            "en": "Charlene (姐姐) day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
+            "fil": "Day off ni Charlene (姐姐) — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
           }
-        },
-        {
-          "id": "su1",
-          "time": "09:30",
-          "task": {
-            "en": "Zizi (Seth) wake up",
-            "fil": "Gisingin si Zizi (Seth)"
-          },
-          "startTime": "09:30",
-          "endTime": "09:45"
-        },
-        {
-          "id": "su1b",
-          "time": "09:45",
-          "task": {
-            "en": "ZiZi milk / breakfast / brush teeth",
-            "fil": "Gatas / almusal / sipilyo ni Zizi"
-          },
-          "startTime": "09:45",
-          "endTime": "10:15"
-        },
-        {
-          "id": "su2",
-          "time": "10:30",
-          "task": {
-            "en": "Wash clothing (light color)",
-            "fil": "Labada (magaan na kulay)"
-          },
-          "startTime": "10:30",
-          "endTime": "11:00"
-        },
-        {
-          "id": "su3",
-          "time": "11:00",
-          "task": {
-            "en": "Wash clothing (dark color)",
-            "fil": "Labada (madilim na kulay)"
-          },
-          "startTime": "11:00",
-          "endTime": "11:30"
-        },
-        {
-          "id": "su4",
-          "time": "11:30",
-          "task": {
-            "en": "Flexible / monthly task",
-            "fil": "Flexible / buwanang gawain"
-          },
-          "startTime": "11:30",
-          "endTime": "12:00"
-        },
-        {
-          "id": "su5",
-          "time": "12:00",
-          "task": {
-            "en": "Family time — Zizi whole day off, play & rest at home",
-            "fil": "Oras ng pamilya — buong araw na day off si Zizi, maglaro at magpahinga sa bahay"
-          },
-          "startTime": "12:00",
-          "endTime": "14:00"
-        },
-        {
-          "id": "su6",
-          "time": "14:00",
-          "task": {
-            "en": "Buy food",
-            "fil": "Bumili ng pagkain"
-          },
-          "startTime": "14:00",
-          "endTime": "16:00"
-        },
-        {
-          "id": "su7",
-          "time": "16:00",
-          "task": {
-            "en": "Prepare food",
-            "fil": "Maghanda ng pagkain"
-          },
-          "startTime": "16:00",
-          "endTime": "18:00"
-        },
-        {
-          "id": "su8",
-          "time": "18:00",
-          "task": {
-            "en": "Cook — tonight's random menu",
-            "fil": "Magluto — random na menu"
-          },
-          "startTime": "18:00",
-          "endTime": "18:30"
-        },
-        {
-          "id": "su9",
-          "time": "18:30",
-          "task": {
-            "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi"
-          },
-          "startTime": "18:30",
-          "endTime": "20:15"
-        },
-        {
-          "id": "su10",
-          "time": "20:15",
-          "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
-          },
-          "startTime": "20:15",
-          "endTime": "20:30"
-        },
-        {
-          "id": "su11",
-          "time": "20:30",
-          "task": {
-            "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig"
-          },
-          "startTime": "20:30",
-          "endTime": "21:15"
-        },
-        {
-          "id": "su12",
-          "time": "21:15",
-          "task": {
-            "en": "ZiZi shower and milk",
-            "fil": "Paligo at gatas ni Zizi"
-          },
-          "startTime": "21:15",
-          "endTime": "21:45"
-        },
-        {
-          "id": "su13",
-          "time": "21:45",
-          "task": {
-            "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene"
-          },
-          "startTime": "21:45"
         }
       ]
     }
   ],
-  "lastUpdated": "2026-07-20T12:33:41.674Z"
+  "lastUpdated": "2026-07-20T14:41:31.731Z"
 }
