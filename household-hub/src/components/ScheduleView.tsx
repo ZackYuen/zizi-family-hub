@@ -3,9 +3,15 @@
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTodayDayKey, labels } from "@/lib/i18n";
-import type { DaySchedule } from "@/lib/types";
+import type { BilingualText, DaySchedule } from "@/lib/types";
 
-export function ScheduleView({ schedule }: { schedule: DaySchedule[] }) {
+interface ScheduleViewProps {
+  schedule: DaySchedule[];
+  ziziSchool?: BilingualText;
+  monthlyTasks?: BilingualText[];
+}
+
+export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleViewProps) {
   const { lang } = useLanguage();
   const todayKey = getTodayDayKey();
   const [selectedDay, setSelectedDay] = useState(todayKey);
@@ -14,6 +20,12 @@ export function ScheduleView({ schedule }: { schedule: DaySchedule[] }) {
 
   return (
     <div className="space-y-4">
+      {ziziSchool && (
+        <p className="rounded-xl bg-blue-50 px-3 py-2 text-xs text-blue-900 ring-1 ring-blue-100">
+          🏫 {ziziSchool[lang]}
+        </p>
+      )}
+
       <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
         {schedule.map((day) => {
           const isToday = day.dayKey === todayKey;
@@ -46,7 +58,7 @@ export function ScheduleView({ schedule }: { schedule: DaySchedule[] }) {
             key={task.id}
             className="flex gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-stone-100"
           >
-            <time className="w-12 shrink-0 pt-0.5 text-sm font-bold text-teal-700">
+            <time className="w-14 shrink-0 pt-0.5 text-sm font-bold text-teal-700">
               {task.time}
             </time>
             <div className="min-w-0 flex-1">
@@ -58,6 +70,21 @@ export function ScheduleView({ schedule }: { schedule: DaySchedule[] }) {
           </div>
         ))}
       </div>
+
+      {monthlyTasks && monthlyTasks.length > 0 && (
+        <details className="rounded-2xl bg-white p-3 ring-1 ring-stone-100">
+          <summary className="cursor-pointer text-sm font-semibold text-stone-700">
+            📅 {lang === "fil" ? "Buwanang gawain" : "Monthly tasks"}
+          </summary>
+          <ul className="mt-2 space-y-1 pl-4 text-sm text-stone-600">
+            {monthlyTasks.map((item) => (
+              <li key={item.en} className="list-disc">
+                {item[lang]}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
     </div>
   );
 }

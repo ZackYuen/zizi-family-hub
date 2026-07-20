@@ -39,11 +39,29 @@ export interface DayMeals {
   meals: MealItem[];
 }
 
+export interface DinnerRecipe {
+  id: string;
+  index: number;
+  name: string;
+  nameEn?: string;
+  category: "Meat" | "Vegetable" | "Soup";
+  subCategory?: string;
+  link: string;
+}
+
+export interface TonightMenu {
+  date: string;
+  meat: DinnerRecipe;
+  vegetable: DinnerRecipe;
+  soup: DinnerRecipe;
+}
+
 export interface AppContent {
   helperName: string;
   familyName: string;
+  ziziSchool: BilingualText;
   groundRules: GroundRule[];
   weeklySchedule: DaySchedule[];
-  weeklyMeals: DayMeals[];
+  monthlyTasks: BilingualText[];
   lastUpdated: string;
 }

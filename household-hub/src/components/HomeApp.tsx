@@ -38,9 +38,13 @@ export function HomeApp({ content }: { content: AppContent }) {
       <main className="mx-auto max-w-lg px-4 py-4">
         {activeTab === "rules" && <GroundRulesView rules={content.groundRules} />}
         {activeTab === "schedule" && (
-          <ScheduleView schedule={content.weeklySchedule} />
+          <ScheduleView
+            schedule={content.weeklySchedule}
+            ziziSchool={content.ziziSchool}
+            monthlyTasks={content.monthlyTasks}
+          />
         )}
-        {activeTab === "meals" && <MealsView meals={content.weeklyMeals} />}
+        {activeTab === "meals" && <MealsView />}
       </main>
 
       <footer className="fixed bottom-16 left-0 right-0 text-center">

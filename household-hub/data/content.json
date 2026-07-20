@@ -1,6 +1,28 @@
 {
   "helperName": "Charlene",
   "familyName": "Zizi Family",
+  "ziziSchool": {
+    "en": "Lam Tin Liang Leung Kindergarten (PM class, arrive by 1:00 PM)",
+    "fil": "Lam Tin Liang Leung Kindergarten (PM class, dumating bago 1:00 PM)"
+  },
+  "monthlyTasks": [
+    {
+      "en": "Change pillow cover",
+      "fil": "Palitan ang pillow cover"
+    },
+    {
+      "en": "Change bed sheet",
+      "fil": "Palitan ang bed sheet"
+    },
+    {
+      "en": "Wash curtains",
+      "fil": "Labhan ang kurtina"
+    },
+    {
+      "en": "Deep clean range hood and built-in hob",
+      "fil": "Malalim na linis ng range hood at built-in hob"
+    }
+  ],
   "groundRules": [
     {
       "id": "rule-1",
@@ -110,177 +132,1035 @@
   "weeklySchedule": [
     {
       "dayKey": "monday",
-      "day": { "en": "Monday", "fil": "Lunes" },
+      "day": {
+        "en": "Monday",
+        "fil": "Lunes"
+      },
       "tasks": [
-        { "id": "m1", "time": "06:30", "task": { "en": "Prepare breakfast for Zizi & family", "fil": "Ihanda ang almusal para kay Zizi at pamilya" } },
-        { "id": "m2", "time": "07:30", "task": { "en": "Send / accompany Zizi to school", "fil": "Hatid / samahan si Zizi papunta sa eskwela" } },
-        { "id": "m3", "time": "08:30", "task": { "en": "Kitchen cleaning — wipe counters, wash dishes", "fil": "Linisin ang kusina — punasan ang counter, hugasan ang pinggan" } },
-        { "id": "m4", "time": "10:00", "task": { "en": "Grocery shopping (check list on fridge)", "fil": "Bumili sa grocery (tingnan ang list sa ref)" } },
-        { "id": "m5", "time": "12:00", "task": { "en": "Prepare lunch", "fil": "Ihanda ang tanghalian" } },
-        { "id": "m6", "time": "15:30", "task": { "en": "Pick up Zizi from school", "fil": "Sunduin si Zizi sa eskwela" } },
-        { "id": "m7", "time": "16:00", "task": { "en": "Snack for Zizi, help with homework if needed", "fil": "Merienda para kay Zizi, tumulong sa takdang-aralin kung kailangan" } },
-        { "id": "m8", "time": "18:00", "task": { "en": "Prepare dinner", "fil": "Ihanda ang hapunan" } },
-        { "id": "m9", "time": "20:00", "task": { "en": "Tidy Zizi's room, prepare next day clothes", "fil": "Ayusin ang kwarto ni Zizi, ihanda ang damit bukas" } }
+        {
+          "id": "m1",
+          "time": "07:30",
+          "task": {
+            "en": "ZiZi wake up",
+            "fil": "Gisingin si Zizi"
+          }
+        },
+        {
+          "id": "m2",
+          "time": "07:45",
+          "task": {
+            "en": "ZiZi milk / breakfast / brush teeth",
+            "fil": "Gatas / almusal / sipilyo ni Zizi"
+          }
+        },
+        {
+          "id": "m3",
+          "time": "09:30",
+          "task": {
+            "en": "Wash clothing (all clothes first, then Charlene's clothes)",
+            "fil": "Labada (lahat ng damit muna, tapos damit ni Charlene)"
+          }
+        },
+        {
+          "id": "m4",
+          "time": "10:00",
+          "task": {
+            "en": "Vacuum floor, deep clean floor (mop), toilet",
+            "fil": "Vacuum, malalim na pagmop, linis ng toilet"
+          }
+        },
+        {
+          "id": "m5",
+          "time": "11:30",
+          "task": {
+            "en": "Flexible / monthly task (see list)",
+            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+          }
+        },
+        {
+          "id": "m6",
+          "time": "12:00",
+          "task": {
+            "en": "ZiZi lunch at home",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          }
+        },
+        {
+          "id": "m7",
+          "time": "12:45",
+          "task": {
+            "en": "Prepare school bag, shoes, uniform",
+            "fil": "Ihanda ang bag, sapatos, uniporme"
+          }
+        },
+        {
+          "id": "m8",
+          "time": "13:00",
+          "task": {
+            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
+            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
+          }
+        },
+        {
+          "id": "m9",
+          "time": "13:00",
+          "task": {
+            "en": "Charlene rest time (while Zizi at school)",
+            "fil": "Oras ng pahinga ni Charlene (habang nasa eskwela si Zizi)"
+          }
+        },
+        {
+          "id": "m10",
+          "time": "14:00",
+          "task": {
+            "en": "Buy food",
+            "fil": "Bumili ng pagkain"
+          }
+        },
+        {
+          "id": "m11",
+          "time": "16:00",
+          "task": {
+            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
+            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
+          }
+        },
+        {
+          "id": "m12",
+          "time": "16:30",
+          "task": {
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
+        },
+        {
+          "id": "m13",
+          "time": "17:00",
+          "task": {
+            "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
+            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
+          }
+        },
+        {
+          "id": "m14",
+          "time": "18:00",
+          "task": {
+            "en": "Cook dinner",
+            "fil": "Magluto ng hapunan"
+          }
+        },
+        {
+          "id": "m15",
+          "time": "18:30",
+          "task": {
+            "en": "ZiZi dinner (6:30–8:00 PM)",
+            "fil": "Hapunan ni Zizi (6:30–8:00 PM)"
+          }
+        },
+        {
+          "id": "m16",
+          "time": "20:15",
+          "task": {
+            "en": "Wash dishes / tidy up kitchen",
+            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+          }
+        },
+        {
+          "id": "m17",
+          "time": "20:30",
+          "task": {
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
+        },
+        {
+          "id": "m18",
+          "time": "21:15",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "m19",
+          "time": "21:45",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        }
       ]
     },
     {
       "dayKey": "tuesday",
-      "day": { "en": "Tuesday", "fil": "Martes" },
+      "day": {
+        "en": "Tuesday",
+        "fil": "Martes"
+      },
       "tasks": [
-        { "id": "t1", "time": "06:30", "task": { "en": "Prepare breakfast", "fil": "Ihanda ang almusal" } },
-        { "id": "t2", "time": "07:30", "task": { "en": "School drop-off for Zizi", "fil": "Hatid si Zizi sa eskwela" } },
-        { "id": "t3", "time": "09:00", "task": { "en": "Bathroom deep clean", "fil": "Malalim na paglilinis ng banyo" } },
-        { "id": "t4", "time": "11:00", "task": { "en": "Laundry — wash, hang, fold", "fil": "Labada — labhan, sampayin, tupiin" } },
-        { "id": "t5", "time": "12:00", "task": { "en": "Prepare lunch", "fil": "Ihanda ang tanghalian" } },
-        { "id": "t6", "time": "15:30", "task": { "en": "Pick up Zizi", "fil": "Sunduin si Zizi" } },
-        { "id": "t7", "time": "16:30", "task": { "en": "Zizi snack & play supervision", "fil": "Merienda at bantay sa laro ni Zizi" } },
-        { "id": "t8", "time": "18:00", "task": { "en": "Prepare dinner", "fil": "Ihanda ang hapunan" } },
-        { "id": "t9", "time": "20:30", "task": { "en": "Iron clothes if needed", "fil": "Plantsa ang damit kung kailangan" } }
+        {
+          "id": "t1",
+          "time": "07:30",
+          "task": {
+            "en": "ZiZi wake up",
+            "fil": "Gisingin si Zizi"
+          }
+        },
+        {
+          "id": "t2",
+          "time": "07:45",
+          "task": {
+            "en": "ZiZi milk / breakfast / brush teeth",
+            "fil": "Gatas / almusal / sipilyo ni Zizi"
+          }
+        },
+        {
+          "id": "t3",
+          "time": "09:30",
+          "task": {
+            "en": "Clean Zizi toys",
+            "fil": "Linisin ang mga laruan ni Zizi"
+          }
+        },
+        {
+          "id": "t4",
+          "time": "10:00",
+          "task": {
+            "en": "Vacuum floor, vacuum/deep clean living room, toilet",
+            "fil": "Vacuum, malalim na linis ng sala, toilet"
+          }
+        },
+        {
+          "id": "t5",
+          "time": "11:30",
+          "task": {
+            "en": "Flexible / monthly task",
+            "fil": "Flexible / buwanang gawain"
+          }
+        },
+        {
+          "id": "t6",
+          "time": "12:00",
+          "task": {
+            "en": "ZiZi lunch at home",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          }
+        },
+        {
+          "id": "t7",
+          "time": "12:45",
+          "task": {
+            "en": "Prepare for PM school",
+            "fil": "Maghanda para sa PM na eskwela"
+          }
+        },
+        {
+          "id": "t8",
+          "time": "13:00",
+          "task": {
+            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
+            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
+          }
+        },
+        {
+          "id": "t9",
+          "time": "13:00",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        },
+        {
+          "id": "t10",
+          "time": "14:00",
+          "task": {
+            "en": "Buy food (AEON @ Yau Tong)",
+            "fil": "Bumili ng pagkain (AEON @ Yau Tong)"
+          }
+        },
+        {
+          "id": "t11",
+          "time": "16:00",
+          "task": {
+            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
+            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
+          }
+        },
+        {
+          "id": "t12",
+          "time": "16:30",
+          "task": {
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
+        },
+        {
+          "id": "t13",
+          "time": "17:00",
+          "task": {
+            "en": "Prepare food & soup — tonight's random menu",
+            "fil": "Maghanda ng pagkain at sabaw — random na menu"
+          }
+        },
+        {
+          "id": "t14",
+          "time": "18:00",
+          "task": {
+            "en": "Cook",
+            "fil": "Magluto"
+          }
+        },
+        {
+          "id": "t15",
+          "time": "18:30",
+          "task": {
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
+        },
+        {
+          "id": "t16",
+          "time": "20:15",
+          "task": {
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
+        },
+        {
+          "id": "t17",
+          "time": "20:30",
+          "task": {
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
+        },
+        {
+          "id": "t18",
+          "time": "21:15",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "t19",
+          "time": "21:45",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        }
       ]
     },
     {
       "dayKey": "wednesday",
-      "day": { "en": "Wednesday", "fil": "Miyerkules" },
+      "day": {
+        "en": "Wednesday",
+        "fil": "Miyerkules"
+      },
       "tasks": [
-        { "id": "w1", "time": "06:30", "task": { "en": "Prepare breakfast", "fil": "Ihanda ang almusal" } },
-        { "id": "w2", "time": "07:30", "task": { "en": "School drop-off for Zizi", "fil": "Hatid si Zizi sa eskwela" } },
-        { "id": "w3", "time": "09:00", "task": { "en": "Living room & dining area cleaning", "fil": "Linisin ang sala at dining area" } },
-        { "id": "w4", "time": "11:00", "task": { "en": "Change bed sheets", "fil": "Palitan ang kumot at unan" } },
-        { "id": "w5", "time": "12:00", "task": { "en": "Prepare lunch", "fil": "Ihanda ang tanghalian" } },
-        { "id": "w6", "time": "15:30", "task": { "en": "Pick up Zizi", "fil": "Sunduin si Zizi" } },
-        { "id": "w7", "time": "16:00", "task": { "en": "Zizi activities / homework time", "fil": "Aktibidad / takdang-aralin ni Zizi" } },
-        { "id": "w8", "time": "18:00", "task": { "en": "Prepare dinner", "fil": "Ihanda ang hapunan" } },
-        { "id": "w9", "time": "20:00", "task": { "en": "Take out rubbish & recycling", "fil": "Ilabas ang basura at recycling" } }
+        {
+          "id": "w1",
+          "time": "07:30",
+          "task": {
+            "en": "ZiZi wake up",
+            "fil": "Gisingin si Zizi"
+          }
+        },
+        {
+          "id": "w2",
+          "time": "07:45",
+          "task": {
+            "en": "ZiZi milk / breakfast / brush teeth",
+            "fil": "Gatas / almusal / sipilyo ni Zizi"
+          }
+        },
+        {
+          "id": "w3",
+          "time": "10:00",
+          "task": {
+            "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet",
+            "fil": "Vacuum, malalim na linis ng kusina, toilet"
+          }
+        },
+        {
+          "id": "w4",
+          "time": "11:30",
+          "task": {
+            "en": "Flexible / monthly task",
+            "fil": "Flexible / buwanang gawain"
+          }
+        },
+        {
+          "id": "w5",
+          "time": "12:00",
+          "task": {
+            "en": "ZiZi lunch at home",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          }
+        },
+        {
+          "id": "w6",
+          "time": "12:45",
+          "task": {
+            "en": "Prepare for PM school",
+            "fil": "Maghanda para sa PM na eskwela"
+          }
+        },
+        {
+          "id": "w7",
+          "time": "13:00",
+          "task": {
+            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
+            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
+          }
+        },
+        {
+          "id": "w8",
+          "time": "13:00",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        },
+        {
+          "id": "w9",
+          "time": "14:00",
+          "task": {
+            "en": "Buy food",
+            "fil": "Bumili ng pagkain"
+          }
+        },
+        {
+          "id": "w10",
+          "time": "16:00",
+          "task": {
+            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
+            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
+          }
+        },
+        {
+          "id": "w11",
+          "time": "16:30",
+          "task": {
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
+        },
+        {
+          "id": "w12",
+          "time": "17:00",
+          "task": {
+            "en": "Prepare food — tonight's random menu",
+            "fil": "Maghanda — random na menu ng gabi"
+          }
+        },
+        {
+          "id": "w13",
+          "time": "18:00",
+          "task": {
+            "en": "Cook",
+            "fil": "Magluto"
+          }
+        },
+        {
+          "id": "w14",
+          "time": "18:30",
+          "task": {
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
+        },
+        {
+          "id": "w15",
+          "time": "20:15",
+          "task": {
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
+        },
+        {
+          "id": "w16",
+          "time": "20:30",
+          "task": {
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
+        },
+        {
+          "id": "w17",
+          "time": "21:15",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "w18",
+          "time": "21:45",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        }
       ]
     },
     {
       "dayKey": "thursday",
-      "day": { "en": "Thursday", "fil": "Huwebes" },
+      "day": {
+        "en": "Thursday",
+        "fil": "Huwebes"
+      },
       "tasks": [
-        { "id": "th1", "time": "06:30", "task": { "en": "Prepare breakfast", "fil": "Ihanda ang almusal" } },
-        { "id": "th2", "time": "07:30", "task": { "en": "School drop-off for Zizi", "fil": "Hatid si Zizi sa eskwela" } },
-        { "id": "th3", "time": "09:00", "task": { "en": "Kitchen deep clean (fridge check, bins)", "fil": "Malalim na paglilinis ng kusina (suriin ang ref, basurahan)" } },
-        { "id": "th4", "time": "11:00", "task": { "en": "Grocery top-up if needed", "fil": "Bumili ng kulang sa grocery kung kailangan" } },
-        { "id": "th5", "time": "12:00", "task": { "en": "Prepare lunch", "fil": "Ihanda ang tanghalian" } },
-        { "id": "th6", "time": "15:30", "task": { "en": "Pick up Zizi", "fil": "Sunduin si Zizi" } },
-        { "id": "th7", "time": "16:30", "task": { "en": "Zizi snack & outdoor walk if weather OK", "fil": "Merienda ni Zizi at lakad kung maganda ang panahon" } },
-        { "id": "th8", "time": "18:00", "task": { "en": "Prepare dinner", "fil": "Ihanda ang hapunan" } },
-        { "id": "th9", "time": "20:00", "task": { "en": "Prepare tomorrow's breakfast items", "fil": "Ihanda ang mga kailangan sa almusal bukas" } }
+        {
+          "id": "th1",
+          "time": "07:30",
+          "task": {
+            "en": "ZiZi wake up",
+            "fil": "Gisingin si Zizi"
+          }
+        },
+        {
+          "id": "th2",
+          "time": "07:45",
+          "task": {
+            "en": "ZiZi milk / breakfast / brush teeth",
+            "fil": "Gatas / almusal / sipilyo ni Zizi"
+          }
+        },
+        {
+          "id": "th3",
+          "time": "10:00",
+          "task": {
+            "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), toilet",
+            "fil": "Vacuum, malalim na linis ng banyo, toilet"
+          }
+        },
+        {
+          "id": "th4",
+          "time": "11:30",
+          "task": {
+            "en": "Flexible / monthly task",
+            "fil": "Flexible / buwanang gawain"
+          }
+        },
+        {
+          "id": "th5",
+          "time": "12:00",
+          "task": {
+            "en": "ZiZi lunch at home",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          }
+        },
+        {
+          "id": "th6",
+          "time": "12:45",
+          "task": {
+            "en": "Prepare for PM school",
+            "fil": "Maghanda para sa PM na eskwela"
+          }
+        },
+        {
+          "id": "th7",
+          "time": "13:00",
+          "task": {
+            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
+            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
+          }
+        },
+        {
+          "id": "th8",
+          "time": "13:00",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        },
+        {
+          "id": "th9",
+          "time": "14:00",
+          "task": {
+            "en": "Buy food",
+            "fil": "Bumili ng pagkain"
+          }
+        },
+        {
+          "id": "th10",
+          "time": "16:00",
+          "task": {
+            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
+            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
+          }
+        },
+        {
+          "id": "th11",
+          "time": "16:30",
+          "task": {
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
+        },
+        {
+          "id": "th12",
+          "time": "17:00",
+          "task": {
+            "en": "Prepare food & soup — tonight's random menu",
+            "fil": "Maghanda ng pagkain at sabaw"
+          }
+        },
+        {
+          "id": "th13",
+          "time": "18:00",
+          "task": {
+            "en": "Cook",
+            "fil": "Magluto"
+          }
+        },
+        {
+          "id": "th14",
+          "time": "18:30",
+          "task": {
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
+        },
+        {
+          "id": "th15",
+          "time": "20:15",
+          "task": {
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
+        },
+        {
+          "id": "th16",
+          "time": "20:30",
+          "task": {
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
+        },
+        {
+          "id": "th17",
+          "time": "21:15",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "th18",
+          "time": "21:45",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        }
       ]
     },
     {
       "dayKey": "friday",
-      "day": { "en": "Friday", "fil": "Biyernes" },
+      "day": {
+        "en": "Friday",
+        "fil": "Biyernes"
+      },
       "tasks": [
-        { "id": "f1", "time": "06:30", "task": { "en": "Prepare breakfast", "fil": "Ihanda ang almusal" } },
-        { "id": "f2", "time": "07:30", "task": { "en": "School drop-off for Zizi", "fil": "Hatid si Zizi sa eskwela" } },
-        { "id": "f3", "time": "09:00", "task": { "en": "General tidying all rooms", "fil": "General na pag-aayos ng lahat ng kwarto" } },
-        { "id": "f4", "time": "11:00", "task": { "en": "Laundry", "fil": "Labada" } },
-        { "id": "f5", "time": "12:00", "task": { "en": "Prepare lunch", "fil": "Ihanda ang tanghalian" } },
-        { "id": "f6", "time": "15:30", "task": { "en": "Pick up Zizi", "fil": "Sunduin si Zizi" } },
-        { "id": "f7", "time": "16:00", "task": { "en": "Zizi Friday treat / free play time", "fil": "Friday treat / libreng oras ng laro ni Zizi" } },
-        { "id": "f8", "time": "18:00", "task": { "en": "Prepare dinner", "fil": "Ihanda ang hapunan" } },
-        { "id": "f9", "time": "20:00", "task": { "en": "Check grocery list for weekend", "fil": "Suriin ang grocery list para sa weekend" } }
+        {
+          "id": "f1",
+          "time": "07:30",
+          "task": {
+            "en": "ZiZi wake up",
+            "fil": "Gisingin si Zizi"
+          }
+        },
+        {
+          "id": "f2",
+          "time": "07:45",
+          "task": {
+            "en": "ZiZi milk / breakfast / brush teeth",
+            "fil": "Gatas / almusal / sipilyo ni Zizi"
+          }
+        },
+        {
+          "id": "f3",
+          "time": "10:00",
+          "task": {
+            "en": "Vacuum floor, deep clean bedroom, toilet",
+            "fil": "Vacuum, malalim na linis ng kwarto, toilet"
+          }
+        },
+        {
+          "id": "f4",
+          "time": "11:30",
+          "task": {
+            "en": "Flexible / monthly task",
+            "fil": "Flexible / buwanang gawain"
+          }
+        },
+        {
+          "id": "f5",
+          "time": "12:00",
+          "task": {
+            "en": "ZiZi lunch at home",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          }
+        },
+        {
+          "id": "f6",
+          "time": "12:45",
+          "task": {
+            "en": "Prepare for PM school",
+            "fil": "Maghanda para sa PM na eskwela"
+          }
+        },
+        {
+          "id": "f7",
+          "time": "13:00",
+          "task": {
+            "en": "Send Zizi to Lam Tin Liang Leung Kindergarten (PM class)",
+            "fil": "Hatid si Zizi sa Lam Tin Liang Leung Kindergarten (PM class)"
+          }
+        },
+        {
+          "id": "f8",
+          "time": "13:00",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        },
+        {
+          "id": "f9",
+          "time": "14:00",
+          "task": {
+            "en": "Buy food",
+            "fil": "Bumili ng pagkain"
+          }
+        },
+        {
+          "id": "f10",
+          "time": "16:00",
+          "task": {
+            "en": "Pick up Zizi from Lam Tin Liang Leung Kindergarten",
+            "fil": "Sunduin si Zizi sa Lam Tin Liang Leung Kindergarten"
+          }
+        },
+        {
+          "id": "f11",
+          "time": "16:30",
+          "task": {
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
+        },
+        {
+          "id": "f12",
+          "time": "17:00",
+          "task": {
+            "en": "Prepare food — tonight's random menu",
+            "fil": "Maghanda — random na menu"
+          }
+        },
+        {
+          "id": "f13",
+          "time": "18:00",
+          "task": {
+            "en": "Cook",
+            "fil": "Magluto"
+          }
+        },
+        {
+          "id": "f14",
+          "time": "18:30",
+          "task": {
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
+        },
+        {
+          "id": "f15",
+          "time": "20:15",
+          "task": {
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
+        },
+        {
+          "id": "f16",
+          "time": "20:30",
+          "task": {
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
+        },
+        {
+          "id": "f17",
+          "time": "21:15",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "f18",
+          "time": "21:45",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        }
       ]
     },
     {
       "dayKey": "saturday",
-      "day": { "en": "Saturday", "fil": "Sabado" },
+      "day": {
+        "en": "Saturday",
+        "fil": "Sabado"
+      },
       "tasks": [
-        { "id": "s1", "time": "07:30", "task": { "en": "Prepare breakfast — family at home", "fil": "Ihanda ang almusal — buong pamilya nasa bahay" } },
-        { "id": "s2", "time": "09:00", "task": { "en": "Help with Zizi — play, activities", "fil": "Tumulong kay Zizi — laro, aktibidad" } },
-        { "id": "s3", "time": "10:30", "task": { "en": "Weekly grocery shopping", "fil": "Lingguhang grocery shopping" } },
-        { "id": "s4", "time": "12:30", "task": { "en": "Prepare lunch", "fil": "Ihanda ang tanghalian" } },
-        { "id": "s5", "time": "14:00", "task": { "en": "Light cleaning", "fil": "Magaan na paglilinis" } },
-        { "id": "s6", "time": "16:00", "task": { "en": "Zizi snack & supervision", "fil": "Merienda at bantay kay Zizi" } },
-        { "id": "s7", "time": "18:00", "task": { "en": "Prepare dinner", "fil": "Ihanda ang hapunan" } },
-        { "id": "s8", "time": "20:00", "task": { "en": "Kitchen reset for Sunday", "fil": "Ayusin ang kusina para sa Linggo" } }
+        {
+          "id": "s1",
+          "time": "07:30",
+          "task": {
+            "en": "ZiZi wake up",
+            "fil": "Gisingin si Zizi"
+          }
+        },
+        {
+          "id": "s2",
+          "time": "07:45",
+          "task": {
+            "en": "ZiZi milk / breakfast / brush teeth",
+            "fil": "Gatas / almusal / sipilyo ni Zizi"
+          }
+        },
+        {
+          "id": "s3",
+          "time": "09:30",
+          "task": {
+            "en": "Vacuum floor, toilet, iron clothing",
+            "fil": "Vacuum, toilet, plantsa ng damit"
+          }
+        },
+        {
+          "id": "s4",
+          "time": "11:30",
+          "task": {
+            "en": "Flexible / monthly task",
+            "fil": "Flexible / buwanang gawain"
+          }
+        },
+        {
+          "id": "s5",
+          "time": "12:00",
+          "task": {
+            "en": "Play with ZiZi",
+            "fil": "Maglaro kasama si Zizi"
+          }
+        },
+        {
+          "id": "s6",
+          "time": "13:00",
+          "task": {
+            "en": "Zizi nap time + clean school bag & shoes",
+            "fil": "Oras ng tulog ni Zizi + linisin ang bag at sapatos"
+          }
+        },
+        {
+          "id": "s7",
+          "time": "14:00",
+          "task": {
+            "en": "Buy food",
+            "fil": "Bumili ng pagkain"
+          }
+        },
+        {
+          "id": "s8",
+          "time": "16:00",
+          "task": {
+            "en": "Prepare food",
+            "fil": "Maghanda ng pagkain"
+          }
+        },
+        {
+          "id": "s9",
+          "time": "16:30",
+          "task": {
+            "en": "ZiZi tea time",
+            "fil": "Merienda ni Zizi"
+          }
+        },
+        {
+          "id": "s10",
+          "time": "17:00",
+          "task": {
+            "en": "Play with ZiZi",
+            "fil": "Maglaro kasama si Zizi"
+          }
+        },
+        {
+          "id": "s11",
+          "time": "18:00",
+          "task": {
+            "en": "Cook — tonight's random menu",
+            "fil": "Magluto — random na menu"
+          }
+        },
+        {
+          "id": "s12",
+          "time": "18:30",
+          "task": {
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
+        },
+        {
+          "id": "s13",
+          "time": "20:15",
+          "task": {
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
+        },
+        {
+          "id": "s14",
+          "time": "20:30",
+          "task": {
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
+        },
+        {
+          "id": "s15",
+          "time": "21:15",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "s16",
+          "time": "21:45",
+          "task": {
+            "en": "Charlene rest time",
+            "fil": "Oras ng pahinga ni Charlene"
+          }
+        }
       ]
     },
     {
       "dayKey": "sunday",
-      "day": { "en": "Sunday", "fil": "Linggo" },
+      "day": {
+        "en": "Sunday",
+        "fil": "Linggo"
+      },
       "tasks": [
-        { "id": "su1", "time": "08:00", "task": { "en": "Prepare breakfast", "fil": "Ihanda ang almusal" } },
-        { "id": "su2", "time": "09:30", "task": { "en": "Family day — flexible, focus on Zizi", "fil": "Family day — flexible, focus kay Zizi" } },
-        { "id": "su3", "time": "12:00", "task": { "en": "Prepare lunch", "fil": "Ihanda ang tanghalian" } },
-        { "id": "su4", "time": "14:00", "task": { "en": "Rest time / personal time", "fil": "Oras ng pahinga / personal na oras" } },
-        { "id": "su5", "time": "17:00", "task": { "en": "Prepare simple dinner", "fil": "Ihanda ang simpleng hapunan" } },
-        { "id": "su6", "time": "19:00", "task": { "en": "Plan meals & tasks for next week", "fil": "Planuhin ang pagkain at gawain para sa susunod na linggo" } }
+        {
+          "id": "su1",
+          "time": "07:30",
+          "task": {
+            "en": "Charlene day off",
+            "fil": "Day off ni Charlene"
+          }
+        },
+        {
+          "id": "su2",
+          "time": "09:30",
+          "task": {
+            "en": "Wash clothing (light color)",
+            "fil": "Labada (magaan na kulay)"
+          }
+        },
+        {
+          "id": "su3",
+          "time": "10:00",
+          "task": {
+            "en": "Wash clothing (dark color)",
+            "fil": "Labada (madilim na kulay)"
+          }
+        },
+        {
+          "id": "su4",
+          "time": "11:30",
+          "task": {
+            "en": "Flexible / monthly task",
+            "fil": "Flexible / buwanang gawain"
+          }
+        },
+        {
+          "id": "su5",
+          "time": "12:00",
+          "task": {
+            "en": "Family time — focus on Zizi",
+            "fil": "Oras ng pamilya — focus kay Zizi"
+          }
+        },
+        {
+          "id": "su6",
+          "time": "14:00",
+          "task": {
+            "en": "Buy food",
+            "fil": "Bumili ng pagkain"
+          }
+        },
+        {
+          "id": "su7",
+          "time": "16:00",
+          "task": {
+            "en": "Prepare food",
+            "fil": "Maghanda ng pagkain"
+          }
+        },
+        {
+          "id": "su8",
+          "time": "18:00",
+          "task": {
+            "en": "Cook — tonight's random menu",
+            "fil": "Magluto — random na menu"
+          }
+        },
+        {
+          "id": "su9",
+          "time": "18:30",
+          "task": {
+            "en": "ZiZi dinner",
+            "fil": "Hapunan ni Zizi"
+          }
+        },
+        {
+          "id": "su10",
+          "time": "20:15",
+          "task": {
+            "en": "Wash dishes / tidy kitchen",
+            "fil": "Hugasan / ayusin ang kusina"
+          }
+        },
+        {
+          "id": "su11",
+          "time": "20:30",
+          "task": {
+            "en": "Vacuum floor",
+            "fil": "Vacuum ng sahig"
+          }
+        },
+        {
+          "id": "su12",
+          "time": "21:15",
+          "task": {
+            "en": "ZiZi shower and milk",
+            "fil": "Paligo at gatas ni Zizi"
+          }
+        },
+        {
+          "id": "su13",
+          "time": "21:45",
+          "task": {
+            "en": "Charlene day off",
+            "fil": "Day off ni Charlene"
+          }
+        }
       ]
     }
   ],
-  "weeklyMeals": [
-    {
-      "dayKey": "monday",
-      "day": { "en": "Monday", "fil": "Lunes" },
-      "meals": [
-        { "id": "mm1", "meal": "breakfast", "dish": { "en": "Oatmeal, banana, milk (Zizi)", "fil": "Oatmeal, saging, gatas (Zizi)" } },
-        { "id": "mm2", "meal": "lunch", "dish": { "en": "Chicken sinigang, rice, vegetables", "fil": "Sinigang na manok, kanin, gulay" } },
-        { "id": "mm3", "meal": "dinner", "dish": { "en": "Steamed fish, pak choi, rice", "fil": "Pinasingaw na isda, pak choi, kanin" } },
-        { "id": "mm4", "meal": "snack", "dish": { "en": "Yogurt & fruit after school", "fil": "Yogurt at prutas pagkatapos ng eskwela" } }
-      ]
-    },
-    {
-      "dayKey": "tuesday",
-      "day": { "en": "Tuesday", "fil": "Martes" },
-      "meals": [
-        { "id": "tm1", "meal": "breakfast", "dish": { "en": "Scrambled eggs, toast, orange juice", "fil": "Itlog na sinangag, tinapay, orange juice" } },
-        { "id": "tm2", "meal": "lunch", "dish": { "en": "Pork adobo, rice, cucumber salad", "fil": "Adobong baboy, kanin, ensaladang pipino" } },
-        { "id": "tm3", "meal": "dinner", "dish": { "en": "Stir-fry vegetables with tofu, rice", "fil": "Ginisa na gulay na may tofu, kanin" } },
-        { "id": "tm4", "meal": "snack", "dish": { "en": "Crackers & cheese", "fil": "Crackers at keso" } }
-      ]
-    },
-    {
-      "dayKey": "wednesday",
-      "day": { "en": "Wednesday", "fil": "Miyerkules" },
-      "meals": [
-        { "id": "wm1", "meal": "breakfast", "dish": { "en": "Congee with egg (Zizi favourite)", "fil": "Lugaw na may itlog (paborito ni Zizi)" } },
-        { "id": "wm2", "meal": "lunch", "dish": { "en": "Beef nilaga, rice, corn", "fil": "Nilagang baka, kanin, mais" } },
-        { "id": "wm3", "meal": "dinner", "dish": { "en": "Pasta with tomato sauce, salad", "fil": "Pasta na may tomato sauce, salad" } },
-        { "id": "wm4", "meal": "snack", "dish": { "en": "Apple slices", "fil": "Hiwa ng mansanas" } }
-      ]
-    },
-    {
-      "dayKey": "thursday",
-      "day": { "en": "Thursday", "fil": "Huwebes" },
-      "meals": [
-        { "id": "thm1", "meal": "breakfast", "dish": { "en": "Pancakes, berries, milk", "fil": "Pancake, berries, gatas" } },
-        { "id": "thm2", "meal": "lunch", "dish": { "en": "Grilled chicken, rice, broccoli", "fil": "Inihaw na manok, kanin, broccoli" } },
-        { "id": "thm3", "meal": "dinner", "dish": { "en": "Fish soup, vegetables, rice", "fil": "Sinigang na isda, gulay, kanin" } },
-        { "id": "thm4", "meal": "snack", "dish": { "en": "Homemade banana bread", "fil": "Homemade na banana bread" } }
-      ]
-    },
-    {
-      "dayKey": "friday",
-      "day": { "en": "Friday", "fil": "Biyernes" },
-      "meals": [
-        { "id": "fm1", "meal": "breakfast", "dish": { "en": "Cereal, milk, banana", "fil": "Cereal, gatas, saging" } },
-        { "id": "fm2", "meal": "lunch", "dish": { "en": "Fried rice with egg & vegetables", "fil": "Sinangag na may itlog at gulay" } },
-        { "id": "fm3", "meal": "dinner", "dish": { "en": "Pizza night (homemade or delivery)", "fil": "Pizza night (homemade o delivery)" } },
-        { "id": "fm4", "meal": "snack", "dish": { "en": "Ice cream treat for Zizi (Friday)", "fil": "Ice cream treat para kay Zizi (Biyernes)" } }
-      ]
-    },
-    {
-      "dayKey": "saturday",
-      "day": { "en": "Saturday", "fil": "Sabado" },
-      "meals": [
-        { "id": "sm1", "meal": "breakfast", "dish": { "en": "Full breakfast — eggs, sausage, toast", "fil": "Buong almusal — itlog, sausage, tinapay" } },
-        { "id": "sm2", "meal": "lunch", "dish": { "en": "Hotpot or BBQ (family choice)", "fil": "Hotpot o BBQ (pipiliin ng pamilya)" } },
-        { "id": "sm3", "meal": "dinner", "dish": { "en": "Soup noodles, side dishes", "fil": "Soup noodles, side dishes" } },
-        { "id": "sm4", "meal": "snack", "dish": { "en": "Fresh fruit platter", "fil": "Plato ng sariwang prutas" } }
-      ]
-    },
-    {
-      "dayKey": "sunday",
-      "day": { "en": "Sunday", "fil": "Linggo" },
-      "meals": [
-        { "id": "sum1", "meal": "breakfast", "dish": { "en": "Dim sum / buns (easy morning)", "fil": "Dim sum / mantou (madaling umaga)" } },
-        { "id": "sum2", "meal": "lunch", "dish": { "en": "Roast chicken, rice, vegetables", "fil": "Lechong manok, kanin, gulay" } },
-        { "id": "sum3", "meal": "dinner", "dish": { "en": "Light congee or sandwich", "fil": "Magaan na lugaw o sandwich" } },
-        { "id": "sum4", "meal": "snack", "dish": { "en": "Cookies & milk", "fil": "Cookies at gatas" } }
-      ]
-    }
-  ],
-  "lastUpdated": "2026-07-20T00:00:00.000Z"
+  "lastUpdated": "2026-07-20T07:56:00.000Z"
 }

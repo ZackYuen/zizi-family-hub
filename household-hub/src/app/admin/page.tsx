@@ -325,62 +325,25 @@ export default function AdminPage() {
         )}
 
         {activeSection === "meals" && (
-          <div className="space-y-4">
-            {content.weeklyMeals.map((day, di) => (
-              <details key={day.dayKey} className="rounded-xl bg-white ring-1 ring-stone-200">
-                <summary className="cursor-pointer px-4 py-3 font-semibold text-stone-800">
-                  {day.day.en} / {day.day.fil}
-                </summary>
-                <div className="space-y-2 border-t border-stone-100 px-4 py-3">
-                  {day.meals.map((meal, mi) => (
-                    <div key={meal.id} className="grid gap-2 sm:grid-cols-3">
-                      <select
-                        value={meal.meal}
-                        onChange={(e) => {
-                          const next = structuredClone(content);
-                          next.weeklyMeals[di].meals[mi].meal = e.target.value as typeof meal.meal;
-                          setContent(next);
-                        }}
-                        className="rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
-                      >
-                        <option value="breakfast">Breakfast</option>
-                        <option value="lunch">Lunch</option>
-                        <option value="dinner">Dinner</option>
-                        <option value="snack">Snack</option>
-                      </select>
-                      <input
-                        value={meal.dish.en}
-                        onChange={(e) => {
-                          const next = structuredClone(content);
-                          next.weeklyMeals[di].meals[mi].dish.en = e.target.value;
-                          setContent(next);
-                        }}
-                        className="rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
-                        placeholder="Dish (EN)"
-                      />
-                      <input
-                        value={meal.dish.fil}
-                        onChange={(e) => {
-                          const next = structuredClone(content);
-                          next.weeklyMeals[di].meals[mi].dish.fil = e.target.value;
-                          setContent(next);
-                        }}
-                        className="rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
-                        placeholder="Dish (FIL)"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </details>
-            ))}
-            <button
-              type="button"
-              disabled={saving}
-              onClick={() => save(content)}
-              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+          <div className="space-y-4 rounded-xl bg-white p-4 ring-1 ring-stone-200">
+            <h2 className="font-semibold text-stone-900">Dinner randomizer</h2>
+            <p className="text-sm text-stone-600">
+              Dinner is auto-generated each night: 1 meat + 1 vegetable + 1 soup
+              (same logic as your Apple Numbers file). Recipes are stored in{" "}
+              <code className="rounded bg-stone-100 px-1">data/dinner-recipes.json</code>.
+            </p>
+            <a
+              href="/api/dinner/tonight"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm font-medium text-teal-700 underline"
             >
-              {saving ? "Saving..." : "Save Meals"}
-            </button>
+              Preview tonight&apos;s API menu →
+            </a>
+            <p className="text-xs text-stone-500">
+              To add/edit recipes, update dinner-recipes.json on the server or ask
+              for a recipe admin tab in a future update.
+            </p>
           </div>
         )}
 
@@ -397,6 +360,43 @@ export default function AdminPage() {
             <label className="mb-1 block text-sm font-medium text-stone-700">
               Family Name
             </label>
+            <input
+              value={content.familyName}
+              onChange={(e) => setContent({ ...content, familyName: e.target.value })}
+              className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
+            <label className="mb-1 block text-sm font-medium text-stone-700">
+              Zizi School (English)
+            </label>
+            <input
+              value={content.ziziSchool?.en ?? ""}
+              onChange={(e) =>
+                setContent({
+                  ...content,
+                  ziziSchool: {
+                    en: e.target.value,
+                    fil: content.ziziSchool?.fil ?? e.target.value,
+                  },
+                })
+              }
+              className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
+            <label className="mb-1 block text-sm font-medium text-stone-700">
+              Zizi School (Filipino)
+            </label>
+            <input
+              value={content.ziziSchool?.fil ?? ""}
+              onChange={(e) =>
+                setContent({
+                  ...content,
+                  ziziSchool: {
+                    en: content.ziziSchool?.en ?? "",
+                    fil: e.target.value,
+                  },
+                })
+              }
+              className="mb-3 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
             <input
               value={content.familyName}
               onChange={(e) => setContent({ ...content, familyName: e.target.value })}
