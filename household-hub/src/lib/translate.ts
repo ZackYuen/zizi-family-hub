@@ -1,9 +1,10 @@
 import type { Lang } from "./types";
 
+/** MyMemory language codes — zh uses Traditional Chinese (zh-TW) for Hong Kong */
 const MYMEMORY: Record<Lang, string> = {
   en: "en",
   fil: "tl",
-  zh: "zh-CN",
+  zh: "zh-TW",
 };
 
 /** Translate via MyMemory API between English, Filipino, and Chinese */

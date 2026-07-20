@@ -5,7 +5,7 @@ import type { Lang } from "@/lib/types";
 
 const TARGET_LABELS: Record<Lang, string> = {
   en: "EN",
-  zh: "中",
+  zh: "繁",
   fil: "FIL",
 };
 

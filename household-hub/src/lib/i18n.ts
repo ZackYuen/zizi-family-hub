@@ -24,7 +24,7 @@ export const labels = {
   admin: { en: "Admin", fil: "Admin", zh: "管理" },
   language: { en: "Language", fil: "Wika", zh: "語言" },
   english: { en: "English", fil: "English", zh: "English" },
-  chinese: { en: "中文", fil: "中文", zh: "中文" },
+  chinese: { en: "繁體中文", fil: "繁體中文", zh: "繁體中文" },
   filipino: { en: "Filipino", fil: "Filipino", zh: "Filipino" },
   forHelper: {
     en: "Helper guide for Hong Kong",

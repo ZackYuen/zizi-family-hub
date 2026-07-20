@@ -11,7 +11,7 @@ import { TrilingualFieldEditor } from "@/components/admin/TrilingualFieldEditor"
 import { emptyBilingual } from "@/lib/localized-text";
 
 const ADMIN_LANGS: Lang[] = ["en", "zh", "fil"];
-const ADMIN_LANG_LABEL: Record<Lang, string> = { en: "EN", zh: "中文", fil: "FIL" };
+const ADMIN_LANG_LABEL: Record<Lang, string> = { en: "EN", zh: "繁中", fil: "FIL" };
 
 export default function AdminPage() {
   const [adminLang, setAdminLang] = useState<Lang>("en");

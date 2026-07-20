@@ -237,7 +237,7 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
               </select>
               <div className="space-y-2 rounded-lg bg-stone-50 p-2">
                 <div className="flex gap-1">
-                  <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">中文</span>
+                  <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">繁中</span>
                   <input
                     value={editing.name}
                     onChange={(e) => setEditing({ ...editing, name: e.target.value })}

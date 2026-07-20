@@ -69,7 +69,7 @@ for (const r of data.recipes) {
     enSource = r.nameEn;
   } else if (hasCjk(r.name)) {
     // Translate Chinese name to English
-    enSource = await translate(r.name, "zh-CN|en");
+    enSource = await translate(r.name, "zh-TW|en");
     await sleep(350);
   } else if (isLatin(r.name)) {
     enSource = r.name;

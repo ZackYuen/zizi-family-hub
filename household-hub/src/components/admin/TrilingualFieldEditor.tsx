@@ -5,7 +5,7 @@ import { TranslateButtons } from "./TranslateButtons";
 
 const ROWS: { key: Lang; label: string; placeholder: string }[] = [
   { key: "en", label: "EN", placeholder: "English" },
-  { key: "zh", label: "中文", placeholder: "中文" },
+  { key: "zh", label: "繁中", placeholder: "繁體中文" },
   { key: "fil", label: "FIL", placeholder: "Filipino" },
 ];
 
