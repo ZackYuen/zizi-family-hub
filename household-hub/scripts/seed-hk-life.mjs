@@ -182,9 +182,9 @@ const hkLifeGuides = [
       zh: "步行往 Zizi 幼稚園（觀塘／藍田）",
     },
     {
-      en: "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri. Walk from home is about 30 minutes. Leave by 12:30 to arrive by 13:00. Leave by 16:00 to pick up at 16:30. Bring Octopus / water on hot days. In severe weather, ask Sir/Mum before going out.",
-      fil: "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes. Mga 30 minuto lakad mula bahay. Umalis ng 12:30 para dumating bago 13:00. Umalis ng 16:00 para sundo ng 16:30. Magdala ng Octopus / tubig kung mainit. Sa masamang panahon, tanungin muna sina Sir/Mum.",
-      zh: "藍田梁靓幼稚園 — 星期一至五下午班。由家步行約 30 分鐘。12:30 出門，13:00 前到達；16:00 出門，16:30 接回。熱天帶八達通／水。惡劣天氣出門前先問 Sir/Mum。",
+      en: "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri. Walk from home is about 30 minutes. Leave by 12:30 to arrive by 13:00. Leave by 16:00 to pick up at 16:30. Bring Octopus / water on hot days. In severe weather, ask Sir/Mum before going out.",
+      fil: "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes. Mga 30 minuto lakad mula bahay. Umalis ng 12:30 para dumating bago 13:00. Umalis ng 16:00 para sundo ng 16:30. Magdala ng Octopus / tubig kung mainit. Sa masamang panahon, tanungin muna sina Sir/Mum.",
+      zh: "藍田靈糧幼稚園 — 星期一至五下午班。由家步行約 30 分鐘。12:30 出門，13:00 前到達；16:00 出門，16:30 接回。熱天帶八達通／水。惡劣天氣出門前先問 Sir/Mum。",
     }
   ),
   tip(
