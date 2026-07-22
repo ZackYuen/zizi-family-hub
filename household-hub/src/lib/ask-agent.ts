@@ -24,8 +24,9 @@ export interface AskResult {
 
 function detectLang(q: string): Lang {
   if (/[\u4e00-\u9fff]/.test(q)) return "zh";
+  // Filipino / Tagalog cues (include common conjugated forms)
   if (
-    /\b(ano|saan|kailan|paano|ba|po|naman|salamat|ngayon|hapunan|alituntunin|gawain|gagawin|oras|sundo|tanghalian)\b/i.test(
+    /\b(ano|anong|saan|kailan|paano|naman|salamat|ngayon|ngayong|hapunan|alituntunin|gawain|gagawin|kakainin|kakain|kain|magkain|oras|sundo|tanghalian|ulam|gabi|po|ba)\b/i.test(
       q
     )
   )
@@ -33,37 +34,37 @@ function detectLang(q: string): Lang {
   return "en";
 }
 
-/** Explicit "in Filipino / 用中文 / in English" overrides question language */
+const LANG_OVERRIDE_RE =
+  /\b((?:please\s+)?(?:reply|answer|respond|speak|write|use)(?:\s+in|\s+with)?|in|into)\s+(filipino|tagalog|chinese|mandarin|cantonese|english)\b/i;
+
+/** Explicit "reply with Filipino / 用中文" overrides question script */
 function resolveReplyLang(question: string): { lang: Lang; contentQuestion: string } {
   const q = question.trim();
   let lang: Lang | null = null;
 
-  if (
-    /\b(in|use|reply( in)?|answer( in)?|speak)\s+(filipino|tagalog)\b/i.test(q) ||
-    /\b(filipino|tagalog)\s+pls\b/i.test(q) ||
-    /用菲律賓|用他加祿|菲律賓文/.test(q)
-  ) {
+  const m = q.match(LANG_OVERRIDE_RE);
+  if (m) {
+    const target = m[2].toLowerCase();
+    if (target === "filipino" || target === "tagalog") lang = "fil";
+    else if (target === "chinese" || target === "mandarin" || target === "cantonese")
+      lang = "zh";
+    else if (target === "english") lang = "en";
+  } else if (/\b(filipino|tagalog)\s*(pls|please)?\s*$/i.test(q)) {
     lang = "fil";
-  } else if (
-    /\b(in|use|reply( in)?|answer( in)?|speak)\s+(chinese|mandarin|cantonese)\b/i.test(q) ||
-    /用中文|繁體|簡體|请用中文|請用中文|中文回/.test(q)
-  ) {
+  } else if (/用菲律賓|用他加祿|菲律賓文|用菲語|菲文/.test(q)) {
+    lang = "fil";
+  } else if (/用中文|繁體|簡體|请用中文|請用中文|中文回|廣東話|粤语|粵語/.test(q)) {
     lang = "zh";
-  } else if (
-    /\b(in|use|reply( in)?|answer( in)?|speak)\s+english\b/i.test(q) ||
-    /用英文|英語回/.test(q)
-  ) {
+  } else if (/用英文|英語回|in english\s*(pls|please)?/i.test(q)) {
     lang = "en";
   }
 
   const contentQuestion = q
-    .replace(
-      /\b(in|use|reply( in)?|answer( in)?|speak)\s+(filipino|tagalog|chinese|mandarin|cantonese|english)\b/gi,
-      " "
-    )
-    .replace(/\b(filipino|tagalog)\s+pls\b/gi, " ")
-    .replace(/用(菲律賓文?|他加祿|中文|繁體|簡體|英文|英語)/g, " ")
+    .replace(LANG_OVERRIDE_RE, " ")
+    .replace(/\b(filipino|tagalog|chinese|english)\s*(pls|please)?\s*$/gi, " ")
+    .replace(/用(菲律賓文?|他加祿|菲語|菲文|中文|繁體|簡體|英文|英語|廣東話)/g, " ")
     .replace(/请用中文|請用中文|中文回[複复]?|英語回[複复]?/g, " ")
+    .replace(/[,，]+\s*$/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -248,7 +249,11 @@ function heuristicAnswer(
         : "No — Charlene works today. Follow today's schedule.";
   }
 
-  if (/tonight|dinner|hapunan|今晚|晚餐|menu|ulam/.test(q)) {
+  if (
+    /tonight|dinner|hapunan|今晚|晚餐|menu|ulam|kakainin|kakain|magkain|kain.*(gabi|hapunan)|食乜|食咩|今晚食/.test(
+      q
+    )
+  ) {
     if (!snap.tonight) {
       return lang === "fil"
         ? "Wala pang dinner menu ngayon."
@@ -406,10 +411,12 @@ async function answerWithLlm(
     : process.env.OPENAI_MODEL || "gpt-4o-mini";
 
   const system = `You are the Zizi Family household helper assistant for Charlene (helper), Sir, and Mum.
-CRITICAL: Reply ONLY in ${langName(replyLang)}. Do not mix languages unless quoting a dish name.
-If the user asked to use a language (e.g. "in Filipino"), obey that.
+CRITICAL LANGUAGE RULE: Reply ONLY in ${langName(replyLang)}. Every sentence must be in that language.
+If the user wrote Chinese/English but asked to "reply with Filipino" (or similar), still reply ONLY in ${langName(replyLang)}.
+Do not mix languages except for unavoidable dish proper names — prefer Filipino dish names (nameFil) when replying in Filipino.
 Prefer FAMILY LIVE DATA below over the internet.
-For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock — that is when Admin last saved content, not now.
+For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DATA using the correct language names — never invent literal translations like "Winter Shade Public Soup".
+For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
