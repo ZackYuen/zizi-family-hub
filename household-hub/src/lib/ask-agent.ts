@@ -294,6 +294,69 @@ function heuristicAnswer(
   }
 
   if (
+    /how to cook|paano magluto|paano lutuin|lutuin|cook (this|the|tonight)|煮法|怎麼煮|怎煮|paano.*ulam|steps? to cook|cook helper/.test(
+      q
+    )
+  ) {
+    if (!snap.tonight) {
+      return lang === "fil"
+        ? "Wala pang dinner menu — hindi ko mabigay ang cook helper."
+        : lang === "zh"
+          ? "尚未有晚餐菜單，無法提供烹調協助。"
+          : "No dinner menu yet — cannot give cook helper.";
+    }
+    const dishes = [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup];
+    const cantoneseNote =
+      lang === "fil"
+        ? "⚠️ Maraming YouTube recipe sa Cantonese. Sundin ang ingredients + prep notes sa Meals tab. Kung hindi clear ang video, tanungin si Sir/Mum."
+        : lang === "zh"
+          ? "⚠️ 不少 YouTube 食譜是廣東話。請跟 Meals 分頁的材料與準備說明。影片不清楚就問 Sir/Mum。"
+          : "⚠️ Many YouTube recipes are in Cantonese. Follow the ingredients + prep notes in the Meals tab. If the video is unclear, ask Sir/Mum.";
+
+    const blocks: string[] = [
+      lang === "fil"
+        ? "Cook helper (hapunan ngayong gabi):"
+        : lang === "zh"
+          ? "烹調協助（今晚晚餐）："
+          : "Cook helper (tonight's dinner):",
+      cantoneseNote,
+    ];
+
+    for (const dish of dishes) {
+      blocks.push("");
+      blocks.push(`▶ ${dishName(dish, lang)}`);
+      if (dish.ingredients?.length) {
+        blocks.push(
+          lang === "fil" ? "Mga sangkap:" : lang === "zh" ? "材料：" : "Ingredients:"
+        );
+        for (const ing of dish.ingredients) {
+          const name = ingredientName(ing, lang);
+          blocks.push(`  • ${ing.qty ? `${name} (${ing.qty})` : name}`);
+        }
+      } else {
+        blocks.push(
+          lang === "fil"
+            ? "  (wala pang ingredients — buksan ang link o hilingin kay Sir i-add)"
+            : lang === "zh"
+              ? "  （尚未列出材料 — 打開連結或請 Sir 加入）"
+              : "  (no ingredients listed — open link or ask Sir to add)"
+        );
+      }
+      if (dish.prepNotes) {
+        const notes = localized(dish.prepNotes, lang);
+        if (notes) {
+          blocks.push(
+            lang === "fil" ? "Prep notes:" : lang === "zh" ? "準備說明：" : "Prep notes:"
+          );
+          blocks.push(notes);
+        }
+      }
+      if (dish.link) blocks.push(`Video: ${dish.link}`);
+    }
+    return blocks.join("\n");
+  }
+
+  if (
     /tonight|dinner|hapunan|今晚|晚餐|menu|ulam|kakainin|kakain|magkain|kain.*(gabi|hapunan)|食乜|食咩|今晚食/.test(
       q
     )
@@ -611,6 +674,7 @@ If the user wrote Chinese/English but asked to "reply with Filipino" (or similar
 Do not mix languages except for unavoidable dish proper names — prefer Filipino dish names (nameFil) when replying in Filipino.
 Prefer FAMILY LIVE DATA below over the internet.
 For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DATA using the correct language names — never invent literal translations like "Winter Shade Public Soup".
+For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
 For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".

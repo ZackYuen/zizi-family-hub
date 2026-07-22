@@ -66,6 +66,11 @@ export interface DinnerRecipe {
   link: string;
   /** Ingredients for shopping / prep reminder */
   ingredients?: RecipeIngredient[];
+  /**
+   * Simple EN/FIL/ZH cook notes for Charlene when the YouTube video is Cantonese.
+   * Prefer short steps — not a full transcript.
+   */
+  prepNotes?: BilingualText;
 }
 
 export interface TonightMenu {
@@ -73,6 +78,32 @@ export interface TonightMenu {
   meat: DinnerRecipe;
   vegetable: DinnerRecipe;
   soup: DinnerRecipe;
+}
+
+/** WhatsApp → Admin inbox (Q&A log + tip/recipe candidates) */
+export type WhatsAppInboxKind =
+  | "ask"
+  | "note"
+  | "tip_candidate"
+  | "recipe_candidate";
+
+export interface WhatsAppInboxItem {
+  id: string;
+  ts: string;
+  kind: WhatsAppInboxKind;
+  jid?: string;
+  fromName?: string;
+  text: string;
+  answer?: string;
+  /** For recipe candidates */
+  link?: string;
+  category?: DinnerRecipe["category"];
+  status: "new" | "promoted" | "dismissed";
+}
+
+export interface WhatsAppInbox {
+  items: WhatsAppInboxItem[];
+  updatedAt: string;
 }
 
 export interface AppContent {

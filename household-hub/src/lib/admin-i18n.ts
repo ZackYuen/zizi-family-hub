@@ -152,6 +152,49 @@ export const adminLabels = {
     fil: "Ang Admin Save ay pumupunta sa Supabase — iyon ang nakikita ni Charlene. Repo JSON ay backup lang.",
     zh: "Admin 儲存會寫入 Supabase，Charlene 看到的是即時資料。Repo JSON 只作備份。",
   },
+  inbox: { en: "WA Inbox", fil: "WA Inbox", zh: "WA 收件" },
+  inboxHintTitle: {
+    en: "WhatsApp → knowledge / recipes",
+    fil: "WhatsApp → knowledge / recipes",
+    zh: "WhatsApp → 知識／食譜",
+  },
+  inboxHintBody: {
+    en: "Bot logs asks here. Sir/Mum can also send:\n?save tip <text>\n?save recipe <youtube-url> Meat|Vegetable|Soup\n?note <text>\nThen promote below into HK Life or Meals.",
+    fil: "Nila-log ng bot ang asks dito. Pwede ring:\n?save tip <text>\n?save recipe <youtube-url> Meat|Vegetable|Soup\n?note <text>\nPagkatapos i-promote sa HK Life o Meals.",
+    zh: "Bot 會把提問記在這裡。也可發送：\n?save tip <文字>\n?save recipe <youtube網址> Meat|Vegetable|Soup\n?note <文字>\n然後在下方推送到 HK Life 或 Meals。",
+  },
+  inboxNew: { en: "New", fil: "Bago", zh: "新" },
+  inboxAll: { en: "All", fil: "Lahat", zh: "全部" },
+  inboxEmpty: {
+    en: "No inbox items yet. Set INBOX_SECRET on Vercel + bot, then ask something with ?",
+    fil: "Wala pang inbox. Ilagay ang INBOX_SECRET sa Vercel + bot, tapos mag-? sa WhatsApp.",
+    zh: "尚無收件。請在 Vercel 與 bot 設定 INBOX_SECRET，再用 ? 提問。",
+  },
+  promoteTip: { en: "→ HK Life tip", fil: "→ HK Life tip", zh: "→ HK Life 貼士" },
+  promoteRecipe: { en: "→ Dinner recipe", fil: "→ Dinner recipe", zh: "→ 晚餐食譜" },
+  dismiss: { en: "Dismiss", fil: "Dismiss", zh: "忽略" },
+  refresh: { en: "Refresh", fil: "Refresh", zh: "重新整理" },
+  prepNotes: {
+    en: "Prep notes (EN/FIL — for Cantonese videos)",
+    fil: "Prep notes (EN/FIL — para sa Cantonese video)",
+    zh: "準備說明（影片為廣東話時給 Charlene）",
+  },
+  prepNotesHint: {
+    en: "Short steps Charlene can follow without understanding Cantonese audio.",
+    fil: "Maikling steps na masusunod ni Charlene kahit Cantonese ang video.",
+    zh: "簡短步驟，即使聽不懂廣東話也能跟。",
+  },
+  fetchYoutubeTitle: {
+    en: "Fetch YouTube title → fill Chinese/EN name",
+    fil: "Kunin ang YouTube title → Chinese/EN name",
+    zh: "擷取 YouTube 標題 → 填入中／英名稱",
+  },
+  fetchingTitle: { en: "Fetching title…", fil: "Kinukuha ang title…", zh: "擷取標題中…" },
+  titleFetched: {
+    en: "Title fetched — translate to FIL if needed, then add prep notes.",
+    fil: "Nakuha ang title — isalin sa FIL kung kailangan, tapos magdagdag ng prep notes.",
+    zh: "已取得標題 — 可翻譯成 FIL，並加上準備說明。",
+  },
 } as const;
 
 export function adminT(key: keyof typeof adminLabels, lang: Lang): string {

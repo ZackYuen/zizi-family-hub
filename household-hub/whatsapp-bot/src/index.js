@@ -19,6 +19,11 @@ const AUTH_DIR = process.env.AUTH_DIR || path.join(ROOT, "auth_info");
 
 const LIVE_ASK_URL =
   process.env.LIVE_ASK_URL || "https://zizi-family-hub.vercel.app/api/ask";
+const LIVE_INBOX_URL =
+  process.env.LIVE_INBOX_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/inbox") ||
+  "https://zizi-family-hub.vercel.app/api/inbox";
+const INBOX_SECRET = process.env.INBOX_SECRET || process.env.BOT_INBOX_SECRET || "";
 const BOT_NAME = process.env.BOT_NAME || "CharleneBot";
 /** Comma-separated group JIDs to listen to; empty = all groups */
 const GROUP_ALLOWLIST = (process.env.GROUP_JIDS || "")
@@ -45,6 +50,30 @@ async function askFamilyHub(question) {
     throw new Error(`Ask API ${res.status}: ${text.slice(0, 200)}`);
   }
   return res.json();
+}
+
+async function postInbox(payload) {
+  if (!INBOX_SECRET) {
+    logger.debug("INBOX_SECRET not set — skip inbox log");
+    return;
+  }
+  try {
+    const res = await fetch(LIVE_INBOX_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-inbox-secret": INBOX_SECRET,
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn({ status: res.status, t: t.slice(0, 120) }, "inbox post failed");
+    }
+  } catch (err) {
+    logger.warn({ err }, "inbox post error");
+  }
 }
 
 function extractText(msg) {
@@ -102,6 +131,36 @@ function allowedChat(jid) {
   return REPLY_DM;
 }
 
+/** Parse save tip / save recipe / note commands (after stripTriggers) */
+function parseSaveCommand(question) {
+  const mTip = question.match(/^save\s+tip\s+([\s\S]+)$/i);
+  if (mTip) {
+    return { kind: "tip_candidate", text: mTip[1].trim() };
+  }
+  const mNote = question.match(/^(note|remember)\s+([\s\S]+)$/i);
+  if (mNote) {
+    return { kind: "note", text: mNote[2].trim() };
+  }
+  const mRecipe = question.match(
+    /^save\s+recipe\s+(\S+)(?:\s+(Meat|Vegetable|Soup))?([\s\S]*)$/i
+  );
+  if (mRecipe) {
+    const link = mRecipe[1];
+    const category = (mRecipe[2] || "Meat");
+    const rest = (mRecipe[3] || "").trim();
+    const text = rest ? `${rest}\n${link}` : link;
+    return {
+      kind: "recipe_candidate",
+      text,
+      link: /https?:\/\//i.test(link) ? link : undefined,
+      category: ["Meat", "Vegetable", "Soup"].includes(category)
+        ? category
+        : "Meat",
+    };
+  }
+  return null;
+}
+
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState(AUTH_DIR);
   const { version } = await fetchLatestBaileysVersion();
@@ -131,6 +190,9 @@ async function startBot() {
     if (connection === "open") {
       console.log(`[ok] Connected as ${sock.user?.id || "unknown"}`);
       console.log(`[ok] Asking live API: ${LIVE_ASK_URL}`);
+      console.log(
+        `[ok] Inbox: ${INBOX_SECRET ? LIVE_INBOX_URL : "disabled (set INBOX_SECRET)"}`
+      );
     }
     if (connection === "close") {
       const statusCode = new Boom(lastDisconnect?.error)?.output?.statusCode;
@@ -164,7 +226,7 @@ async function startBot() {
           await sock.sendMessage(
             jid,
             {
-              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?`,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSave: ${TRIGGER_PREFIX}save tip … / ${TRIGGER_PREFIX}save recipe <youtube> Meat`,
             },
             { quoted: msg }
           );
@@ -174,12 +236,36 @@ async function startBot() {
         console.log(`[ask] ${jid}: ${question}`);
         await sock.sendPresenceUpdate("composing", jid);
 
+        const saveCmd = parseSaveCommand(question);
+        if (saveCmd) {
+          await postInbox({
+            kind: saveCmd.kind,
+            text: saveCmd.text,
+            jid,
+            link: saveCmd.link,
+            category: saveCmd.category,
+          });
+          const reply =
+            saveCmd.kind === "recipe_candidate"
+              ? "Saved recipe candidate → Admin → WA Inbox. Promote into Meals after review."
+              : saveCmd.kind === "tip_candidate"
+                ? "Saved tip candidate → Admin → WA Inbox. Promote into HK Life after review."
+                : "Saved note → Admin → WA Inbox.";
+          await sock.sendMessage(jid, { text: reply }, { quoted: msg });
+          continue;
+        }
+
         let answer;
         try {
           const result = await askFamilyHub(question);
           answer = result.answer || "No answer.";
-          // Do not print Admin lastUpdated as a date — it looks like "today" and confuses
           answer += "\n\n_(Zizi Family Hub)_";
+          await postInbox({
+            kind: "ask",
+            text: question,
+            answer: result.answer || "",
+            jid,
+          });
         } catch (err) {
           console.error("Ask failed", err);
           answer =

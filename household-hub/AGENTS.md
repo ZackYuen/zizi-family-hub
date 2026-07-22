@@ -17,6 +17,19 @@ Do **not** treat `household-hub/data/content.json` as what Charlene sees in prod
 
 Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrouter/free` for \$0 LLM.
 
+### WhatsApp inbox → knowledge / meals
+
+- Bot posts to `POST /api/inbox` with header `x-inbox-secret` (= Vercel `INBOX_SECRET`).
+- Admin → **WA Inbox**: review asks; promote to HK Life tip or dinner recipe.
+- Commands in group: `?save tip …`, `?save recipe <youtube> Meat|Vegetable|Soup`, `?note …`
+- After promote, edit FIL names / prep notes in Meals or HK Life, then Save.
+
+## Meals / Cantonese YouTube
+
+- Videos are often Cantonese. Meals tab shows **ingredients + prep notes** first; video is for visuals.
+- Admin → Meals: add FIL ingredients, **prep notes** (EN/FIL), **Fetch YouTube title**.
+- Ask: “How to cook tonight?” / “Paano magluto?” uses the same cook helper.
+
 ## HK Life (FDH / Kwun Tong)
 
 - Helper tab **HK Life**: emergency phones, settling checklist, bilingual guides.

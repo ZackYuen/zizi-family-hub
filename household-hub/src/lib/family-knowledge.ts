@@ -189,9 +189,21 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
       const ings = ingredientLine(dish, "en");
       if (ings.length) lines.push(`  Ingredients: ${ings.join(", ")}`);
       else lines.push(`  Ingredients: (not listed yet — check recipe link ${dish.link})`);
-      lines.push(`  Recipe: ${dish.link}`);
+      if (dish.prepNotes?.en || dish.prepNotes?.fil) {
+        lines.push(
+          `  Prep notes EN: ${dish.prepNotes.en || ""} | FIL: ${dish.prepNotes.fil || ""}`
+        );
+      }
+      lines.push(`  Recipe video (may be Cantonese): ${dish.link}`);
     }
   }
+
+  lines.push("");
+  lines.push("Cooking help:");
+  lines.push(
+    "- YouTube recipe videos are often in Cantonese. Prefer ingredients + prepNotes for Charlene; she can still open the link for visuals."
+  );
+  lines.push("- If prepNotes are empty, tell her to follow the shopping list and ask Sir/Mum for steps.");
 
   lines.push("");
   lines.push("Important facts:");

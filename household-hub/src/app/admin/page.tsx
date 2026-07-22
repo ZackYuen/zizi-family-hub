@@ -8,6 +8,7 @@ import { adminT } from "@/lib/admin-i18n";
 import { ScheduleCalendarAdmin } from "@/components/admin/ScheduleCalendarAdmin";
 import { MealsAdmin } from "@/components/admin/MealsAdmin";
 import { HkLifeAdmin } from "@/components/admin/HkLifeAdmin";
+import { InboxAdmin } from "@/components/admin/InboxAdmin";
 import { TrilingualFieldEditor } from "@/components/admin/TrilingualFieldEditor";
 import { emptyBilingual } from "@/lib/localized-text";
 
@@ -22,7 +23,7 @@ export default function AdminPage() {
   const [content, setContent] = useState<AppContent | null>(null);
   const [jsonText, setJsonText] = useState("");
   const [activeSection, setActiveSection] = useState<
-    "rules" | "schedule" | "meals" | "hkLife" | "settings" | "json"
+    "rules" | "schedule" | "meals" | "hkLife" | "inbox" | "settings" | "json"
   >("rules");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -229,6 +230,7 @@ export default function AdminPage() {
     { id: "schedule" as const, label: adminT("schedule", lang) },
     { id: "meals" as const, label: adminT("meals", lang) },
     { id: "hkLife" as const, label: adminT("hkLife", lang) },
+    { id: "inbox" as const, label: adminT("inbox", lang) },
     { id: "settings" as const, label: adminT("settings", lang) },
     { id: "json" as const, label: adminT("json", lang) },
   ];
@@ -384,6 +386,10 @@ export default function AdminPage() {
             saving={saving}
             onSave={() => saveContent(content)}
           />
+        )}
+
+        {activeSection === "inbox" && (
+          <InboxAdmin lang={lang} setMessage={setMessage} />
         )}
 
         {activeSection === "settings" && (
