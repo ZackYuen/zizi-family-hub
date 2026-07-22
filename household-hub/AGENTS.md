@@ -21,7 +21,7 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 
 - Bot posts to `POST /api/inbox` with header `x-inbox-secret` (= Vercel `INBOX_SECRET`).
 - Admin → **WA Inbox**: review asks; promote to HK Life tip or dinner recipe.
-- Commands in group: `?save tip …`, `?save recipe <youtube> Meat|Vegetable|Soup`, `?note …`
+- Commands in group: `?save …` or `?save "…"` (LLM digests into tip/recipe/note). Legacy `?save tip` / `?save recipe` / `?note` still work.
 - After promote, edit FIL names / prep notes in Meals or HK Life, then Save.
 
 ## Meals / Cantonese YouTube
