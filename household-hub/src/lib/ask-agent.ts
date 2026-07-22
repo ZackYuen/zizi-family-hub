@@ -460,6 +460,25 @@ function heuristicAnswer(
   }
 
   if (
+    /android\s*app|must[- ]?have\s*app|kailangan.*app|必備.*app|app.*hong\s*kong|openrice|alipayhk|payme|myobservatory|google\s*maps|mtr\s*mobile|anong\s*app|what\s*app(s)?\s*(to\s*)?(download|install)|download.*app/.test(
+      q
+    ) &&
+    !/whatsapp\s*(bot|number|save)/.test(q)
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-android-apps");
+    if (tip) return tip;
+  }
+
+  if (
+    /healthy\s*(holiday|rest\s*day|sunday|activity)|rest\s*day.*(hike|walk|yoga|fitness|activity)|holiday.*(hike|walk|yoga|fitness)|kadoorie|kfbg|g-?class|tamar\s*park|masusustansiya|malusog.*linggo|健康.*(休息|假|活動)|行山|yoga.*helper|nature\s*day/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-healthy-holiday");
+    if (tip) return tip;
+  }
+
+  if (
     /rest\s*day|24\s*hours?|lingguhang\s*pahinga|休息日|statutory\s*holiday|法定假|stat\s*holiday/.test(
       q
     ) &&
@@ -804,7 +823,7 @@ For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DA
 For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
-For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
+For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON / Android apps / healthy holiday questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
 Family preferences are soft tips only — never call them ground rules or invent “If Broken” for them.
