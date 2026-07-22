@@ -163,7 +163,9 @@ export async function getContent(): Promise<AppContent> {
       (!remote.appliances.some((a) => a.id === "app-dyson-v12") ||
         !remote.appliances.some((a) => a.id === "app-tefal-du4120g0") ||
         !remote.appliances.some((a) => a.id === "app-dyson-hp07") ||
-        !remote.appliances.some((a) => a.id === "app-tefal-epc17"))
+        !remote.appliances.some((a) => a.id === "app-tefal-epc17") ||
+        // Refresh when tips are still paragraph form (no bullet markers)
+        !remote.appliances.some((a) => a.tips?.en?.includes("•")))
   );
   if (needsPrefs || needsAppliances || needsApplianceModels) {
     const filled: AppContent = {

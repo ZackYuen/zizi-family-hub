@@ -110,6 +110,42 @@ const toolsUi = {
   },
 };
 
+/** Split tip text into bullet lines (supports • / - / numbered / newlines). */
+function tipLines(text: string): string[] {
+  const raw = text.trim();
+  if (!raw) return [];
+  if (raw.includes("\n") || raw.includes("•")) {
+    return raw
+      .split(/\n+/)
+      .map((s) => s.replace(/^[\s•\-–—]+/, "").replace(/^\d+[.)]\s*/, "").trim())
+      .filter(Boolean);
+  }
+  return raw
+    .split(/(?<=[.!?。！？])\s+/)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 2);
+}
+
+function BulletList({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) {
+  const lines = tipLines(text);
+  if (lines.length <= 1) {
+    return <p className={className}>{text}</p>;
+  }
+  return (
+    <ul className={`list-disc space-y-1.5 pl-4 ${className || ""}`}>
+      {lines.map((line, i) => (
+        <li key={`${i}-${line.slice(0, 24)}`}>{line}</li>
+      ))}
+    </ul>
+  );
+}
+
 export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] }) {
   const { lang } = useLanguage();
   const sorted = [...appliances].sort((a, b) => a.priority - b.priority);
@@ -145,9 +181,10 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
                     )}
                   </div>
                 </div>
-                <p className="text-sm leading-relaxed text-stone-600">
-                  {localized(item.tips, lang)}
-                </p>
+                <BulletList
+                  text={localized(item.tips, lang)}
+                  className="text-sm leading-relaxed text-stone-600"
+                />
                 {item.sourceUrl && (
                   <a
                     href={item.sourceUrl}
@@ -168,7 +205,10 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
                   <p className="mb-1 text-xs font-bold uppercase tracking-wide text-amber-900">
                     {toolsUi.caution[lang]}
                   </p>
-                  <p className="text-sm leading-relaxed text-amber-950">{warning}</p>
+                  <BulletList
+                    text={warning}
+                    className="text-sm leading-relaxed text-amber-950"
+                  />
                 </div>
               )}
             </article>

@@ -2,6 +2,8 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels } from "@/lib/i18n";
+import { HongKongMapIcon } from "./HongKongMapIcon";
+import type { ReactNode } from "react";
 
 export type TabId =
   | "rules"
@@ -18,14 +20,18 @@ interface BottomNavProps {
 
 const tabs: {
   id: TabId;
-  icon: string;
+  icon: ReactNode;
   labelKey: "groundRules" | "schedule" | "meals" | "tools" | "ask" | "hkLife";
 }[] = [
   { id: "schedule", icon: "🕐", labelKey: "schedule" },
   { id: "meals", icon: "🍽️", labelKey: "meals" },
   { id: "tools", icon: "🔌", labelKey: "tools" },
   { id: "ask", icon: "💬", labelKey: "ask" },
-  { id: "hkLife", icon: "🌏", labelKey: "hkLife" },
+  {
+    id: "hkLife",
+    icon: <HongKongMapIcon className="h-[1.15rem] w-[1.15rem] sm:h-5 sm:w-5" />,
+    labelKey: "hkLife",
+  },
   { id: "rules", icon: "📋", labelKey: "groundRules" },
 ];
 
@@ -46,7 +52,9 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
                 isActive ? "text-teal-700" : "text-stone-500"
               }`}
             >
-              <span className="text-lg leading-none sm:text-xl">{tab.icon}</span>
+              <span className="flex h-5 items-center justify-center text-lg leading-none sm:h-6 sm:text-xl">
+                {tab.icon}
+              </span>
               <span
                 className={`max-w-full truncate text-[9px] font-medium leading-tight sm:text-[10px] ${
                   isActive ? "font-semibold" : ""
