@@ -1254,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T11:09:20.551Z",
+  "lastUpdated": "2026-07-22T11:11:01.331Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1933,6 +1933,28 @@
         "en": "Basket and heater get very hot — use tongs and a heat-safe mat. Keep away from curtains. Pulling the basket mid-cook cools the machine (OK but not ideal). Do not pour a pool of oil; a light brush/spray is enough.",
         "fil": "Mainit ang basket at heater — gumamit ng tongs at heat-safe mat. Layuan ang kurtina. Kapag hinila ang basket sa gitna ng luto, lumalamig ang loob (OK pero hindi ideal). Huwag magbuhos ng maraming mantika; light brush/spray sapat.",
         "zh": "籃和發熱管很燙——用夾和耐熱墊。遠離窗簾。中途拉出籃會降溫（可以但不理想）。不要倒一大灘油；薄刷／噴少許即可。"
+      }
+    },
+    {
+      "id": "app-tefal-du4120g0",
+      "kind": "dehumidifier",
+      "model": "Tefal DU4120G0",
+      "priority": 7,
+      "sourceUrl": "https://www.tefal.com.hk/en/instructions-for-use/Products-/Home-Care/Humidifier-and-Dehumidifier/INTENSE-DRY-CONTROL-LINEN-DRY-20L-DU4120/csp/1830005659",
+      "title": {
+        "en": "Tefal DU4120G0 dehumidifier",
+        "fil": "Tefal DU4120G0 dehumidifier (linen dry)",
+        "zh": "Tefal DU4120G0 乾衣抽濕機"
+      },
+      "tips": {
+        "en": "Our dehumidifier is Tefal Intense Dry Control Linen Dry DU4120G0 (20L). Place on a flat stable floor with air intake/outlet grills clear; the tank floater must move freely. Plug in and press ON/OFF. Set target humidity with the humidity control (often 50% / 60% / 70%) — it dehumidifies until that level, then the compressor may stop while the fan keeps running. For drying laundry: use DRY (linen dry) — continuous dehumidify + swing helps dry clothes faster; you can also press SWING for wider airflow. Empty the water tank when full (machine usually stops or alerts). Clean: unplug first → wipe with a slightly damp cloth → empty/clean tank → remove the washable nano/pre-filter, vacuum or rinse as Sir/Mum showed, dry, refit. Never run without the pre-filter.",
+        "fil": "Dehumidifier namin: Tefal Intense Dry Control Linen Dry DU4120G0 (20L). Ilagay sa flat stable floor; dapat malaya ang air intake/outlet; dapat gumagalaw nang libre ang floater sa tank. I-plug at pindutin ang ON/OFF. Itakda ang target humidity (madalas 50% / 60% / 70%) — magde-dehumidify hanggang doon. Para sa pagpapatuyo ng damit: gamitin ang DRY (linen dry) — continuous + swing para mas mabilis; pindutin din ang SWING kung kailangan. Alisin ang tubig sa tank kapag puno. Linis: i-unplug muna → damp cloth → linisin ang tank → tanggalin ang washable nano/pre-filter, vacuum o banlawan gaya ng itinuro, patuyuin, ibalik. Huwag gamitin nang walang pre-filter.",
+        "zh": "抽濕機是 Tefal Intense Dry Control Linen Dry DU4120G0（20L）。放在平穩地面，入風／出風口勿遮擋；水箱浮波要能自由浮動。插電按開關。用濕度控制設定目標（常見 50%／60%／70%）——抽至該濕度後壓縮機或會停、風扇繼續轉。乾衣：用 DRY（乾衣）——持續抽濕＋擺風加快乾衣；也可按 SWING 擴大送風。水箱滿了要倒清（機通常會停或提示）。清潔：先拔掣 → 微濕布抹機 → 清／倒水箱 → 取出可清洗 nano／前置濾網，按 Sir/Mum 教的吸塵或沖洗，乾透再裝回。沒有前置濾網不要開機。"
+      },
+      "warnings": {
+        "en": "Keep air grills unblocked. Do not tip the machine when the tank has water. Never use abrasive cleaners. If less effective: check tank not full, room not too cold, and unit sized for the room — ask Sir/Mum if unsure.",
+        "fil": "Huwag harangan ang air grills. Huwag itagilid kung may tubig ang tank. Huwag gumamit ng abrasive cleaners. Kung humina: tingnan kung puno ang tank, masyadong malamig ang kwarto, o mali ang laki para sa room — tanungin si Sir/Mum kung unsure.",
+        "zh": "出入風口勿遮擋。水箱有水時不要傾斜機身。不要用磨蝕性清潔劑。效果變差：檢查水箱是否滿、室溫是否過低、機型是否適合房間——不確定問 Sir/Mum。"
       }
     }
   ]

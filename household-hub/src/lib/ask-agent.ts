@@ -618,7 +618,7 @@ function heuristicAnswer(
   }
 
   if (
-    /vacuum|dyson|v12|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|washing\s*machine|washer|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|壓力鍋|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
+    /vacuum|dyson|v12|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|washing\s*machine|washer|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|壓力鍋|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
       q
     )
   ) {
@@ -636,8 +636,12 @@ function heuristicAnswer(
           kind: "bread-machine",
         },
         {
-          re: /tefal|easy\s*fry|air\s*fryer|氣炸/,
+          re: /easy\s*fry|air\s*fryer|氣炸/,
           kind: "air-fryer",
+        },
+        {
+          re: /du4120|dehumidifier|linen\s*dry|抽濕|乾衣抽濕/,
+          kind: "dehumidifier",
         },
         {
           re: /philips|add6910|water\s*dispenser|飲水|RO\s*water/,
@@ -651,6 +655,7 @@ function heuristicAnswer(
           re: /wash(ing)?\s*machine|washer|lavander|洗濯機|洗衣機/,
           kind: "washing-machine",
         },
+        { re: /\btefal\b/, kind: "air-fryer" },
       ];
       const matched = kindMatchers.find((m) => m.re.test(q));
       const hit = matched
