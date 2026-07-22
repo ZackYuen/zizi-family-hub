@@ -82,9 +82,21 @@ function dishName(
   d: { name: string; nameEn?: string; nameFil?: string },
   lang: Lang
 ): string {
-  if (lang === "fil") return d.nameFil || d.nameEn || d.name;
-  if (lang === "zh") return d.name || d.nameEn || d.nameFil || "";
-  return d.nameEn || d.name || d.nameFil || "";
+  const zh = d.name?.trim() || "";
+  const en = d.nameEn?.trim() || "";
+  const fil = d.nameFil?.trim() || "";
+  // Skip known-bad machine translations in nameFil
+  const filOk =
+    fil &&
+    !/shade|pampublikong|deformities|orchid|sportbenzin|ratio of garlic/i.test(fil) &&
+    fil.toLowerCase() !== "ulam na gulay";
+
+  if (lang === "fil") {
+    if (filOk) return en && en !== fil ? `${fil} (${en})` : fil;
+    return en || zh || fil;
+  }
+  if (lang === "zh") return zh || en || fil;
+  return en || zh || fil;
 }
 
 function ingredientName(
@@ -197,11 +209,12 @@ function heuristicAnswer(
 ): string | null {
   const q = question.toLowerCase();
 
-  // Language-only request: "in Filipino pls"
+  // Language-only request: "in Filipino pls" (keep Unicode letters — \W strips CJK!)
+  const hasContent = /[\p{L}\p{N}]/u.test(q);
   if (
-    !q.replace(/\W+/g, " ").trim() ||
-    /^(please|pls|po|lang)?$/.test(q.trim()) ||
-    /^(in\s+)?(filipino|tagalog|chinese|english)\s*(pls|please)?$/.test(q.trim())
+    !hasContent ||
+    /^(please|pls|po|lang)?$/i.test(q.trim()) ||
+    /^(in\s+)?(filipino|tagalog|chinese|english)\s*(pls|please)?$/i.test(q.trim())
   ) {
     if (lang === "fil") return "Sige — itanong mo na (hal. Ano ang gagawin ko ngayon?).";
     if (lang === "zh") return "好的 — 請直接提問（例如：我現在該做什麼？）。";
