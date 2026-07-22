@@ -4,13 +4,16 @@ import { useState } from "react";
 import type { AppContent } from "@/lib/types";
 import { LanguageToggle } from "./LanguageToggle";
 import { BottomNav, type TabId } from "./BottomNav";
-import { GroundRulesView } from "./GroundRulesView";
 import { ScheduleView } from "./ScheduleView";
 import { MealsView } from "./MealsView";
 import { AskView } from "./AskView";
 import { HkLifeView } from "./HkLifeView";
+import {
+  AppliancesView,
+  RulesAndPreferencesView,
+} from "./HouseGuidesViews";
 import { LiveClock } from "./LiveClock";
-import { BgmPlayer } from "./BgmPlayer";
+import { WeatherBanner } from "./WeatherBanner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
 import { localized } from "@/lib/localized-text";
@@ -24,9 +27,6 @@ export function HomeApp({ content }: { content: AppContent }) {
     { weekday: "short", year: "numeric", month: "short", day: "numeric" }
   );
 
-  const weather = content.hkWeather;
-  const weatherOn = Boolean(weather?.alertActive);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-stone-50 pb-24">
       <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-white/90 backdrop-blur-md">
@@ -39,23 +39,10 @@ export function HomeApp({ content }: { content: AppContent }) {
               {labels.welcome[lang]}, {content.helperName} · {labels.familyMember[lang]}
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <BgmPlayer />
-            <LanguageToggle />
-          </div>
+          <LanguageToggle />
         </div>
         <LiveClock />
-        {weatherOn && weather && (
-          <div className="border-t border-sky-200 bg-sky-100 px-4 py-2">
-            <p className="text-center text-xs font-bold uppercase tracking-wide text-sky-950">
-              {labels.weatherAlert[lang]}
-              {weather.level !== "none" ? ` · ${weather.level}` : ""}
-            </p>
-            <p className="mt-0.5 text-center text-sm text-sky-900">
-              {localized(weather.note, lang)}
-            </p>
-          </div>
-        )}
+        <WeatherBanner adminAlert={content.hkWeather} />
       </header>
 
       <main className="mx-auto max-w-lg px-4 py-4">
@@ -64,7 +51,12 @@ export function HomeApp({ content }: { content: AppContent }) {
             {localized(content.familyWelcome, lang)}
           </p>
         )}
-        {activeTab === "rules" && <GroundRulesView rules={content.groundRules} />}
+        {activeTab === "rules" && (
+          <RulesAndPreferencesView
+            rules={content.groundRules}
+            preferences={content.familyPreferences}
+          />
+        )}
         {activeTab === "schedule" && (
           <ScheduleView
             schedule={content.weeklySchedule}
@@ -73,6 +65,9 @@ export function HomeApp({ content }: { content: AppContent }) {
           />
         )}
         {activeTab === "meals" && <MealsView />}
+        {activeTab === "tools" && (
+          <AppliancesView appliances={content.appliances ?? []} />
+        )}
         {activeTab === "ask" && <AskView />}
         {activeTab === "hkLife" && <HkLifeView content={content} />}
       </main>

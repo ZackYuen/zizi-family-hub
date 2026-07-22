@@ -114,6 +114,13 @@ export interface AppContent {
   familyWelcome?: BilingualText;
   ziziSchool: BilingualText;
   groundRules: GroundRule[];
+  /**
+   * Soft family preferences / shopping tips — helpful guidance, NOT ground rules.
+   * No consequences; shown below Ground Rules.
+   */
+  familyPreferences?: FamilyPreferenceTip[];
+  /** How to use house tools / kitchen appliances */
+  appliances?: ApplianceGuide[];
   weeklySchedule: DaySchedule[];
   monthlyTasks: BilingualText[];
   lastUpdated: string;
@@ -123,6 +130,45 @@ export interface AppContent {
   settlingChecklist?: SettlingCheckItem[];
   emergencyContacts?: EmergencyContact[];
   hkWeather?: HkWeatherFlag;
+}
+
+/** Soft preference — not a ground rule (no “If Broken”) */
+export type PreferenceCategory = "shopping" | "food" | "kitchen" | "general";
+
+export interface FamilyPreferenceTip {
+  id: string;
+  title: BilingualText;
+  body: BilingualText;
+  category: PreferenceCategory;
+  priority: number;
+}
+
+export type ApplianceKind =
+  | "vacuum"
+  | "rice-cooker"
+  | "pressure-cooker"
+  | "washing-machine"
+  | "bread-machine"
+  | "air-fryer"
+  | "water-dispenser"
+  | "range-hood"
+  | "dehumidifier"
+  | "air-purifier"
+  | "other";
+
+export interface ApplianceGuide {
+  id: string;
+  kind: ApplianceKind;
+  priority: number;
+  title: BilingualText;
+  /** Exact model if known, e.g. Dyson V12 */
+  model?: string;
+  /** How to use / daily tips */
+  tips: BilingualText;
+  /** Soft caution (still not a ground-rule consequence) */
+  warnings?: BilingualText;
+  /** Manual / support page */
+  sourceUrl?: string;
 }
 
 export type HkLifeCategory =

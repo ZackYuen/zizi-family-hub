@@ -460,6 +460,25 @@ function heuristicAnswer(
   }
 
   if (
+    /android\s*app|must[- ]?have\s*app|kailangan.*app|必備.*(app|應用)|app.*hong\s*kong|openrice|alipayhk|\bpayme\b|myobservatory|mtr\s*mobile|anong\s*app|which\s*apps?\s*(to\s*)?(download|install)|apps?\s*to\s*(download|install)|google\s*translate/.test(
+      q
+    ) &&
+    !/whatsapp\s*(bot|number|save|\?save)/.test(q)
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-android-apps");
+    if (tip) return tip;
+  }
+
+  if (
+    /healthy\s*(holiday|rest\s*day|sunday|activity)|rest\s*day.*(hike|walk|yoga|fitness|activity)|holiday.*(hike|walk|yoga|fitness)|kadoorie|kfbg|g-?class|tamar\s*park|masusustansiya|malusog.*linggo|健康.*(休息|假|活動)|行山|yoga.*helper|nature\s*day/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-healthy-holiday");
+    if (tip) return tip;
+  }
+
+  if (
     /rest\s*day|24\s*hours?|lingguhang\s*pahinga|休息日|statutory\s*holiday|法定假|stat\s*holiday/.test(
       q
     ) &&
@@ -578,6 +597,133 @@ function heuristicAnswer(
     }
   }
 
+  if (
+    /preference|prefer|gusto ng pamilya|family tip|錢大媽|qin\s*dama|kai\s*bo|made in china|gawa sa china|中國製|中国制|avoid.*(china|meat)|huwag.*(karne|bumili)/.test(
+      q
+    )
+  ) {
+    const prefs = [...snap.familyPreferences].sort(
+      (a, b) => a.priority - b.priority
+    );
+    if (prefs.length) {
+      const china = prefs.find((p) => /china|中國|中国/i.test(p.title.en + p.body.en));
+      const qin = prefs.find((p) =>
+        /錢大媽|qin|kai bo|meat/i.test(p.title.en + p.title.zh + p.body.en)
+      );
+      const hit =
+        (/china|中國|中国|gawa sa china/i.test(q) && china) ||
+        (/錢大媽|qin|kai\s*bo|meat|karne/i.test(q) && qin) ||
+        null;
+      if (hit) {
+        return [
+          localized(hit.title, lang),
+          localized(hit.body, lang),
+          lang === "fil"
+            ? "(Preference tip — hindi ground rule.)"
+            : lang === "zh"
+              ? "（偏好貼士——不是守則。）"
+              : "(Family preference tip — not a ground rule.)",
+        ].join("\n");
+      }
+      const list = prefs
+        .map((p, i) => `${i + 1}. ${localized(p.title, lang)}`)
+        .join("\n");
+      return lang === "fil"
+        ? `Mga family preference (soft tips, hindi ground rules):\n${list}\n\nTanungin ang specific tip, o buksan ang Rules tab → Preferences.`
+        : lang === "zh"
+          ? `家庭偏好（軟性貼士，不是守則）：\n${list}\n\n可問某一項，或打開「守則」分頁 →「偏好」。`
+          : `Family preferences (soft tips, not ground rules):\n${list}\n\nAsk about one, or open the Rules tab → Preferences.`;
+    }
+  }
+
+  if (
+    /vacuum|dyson|v12|hp07|purifier|hot\+?cool|空氣清新|暖風|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|epc17|epc\s*17|高速煲|壓力鍋|washing\s*machine|washer|whirlpool|tdlr70223|tdlr|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
+      q
+    )
+  ) {
+    const apps = [...snap.appliances].sort((a, b) => a.priority - b.priority);
+    if (apps.length) {
+      const kindMatchers: { re: RegExp; kind?: string; id?: string }[] = [
+        { re: /v12|vacuum|吸塵/, kind: "vacuum" },
+        {
+          re: /hp07|purifier|hot\+?cool|空氣清新|暖風/,
+          kind: "air-purifier",
+        },
+        { re: /\bdyson\b/, kind: "vacuum" },
+        {
+          re: /zojirushi|np-?rlq|rice\s*cooker|eletr?ic\s*rice|電飯煲|飯煲/,
+          kind: "rice-cooker",
+        },
+        {
+          re: /epc17|epc\s*17|pressure\s*cooker|高速煲|壓力鍋|壓力/,
+          kind: "pressure-cooker",
+        },
+        {
+          re: /panasonic|sd-?pt1002|bread\s*machine|麵包機/,
+          kind: "bread-machine",
+        },
+        {
+          re: /easy\s*fry|air\s*fryer|氣炸/,
+          kind: "air-fryer",
+        },
+        {
+          re: /du4120|dehumidifier|linen\s*dry|抽濕|乾衣抽濕/,
+          kind: "dehumidifier",
+        },
+        {
+          re: /philips|add6910|water\s*dispenser|飲水|RO\s*water/,
+          kind: "water-dispenser",
+        },
+        {
+          re: /hitachi|hb-?st388|range\s*hood|cooker\s*hood|抽油煙/,
+          kind: "range-hood",
+        },
+        {
+          re: /whirlpool|tdlr70223|tdlr|wash(ing)?\s*machine|washer|lavander|洗濯機|洗衣機|maglaba/,
+          kind: "washing-machine",
+        },
+        { re: /\btefal\b/, kind: "air-fryer" },
+      ];
+      const matched = kindMatchers.find((m) => m.re.test(q));
+      const hit = matched
+        ? apps.find((a) => a.kind === matched.kind) ||
+          apps.find((a) =>
+            matched.re.test(
+              `${a.model || ""} ${a.title.en} ${a.title.zh || ""} ${a.id}`
+            )
+          )
+        : undefined;
+      if (hit) {
+        const caution = hit.warnings ? localized(hit.warnings, lang) : "";
+        return [
+          localized(hit.title, lang),
+          hit.model ? `Model: ${hit.model}` : null,
+          localized(hit.tips, lang),
+          caution
+            ? lang === "fil"
+              ? `Babala: ${caution}`
+              : lang === "zh"
+                ? `注意：${caution}`
+                : `Caution: ${caution}`
+            : null,
+        ]
+          .filter(Boolean)
+          .join("\n");
+      }
+      const list = apps
+        .map(
+          (a, i) =>
+            `${i + 1}. ${localized(a.title, lang)}${a.model ? ` (${a.model})` : ""}`
+        )
+        .join("\n");
+      return lang === "fil"
+        ? `Mga tools / appliances:\n${list}\n\nTanungin ang pangalan (hal. Dyson / rice cooker), o buksan ang Tools tab.`
+        : lang === "zh"
+          ? `家電／工具：\n${list}\n\n可問名稱（例如 Dyson、飯煲），或打開「家電」分頁。`
+          : `House tools / appliances:\n${list}\n\nAsk by name (e.g. Dyson, rice cooker), or open the Tools tab.`;
+    }
+  }
+
   if (/rule|alituntunin|規則|ground|broken|borrow|pera|money|hiram/.test(q)) {
     const money = snap.groundRules.find((r) =>
       r.title.en.toLowerCase().includes("borrow")
@@ -677,9 +823,11 @@ For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DA
 For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
-For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
+For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON / Android apps / healthy holiday questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
+Family preferences are soft tips only — never call them ground rules or invent “If Broken” for them.
+Appliance answers should come from the Tools / appliances section; if unsure about our exact machine, tell Charlene to ask Sir/Mum.
 Do not call Charlene a "helper" or "katulong" or 家務助理 in replies — she is a family member. Do not use the word 姐姐 — say Charlene.
 
 FAMILY LIVE DATA:
@@ -773,10 +921,10 @@ export async function answerFamilyQuestion(
   return {
     answer:
       lang === "fil"
-        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup, day off, HK Life tips, o ground rules."
+        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup, Tools (rice cooker), preferences, o ground rules."
         : lang === "zh"
-          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送、放假、HK Life、守則。"
-          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup, day off, HK Life tips, or ground rules.",
+          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送、家電用法、偏好貼士、守則。"
+          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup, Tools (rice cooker), preferences, or ground rules.",
     source: "live-web",
     usedInternet: false,
     dataSource: snap.source,

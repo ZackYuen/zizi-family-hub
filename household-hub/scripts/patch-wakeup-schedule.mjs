@@ -22,8 +22,8 @@ for (const path of paths) {
   const data = JSON.parse(readFileSync(path, "utf-8"));
 
   data.ziziSchool = {
-    en: "Lam Tin Liang Leung Kindergarten (PM class, arrive by 1:00 PM). Sundays & public holidays (勞工假): Zizi whole day off.",
-    fil: "Lam Tin Liang Leung Kindergarten (PM class, dumating bago 1:00 PM). Linggo at public holiday (勞工假): buong araw na day off si Zizi.",
+    en: "Lam Tin Ling Liang Kindergarten (PM class, arrive by 1:00 PM). Sundays & public holidays (勞工假): Zizi whole day off.",
+    fil: "Lam Tin Ling Liang Kindergarten (PM class, dumating bago 1:00 PM). Linggo at public holiday (勞工假): buong araw na day off si Zizi.",
   };
 
   for (const day of data.weeklySchedule) {

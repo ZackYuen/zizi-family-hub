@@ -19,6 +19,46 @@ export function isBadTranslation(text: string, _source?: string): boolean {
   return false;
 }
 
+/**
+ * Reject LLM “thinking” / English meta dumps that are not a usable Tagalog forecast.
+ */
+export function isBadWeatherFilTranslation(
+  text: string,
+  sourceEnglish: string
+): boolean {
+  const t = text?.trim() || "";
+  if (!t || isBadTranslation(t, sourceEnglish)) return true;
+
+  // Meta / chain-of-thought styles seen from free OpenRouter models
+  if (
+    /the user wants|i need to follow|translate to tagalog|let'?s produce|constraints:|original (text|says)|combine into|however,? the user/i.test(
+      t
+    )
+  ) {
+    return true;
+  }
+  if (/^translate\b/i.test(t)) return true;
+
+  // Way longer than source → usually reasoning dump
+  if (t.length > Math.max(220, sourceEnglish.trim().length * 1.8)) return true;
+
+  // Must look like Tagalog (common function words), not mostly English prose
+  const filHits = (
+    t.match(
+      /\b(ang|mga|sa|ng|na|ay|at|mga|may|para|bukas|ulan|ambon|hangin|init|mainit|maulap|temperatura|digri|hanggang)\b/gi
+    ) || []
+  ).length;
+  const engHits = (
+    t.match(
+      /\b(the|and|with|will|be|from|during|temperature|degrees|areas|winds|mainly|fine|apart|shower|forecast|translation|helper|filipino|tagalog)\b/gi
+    ) || []
+  ).length;
+  if (engHits >= 8 && engHits > filHits * 2) return true;
+  if (filHits === 0 && engHits >= 4) return true;
+
+  return false;
+}
+
 function openRouterKey(): string | undefined {
   const raw = process.env.OPENROUTER_API_KEY?.trim();
   if (!raw) return undefined;
@@ -49,6 +89,7 @@ async function chatComplete(options: {
   openRouter: boolean;
   system: string;
   user: string;
+  maxTokens?: number;
 }): Promise<string | null> {
   const headers: Record<string, string> = {
     Authorization: `Bearer ${options.key}`,
@@ -66,7 +107,7 @@ async function chatComplete(options: {
     body: JSON.stringify({
       model: options.model,
       temperature: 0,
-      max_tokens: 200,
+      max_tokens: options.maxTokens ?? 200,
       messages: [
         { role: "system", content: options.system },
         { role: "user", content: options.user },
@@ -182,4 +223,101 @@ export async function translateText(
 /** @deprecated use translateText(text, "en", "fil") */
 export async function translateEnToFil(text: string): Promise<string> {
   return translateText(text, "en", "fil");
+}
+
+/**
+ * Free no-key Tagalog fallback (Google gtx). Used only for weather forecasts
+ * when OpenRouter / OpenAI are unavailable, so FIL mode is not stuck in English.
+ */
+async function translateEnToFilViaGoogle(text: string): Promise<string | null> {
+  try {
+    const url =
+      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=tl&dt=t&q=" +
+      encodeURIComponent(text);
+    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
+    if (!res.ok) return null;
+    const data = (await res.json()) as unknown;
+    if (!Array.isArray(data) || !Array.isArray(data[0])) return null;
+    const parts = data[0] as unknown[];
+    const out = parts
+      .map((p) => (Array.isArray(p) && typeof p[0] === "string" ? p[0] : ""))
+      .join("")
+      .trim();
+    if (!out || isBadTranslation(out, text)) return null;
+    // Light weather wording polish for helpers
+    return out
+      .replace(/\bshower(s)?\b/gi, "ambon")
+      .replace(/\bdegrees\b/gi, "digri")
+      .replace(/\burban areas\b/gi, "lungsod")
+      .replace(/\bNew Territories\b/g, "New Territories")
+      .trim();
+  } catch (err) {
+    console.error("Google weather fil translate", err);
+    return null;
+  }
+}
+
+/**
+ * Translate HKO English forecast into natural Filipino for the weather banner.
+ * Prefer Google Tagalog (reliable). Try LLM only if Google fails; reject CoT junk.
+ */
+export async function translateWeatherForecastToFil(
+  englishForecast: string
+): Promise<string> {
+  const trimmed = englishForecast.trim();
+  if (!trimmed) return trimmed;
+
+  // Google first — free OpenRouter models have been returning English “thinking” dumps
+  const google = await translateEnToFilViaGoogle(trimmed);
+  if (google && !isBadWeatherFilTranslation(google, trimmed)) return google;
+
+  const system = `You translate Hong Kong Observatory weather forecasts for a Filipino domestic helper in Hong Kong.
+Reply with ONLY the Filipino (Tagalog) forecast sentence(s). No English. No reasoning.
+Keep numbers, °C, signal numbers (T8, Signal No. 8), and place names.
+No quotes, no email, no URL, no ads, no explanation.`;
+  const user = trimmed;
+
+  const key = openRouterKey();
+  if (key) {
+    for (const model of openRouterModels()) {
+      try {
+        const out = await chatComplete({
+          key,
+          endpoint: "https://openrouter.ai/api/v1/chat/completions",
+          model,
+          openRouter: true,
+          system,
+          user,
+          maxTokens: 350,
+        });
+        if (out && !isBadWeatherFilTranslation(out, trimmed)) return out;
+      } catch {
+        /* try next model */
+      }
+    }
+  }
+
+  const openAiKeyVal = openAiKey();
+  if (openAiKeyVal) {
+    const out = await chatComplete({
+      key: openAiKeyVal,
+      endpoint: "https://api.openai.com/v1/chat/completions",
+      model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+      openRouter: false,
+      system,
+      user,
+      maxTokens: 350,
+    });
+    if (out && !isBadWeatherFilTranslation(out, trimmed)) return out;
+  }
+
+  // Last resort: generic translate, still validate
+  try {
+    const generic = await translateText(trimmed, "en", "fil");
+    if (generic && !isBadWeatherFilTranslation(generic, trimmed)) return generic;
+  } catch {
+    /* keep English */
+  }
+
+  return trimmed;
 }

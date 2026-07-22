@@ -11,8 +11,8 @@ const paths = [
 ];
 
 const ziziSchool = {
-  en: "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
-  fil: "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene.",
+  en: "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
+  fil: "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene.",
 };
 
 const morningBlock = (prefix) => [
@@ -72,7 +72,7 @@ const morningBlock = (prefix) => [
     startTime: "12:30",
     endTime: "13:00",
     task: {
-      en: "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+      en: "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten by 13:00",
       fil: "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00",
     },
   },
@@ -134,7 +134,7 @@ const pickupBlock = (prefix, num) => [
     startTime: "16:00",
     endTime: "16:30",
     task: {
-      en: "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+      en: "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten",
       fil: "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten",
     },
   },
