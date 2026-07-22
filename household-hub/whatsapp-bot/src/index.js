@@ -124,9 +124,13 @@ async function startBot() {
   sock.ev.on("connection.update", (update) => {
     const { connection, lastDisconnect, qr } = update;
     if (qr) {
-      console.log("\n=== Scan this QR with WhatsApp (Linked Devices) ===\n");
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(qr)}`;
+      console.log("\n=== Scan QR with WhatsApp → Linked devices ===\n");
+      console.log("If the ASCII QR is hard to scan in Docker, OPEN THIS URL on your phone/PC:\n");
+      console.log(qrUrl);
+      console.log("\n(ASCII QR below — may look broken in docker logs)\n");
       qrcode.generate(qr, { small: true });
-      console.log(`\nBot name trigger: @${BOT_NAME} or prefix "${TRIGGER_PREFIX}"\n`);
+      console.log(`\nBot triggers: @${BOT_NAME}  or  ${TRIGGER_PREFIX} your question\n`);
     }
     if (connection === "open") {
       console.log(`[ok] Connected as ${sock.user?.id || "unknown"}`);
