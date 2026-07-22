@@ -32,16 +32,16 @@
         "zh": "不可借錢"
       },
       "description": {
-        "en": "Do not borrow money from anyone — neighbours, strangers, or other domestic workers. If you need something, tell Sir or Mum directly. No borrowing is allowed.",
-        "fil": "Huwag humiram ng pera kaninuman — kapitbahay, estranghero, o ibang domestic worker. Kung may kailangan, diretso kay Sir o Mum. Bawal ang paghiram.",
-        "zh": "不可向任何人借錢 — 鄰居、陌生人或他傭。有需要直接告訴 Sir 或 Mum。禁止借錢。"
+        "en": "Borrowing money is prohibited. Do not borrow from neighbours, strangers, other domestic workers, or anyone else. If you need help, tell Sir or Mum — that is not borrowing.",
+        "fil": "Bawal humiram ng pera. Huwag humiram sa kapitbahay, estranghero, ibang domestic worker, o kaninuman. Kung may kailangan, sabihin kay Sir o Mum — hindi iyon paghiram.",
+        "zh": "禁止借錢。不可向鄰居、陌生人、他傭或任何人借錢。有需要告訴 Sir 或 Mum — 那不是借錢。"
       },
       "category": "general",
       "priority": 1,
       "consequences": {
-        "en": "If Broken: Immediate serious written warning and a meeting with Sir/Mum. Hidden borrowing or any second time: contract ends and repatriation is arranged; the agency will be informed. There is no trial second chance.",
-        "fil": "If Broken: Agad na seryosong written warning at meeting kay Sir/Mum. Naitagong paghiram o pangalawang beses: tatapusin ang kontrata at i-aayos ang repatriation; iinforma ang agency. Walang second chance.",
-        "zh": "若違反：立即嚴正書面警告並與 Sir/Mum 會面。隱瞞借錢或第二次：終止合約並安排遣返，同時通知中介。沒有第二次機會。"
+        "en": "If Broken: Immediate serious written warning and meeting with Sir/Mum. Any borrowing — including a first time that was hidden — can end the contract and repatriation; the agency will be informed. Borrowing is prohibited. No second chance.",
+        "fil": "If Broken: Agad na seryosong written warning at meeting kay Sir/Mum. Anumang paghiram — kasama ang unang beses na itinago — maaaring matapos ang kontrata at repatriation; iinforma ang agency. Bawal humiram. Walang second chance.",
+        "zh": "若違反：立即嚴正書面警告並與 Sir/Mum 會面。任何借錢（包括隱瞞的第一次）可終止合約並遣返，並通知中介。禁止借錢。沒有第二次機會。"
       }
     },
     {
@@ -1254,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T09:37:22.738Z",
+  "lastUpdated": "2026-07-22T09:40:39.754Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1403,14 +1403,14 @@
       "priority": 31,
       "area": "hk-general",
       "title": {
-        "en": "Do not borrow or lend money",
-        "fil": "Huwag humiram o magpahiram ng pera",
-        "zh": "不要借貸"
+        "en": "No borrow money — prohibited",
+        "fil": "Huwag humiram ng pera — bawal",
+        "zh": "不可借錢 — 禁止"
       },
       "body": {
-        "en": "Family ground rule: do not borrow money from anyone, and do not lend your money to other domestic workers. If you need something, ask Sir/Mum directly. See Ground Rules for consequences.",
-        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang domestic worker. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Ground Rules para sa resulta.",
-        "zh": "家庭守則：不要向任何人借錢，也不要借錢給其他傭工。有需要直接問 Sir/Mum。後果見 Ground Rules。"
+        "en": "Borrowing money is prohibited. Do not borrow from anyone, and do not lend to other domestic workers. If you need something, tell Sir/Mum directly — that is not borrowing. See Ground Rules.",
+        "fil": "Bawal humiram ng pera. Huwag humiram kaninuman, at huwag magpahiram sa ibang domestic worker. Kung may kailangan, diretso kay Sir/Mum — hindi iyon paghiram. Tingnan ang Ground Rules.",
+        "zh": "禁止借錢。不可向任何人借錢，也不可借給他傭。有需要直接告訴 Sir/Mum — 那不是借錢。見 Ground Rules。"
       },
       "lastReviewed": "2026-07-22"
     },
