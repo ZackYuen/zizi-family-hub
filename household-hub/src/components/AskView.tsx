@@ -18,9 +18,9 @@ const ui = {
   send: { en: "Ask", fil: "Itanong", zh: "提問" },
   thinking: { en: "Looking up…", fil: "Hinahanap…", zh: "查詢中…" },
   examples: {
-    en: ["Tonight dinner?", "Is Charlene day off today?", "Pickup time?", "No borrowing money rule?"],
-    fil: ["Hapunan ngayong gabi?", "Day off ba si Charlene ngayon?", "Oras ng sundo?", "Bawal humiram ng pera?"],
-    zh: ["今晚晚餐？", "Charlene 今天放假嗎？", "接送時間？", "不准借錢的守則？"],
+    en: ["Tonight dinner?", "How to use air fryer?", "錢大媽 meat?", "No borrowing money rule?"],
+    fil: ["Hapunan ngayong gabi?", "Paano gamitin ang air fryer?", "Bawal ba sa 錢大媽?", "Bawal humiram ng pera?"],
+    zh: ["今晚晚餐？", "氣炸鍋怎麼用？", "可以去錢大媽買肉嗎？", "不准借錢的守則？"],
   },
 };
 

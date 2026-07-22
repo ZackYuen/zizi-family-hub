@@ -1254,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T09:40:39.757Z",
+  "lastUpdated": "2026-07-22T10:57:45.619Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1769,5 +1769,159 @@
     "en": "You are part of Zizi's family. This guide is for your daily life with us in Hong Kong.",
     "fil": "Bahagi ka ng pamilya ni Zizi. Ang gabay na ito ay para sa araw-araw ninyong buhay sa Hong Kong.",
     "zh": "你是 Zizi 家庭的一分子。這份指南幫助你在香港與我們的日常生活。"
-  }
+  },
+  "familyPreferences": [
+    {
+      "id": "pref-no-china-food",
+      "category": "food",
+      "priority": 1,
+      "title": {
+        "en": "Prefer not to buy food made in China",
+        "fil": "Iwasan ang pagkaing gawa sa China",
+        "zh": "盡量不要買中國製造的食品"
+      },
+      "body": {
+        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a ground rule. If you are unsure about a product, ask Sir or Mum.",
+        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi ground rule. Kung unsure, tanungin si Sir o Mum.",
+        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是守則。不確定就問 Sir 或 Mum。"
+      }
+    },
+    {
+      "id": "pref-no-qin-dama-meat",
+      "category": "shopping",
+      "priority": 2,
+      "title": {
+        "en": "Do not buy meat at 錢大媽 (Kai Bo / Qin Dama)",
+        "fil": "Huwag bumili ng karne sa 錢大媽 (Kai Bo)",
+        "zh": "不要到錢大媽買肉"
+      },
+      "body": {
+        "en": "Please do not buy meat from 錢大媽. Use other markets or shops Sir/Mum prefer (e.g. wet market stalls we trust, or the usual supermarket). Vegetables or other items there are OK if needed — meat is the main concern. Preference tip, not a ground rule.",
+        "fil": "Huwag bumili ng karne sa 錢大媽. Gumamit ng ibang market o tindahan na gusto nina Sir/Mum (hal. trusted wet market, o usual supermarket). Gulay o iba pang item OK kung kailangan — karne ang ayaw. Preference tip lang, hindi ground rule.",
+        "zh": "請不要在錢大媽買肉。改去 Sir/Mum 慣用的街市檔或超市。如有需要，在那裡買菜或其他東西可以——主要是不要買肉。這是偏好貼士，不是守則。"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "id": "app-vacuum",
+      "kind": "vacuum",
+      "priority": 1,
+      "title": {
+        "en": "Vacuum cleaner",
+        "fil": "Vacuum cleaner",
+        "zh": "吸塵機"
+      },
+      "tips": {
+        "en": "Empty the dust bin when it looks full. Check if hair is wrapped around the brush roller and remove carefully. Start from far corners and work toward the door. Soft floors: use the floor head; sofas/curtains: use the small brush. Put it back on charge after use if it is cordless.",
+        "fil": "Alisin ang basura sa dust bin kapag puno na. Tingnan kung may buhok sa brush roller at alisin nang dahan-dahan. Magsimula sa sulok, papunta sa pinto. Soft floor: floor head; sofa/kurtina: maliit na brush. Ibalik sa charger pagkatapos kung cordless.",
+        "zh": "塵桶滿了就倒清。檢查滾刷有沒有纏毛並小心清除。從遠角吸到門口。地板用大地刷；梳化／窗簾用小刷頭。無線機用完記得放回充電座。"
+      },
+      "warnings": {
+        "en": "Do not vacuum water or wet spills. Do not force the head under low furniture if it gets stuck — lift and move.",
+        "fil": "Huwag i-vacuum ang tubig o basang spills. Huwag pilitin sa ilalim ng mababang furniture kung natigil — buhatin at ilipat.",
+        "zh": "不可吸水或未乾的污漬。卡住矮傢俬底下時不要硬推——提起再移。"
+      }
+    },
+    {
+      "id": "app-rice-cooker",
+      "kind": "rice-cooker",
+      "priority": 2,
+      "title": {
+        "en": "Rice cooker",
+        "fil": "Rice cooker",
+        "zh": "電飯煲"
+      },
+      "tips": {
+        "en": "Wash rice until water is clearer. Use the cup that came with the cooker; water to the matching line for the number of cups. Close the lid fully, press Cook. When it switches to Keep Warm, fluff with a rice paddle. Unplug or switch off when finished for the day.",
+        "fil": "Hugasan ang bigas hanggang mas malinaw ang tubig. Gamitin ang cup ng cooker; tubig hanggang matching line. Isara nang maayos ang takip, pindutin ang Cook. Kapag Keep Warm na, haluin gamit ang rice paddle. I-off / unplug pagkatapos ng araw.",
+        "zh": "米要洗至水較清。用機附量杯，水對準對應杯數水位線。蓋好蓋按「煮」。轉保溫後用飯匙翻鬆。當天用完可關機或拔掣。"
+      },
+      "warnings": {
+        "en": "Do not put the outer body in water. Keep the steam vent clear. Do not use metal spoons that scratch the inner pot.",
+        "fil": "Huwag basain ang outer body. Panatilihing malinis ang steam vent. Huwag gumamit ng metal spoon na nakakagasgas sa inner pot.",
+        "zh": "機身不要浸水。蒸汽口保持暢通。不要用金屬匙刮花內鍋。"
+      }
+    },
+    {
+      "id": "app-pressure-cooker",
+      "kind": "pressure-cooker",
+      "priority": 3,
+      "title": {
+        "en": "Pressure cooker",
+        "fil": "Pressure cooker",
+        "zh": "壓力鍋／電壓力鍋"
+      },
+      "tips": {
+        "en": "Add enough liquid (usually at least 1 cup). Do not overfill — leave space at the top. Lock the lid until it clicks. Choose the program Sir/Mum showed you (or Soup/Meat). Wait until pressure is fully released before opening — natural release or use the vent carefully as taught.",
+        "fil": "Lagyan ng sapat na sabaw/tubig (madalas ≥ 1 cup). Huwag punuin — may space sa itaas. I-lock ang takip hanggang mag-click. Gamitin ang program na itinuro nina Sir/Mum (o Soup/Meat). Hintaying fully released ang pressure bago buksan — natural release o vent nang maingat gaya ng itinuro.",
+        "zh": "要有足夠液體（通常至少一杯）。不要過滿，留空間。蓋子鎖到「咔」一聲。用 Sir/Mum 教過的程式（或湯／肉）。必須等壓力完全釋放才開蓋——自然洩壓或按教過的方法小心排氣。"
+      },
+      "warnings": {
+        "en": "Never force the lid open while under pressure. Keep face and hands away from the steam vent. Ask Sir/Mum once if you are unsure — safer than guessing.",
+        "fil": "Huwag piliting buksan ang takip habang may pressure. Layuan ang steam vent ang mukha at kamay. Kung unsure, tanungin si Sir/Mum — mas safe kaysa hulaan.",
+        "zh": "有壓力時切勿強行開蓋。臉和手遠離排氣口。不確定就問 Sir/Mum——比自己猜安全。"
+      }
+    },
+    {
+      "id": "app-washing-machine",
+      "kind": "washing-machine",
+      "priority": 4,
+      "title": {
+        "en": "Washing machine",
+        "fil": "Washing machine",
+        "zh": "洗衣機"
+      },
+      "tips": {
+        "en": "Check pockets before washing. Separate whites / darks when possible. Do not overload — clothes should move freely. Use the detergent amount Sir/Mum showed (usually a small scoop). Choose a normal program for daily clothes; gentle for delicates. Clean the lint filter when it looks clogged.",
+        "fil": "Suriin ang bulsa bago maglaba. Paghiwalayin ang puti / madilim kung pwede. Huwag sobrahan — dapat makagalaw ang damit. Gamitin ang detergent na itinuro (madalas maliit na scoop). Normal program sa pang-araw-araw; gentle sa delicates. Linisin ang lint filter kapag barado.",
+        "zh": "洗衣前檢查袋口。盡量分白色／深色。不要過滿——衣物要能轉動。用 Sir/Mum 教的清潔劑分量（通常一小勺）。日常用標準程式；幼細衣物用輕柔。隔塵網塞了就清。"
+      },
+      "warnings": {
+        "en": "Do not wash shoes or heavy wet items unless Sir/Mum said it is OK. Leave the door slightly open after use so it does not smell.",
+        "fil": "Huwag maglaba ng sapatos o mabibigat na basang item maliban kung sinabi nina Sir/Mum. Bahagyang buksan ang pinto pagkatapos para hindi umamoy.",
+        "zh": "未得 Sir/Mum 同意不要洗鞋或過重濕物。用完門輕輕留縫，減少異味。"
+      }
+    },
+    {
+      "id": "app-bread-machine",
+      "kind": "bread-machine",
+      "priority": 5,
+      "title": {
+        "en": "Bread machine",
+        "fil": "Bread machine",
+        "zh": "麵包機"
+      },
+      "tips": {
+        "en": "Add ingredients in the order Sir/Mum wrote (often liquids first, then flour, yeast last on top — do not let yeast touch salt/liquid early). Select the program and crust color used last time. When done, unplug and remove the loaf carefully with oven mitts — the pan is hot.",
+        "fil": "Ilagay ang ingredients ayon sa order nina Sir/Mum (madalas liquids muna, tapos flour, yeast sa ibabaw — huwag madaling madikit ang yeast sa asin/liquid). Piliin ang program at crust color na last used. Pagkatapos, i-unplug at alisin ang tinapay nang may oven mitts — mainit ang pan.",
+        "zh": "按 Sir/Mum 寫的順序落料（多數先液體，再麵粉，酵母最後放上面——早期不要讓酵母碰鹽／液體）。選上次用的程式和烤色。完成後拔掣，戴手套小心取模——模很燙。"
+      },
+      "warnings": {
+        "en": "Do not open the lid during kneading/baking unless the recipe says so. Let the machine cool before washing the pan.",
+        "fil": "Huwag buksan ang takip habang nagmamasa/nagbabake maliban kung sinabi ng recipe. Palamigin muna bago hugasan ang pan.",
+        "zh": "揉麵／烘烤中不要開蓋（除非食譜要求）。等涼再洗內鍋。"
+      }
+    },
+    {
+      "id": "app-air-fryer",
+      "kind": "air-fryer",
+      "priority": 6,
+      "title": {
+        "en": "Air fryer",
+        "fil": "Air fryer",
+        "zh": "氣炸鍋"
+      },
+      "tips": {
+        "en": "Preheat if the recipe says so. Do not overcrowd the basket — leave space for air. Shake or turn food halfway. Wipe crumbs after it cools. Typical starter: 160–180°C and check early the first times until you know this machine.",
+        "fil": "I-preheat kung sinabi ng recipe. Huwag siksikin ang basket — may space para sa hangin. Iling o baliktarin sa gitna. Punasan ang mumo pagkalamig. Starter tip: 160–180°C at tingnan nang maaga hanggang makilala ang machine.",
+        "zh": "食譜要求就先預熱。籃勿過滿——要留空氣流通。中途搖動或翻面。冷卻後清屑。起步可試 160–180°C，頭幾次提早查看，熟悉這部機。"
+      },
+      "warnings": {
+        "en": "Basket and heater get very hot — use tongs and heat-safe mat. Do not pour oil in a pool; a light spray or brush is enough. Keep away from curtains while hot.",
+        "fil": "Mainit ang basket at heater — gumamit ng tongs at heat-safe mat. Huwag magbuhos ng maraming mantika; light spray o brush sapat na. Layuan ang kurtina habang mainit.",
+        "zh": "籃和發熱管很燙——用夾和耐熱墊。不要倒一大灘油；薄噴或刷少許即可。熱時遠離窗簾。"
+      }
+    }
+  ]
 }

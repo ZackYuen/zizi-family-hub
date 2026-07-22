@@ -134,7 +134,7 @@ export async function getContent(): Promise<AppContent> {
     return fixed;
   }
 
-  // Fill missing HK Life fields from local seed without wiping Admin edits
+  // Fill missing HK Life / preferences / appliances from local seed without wiping Admin edits
   if (!remote.hkLifeGuides?.length && local.hkLifeGuides?.length) {
     const filled: AppContent = {
       ...remote,
@@ -150,6 +150,28 @@ export async function getContent(): Promise<AppContent> {
     };
     saveContent(filled).catch(() => {});
     return filled;
+  }
+
+  const needsPrefs =
+    !remote.familyPreferences?.length && Boolean(local.familyPreferences?.length);
+  const needsAppliances =
+    !remote.appliances?.length && Boolean(local.appliances?.length);
+  if (needsPrefs || needsAppliances) {
+    const filled: AppContent = {
+      ...remote,
+      familyPreferences: needsPrefs
+        ? local.familyPreferences
+        : remote.familyPreferences,
+      appliances: needsAppliances ? local.appliances : remote.appliances,
+      lastUpdated: new Date().toISOString(),
+    };
+    try {
+      await saveContent(filled);
+      return filled;
+    } catch (err) {
+      console.error("Failed to seed preferences/appliances", err);
+      return filled;
+    }
   }
 
   // Force-refresh ground rules when live Supabase still has soft / old borrow wording
