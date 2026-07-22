@@ -51,7 +51,9 @@ export function AskView() {
       }
       setAnswer(data.answer);
       setMeta(
-        `${data.source} · ${data.dataSource} · updated ${String(data.lastUpdated).slice(0, 10)}`
+        data.lastUpdated
+          ? `Updated ${String(data.lastUpdated).slice(0, 10)}`
+          : ""
       );
     } catch {
       setAnswer("Network error");

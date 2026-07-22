@@ -107,10 +107,7 @@ export async function POST(request: Request) {
             continue;
           }
           const result = await answerFamilyQuestion(question);
-          const footer =
-            result.dataSource === "supabase"
-              ? `\n\n_(live Admin data · ${result.lastUpdated.slice(0, 10)})_`
-              : `\n\n_(local data · ${result.lastUpdated.slice(0, 10)})_`;
+          const footer = `\n\n_(Zizi Family Hub)_`;
           await sendWhatsAppText(msg.from, result.answer + footer);
         }
       }

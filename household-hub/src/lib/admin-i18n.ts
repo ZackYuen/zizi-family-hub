@@ -147,14 +147,14 @@ export const adminLabels = {
   ingredientName: { en: "Name", fil: "Pangalan", zh: "名稱" },
   ingredientQty: { en: "Qty", fil: "Dami", zh: "分量" },
   liveSource: {
-    en: "Live data source",
-    fil: "Live data source",
-    zh: "即時資料來源",
+    en: "Live family data",
+    fil: "Live family data",
+    zh: "即時家庭資料",
   },
   liveSourceHint: {
-    en: "Admin Save writes to Supabase. That is what Charlene sees. Repo JSON is backup only.",
-    fil: "Ang Admin Save ay pumupunta sa Supabase — iyon ang nakikita ni Charlene. Repo JSON ay backup lang.",
-    zh: "Admin 儲存會寫入 Supabase，Charlene 看到的是即時資料。Repo JSON 只作備份。",
+    en: "Admin Save updates what Charlene sees right away. Keep a JSON backup if you like.",
+    fil: "Ang Admin Save ay agad na update sa nakikita ni Charlene. Mag-backup ng JSON kung gusto mo.",
+    zh: "Admin 儲存後，Charlene 會即時看到更新。如需要可另存 JSON 備份。",
   },
   inbox: { en: "WA Inbox", fil: "WA Inbox", zh: "WA 收件" },
   inboxHintTitle: {
