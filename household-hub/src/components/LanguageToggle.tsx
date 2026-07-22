@@ -1,34 +1,32 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { labels } from "@/lib/i18n";
 import type { Lang } from "@/lib/types";
 
-const OPTIONS: { id: Lang; label: string }[] = [
-  { id: "en", label: labels.english.en },
-  { id: "zh", label: labels.chinese.zh },
-  { id: "fil", label: labels.filipino.fil },
-];
+const ORDER: Lang[] = ["en", "zh", "fil"];
+const SHORT: Record<Lang, string> = {
+  en: "EN",
+  zh: "繁",
+  fil: "FIL",
+};
 
 export function LanguageToggle() {
   const { lang, setLang } = useLanguage();
 
+  const cycle = () => {
+    const i = ORDER.indexOf(lang);
+    setLang(ORDER[(i + 1) % ORDER.length]);
+  };
+
   return (
-    <div className="flex rounded-full bg-white/80 p-0.5 shadow-sm ring-1 ring-stone-200">
-      {OPTIONS.map(({ id, label }) => (
-        <button
-          key={id}
-          type="button"
-          onClick={() => setLang(id)}
-          className={`rounded-full px-2.5 py-1.5 text-xs font-medium transition sm:px-3 sm:text-sm ${
-            lang === id
-              ? "bg-teal-600 text-white shadow-sm"
-              : "text-stone-600 hover:text-stone-900"
-          }`}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
+    <button
+      type="button"
+      onClick={cycle}
+      title="Switch language"
+      aria-label={`Language ${SHORT[lang]}. Tap to switch.`}
+      className="rounded-lg bg-white px-2.5 py-1.5 text-xs font-semibold text-stone-700 ring-1 ring-stone-200"
+    >
+      {SHORT[lang]}
+    </button>
   );
 }
