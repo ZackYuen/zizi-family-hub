@@ -98,6 +98,20 @@ export const adminLabels = {
   importFailed: { en: "Import failed — check JSON format.", fil: "Hindi na-import — suriin ang JSON format." },
   confirmDelete: { en: "Delete this dish?", fil: "Burahin ang ulam na ito?" },
   translateAllMeals: { en: "Translate all EN → FIL", fil: "Isalin lahat EN → FIL" },
+  ingredients: { en: "Ingredients", fil: "Mga sangkap", zh: "材料" },
+  addIngredient: { en: "+ Ingredient", fil: "+ Sangkap", zh: "+ 材料" },
+  ingredientName: { en: "Name", fil: "Pangalan", zh: "名稱" },
+  ingredientQty: { en: "Qty", fil: "Dami", zh: "分量" },
+  liveSource: {
+    en: "Live data source",
+    fil: "Live data source",
+    zh: "即時資料來源",
+  },
+  liveSourceHint: {
+    en: "Admin Save writes to Supabase. That is what Charlene sees. Repo JSON is backup only.",
+    fil: "Ang Admin Save ay pumupunta sa Supabase — iyon ang nakikita ni Charlene. Repo JSON ay backup lang.",
+    zh: "Admin 儲存會寫入 Supabase，Charlene 看到的是即時資料。Repo JSON 只作備份。",
+  },
 } as const;
 
 export function adminT(key: keyof typeof adminLabels, lang: Lang): string {

@@ -57,6 +57,13 @@ Open http://localhost:3000
 3. Edit rules, schedule, or settings → **Save**
 4. Charlene refreshes the app and sees changes immediately
 
+## WhatsApp Q&A bot (optional)
+
+- **Official API:** configure Meta Cloud API → `/api/whatsapp` (see `docs/LIVE-DATA.md`)
+- **Free QR bot (Baileys):** always-on process in `whatsapp-bot/` — spare WhatsApp number, scan QR, `@CharleneBot` or `?` in the group. Needs a PC/Pi/VPS that stays awake (`pm2` or Docker). See `whatsapp-bot/README.md`.
+
+Ask answers come from live Admin data via `/api/ask`. Add `OPENROUTER_API_KEY` on Vercel for free LLM answers.
+
 ## Legacy: GitHub Pages (static, no Supabase)
 
 Still available via `npm run build:pages` — admin requires manual JSON upload. See git history for GitHub Actions workflow.

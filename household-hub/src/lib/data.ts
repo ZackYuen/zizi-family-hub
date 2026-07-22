@@ -6,6 +6,8 @@ import type { AppContent, DinnerRecipe } from "./types";
 const CONTENT_KEY = "content";
 const RECIPES_KEY = "dinner_recipes";
 
+export type DataSource = "supabase" | "local";
+
 function isGoodTranslation(text?: string): boolean {
   if (!text?.trim()) return false;
   if (/@|Email|sportbenzin|salmo\.ee/i.test(text)) return false;
@@ -14,7 +16,7 @@ function isGoodTranslation(text?: string): boolean {
   return true;
 }
 
-/** Merge nameEn/nameFil from local seed file when Supabase entries are missing or bad */
+/** Merge nameEn/nameFil from local seed when Supabase entries are missing or bad */
 function mergeRecipeTranslations(
   remote: DinnerRecipe[],
   local: DinnerRecipe[]
@@ -25,16 +27,17 @@ function mergeRecipeTranslations(
     if (!seed) return r;
     return {
       ...r,
-      nameEn: isGoodTranslation(seed.nameEn)
-        ? seed.nameEn
-        : isGoodTranslation(r.nameEn)
-          ? r.nameEn
-          : seed.nameEn,
-      nameFil: isGoodTranslation(seed.nameFil)
-        ? seed.nameFil
-        : isGoodTranslation(r.nameFil)
-          ? r.nameFil
-          : seed.nameFil,
+      nameEn: isGoodTranslation(r.nameEn)
+        ? r.nameEn
+        : isGoodTranslation(seed.nameEn)
+          ? seed.nameEn
+          : r.nameEn,
+      nameFil: isGoodTranslation(r.nameFil)
+        ? r.nameFil
+        : isGoodTranslation(seed.nameFil)
+          ? seed.nameFil
+          : r.nameFil,
+      ingredients: r.ingredients?.length ? r.ingredients : seed.ingredients,
     };
   });
 }
@@ -56,56 +59,35 @@ async function readLocalRecipes(): Promise<DinnerRecipe[]> {
   return parsed.recipes;
 }
 
-function isStaleSchedule(content: AppContent): boolean {
+/** Only for one-time bootstrap of broken pre-Admin rows — never overrides newer Admin saves */
+function isBrokenLegacyContent(content: AppContent): boolean {
   const monday = content.weeklySchedule?.find((d) => d.dayKey === "monday");
   const wake = monday?.tasks?.find((t) =>
     t.task.en.toLowerCase().includes("wake")
   );
   const wakeTime = wake?.startTime ?? wake?.time;
   if (wakeTime === "07:30") return true;
-  const hasLeaveHome = monday?.tasks?.some((t) =>
-    t.task.en.toLowerCase().includes("leave home")
-  );
-  const schoolNote = content.ziziSchool?.en ?? "";
-  if (!hasLeaveHome || schoolNote.includes("Zizi whole day off")) return true;
+  if (!content.groundRules?.length) return true;
+  if (content.groundRules.some((r) => !r.consequences?.en?.trim())) return true;
   return false;
 }
 
-function isStaleGroundRules(content: AppContent): boolean {
-  return (
-    !content.groundRules?.length ||
-    content.groundRules.some((r) => !r.consequences?.en?.trim())
-  );
-}
-
-/** Prefer local content when Supabase is missing schedule or rule updates */
-function mergeContentFromLocal(
-  remote: AppContent,
-  local: AppContent
-): AppContent {
-  const remoteUpdated = remote.lastUpdated
-    ? new Date(remote.lastUpdated).getTime()
-    : 0;
-  const localUpdated = local.lastUpdated
-    ? new Date(local.lastUpdated).getTime()
-    : 0;
-  const useLocalSchedule =
-    isStaleSchedule(remote) || localUpdated > remoteUpdated;
-  const useLocalRules =
-    isStaleGroundRules(remote) || localUpdated > remoteUpdated;
-
-  if (!useLocalSchedule && !useLocalRules) return remote;
-
+function bootstrapFromLocal(remote: AppContent, local: AppContent): AppContent {
   return {
     ...remote,
-    ...(useLocalSchedule
-      ? { weeklySchedule: local.weeklySchedule, ziziSchool: local.ziziSchool }
-      : {}),
-    ...(useLocalRules ? { groundRules: local.groundRules } : {}),
-    lastUpdated: local.lastUpdated,
+    weeklySchedule: local.weeklySchedule,
+    ziziSchool: local.ziziSchool,
+    groundRules: local.groundRules,
+    lastUpdated: new Date().toISOString(),
   };
 }
 
+/**
+ * Live source of truth:
+ * - With Supabase: Admin-saved rows win. Repo JSON is seed/fallback only.
+ * - Without Supabase: local content.json.
+ * - FORCE_SEED_FROM_LOCAL=1: force push local JSON into Supabase (intentional reset).
+ */
 export async function getContent(): Promise<AppContent> {
   if (!isSupabaseConfigured()) {
     return readLocalContent();
@@ -121,15 +103,40 @@ export async function getContent(): Promise<AppContent> {
   if (error) throw error;
 
   const local = await readLocalContent();
-  if (!data) return local;
+  const forceSeed = process.env.FORCE_SEED_FROM_LOCAL === "1";
 
-  const merged = mergeContentFromLocal(data.data as AppContent, local);
-
-  if (isStaleSchedule(data.data as AppContent) || isStaleGroundRules(data.data as AppContent)) {
-    saveContent(merged).catch(() => {});
+  if (!data) {
+    if (forceSeed) {
+      await saveContent(local);
+    }
+    return local;
   }
 
-  return merged;
+  const remote = data.data as AppContent;
+
+  if (forceSeed) {
+    const seeded = { ...local, lastUpdated: new Date().toISOString() };
+    await saveContent(seeded);
+    return seeded;
+  }
+
+  // One-time repair of legacy broken rows only — Admin saves always win after that
+  if (isBrokenLegacyContent(remote)) {
+    const fixed = bootstrapFromLocal(remote, local);
+    saveContent(fixed).catch(() => {});
+    return fixed;
+  }
+
+  return remote;
+}
+
+export async function getContentWithSource(): Promise<{
+  content: AppContent;
+  source: DataSource;
+}> {
+  const source: DataSource = isSupabaseConfigured() ? "supabase" : "local";
+  const content = await getContent();
+  return { content, source };
 }
 
 export async function saveContent(content: AppContent): Promise<AppContent> {

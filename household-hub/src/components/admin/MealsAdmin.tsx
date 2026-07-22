@@ -23,6 +23,7 @@ const emptyRecipe = (): DinnerRecipe => ({
   category: "Meat",
   subCategory: "",
   link: "",
+  ingredients: [],
 });
 
 export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
@@ -307,6 +308,66 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 placeholder="Index"
                 className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
               />
+              <div className="rounded-lg border border-stone-200 p-2">
+                <div className="mb-2 flex items-center justify-between">
+                  <p className="text-xs font-semibold text-stone-600">
+                    {adminT("ingredients", lang)}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setEditing({
+                        ...editing,
+                        ingredients: [
+                          ...(editing.ingredients ?? []),
+                          { en: "", fil: "", qty: "" },
+                        ],
+                      })
+                    }
+                    className="text-xs font-medium text-teal-700"
+                  >
+                    {adminT("addIngredient", lang)}
+                  </button>
+                </div>
+                <div className="space-y-2">
+                  {(editing.ingredients ?? []).map((ing, i) => (
+                    <div key={i} className="flex gap-1">
+                      <input
+                        value={ing.en}
+                        onChange={(e) => {
+                          const ingredients = [...(editing.ingredients ?? [])];
+                          ingredients[i] = { ...ing, en: e.target.value };
+                          setEditing({ ...editing, ingredients });
+                        }}
+                        placeholder={adminT("ingredientName", lang)}
+                        className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
+                      />
+                      <input
+                        value={ing.qty ?? ""}
+                        onChange={(e) => {
+                          const ingredients = [...(editing.ingredients ?? [])];
+                          ingredients[i] = { ...ing, qty: e.target.value };
+                          setEditing({ ...editing, ingredients });
+                        }}
+                        placeholder={adminT("ingredientQty", lang)}
+                        className="w-20 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const ingredients = (editing.ingredients ?? []).filter(
+                            (_, j) => j !== i
+                          );
+                          setEditing({ ...editing, ingredients });
+                        }}
+                        className="rounded-lg px-2 text-xs text-red-500"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className="mt-4 flex gap-2">
               <button
@@ -344,12 +405,15 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
               </p>
               <p className="truncate text-xs text-stone-500">
                 {r.name !== (r.nameFil || r.nameEn) ? r.name : r.subCategory}
+                {r.ingredients?.length
+                  ? ` · ${r.ingredients.length} ingredients`
+                  : ""}
               </p>
             </div>
             <div className="flex shrink-0 gap-1">
               <button
                 type="button"
-                onClick={() => setEditing({ ...r })}
+                onClick={() => setEditing({ ...r, ingredients: r.ingredients ?? [] })}
                 className="rounded-lg px-2 py-1 text-xs text-teal-700 ring-1 ring-teal-200"
               >
                 {adminT("edit", lang)}

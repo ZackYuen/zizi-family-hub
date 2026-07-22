@@ -280,6 +280,16 @@ export default function AdminPage() {
           <p className="mb-3 rounded-lg bg-teal-50 px-3 py-2 text-sm text-teal-800">{message}</p>
         )}
 
+        <div className="mb-4 rounded-xl bg-sky-50 px-3 py-2 text-xs text-sky-900 ring-1 ring-sky-100">
+          <p className="font-semibold">{adminT("liveSource", lang)}</p>
+          <p className="mt-0.5">{adminT("liveSourceHint", lang)}</p>
+          {content.lastUpdated && (
+            <p className="mt-1 text-sky-700">
+              lastUpdated: {new Date(content.lastUpdated).toLocaleString()}
+            </p>
+          )}
+        </div>
+
         {activeSection === "rules" && (
           <div className="space-y-4">
             {content.groundRules.map((rule, i) => (

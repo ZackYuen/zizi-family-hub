@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import { getContent } from "@/lib/data";
+import { getContentWithSource } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const content = await getContent();
-  return NextResponse.json(content);
+  const { content, source } = await getContentWithSource();
+  return NextResponse.json(
+    { ...content, _meta: { source } },
+    { headers: { "X-Data-Source": source, "Cache-Control": "no-store" } }
+  );
 }
