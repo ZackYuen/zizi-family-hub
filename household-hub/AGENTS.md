@@ -35,7 +35,7 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 
 - Call Charlene a **family member**, not “helper / katulong / 家務助理” in app copy or Ask replies.
 - Field `helperName` remains for API compatibility; UI labels say Charlene / family member.
-- Ground rules: mild, first-time-in-HK friendly; still use “If Broken” for clarity.
+- Ground rules: respectful family tone, but **firm If Broken** — no second chance to try breaking a rule.
 
 ## HK Life (FDH / Kwun Tong)
 

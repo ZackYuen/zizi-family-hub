@@ -152,21 +152,23 @@ export async function getContent(): Promise<AppContent> {
     return filled;
   }
 
-  // Soft family welcome + milder rules from seed when remote still has harsh legacy consequences
+  // Soft family welcome from seed; firm rules when remote still has "practice / second chance" soft wording
   const remoteBorrow = remote.groundRules?.find((r) => r.id === "rule-1");
   const localBorrow = local.groundRules?.find((r) => r.id === "rule-1");
-  const needsMildRules =
+  const needsFirmRules =
     localBorrow &&
     remoteBorrow &&
-    /repatriation|terminated immediately|employment terminated/i.test(
-      remoteBorrow.consequences?.en || ""
+    /practice together|Friendly reminder first|gentle written|no trial second chance/i.test(
+      `${remoteBorrow.consequences?.en || ""} ${localBorrow.consequences?.en || ""}`
     ) &&
-    !/repatriation|terminated immediately/i.test(localBorrow.consequences?.en || "");
+    /practice together|Friendly reminder first|gentle written|talk about timing|retrain gently/i.test(
+      remoteBorrow.consequences?.en || ""
+    );
 
-  if (needsMildRules || (!remote.familyWelcome && local.familyWelcome)) {
+  if (needsFirmRules || (!remote.familyWelcome && local.familyWelcome)) {
     const filled: AppContent = {
       ...remote,
-      groundRules: needsMildRules ? local.groundRules : remote.groundRules,
+      groundRules: needsFirmRules ? local.groundRules : remote.groundRules,
       familyWelcome: remote.familyWelcome ?? local.familyWelcome,
     };
     saveContent(filled).catch(() => {});

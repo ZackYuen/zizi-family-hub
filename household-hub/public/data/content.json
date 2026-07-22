@@ -39,9 +39,9 @@
       "category": "general",
       "priority": 1,
       "consequences": {
-        "en": "If Broken: We will talk together first and explain why this protects you. If borrowing continues or is hidden, we will give a clear written reminder and may need to review the work arrangement with the agency.",
-        "fil": "If Broken: Mag-uusap muna tayo at ipapaliwanag kung bakit ito proteksyon para sa'yo. Kung magpatuloy o itago ang paghiram, magbibigay ng written reminder at maaaring i-review ang arrangement sa agency.",
-        "zh": "若違反：會先一起商量並說明這是為了保護你。若繼續或隱瞞借錢，會發出書面提醒，並可能與中介檢討工作安排。"
+        "en": "If Broken: Immediate serious written warning and a meeting with Sir/Mum. Hidden borrowing or any second time: contract ends and repatriation is arranged; the agency will be informed. There is no trial second chance.",
+        "fil": "If Broken: Agad na seryosong written warning at meeting kay Sir/Mum. Naitagong paghiram o pangalawang beses: tatapusin ang kontrata at i-aayos ang repatriation; iinforma ang agency. Walang second chance.",
+        "zh": "若違反：立即嚴正書面警告並與 Sir/Mum 會面。隱瞞借錢或第二次：終止合約並安排遣返，同時通知中介。沒有第二次機會。"
       }
     },
     {
@@ -59,9 +59,9 @@
       "category": "childcare",
       "priority": 2,
       "consequences": {
-        "en": "If Broken: We will calmly explain what Zizi needed and practice together. If he was unsafe or left hungry/unattended more than once, we will give a written reminder. Serious neglect may mean we cannot continue living together safely.",
-        "fil": "If Broken: Ipaliwanag nang mahinahon kung ano ang kailangan ni Zizi at magpractice nang magkasama. Kung siya ay naging delikado o gutom/walang bantay nang paulit-ulit, magbibigay ng written reminder. Malubhang pagpapabaya ay maaaring hindi na ligtas magpatuloy.",
-        "zh": "若違反：會溫和說明 Zizi 的需要並一起練習。若多次令他不安全、挨餓或無人看管，會書面提醒。嚴重疏忽時，為安全可能無法繼續同住安排。"
+        "en": "If Broken: Immediate written warning. If Zizi was hungry, unsafe, or unattended because other tasks came first: this is treated as serious — contract may end the same day. Zizi’s safety has no second chance.",
+        "fil": "If Broken: Agad na written warning. Kung si Zizi ay gutom, delikado, o walang bantay dahil inuna ang ibang gawain: seryoso ito — maaaring matapos ang kontrata sa araw ding iyon. Walang second chance sa kaligtasan ni Zizi.",
+        "zh": "若違反：立即書面警告。若因先做其他事令 Zizi 挨餓、不安全或無人看管：視為嚴重 — 可即日終止合約。Zizi 的安全沒有第二次機會。"
       }
     },
     {
@@ -79,9 +79,9 @@
       "category": "kitchen",
       "priority": 3,
       "consequences": {
-        "en": "If Broken: We will retrain gently on food safety. If anyone gets sick or it happens again after reminder, we will give a written reminder and watch kitchen practice more closely.",
-        "fil": "If Broken: Tuturuan ulit nang mabait ang food safety. Kung may magkasakit o maulit pagkatapos ng paalala, magbibigay ng written reminder at mas babantayan ang kusina.",
-        "zh": "若違反：會溫和再教食物安全。若有人生病或提醒後再犯，會書面提醒並更仔細跟進廚房做法。"
+        "en": "If Broken: Immediate written warning and supervised kitchen correction the same day. Mixing raw and cooked tools again, or if anyone falls ill: contract ends. Food safety is not for trial and error.",
+        "fil": "If Broken: Agad na written warning at supervised kitchen correction sa araw ding iyon. Kung ulitin ang paghalo ng hilaw/luto, o may magkasakit: tatapusin ang kontrata. Hindi pwedeng trial-and-error ang food safety.",
+        "zh": "若違反：立即書面警告，並於當日在監督下改正。再生熟混用或有人生病：終止合約。食物安全不容試錯。"
       }
     },
     {
@@ -99,9 +99,9 @@
       "category": "kitchen",
       "priority": 4,
       "consequences": {
-        "en": "If Broken: We will show the boards again together. Repeat use of the wrong board: written reminder. If it causes illness, we will review kitchen duties with you carefully.",
-        "fil": "If Broken: Ipapakita ulit ang boards nang magkasama. Ulit na maling board: written reminder. Kung may magkasakit, i-review nang maingat ang kitchen duties.",
-        "zh": "若違反：會再一起示範砧板。再犯用錯：書面提醒。若引致病，會仔細檢討廚房分工。"
+        "en": "If Broken: Immediate written warning. Using the wrong board again, or if it causes illness: contract ends. Labels must be followed from day one — no second trial.",
+        "fil": "If Broken: Agad na written warning. Ulit na maling board, o kung may magkasakit: tatapusin ang kontrata. Sundin ang label mula unang araw — walang second trial.",
+        "zh": "若違反：立即書面警告。再用錯砧板或導致生病：終止合約。標籤從第一天起必須遵守 — 沒有第二次試錯。"
       }
     },
     {
@@ -119,9 +119,9 @@
       "category": "general",
       "priority": 5,
       "consequences": {
-        "en": "If Broken: We will talk about timing so rest and Zizi's needs both fit. Repeated early rest while Zizi still needs care: gentle written reminder and we adjust the schedule together.",
-        "fil": "If Broken: Pag-uusapan ang timing para magkasya ang pahinga at needs ni Zizi. Paulit-ulit na maagang pahinga habang kailangan pa ni Zizi: mahinahong written reminder at i-adjust ang schedule nang magkasama.",
-        "zh": "若違反：會商量時間，讓休息與 Zizi 需要都能兼顧。多次在 Zizi 仍需照顧時提早休息：溫和書面提醒，並一起調整時間表。"
+        "en": "If Broken: Immediate written warning. Resting while Zizi still needs meals, pickup, or safety care again: contract review the same week and may end. Rest is after urgent family needs — not optional.",
+        "fil": "If Broken: Agad na written warning. Kung ulitin ang pahinga habang kailangan pa ni Zizi ang pagkain, sundo, o safety: i-review ang kontrata sa linggo ring iyon at maaaring matapos. Ang pahinga ay pagkatapos ng urgent na needs — hindi optional.",
+        "zh": "若違反：立即書面警告。若再在 Zizi 仍需膳食／接送／安全照顧時休息：會於同週檢討合約並可能終止。休息須在緊急家事之後 — 不可自行改變。"
       }
     },
     {
@@ -139,9 +139,9 @@
       "category": "general",
       "priority": 6,
       "consequences": {
-        "en": "If Broken: Friendly reminder first. If phone use often distracts while caring for Zizi, we will give a written reminder and agree clearer phone times together.",
-        "fil": "If Broken: Friendly reminder muna. Kung madalas makagambala ang telepono habang inaalagaan si Zizi, magbibigay ng written reminder at magkasundo sa mas clear na oras ng telepono.",
-        "zh": "若違反：先友善提醒。若照顧 Zizi 時經常被手機分心，會書面提醒並一起約定更清楚的用機時間。"
+        "en": "If Broken: Immediate written warning. Phone use that distracts while caring for Zizi a second time: contract ends. Keep the phone for emergencies only during work — no second chance.",
+        "fil": "If Broken: Agad na written warning. Pangalawang beses na makagambala ang telepono habang inaalagaan si Zizi: tatapusin ang kontrata. Sa oras ng gawain, telepono para sa emergency lang — walang second chance.",
+        "zh": "若違反：立即書面警告。照顧 Zizi 時再因手機分心：終止合約。工作時間手機僅作緊急用途 — 沒有第二次機會。"
       }
     },
     {
@@ -159,9 +159,9 @@
       "category": "safety",
       "priority": 7,
       "consequences": {
-        "en": "If Broken: We will explain why early reporting keeps everyone safe. If delay causes harm to Zizi or serious damage, we will give a written reminder and plan how to call us next time.",
-        "fil": "If Broken: Ipaliwanag kung bakit ang maagang pag-report ay proteksyon. Kung dahil sa delay ay nasaktan si Zizi o may malaking sira, magbibigay ng written reminder at plan kung paano tumawag sa susunod.",
-        "zh": "若違反：會說明及早告知如何保護大家。若延誤令 Zizi 受傷或造成嚴重損壞，會書面提醒並約定下次如何聯絡我們。"
+        "en": "If Broken: Immediate written warning. Hiding a problem, or delay that harms Zizi or the home: contract may end immediately. Always tell Sir/Mum at once — silence is not allowed a second time.",
+        "fil": "If Broken: Agad na written warning. Pagtatago ng problema, o delay na nakakasama kay Zizi o sa bahay: maaaring matapos agad ang kontrata. Laging sabihin agad kay Sir/Mum — hindi pwedeng ulitin ang pagtatago.",
+        "zh": "若違反：立即書面警告。隱瞞問題，或延誤令 Zizi／家居受損：可立即終止合約。必須立刻告知 Sir/Mum — 不容第二次沉默。"
       }
     },
     {
@@ -179,9 +179,9 @@
       "category": "safety",
       "priority": 8,
       "consequences": {
-        "en": "If Broken: We will practice locking together. If doors/windows are left open again, written reminder. If it leads to theft or danger for Zizi, we must take the situation very seriously and may need agency support.",
-        "fil": "If Broken: Magpractice magkasama sa pag-lock. Kung muliang nakalimutan, written reminder. Kung may nakawan o panganib kay Zizi, seryosohin namin ito at maaaring kailanganin ang tulong ng agency.",
-        "zh": "若違反：會一起練習上鎖。若再忘記，書面提醒。若因此失竊或危及 Zizi，我們會嚴肅處理，並可能需要中介協助。"
+        "en": "If Broken: Immediate written warning. Leaving doors/windows unlocked again, or if theft/danger follows: contract ends and you may be held responsible. Locking is required every time — no second chance.",
+        "fil": "If Broken: Agad na written warning. Ulit na hindi naka-lock, o may nakawan/panganib: tatapusin ang kontrata at maaaring managot ka. Kailangan i-lock palagi — walang second chance.",
+        "zh": "若違反：立即書面警告。再忘記鎖門窗，或因而失竊／危險：終止合約並可能須負責。每次都必須上鎖 — 沒有第二次機會。"
       }
     }
   ],
@@ -1254,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T07:45:29.787Z",
+  "lastUpdated": "2026-07-22T08:23:07.482Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
