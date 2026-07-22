@@ -94,7 +94,10 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
 export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   const lines: string[] = [];
   lines.push(`Family: ${snap.familyName}`);
-  lines.push(`Helper: ${snap.helperName}`);
+  lines.push(`Family member (Charlene): ${snap.helperName}`);
+  lines.push(
+    "Tone: Charlene is treated as a member of the family, not labeled as a 'helper' in replies. Say Charlene / family member. Do not use 姐姐."
+  );
   if (snap.homeArea?.en) lines.push(`Home area: ${snap.homeArea.en}`);
   lines.push(`Data source: ${snap.source} (Admin live data when supabase)`);
   lines.push(

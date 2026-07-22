@@ -4,7 +4,7 @@
       "id": "d-10",
       "index": 10,
       "name": "冰花煎餃",
-      "nameEn": "冰花煎餃",
+      "nameEn": "Crispy-bottom pan-fried dumplings",
       "category": "Meat",
       "subCategory": "Pork",
       "link": "https://www.youtube.com/watch?v=3qno7f2JOM8",
@@ -29,13 +29,19 @@
           "en": "Soy sauce",
           "qty": "2 tbsp"
         }
-      ]
+      ],
+      "prepNotes": {
+        "en": "1) Pan medium heat + little oil. 2) Arrange dumplings. 3) Add a splash of water, cover until bottoms crisp (ice-flower). 4) Serve with dip. Watch video for timing.",
+        "fil": "1) Medium heat + konting oil. 2) Ilagay ang dumplings. 3) Magdagdag ng konting tubig, takpan hanggang crispy. 4) Serve with toyo/suka. Tingnan ang video sa timing.",
+        "zh": "中火少油煎餃，加水蓋蓋至底部冰花，配醬。"
+      },
+      "nameFil": "Crispy-bottom pan-fried dumplings"
     },
     {
       "id": "d-14",
       "index": 14,
       "name": "韓式泡菜⾖腐鍋",
-      "nameEn": "韓式泡菜⾖腐鍋",
+      "nameEn": "Korean kimchi soft-tofu stew",
       "category": "Soup",
       "subCategory": "Tofu",
       "link": "https://www.youtube.com/watch?v=hCLPP10Fp14",
@@ -56,13 +62,19 @@
           "en": "Green onion",
           "qty": "2 stalks"
         }
-      ]
+      ],
+      "prepNotes": {
+        "en": "Simmer kimchi + water/stock, add tofu gently, optional meat, crack egg on top. Don't boil tofu hard. Video shows seasoning.",
+        "fil": "Pakuluan ang kimchi + sabaw, dahan-dahang ilagay ang tofu, optional meat, itlog sa ibabaw. Huwag masyadong pakuluan ang tofu.",
+        "zh": "泡菜加水煮，輕放豆腐，可加肉，打蛋，勿猛滾豆腐。"
+      },
+      "nameFil": "Korean kimchi soft-tofu stew"
     },
     {
       "id": "d-18",
       "index": 18,
       "name": "⾖⾓炒蛋",
-      "nameEn": "⾖⾓炒蛋",
+      "nameEn": "Stir-fried long beans with egg",
       "category": "Vegetable",
       "subCategory": "Green Beans",
       "link": "https://www.youtube.com/watch?v=dtZADFyUsQg",
@@ -83,16 +95,60 @@
           "en": "Oil",
           "qty": "1 tbsp"
         }
-      ]
+      ],
+      "prepNotes": {
+        "en": "Stir-fry beans first until tender, push aside, scramble eggs, mix. Season lightly.",
+        "fil": "Igisa muna ang beans, isaisantabi, lutuin ang itlog, paghaluin. Konting seasoning.",
+        "zh": "先炒豆角至熟，再炒蛋混合調味。"
+      },
+      "nameFil": "Stir-fried long beans with egg"
     },
     {
       "id": "d-19",
       "index": 19,
       "name": "韓式⽜尾湯",
-      "nameEn": "韓式⽜尾湯",
+      "nameEn": "Korean oxtail soup",
       "category": "Soup",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=aXJnlGUGi24"
+      "link": "https://www.youtube.com/watch?v=aXJnlGUGi24",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Korean oxtail soup"
     },
     {
       "id": "d-20",
@@ -101,7 +157,45 @@
       "nameEn": "OXTAIL SOUP",
       "category": "Soup",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=kW6zmKpYlck"
+      "link": "https://www.youtube.com/watch?v=kW6zmKpYlck",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "OXTAIL SOUP"
     },
     {
       "id": "d-21",
@@ -110,25 +204,127 @@
       "nameEn": "Crispy Enoki Mushrooms",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.instagram.com/reel/CyKxtamvlaZ/?igshid=MzRlODBiNWFlZA%3D%3D"
+      "link": "https://www.instagram.com/reel/CyKxtamvlaZ/?igshid=MzRlODBiNWFlZA%3D%3D",
+      "ingredients": [
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Crispy Enoki Mushrooms"
     },
     {
       "id": "d-22",
       "index": 22,
       "name": "濃⽩蒜頭雞湯",
-      "nameEn": "濃⽩蒜頭雞湯",
+      "nameEn": "Creamy garlic chicken soup",
       "category": "Soup",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=vQWHtXC7k1E"
+      "link": "https://www.youtube.com/watch?v=vQWHtXC7k1E",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Creamy garlic chicken soup"
     },
     {
       "id": "d-23",
       "index": 23,
       "name": "特濃蕃茄薯仔⿂湯",
-      "nameEn": "特濃蕃茄薯仔⿂湯",
+      "nameEn": "Tomato potato fish soup",
       "category": "Soup",
       "subCategory": "Fish",
-      "link": "https://www.youtube.com/watch?v=RmhrI58vTSQ"
+      "link": "https://www.youtube.com/watch?v=RmhrI58vTSQ",
+      "ingredients": [
+        {
+          "en": "Tomato",
+          "qty": "2–3",
+          "fil": "Kamatis",
+          "zh": "番茄"
+        },
+        {
+          "en": "Potato",
+          "qty": "2",
+          "fil": "Patatas",
+          "zh": "薯仔"
+        },
+        {
+          "en": "Garlic / ginger / spring onion",
+          "qty": "to taste",
+          "fil": "Bawang / luya / sibuyas",
+          "zh": "蒜／薑／蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Tomato potato fish soup"
     },
     {
       "id": "d-25",
@@ -137,7 +333,33 @@
       "nameEn": "⻘⾖炒⾁碎",
       "category": "Vegetable",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=IyOz0diKKh8"
+      "link": "https://www.youtube.com/watch?v=IyOz0diKKh8",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⻘⾖炒⾁碎"
     },
     {
       "id": "d-40",
@@ -146,7 +368,39 @@
       "nameEn": "蒜蓉炒椰菜仔",
       "category": "Vegetable",
       "subCategory": "Brussels Sprouts",
-      "link": "https://www.youtube.com/watch?v=2PWVQG5-q0M"
+      "link": "https://www.youtube.com/watch?v=2PWVQG5-q0M",
+      "ingredients": [
+        {
+          "en": "Broccoli / cauliflower",
+          "qty": "1 head",
+          "fil": "Broccoli / cauliflower",
+          "zh": "椰菜花／西蘭花"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜蓉炒椰菜仔"
     },
     {
       "id": "d-44",
@@ -155,7 +409,33 @@
       "nameEn": "⾦華火腿奶油津⽩",
       "category": "Vegetable",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=wp8VTYro5x0"
+      "link": "https://www.youtube.com/watch?v=wp8VTYro5x0",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾦華火腿奶油津⽩"
     },
     {
       "id": "d-49",
@@ -164,7 +444,57 @@
       "nameEn": "電飯煲磨菇雞⾁意⼤利飯",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.youtube.com/shorts/0y2Expr-7BA"
+      "link": "https://www.youtube.com/shorts/0y2Expr-7BA",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Noodles / pasta (as in video)",
+          "qty": "200g",
+          "fil": "Pancit / pasta",
+          "zh": "粉／麵（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "電飯煲磨菇雞⾁意⼤利飯"
     },
     {
       "id": "d-50",
@@ -173,7 +503,57 @@
       "nameEn": "蕃茄起司鮭⿂炊飯",
       "category": "Vegetable",
       "subCategory": "Tomato",
-      "link": "https://www.instagram.com/reel/C1PQizEP3lg/?igsh=MzRlODBiNWFlZA%3D%3D"
+      "link": "https://www.instagram.com/reel/C1PQizEP3lg/?igsh=MzRlODBiNWFlZA%3D%3D",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Tomato",
+          "qty": "2–3",
+          "fil": "Kamatis",
+          "zh": "番茄"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Cheese",
+          "qty": "as needed",
+          "fil": "Cheese",
+          "zh": "芝士"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蕃茄起司鮭⿂炊飯"
     },
     {
       "id": "d-51",
@@ -182,7 +562,45 @@
       "nameEn": "氣炸⾦針菇",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.youtube.com/watch?v=Tf8sV9r2rek"
+      "link": "https://www.youtube.com/watch?v=Tf8sV9r2rek",
+      "ingredients": [
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Oil spray / little oil",
+          "qty": "as needed",
+          "fil": "Mantika",
+          "zh": "少許油"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "氣炸⾦針菇"
     },
     {
       "id": "d-52",
@@ -191,7 +609,39 @@
       "nameEn": "酥炸杏鮑菇",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.youtube.com/watch?v=skHRt89vDyE"
+      "link": "https://www.youtube.com/watch?v=skHRt89vDyE",
+      "ingredients": [
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "酥炸杏鮑菇"
     },
     {
       "id": "d-55",
@@ -200,7 +650,45 @@
       "nameEn": "⽣薑蜜汁雞髀菇",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.youtube.com/watch?v=h33VrB2lejk"
+      "link": "https://www.youtube.com/watch?v=h33VrB2lejk",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽣薑蜜汁雞髀菇"
     },
     {
       "id": "d-57",
@@ -209,7 +697,39 @@
       "nameEn": "⽩醬義⼤利麵",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.instagram.com/reel/Czz9AhhMamN/?igsh=MzRlODBiNWFlZA%3D%3D"
+      "link": "https://www.instagram.com/reel/Czz9AhhMamN/?igsh=MzRlODBiNWFlZA%3D%3D",
+      "ingredients": [
+        {
+          "en": "Noodles / pasta (as in video)",
+          "qty": "200g",
+          "fil": "Pancit / pasta",
+          "zh": "粉／麵（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽩醬義⼤利麵"
     },
     {
       "id": "d-58",
@@ -218,7 +738,39 @@
       "nameEn": "烤花椰菜",
       "category": "Vegetable",
       "subCategory": "Cauliﬂower",
-      "link": "https://www.youtube.com/shorts/tuYj5FhNFmg"
+      "link": "https://www.youtube.com/shorts/tuYj5FhNFmg",
+      "ingredients": [
+        {
+          "en": "Broccoli / cauliflower",
+          "qty": "1 head",
+          "fil": "Broccoli / cauliflower",
+          "zh": "椰菜花／西蘭花"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "烤花椰菜"
     },
     {
       "id": "d-60",
@@ -227,7 +779,39 @@
       "nameEn": "⾁碎煎⽟⼦⾖腐",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=yVAUjAbEy5s"
+      "link": "https://www.youtube.com/watch?v=yVAUjAbEy5s",
+      "ingredients": [
+        {
+          "en": "Tofu",
+          "qty": "1 block",
+          "fil": "Tofu",
+          "zh": "豆腐"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾁碎煎⽟⼦⾖腐"
     },
     {
       "id": "d-62",
@@ -236,16 +820,86 @@
       "nameEn": "蒜蓉烤茄⼦",
       "category": "Vegetable",
       "subCategory": "Eggplant",
-      "link": "https://www.youtube.com/watch?v=8cLCaa9nYAQ"
+      "link": "https://www.youtube.com/watch?v=8cLCaa9nYAQ",
+      "ingredients": [
+        {
+          "en": "Eggplant",
+          "qty": "2",
+          "fil": "Talong",
+          "zh": "茄子"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜蓉烤茄⼦"
     },
     {
       "id": "d-64",
       "index": 64,
       "name": "蕃茄炒蛋",
-      "nameEn": "蕃茄炒蛋",
+      "nameEn": "Tomato scrambled eggs",
       "category": "Vegetable",
       "subCategory": "Tomato",
-      "link": "https://www.youtube.com/watch?v=G_tyzj1EL-8"
+      "link": "https://www.youtube.com/watch?v=G_tyzj1EL-8",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Tomato",
+          "qty": "2–3",
+          "fil": "Kamatis",
+          "zh": "番茄"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Tomato scrambled eggs"
     },
     {
       "id": "d-65",
@@ -254,7 +908,45 @@
       "nameEn": "芝⼠吞拿⿂焗⻄蘭花",
       "category": "Vegetable",
       "subCategory": "Broccoli",
-      "link": "https://www.youtube.com/watch?v=fGGgD0w295Q"
+      "link": "https://www.youtube.com/watch?v=fGGgD0w295Q",
+      "ingredients": [
+        {
+          "en": "Broccoli / cauliflower",
+          "qty": "1 head",
+          "fil": "Broccoli / cauliflower",
+          "zh": "椰菜花／西蘭花"
+        },
+        {
+          "en": "Cheese",
+          "qty": "as needed",
+          "fil": "Cheese",
+          "zh": "芝士"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "芝⼠吞拿⿂焗⻄蘭花"
     },
     {
       "id": "d-68",
@@ -263,7 +955,33 @@
       "nameEn": "⿊胡椒⽑⾖",
       "category": "Vegetable",
       "subCategory": "Edamame",
-      "link": "https://www.youtube.com/watch?v=O7Ny49A8ztQ"
+      "link": "https://www.youtube.com/watch?v=O7Ny49A8ztQ",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⿊胡椒⽑⾖"
     },
     {
       "id": "d-69",
@@ -272,7 +990,45 @@
       "nameEn": "⾖⾓煎蛋",
       "category": "Vegetable",
       "subCategory": "Green Beans",
-      "link": "https://www.youtube.com/watch?v=-10DMPc55HQ"
+      "link": "https://www.youtube.com/watch?v=-10DMPc55HQ",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Long beans",
+          "qty": "200g",
+          "fil": "Sitaw",
+          "zh": "豆角"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾖⾓煎蛋"
     },
     {
       "id": "d-70",
@@ -281,7 +1037,45 @@
       "nameEn": "蒜香椒鹽菇菇",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.youtube.com/watch?v=-cXchbeZFNc"
+      "link": "https://www.youtube.com/watch?v=-cXchbeZFNc",
+      "ingredients": [
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Salt & pepper seasoning",
+          "qty": "1 tsp",
+          "fil": "Asin at paminta",
+          "zh": "椒鹽"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜香椒鹽菇菇"
     },
     {
       "id": "d-80",
@@ -290,7 +1084,51 @@
       "nameEn": "蜜糖⿊椒⽜仔⾻",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=vxMFV4arJZw"
+      "link": "https://www.youtube.com/watch?v=vxMFV4arJZw",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Honey",
+          "qty": "2 tbsp",
+          "fil": "Honey",
+          "zh": "蜜糖"
+        },
+        {
+          "en": "Black pepper",
+          "qty": "1 tsp",
+          "fil": "Paminta",
+          "zh": "黑椒"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蜜糖⿊椒⽜仔⾻"
     },
     {
       "id": "d-83",
@@ -299,7 +1137,45 @@
       "nameEn": "蘑菇燉飯",
       "category": "Vegetable",
       "subCategory": "Mushrooms",
-      "link": "https://www.instagram.com/reel/C1_GiY2rByU/?igsh=ZzJweTlvNDgzbWtw"
+      "link": "https://www.instagram.com/reel/C1_GiY2rByU/?igsh=ZzJweTlvNDgzbWtw",
+      "ingredients": [
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蘑菇燉飯"
     },
     {
       "id": "d-85",
@@ -308,7 +1184,45 @@
       "nameEn": "菜⼼炒⽜⾁",
       "category": "Vegetable",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=hGBpyyCVsLg"
+      "link": "https://www.youtube.com/watch?v=hGBpyyCVsLg",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Choy sum",
+          "qty": "1 bunch",
+          "fil": "Choy sum",
+          "zh": "菜心"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "菜⼼炒⽜⾁"
     },
     {
       "id": "d-86",
@@ -317,7 +1231,39 @@
       "nameEn": "無⽔煮南瓜",
       "category": "Vegetable",
       "subCategory": "Pumpkin",
-      "link": "https://www.youtube.com/shorts/cekn5NtukuE"
+      "link": "https://www.youtube.com/shorts/cekn5NtukuE",
+      "ingredients": [
+        {
+          "en": "Pumpkin",
+          "qty": "400g",
+          "fil": "Kalabasa",
+          "zh": "南瓜"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "無⽔煮南瓜"
     },
     {
       "id": "d-87",
@@ -326,7 +1272,45 @@
       "nameEn": "蘆筍⽜⾁",
       "category": "Vegetable",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/shorts/N0odKjmLoOw"
+      "link": "https://www.youtube.com/shorts/N0odKjmLoOw",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Asparagus",
+          "qty": "1 bunch",
+          "fil": "Asparagus",
+          "zh": "蘆筍"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蘆筍⽜⾁"
     },
     {
       "id": "d-88",
@@ -335,7 +1319,33 @@
       "nameEn": "⾦華火腿津⽩",
       "category": "Vegetable",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/shorts/fKRL8Bucdm4"
+      "link": "https://www.youtube.com/shorts/fKRL8Bucdm4",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾦華火腿津⽩"
     },
     {
       "id": "d-90",
@@ -344,7 +1354,45 @@
       "nameEn": "韓式翠⽟瓜蛋餅",
       "category": "Vegetable",
       "subCategory": "Jade Melon",
-      "link": "https://www.youtube.com/watch?v=CoPPWl_s-bI"
+      "link": "https://www.youtube.com/watch?v=CoPPWl_s-bI",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Zucchini / green melon",
+          "qty": "1–2",
+          "fil": "Zucchini",
+          "zh": "翠肉瓜"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "韓式翠⽟瓜蛋餅"
     },
     {
       "id": "d-92",
@@ -353,7 +1401,45 @@
       "nameEn": "芒果糯⽶飯",
       "category": "Vegetable",
       "subCategory": "Mango",
-      "link": "https://www.youtube.com/watch?v=Uhgv6_mmZxs"
+      "link": "https://www.youtube.com/watch?v=Uhgv6_mmZxs",
+      "ingredients": [
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Mango",
+          "qty": "1–2",
+          "fil": "Mangga",
+          "zh": "芒果"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "芒果糯⽶飯"
     },
     {
       "id": "d-93",
@@ -362,7 +1448,45 @@
       "nameEn": "芒果糯⽶飯",
       "category": "Vegetable",
       "subCategory": "Mango",
-      "link": "https://www.youtube.com/shorts/8xxnu8GeT0E"
+      "link": "https://www.youtube.com/shorts/8xxnu8GeT0E",
+      "ingredients": [
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Mango",
+          "qty": "1–2",
+          "fil": "Mangga",
+          "zh": "芒果"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "芒果糯⽶飯"
     },
     {
       "id": "d-95",
@@ -371,7 +1495,45 @@
       "nameEn": "⽇式椰菜烤蛋餅",
       "category": "Vegetable",
       "subCategory": "Cabbage",
-      "link": "https://www.youtube.com/watch?v=0J5oN0lt7EA"
+      "link": "https://www.youtube.com/watch?v=0J5oN0lt7EA",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Broccoli / cauliflower",
+          "qty": "1 head",
+          "fil": "Broccoli / cauliflower",
+          "zh": "椰菜花／西蘭花"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽇式椰菜烤蛋餅"
     },
     {
       "id": "d-98",
@@ -380,7 +1542,39 @@
       "nameEn": "蒜味風琴⾺鈴薯",
       "category": "Vegetable",
       "subCategory": "Potato",
-      "link": "https://www.instagram.com/reel/C4abIw6Pjcj/?igsh=dWNtZzN1bDYxMXRh"
+      "link": "https://www.instagram.com/reel/C4abIw6Pjcj/?igsh=dWNtZzN1bDYxMXRh",
+      "ingredients": [
+        {
+          "en": "Potato",
+          "qty": "2",
+          "fil": "Patatas",
+          "zh": "薯仔"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜味風琴⾺鈴薯"
     },
     {
       "id": "d-100",
@@ -389,7 +1583,45 @@
       "nameEn": "⽇式⽜⾁飯",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=TFJv3Rx0CIc"
+      "link": "https://www.youtube.com/watch?v=TFJv3Rx0CIc",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽇式⽜⾁飯"
     },
     {
       "id": "d-101",
@@ -398,7 +1630,45 @@
       "nameEn": "濃郁南瓜濃湯",
       "category": "Soup",
       "subCategory": "Pumpkin",
-      "link": "https://www.youtube.com/watch?v=kYprpnbCISs"
+      "link": "https://www.youtube.com/watch?v=kYprpnbCISs",
+      "ingredients": [
+        {
+          "en": "Pumpkin",
+          "qty": "400g",
+          "fil": "Kalabasa",
+          "zh": "南瓜"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "濃郁南瓜濃湯"
     },
     {
       "id": "d-102",
@@ -407,7 +1677,51 @@
       "nameEn": "南瓜野菇燉飯",
       "category": "Vegetable",
       "subCategory": "Pumpkin",
-      "link": "https://www.youtube.com/watch?v=O7X5fhHyL08"
+      "link": "https://www.youtube.com/watch?v=O7X5fhHyL08",
+      "ingredients": [
+        {
+          "en": "Pumpkin",
+          "qty": "400g",
+          "fil": "Kalabasa",
+          "zh": "南瓜"
+        },
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "南瓜野菇燉飯"
     },
     {
       "id": "d-104",
@@ -416,7 +1730,45 @@
       "nameEn": "脆⽪椒鹽⾖腐",
       "category": "Vegetable",
       "subCategory": "Tofu",
-      "link": "https://www.youtube.com/shorts/hwy7v-hI-CY"
+      "link": "https://www.youtube.com/shorts/hwy7v-hI-CY",
+      "ingredients": [
+        {
+          "en": "Tofu",
+          "qty": "1 block",
+          "fil": "Tofu",
+          "zh": "豆腐"
+        },
+        {
+          "en": "Salt & pepper seasoning",
+          "qty": "1 tsp",
+          "fil": "Asin at paminta",
+          "zh": "椒鹽"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "脆⽪椒鹽⾖腐"
     },
     {
       "id": "d-105",
@@ -425,7 +1777,39 @@
       "nameEn": "⽣炒芥蘭",
       "category": "Vegetable",
       "subCategory": "Kale",
-      "link": "https://www.youtube.com/watch?v=KvBp9fPEJtc"
+      "link": "https://www.youtube.com/watch?v=KvBp9fPEJtc",
+      "ingredients": [
+        {
+          "en": "Chinese kale (gai lan)",
+          "qty": "1 bunch",
+          "fil": "Gai lan",
+          "zh": "芥蘭"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽣炒芥蘭"
     },
     {
       "id": "d-112",
@@ -434,7 +1818,39 @@
       "nameEn": "上汤菠菜",
       "category": "Vegetable",
       "subCategory": "Spinach",
-      "link": "https://www.instagram.com/reel/C5D5c_bLZbO/?igsh=MXhiMDlzc2ltYW0xbg%3D%3D"
+      "link": "https://www.instagram.com/reel/C5D5c_bLZbO/?igsh=MXhiMDlzc2ltYW0xbg%3D%3D",
+      "ingredients": [
+        {
+          "en": "Spinach",
+          "qty": "1 bunch",
+          "fil": "Spinach",
+          "zh": "菠菜"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "上汤菠菜"
     },
     {
       "id": "d-113",
@@ -443,7 +1859,39 @@
       "nameEn": "鸡胸⾖腐沙拉",
       "category": "Vegetable",
       "subCategory": "Chicken",
-      "link": "https://www.instagram.com/reel/C4t4MOEyptA/?igsh=MTM5ZWh3YnVqcjdyeg%3D%3D"
+      "link": "https://www.instagram.com/reel/C4t4MOEyptA/?igsh=MTM5ZWh3YnVqcjdyeg%3D%3D",
+      "ingredients": [
+        {
+          "en": "Tofu",
+          "qty": "1 block",
+          "fil": "Tofu",
+          "zh": "豆腐"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "鸡胸⾖腐沙拉"
     },
     {
       "id": "d-114",
@@ -452,7 +1900,33 @@
       "nameEn": "煎⽟⽶餅",
       "category": "Vegetable",
       "subCategory": "Corn",
-      "link": "https://www.instagram.com/reel/C31mUUqSwNc/?igsh=eWhtcGt2MDZsb3Zo"
+      "link": "https://www.instagram.com/reel/C31mUUqSwNc/?igsh=eWhtcGt2MDZsb3Zo",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "煎⽟⽶餅"
     },
     {
       "id": "d-118",
@@ -461,7 +1935,45 @@
       "nameEn": "⻄蘭花炒雞柳",
       "category": "Vegetable",
       "subCategory": "Broccoli",
-      "link": "https://www.youtube.com/watch?v=Ht8r8whbbLo"
+      "link": "https://www.youtube.com/watch?v=Ht8r8whbbLo",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Broccoli / cauliflower",
+          "qty": "1 head",
+          "fil": "Broccoli / cauliflower",
+          "zh": "椰菜花／西蘭花"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⻄蘭花炒雞柳"
     },
     {
       "id": "d-119",
@@ -470,7 +1982,39 @@
       "nameEn": "蒜頭洋蔥雞湯",
       "category": "Soup",
       "subCategory": "Onion",
-      "link": "https://www.youtube.com/watch?v=1JWtRj8JXCQ"
+      "link": "https://www.youtube.com/watch?v=1JWtRj8JXCQ",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Onion",
+          "qty": "1",
+          "fil": "Sibuyas",
+          "zh": "洋蔥"
+        },
+        {
+          "en": "Garlic / ginger / spring onion",
+          "qty": "to taste",
+          "fil": "Bawang / luya / sibuyas",
+          "zh": "蒜／薑／蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜頭洋蔥雞湯"
     },
     {
       "id": "d-120",
@@ -479,7 +2023,57 @@
       "nameEn": "泡菜⽜⾁蛋炒飯",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=aIN_9M7UBJY"
+      "link": "https://www.youtube.com/watch?v=aIN_9M7UBJY",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Kimchi",
+          "qty": "150–200g",
+          "fil": "Kimchi",
+          "zh": "泡菜"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "泡菜⽜⾁蛋炒飯"
     },
     {
       "id": "d-121",
@@ -488,7 +2082,45 @@
       "nameEn": "菜⼼炒雞球",
       "category": "Vegetable",
       "subCategory": "Cabbage",
-      "link": "https://www.youtube.com/watch?v=f7L1sbSUIKQ"
+      "link": "https://www.youtube.com/watch?v=f7L1sbSUIKQ",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Choy sum",
+          "qty": "1 bunch",
+          "fil": "Choy sum",
+          "zh": "菜心"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "菜⼼炒雞球"
     },
     {
       "id": "d-124",
@@ -497,7 +2129,39 @@
       "nameEn": "燉蘿蔔雞湯",
       "category": "Soup",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=uLZo9dBT7NY"
+      "link": "https://www.youtube.com/watch?v=uLZo9dBT7NY",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Carrot / white radish",
+          "qty": "1",
+          "fil": "Carrot / labanos",
+          "zh": "蘿蔔"
+        },
+        {
+          "en": "Garlic / ginger / spring onion",
+          "qty": "to taste",
+          "fil": "Bawang / luya / sibuyas",
+          "zh": "蒜／薑／蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "燉蘿蔔雞湯"
     },
     {
       "id": "d-125",
@@ -506,7 +2170,39 @@
       "nameEn": "Banana cake",
       "category": "Vegetable",
       "subCategory": "Banana",
-      "link": "https://www.instagram.com/reel/C6qQ1m8S_uo/?igsh=MWQzMW12Nzh2eHZtMQ%3D%3D"
+      "link": "https://www.instagram.com/reel/C6qQ1m8S_uo/?igsh=MWQzMW12Nzh2eHZtMQ%3D%3D",
+      "ingredients": [
+        {
+          "en": "Banana",
+          "qty": "2–3",
+          "fil": "Saging",
+          "zh": "香蕉"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Banana cake"
     },
     {
       "id": "d-127",
@@ -515,7 +2211,39 @@
       "nameEn": "豉油王腩⾁炒⾖⾓",
       "category": "Vegetable",
       "subCategory": "Green Beans",
-      "link": "https://www.youtube.com/watch?v=av6uZqWo9yM"
+      "link": "https://www.youtube.com/watch?v=av6uZqWo9yM",
+      "ingredients": [
+        {
+          "en": "Long beans",
+          "qty": "200g",
+          "fil": "Sitaw",
+          "zh": "豆角"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "豉油王腩⾁炒⾖⾓"
     },
     {
       "id": "d-129",
@@ -524,7 +2252,45 @@
       "nameEn": "⻄蘭花炒雞柳",
       "category": "Vegetable",
       "subCategory": "Broccoli",
-      "link": "https://www.youtube.com/watch?v=VfFHo6V1wNc"
+      "link": "https://www.youtube.com/watch?v=VfFHo6V1wNc",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Broccoli / cauliflower",
+          "qty": "1 head",
+          "fil": "Broccoli / cauliflower",
+          "zh": "椰菜花／西蘭花"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⻄蘭花炒雞柳"
     },
     {
       "id": "d-130",
@@ -533,16 +2299,80 @@
       "nameEn": "煉乳香蕉煎餅",
       "category": "Vegetable",
       "subCategory": "Banana",
-      "link": "https://www.instagram.com/reel/C7LRCarPyMz/?igsh=b3I3dG9pZW40bjh2"
+      "link": "https://www.instagram.com/reel/C7LRCarPyMz/?igsh=b3I3dG9pZW40bjh2",
+      "ingredients": [
+        {
+          "en": "Banana",
+          "qty": "2–3",
+          "fil": "Saging",
+          "zh": "香蕉"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "煉乳香蕉煎餅"
     },
     {
       "id": "d-133",
       "index": 133,
       "name": "冬陰公湯",
-      "nameEn": "冬陰公湯",
+      "nameEn": "Tom yum soup",
       "category": "Soup",
       "subCategory": "Shrimp",
-      "link": "https://www.youtube.com/watch?v=o847FkiiaGA"
+      "link": "https://www.youtube.com/watch?v=o847FkiiaGA",
+      "ingredients": [
+        {
+          "en": "Tom yum paste / herbs",
+          "qty": "2 tbsp",
+          "fil": "Tom yum paste",
+          "zh": "冬陰酱／香料"
+        },
+        {
+          "en": "Prawns or chicken",
+          "qty": "200g",
+          "fil": "Hipon o manok",
+          "zh": "蝦或雞"
+        },
+        {
+          "en": "Garlic / ginger / spring onion",
+          "qty": "to taste",
+          "fil": "Bawang / luya / sibuyas",
+          "zh": "蒜／薑／蔥"
+        },
+        {
+          "en": "Water or stock",
+          "qty": "800ml–1L",
+          "fil": "Tubig o stock",
+          "zh": "水或湯底"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook soup gently. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ang sabaw nang dahan-dahan. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。慢火煲湯。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Tom yum soup"
     },
     {
       "id": "d-134",
@@ -551,7 +2381,39 @@
       "nameEn": "⼤⾖芽炒⾖⼘",
       "category": "Vegetable",
       "subCategory": "Bean Sprouts",
-      "link": "https://www.youtube.com/watch?v=yxfSxW_LyFg"
+      "link": "https://www.youtube.com/watch?v=yxfSxW_LyFg",
+      "ingredients": [
+        {
+          "en": "Bean sprouts",
+          "qty": "200g",
+          "fil": "Toge",
+          "zh": "豆芽"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⼤⾖芽炒⾖⼘"
     },
     {
       "id": "d-139",
@@ -560,7 +2422,39 @@
       "nameEn": "⽇式麻油涼拌⾖芽",
       "category": "Vegetable",
       "subCategory": "Bean Sprouts",
-      "link": "https://youtu.be/sl73vhklNkQ?si=OCeuVkn_1Rlshc1D"
+      "link": "https://youtu.be/sl73vhklNkQ?si=OCeuVkn_1Rlshc1D",
+      "ingredients": [
+        {
+          "en": "Bean sprouts",
+          "qty": "200g",
+          "fil": "Toge",
+          "zh": "豆芽"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽇式麻油涼拌⾖芽"
     },
     {
       "id": "d-140",
@@ -569,7 +2463,45 @@
       "nameEn": "氣炸鍋翠⽟瓜",
       "category": "Vegetable",
       "subCategory": "Jade Melon",
-      "link": "https://www.youtube.com/watch?v=EL5XiHRoK5Y"
+      "link": "https://www.youtube.com/watch?v=EL5XiHRoK5Y",
+      "ingredients": [
+        {
+          "en": "Zucchini / green melon",
+          "qty": "1–2",
+          "fil": "Zucchini",
+          "zh": "翠肉瓜"
+        },
+        {
+          "en": "Oil spray / little oil",
+          "qty": "as needed",
+          "fil": "Mantika",
+          "zh": "少許油"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "氣炸鍋翠⽟瓜"
     },
     {
       "id": "d-150",
@@ -578,7 +2510,45 @@
       "nameEn": "泡菜炒豬⾁",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=Af0RNTLzLjY"
+      "link": "https://www.youtube.com/watch?v=Af0RNTLzLjY",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Kimchi",
+          "qty": "150–200g",
+          "fil": "Kimchi",
+          "zh": "泡菜"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "泡菜炒豬⾁"
     },
     {
       "id": "d-160",
@@ -587,7 +2557,39 @@
       "nameEn": "煎蛋⾓",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=mqtJD630Blc"
+      "link": "https://www.youtube.com/watch?v=mqtJD630Blc",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "煎蛋⾓"
     },
     {
       "id": "d-240",
@@ -596,7 +2598,45 @@
       "nameEn": "午餐⾁炒滑蛋",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=DObzF19hPtg"
+      "link": "https://www.youtube.com/watch?v=DObzF19hPtg",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "午餐⾁炒滑蛋"
     },
     {
       "id": "d-270",
@@ -605,16 +2645,86 @@
       "nameEn": "年糕加泡菜",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=jQjO-zjPHUY"
+      "link": "https://www.youtube.com/watch?v=jQjO-zjPHUY",
+      "ingredients": [
+        {
+          "en": "Kimchi",
+          "qty": "150–200g",
+          "fil": "Kimchi",
+          "zh": "泡菜"
+        },
+        {
+          "en": "Korean rice cake (tteok)",
+          "qty": "200g",
+          "fil": "Korean rice cake",
+          "zh": "年糕"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "年糕加泡菜"
     },
     {
       "id": "d-280",
       "index": 280,
       "name": "蒸⽔蛋",
-      "nameEn": "蒸⽔蛋",
+      "nameEn": "Steamed egg custard",
       "category": "Meat",
       "subCategory": "Egg",
-      "link": "https://www.youtube.com/watch?v=5xSi9IKYelQ"
+      "link": "https://www.youtube.com/watch?v=5xSi9IKYelQ",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Steamed egg custard"
     },
     {
       "id": "d-290",
@@ -623,7 +2733,39 @@
       "nameEn": "脆⽪煎雞扒",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=nmri0nKRvWQ"
+      "link": "https://www.youtube.com/watch?v=nmri0nKRvWQ",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "脆⽪煎雞扒"
     },
     {
       "id": "d-300",
@@ -632,7 +2774,45 @@
       "nameEn": "⽩酒忌廉煮藍⻘⼝",
       "category": "Meat",
       "subCategory": "Mussels",
-      "link": "https://www.youtube.com/watch?v=3rZCXQ521Bk"
+      "link": "https://www.youtube.com/watch?v=3rZCXQ521Bk",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "White wine + cream (or milk)",
+          "qty": "as in video",
+          "fil": "Wine + cream",
+          "zh": "白酒＋忌廉"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽩酒忌廉煮藍⻘⼝"
     },
     {
       "id": "d-310",
@@ -641,7 +2821,39 @@
       "nameEn": "蒜粒煎三⽂⿂",
       "category": "Meat",
       "subCategory": "Salmon",
-      "link": "https://www.youtube.com/watch?v=NS7zYZ6k4UE"
+      "link": "https://www.youtube.com/watch?v=NS7zYZ6k4UE",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜粒煎三⽂⿂"
     },
     {
       "id": "d-320",
@@ -650,7 +2862,45 @@
       "nameEn": "咸⽜⾁蛋餅",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=YgCCyT5LGgU"
+      "link": "https://www.youtube.com/watch?v=YgCCyT5LGgU",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "咸⽜⾁蛋餅"
     },
     {
       "id": "d-330",
@@ -659,7 +2909,39 @@
       "nameEn": "韓式燜⽜仔⾻",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=hwRw-ciesfs"
+      "link": "https://www.youtube.com/watch?v=hwRw-ciesfs",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "韓式燜⽜仔⾻"
     },
     {
       "id": "d-340",
@@ -668,7 +2950,45 @@
       "nameEn": "炒飯加蛋⿈",
       "category": "Meat",
       "subCategory": "Egg",
-      "link": "https://www.youtube.com/shorts/dpVkYEjl20w"
+      "link": "https://www.youtube.com/shorts/dpVkYEjl20w",
+      "ingredients": [
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "炒飯加蛋⿈"
     },
     {
       "id": "d-360",
@@ -677,7 +2997,45 @@
       "nameEn": "椒鹽松阪豬",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=1pjgs61Tvs8"
+      "link": "https://www.youtube.com/watch?v=1pjgs61Tvs8",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Salt & pepper seasoning",
+          "qty": "1 tsp",
+          "fil": "Asin at paminta",
+          "zh": "椒鹽"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "椒鹽松阪豬"
     },
     {
       "id": "d-380",
@@ -686,7 +3044,51 @@
       "nameEn": "孜然洋葱爆⽺⾁卷",
       "category": "Meat",
       "subCategory": "Mutton",
-      "link": "https://www.youtube.com/watch?v=OjPhh_6Hnr8"
+      "link": "https://www.youtube.com/watch?v=OjPhh_6Hnr8",
+      "ingredients": [
+        {
+          "en": "Lamb / mutton",
+          "qty": "300g",
+          "fil": "Kordero",
+          "zh": "羊肉"
+        },
+        {
+          "en": "Onion",
+          "qty": "1",
+          "fil": "Sibuyas",
+          "zh": "洋蔥"
+        },
+        {
+          "en": "Cumin powder",
+          "qty": "1 tsp",
+          "fil": "Cumin",
+          "zh": "孜然"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "孜然洋葱爆⽺⾁卷"
     },
     {
       "id": "d-390",
@@ -695,7 +3097,51 @@
       "nameEn": "Salt and Pepper Egg Tofu",
       "category": "Meat",
       "subCategory": "Egg",
-      "link": "https://www.youtube.com/watch?v=3QSEWr5JZfA"
+      "link": "https://www.youtube.com/watch?v=3QSEWr5JZfA",
+      "ingredients": [
+        {
+          "en": "Tofu",
+          "qty": "1 block",
+          "fil": "Tofu",
+          "zh": "豆腐"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Salt & pepper seasoning",
+          "qty": "1 tsp",
+          "fil": "Asin at paminta",
+          "zh": "椒鹽"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Salt and Pepper Egg Tofu"
     },
     {
       "id": "d-410",
@@ -704,7 +3150,51 @@
       "nameEn": "香茅豬扒飯",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/shorts/HlTJAU65u0c"
+      "link": "https://www.youtube.com/shorts/HlTJAU65u0c",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Lemongrass",
+          "qty": "1–2 stalks",
+          "fil": "Tanglad",
+          "zh": "香茅"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "香茅豬扒飯"
     },
     {
       "id": "d-430",
@@ -713,7 +3203,33 @@
       "nameEn": "⻄多⼠",
       "category": "Meat",
       "subCategory": "Egg",
-      "link": "https://www.youtube.com/watch?v=XHtgKA6wC3A"
+      "link": "https://www.youtube.com/watch?v=XHtgKA6wC3A",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⻄多⼠"
     },
     {
       "id": "d-450",
@@ -722,7 +3238,51 @@
       "nameEn": "沙嗲⽜仔⾻粉絲煲",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=_opvm6QW7EQ"
+      "link": "https://www.youtube.com/watch?v=_opvm6QW7EQ",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Noodles / pasta (as in video)",
+          "qty": "200g",
+          "fil": "Pancit / pasta",
+          "zh": "粉／麵（見影片）"
+        },
+        {
+          "en": "Satay sauce",
+          "qty": "3 tbsp",
+          "fil": "Satay sauce",
+          "zh": "沙嗲醬"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "沙嗲⽜仔⾻粉絲煲"
     },
     {
       "id": "d-470",
@@ -731,7 +3291,39 @@
       "nameEn": "泰式炒⾦邊粉",
       "category": "Meat",
       "subCategory": "Shrimp",
-      "link": "https://www.youtube.com/watch?v=lif7qbGo8JI"
+      "link": "https://www.youtube.com/watch?v=lif7qbGo8JI",
+      "ingredients": [
+        {
+          "en": "Noodles / pasta (as in video)",
+          "qty": "200g",
+          "fil": "Pancit / pasta",
+          "zh": "粉／麵（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "泰式炒⾦邊粉"
     },
     {
       "id": "d-480",
@@ -740,7 +3332,45 @@
       "nameEn": "蒜蓉⽜油⾦菇肥⽜卷",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/shorts/G2CVOw7HNwk"
+      "link": "https://www.youtube.com/shorts/G2CVOw7HNwk",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜蓉⽜油⾦菇肥⽜卷"
     },
     {
       "id": "d-530",
@@ -749,7 +3379,51 @@
       "nameEn": "雞⾁椰菜花飯",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=bYIfBkkKqCI"
+      "link": "https://www.youtube.com/watch?v=bYIfBkkKqCI",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Broccoli / cauliflower",
+          "qty": "1 head",
+          "fil": "Broccoli / cauliflower",
+          "zh": "椰菜花／西蘭花"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "雞⾁椰菜花飯"
     },
     {
       "id": "d-540",
@@ -758,7 +3432,51 @@
       "nameEn": "氣炸香茅豬扒",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=gQLetw70QwE"
+      "link": "https://www.youtube.com/watch?v=gQLetw70QwE",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Oil spray / little oil",
+          "qty": "as needed",
+          "fil": "Mantika",
+          "zh": "少許油"
+        },
+        {
+          "en": "Lemongrass",
+          "qty": "1–2 stalks",
+          "fil": "Tanglad",
+          "zh": "香茅"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "氣炸香茅豬扒"
     },
     {
       "id": "d-560",
@@ -767,16 +3485,86 @@
       "nameEn": "氣炸粟⽶班塊",
       "category": "Meat",
       "subCategory": "Fish",
-      "link": "https://www.youtube.com/watch?v=gJmWo0VUwSg"
+      "link": "https://www.youtube.com/watch?v=gJmWo0VUwSg",
+      "ingredients": [
+        {
+          "en": "Oil spray / little oil",
+          "qty": "as needed",
+          "fil": "Mantika",
+          "zh": "少許油"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "氣炸粟⽶班塊"
     },
     {
       "id": "d-590",
       "index": 590,
       "name": "泰式⻘咖喱雞",
-      "nameEn": "泰式⻘咖喱雞",
+      "nameEn": "Thai green curry chicken",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=ouXZKAtDB_E"
+      "link": "https://www.youtube.com/watch?v=ouXZKAtDB_E",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Curry paste / powder",
+          "qty": "2 tbsp",
+          "fil": "Curry",
+          "zh": "咖喱"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Thai green curry chicken"
     },
     {
       "id": "d-600",
@@ -785,7 +3573,45 @@
       "nameEn": "⽇式味噌鮭⿂",
       "category": "Meat",
       "subCategory": "Fish",
-      "link": "https://www.youtube.com/watch?v=3xuVPEKrEyw"
+      "link": "https://www.youtube.com/watch?v=3xuVPEKrEyw",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Miso paste",
+          "qty": "1–2 tbsp",
+          "fil": "Miso",
+          "zh": "味噌"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽇式味噌鮭⿂"
     },
     {
       "id": "d-610",
@@ -794,7 +3620,39 @@
       "nameEn": "香脆蒜⽚⽜肋條",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=NR6_zsSuZcs"
+      "link": "https://www.youtube.com/watch?v=NR6_zsSuZcs",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "香脆蒜⽚⽜肋條"
     },
     {
       "id": "d-630",
@@ -803,7 +3661,45 @@
       "nameEn": "蒜香⽜油雞翼",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=-SiFIaki32k"
+      "link": "https://www.youtube.com/watch?v=-SiFIaki32k",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜香⽜油雞翼"
     },
     {
       "id": "d-660",
@@ -812,7 +3708,45 @@
       "nameEn": "⽺⾁蘿蔔",
       "category": "Meat",
       "subCategory": "Mutton",
-      "link": "https://www.youtube.com/watch?v=sDKl9DnVjhs"
+      "link": "https://www.youtube.com/watch?v=sDKl9DnVjhs",
+      "ingredients": [
+        {
+          "en": "Lamb / mutton",
+          "qty": "300g",
+          "fil": "Kordero",
+          "zh": "羊肉"
+        },
+        {
+          "en": "Carrot / white radish",
+          "qty": "1",
+          "fil": "Carrot / labanos",
+          "zh": "蘿蔔"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽺⾁蘿蔔"
     },
     {
       "id": "d-670",
@@ -821,7 +3755,45 @@
       "nameEn": "⾁碎⾖腐蛋",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=HALoIK2wZIE"
+      "link": "https://www.youtube.com/watch?v=HALoIK2wZIE",
+      "ingredients": [
+        {
+          "en": "Tofu",
+          "qty": "1 block",
+          "fil": "Tofu",
+          "zh": "豆腐"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾁碎⾖腐蛋"
     },
     {
       "id": "d-710",
@@ -830,7 +3802,39 @@
       "nameEn": "煎⽜肋條",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=Fur13oPcnx4"
+      "link": "https://www.youtube.com/watch?v=Fur13oPcnx4",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "煎⽜肋條"
     },
     {
       "id": "d-720",
@@ -839,7 +3843,39 @@
       "nameEn": "芝⼠汁瑞典⾁丸",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=g2FUJW5lfCk"
+      "link": "https://www.youtube.com/watch?v=g2FUJW5lfCk",
+      "ingredients": [
+        {
+          "en": "Cheese",
+          "qty": "as needed",
+          "fil": "Cheese",
+          "zh": "芝士"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "芝⼠汁瑞典⾁丸"
     },
     {
       "id": "d-730",
@@ -848,7 +3884,39 @@
       "nameEn": "燒比⽬⿂扒",
       "category": "Meat",
       "subCategory": "Fish",
-      "link": "https://www.youtube.com/watch?v=cdpGEUHNZxg"
+      "link": "https://www.youtube.com/watch?v=cdpGEUHNZxg",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "燒比⽬⿂扒"
     },
     {
       "id": "d-750",
@@ -857,7 +3925,39 @@
       "nameEn": "簡易滷⽔雞髀",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=fOD6HRHXC84&t=507s"
+      "link": "https://www.youtube.com/watch?v=fOD6HRHXC84&t=507s",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "簡易滷⽔雞髀"
     },
     {
       "id": "d-760",
@@ -866,7 +3966,45 @@
       "nameEn": "⽩酒忌廉煮⻘⼝",
       "category": "Meat",
       "subCategory": "Mussels",
-      "link": "https://www.youtube.com/watch?v=RWaJGQGUGus"
+      "link": "https://www.youtube.com/watch?v=RWaJGQGUGus",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "White wine + cream (or milk)",
+          "qty": "as in video",
+          "fil": "Wine + cream",
+          "zh": "白酒＋忌廉"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽩酒忌廉煮⻘⼝"
     },
     {
       "id": "d-770",
@@ -875,7 +4013,39 @@
       "nameEn": "蔥醬⽜⾁",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=w8B-uH1NdBQ"
+      "link": "https://www.youtube.com/watch?v=w8B-uH1NdBQ",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蔥醬⽜⾁"
     },
     {
       "id": "d-780",
@@ -884,7 +4054,33 @@
       "nameEn": "蒸⿂",
       "category": "Meat",
       "subCategory": "Fish",
-      "link": "https://www.youtube.com/watch?v=sNII5QG-ZSc"
+      "link": "https://www.youtube.com/watch?v=sNII5QG-ZSc",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒸⿂"
     },
     {
       "id": "d-790",
@@ -893,16 +4089,92 @@
       "nameEn": "氣炸鍋吉列豬扒",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=gAHw5d848kI"
+      "link": "https://www.youtube.com/watch?v=gAHw5d848kI",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Oil spray / little oil",
+          "qty": "as needed",
+          "fil": "Mantika",
+          "zh": "少許油"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "氣炸鍋吉列豬扒"
     },
     {
       "id": "d-800",
       "index": 800,
       "name": "三杯雞",
-      "nameEn": "三杯雞",
+      "nameEn": "Three-cup chicken",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=GypJSO9IcRw"
+      "link": "https://www.youtube.com/watch?v=GypJSO9IcRw",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Sesame oil, soy sauce, rice wine",
+          "qty": "2 tbsp each",
+          "fil": "Sesame oil, toyo, rice wine",
+          "zh": "麻油、豉油、米酒"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Three-cup chicken"
     },
     {
       "id": "d-820",
@@ -911,7 +4183,39 @@
       "nameEn": "香煎三⽂⿂扒",
       "category": "Meat",
       "subCategory": "Salmon",
-      "link": "https://www.youtube.com/watch?v=Dkm16TgqwxY"
+      "link": "https://www.youtube.com/watch?v=Dkm16TgqwxY",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "香煎三⽂⿂扒"
     },
     {
       "id": "d-840",
@@ -920,7 +4224,45 @@
       "nameEn": "味噌拌炒雞腿定食",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=U6nsyy5GT8c"
+      "link": "https://www.youtube.com/watch?v=U6nsyy5GT8c",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Miso paste",
+          "qty": "1–2 tbsp",
+          "fil": "Miso",
+          "zh": "味噌"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "味噌拌炒雞腿定食"
     },
     {
       "id": "d-890",
@@ -929,7 +4271,39 @@
       "nameEn": "⽇式洋蔥豚⾁⽚",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=tL-OPrKPWzQ"
+      "link": "https://www.youtube.com/watch?v=tL-OPrKPWzQ",
+      "ingredients": [
+        {
+          "en": "Onion",
+          "qty": "1",
+          "fil": "Sibuyas",
+          "zh": "洋蔥"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽇式洋蔥豚⾁⽚"
     },
     {
       "id": "d-910",
@@ -938,7 +4312,39 @@
       "nameEn": "姜蔥炒花蛤",
       "category": "Meat",
       "subCategory": "Scallion",
-      "link": "https://www.youtube.com/watch?v=wqQLNKskfWs"
+      "link": "https://www.youtube.com/watch?v=wqQLNKskfWs",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "姜蔥炒花蛤"
     },
     {
       "id": "d-940",
@@ -947,7 +4353,33 @@
       "nameEn": "葱油鸡丝",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.instagram.com/reel/C10zCRVsw-x/?igsh=dnR2ZHppd2IxeWQy"
+      "link": "https://www.instagram.com/reel/C10zCRVsw-x/?igsh=dnR2ZHppd2IxeWQy",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "葱油鸡丝"
     },
     {
       "id": "d-960",
@@ -956,7 +4388,39 @@
       "nameEn": "香煎⿈花⿂",
       "category": "Meat",
       "subCategory": "Croaker",
-      "link": "https://www.youtube.com/watch?v=Qy4o2UiVESA"
+      "link": "https://www.youtube.com/watch?v=Qy4o2UiVESA",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "香煎⿈花⿂"
     },
     {
       "id": "d-970",
@@ -965,7 +4429,45 @@
       "nameEn": "蒜蓉⽜油烤雞",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=WKQPlXxiGWY"
+      "link": "https://www.youtube.com/watch?v=WKQPlXxiGWY",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蒜蓉⽜油烤雞"
     },
     {
       "id": "d-990",
@@ -974,7 +4476,45 @@
       "nameEn": "⾦菇肥⽜卷",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=zgmUpjZ58_Q"
+      "link": "https://www.youtube.com/watch?v=zgmUpjZ58_Q",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Mushrooms (as in video)",
+          "qty": "200g",
+          "fil": "Kabute (ayon sa video)",
+          "zh": "菇（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾦菇肥⽜卷"
     },
     {
       "id": "d-1000",
@@ -983,7 +4523,39 @@
       "nameEn": "雞胸",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/shorts/6ptYPtHo2ho"
+      "link": "https://www.youtube.com/shorts/6ptYPtHo2ho",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "雞胸"
     },
     {
       "id": "d-1030",
@@ -992,7 +4564,39 @@
       "nameEn": "⽔煎五花⾁",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=GWMeNWwFl8Y"
+      "link": "https://www.youtube.com/watch?v=GWMeNWwFl8Y",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽔煎五花⾁"
     },
     {
       "id": "d-1060",
@@ -1001,7 +4605,39 @@
       "nameEn": "韓式⽜肋條",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=NEQmeRfB_hI"
+      "link": "https://www.youtube.com/watch?v=NEQmeRfB_hI",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "韓式⽜肋條"
     },
     {
       "id": "d-1070",
@@ -1010,7 +4646,45 @@
       "nameEn": "蝦仁 嫩滑蒸⽔蛋",
       "category": "Meat",
       "subCategory": "Shrimp",
-      "link": "https://www.youtube.com/watch?v=wq8R6c5P_uw"
+      "link": "https://www.youtube.com/watch?v=wq8R6c5P_uw",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蝦仁 嫩滑蒸⽔蛋"
     },
     {
       "id": "d-1080",
@@ -1019,7 +4693,39 @@
       "nameEn": "Thai Basil Chicken",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=0XBb1AuECcY"
+      "link": "https://www.youtube.com/watch?v=0XBb1AuECcY",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "Thai Basil Chicken"
     },
     {
       "id": "d-1090",
@@ -1028,7 +4734,45 @@
       "nameEn": "蜜糖雞翼",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=4NFAMnNbBQA"
+      "link": "https://www.youtube.com/watch?v=4NFAMnNbBQA",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Honey",
+          "qty": "2 tbsp",
+          "fil": "Honey",
+          "zh": "蜜糖"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蜜糖雞翼"
     },
     {
       "id": "d-1100",
@@ -1037,7 +4781,51 @@
       "nameEn": "⿊椒 洋蔥 ⽜仔⾻",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=bA_uK2aNQwc"
+      "link": "https://www.youtube.com/watch?v=bA_uK2aNQwc",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Onion",
+          "qty": "1",
+          "fil": "Sibuyas",
+          "zh": "洋蔥"
+        },
+        {
+          "en": "Black pepper",
+          "qty": "1 tsp",
+          "fil": "Paminta",
+          "zh": "黑椒"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⿊椒 洋蔥 ⽜仔⾻"
     },
     {
       "id": "d-1110",
@@ -1046,7 +4834,45 @@
       "nameEn": "和風⽩汁雞皇飯",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=lGMqmfOfFNg"
+      "link": "https://www.youtube.com/watch?v=lGMqmfOfFNg",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "和風⽩汁雞皇飯"
     },
     {
       "id": "d-1150",
@@ -1055,7 +4881,39 @@
       "nameEn": "香草煎⽺架",
       "category": "Meat",
       "subCategory": "Mutton",
-      "link": "https://www.youtube.com/watch?v=juT3-BgIHvY"
+      "link": "https://www.youtube.com/watch?v=juT3-BgIHvY",
+      "ingredients": [
+        {
+          "en": "Lamb / mutton",
+          "qty": "300g",
+          "fil": "Kordero",
+          "zh": "羊肉"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "香草煎⽺架"
     },
     {
       "id": "d-1160",
@@ -1064,7 +4922,39 @@
       "nameEn": "⾁碎扒⾖腐",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=2DmTbA4igPQ"
+      "link": "https://www.youtube.com/watch?v=2DmTbA4igPQ",
+      "ingredients": [
+        {
+          "en": "Tofu",
+          "qty": "1 block",
+          "fil": "Tofu",
+          "zh": "豆腐"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾁碎扒⾖腐"
     },
     {
       "id": "d-1170",
@@ -1073,7 +4963,39 @@
       "nameEn": "4款商業雞胸⾁醃料配⽅",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=q_spu9rxZXk"
+      "link": "https://www.youtube.com/watch?v=q_spu9rxZXk",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "4款商業雞胸⾁醃料配⽅"
     },
     {
       "id": "d-1200",
@@ -1082,7 +5004,45 @@
       "nameEn": "⾖腐蒸⽔蛋",
       "category": "Meat",
       "subCategory": "Egg",
-      "link": "https://www.youtube.com/watch?v=uUXZym0butc"
+      "link": "https://www.youtube.com/watch?v=uUXZym0butc",
+      "ingredients": [
+        {
+          "en": "Tofu",
+          "qty": "1 block",
+          "fil": "Tofu",
+          "zh": "豆腐"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⾖腐蒸⽔蛋"
     },
     {
       "id": "d-1220",
@@ -1091,7 +5051,57 @@
       "nameEn": "⽩咖喱香茅豬扒飯",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=rqSg7o6svd8"
+      "link": "https://www.youtube.com/watch?v=rqSg7o6svd8",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Curry paste / powder",
+          "qty": "2 tbsp",
+          "fil": "Curry",
+          "zh": "咖喱"
+        },
+        {
+          "en": "Lemongrass",
+          "qty": "1–2 stalks",
+          "fil": "Tanglad",
+          "zh": "香茅"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽩咖喱香茅豬扒飯"
     },
     {
       "id": "d-1230",
@@ -1100,7 +5110,33 @@
       "nameEn": "⼟⾖虾滑卷",
       "category": "Meat",
       "subCategory": "Shrimp",
-      "link": "https://www.instagram.com/reel/C5NIKjEoCrf/?igsh=aXV1YnpwNjdhZ2Rx"
+      "link": "https://www.instagram.com/reel/C5NIKjEoCrf/?igsh=aXV1YnpwNjdhZ2Rx",
+      "ingredients": [
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⼟⾖虾滑卷"
     },
     {
       "id": "d-1280",
@@ -1109,7 +5145,45 @@
       "nameEn": "三⽂⿂蛋餅",
       "category": "Meat",
       "subCategory": "Salmon",
-      "link": "https://www.youtube.com/watch?v=SufZPm_hKwY"
+      "link": "https://www.youtube.com/watch?v=SufZPm_hKwY",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Eggs",
+          "qty": "2–4",
+          "fil": "Itlog",
+          "zh": "蛋"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "三⽂⿂蛋餅"
     },
     {
       "id": "d-1310",
@@ -1118,7 +5192,45 @@
       "nameEn": "⽇式咖喱炆⽜肋條",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=RjAkBnX4wxs"
+      "link": "https://www.youtube.com/watch?v=RjAkBnX4wxs",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Curry paste / powder",
+          "qty": "2 tbsp",
+          "fil": "Curry",
+          "zh": "咖喱"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽇式咖喱炆⽜肋條"
     },
     {
       "id": "d-1320",
@@ -1127,7 +5239,45 @@
       "nameEn": "菠蘿⾺沙⽂咖哩⽜筋腩",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=NHLhALLhGg4"
+      "link": "https://www.youtube.com/watch?v=NHLhALLhGg4",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Curry paste / powder",
+          "qty": "2 tbsp",
+          "fil": "Curry",
+          "zh": "咖喱"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "菠蘿⾺沙⽂咖哩⽜筋腩"
     },
     {
       "id": "d-1350",
@@ -1136,7 +5286,45 @@
       "nameEn": "孜然⽺⾁粒",
       "category": "Meat",
       "subCategory": "Mutton",
-      "link": "https://www.youtube.com/watch?v=dWVbr2uBOfc"
+      "link": "https://www.youtube.com/watch?v=dWVbr2uBOfc",
+      "ingredients": [
+        {
+          "en": "Lamb / mutton",
+          "qty": "300g",
+          "fil": "Kordero",
+          "zh": "羊肉"
+        },
+        {
+          "en": "Cumin powder",
+          "qty": "1 tsp",
+          "fil": "Cumin",
+          "zh": "孜然"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "孜然⽺⾁粒"
     },
     {
       "id": "d-1360",
@@ -1145,7 +5333,45 @@
       "nameEn": "檸檬蒜蝦飯",
       "category": "Meat",
       "subCategory": "Shrimp",
-      "link": "https://www.instagram.com/reel/C6fSecyvi2q/?igsh=OHVzOWticXNrb254"
+      "link": "https://www.instagram.com/reel/C6fSecyvi2q/?igsh=OHVzOWticXNrb254",
+      "ingredients": [
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "檸檬蒜蝦飯"
     },
     {
       "id": "d-1370",
@@ -1154,7 +5380,57 @@
       "nameEn": "蜜糖⿊椒薯仔⽜柳粒",
       "category": "Meat",
       "subCategory": "Beef",
-      "link": "https://www.youtube.com/watch?v=MCoeO0EQNF8"
+      "link": "https://www.youtube.com/watch?v=MCoeO0EQNF8",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Potato",
+          "qty": "2",
+          "fil": "Patatas",
+          "zh": "薯仔"
+        },
+        {
+          "en": "Honey",
+          "qty": "2 tbsp",
+          "fil": "Honey",
+          "zh": "蜜糖"
+        },
+        {
+          "en": "Black pepper",
+          "qty": "1 tsp",
+          "fil": "Paminta",
+          "zh": "黑椒"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "蜜糖⿊椒薯仔⽜柳粒"
     },
     {
       "id": "d-1380",
@@ -1163,7 +5439,51 @@
       "nameEn": "⽇式豬排咖喱飯",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=Nplo7H6wMJ4"
+      "link": "https://www.youtube.com/watch?v=Nplo7H6wMJ4",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Rice",
+          "qty": "2 cups cooked",
+          "fil": "Kanin",
+          "zh": "飯"
+        },
+        {
+          "en": "Curry paste / powder",
+          "qty": "2 tbsp",
+          "fil": "Curry",
+          "zh": "咖喱"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽇式豬排咖喱飯"
     },
     {
       "id": "d-1410",
@@ -1172,7 +5492,45 @@
       "nameEn": "XO醬豬頸⾁炒荷蘭⾖",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=wV-pdfsIPl0"
+      "link": "https://www.youtube.com/watch?v=wV-pdfsIPl0",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "XO sauce",
+          "qty": "1–2 tbsp",
+          "fil": "XO sauce",
+          "zh": "XO醬"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "XO醬豬頸⾁炒荷蘭⾖"
     },
     {
       "id": "d-1430",
@@ -1181,7 +5539,39 @@
       "nameEn": "泰式豬頸⾁",
       "category": "Meat",
       "subCategory": "Pork",
-      "link": "https://www.youtube.com/watch?v=d9aCDyguT_E"
+      "link": "https://www.youtube.com/watch?v=d9aCDyguT_E",
+      "ingredients": [
+        {
+          "en": "Pork (as in video)",
+          "qty": "300g",
+          "fil": "Baboy (ayon sa video)",
+          "zh": "豬肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "泰式豬頸⾁"
     },
     {
       "id": "d-1440",
@@ -1190,7 +5580,39 @@
       "nameEn": "涼拌麻醬雞絲粉⽪",
       "category": "Meat",
       "subCategory": "Chicken",
-      "link": "https://www.youtube.com/watch?v=WQbV_PrwC2o"
+      "link": "https://www.youtube.com/watch?v=WQbV_PrwC2o",
+      "ingredients": [
+        {
+          "en": "Chicken (as in video)",
+          "qty": "300–500g",
+          "fil": "Manok (ayon sa video)",
+          "zh": "雞肉（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "涼拌麻醬雞絲粉⽪"
     },
     {
       "id": "d-1450",
@@ -1199,7 +5621,45 @@
       "nameEn": "⽜油蒜⽚香煎比⽬⿂",
       "category": "Meat",
       "subCategory": "Fish",
-      "link": "https://www.youtube.com/watch?v=Aoa4hBMMC_g"
+      "link": "https://www.youtube.com/watch?v=Aoa4hBMMC_g",
+      "ingredients": [
+        {
+          "en": "Beef (as in video)",
+          "qty": "300–500g",
+          "fil": "Baka (ayon sa video)",
+          "zh": "牛肉（見影片）"
+        },
+        {
+          "en": "Seafood (as in video)",
+          "qty": "300g",
+          "fil": "Seafood (ayon sa video)",
+          "zh": "海鮮（見影片）"
+        },
+        {
+          "en": "Garlic",
+          "qty": "2–3 cloves",
+          "fil": "Bawang",
+          "zh": "蒜"
+        },
+        {
+          "en": "Ginger",
+          "qty": "a few slices",
+          "fil": "Luya",
+          "zh": "薑"
+        },
+        {
+          "en": "Spring onion",
+          "qty": "2 stalks",
+          "fil": "Sibuyas dahon",
+          "zh": "蔥"
+        }
+      ],
+      "prepNotes": {
+        "en": "Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook on medium heat. Ask Sir/Mum if unsure about seasoning.",
+        "fil": "Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin sa medium heat. Tanungin si Sir/Mum kung hindi sure sa lasa.",
+        "zh": "影片多為廣東話，先備好材料。中火烹調。調味不肯定請問 Sir/Mum。"
+      },
+      "nameFil": "⽜油蒜⽚香煎比⽬⿂"
     }
   ]
 }

@@ -300,10 +300,10 @@ function heuristicAnswer(
   ) {
     if (!snap.tonight) {
       return lang === "fil"
-        ? "Wala pang dinner menu — hindi ko mabigay ang cook helper."
+        ? "Wala pang dinner menu — hindi ko mabigay ang cook guide."
         : lang === "zh"
-          ? "尚未有晚餐菜單，無法提供烹調協助。"
-          : "No dinner menu yet — cannot give cook helper.";
+          ? "尚未有晚餐菜單，無法提供烹調說明。"
+          : "No dinner menu yet — cannot give cook guide.";
     }
     const dishes = [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup];
     const cantoneseNote =
@@ -315,10 +315,10 @@ function heuristicAnswer(
 
     const blocks: string[] = [
       lang === "fil"
-        ? "Cook helper (hapunan ngayong gabi):"
+        ? "Paano magluto (hapunan ngayong gabi):"
         : lang === "zh"
-          ? "烹調協助（今晚晚餐）："
-          : "Cook helper (tonight's dinner):",
+          ? "今晚怎麼煮："
+          : "How to cook tonight:",
       cantoneseNote,
     ];
 
@@ -668,7 +668,7 @@ async function answerWithLlm(
     ? process.env.OPENROUTER_MODEL || "openrouter/free"
     : process.env.OPENAI_MODEL || "gpt-4o-mini";
 
-  const system = `You are the Zizi Family household helper assistant for Charlene (helper), Sir, and Mum.
+  const system = `You are the Zizi Family household assistant for Charlene (family member), Sir, and Mum.
 CRITICAL LANGUAGE RULE: Reply ONLY in ${langName(replyLang)}. Every sentence must be in that language.
 If the user wrote Chinese/English but asked to "reply with Filipino" (or similar), still reply ONLY in ${langName(replyLang)}.
 Do not mix languages except for unavoidable dish proper names — prefer Filipino dish names (nameFil) when replying in Filipino.
@@ -680,7 +680,7 @@ For "what should I do now?", give only the current or next task for CURRENT Hong
 For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
-Do not use the word 姐姐 — say Charlene.
+Do not call Charlene a "helper" or "katulong" or 家務助理 in replies — she is a family member. Do not use the word 姐姐 — say Charlene.
 
 FAMILY LIVE DATA:
 ${knowledge}

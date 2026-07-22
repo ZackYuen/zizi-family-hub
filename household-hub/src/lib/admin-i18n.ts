@@ -3,8 +3,8 @@ import type { Lang } from "./types";
 export const adminLabels = {
   login: { en: "Admin Login", fil: "Admin Login" },
   loginDesc: {
-    en: "Manage ground rules, schedule & meals for Charlene",
-    fil: "Pamahalaan ang mga alituntunin, iskedyul at pagkain para kay Charlene",
+    en: "Manage ground rules, schedule & meals for Charlene and the family",
+    fil: "Pamahalaan ang mga alituntunin, iskedyul at pagkain para kay Charlene at pamilya",
   },
   password: { en: "Password", fil: "Password" },
   signIn: { en: "Sign In", fil: "Mag-sign In" },
@@ -83,7 +83,11 @@ export const adminLabels = {
   },
   translateToFil: { en: "Translate EN → FIL", fil: "Isalin EN → FIL" },
   translating: { en: "Translating...", fil: "Nagsasalin..." },
-  helperName: { en: "Helper Name", fil: "Pangalan ng Katulong" },
+  helperName: {
+    en: "Charlene's name (family member)",
+    fil: "Pangalan ni Charlene (miyembro ng pamilya)",
+    zh: "Charlene 的名字（家人）",
+  },
   familyName: { en: "Family Name", fil: "Pangalan ng Pamilya" },
   schoolEn: { en: "Zizi School (English)", fil: "Eskwelahan ni Zizi (English)" },
   schoolFil: { en: "Zizi School (Filipino)", fil: "Eskwelahan ni Zizi (Filipino)" },

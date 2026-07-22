@@ -27,145 +27,161 @@
     {
       "id": "rule-1",
       "title": {
-        "en": "No Borrowing Money",
-        "fil": "Huwag Humiram ng Pera"
+        "en": "Ask the family before borrowing money",
+        "fil": "Tanungin ang pamilya bago humiram ng pera",
+        "zh": "借錢前先問家人"
       },
       "description": {
-        "en": "Do not borrow money from anyone — employers, neighbours, or other helpers. If you need something, please ask the employer directly.",
-        "fil": "Huwag humiram ng pera mula sa sinuman — employer, kapitbahay, o ibang katulong. Kung may kailangan ka, diretso mong tanungin ang employer."
+        "en": "Please do not borrow money from neighbours, strangers, or other domestic workers. If you need something for daily life or family back home, talk to Sir or Mum — we are here to help you find a safe way.",
+        "fil": "Huwag humiram ng pera sa kapitbahay, estranghero, o ibang domestic worker. Kung may kailangan para sa araw-araw o pamilya sa Pilipinas, kausapin si Sir o Mum — tutulong kami nang ligtas.",
+        "zh": "請不要向鄰居、陌生人或他傭借錢。日常生活或家鄉家用有需要，請告訴 Sir 或 Mum — 我們會一起想安全的辦法。"
       },
       "category": "general",
       "priority": 1,
       "consequences": {
-        "en": "First offence: serious written warning and meeting with employer. Any hidden borrowing or repeat offence: contract terminated immediately, repatriation arranged, and employer may report to the agency.",
-        "fil": "Unang paglabag: seryosong written warning at meeting sa employer. Anumang naitagong paghiram o ulit na paglabag: tatapusin agad ang kontrata, repatriation, at maaaring i-report ng employer sa agency.",
-        "zh": "第一次：嚴正書面警告及與僱主會面。任何隱瞞借錢或再犯：立即終止合約、安排遣返，僱主可向中介報告。"
+        "en": "If Broken: We will talk together first and explain why this protects you. If borrowing continues or is hidden, we will give a clear written reminder and may need to review the work arrangement with the agency.",
+        "fil": "If Broken: Mag-uusap muna tayo at ipapaliwanag kung bakit ito proteksyon para sa'yo. Kung magpatuloy o itago ang paghiram, magbibigay ng written reminder at maaaring i-review ang arrangement sa agency.",
+        "zh": "若違反：會先一起商量並說明這是為了保護你。若繼續或隱瞞借錢，會發出書面提醒，並可能與中介檢討工作安排。"
       }
     },
     {
       "id": "rule-2",
       "title": {
-        "en": "Zizi Comes First",
-        "fil": "Si Zizi ang Unahin"
+        "en": "Zizi comes first — he is our shared priority",
+        "fil": "Si Zizi ang unahin — shared priority natin",
+        "zh": "Zizi 優先 — 我們共同的重心"
       },
       "description": {
-        "en": "Zizi (our son) is the top priority. His meals, nap time, homework, and safety come before other household tasks. If Zizi needs attention, stop other work and help him first.",
-        "fil": "Si Zizi (ang anak namin) ang unang prayoridad. Ang pagkain, tulog, takdang-aralin, at kaligtasan niya ay mas mahalaga kaysa ibang gawaing bahay. Kung kailangan ni Zizi ng tulong, itigil muna ang iba at unahin siya."
+        "en": "You are part of our family team caring for Zizi. His meals, rest, school run, and safety come before other chores. If he needs you, pause other work and be with him.",
+        "fil": "Bahagi ka ng pamilya na nag-aalaga kay Zizi. Ang pagkain, pahinga, school run, at kaligtasan niya ay una bago ang ibang gawain. Kung kailangan ka niya, itigil muna ang iba at samahan siya.",
+        "zh": "你是照顧 Zizi 的家庭一分子。他的膳食、休息、接送與安全優先於其他家務。他需要你時，請先停下手邊工作陪伴他。"
       },
       "category": "childcare",
       "priority": 2,
       "consequences": {
-        "en": "If Zizi is left hungry, unsafe, or unattended because other tasks were prioritised: written warning. Serious neglect or repeat: employment terminated — Zizi's safety is non-negotiable.",
-        "fil": "Kung si Zizi ay gutom, delikado, o walang nagbabantay dahil inuna ang ibang gawain: written warning. Malubhang pagpapabaya o ulit: tatapusin ang trabaho — hindi pwedeng i-kompromiso ang kaligtasan ni Zizi.",
-        "zh": "若因先做其他工作而令 Zizi 餓肚、不安全或無人看管：書面警告。嚴重疏忽或再犯：終止僱傭 — Zizi 的安全絕不可妥協。"
+        "en": "If Broken: We will calmly explain what Zizi needed and practice together. If he was unsafe or left hungry/unattended more than once, we will give a written reminder. Serious neglect may mean we cannot continue living together safely.",
+        "fil": "If Broken: Ipaliwanag nang mahinahon kung ano ang kailangan ni Zizi at magpractice nang magkasama. Kung siya ay naging delikado o gutom/walang bantay nang paulit-ulit, magbibigay ng written reminder. Malubhang pagpapabaya ay maaaring hindi na ligtas magpatuloy.",
+        "zh": "若違反：會溫和說明 Zizi 的需要並一起練習。若多次令他不安全、挨餓或無人看管，會書面提醒。嚴重疏忽時，為安全可能無法繼續同住安排。"
       }
     },
     {
       "id": "rule-3",
       "title": {
-        "en": "Separate Raw & Cooked Meat Tools",
-        "fil": "Hiwalay na Gamit para sa Hilaw at Lutong Karne"
+        "en": "Keep raw and cooked tools separate",
+        "fil": "Hiwalay ang gamit para sa hilaw at luto",
+        "zh": "生熟用具分開"
       },
       "description": {
-        "en": "Always use separate chopping boards and knives for raw (fresh) meat and cooked meat. Never mix them. Wash hands and tools after handling raw meat.",
-        "fil": "Laging gumamit ng hiwalay na chopping board at kutsilyo para sa hilaw (sariwang) karne at lutong karne. Huwag pagsamahin. Maghugas ng kamay at gamit pagkatapos humawak ng hilaw na karne."
+        "en": "Use different chopping boards and knives for raw meat and cooked food. Wash hands and tools after touching raw meat. This keeps everyone — including you — healthy.",
+        "fil": "Gumamit ng iba't ibang chopping board at kutsilyo para sa hilaw na karne at lutong pagkain. Maghugas ng kamay at gamit pagkatapos humawak ng hilaw na karne. Proteksyon ito para sa lahat — kasama ka.",
+        "zh": "生肉與熟食用不同砧板和刀。處理生肉後洗手及清洗用具。這是為全家人（包括你）的健康。"
       },
       "category": "kitchen",
       "priority": 3,
       "consequences": {
-        "en": "Mixing raw and cooked tools can make the family sick. First time: retraining and written warning. If anyone gets ill or it happens again: employment terminated.",
-        "fil": "Ang paghalu ng gamit para sa hilaw at luto ay maaaring magkasakit ang pamilya. Unang beses: retraining at written warning. Kung may magkasakit o maulit: tatapusin ang trabaho.",
-        "zh": "混用生熟用具可令家人病。第一次：重新訓練及書面警告。若有人病或再犯：終止僱傭。"
+        "en": "If Broken: We will retrain gently on food safety. If anyone gets sick or it happens again after reminder, we will give a written reminder and watch kitchen practice more closely.",
+        "fil": "If Broken: Tuturuan ulit nang mabait ang food safety. Kung may magkasakit o maulit pagkatapos ng paalala, magbibigay ng written reminder at mas babantayan ang kusina.",
+        "zh": "若違反：會溫和再教食物安全。若有人生病或提醒後再犯，會書面提醒並更仔細跟進廚房做法。"
       }
     },
     {
       "id": "rule-4",
       "title": {
-        "en": "Label Chopping Boards",
-        "fil": "Lagyan ng Label ang Chopping Board"
+        "en": "Use the labelled chopping boards",
+        "fil": "Gamitin ang may label na chopping board",
+        "zh": "使用已標示的砧板"
       },
       "description": {
-        "en": "Red board & knife = raw meat only. Green board & knife = cooked food / vegetables. Blue board = fish only. Clean and dry after each use.",
-        "fil": "Pula na board at kutsilyo = hilaw na karne lang. Berde na board at kutsilyo = lutong pagkain / gulay. Asul na board = isda lang. Linisin at patuyuin pagkatapos gamitin."
+        "en": "Red = raw meat only. Green = cooked food / vegetables. Blue = fish. Clean and dry after each use. Ask Sir/Mum if labels are unclear.",
+        "fil": "Pula = hilaw na karne lang. Berde = lutong pagkain / gulay. Asul = isda. Linisin at patuyuin pagkatapos. Tanungin si Sir/Mum kung hindi clear ang label.",
+        "zh": "紅＝生肉。綠＝熟食／蔬菜。藍＝魚。用後洗淨抹乾。標籤不清請問 Sir/Mum。"
       },
       "category": "kitchen",
       "priority": 4,
       "consequences": {
-        "en": "Using the wrong board risks food poisoning. First time: written warning and supervised retraining. Repeat or if family falls ill: employment terminated.",
-        "fil": "Maling board ay delikado sa pagkain. Unang beses: written warning at supervised retraining. Ulit o kung may magkasakit sa pamilya: tatapusin ang trabaho.",
-        "zh": "用錯砧板可導致食物中毒。第一次：書面警告及在監督下重新訓練。再犯或家人病：終止僱傭。"
+        "en": "If Broken: We will show the boards again together. Repeat use of the wrong board: written reminder. If it causes illness, we will review kitchen duties with you carefully.",
+        "fil": "If Broken: Ipapakita ulit ang boards nang magkasama. Ulit na maling board: written reminder. Kung may magkasakit, i-review nang maingat ang kitchen duties.",
+        "zh": "若違反：會再一起示範砧板。再犯用錯：書面提醒。若引致病，會仔細檢討廚房分工。"
       }
     },
     {
       "id": "rule-5",
       "title": {
-        "en": "Daily Rest Time",
-        "fil": "Araw-araw na Oras ng Pahinga"
+        "en": "Rest after urgent family needs are done",
+        "fil": "Magpahinga pagkatapos ng urgent na pangangailangan ng pamilya",
+        "zh": "完成緊急家事後再休息"
       },
       "description": {
-        "en": "You have a rest break every day as agreed. Please finish urgent tasks for Zizi before resting.",
-        "fil": "May oras ka ng pahinga araw-araw ayon sa kasunduan. Tapusin muna ang mga urgent na gawain para kay Zizi bago magpahinga."
+        "en": "You deserve daily rest. Please finish urgent needs for Zizi first (meals, school run, safety), then enjoy your break. Rest helps you stay well in Hong Kong.",
+        "fil": "May karapatan kang magpahinga araw-araw. Tapusin muna ang urgent para kay Zizi (pagkain, school run, kaligtasan), saka magpahinga. Ang pahinga ay tulong para sa kalusugan mo sa Hong Kong.",
+        "zh": "你每天都應有休息。請先完成 Zizi 的緊急需要（膳食、接送、安全），再休息。休息能幫助你在香港保持健康。"
       },
       "category": "general",
       "priority": 5,
       "consequences": {
-        "en": "Resting before finishing Zizi's urgent needs (meals, pickup, safety): verbal then written warning. Repeated: rest time reduced and contract reviewed; may lead to termination.",
-        "fil": "Magpahinga bago tapusin ang urgent na gawain kay Zizi (pagkain, sundo, kaligtasan): verbal tapos written warning. Paulit-ulit: bawasan ang rest time at review ng kontrata; maaaring matapos ang trabaho.",
-        "zh": "未完成 Zizi 緊急需要（膳食、接送、安全）就休息：口頭繼而書面警告。再犯：縮短休息時間及檢討合約；可能終止僱傭。"
+        "en": "If Broken: We will talk about timing so rest and Zizi's needs both fit. Repeated early rest while Zizi still needs care: gentle written reminder and we adjust the schedule together.",
+        "fil": "If Broken: Pag-uusapan ang timing para magkasya ang pahinga at needs ni Zizi. Paulit-ulit na maagang pahinga habang kailangan pa ni Zizi: mahinahong written reminder at i-adjust ang schedule nang magkasama.",
+        "zh": "若違反：會商量時間，讓休息與 Zizi 需要都能兼顧。多次在 Zizi 仍需照顧時提早休息：溫和書面提醒，並一起調整時間表。"
       }
     },
     {
       "id": "rule-6",
       "title": {
-        "en": "Keep Phone for Emergencies During Work",
-        "fil": "Telepono para sa Emergency Lang Habang Nagtatrabaho"
+        "en": "Phone during work — emergencies and family contact",
+        "fil": "Telepono sa oras ng gawain — emergency at family contact",
+        "zh": "工作時使用電話 — 緊急與家人聯絡"
       },
       "description": {
-        "en": "Personal phone use should be during rest time only. Keep phone nearby for emergencies and employer contact.",
-        "fil": "Ang personal na telepono ay sa oras ng pahinga lang. Ilagay malapit ang telepono para sa emergency at contact ng employer."
+        "en": "Keep your phone nearby for emergencies and messages from Sir/Mum. Longer personal calls or scrolling are for rest time and your day off, so Zizi stays safe and you can focus.",
+        "fil": "Ilagay ang telepono malapit para sa emergency at mensahe nina Sir/Mum. Mas mahabang personal na tawag o scrolling ay sa rest time at day off, para ligtas si Zizi at makapag-focus ka.",
+        "zh": "手機請放在附近，方便緊急情況及 Sir/Mum 聯絡。較長的私人通話或滑手機，請留在休息時間及放假日，好讓 Zizi 安全、你也能專心。"
       },
       "category": "general",
       "priority": 6,
       "consequences": {
-        "en": "Personal phone use during work (not rest time): verbal warning. Repeated or phone use while caring for Zizi: written warning, then termination if it continues.",
-        "fil": "Personal na telepono habang nagtatrabaho (hindi rest time): verbal warning. Paulit-ulit o gamit habang inaalagaan si Zizi: written warning, tapos termination kung magpatuloy.",
-        "zh": "工作時間（非休息時間）使用私人手機：口頭警告。再犯或照顧 Zizi 時使用：書面警告，仍繼續則終止僱傭。"
+        "en": "If Broken: Friendly reminder first. If phone use often distracts while caring for Zizi, we will give a written reminder and agree clearer phone times together.",
+        "fil": "If Broken: Friendly reminder muna. Kung madalas makagambala ang telepono habang inaalagaan si Zizi, magbibigay ng written reminder at magkasundo sa mas clear na oras ng telepono.",
+        "zh": "若違反：先友善提醒。若照顧 Zizi 時經常被手機分心，會書面提醒並一起約定更清楚的用機時間。"
       }
     },
     {
       "id": "rule-7",
       "title": {
-        "en": "Report Problems Immediately",
-        "fil": "I-report Agad ang Problema"
+        "en": "Tell Sir or Mum right away if something is wrong",
+        "fil": "Sabihin agad kay Sir o Mum kung may problema",
+        "zh": "有事立刻告訴 Sir 或 Mum"
       },
       "description": {
-        "en": "If something breaks, if Zizi is unwell, or if you are unsure about anything — tell the employer right away. Do not wait.",
-        "fil": "Kung may masira, kung may sakit si Zizi, o kung may hindi ka sigurado — sabihin agad sa employer. Huwag maghintay."
+        "en": "You are new to Hong Kong — it is OK to ask. If something breaks, Zizi feels unwell, or you are unsure, tell Sir or Mum immediately. We prefer early questions over silent worry.",
+        "fil": "Bago ka pa sa Hong Kong — OK lang magtanong. Kung may nasira, may sakit si Zizi, o hindi ka sure, sabihin agad kay Sir o Mum. Mas gusto namin ang maagang tanong kaysa tahimik na alalahanin.",
+        "zh": "你初到香港 — 發問沒問題。東西壞了、Zizi 不適或不肯定時，請立刻告訴 Sir 或 Mum。我們寧願你早問，也不要自己擔心。"
       },
       "category": "safety",
       "priority": 7,
       "consequences": {
-        "en": "Not reporting a problem in time — especially if Zizi is hurt, something breaks, or food/kitchen is unsafe — helper is held responsible for resulting harm. Serious cases: written warning or termination.",
-        "fil": "Hindi agad na i-report ang problema — lalo na kung nasaktan si Zizi, may nasira, o delikado ang pagkain/kusina — pananagutan ng helper ang resulta. Malubhang kaso: written warning o termination.",
-        "zh": "不及時報告問題 — 尤其 Zizi 受傷、物品損壞或廚房不安全 — 助理須對後果負責。嚴重：書面警告或終止僱傭。"
+        "en": "If Broken: We will explain why early reporting keeps everyone safe. If delay causes harm to Zizi or serious damage, we will give a written reminder and plan how to call us next time.",
+        "fil": "If Broken: Ipaliwanag kung bakit ang maagang pag-report ay proteksyon. Kung dahil sa delay ay nasaktan si Zizi o may malaking sira, magbibigay ng written reminder at plan kung paano tumawag sa susunod.",
+        "zh": "若違反：會說明及早告知如何保護大家。若延誤令 Zizi 受傷或造成嚴重損壞，會書面提醒並約定下次如何聯絡我們。"
       }
     },
     {
       "id": "rule-8",
       "title": {
-        "en": "Lock Doors & Windows",
-        "fil": "I-lock ang Pinto at Bintana"
+        "en": "Lock doors and windows for our home",
+        "fil": "I-lock ang pinto at bintana ng tahanan natin",
+        "zh": "鎖好家門與窗戶"
       },
       "description": {
-        "en": "Always lock the main door when leaving or at night. Check windows before sleeping.",
-        "fil": "Laging i-lock ang pangunahing pinto kapag aalis o sa gabi. Suriin ang mga bintana bago matulog."
+        "en": "This is your home too while you live with us. Lock the main door when going out or at night, and check windows before sleep. Ask if you are unsure about any lock.",
+        "fil": "Tahanan mo rin ito habang nakatira ka sa amin. I-lock ang pangunahing pinto kapag aalis o sa gabi, at suriin ang bintana bago matulog. Magtanong kung hindi sure sa lock.",
+        "zh": "與我們同住期間，這裡也是你的家。出門或晚上請鎖大門，睡前檢查窗戶。鎖不肯定請問。"
       },
       "category": "safety",
       "priority": 8,
       "consequences": {
-        "en": "Leaving doors or windows unlocked: written warning. If theft, break-in, or Zizi could have been harmed results: employment terminated and helper may be held responsible.",
-        "fil": "Hindi na-lock ang pinto o bintana: written warning. Kung may nakawan, break-in, o si Zizi ay naging delikado: tatapusin ang trabaho at maaaring managot ang helper.",
-        "zh": "門窗未上鎖：書面警告。若導致盜竊、入屋或 Zizi 可能受傷：終止僱傭，助理可能須負責。"
+        "en": "If Broken: We will practice locking together. If doors/windows are left open again, written reminder. If it leads to theft or danger for Zizi, we must take the situation very seriously and may need agency support.",
+        "fil": "If Broken: Magpractice magkasama sa pag-lock. Kung muliang nakalimutan, written reminder. Kung may nakawan o panganib kay Zizi, seryosohin namin ito at maaaring kailanganin ang tulong ng agency.",
+        "zh": "若違反：會一起練習上鎖。若再忘記，書面提醒。若因此失竊或危及 Zizi，我們會嚴肅處理，並可能需要中介協助。"
       }
     }
   ],
@@ -1238,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T05:53:18.953Z",
+  "lastUpdated": "2026-07-22T07:45:29.787Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1321,7 +1337,7 @@
         "zh": "每週休息日（24 小時）"
       },
       "body": {
-        "en": "By HK law, a helper should get at least one rest day every 7 days — a continuous period of at least 24 hours. In this family, Sunday and HK public holidays (勞工假) are Charlene day off. Employer generally must not force work on a rest day. Confirm details with Sir/Mum.",
+        "en": "By HK law, someone in your role should get at least one rest day every 7 days — a continuous period of at least 24 hours. In this family, Sunday and HK public holidays (勞工假) are Charlene day off. Employer generally must not force work on a rest day. Confirm details with Sir/Mum.",
         "fil": "Ayon sa batas ng HK, dapat may hindi bababa sa isang rest day bawat 7 araw — tuloy-tuloy na hindi bababa sa 24 oras. Sa pamilyang ito, Linggo at HK public holiday (勞工假) ay day off ni Charlene. Huwag pilitin magtrabaho sa rest day. Kumpirmahin kay Sir/Mum.",
         "zh": "香港法例下，外傭每 7 天至少有 1 個連續不少於 24 小時的休息日。本家庭：星期日及公眾假期（勞工假）為 Charlene 放假。一般不可強迫休息日工作。請向 Sir/Mum 確認。"
       },
@@ -1339,8 +1355,8 @@
         "zh": "法定假日"
       },
       "body": {
-        "en": "Helpers are entitled to statutory holidays (15 in 2026). Employers cannot pay cash instead of giving the holiday. If you work on a statutory holiday, an alternative holiday should be arranged under the rules. Ask Sir/Mum before changing plans.",
-        "fil": "May statutory holidays ang helpers (15 noong 2026). Hindi pwedeng bayaran na lang kapalit ng holiday. Kung magtrabaho sa statutory holiday, may alternative holiday ayon sa batas. Tanungin si Sir/Mum bago baguhin ang plano.",
+        "en": "People in your role are entitled to statutory holidays (15 in 2026). Employers cannot pay cash instead of giving the holiday. If you work on a statutory holiday, an alternative holiday should be arranged under the rules. Ask Sir/Mum before changing plans.",
+        "fil": "May statutory holidays ang mga nasa papel mo (15 noong 2026). Hindi pwedeng bayaran na lang kapalit ng holiday. Kung magtrabaho sa statutory holiday, may alternative holiday ayon sa batas. Tanungin si Sir/Mum bago baguhin ang plano.",
         "zh": "外傭享有法定假日（2026 年為 15 天）。不可用金錢代替放假。若法定假日工作，應按規定另排補假。更改前先問 Sir/Mum。"
       },
       "sourceUrl": "https://www.fdh.labour.gov.hk/en/faq.html",
@@ -1392,8 +1408,8 @@
         "zh": "不要借貸"
       },
       "body": {
-        "en": "Family ground rule: do not borrow money from anyone, and do not lend your money to other helpers. If you need something, ask Sir/Mum directly. See Ground Rules for consequences.",
-        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang helper. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Ground Rules para sa resulta.",
+        "en": "Family ground rule: do not borrow money from anyone, and do not lend your money to other domestic workers. If you need something, ask Sir/Mum directly. See Ground Rules for consequences.",
+        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang domestic worker. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Ground Rules para sa resulta.",
         "zh": "家庭守則：不要向任何人借錢，也不要借錢給其他傭工。有需要直接問 Sir/Mum。後果見 Ground Rules。"
       },
       "lastReviewed": "2026-07-22"
@@ -1528,8 +1544,8 @@
         "zh": "留宿規定"
       },
       "body": {
-        "en": "Under the Standard Employment Contract, helpers live at the employer's home. Do not sleep elsewhere overnight without Sir/Mum agreement. On rest days you may go out, but return as agreed with the family.",
-        "fil": "Ayon sa Standard Employment Contract, nakatira ang helper sa bahay ng employer. Huwag matulog sa ibang lugar overnight kung walang sang-ayon sina Sir/Mum. Sa rest day pwede lumabas, pero umuwi ayon sa usapan.",
+        "en": "Under the Standard Employment Contract, you live at the employer's home. Do not sleep elsewhere overnight without Sir/Mum agreement. On rest days you may go out, but return as agreed with the family.",
+        "fil": "Ayon sa Standard Employment Contract, nakatira ka sa bahay ng pamilya (ayon sa kontrata). Huwag matulog sa ibang lugar overnight kung walang sang-ayon sina Sir/Mum. Sa rest day pwede lumabas, pero umuwi ayon sa usapan.",
         "zh": "按標準僱傭合約，外傭須住在僱主家。未得 Sir/Mum 同意不要在外過夜。休息日可外出，但按家庭約定回家。"
       },
       "sourceUrl": "https://www.fdh.labour.gov.hk/en/faq.html",
@@ -1564,8 +1580,8 @@
         "zh": "妥善保管證件"
       },
       "body": {
-        "en": "Keep passport, HKID, and contract copies safe and reachable. Do not give original documents to strangers or other helpers. Tell Sir/Mum if anything is missing.",
-        "fil": "Ingatan ang passport, HKID, at kopya ng kontrata — safe pero accessible. Huwag ibigay ang original sa estranghero o ibang helper. Sabihin kay Sir/Mum kung may nawawala.",
+        "en": "Keep passport, HKID, and contract copies safe and reachable. Do not give original documents to strangers or other domestic workers. Tell Sir/Mum if anything is missing.",
+        "fil": "Ingatan ang passport, HKID, at kopya ng kontrata — safe pero accessible. Huwag ibigay ang original sa estranghero o ibang domestic worker. Sabihin kay Sir/Mum kung may nawawala.",
         "zh": "護照、香港身份證及合約副本須安全且可取用。不要把正本交給陌生人或他傭。有遺失立刻告知 Sir/Mum。"
       },
       "lastReviewed": "2026-07-22"
@@ -1581,8 +1597,8 @@
         "zh": "自行記錄休假"
       },
       "body": {
-        "en": "Labour Department advises helpers to keep their own record of rest days and holidays to avoid disputes. You can note them in your phone. Ask Sir/Mum before swapping rest days.",
-        "fil": "Inirerekomenda ng Labour Department na mag-tala ang helper ng rest days at holidays. Pwede sa phone. Bago magpalit ng rest day, tanungin si Sir/Mum.",
+        "en": "Labour Department advises you to keep their own record of rest days and holidays to avoid disputes. You can note them in your phone. Ask Sir/Mum before swapping rest days.",
+        "fil": "Inirerekomenda ng Labour Department na mag-tala ka ng rest days at holidays. Pwede sa phone. Bago magpalit ng rest day, tanungin si Sir/Mum.",
         "zh": "勞工處建議外傭自行記錄休息日及假日以免爭議。可用手機備註。調休前先問 Sir/Mum。"
       },
       "sourceUrl": "https://www.fdh.labour.gov.hk/res/pdf/Employment_handbook_FDH_English.pdf",
@@ -1748,5 +1764,10 @@
     "en": "Kwun Tong, Hong Kong",
     "fil": "Kwun Tong, Hong Kong",
     "zh": "香港觀塘"
+  },
+  "familyWelcome": {
+    "en": "You are part of Zizi's family. This guide is for your daily life with us in Hong Kong.",
+    "fil": "Bahagi ka ng pamilya ni Zizi. Ang gabay na ito ay para sa araw-araw ninyong buhay sa Hong Kong.",
+    "zh": "你是 Zizi 家庭的一分子。這份指南幫助你在香港與我們的日常生活。"
   }
 }
