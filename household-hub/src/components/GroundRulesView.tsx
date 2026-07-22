@@ -21,14 +21,14 @@ const categoryColors: Record<GroundRule["category"], string> = {
 
 const ui = {
   bannerTitle: {
-    en: "We are a family — clear and kind",
-    fil: "Pamilya tayo — malinaw at mabait",
-    zh: "我們是一家人 — 清楚而溫和",
+    en: "These rules must not be broken",
+    fil: "Hindi pwedeng labagin ang mga alituntuning ito",
+    zh: "這些守則不可違反",
   },
   bannerBody: {
-    en: "Charlene is new to Hong Kong. These are our shared house agreements so everyone stays safe and feels welcome. If something goes wrong, tell Sir or Mum early — we will talk and learn together. Each card has “If Broken” for clarity.",
-    fil: "Bago pa si Charlene sa Hong Kong. Ito ang shared agreements ng bahay para ligtas at welcome ang lahat. Kung may mali, sabihin agad kay Sir o Mum — mag-uusap at matututo nang magkasama. May “If Broken” sa bawat card para malinaw.",
-    zh: "Charlene 初到香港。這些是我們共同的家約，讓大家安全、受歡迎。有事早告訴 Sir 或 Mum — 我們一起商量學習。每張卡有 “If Broken” 方便清楚。",
+    en: "We speak with respect because you are family — and we are clear: there is no second chance to try breaking a rule. Read each “If Broken” carefully. If something goes wrong, tell Sir or Mum immediately.",
+    fil: "Respeto ang tono namin dahil pamilya ka — at malinaw: walang second chance para subukan labagin ang rule. Basahin nang mabuti ang “If Broken”. Kung may mali, sabihin agad kay Sir o Mum.",
+    zh: "我們用尊重的語氣，因為你是家人 — 同時說清楚：沒有第二次機會去試著違反守則。請仔細閱讀每項 “If Broken”。有事立刻告訴 Sir 或 Mum。",
   },
   ifBroken: {
     en: "If Broken",
@@ -36,9 +36,9 @@ const ui = {
     zh: "If Broken",
   },
   tellEmployer: {
-    en: "Tell Sir or Mum right away — you will not be blamed for asking",
-    fil: "Sabihin agad kay Sir o Mum — hindi ka sisisihin sa pagtatanong",
-    zh: "立刻告訴 Sir 或 Mum — 發問不會被責備",
+    en: "Tell Sir or Mum right away — do not hide it",
+    fil: "Sabihin agad kay Sir o Mum — huwag itago",
+    zh: "立刻告訴 Sir 或 Mum — 不可隱瞞",
   },
 };
 

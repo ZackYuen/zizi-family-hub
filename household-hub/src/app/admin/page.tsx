@@ -209,9 +209,9 @@ export default function AdminPage() {
       title: { en: "New Rule", fil: "Bagong Alituntunin", zh: "新規則" },
       description: emptyBilingual(),
       consequences: {
-        en: "If Broken: We will talk together first. If it continues, a clear written reminder; serious cases may need agency support.",
-        fil: "If Broken: Mag-uusap muna tayo. Kung magpatuloy, clear written reminder; malubhang kaso ay maaaring kailanganin ang agency.",
-        zh: "若違反：先一起商量。若繼續，清楚書面提醒；嚴重時可能需要中介協助。",
+        en: "If Broken: Immediate written warning. Second time: contract may end. No trial second chance.",
+        fil: "If Broken: Agad na written warning. Pangalawang beses: maaaring matapos ang kontrata. Walang second chance.",
+        zh: "若違反：立即書面警告。第二次：可終止合約。沒有第二次試錯機會。",
       },
       category: "general",
       priority: next.groundRules.length + 1,
