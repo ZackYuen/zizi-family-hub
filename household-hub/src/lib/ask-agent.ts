@@ -460,10 +460,10 @@ function heuristicAnswer(
   }
 
   if (
-    /android\s*app|must[- ]?have\s*app|kailangan.*app|必備.*app|app.*hong\s*kong|openrice|alipayhk|payme|myobservatory|google\s*maps|mtr\s*mobile|anong\s*app|what\s*app(s)?\s*(to\s*)?(download|install)|download.*app/.test(
+    /android\s*app|must[- ]?have\s*app|kailangan.*app|必備.*(app|應用)|app.*hong\s*kong|openrice|alipayhk|\bpayme\b|myobservatory|mtr\s*mobile|anong\s*app|which\s*apps?\s*(to\s*)?(download|install)|apps?\s*to\s*(download|install)|google\s*translate/.test(
       q
     ) &&
-    !/whatsapp\s*(bot|number|save)/.test(q)
+    !/whatsapp\s*(bot|number|save|\?save)/.test(q)
   ) {
     const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-android-apps");
     if (tip) return tip;
