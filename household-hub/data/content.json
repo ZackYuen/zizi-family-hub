@@ -1254,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T11:12:05.069Z",
+  "lastUpdated": "2026-07-22T11:20:16.223Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1977,6 +1977,28 @@
         "en": "Keep away from water and never tip liquid into the machine. Do not block the air inlets or amplifier. Heater surfaces get hot — keep Zizi at a safe distance. Ask Sir/Mum before buying / fitting replacement filters.",
         "fil": "Layuan ang tubig; huwag magbuhos ng liquid sa machine. Huwag harangan ang air inlets o amplifier. Mainit kapag heater — layuan si Zizi. Bago bumili / magpalit ng filter, tanungin si Sir/Mum.",
         "zh": "遠離水，不要向機內倒液體。勿遮擋入風口或風道。加熱時表面燙——Zizi 保持距離。買／換濾網前先問 Sir/Mum。"
+      }
+    },
+    {
+      "id": "app-tefal-epc17",
+      "kind": "pressure-cooker",
+      "model": "Tefal EPC17",
+      "priority": 9,
+      "sourceUrl": "https://www.manualslib.com/manual/3633070/Tefal-Epc06-Series.html",
+      "title": {
+        "en": "Tefal EPC17 electric pressure cooker",
+        "fil": "Tefal EPC17 electric pressure cooker",
+        "zh": "Tefal EPC17 電子壓力鍋／高速煲"
+      },
+      "tips": {
+        "en": "Our Tefal Serie EPC17 is an electric pressure multicooker (similar controls to other Tefal EPC series). Always put the removable cooking bowl in first — never cook without it. Add food + enough liquid (Tefal guidance: at least ~250 ml / do not go below the minimum water line). Do not fill past MAX; for rice/beans that expand, stay under about half. Fit the pressure-limit valve (it stays a little loose — that is normal) and make sure it is down before pressure cooking. Close and lock the lid. Choose a program (Pressure cook / Rice / Steam / Stew-Soup / Brown / Slow cook / etc.). For Pressure cook: set High / Medium / Low (HI-P / P / LO-P), adjust time if needed, then Start. Machine preheats, then counts down; it beeps and usually goes to Keep Warm. Wait until pressure is fully released before opening — use the release method Sir/Mum showed (natural or controlled vent). Brown/simmer modes often need the lid open — follow the panel/manual.",
+        "fil": "Tefal Serie EPC17 namin: electric pressure multicooker (katulad ng ibang Tefal EPC series). Palaging ilagay muna ang removable cooking bowl — huwag magluto nang wala ito. Lagyan ng pagkain + sapat na liquid (gabay ng Tefal: ≥ ~250 ml / huwag baba sa minimum). Huwag lampas sa MAX; para sa rice/beans na lumalaki, sa ilalim ng kalahati. I Lagay ang pressure-limit valve (medyo maluwag — normal) at dapat down bago mag-pressure cook. Isara at i-lock ang lid. Piliin ang program (Pressure cook / Rice / Steam / Stew-Soup / Brown / Slow cook / atbp.). Pressure cook: High / Medium / Low (HI-P / P / LO-P), ayusin ang oras, Start. Magpre-preheat, magka-countdown, magbe-beep, Keep Warm. Hintaying fully released ang pressure bago buksan — sundin ang release na itinuro nina Sir/Mum. Brown/simmer: madalas bukas ang lid — sundin ang panel/manual.",
+        "zh": "Tefal Serie EPC17 是電子壓力多功能鍋（操作類似其他 Tefal EPC 系列）。必須先放入可拆內鍋——不可空機煮。食物＋足夠液體（特福建議至少約 250 ml／勿低於最低水位）。不要超過 MAX；米／豆等會膨脹的，勿超過約一半。裝上限壓閥（會略鬆——正常），壓力煮前確認閥在下方位置。蓋好並鎖蓋。選程式（壓力煮／飯／蒸／燉湯／煎香／慢煮等）。壓力煮：選高／中／低壓（HI-P／P／LO-P），可調時間後按開始。先預熱再倒數，完成響聲後通常轉保溫。必須等壓力完全釋放才開蓋——用 Sir/Mum 教的洩壓方式（自然或受控排氣）。煎香／炆煮多數要開蓋——跟面板／說明。"
+      },
+      "warnings": {
+        "en": "Never force the lid open while under pressure. Keep face and hands away from the steam outlet. Do not put the main body in water. Clean the gasket and valves when Sir/Mum asks — a blocked valve is dangerous. If unsure about a program, ask before starting.",
+        "fil": "Huwag piliting buksan ang lid habang may pressure. Layuan ang steam outlet ang mukha at kamay. Huwag basain ang main body. Linisin ang gasket at valves kapag sinabi nina Sir/Mum — delikado kung barado. Kung unsure sa program, tanungin muna.",
+        "zh": "有壓力時切勿強行開蓋。臉和手遠離排氣口。機身不要浸水。按 Sir/Mum 指示清潔膠圈和閥——閥堵塞很危險。不確定程式先問再開始。"
       }
     }
   ]
