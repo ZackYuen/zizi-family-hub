@@ -162,7 +162,8 @@ export async function getContent(): Promise<AppContent> {
       remote.appliances?.length &&
       (!remote.appliances.some((a) => a.id === "app-dyson-v12") ||
         !remote.appliances.some((a) => a.id === "app-tefal-du4120g0") ||
-        !remote.appliances.some((a) => a.id === "app-dyson-hp07"))
+        !remote.appliances.some((a) => a.id === "app-dyson-hp07") ||
+        !remote.appliances.some((a) => a.id === "app-tefal-epc17"))
   );
   if (needsPrefs || needsAppliances || needsApplianceModels) {
     const filled: AppContent = {

@@ -618,7 +618,7 @@ function heuristicAnswer(
   }
 
   if (
-    /vacuum|dyson|v12|hp07|purifier|hot\+?cool|空氣清新|暖風|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|washing\s*machine|washer|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|壓力鍋|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
+    /vacuum|dyson|v12|hp07|purifier|hot\+?cool|空氣清新|暖風|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|epc17|epc\s*17|高速煲|壓力鍋|washing\s*machine|washer|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
       q
     )
   ) {
@@ -635,7 +635,10 @@ function heuristicAnswer(
           re: /zojirushi|np-?rlq|rice\s*cooker|eletr?ic\s*rice|電飯煲|飯煲/,
           kind: "rice-cooker",
         },
-        { re: /pressure|壓力/, kind: "rice-cooker" },
+        {
+          re: /epc17|epc\s*17|pressure\s*cooker|高速煲|壓力鍋|壓力/,
+          kind: "pressure-cooker",
+        },
         {
           re: /panasonic|sd-?pt1002|bread\s*machine|麵包機/,
           kind: "bread-machine",
