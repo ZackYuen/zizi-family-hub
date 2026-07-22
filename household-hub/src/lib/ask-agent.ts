@@ -1,5 +1,6 @@
 import {
   buildLiveSnapshot,
+  findLifeGuide,
   snapshotToKnowledgeText,
   type LiveFamilySnapshot,
 } from "./family-knowledge";
@@ -12,7 +13,7 @@ import {
   parseTimeToMinutes,
   sortTasksByTime,
 } from "./schedule-utils";
-import type { Lang, ScheduleTask } from "./types";
+import type { HkLifeGuide, Lang, ScheduleTask } from "./types";
 
 export interface AskResult {
   answer: string;
@@ -121,6 +122,36 @@ function taskLabel(task: ScheduleTask, lang: Lang): string {
       ? `${start}–${end}`
       : start;
   return `${range} — ${localized(task.task, lang)}`;
+}
+
+function formatGuide(guide: HkLifeGuide, lang: Lang): string {
+  const lines = [localized(guide.title, lang), localized(guide.body, lang)];
+  if (guide.sourceUrl) {
+    lines.push(
+      lang === "fil"
+        ? `Source: ${guide.sourceUrl}`
+        : lang === "zh"
+          ? `來源：${guide.sourceUrl}`
+          : `Source: ${guide.sourceUrl}`
+    );
+  }
+  lines.push(
+    lang === "fil"
+      ? "Kumpirmahin kay Sir/Mum o opisyal na source kung legal/kontrata."
+      : lang === "zh"
+        ? "合約／法律細節請向 Sir/Mum 或官方來源確認。"
+        : "Confirm with Sir/Mum or official sources for contract/legal details."
+  );
+  return lines.join("\n");
+}
+
+function lifeGuideAnswer(
+  snap: LiveFamilySnapshot,
+  lang: Lang,
+  predicate: (g: HkLifeGuide) => boolean
+): string | null {
+  const guide = findLifeGuide(snap.hkLifeGuides, predicate);
+  return guide ? formatGuide(guide, lang) : null;
 }
 
 /** Exact current / next task from today's HK schedule */
@@ -296,7 +327,7 @@ function heuristicAnswer(
     ].join("\n");
   }
 
-  if (/ingredient|bilihin|shopping|買|材料|grocery|sangkap/.test(q)) {
+  if (/ingredient|bilihin|shopping|買|材料|sangkap/.test(q) && !/aeon|yau\s*tong|supermarket|買菜/.test(q)) {
     if (!snap.tonight) return null;
     const lines: string[] = [
       lang === "fil"
@@ -325,12 +356,163 @@ function heuristicAnswer(
     return lines.join("\n");
   }
 
-  if (/pick ?up|sundo|接|16:30|1630|school|kindergarten|eskwela/.test(q)) {
+  // HK Life weather first (before school regex)
+  if (
+    /typhoon|t8|signal\s*8|black\s*rain|bagyo|風球|八號|暴雨|rainstorm|t3|signal\s*3/.test(
+      q
+    )
+  ) {
+    const weatherNote =
+      snap.hkWeather?.alertActive
+        ? lang === "fil"
+          ? `⚠ WEATHER ALERT ON (level=${snap.hkWeather.level}): ${localized(snap.hkWeather.note, lang)}\n\n`
+          : lang === "zh"
+            ? `⚠ 天氣警報開啟（${snap.hkWeather.level}）：${localized(snap.hkWeather.note, lang)}\n\n`
+            : `⚠ WEATHER ALERT ON (level=${snap.hkWeather.level}): ${localized(snap.hkWeather.note, lang)}\n\n`
+        : "";
+    const tip =
+      lifeGuideAnswer(snap, lang, (g) => g.id === "life-typhoon") ||
+      lifeGuideAnswer(snap, lang, (g) => g.category === "weather");
+    if (tip) return weatherNote + tip;
+  }
+
+  if (
+    /pick ?up|sundo|接送|16:30|1630|drop[- ]?off|kindergarten|eskwela|school\s*(run|walk|time)|hatid/.test(
+      q
+    )
+  ) {
+    const walk = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-school-walk");
+    if (walk) return walk;
     return lang === "fil"
       ? "Zizi: Mon–Fri PM class. Umalis sa bahay 12:30 (30 min lakad) — drop-off bago 13:00. Umalis 16:00 para sunduin si Zizi ng 16:30."
       : lang === "zh"
         ? "Zizi：星期一至五下午班。12:30 出門（步行約 30 分鐘），13:00 前送到。16:00 出門，16:30 接 Zizi。"
         : "Zizi: Mon–Fri PM class. Leave home 12:30 (30 min walk) — drop off by 13:00. Leave 16:00 to pick up Zizi at 16:30.";
+  }
+
+  // HK Life / FDH settling tips (deterministic from guides)
+  if (/octopus|八達通|oyster\s*card/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-octopus");
+    if (tip) return tip;
+  }
+
+  if (
+    /rest\s*day|24\s*hours?|lingguhang\s*pahinga|休息日|statutory\s*holiday|法定假|stat\s*holiday/.test(
+      q
+    ) &&
+    !/today|ngayon|今天/.test(q)
+  ) {
+    const tip = /statutory|法定|stat\s*holiday/.test(q)
+      ? lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays")
+      : lifeGuideAnswer(snap, lang, (g) => g.id === "life-rest-day");
+    if (tip) return tip;
+  }
+
+  if (
+    /consulate|pcg|mwo|owwa|labour\s*department|labor\s*department|勞工處|領事|konsulado|9155|2171\s*1771/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-ph-support");
+    if (tip) return tip;
+  }
+
+  if (/999|ambulance|ambulansya|emergency\s*number|緊急|bombero|police|pulis/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-emergency-999");
+    if (tip) {
+      const phones = snap.emergencyContacts
+        .filter((c) => c.phone?.trim())
+        .map((c) => `• ${localized(c.name, lang)}: ${c.phone}`)
+        .join("\n");
+      return phones ? `${tip}\n\n${phones}` : tip;
+    }
+  }
+
+  if (/aeon|yau\s*tong|grocery|pamimili|買菜|supermarket/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-aeon");
+    if (tip) return tip;
+  }
+
+  if (
+    /\bmtr\b|kwun\s*tong\s*mtr|觀塘站|lam\s*tin|藍田|yau\s*tong|油塘/.test(q) ||
+    (/taxi|grab/.test(q) && /go|paano|去|saan/.test(q))
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-mtr");
+    if (tip) return tip;
+  }
+
+  if (/maw|minimum\s*(allowable\s*)?wage|5100|5,?100|kontrata|standard\s*contract|最低.*(工|薪)|id\s*407/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-contract-maw");
+    if (tip) return tip;
+  }
+
+  if (/live[- ]?in|nakatira|留宿|overnight|matulog sa labas/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-live-in");
+    if (tip) return tip;
+  }
+
+  if (/food\s*allowance|膳食津貼|allowance.*pagkain|libre.*pagkain/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-food-allowance");
+    if (tip) return tip;
+  }
+
+  if (/passport|hkid|dokumento|documents|證件|kontrata.*kopya/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-documents");
+    if (tip) return tip;
+  }
+
+  if (/heat|mainit|熱|humid|overheat|tubig.*lakad|hot\s*weather/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-heat");
+    if (tip) return tip;
+  }
+
+  if (/rubbish|basura|recycling|垃圾|recycle/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-rubbish");
+    if (tip) return tip;
+  }
+
+  if (/quiet|tahimik|安靜|maingay|noise|tv.*gabi/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-quiet");
+    if (tip) return tip;
+  }
+
+  if (/sick|lagnat|fever|vomiting|sakit.*zizi|不適|發燒/.test(q) && /zizi|bata|child|anak/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-zizi-sick");
+    if (tip) return tip;
+  }
+
+  if (/settling|checklist|bagong\s*dating|first\s*week|unang\s*linggo|安頓|清單/.test(q)) {
+    const items = snap.settlingChecklist;
+    if (items.length) {
+      const lines = items.map(
+        (item, i) =>
+          `${item.done ? "☑" : "☐"} ${i + 1}. ${localized(item.title, lang)}`
+      );
+      return lang === "fil"
+        ? `Settling checklist:\n${lines.join("\n")}\n\nBuksan ang HK Life tab.`
+        : lang === "zh"
+          ? `安頓清單：\n${lines.join("\n")}\n\n請打開 HK Life 分頁。`
+          : `Settling checklist:\n${lines.join("\n")}\n\nOpen the HK Life tab.`;
+    }
+  }
+
+  if (
+    /hk\s*life|hong\s*kong\s*life|tips?\s*(sa|for|para)?\s*(hk|hong\s*kong)|gabay.*(hong\s*kong|hk)|香港.*(貼士|生活)/.test(
+      q
+    )
+  ) {
+    const top = [...snap.hkLifeGuides]
+      .sort((a, b) => a.priority - b.priority)
+      .slice(0, 8)
+      .map((g, i) => `${i + 1}. ${localized(g.title, lang)}`)
+      .join("\n");
+    if (top) {
+      return lang === "fil"
+        ? `HK Life tips (tanungin ang topic, o buksan ang HK Life tab):\n${top}`
+        : lang === "zh"
+          ? `HK Life 貼士（可問某一主題，或打開 HK Life 分頁）：\n${top}`
+          : `HK Life tips (ask about a topic, or open the HK Life tab):\n${top}`;
+    }
   }
 
   if (/rule|alituntunin|規則|ground|broken|borrow|pera|money|hiram/.test(q)) {
@@ -431,6 +613,7 @@ Prefer FAMILY LIVE DATA below over the internet.
 For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DATA using the correct language names — never invent literal translations like "Winter Shade Public Soup".
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
+For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
 Do not use the word 姐姐 — say Charlene.
@@ -503,7 +686,7 @@ export async function answerFamilyQuestion(
 
   const needsWeb =
     allowInternet &&
-    /weather|typhoon|天氣|bagyo|how to cook|paano magluto|substitute|palit|recipe tip/.test(
+    /how to cook|paano magluto|substitute|palit|recipe tip|weather forecast|天氣預測/.test(
       contentQuestion.toLowerCase()
     );
 
@@ -526,10 +709,10 @@ export async function answerFamilyQuestion(
   return {
     answer:
       lang === "fil"
-        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup time, day off, o ground rules."
+        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup, day off, HK Life tips, o ground rules."
         : lang === "zh"
-          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送時間、放假、守則。"
-          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup time, day off, or ground rules.",
+          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送、放假、HK Life、守則。"
+          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup, day off, HK Life tips, or ground rules.",
     source: "live-web",
     usedInternet: false,
     dataSource: snap.source,

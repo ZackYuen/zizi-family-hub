@@ -127,6 +127,24 @@ export async function getContent(): Promise<AppContent> {
     return fixed;
   }
 
+  // Fill missing HK Life fields from local seed without wiping Admin edits
+  if (!remote.hkLifeGuides?.length && local.hkLifeGuides?.length) {
+    const filled: AppContent = {
+      ...remote,
+      hkLifeGuides: local.hkLifeGuides,
+      settlingChecklist: remote.settlingChecklist?.length
+        ? remote.settlingChecklist
+        : local.settlingChecklist,
+      emergencyContacts: remote.emergencyContacts?.length
+        ? remote.emergencyContacts
+        : local.emergencyContacts,
+      hkWeather: remote.hkWeather ?? local.hkWeather,
+      homeArea: remote.homeArea ?? local.homeArea,
+    };
+    saveContent(filled).catch(() => {});
+    return filled;
+  }
+
   return remote;
 }
 

@@ -83,4 +83,51 @@ export interface AppContent {
   weeklySchedule: DaySchedule[];
   monthlyTasks: BilingualText[];
   lastUpdated: string;
+  /** Where the family lives — for HK Life tips */
+  homeArea?: BilingualText;
+  hkLifeGuides?: HkLifeGuide[];
+  settlingChecklist?: SettlingCheckItem[];
+  emergencyContacts?: EmergencyContact[];
+  hkWeather?: HkWeatherFlag;
+}
+
+export type HkLifeCategory =
+  | "emergency"
+  | "rights"
+  | "weather"
+  | "money"
+  | "transport"
+  | "shopping"
+  | "health"
+  | "culture";
+
+export interface HkLifeGuide {
+  id: string;
+  category: HkLifeCategory;
+  priority: number;
+  area: "hk-general" | "kwun-tong";
+  title: BilingualText;
+  body: BilingualText;
+  sourceUrl?: string;
+  lastReviewed?: string;
+}
+
+export interface SettlingCheckItem {
+  id: string;
+  title: BilingualText;
+  done: boolean;
+}
+
+export interface EmergencyContact {
+  id: string;
+  name: BilingualText;
+  phone: string;
+  note?: BilingualText;
+}
+
+export interface HkWeatherFlag {
+  /** Manual flag from Admin when T8+ / black rain / family alert */
+  alertActive: boolean;
+  level: "none" | "t3" | "t8" | "black-rain" | "other";
+  note: BilingualText;
 }

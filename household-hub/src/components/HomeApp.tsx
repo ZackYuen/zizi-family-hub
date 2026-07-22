@@ -8,10 +8,12 @@ import { GroundRulesView } from "./GroundRulesView";
 import { ScheduleView } from "./ScheduleView";
 import { MealsView } from "./MealsView";
 import { AskView } from "./AskView";
+import { HkLifeView } from "./HkLifeView";
 import { LiveClock } from "./LiveClock";
 import { BgmPlayer } from "./BgmPlayer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
+import { localized } from "@/lib/localized-text";
 
 export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
@@ -21,6 +23,9 @@ export function HomeApp({ content }: { content: AppContent }) {
     uiLocale(lang),
     { weekday: "short", year: "numeric", month: "short", day: "numeric" }
   );
+
+  const weather = content.hkWeather;
+  const weatherOn = Boolean(weather?.alertActive);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-stone-50 pb-24">
@@ -40,6 +45,17 @@ export function HomeApp({ content }: { content: AppContent }) {
           </div>
         </div>
         <LiveClock />
+        {weatherOn && weather && (
+          <div className="border-t border-sky-200 bg-sky-100 px-4 py-2">
+            <p className="text-center text-xs font-bold uppercase tracking-wide text-sky-950">
+              {labels.weatherAlert[lang]}
+              {weather.level !== "none" ? ` · ${weather.level}` : ""}
+            </p>
+            <p className="mt-0.5 text-center text-sm text-sky-900">
+              {localized(weather.note, lang)}
+            </p>
+          </div>
+        )}
       </header>
 
       <main className="mx-auto max-w-lg px-4 py-4">
@@ -53,6 +69,7 @@ export function HomeApp({ content }: { content: AppContent }) {
         )}
         {activeTab === "meals" && <MealsView />}
         {activeTab === "ask" && <AskView />}
+        {activeTab === "hkLife" && <HkLifeView content={content} />}
       </main>
 
       <footer className="fixed bottom-16 left-0 right-0 text-center">

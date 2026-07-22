@@ -3,7 +3,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels } from "@/lib/i18n";
 
-export type TabId = "rules" | "schedule" | "meals" | "ask";
+export type TabId = "rules" | "schedule" | "meals" | "ask" | "hkLife";
 
 interface BottomNavProps {
   active: TabId;
@@ -13,11 +13,12 @@ interface BottomNavProps {
 const tabs: {
   id: TabId;
   icon: string;
-  labelKey: "groundRules" | "schedule" | "meals" | "ask";
+  labelKey: "groundRules" | "schedule" | "meals" | "ask" | "hkLife";
 }[] = [
   { id: "schedule", icon: "🕐", labelKey: "schedule" },
   { id: "meals", icon: "🍽️", labelKey: "meals" },
   { id: "ask", icon: "💬", labelKey: "ask" },
+  { id: "hkLife", icon: "🌏", labelKey: "hkLife" },
   { id: "rules", icon: "📋", labelKey: "groundRules" },
 ];
 
@@ -39,7 +40,7 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
               }`}
             >
               <span className="text-xl leading-none">{tab.icon}</span>
-              <span className={`text-[11px] font-medium ${isActive ? "font-semibold" : ""}`}>
+              <span className={`text-[10px] font-medium ${isActive ? "font-semibold" : ""}`}>
                 {labels[tab.labelKey][lang]}
               </span>
             </button>
