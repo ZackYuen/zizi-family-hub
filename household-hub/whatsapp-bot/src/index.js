@@ -100,7 +100,7 @@ async function askFamilyHub(question) {
 async function postInbox(payload) {
   if (!INBOX_SECRET) {
     logger.debug("INBOX_SECRET not set — skip inbox log");
-    return;
+    return null;
   }
   try {
     const res = await fetch(LIVE_INBOX_URL, {
@@ -110,14 +110,17 @@ async function postInbox(payload) {
         "x-inbox-secret": INBOX_SECRET,
       },
       body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(10000),
+      signal: AbortSignal.timeout(35000),
     });
     if (!res.ok) {
       const t = await res.text().catch(() => "");
       logger.warn({ status: res.status, t: t.slice(0, 120) }, "inbox post failed");
+      return null;
     }
+    return res.json();
   } catch (err) {
     logger.warn({ err }, "inbox post error");
+    return null;
   }
 }
 
@@ -176,32 +179,31 @@ function allowedChat(jid) {
   return REPLY_DM;
 }
 
-/** Parse save tip / save recipe / note commands (after stripTriggers) */
+/** Parse ?save … commands (after stripTriggers). Free-form save is LLM-digested on server. */
 function parseSaveCommand(question) {
+  // Legacy explicit forms (still work; server may still digest if digest:true)
   const mTip = question.match(/^save\s+tip\s+([\s\S]+)$/i);
   if (mTip) {
-    return { kind: "tip_candidate", text: mTip[1].trim() };
+    return { digest: true, text: mTip[1].trim() };
   }
   const mNote = question.match(/^(note|remember)\s+([\s\S]+)$/i);
   if (mNote) {
-    return { kind: "note", text: mNote[2].trim() };
+    return { digest: true, text: mNote[2].trim() };
   }
-  const mRecipe = question.match(
-    /^save\s+recipe\s+(\S+)(?:\s+(Meat|Vegetable|Soup))?([\s\S]*)$/i
-  );
+  const mRecipe = question.match(/^save\s+recipe\s+([\s\S]+)$/i);
   if (mRecipe) {
-    const link = mRecipe[1];
-    const category = (mRecipe[2] || "Meat");
-    const rest = (mRecipe[3] || "").trim();
-    const text = rest ? `${rest}\n${link}` : link;
-    return {
-      kind: "recipe_candidate",
-      text,
-      link: /https?:\/\//i.test(link) ? link : undefined,
-      category: ["Meat", "Vegetable", "Soup"].includes(category)
-        ? category
-        : "Meat",
-    };
+    return { digest: true, text: mRecipe[1].trim() };
+  }
+
+  // Preferred: ?save … or ?save "…"
+  const mSave = question.match(/^save\s+([\s\S]+)$/i);
+  if (mSave) {
+    let content = mSave[1].trim();
+    content = content
+      .replace(/^["“«]+/, "")
+      .replace(/["”»]+$/, "")
+      .trim();
+    if (content) return { digest: true, text: content };
   }
   return null;
 }
@@ -271,7 +273,7 @@ async function startBot() {
           await sock.sendMessage(
             jid,
             {
-              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSave: ${TRIGGER_PREFIX}save tip … / ${TRIGGER_PREFIX}save recipe <youtube> Meat`,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSave anything: ${TRIGGER_PREFIX}save Charlene likes less salt\nOr: ${TRIGGER_PREFIX}save "https://youtube.com/… crispy dumplings"`,
             },
             { quoted: msg }
           );
@@ -283,19 +285,26 @@ async function startBot() {
 
         const saveCmd = parseSaveCommand(question);
         if (saveCmd) {
-          await postInbox({
-            kind: saveCmd.kind,
+          const result = await postInbox({
+            digest: true,
             text: saveCmd.text,
             jid,
-            link: saveCmd.link,
-            category: saveCmd.category,
           });
-          const reply =
-            saveCmd.kind === "recipe_candidate"
-              ? "Saved recipe candidate → Admin → WA Inbox. Promote into Meals after review."
-              : saveCmd.kind === "tip_candidate"
-                ? "Saved tip candidate → Admin → WA Inbox. Promote into HK Life after review."
-                : "Saved note → Admin → WA Inbox.";
+          const d = result?.digest;
+          const kindLabel =
+            d?.kind === "recipe_candidate"
+              ? "recipe"
+              : d?.kind === "tip_candidate"
+                ? "HK Life tip"
+                : "note";
+          const reply = [
+            `Saved → Admin → WA Inbox (${kindLabel})`,
+            d?.summary ? `Digest: ${d.summary}` : null,
+            d?.link ? `Link: ${d.link}` : null,
+            "Promote there after you review.",
+          ]
+            .filter(Boolean)
+            .join("\n");
           await sock.sendMessage(jid, { text: reply }, { quoted: msg });
           continue;
         }

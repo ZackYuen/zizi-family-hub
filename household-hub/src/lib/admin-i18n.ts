@@ -163,9 +163,9 @@ export const adminLabels = {
     zh: "WhatsApp → 知識／食譜",
   },
   inboxHintBody: {
-    en: "Bot logs asks here. Sir/Mum can also send:\n?save tip <text>\n?save recipe <youtube-url> Meat|Vegetable|Soup\n?note <text>\nThen promote below into HK Life or Meals.",
-    fil: "Nila-log ng bot ang asks dito. Pwede ring:\n?save tip <text>\n?save recipe <youtube-url> Meat|Vegetable|Soup\n?note <text>\nPagkatapos i-promote sa HK Life o Meals.",
-    zh: "Bot 會把提問記在這裡。也可發送：\n?save tip <文字>\n?save recipe <youtube網址> Meat|Vegetable|Soup\n?note <文字>\n然後在下方推送到 HK Life 或 Meals。",
+    en: "Bot logs asks here. Sir/Mum can also send free-form:\n?save Charlene prefers less salt\n?save \"https://youtube.com/… dumplings\"\nLLM digests into tip / recipe / note — then promote below.",
+    fil: "Nila-log ng bot ang asks dito. Pwede ring:\n?save Charlene prefers less salt\n?save \"https://youtube.com/… dumplings\"\nI-digest ng LLM bilang tip / recipe / note — tapos i-promote sa baba.",
+    zh: "Bot 會把提問記在這裡。也可自由發送：\n?save Charlene prefers less salt\n?save \"https://youtube.com/… dumplings\"\nLLM 會整理成 tip／食譜／筆記，再在下方推送。",
   },
   inboxNew: { en: "New", fil: "Bago", zh: "新" },
   inboxAll: { en: "All", fil: "Lahat", zh: "全部" },

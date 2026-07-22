@@ -75,10 +75,11 @@ Requires `INBOX_SECRET` on both Vercel and the bot:
 
 | Command | Effect |
 |---------|--------|
-| `?save tip …` | Tip candidate → Admin → WA Inbox → promote to HK Life |
-| `?save recipe <youtube-url> Meat` | Recipe candidate → promote to dinner recipes |
-| `?note …` | Free-form note in inbox |
+| `?save …` or `?save "…"` | LLM digests content → Admin → WA Inbox (tip / recipe / note) |
+| `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
 | Normal `? …` asks | Logged in inbox (Q&A) for review |
+
+Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 
 ## Env
 
