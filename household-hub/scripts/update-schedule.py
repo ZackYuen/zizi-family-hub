@@ -9,7 +9,7 @@ with open(path, encoding="utf-8") as f:
 def t(en, fil=None):
     return {"en": en, "fil": fil or en}
 
-school = "Lam Tin Liang Leung Kindergarten"
+school = "Lam Tin Ling Liang Kindergarten"
 
 data["weeklySchedule"] = [
     {

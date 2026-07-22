@@ -89,6 +89,76 @@ function bootstrapFromLocal(remote: AppContent, local: AppContent): AppContent {
   };
 }
 
+const KINDERGARTEN_FIXES: [string, string][] = [
+  ["Lam Tin Liang Leung Kindergarten", "Lam Tin Ling Liang Kindergarten"],
+  ["Liang Leung Kindergarten", "Ling Liang Kindergarten"],
+  ["藍田梁靓幼稚園", "藍田靈糧幼稚園"],
+];
+
+function rewriteKindergartenName(text: string | undefined): string | undefined {
+  if (!text) return text;
+  let out = text;
+  for (const [from, to] of KINDERGARTEN_FIXES) {
+    out = out.split(from).join(to);
+  }
+  return out;
+}
+
+function rewriteBilingualKindergarten<T extends { en?: string; fil?: string; zh?: string }>(
+  value: T | undefined
+): T | undefined {
+  if (!value) return value;
+  return {
+    ...value,
+    en: rewriteKindergartenName(value.en) ?? value.en,
+    fil: rewriteKindergartenName(value.fil) ?? value.fil,
+    zh: rewriteKindergartenName(value.zh) ?? value.zh,
+  };
+}
+
+/** Fix misspelled kindergarten name in live Admin content without wiping other edits. */
+function repairKindergartenNames(content: AppContent): {
+  content: AppContent;
+  changed: boolean;
+} {
+  const blob = JSON.stringify(content);
+  if (!/Liang Leung|梁靓/.test(blob)) {
+    // Still ensure zh school name exists when local has the correct one
+    return { content, changed: false };
+  }
+
+  const weeklySchedule = content.weeklySchedule?.map((day) => ({
+    ...day,
+    tasks: day.tasks?.map((task) => ({
+      ...task,
+      task: rewriteBilingualKindergarten(task.task) ?? task.task,
+      notes: rewriteBilingualKindergarten(task.notes),
+    })),
+  }));
+
+  const hkLifeGuides = content.hkLifeGuides?.map((g) => ({
+    ...g,
+    title: rewriteBilingualKindergarten(g.title) ?? g.title,
+    body: rewriteBilingualKindergarten(g.body) ?? g.body,
+  }));
+
+  const settlingChecklist = content.settlingChecklist?.map((item) => ({
+    ...item,
+    title: rewriteBilingualKindergarten(item.title) ?? item.title,
+  }));
+
+  const fixed: AppContent = {
+    ...content,
+    ziziSchool: rewriteBilingualKindergarten(content.ziziSchool) ?? content.ziziSchool,
+    weeklySchedule: weeklySchedule ?? content.weeklySchedule,
+    hkLifeGuides: hkLifeGuides ?? content.hkLifeGuides,
+    settlingChecklist: settlingChecklist ?? content.settlingChecklist,
+    lastUpdated: new Date().toISOString(),
+  };
+
+  return { content: fixed, changed: true };
+}
+
 /**
  * Live source of truth:
  * - With Supabase: Admin-saved rows win. Repo JSON is seed/fallback only.
@@ -132,6 +202,43 @@ export async function getContent(): Promise<AppContent> {
     const fixed = bootstrapFromLocal(remote, local);
     saveContent(fixed).catch(() => {});
     return fixed;
+  }
+
+  // Fix misspelled kindergarten name (Liang Leung → Ling Liang / 靈糧) in live data
+  const kg = repairKindergartenNames(remote);
+  if (kg.changed) {
+    // Prefer local ziziSchool when it already has zh + correct name
+    const withSchool: AppContent = {
+      ...kg.content,
+      ziziSchool: local.ziziSchool?.en?.includes("Ling Liang")
+        ? local.ziziSchool
+        : kg.content.ziziSchool,
+    };
+    try {
+      await saveContent(withSchool);
+      return withSchool;
+    } catch (err) {
+      console.error("Failed to repair kindergarten name", err);
+      return withSchool;
+    }
+  } else if (
+    local.ziziSchool?.zh &&
+    (!remote.ziziSchool?.zh ||
+      remote.ziziSchool.en?.includes("Liang Leung") ||
+      !remote.ziziSchool.en?.includes("Ling Liang"))
+  ) {
+    // If remote somehow already corrected EN but missing zh / still wrong
+    const withSchool: AppContent = {
+      ...remote,
+      ziziSchool: local.ziziSchool,
+      lastUpdated: new Date().toISOString(),
+    };
+    try {
+      await saveContent(withSchool);
+      return withSchool;
+    } catch {
+      return withSchool;
+    }
   }
 
   // Fill missing HK Life / preferences / appliances from local seed without wiping Admin edits
