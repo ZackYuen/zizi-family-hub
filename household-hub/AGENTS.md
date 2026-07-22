@@ -1,14 +1,32 @@
 # Agent notes (Zizi Family Hub)
 
-## Always prefer live Admin data
+## DEFAULT: Supabase-first (do not overwrite Admin)
 
-Do **not** treat `household-hub/data/content.json` as what Charlene sees in production.
+**Production truth = Admin Save → Supabase.**  
+Committed `household-hub/data/content.json` is **seed/backup only**.
 
-1. Fetch live data:
-   - `https://zizi-family-hub.vercel.app/api/live`
-   - or `cd household-hub && npm run fetch-live`
-2. Admin → Save writes to **Supabase**. That is the source of truth.
-3. Details: `household-hub/docs/LIVE-DATA.md`
+Charlene / Sir / Mum edits in Admin must not be wiped by agents.
+
+### Required workflow for any content change
+
+1. **Fetch live first**
+   - `cd household-hub && npm run fetch-live`
+   - or `GET https://zizi-family-hub.vercel.app/api/live`
+2. **Edit on top of live data** (merge / append by `id` — never replace whole arrays from seed)
+3. **Write back to Supabase** via Admin Save:
+   - `ADMIN_PASSWORD=… npm run patch-live -- path/to/patch.json`
+   - Patch must be append/upsert/set only (see `scripts/patch-live-content.mjs`)
+4. **Optionally** update `data/content.json` afterward as seed mirror — never the other way around as the only step
+
+### Forbidden by default
+
+- Treating `content.json` as what Charlene sees
+- `FORCE_SEED_FROM_LOCAL=1` / `npm run seed` (full overwrite) unless the user explicitly asks to reset
+- Replacing entire `appliances` / `groundRules` / `hkLifeGuides` / `weeklySchedule` from repo seed when Supabase already has Admin data
+
+### Auto-merge on read (server)
+
+`getContent()` may **append missing ids** from seed (new appliance, new HK Life tip). It must **not** wholesale replace Admin collections. Prefer `patch-live` for intentional updates.
 
 ## WhatsApp (two options)
 
@@ -42,6 +60,5 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 - Tab **HK Life**: emergency phones, settling checklist, bilingual guides.
 - Admin → **HK Life**: edit guides, Sir/Mum phones, checklist, weather alert banner (T8+ / black rain).
 - Ask / WhatsApp answer typhoon, Octopus, rest day, Consulate, AEON, etc. from `hkLifeGuides` in live content (heuristics + knowledge pack).
-- Seed/backup: `data/content.json` + `scripts/seed-hk-life.mjs`. Missing Supabase fields auto-fill from local once on read — then **Admin Save** to publish.
+- Seed/backup: `data/content.json` + `scripts/seed-hk-life.mjs`. Missing Supabase fields **append** from local once on read — then prefer **Admin Save** / `patch-live` to publish.
 - Legal wage/rest-day text is general guidance; always confirm with Sir/Mum / contract / Labour Department.
-

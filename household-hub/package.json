@@ -10,7 +10,8 @@
     "lint": "eslint",
     "sync-data": "node scripts/sync-public-data.mjs",
     "seed": "node scripts/seed-supabase.mjs",
-    "fetch-live": "node scripts/fetch-live-content.mjs"
+    "fetch-live": "node scripts/fetch-live-content.mjs",
+    "patch-live": "node scripts/patch-live-content.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.7",
