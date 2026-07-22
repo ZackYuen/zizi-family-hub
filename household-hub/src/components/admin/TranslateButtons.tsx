@@ -34,10 +34,20 @@ export function TranslateButtons({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: sourceText, from: sourceLang, to: target }),
       });
-      if (res.ok) {
-        const { translation } = await res.json();
-        onTranslated(target, translation);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        alert(
+          data.error ||
+            "Translation failed. MyMemory may be over quota — try EN→FIL, or add OPENROUTER_API_KEY on Vercel."
+        );
+        return;
       }
+      const translation = (data.translation as string | undefined)?.trim() || "";
+      if (!translation || /@|email\s*:|sportbenzin/i.test(translation)) {
+        alert("Bad translation blocked (spam). Not applied.");
+        return;
+      }
+      onTranslated(target, translation);
     } finally {
       setLoading(null);
     }

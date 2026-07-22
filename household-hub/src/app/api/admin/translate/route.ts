@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { translateText } from "@/lib/translate";
+import { isBadTranslation, translateText } from "@/lib/translate";
 import type { Lang } from "@/lib/types";
 
 const LANGS: Lang[] = ["en", "fil", "zh"];
@@ -32,8 +32,19 @@ export async function POST(request: Request) {
 
   try {
     const translation = await translateText(text, from, to);
+    if (isBadTranslation(translation, text)) {
+      return NextResponse.json(
+        {
+          error:
+            "Translation looked like spam (e.g. email ad). Not applied. Add OPENROUTER_API_KEY on Vercel for better results.",
+        },
+        { status: 502 }
+      );
+    }
     return NextResponse.json({ translation });
-  } catch {
-    return NextResponse.json({ error: "Translation failed" }, { status: 500 });
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Translation failed";
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }

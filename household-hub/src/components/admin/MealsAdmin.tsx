@@ -120,21 +120,30 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
   const translateAllEnToFil = async () => {
     setMessage(adminT("translating", lang));
     const next = [...recipes];
+    let ok = 0;
+    let skipped = 0;
     for (let i = 0; i < next.length; i++) {
       const en = next[i].nameEn?.trim() || (next[i].name.match(/^[a-zA-Z]/) ? next[i].name : "");
-      if (!en || next[i].nameFil?.trim()) continue;
+      const existing = next[i].nameFil?.trim() || "";
+      if (!en) continue;
+      if (existing && !/@|email\s*:|sportbenzin/i.test(existing)) continue;
       const res = await fetch("/api/admin/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: en, from: "en", to: "fil" }),
       });
-      if (res.ok) {
-        const { translation } = await res.json();
-        next[i] = { ...next[i], nameFil: translation };
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.translation && !/@|email\s*:|sportbenzin/i.test(data.translation)) {
+        next[i] = { ...next[i], nameFil: data.translation };
+        ok++;
+      } else {
+        skipped++;
       }
     }
     setRecipes(next);
-    setMessage("Translation done. Click Save Meals to publish.");
+    setMessage(
+      `Translation done (${ok} updated${skipped ? `, ${skipped} skipped` : ""}). Click Save Meals to publish.`
+    );
   };
 
   if (loading) {
