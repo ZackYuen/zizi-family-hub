@@ -75,7 +75,7 @@ export function WeatherBanner({ adminAlert }: { adminAlert?: HkWeatherFlag }) {
           ? lang === "zh"
             ? `相對濕度 ${live.humidityPct}%`
             : lang === "fil"
-              ? `RH ${live.humidityPct}%`
+              ? `Halumigmig ${live.humidityPct}%`
               : `RH ${live.humidityPct}%`
           : null,
         condition,

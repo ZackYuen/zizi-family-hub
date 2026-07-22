@@ -1,5 +1,8 @@
 /** Hong Kong Observatory open data helpers (no API key). */
 
+import { translateWeatherForecastToFil } from "@/lib/translate";
+import type { Lang } from "@/lib/types";
+
 export type HkoLang = "en" | "tc";
 
 export interface LiveWeatherSummary {
@@ -12,6 +15,8 @@ export interface LiveWeatherSummary {
   forecastShort: string;
   updateTime: string | null;
   source: "hko";
+  /** App language used for place / warning / forecast text */
+  displayLang: Lang;
 }
 
 const HKO_BASE = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php";
@@ -30,6 +35,42 @@ const TEMP_PLACE_PRIORITY = [
   "香港天文台",
 ];
 
+const PLACE_FIL: Record<string, string> = {
+  "Kwun Tong": "Kwun Tong",
+  "Kai Tak Runway Park": "Kai Tak Runway Park",
+  "Tseung Kwan O": "Tseung Kwan O",
+  "King's Park": "King's Park",
+  "Hong Kong Observatory": "Hong Kong Observatory",
+  "Hong Kong": "Hong Kong",
+};
+
+/** Official HKO warning codes → Filipino (Tagalog) names for helpers. */
+const WARNING_FIL: Record<string, string> = {
+  WHOT: "Babala sa Napakainit na Panahon",
+  WCOLD: "Babala sa Malamig na Panahon",
+  WRAINA: "Amber Rainstorm Warning (malakas na ulan)",
+  WRAINR: "Red Rainstorm Warning (napakalakas na ulan)",
+  WRAINB: "Black Rainstorm Warning (extreme — huwag lumabas)",
+  WL: "Babala sa Landslip",
+  WTCSGNL: "Babala sa Bagyo",
+  TC1: "Signal No. 1 (Standby)",
+  TC3: "Signal No. 3 (Malakas na hangin)",
+  TC8NE: "Signal No. 8 (NE) — huwag lumabas kung hindi kinakailangan",
+  TC8NW: "Signal No. 8 (NW) — huwag lumabas kung hindi kinakailangan",
+  TC8SE: "Signal No. 8 (SE) — huwag lumabas kung hindi kinakailangan",
+  TC8SW: "Signal No. 8 (SW) — huwag lumabas kung hindi kinakailangan",
+  TC9: "Signal No. 9",
+  TC10: "Signal No. 10 (Hurricane)",
+  WTMW: "Babala sa Tsunami",
+  WFROST: "Babala sa Frost",
+  WFNTSA: "Babala sa Sunog (Fire Danger)",
+  WMSGNL: "Strong Monsoon Signal",
+  WFIREY: "Yellow Fire Danger Warning",
+  WFIRER: "Red Fire Danger Warning",
+  WTS: "Babala sa Kulog at Kidlat",
+  WCW: "Babala sa Malamig na Panahon",
+};
+
 const ICON_LABELS: Record<number, { en: string; fil: string; zh: string }> = {
   50: { en: "Sunny", fil: "Maaraw", zh: "晴朗" },
   51: { en: "Sunny periods", fil: "May araw", zh: "間中有陽光" },
@@ -42,25 +83,28 @@ const ICON_LABELS: Record<number, { en: string; fil: string; zh: string }> = {
   63: { en: "Rain", fil: "Ulan", zh: "雨" },
   64: { en: "Heavy rain", fil: "Malakas na ulan", zh: "大雨" },
   65: { en: "Thunderstorms", fil: "Kulog at kidlat", zh: "雷暴" },
-  70: { en: "Fine", fil: "Maganda", zh: "天晴" },
-  71: { en: "Fine", fil: "Maganda", zh: "天晴" },
-  72: { en: "Fine", fil: "Maganda", zh: "天晴" },
-  73: { en: "Fine", fil: "Maganda", zh: "天晴" },
-  74: { en: "Fine", fil: "Maganda", zh: "天晴" },
-  75: { en: "Fine", fil: "Maganda", zh: "天晴" },
+  70: { en: "Fine", fil: "Maganda ang panahon", zh: "天晴" },
+  71: { en: "Fine", fil: "Maganda ang panahon", zh: "天晴" },
+  72: { en: "Fine", fil: "Maganda ang panahon", zh: "天晴" },
+  73: { en: "Fine", fil: "Maganda ang panahon", zh: "天晴" },
+  74: { en: "Fine", fil: "Maganda ang panahon", zh: "天晴" },
+  75: { en: "Fine", fil: "Maganda ang panahon", zh: "天晴" },
   76: { en: "Mainly cloudy", fil: "Maulap", zh: "大致多雲" },
-  77: { en: "Mainly fine", fil: "Maganda", zh: "大致天晴" },
+  77: { en: "Mainly fine", fil: "Karaniwang maganda", zh: "大致天晴" },
   80: { en: "Windy", fil: "Mahangin", zh: "風大" },
   81: { en: "Dry", fil: "Tuyo", zh: "乾燥" },
   82: { en: "Humid", fil: "Mahalumigmig", zh: "潮濕" },
-  83: { en: "Fog", fil: "Makulimlim/fog", zh: "霧" },
-  84: { en: "Mist", fil: "Maulap", zh: "薄霧" },
-  85: { en: "Haze", fil: "Haze", zh: "煙霞" },
+  83: { en: "Fog", fil: "May fog", zh: "霧" },
+  84: { en: "Mist", fil: "May mist", zh: "薄霧" },
+  85: { en: "Haze", fil: "May haze", zh: "煙霞" },
   90: { en: "Hot", fil: "Mainit", zh: "熱" },
   91: { en: "Warm", fil: "Mainit-init", zh: "暖" },
   92: { en: "Cool", fil: "Malamig", zh: "涼" },
   93: { en: "Cold", fil: "Malamig", zh: "冷" },
 };
+
+/** In-memory cache for Filipino forecast translations (key = updateTime|en text). */
+const filForecastCache = new Map<string, string>();
 
 function pickTemp(
   rows: { place: string; value: number }[] | undefined
@@ -73,13 +117,66 @@ function pickTemp(
   return rows[0] ?? null;
 }
 
-export function hkoLangFor(appLang: "en" | "fil" | "zh"): HkoLang {
+export function hkoLangFor(appLang: Lang): HkoLang {
   return appLang === "zh" ? "tc" : "en";
 }
 
-export async function fetchLiveWeather(lang: HkoLang): Promise<LiveWeatherSummary> {
+function localizePlace(place: string, appLang: Lang): string {
+  if (appLang === "fil") return PLACE_FIL[place] ?? place;
+  return place;
+}
+
+function localizeWarningName(
+  code: string,
+  englishOrChineseName: string,
+  appLang: Lang
+): string {
+  if (appLang !== "fil") return englishOrChineseName;
+  // Prefer code map; fall back to English name from HKO
+  if (WARNING_FIL[code]) return WARNING_FIL[code];
+  // Soft fallbacks for codes we only know by prefix
+  if (/^TC8/.test(code)) return "Signal No. 8 (Malakas na hangin / bagyo)";
+  if (/^WRAIN/.test(code)) return englishOrChineseName; // keep Amber/Red/Black English labels helpers know
+  if (code === "WHOT" || /HOT/i.test(code))
+    return "Babala sa Napakainit na Panahon";
+  return englishOrChineseName;
+}
+
+async function localizeForecast(
+  englishForecast: string,
+  appLang: Lang,
+  updateTime: string | null
+): Promise<string> {
+  const text = englishForecast.trim();
+  if (!text || appLang !== "fil") return text;
+
+  const cacheKey = `${updateTime ?? "na"}|${text}`;
+  const cached = filForecastCache.get(cacheKey);
+  if (cached) return cached;
+
+  try {
+    const out = await translateWeatherForecastToFil(text);
+    if (out?.trim()) {
+      filForecastCache.set(cacheKey, out.trim());
+      // Bound cache size
+      if (filForecastCache.size > 40) {
+        const first = filForecastCache.keys().next().value;
+        if (first) filForecastCache.delete(first);
+      }
+      return out.trim();
+    }
+  } catch (err) {
+    console.error("weather fil forecast translate", err);
+  }
+  return text;
+}
+
+export async function fetchLiveWeather(
+  appLang: Lang = "en"
+): Promise<LiveWeatherSummary> {
+  const hkoLang = hkoLangFor(appLang);
   const qs = (dataType: string) =>
-    `${HKO_BASE}?dataType=${dataType}&lang=${lang}`;
+    `${HKO_BASE}?dataType=${dataType}&lang=${hkoLang}`;
 
   const [rhrRes, warnRes, flwRes] = await Promise.all([
     fetch(qs("rhrread"), { next: { revalidate: 600 } }),
@@ -98,10 +195,22 @@ export async function fetchLiveWeather(lang: HkoLang): Promise<LiveWeatherSummar
     updateTime?: string;
   };
 
-  const warnRaw = warnRes.ok ? ((await warnRes.json()) as Record<string, { name?: string; code?: string }>) : {};
+  const warnRaw = warnRes.ok
+    ? ((await warnRes.json()) as Record<
+        string,
+        { name?: string; code?: string }
+      >)
+    : {};
   const flw = flwRes.ok
     ? ((await flwRes.json()) as { forecastDesc?: string })
     : {};
+
+  // Filipino forecast is translated from English HKO text
+  let forecastSource = (flw.forecastDesc ?? "").trim();
+  if (appLang === "fil") {
+    // rhr/flw already fetched in English for fil via hkoLangFor
+    forecastSource = (flw.forecastDesc ?? "").trim();
+  }
 
   const temp = pickTemp(rhr.temperature?.data);
   const humidity = rhr.humidity?.data?.[0]?.value ?? null;
@@ -113,19 +222,33 @@ export async function fetchLiveWeather(lang: HkoLang): Promise<LiveWeatherSummar
       zh: "香港天氣",
     };
 
+  const updateTime = rhr.updateTime ?? null;
+  const rawPlace =
+    temp?.place ?? (hkoLang === "tc" ? "香港" : "Hong Kong");
+
   const warnings = Object.values(warnRaw)
     .filter((w) => w?.name && w?.code)
-    .map((w) => ({ code: w.code!, name: w.name! }));
+    .map((w) => ({
+      code: w.code!,
+      name: localizeWarningName(w.code!, w.name!, appLang),
+    }));
+
+  const forecastShort = await localizeForecast(
+    forecastSource,
+    appLang,
+    updateTime
+  );
 
   return {
     temperatureC: temp?.value ?? null,
     humidityPct: typeof humidity === "number" ? humidity : null,
-    place: temp?.place ?? (lang === "tc" ? "香港" : "Hong Kong"),
+    place: localizePlace(rawPlace, appLang),
     iconCode,
     iconLabel,
     warnings,
-    forecastShort: (flw.forecastDesc ?? "").trim(),
-    updateTime: rhr.updateTime ?? null,
+    forecastShort,
+    updateTime,
     source: "hko",
+    displayLang: appLang,
   };
 }
