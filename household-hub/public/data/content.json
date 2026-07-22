@@ -1254,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T10:57:45.619Z",
+  "lastUpdated": "2026-07-22T11:12:05.072Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1804,123 +1804,179 @@
   ],
   "appliances": [
     {
-      "id": "app-vacuum",
+      "id": "app-dyson-v12",
       "kind": "vacuum",
+      "model": "Dyson V12 Detect Slim",
       "priority": 1,
+      "sourceUrl": "https://www.dyson.com/support/vacuum-cleaners/cordless/v12-detect-slim",
       "title": {
-        "en": "Vacuum cleaner",
-        "fil": "Vacuum cleaner",
-        "zh": "吸塵機"
+        "en": "Dyson V12 vacuum",
+        "fil": "Dyson V12 vacuum",
+        "zh": "Dyson V12 吸塵機"
       },
       "tips": {
-        "en": "Empty the dust bin when it looks full. Check if hair is wrapped around the brush roller and remove carefully. Start from far corners and work toward the door. Soft floors: use the floor head; sofas/curtains: use the small brush. Put it back on charge after use if it is cordless.",
-        "fil": "Alisin ang basura sa dust bin kapag puno na. Tingnan kung may buhok sa brush roller at alisin nang dahan-dahan. Magsimula sa sulok, papunta sa pinto. Soft floor: floor head; sofa/kurtina: maliit na brush. Ibalik sa charger pagkatapos kung cordless.",
-        "zh": "塵桶滿了就倒清。檢查滾刷有沒有纏毛並小心清除。從遠角吸到門口。地板用大地刷；梳化／窗簾用小刷頭。無線機用完記得放回充電座。"
+        "en": "Our cordless stick vac is a Dyson V12. Empty the bin as soon as dirt reaches the MAX line (overfill reduces suction). Hold over the rubbish, point down, firmly push the red bin-release until the base opens, then click the base shut. For carpets/floors use the illuminated cleaner head; for sofas use a small tool. After use, dock it to charge. Wash the filter about once a month: twist off anticlockwise → tap out dust → rinse with warm tap water only (no detergent) → fill/shake until water runs clear → air-dry at least 24 hours before refitting. LCD may remind you when the filter needs washing.",
+        "fil": "Cordless stick vac namin: Dyson V12. Alisin ang basura sa bin kapag umabot sa MAX line (kung sobra, humihina ang suction). Hawakan sa ibabaw ng basurahan, pababa, pindutin nang matibay ang red bin-release hanggang bumuka ang base, tapos i-click para isara. Carpet/floor: illuminated cleaner head; sofa: maliit na tool. Pagkatapos, i-dock para mag-charge. Hugasan ang filter ~buwan-buwan: i-twist anticlockwise → tap dust → rinse sa warm tap water lang (walang detergent) → fill/shake hanggang malinaw ang tubig → air-dry ≥24 oras bago ibalik. Maaaring magpaalala ang LCD kung kailangan hugasan ang filter.",
+        "zh": "家中無線吸塵機是 Dyson V12。塵桶到 MAX 線就要倒（過滿會減吸力）。對準垃圾桶向下，用力按紅色開蓋掣至底部打開，再按回「咔」一聲關上。地毡／地板用照明吸頭；梳化用細配件。用完放回充電座。約每月清洗濾網：逆時針拧出 → 輕拍塵 → 只用溫自來水沖（不可用清潔劑）→ 注水搖至水清 → 風乾至少 24 小時才裝回。LCD 或會提醒要洗濾網。"
       },
       "warnings": {
-        "en": "Do not vacuum water or wet spills. Do not force the head under low furniture if it gets stuck — lift and move.",
-        "fil": "Huwag i-vacuum ang tubig o basang spills. Huwag pilitin sa ilalim ng mababang furniture kung natigil — buhatin at ilipat.",
-        "zh": "不可吸水或未乾的污漬。卡住矮傢俬底下時不要硬推——提起再移。"
+        "en": "Never vacuum liquids or wet spills. Do not put a damp filter back — it can damage the motor. Bin is not dishwasher-safe; wipe with a damp cloth only.",
+        "fil": "Huwag i-vacuum ang liquids o basang spills. Huwag ibalik ang basang filter — puwedeng masira ang motor. Hindi dishwasher-safe ang bin; damp cloth lang.",
+        "zh": "不可吸水或未乾污漬。濾網未完全乾不要裝回——會損馬達。塵桶不可入洗碗碟機；只用濕布抹。"
       }
     },
     {
-      "id": "app-rice-cooker",
-      "kind": "rice-cooker",
-      "priority": 2,
-      "title": {
-        "en": "Rice cooker",
-        "fil": "Rice cooker",
-        "zh": "電飯煲"
-      },
-      "tips": {
-        "en": "Wash rice until water is clearer. Use the cup that came with the cooker; water to the matching line for the number of cups. Close the lid fully, press Cook. When it switches to Keep Warm, fluff with a rice paddle. Unplug or switch off when finished for the day.",
-        "fil": "Hugasan ang bigas hanggang mas malinaw ang tubig. Gamitin ang cup ng cooker; tubig hanggang matching line. Isara nang maayos ang takip, pindutin ang Cook. Kapag Keep Warm na, haluin gamit ang rice paddle. I-off / unplug pagkatapos ng araw.",
-        "zh": "米要洗至水較清。用機附量杯，水對準對應杯數水位線。蓋好蓋按「煮」。轉保溫後用飯匙翻鬆。當天用完可關機或拔掣。"
-      },
-      "warnings": {
-        "en": "Do not put the outer body in water. Keep the steam vent clear. Do not use metal spoons that scratch the inner pot.",
-        "fil": "Huwag basain ang outer body. Panatilihing malinis ang steam vent. Huwag gumamit ng metal spoon na nakakagasgas sa inner pot.",
-        "zh": "機身不要浸水。蒸汽口保持暢通。不要用金屬匙刮花內鍋。"
-      }
-    },
-    {
-      "id": "app-pressure-cooker",
-      "kind": "pressure-cooker",
-      "priority": 3,
-      "title": {
-        "en": "Pressure cooker",
-        "fil": "Pressure cooker",
-        "zh": "壓力鍋／電壓力鍋"
-      },
-      "tips": {
-        "en": "Add enough liquid (usually at least 1 cup). Do not overfill — leave space at the top. Lock the lid until it clicks. Choose the program Sir/Mum showed you (or Soup/Meat). Wait until pressure is fully released before opening — natural release or use the vent carefully as taught.",
-        "fil": "Lagyan ng sapat na sabaw/tubig (madalas ≥ 1 cup). Huwag punuin — may space sa itaas. I-lock ang takip hanggang mag-click. Gamitin ang program na itinuro nina Sir/Mum (o Soup/Meat). Hintaying fully released ang pressure bago buksan — natural release o vent nang maingat gaya ng itinuro.",
-        "zh": "要有足夠液體（通常至少一杯）。不要過滿，留空間。蓋子鎖到「咔」一聲。用 Sir/Mum 教過的程式（或湯／肉）。必須等壓力完全釋放才開蓋——自然洩壓或按教過的方法小心排氣。"
-      },
-      "warnings": {
-        "en": "Never force the lid open while under pressure. Keep face and hands away from the steam vent. Ask Sir/Mum once if you are unsure — safer than guessing.",
-        "fil": "Huwag piliting buksan ang takip habang may pressure. Layuan ang steam vent ang mukha at kamay. Kung unsure, tanungin si Sir/Mum — mas safe kaysa hulaan.",
-        "zh": "有壓力時切勿強行開蓋。臉和手遠離排氣口。不確定就問 Sir/Mum——比自己猜安全。"
-      }
-    },
-    {
-      "id": "app-washing-machine",
-      "kind": "washing-machine",
-      "priority": 4,
-      "title": {
-        "en": "Washing machine",
-        "fil": "Washing machine",
-        "zh": "洗衣機"
-      },
-      "tips": {
-        "en": "Check pockets before washing. Separate whites / darks when possible. Do not overload — clothes should move freely. Use the detergent amount Sir/Mum showed (usually a small scoop). Choose a normal program for daily clothes; gentle for delicates. Clean the lint filter when it looks clogged.",
-        "fil": "Suriin ang bulsa bago maglaba. Paghiwalayin ang puti / madilim kung pwede. Huwag sobrahan — dapat makagalaw ang damit. Gamitin ang detergent na itinuro (madalas maliit na scoop). Normal program sa pang-araw-araw; gentle sa delicates. Linisin ang lint filter kapag barado.",
-        "zh": "洗衣前檢查袋口。盡量分白色／深色。不要過滿——衣物要能轉動。用 Sir/Mum 教的清潔劑分量（通常一小勺）。日常用標準程式；幼細衣物用輕柔。隔塵網塞了就清。"
-      },
-      "warnings": {
-        "en": "Do not wash shoes or heavy wet items unless Sir/Mum said it is OK. Leave the door slightly open after use so it does not smell.",
-        "fil": "Huwag maglaba ng sapatos o mabibigat na basang item maliban kung sinabi nina Sir/Mum. Bahagyang buksan ang pinto pagkatapos para hindi umamoy.",
-        "zh": "未得 Sir/Mum 同意不要洗鞋或過重濕物。用完門輕輕留縫，減少異味。"
-      }
-    },
-    {
-      "id": "app-bread-machine",
+      "id": "app-panasonic-sd-pt1002",
       "kind": "bread-machine",
-      "priority": 5,
+      "model": "Panasonic SD-PT1002",
+      "priority": 2,
+      "sourceUrl": "https://www.manualslib.com/products/Panasonic-Sd-Pt1002-8846843.html",
       "title": {
-        "en": "Bread machine",
-        "fil": "Bread machine",
-        "zh": "麵包機"
+        "en": "Panasonic SD-PT1002 bread maker",
+        "fil": "Panasonic SD-PT1002 bread maker",
+        "zh": "Panasonic SD-PT1002 麵包機"
       },
       "tips": {
-        "en": "Add ingredients in the order Sir/Mum wrote (often liquids first, then flour, yeast last on top — do not let yeast touch salt/liquid early). Select the program and crust color used last time. When done, unplug and remove the loaf carefully with oven mitts — the pan is hot.",
-        "fil": "Ilagay ang ingredients ayon sa order nina Sir/Mum (madalas liquids muna, tapos flour, yeast sa ibabaw — huwag madaling madikit ang yeast sa asin/liquid). Piliin ang program at crust color na last used. Pagkatapos, i-unplug at alisin ang tinapay nang may oven mitts — mainit ang pan.",
-        "zh": "按 Sir/Mum 寫的順序落料（多數先液體，再麵粉，酵母最後放上面——早期不要讓酵母碰鹽／液體）。選上次用的程式和烤色。完成後拔掣，戴手套小心取模——模很燙。"
+        "en": "Our bread maker is Panasonic SD-PT1002 (panel may be Traditional Chinese). 1) Fit the correct kneading blade in the pan. 2) Measure carefully; put ingredients in the recipe order (often liquids first). Keep dry yeast in the yeast dispenser so it stays dry until mixing. Nuts/raisins go in the raisin & nut dispenser when the menu supports it. 3) Wipe the pan outside dry, lock into the machine, close the lid. 4) Choose menu / loaf size / crust (light–standard–dark), then Start. 5) When it beeps finished: Stop, unplug, lift the pan with oven mitts, tip the loaf onto a rack. Use the timer only with recipes Sir/Mum already tested.",
+        "fil": "Bread maker namin: Panasonic SD-PT1002 (maaaring Traditional Chinese ang panel). 1) I Lagay ang tamang kneading blade sa pan. 2) Sukatin nang tama; ilagay ang ingredients ayon sa recipe order (madalas liquids muna). Dry yeast sa yeast dispenser para dry hanggang maghalo. Nuts/raisins sa raisin & nut dispenser kung available sa menu. 3) Patuyuin ang labas ng pan, i-lock sa machine, isara ang lid. 4) Piliin ang menu / size / crust (light–standard–dark), tapos Start. 5) Kapag may beep: Stop, unplug, buhatin ang pan gamit ang oven mitts, ilabas ang tinapay sa rack. Timer: gamitin lang sa recipe na nasubukan na nina Sir/Mum.",
+        "zh": "麵包機是 Panasonic SD-PT1002（面板可能是繁中）。1）裝上正確攪拌葉。2）分量要準；按食譜順序落料（多數先液體）。乾酵母放酵母自動投放盒，保持乾燥至開始攪拌。果仁／葡萄乾用果料盒（適用菜單時）。3）抹乾內鍋外、放回機內鎖好、蓋上蓋。4）選菜單／重量／烤色（淺／標準／深），按開始。5）完成響聲後：停止、拔掣、戴手套取出內鍋，倒出麵包放架上冷卻。預約計時只用 Sir/Mum 試過的食譜。"
       },
       "warnings": {
-        "en": "Do not open the lid during kneading/baking unless the recipe says so. Let the machine cool before washing the pan.",
-        "fil": "Huwag buksan ang takip habang nagmamasa/nagbabake maliban kung sinabi ng recipe. Palamigin muna bago hugasan ang pan.",
-        "zh": "揉麵／烘烤中不要開蓋（除非食譜要求）。等涼再洗內鍋。"
+        "en": "Do not open the lid during knead/bake unless the recipe says so. Pan and loaf are very hot. Do not pour water into the main body. If yeast sticks in a wet dispenser, dry it gently with tissue (do not rub hard).",
+        "fil": "Huwag buksan ang lid habang nagmamasa/nagbabake maliban kung sinabi ng recipe. Mainit ang pan at tinapay. Huwag magbuhos ng tubig sa main body. Kung basa ang yeast dispenser, patuyuin nang dahan gamit ang tissue (huwag kuskusin nang malakas).",
+        "zh": "揉麵／烘烤中不要開蓋（除非食譜要求）。內鍋和麵包很燙。不可向機身倒水。酵母盒潮濕時用紙巾輕抹乾（不要大力摩擦）。"
       }
     },
     {
-      "id": "app-air-fryer",
-      "kind": "air-fryer",
-      "priority": 6,
+      "id": "app-philips-add6910",
+      "kind": "water-dispenser",
+      "model": "Philips ADD6910",
+      "priority": 3,
+      "sourceUrl": "https://www.philips.com.sg/c-p/ADD6910_90/ro-water-dispenser",
       "title": {
-        "en": "Air fryer",
-        "fil": "Air fryer",
-        "zh": "氣炸鍋"
+        "en": "Philips ADD6910 RO water dispenser",
+        "fil": "Philips ADD6910 RO water dispenser",
+        "zh": "Philips ADD6910 RO 即熱飲水機"
       },
       "tips": {
-        "en": "Preheat if the recipe says so. Do not overcrowd the basket — leave space for air. Shake or turn food halfway. Wipe crumbs after it cools. Typical starter: 160–180°C and check early the first times until you know this machine.",
-        "fil": "I-preheat kung sinabi ng recipe. Huwag siksikin ang basket — may space para sa hangin. Iling o baliktarin sa gitna. Punasan ang mumo pagkalamig. Starter tip: 160–180°C at tingnan nang maaga hanggang makilala ang machine.",
-        "zh": "食譜要求就先預熱。籃勿過滿——要留空氣流通。中途搖動或翻面。冷卻後清屑。起步可試 160–180°C，頭幾次提早查看，熟悉這部機。"
+        "en": "Philips ADD6910 is our plug-in RO water dispenser (no plumbing). Fill only with municipal tap water in the detachable 4L raw-water tank — empty leftover wastewater in the tank before refilling when the manual says so. Choose temperature: ambient / 45 / 85 / 95°C and volume: 150 / 210 / 300 / 500 ml, then dispense. Above 45°C the safety lock turns on — unlock as shown on the panel before hot water comes out. Watch the filter-life indicator; replace the all-in-one RO filter about yearly (or when indicated) and tell Sir/Mum.",
+        "fil": "Philips ADD6910 ang RO water dispenser namin (walang plumbing). Lagyan lang ng municipal tap water ang detachable 4L raw-water tank — alisin muna ang natirang wastewater bago mag-refill kung sinabi ng manual. Piliin ang temperature: ambient / 45 / 85 / 95°C at volume: 150 / 210 / 300 / 500 ml, tapos mag-dispense. Kapag >45°C, may safety lock — i-unlock ayon sa panel bago lumabas ang mainit na tubig. Bantayan ang filter-life indicator; palitan ang RO filter ~taon-taon (o kapag may babala) at sabihin kay Sir/Mum.",
+        "zh": "Philips ADD6910 是即插即用 RO 飲水機（不用駁喉）。只可把自來水倒入可拆 4L 原水箱——按說明在加水前先倒清箱內廢水。選溫度：常溫／45／85／95°C，水量：150／210／300／500 ml，再出水。高於 45°C 會開安全鎖——先按面板解鎖才出熱水。留意濾芯壽命提示；約每年（或提示時）更換一體式 RO 濾芯並告知 Sir/Mum。"
       },
       "warnings": {
-        "en": "Basket and heater get very hot — use tongs and heat-safe mat. Do not pour oil in a pool; a light spray or brush is enough. Keep away from curtains while hot.",
-        "fil": "Mainit ang basket at heater — gumamit ng tongs at heat-safe mat. Huwag magbuhos ng maraming mantika; light spray o brush sapat na. Layuan ang kurtina habang mainit.",
-        "zh": "籃和發熱管很燙——用夾和耐熱墊。不要倒一大灘油；薄噴或刷少許即可。熱時遠離窗簾。"
+        "en": "Hot water can scald — keep Zizi away from the spout. Do not use well water / unknown water. Do not tip the machine while full. Filter change: ask Sir/Mum (original Philips filter only).",
+        "fil": "Mainit ang tubig — layuan si Zizi sa spout. Huwag gumamit ng well water / unknown water. Huwag itagilid ang machine kung puno. Pagpapalit ng filter: tanungin si Sir/Mum (original Philips filter lang).",
+        "zh": "熱水會燙傷——Zizi 不要靠近出水口。不要用不清楚來源的水。水箱滿時不要傾斜機身。換濾芯請問 Sir/Mum（只用原廠 Philips 濾芯）。"
+      }
+    },
+    {
+      "id": "app-zojirushi-np-rlq05",
+      "kind": "rice-cooker",
+      "model": "Zojirushi NP-RLQ05",
+      "priority": 4,
+      "sourceUrl": "https://www.zojirushi.com.hk/enproductsview.php?oid=1&pid=310&tid=1",
+      "title": {
+        "en": "Zojirushi NP-RLQ05 rice cooker",
+        "fil": "Zojirushi NP-RLQ05 rice cooker",
+        "zh": "Zojirushi NP-RLQ05 壓力 IH 飯煲"
+      },
+      "tips": {
+        "en": "Our cooker is Zojirushi NP-RLQ05 (0.5–3 cups) — IH pressure rice cooker with orange LCD. Always use the plastic measuring cup that came with it (not a kitchen mug). Wash rice in the inner pan until water is clearer. Add cold water to the matching water line for the cups + rice type (White / Long grain / Brown / Congee etc.). Wipe the pan outside dry, seat it, close the lid firmly. Select the menu on the LCD (e.g. White Regular, Quick, Sushi, Scorch) and press Start. When done it goes to Keep Warm — fluff with the rice paddle. This model cooks under pressure; wait for pressure to release safely before forcing the lid.",
+        "fil": "Rice cooker namin: Zojirushi NP-RLQ05 (0.5–3 cups) — IH pressure, orange LCD. Gamitin ang plastic measuring cup na kasama (huwag ordinary mug). Hugasan ang bigas sa inner pan hanggang mas malinaw ang tubig. Lagyan ng malamig na tubig hanggang matching water line (cups + uri: White / Long grain / Brown / Congee atbp.). Patuyuin ang labas ng pan, ilagay, isara nang maayos ang lid. Piliin ang menu sa LCD (hal. White Regular, Quick, Sushi, Scorch) at Start. Kapag Keep Warm na, haluin gamit ang rice paddle. May pressure ang model na ito — hintaying safe ang release bago pilitin ang lid.",
+        "zh": "飯煲是 Zojirushi NP-RLQ05（約 0.5–3 杯）——壓力 IH，橙色 LCD。必須用隨機量杯（不要用普通水杯）。在內鍋洗米至水較清。按杯數及米種水位線加冷水（白米／長米／糙米／粥等）。抹乾內鍋外、放回、蓋緊蓋。在 LCD 選菜單（如白米標準、快煮、壽司、焦香）按開始。完成後轉保溫，用飯匙翻鬆。此機有壓力；切勿在仍有壓力時強行開蓋。"
+      },
+      "warnings": {
+        "en": "Never force the lid while pressurized. Keep face away from the steam vent. Do not wash the main body with water. Inner pan only — no metal utensils that scratch the nonstick.",
+        "fil": "Huwag piliting buksan ang lid habang may pressure. Layuan ang steam vent ang mukha. Huwag hugasan ang main body ng tubig. Inner pan lang — huwag gumamit ng metal na nakakagasgas.",
+        "zh": "有壓力時切勿強行開蓋。臉遠離排氣口。機身不要用水沖。只用內鍋——不要用金屬餐具刮花塗層。"
+      }
+    },
+    {
+      "id": "app-hitachi-hb-st388",
+      "kind": "range-hood",
+      "model": "Hitachi HB-ST388",
+      "priority": 5,
+      "sourceUrl": "https://3dlifehk.com.hk/product/show/id/754",
+      "title": {
+        "en": "Hitachi HB-ST388 cooker hood",
+        "fil": "Hitachi HB-ST388 cooker hood (range hood)",
+        "zh": "日立 HB-ST388 抽油煙機"
+      },
+      "tips": {
+        "en": "Hitachi HB-ST388 is our 28″ cooker hood (抽油煙機), not a washing machine. Twin motors: left and right can be switched independently; each has high/low speed. Turn the hood on before frying / stir-fry and leave it a few minutes after cooking so smoke clears. Empty / clean the oil cups when they look oily (do not wait until overflowing). Filters and removable parts are designed to be easy to take off for washing — soak in warm water with mild dish soap, rinse, dry fully, then refit. Wipe the stainless surface with a soft cloth and mild cleaner.",
+        "fil": "Hitachi HB-ST388 ang 28″ cooker hood (抽油煙機) namin — hindi washing machine. Twin motors: left/right puwedeng i-on nang hiwalay; high/low speed. Buksan bago magprito / mag-stir-fry, at hayaan pa ng ilang minuto pagkatapos para mawala ang usok. Linisin / alisin ang oil cups kapag madami nang mantika (huwag hintaying umapaw). Filters at removable parts madaling tanggalin — ibabad sa mainit-init na tubig + mild dish soap, banlawan, patuyuin nang tuluyan, tapos ibalik. Punasan ang stainless surface ng soft cloth + mild cleaner.",
+        "zh": "日立 HB-ST388 是 28 吋抽油煙機（不是洗衣機）。左右雙摩打可獨立開關，各有高／低速。炒炸前先開，煮完再多抽幾分鐘清煙。油杯有油就要清（不要等滿溢）。濾網等易拆件可用溫水＋中性洗碗液浸泡清洗，沖淨完全風乾再裝回。不鏽鋼面用軟布＋中性清潔劑抹。"
+      },
+      "warnings": {
+        "en": "Unplug or switch off power before deep cleaning. Never spray water into the motors. Do not cook with strong cleaner spray falling into food. Ask Sir/Mum before a full dismantle if you are unsure.",
+        "fil": "I-off / unplug bago mag-deep clean. Huwag mag-spray ng tubig papunta sa motors. Huwag magluto habang may malakas na cleaner na puwedeng tumulo sa pagkain. Kung unsure sa full dismantle, tanungin si Sir/Mum.",
+        "zh": "深層清潔前先斷電。不可向摩打噴水。清潔時勿讓強清潔劑滴入食物。不確定如何全拆就問 Sir/Mum。"
+      }
+    },
+    {
+      "id": "app-tefal-easy-fry-xxl",
+      "kind": "air-fryer",
+      "model": "Tefal Easy Fry & Grill XXL",
+      "priority": 6,
+      "sourceUrl": "https://www.tefal.com/instructions-for-use/Products-/Electrical-Cooking/Oilless-Fryer/Easy-Fry-%26-Grill-XXL/csp/7211004838",
+      "title": {
+        "en": "Tefal Easy Fry & Grill XXL",
+        "fil": "Tefal Easy Fry & Grill XXL",
+        "zh": "Tefal Easy Fry & Grill XXL 氣炸鍋"
+      },
+      "tips": {
+        "en": "Our air fryer is Tefal Easy Fry & Grill XXL. Plug in → optional preheat: Start, choose Air Fry (first use often shows 180°C), adjust °C with +/−, Start again until it beeps. Put food in the bowl/basket — do not overcrowd. Manual cook: set 40–220°C and 0–60 min, then Start. Or pick an auto mode on the touchscreen. Grill mode: preheats ~15 min at 220°C; flip meat halfway; oil collects in the bowl. Reheat tip from the manual: about 160°C up to ~10 min. Shake/turn food halfway for even cooking.",
+        "fil": "Air fryer namin: Tefal Easy Fry & Grill XXL. I-plug → optional preheat: Start, piliin ang Air Fry (unang gamit madalas 180°C), ayusin °C gamit +/−, Start ulit hanggang may beep. Ilagay ang pagkain sa bowl/basket — huwag siksikin. Manual: 40–220°C at 0–60 min, tapos Start. O piliin ang auto mode sa touchscreen. Grill mode: preheat ~15 min sa 220°C; baliktarin ang karne sa gitna; nagtitipon ang mantika sa bowl. Reheat (manual): ~160°C hanggang ~10 min. Iling / baliktarin sa gitna para pantay ang luto.",
+        "zh": "氣炸鍋是 Tefal Easy Fry & Grill XXL。插電 → 可先預熱：Start，選 Air Fry（首次常顯示 180°C），用 +/− 調溫，再 Start 至響聲。食物放入籃／鍋——不要過滿。手動：40–220°C、0–60 分鐘後 Start。或選觸控自動模式。Grill：約 220°C 預熱 15 分鐘；肉中途翻面；油聚在鍋底。翻熱參考說明：約 160°C、最多約 10 分鐘。中途搖動／翻面更均勻。"
+      },
+      "warnings": {
+        "en": "Basket and heater get very hot — use tongs and a heat-safe mat. Keep away from curtains. Pulling the basket mid-cook cools the machine (OK but not ideal). Do not pour a pool of oil; a light brush/spray is enough.",
+        "fil": "Mainit ang basket at heater — gumamit ng tongs at heat-safe mat. Layuan ang kurtina. Kapag hinila ang basket sa gitna ng luto, lumalamig ang loob (OK pero hindi ideal). Huwag magbuhos ng maraming mantika; light brush/spray sapat.",
+        "zh": "籃和發熱管很燙——用夾和耐熱墊。遠離窗簾。中途拉出籃會降溫（可以但不理想）。不要倒一大灘油；薄刷／噴少許即可。"
+      }
+    },
+    {
+      "id": "app-tefal-du4120g0",
+      "kind": "dehumidifier",
+      "model": "Tefal DU4120G0",
+      "priority": 7,
+      "sourceUrl": "https://www.tefal.com.hk/en/instructions-for-use/Products-/Home-Care/Humidifier-and-Dehumidifier/INTENSE-DRY-CONTROL-LINEN-DRY-20L-DU4120/csp/1830005659",
+      "title": {
+        "en": "Tefal DU4120G0 dehumidifier",
+        "fil": "Tefal DU4120G0 dehumidifier (linen dry)",
+        "zh": "Tefal DU4120G0 乾衣抽濕機"
+      },
+      "tips": {
+        "en": "Our dehumidifier is Tefal Intense Dry Control Linen Dry DU4120G0 (20L). Place on a flat stable floor with air intake/outlet grills clear; the tank floater must move freely. Plug in and press ON/OFF. Set target humidity with the humidity control (often 50% / 60% / 70%) — it dehumidifies until that level, then the compressor may stop while the fan keeps running. For drying laundry: use DRY (linen dry) — continuous dehumidify + swing helps dry clothes faster; you can also press SWING for wider airflow. Empty the water tank when full (machine usually stops or alerts). Clean: unplug first → wipe with a slightly damp cloth → empty/clean tank → remove the washable nano/pre-filter, vacuum or rinse as Sir/Mum showed, dry, refit. Never run without the pre-filter.",
+        "fil": "Dehumidifier namin: Tefal Intense Dry Control Linen Dry DU4120G0 (20L). Ilagay sa flat stable floor; dapat malaya ang air intake/outlet; dapat gumagalaw nang libre ang floater sa tank. I-plug at pindutin ang ON/OFF. Itakda ang target humidity (madalas 50% / 60% / 70%) — magde-dehumidify hanggang doon. Para sa pagpapatuyo ng damit: gamitin ang DRY (linen dry) — continuous + swing para mas mabilis; pindutin din ang SWING kung kailangan. Alisin ang tubig sa tank kapag puno. Linis: i-unplug muna → damp cloth → linisin ang tank → tanggalin ang washable nano/pre-filter, vacuum o banlawan gaya ng itinuro, patuyuin, ibalik. Huwag gamitin nang walang pre-filter.",
+        "zh": "抽濕機是 Tefal Intense Dry Control Linen Dry DU4120G0（20L）。放在平穩地面，入風／出風口勿遮擋；水箱浮波要能自由浮動。插電按開關。用濕度控制設定目標（常見 50%／60%／70%）——抽至該濕度後壓縮機或會停、風扇繼續轉。乾衣：用 DRY（乾衣）——持續抽濕＋擺風加快乾衣；也可按 SWING 擴大送風。水箱滿了要倒清（機通常會停或提示）。清潔：先拔掣 → 微濕布抹機 → 清／倒水箱 → 取出可清洗 nano／前置濾網，按 Sir/Mum 教的吸塵或沖洗，乾透再裝回。沒有前置濾網不要開機。"
+      },
+      "warnings": {
+        "en": "Keep air grills unblocked. Do not tip the machine when the tank has water. Never use abrasive cleaners. If less effective: check tank not full, room not too cold, and unit sized for the room — ask Sir/Mum if unsure.",
+        "fil": "Huwag harangan ang air grills. Huwag itagilid kung may tubig ang tank. Huwag gumamit ng abrasive cleaners. Kung humina: tingnan kung puno ang tank, masyadong malamig ang kwarto, o mali ang laki para sa room — tanungin si Sir/Mum kung unsure.",
+        "zh": "出入風口勿遮擋。水箱有水時不要傾斜機身。不要用磨蝕性清潔劑。效果變差：檢查水箱是否滿、室溫是否過低、機型是否適合房間——不確定問 Sir/Mum。"
+      }
+    },
+    {
+      "id": "app-dyson-hp07",
+      "kind": "air-purifier",
+      "model": "Dyson HP07",
+      "priority": 8,
+      "sourceUrl": "https://www.dyson.com/support/air-treatment/purifiers/purifier-hot-cool-hp7c",
+      "title": {
+        "en": "Dyson HP07 Purifier Hot+Cool",
+        "fil": "Dyson HP07 Purifier Hot+Cool",
+        "zh": "Dyson HP07 暖風＋涼風空氣清新機"
+      },
+      "tips": {
+        "en": "Our Dyson HP07 is a Purifier Hot+Cool (cleans air + heats + cools). Place with a few feet clear on all sides so air can circulate. Use the remote or Dyson Link app: Auto mode lets sensors adjust purification; set a target temperature for heating; use fan speed for cooling airflow; Oscillation spreads air; Night mode for quieter use. LCD shows air quality, temperature/humidity, and filter life. Filters are NOT washable — replace HEPA/carbon when the screen or app says so (often about yearly). After fitting a new filter: plug in, then reset filter life on the remote (hold Night mode ~5 seconds for HEPA; some units also reset carbon via Oscillation — follow the on-screen / manual steps). Wipe the body with a damp lint-free cloth; soft-brush dust from air inlets and the loop amplifier. No detergents or polish.",
+        "fil": "Dyson HP07 namin: Purifier Hot+Cool (naglilinis ng hangin + heat + cool). Mag-iwan ng espasyo sa paligid para umikot ang hangin. Gamitin ang remote o Dyson Link app: Auto mode para sa sensors; itakda ang temperature para sa heating; fan speed para sa cooling; Oscillation para kumalat ang hangin; Night mode para mas tahimik. LCD: air quality, temperature/humidity, filter life. Hindi hugasan ang filters — palitan ang HEPA/carbon kapag sinabi ng screen/app (madalas ~taon-taon). Pagkatapos maglagay ng bagong filter: i-plug, i-reset ang filter life sa remote (hold Night mode ~5 segundo para sa HEPA; iba ay Oscillation para sa carbon — sundin ang manual). Punasan ng damp lint-free cloth; soft brush sa air inlets at loop amplifier. Walang detergent o polish.",
+        "zh": "Dyson HP07 是 Purifier Hot+Cool（淨化＋暖風＋涼風）。四周留空間讓空氣流通。用遙控或 Dyson Link：Auto 讓感應器自動調淨化；設定目標溫度作暖風；調風速作涼風；Oscillation 擺風；Night 更靜。LCD 顯示空氣質素、溫濕度、濾網壽命。濾網不可水洗——按螢幕／App 提示更換 HEPA／活性碳（多數約一年）。換新濾網後：插電，用遙控重設壽命（按住 Night 約 5 秒重設 HEPA；部分機型用 Oscillation 重設碳濾——跟說明）。機身用微濕無纖布抹；軟刷清入風孔和環形風道。不可用清潔劑或亮光劑。"
+      },
+      "warnings": {
+        "en": "Keep away from water and never tip liquid into the machine. Do not block the air inlets or amplifier. Heater surfaces get hot — keep Zizi at a safe distance. Ask Sir/Mum before buying / fitting replacement filters.",
+        "fil": "Layuan ang tubig; huwag magbuhos ng liquid sa machine. Huwag harangan ang air inlets o amplifier. Mainit kapag heater — layuan si Zizi. Bago bumili / magpalit ng filter, tanungin si Sir/Mum.",
+        "zh": "遠離水，不要向機內倒液體。勿遮擋入風口或風道。加熱時表面燙——Zizi 保持距離。買／換濾網前先問 Sir/Mum。"
       }
     }
   ]

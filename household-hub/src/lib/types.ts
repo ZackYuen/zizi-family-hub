@@ -150,6 +150,10 @@ export type ApplianceKind =
   | "washing-machine"
   | "bread-machine"
   | "air-fryer"
+  | "water-dispenser"
+  | "range-hood"
+  | "dehumidifier"
+  | "air-purifier"
   | "other";
 
 export interface ApplianceGuide {
@@ -157,10 +161,14 @@ export interface ApplianceGuide {
   kind: ApplianceKind;
   priority: number;
   title: BilingualText;
+  /** Exact model if known, e.g. Dyson V12 */
+  model?: string;
   /** How to use / daily tips */
   tips: BilingualText;
   /** Soft caution (still not a ground-rule consequence) */
   warnings?: BilingualText;
+  /** Manual / support page */
+  sourceUrl?: string;
 }
 
 export type HkLifeCategory =

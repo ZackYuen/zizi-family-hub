@@ -172,9 +172,12 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     lines.push("House tools / appliances (how-to):");
     const sorted = [...snap.appliances].sort((a, b) => a.priority - b.priority);
     for (const a of sorted) {
-      lines.push(`- [${a.kind}] ${a.title.en}`);
+      lines.push(
+        `- [${a.kind}] ${a.title.en}${a.model ? ` (${a.model})` : ""}`
+      );
       lines.push(`  Tips: ${a.tips.en}`);
       if (a.warnings?.en) lines.push(`  Caution: ${a.warnings.en}`);
+      if (a.sourceUrl) lines.push(`  Manual: ${a.sourceUrl}`);
     }
   }
 
