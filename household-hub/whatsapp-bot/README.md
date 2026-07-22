@@ -8,7 +8,7 @@ Unofficial WhatsApp Web client. Uses a **normal WhatsApp account** (scan QR), li
 
 - Node 20+
 - Always-on host: home PC / Raspberry Pi / cheap VPS (not Vercel)
-- Live site Ask API deployed (`https://zizi-family-hub.vercel.app/api/ask`)
+- Live site Ask API deployed (`https://zizi-family-hub.vercel.app/api/ask/`)
 - Optional on Vercel: `OPENROUTER_API_KEY` for smarter answers
 
 ## Quick start (PC / VPS)
@@ -108,5 +108,5 @@ You can run **both**; group members can use either path.
 
 - **No QR:** wait a few seconds; check firewall.
 - **Logged out:** delete `auth_info`, restart, scan again.
-- **No reply:** ensure Ask API is deployed; check `pm2 logs`; confirm message used `?` or @bot.
+- **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs`; confirm message used `?` or @bot.
 - **Ask API 404:** merge/deploy PR with `/api/ask` first.
