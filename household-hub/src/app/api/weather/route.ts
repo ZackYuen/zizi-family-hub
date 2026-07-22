@@ -1,23 +1,23 @@
 import { NextResponse } from "next/server";
-import { fetchLiveWeather, hkoLangFor } from "@/lib/hko-weather";
+import { fetchLiveWeather } from "@/lib/hko-weather";
 import type { Lang } from "@/lib/types";
 
 export const revalidate = 300;
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const langParam = (searchParams.get("lang") ?? "en") as Lang;
-  const lang = hkoLangFor(
-    langParam === "zh" || langParam === "fil" || langParam === "en"
-      ? langParam
-      : "en"
-  );
+  const raw = searchParams.get("lang") ?? "en";
+  const appLang: Lang =
+    raw === "zh" || raw === "fil" || raw === "en" ? raw : "en";
 
   try {
-    const data = await fetchLiveWeather(lang);
+    const data = await fetchLiveWeather(appLang);
     return NextResponse.json(data, {
       headers: {
-        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+        "Cache-Control":
+          appLang === "fil"
+            ? "private, max-age=120"
+            : "public, s-maxage=300, stale-while-revalidate=600",
       },
     });
   } catch (err) {

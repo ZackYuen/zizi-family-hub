@@ -49,6 +49,7 @@ async function chatComplete(options: {
   openRouter: boolean;
   system: string;
   user: string;
+  maxTokens?: number;
 }): Promise<string | null> {
   const headers: Record<string, string> = {
     Authorization: `Bearer ${options.key}`,
@@ -66,7 +67,7 @@ async function chatComplete(options: {
     body: JSON.stringify({
       model: options.model,
       temperature: 0,
-      max_tokens: 200,
+      max_tokens: options.maxTokens ?? 200,
       messages: [
         { role: "system", content: options.system },
         { role: "user", content: options.user },
@@ -182,4 +183,62 @@ export async function translateText(
 /** @deprecated use translateText(text, "en", "fil") */
 export async function translateEnToFil(text: string): Promise<string> {
   return translateText(text, "en", "fil");
+}
+
+/**
+ * Translate HKO English forecast into natural Filipino for the weather banner.
+ * Uses a weather-specific prompt and a higher token limit than dish-name translate.
+ */
+export async function translateWeatherForecastToFil(
+  englishForecast: string
+): Promise<string> {
+  const trimmed = englishForecast.trim();
+  if (!trimmed) return trimmed;
+
+  const system = `You translate Hong Kong Observatory weather forecasts for a Filipino domestic helper in Hong Kong.
+Reply with ONLY natural Filipino (Tagalog) text.
+Keep numbers, °C, signal numbers (T8, Signal No. 8), and place names.
+No quotes, no email, no URL, no ads, no explanation.`;
+  const user = `Translate this HK weather forecast to Filipino:\n${trimmed}`;
+
+  const key = openRouterKey();
+  if (key) {
+    for (const model of openRouterModels()) {
+      try {
+        const out = await chatComplete({
+          key,
+          endpoint: "https://openrouter.ai/api/v1/chat/completions",
+          model,
+          openRouter: true,
+          system,
+          user,
+          maxTokens: 500,
+        });
+        if (out) return out;
+      } catch {
+        /* try next model */
+      }
+    }
+  }
+
+  const openAiKeyVal = openAiKey();
+  if (openAiKeyVal) {
+    const out = await chatComplete({
+      key: openAiKeyVal,
+      endpoint: "https://api.openai.com/v1/chat/completions",
+      model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+      openRouter: false,
+      system,
+      user,
+      maxTokens: 500,
+    });
+    if (out) return out;
+  }
+
+  // Fall back to generic translate, then English if that also fails
+  try {
+    return await translateText(trimmed, "en", "fil");
+  } catch {
+    return trimmed;
+  }
 }
