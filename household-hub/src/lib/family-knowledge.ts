@@ -175,8 +175,15 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
       lines.push(
         `- [${a.kind}] ${a.title.en}${a.model ? ` (${a.model})` : ""}`
       );
-      lines.push(`  Tips: ${a.tips.en}`);
-      if (a.warnings?.en) lines.push(`  Caution: ${a.warnings.en}`);
+      for (const tipLine of a.tips.en.split(/\n+/).filter(Boolean)) {
+        lines.push(`  ${tipLine.trim()}`);
+      }
+      if (a.warnings?.en) {
+        lines.push(`  Caution:`);
+        for (const w of a.warnings.en.split(/\n+/).filter(Boolean)) {
+          lines.push(`  ${w.trim()}`);
+        }
+      }
       if (a.sourceUrl) lines.push(`  Manual: ${a.sourceUrl}`);
     }
   }
