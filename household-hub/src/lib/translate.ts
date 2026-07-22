@@ -186,6 +186,38 @@ export async function translateEnToFil(text: string): Promise<string> {
 }
 
 /**
+ * Free no-key Tagalog fallback (Google gtx). Used only for weather forecasts
+ * when OpenRouter / OpenAI are unavailable, so FIL mode is not stuck in English.
+ */
+async function translateEnToFilViaGoogle(text: string): Promise<string | null> {
+  try {
+    const url =
+      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=tl&dt=t&q=" +
+      encodeURIComponent(text);
+    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
+    if (!res.ok) return null;
+    const data = (await res.json()) as unknown;
+    if (!Array.isArray(data) || !Array.isArray(data[0])) return null;
+    const parts = data[0] as unknown[];
+    const out = parts
+      .map((p) => (Array.isArray(p) && typeof p[0] === "string" ? p[0] : ""))
+      .join("")
+      .trim();
+    if (!out || isBadTranslation(out, text)) return null;
+    // Light weather wording polish for helpers
+    return out
+      .replace(/\bshower(s)?\b/gi, "ambon")
+      .replace(/\bdegrees\b/gi, "digri")
+      .replace(/\burban areas\b/gi, "lungsod")
+      .replace(/\bNew Territories\b/g, "New Territories")
+      .trim();
+  } catch (err) {
+    console.error("Google weather fil translate", err);
+    return null;
+  }
+}
+
+/**
  * Translate HKO English forecast into natural Filipino for the weather banner.
  * Uses a weather-specific prompt and a higher token limit than dish-name translate.
  */
@@ -235,7 +267,9 @@ No quotes, no email, no URL, no ads, no explanation.`;
     if (out) return out;
   }
 
-  // Fall back to generic translate, then English if that also fails
+  const google = await translateEnToFilViaGoogle(trimmed);
+  if (google) return google;
+
   try {
     return await translateText(trimmed, "en", "fil");
   } catch {
