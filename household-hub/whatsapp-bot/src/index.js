@@ -178,9 +178,8 @@ async function startBot() {
         try {
           const result = await askFamilyHub(question);
           answer = result.answer || "No answer.";
-          if (result.lastUpdated) {
-            answer += `\n\n_(live · ${String(result.lastUpdated).slice(0, 10)})_`;
-          }
+          // Do not print Admin lastUpdated as a date — it looks like "today" and confuses
+          answer += "\n\n_(Zizi Family Hub)_";
         } catch (err) {
           console.error("Ask failed", err);
           answer =

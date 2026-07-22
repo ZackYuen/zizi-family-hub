@@ -1,4 +1,4 @@
-import { getTodayDayKey } from "./i18n";
+import { getTodayDayKey, getHongKongTimeParts } from "./i18n";
 import { isHelperDayOff } from "./hk-holidays";
 import { generateTonightMenu } from "./dinner";
 import { getContentWithSource, getDinnerRecipes } from "./data";
@@ -8,6 +8,8 @@ import type { AppContent, DinnerRecipe, TonightMenu } from "./types";
 export interface LiveFamilySnapshot {
   source: "supabase" | "local";
   lastUpdated: string;
+  /** Current Hong Kong wall-clock, e.g. 2026-07-22 12:56 (HKT) */
+  nowHongKong: string;
   helperName: string;
   familyName: string;
   isHelperDayOffToday: boolean;
@@ -18,6 +20,19 @@ export interface LiveFamilySnapshot {
   monthlyTasks: AppContent["monthlyTasks"];
   tonight: TonightMenu | null;
   recipeCount: number;
+}
+
+function formatNowHongKong(date = new Date()): string {
+  const datePart = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Hong_Kong",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+  const { hour, minute } = getHongKongTimeParts(date);
+  const hh = String(hour).padStart(2, "0");
+  const mm = String(minute).padStart(2, "0");
+  return `${datePart} ${hh}:${mm} (Asia/Hong_Kong)`;
 }
 
 function ingredientLine(recipe: DinnerRecipe, lang: "en" | "fil" = "en"): string[] {
@@ -43,6 +58,7 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
   return {
     source,
     lastUpdated: content.lastUpdated,
+    nowHongKong: formatNowHongKong(),
     helperName: content.helperName,
     familyName: content.familyName,
     isHelperDayOffToday: dayOff,
@@ -62,7 +78,12 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push(`Family: ${snap.familyName}`);
   lines.push(`Helper: ${snap.helperName}`);
   lines.push(`Data source: ${snap.source} (Admin live data when supabase)`);
-  lines.push(`Last updated: ${snap.lastUpdated}`);
+  lines.push(
+    `CURRENT Hong Kong date/time (use this for "what time is it"): ${snap.nowHongKong}`
+  );
+  lines.push(
+    `Admin data lastUpdated (NOT the current clock — ignore for time-of-day questions): ${snap.lastUpdated}`
+  );
   lines.push(`Today key: ${snap.todayDayKey}`);
   lines.push(
     `Charlene day off today (Sunday / HK public holiday): ${snap.isHelperDayOffToday ? "YES" : "NO"}`
