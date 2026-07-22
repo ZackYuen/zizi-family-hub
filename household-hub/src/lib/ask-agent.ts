@@ -3,6 +3,16 @@ import {
   snapshotToKnowledgeText,
   type LiveFamilySnapshot,
 } from "./family-knowledge";
+import { getHongKongTimeParts } from "./i18n";
+import { localized } from "./localized-text";
+import {
+  getTaskEndTime,
+  getTaskStartTime,
+  isTaskActiveNow,
+  parseTimeToMinutes,
+  sortTasksByTime,
+} from "./schedule-utils";
+import type { Lang, ScheduleTask } from "./types";
 
 export interface AskResult {
   answer: string;
@@ -12,15 +22,109 @@ export interface AskResult {
   lastUpdated: string;
 }
 
-function detectLang(q: string): "en" | "fil" | "zh" {
+function detectLang(q: string): Lang {
   if (/[\u4e00-\u9fff]/.test(q)) return "zh";
   if (
-    /\b(ano|saan|kailan|paano|ba|po|naman|salamat|ngayon|hapunan|alituntunin)\b/i.test(
+    /\b(ano|saan|kailan|paano|ba|po|naman|salamat|ngayon|hapunan|alituntunin|gawain)\b/i.test(
       q
     )
   )
     return "fil";
   return "en";
+}
+
+function taskLabel(task: ScheduleTask, lang: Lang): string {
+  const start = getTaskStartTime(task);
+  const end = getTaskEndTime(task);
+  const range = task.fullDay
+    ? lang === "fil"
+      ? "Buong araw"
+      : lang === "zh"
+        ? "全日"
+        : "All day"
+    : end && end !== start
+      ? `${start}–${end}`
+      : start;
+  return `${range} — ${localized(task.task, lang)}`;
+}
+
+/** Exact current / next task from today's HK schedule */
+function currentTaskAnswer(snap: LiveFamilySnapshot, lang: Lang): string | null {
+  if (!snap.todaySchedule?.tasks?.length) return null;
+  if (snap.isHelperDayOffToday) {
+    return lang === "fil"
+      ? "Day off ni Charlene ngayon — walang work schedule."
+      : lang === "zh"
+        ? "今天是 Charlene 放假 — 沒有工作時間表。"
+        : "Charlene day off today — no work schedule.";
+  }
+
+  const { minutesSinceMidnight } = getHongKongTimeParts();
+  const timeOnly = snap.nowHongKong.match(/\d{2}:\d{2}/)?.[0] ?? "";
+  const sorted = sortTasksByTime(snap.todaySchedule.tasks).filter((t) => !t.fullDay);
+
+  const active = sorted.find((t) => isTaskActiveNow(t, minutesSinceMidnight));
+  if (active) {
+    if (lang === "fil") {
+      return `Ngayon (${timeOnly} HKT):\n▶ ${taskLabel(active, lang)}\n\nIto ang current task.`;
+    }
+    if (lang === "zh") {
+      return `現在（${timeOnly} HKT）：\n▶ ${taskLabel(active, lang)}\n\n這是目前要做的事。`;
+    }
+    return `Now (${timeOnly} HKT):\n▶ ${taskLabel(active, lang)}\n\nThis is the current task.`;
+  }
+
+  const next = sorted.find(
+    (t) => parseTimeToMinutes(getTaskStartTime(t)) > minutesSinceMidnight
+  );
+  const prev = [...sorted]
+    .reverse()
+    .find((t) => {
+      const end = getTaskEndTime(t);
+      const endMin = end
+        ? parseTimeToMinutes(end)
+        : parseTimeToMinutes(getTaskStartTime(t)) + 30;
+      return endMin <= minutesSinceMidnight;
+    });
+
+  if (next) {
+    const nextStart = getTaskStartTime(next);
+    if (lang === "fil") {
+      return [
+        `Ngayon (${timeOnly} HKT): walang ongoing task (gap).`,
+        prev ? `Tapos na: ${taskLabel(prev, lang)}` : null,
+        `Susunod (${nextStart}):\n▶ ${taskLabel(next, lang)}`,
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }
+    if (lang === "zh") {
+      return [
+        `現在（${timeOnly} HKT）：暫無進行中的工作（空檔）。`,
+        prev ? `剛完成：${taskLabel(prev, lang)}` : null,
+        `下一項（${nextStart}）：\n▶ ${taskLabel(next, lang)}`,
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }
+    return [
+      `Now (${timeOnly} HKT): no task in progress (gap).`,
+      prev ? `Just finished: ${taskLabel(prev, lang)}` : null,
+      `Next (at ${nextStart}):\n▶ ${taskLabel(next, lang)}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  if (prev) {
+    return lang === "fil"
+      ? `Ngayon (${timeOnly} HKT): tapos na ang schedule ngayong araw.\nHuli: ${taskLabel(prev, lang)}`
+      : lang === "zh"
+        ? `現在（${timeOnly} HKT）：今天的時間表已完成。\n最後一項：${taskLabel(prev, lang)}`
+        : `Now (${timeOnly} HKT): today's schedule is finished.\nLast task: ${taskLabel(prev, lang)}`;
+  }
+
+  return null;
 }
 
 function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | null {
@@ -30,13 +134,24 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
   if (
     /what time|current time|time now|now time|幾點|现在几|現在幾|anong oras|oras na|what'?s the time/.test(
       q
-    )
+    ) &&
+    !/what should|gawain|task|do now|做什麼|做什么/.test(q)
   ) {
-    // snap.nowHongKong like "2026-07-22 12:56 (Asia/Hong_Kong)"
     const timeOnly = snap.nowHongKong.match(/\d{2}:\d{2}/)?.[0] ?? snap.nowHongKong;
     if (lang === "fil") return `Ngayon sa Hong Kong: ${timeOnly} (HKT).`;
     if (lang === "zh") return `香港現在時間：${timeOnly}（HKT）。`;
     return `Hong Kong time now: ${timeOnly} (HKT).`;
+  }
+
+  // "what should I do now?" → exact current / next task (not full day list)
+  if (
+    /what should i do|do now|current task|now task|ano.*gawain|ano.*gagawin|susunod na gawain|現在(要?做|該做)|此刻|該做什麼|该做什么/.test(
+      q
+    ) ||
+    /\bwhat('s| is) next\b/.test(q) ||
+    (/\bnow\b/.test(q) && /task|do|gawain|做/.test(q))
+  ) {
+    return currentTaskAnswer(snap, lang);
   }
 
   if (
@@ -117,18 +232,18 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
       : `Ground rules:\n${titles}\n\nAsk about a specific rule, or open the Ground Rules tab.`;
   }
 
-  if (/schedule|iskedyul|now|ngayon|ano.*gawain|what.*do|時間表/.test(q)) {
+  // Full day list only when explicitly asking for schedule overview
+  if (
+    /full schedule|whole (day )?schedule|today'?s schedule|iskedyul|時間表|buong (araw )?na schedule/.test(
+      q
+    ) ||
+    (/^schedule\??$/.test(q.trim()) || /\bschedule\b/.test(q) && !/\bnow\b/.test(q))
+  ) {
     if (!snap.todaySchedule) return null;
-    const tasks = snap.todaySchedule.tasks
-      .slice(0, 8)
-      .map((t) => {
-        const range = t.fullDay
-          ? "All day"
-          : `${t.startTime ?? t.time}${t.endTime ? `–${t.endTime}` : ""}`;
-        return `• ${range} ${t.task.en}`;
-      })
+    const tasks = sortTasksByTime(snap.todaySchedule.tasks)
+      .map((t) => `• ${taskLabel(t, lang)}`)
       .join("\n");
-    return `${snap.todaySchedule.day.en}:\n${tasks}`;
+    return `${localized(snap.todaySchedule.day, lang)}:\n${tasks}`;
   }
 
   return null;
