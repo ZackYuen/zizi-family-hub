@@ -15,6 +15,43 @@ export const adminLabels = {
   viewApp: { en: "View App", fil: "Tingnan ang App" },
   logout: { en: "Logout", fil: "Logout" },
   rules: { en: "Rules", fil: "Alituntunin" },
+  preferences: {
+    en: "Family preferences (soft tips)",
+    fil: "Family preferences (soft tips)",
+    zh: "家庭偏好（軟性貼士）",
+  },
+  preferencesHint: {
+    en: "Not ground rules — no consequences. Shown below Rules for Charlene (e.g. shopping preferences).",
+    fil: "Hindi ground rules — walang consequences. Makikita sa baba ng Rules (hal. shopping preferences).",
+    zh: "不是守則——沒有後果說明。顯示在守則下方（例如購物偏好）。",
+  },
+  addPreference: {
+    en: "+ Add preference",
+    fil: "+ Magdagdag ng preference",
+    zh: "+ 新增偏好",
+  },
+  appliances: { en: "Tools", fil: "Gamit", zh: "家電" },
+  appliancesHint: {
+    en: "How-to for vacuum, rice cooker, washing machine, etc. Charlene sees these under the Tools tab.",
+    fil: "How-to para sa vacuum, rice cooker, washing machine, atbp. Makikita ni Charlene sa Tools tab.",
+    zh: "吸塵機、電飯煲、洗衣機等用法。Charlene 在「家電」分頁看到。",
+  },
+  addAppliance: {
+    en: "+ Add appliance",
+    fil: "+ Magdagdag ng appliance",
+    zh: "+ 新增家電",
+  },
+  applianceTips: { en: "How to use", fil: "Paano gamitin", zh: "用法" },
+  applianceWarnings: {
+    en: "Caution (optional)",
+    fil: "Babala (optional)",
+    zh: "注意（可選）",
+  },
+  saveAppliances: {
+    en: "Save Tools",
+    fil: "I-save ang Tools",
+    zh: "儲存家電",
+  },
   schedule: { en: "Schedule", fil: "Iskedyul" },
   meals: { en: "Meals", fil: "Pagkain" },
   hkLife: { en: "HK Life", fil: "HK Life", zh: "香港生活" },

@@ -9,6 +9,10 @@ import { ScheduleCalendarAdmin } from "@/components/admin/ScheduleCalendarAdmin"
 import { MealsAdmin } from "@/components/admin/MealsAdmin";
 import { HkLifeAdmin } from "@/components/admin/HkLifeAdmin";
 import { InboxAdmin } from "@/components/admin/InboxAdmin";
+import {
+  AppliancesAdmin,
+  PreferencesAdmin,
+} from "@/components/admin/HouseGuidesAdmin";
 import { TrilingualFieldEditor } from "@/components/admin/TrilingualFieldEditor";
 import { emptyBilingual } from "@/lib/localized-text";
 
@@ -23,7 +27,14 @@ export default function AdminPage() {
   const [content, setContent] = useState<AppContent | null>(null);
   const [jsonText, setJsonText] = useState("");
   const [activeSection, setActiveSection] = useState<
-    "rules" | "schedule" | "meals" | "hkLife" | "inbox" | "settings" | "json"
+    | "rules"
+    | "schedule"
+    | "meals"
+    | "tools"
+    | "hkLife"
+    | "inbox"
+    | "settings"
+    | "json"
   >("rules");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -229,6 +240,7 @@ export default function AdminPage() {
     { id: "rules" as const, label: adminT("rules", lang) },
     { id: "schedule" as const, label: adminT("schedule", lang) },
     { id: "meals" as const, label: adminT("meals", lang) },
+    { id: "tools" as const, label: adminT("appliances", lang) },
     { id: "hkLife" as const, label: adminT("hkLife", lang) },
     { id: "inbox" as const, label: adminT("inbox", lang) },
     { id: "settings" as const, label: adminT("settings", lang) },
@@ -344,11 +356,16 @@ export default function AdminPage() {
             >
               {adminT("addRule", lang)}
             </button>
+            <PreferencesAdmin
+              content={content}
+              setContent={setContent}
+              lang={lang}
+            />
             <button
               type="button"
               disabled={saving}
               onClick={() => saveContent(content)}
-              className="ml-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
             >
               {saving ? adminT("saving", lang) : adminT("saveRules", lang)}
             </button>
@@ -375,6 +392,16 @@ export default function AdminPage() {
             saving={saving}
             onSave={saveRecipes}
             setMessage={setMessage}
+          />
+        )}
+
+        {activeSection === "tools" && (
+          <AppliancesAdmin
+            content={content}
+            setContent={setContent}
+            lang={lang}
+            saving={saving}
+            onSave={() => saveContent(content)}
           />
         )}
 

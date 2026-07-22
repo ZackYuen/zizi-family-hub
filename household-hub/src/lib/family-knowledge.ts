@@ -5,8 +5,10 @@ import { getContentWithSource, getDinnerRecipes } from "./data";
 import { getRecipeDisplayName } from "./recipe-display";
 import type {
   AppContent,
+  ApplianceGuide,
   DinnerRecipe,
   EmergencyContact,
+  FamilyPreferenceTip,
   HkLifeGuide,
   HkWeatherFlag,
   SettlingCheckItem,
@@ -25,6 +27,8 @@ export interface LiveFamilySnapshot {
   ziziSchool: AppContent["ziziSchool"];
   todaySchedule: AppContent["weeklySchedule"][0] | null;
   groundRules: AppContent["groundRules"];
+  familyPreferences: FamilyPreferenceTip[];
+  appliances: ApplianceGuide[];
   monthlyTasks: AppContent["monthlyTasks"];
   tonight: TonightMenu | null;
   recipeCount: number;
@@ -79,6 +83,8 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     ziziSchool: content.ziziSchool,
     todaySchedule,
     groundRules: content.groundRules,
+    familyPreferences: content.familyPreferences ?? [],
+    appliances: content.appliances ?? [],
     monthlyTasks: content.monthlyTasks,
     tonight,
     recipeCount: recipes.length,
@@ -140,10 +146,36 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   }
 
   lines.push("");
-  lines.push("Ground rules:");
+  lines.push("Ground rules (serious — have consequences):");
   for (const r of snap.groundRules) {
     lines.push(`- ${r.title.en}: ${r.description.en}`);
     if (r.consequences?.en) lines.push(`  If Broken: ${r.consequences.en}`);
+  }
+
+  if (snap.familyPreferences.length) {
+    lines.push("");
+    lines.push(
+      "Family preferences (SOFT tips only — NOT ground rules, no punishment):"
+    );
+    const sorted = [...snap.familyPreferences].sort(
+      (a, b) => a.priority - b.priority
+    );
+    for (const p of sorted) {
+      lines.push(`- [${p.category}] ${p.title.en}`);
+      lines.push(`  EN: ${p.body.en}`);
+      lines.push(`  FIL: ${p.body.fil}`);
+    }
+  }
+
+  if (snap.appliances.length) {
+    lines.push("");
+    lines.push("House tools / appliances (how-to):");
+    const sorted = [...snap.appliances].sort((a, b) => a.priority - b.priority);
+    for (const a of sorted) {
+      lines.push(`- [${a.kind}] ${a.title.en}`);
+      lines.push(`  Tips: ${a.tips.en}`);
+      if (a.warnings?.en) lines.push(`  Caution: ${a.warnings.en}`);
+    }
   }
 
   if (snap.hkLifeGuides.length) {
@@ -215,6 +247,12 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push("- Sunday and HK public holidays (香港勞工假) are Charlene day off — not about Zizi.");
   lines.push("- Zizi needs breakfast and lunch prepared by Charlene every morning on work days.");
   lines.push("- Do not invent rules. If unsure, tell Charlene to ask Sir or Mum.");
+  lines.push(
+    "- Family preferences are soft tips (shopping/food likes) — never describe them as ground rules or give “If Broken”."
+  );
+  lines.push(
+    "- Appliance tips are how-to only; if buttons differ from the guide, tell Charlene to ask Sir/Mum."
+  );
 
   return lines.join("\n");
 }
