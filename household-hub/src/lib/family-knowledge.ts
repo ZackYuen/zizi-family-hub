@@ -99,7 +99,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     "Tone: Charlene is treated as a member of the family, not labeled as a 'helper' in replies. Say Charlene / family member. Do not use 姐姐."
   );
   if (snap.homeArea?.en) lines.push(`Home area: ${snap.homeArea.en}`);
-  lines.push(`Data source: ${snap.source} (Admin live data when supabase)`);
+  lines.push(`Data source: ${snap.source === "supabase" ? "live Admin" : "local"}`);
   lines.push(
     `CURRENT Hong Kong date/time (use this for "what time is it"): ${snap.nowHongKong}`
   );

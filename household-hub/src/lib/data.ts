@@ -200,7 +200,7 @@ export async function saveContent(content: AppContent): Promise<AppContent> {
   const updated = { ...content, lastUpdated: new Date().toISOString() };
 
   if (!isSupabaseConfigured()) {
-    throw new Error("Supabase is not configured — cannot save in production");
+    throw new Error("Live database is not configured — cannot save");
   }
 
   const supabase = getSupabaseAdmin();
@@ -235,7 +235,7 @@ export async function getDinnerRecipes(): Promise<DinnerRecipe[]> {
 
 export async function saveDinnerRecipes(recipes: DinnerRecipe[]): Promise<void> {
   if (!isSupabaseConfigured()) {
-    throw new Error("Supabase is not configured");
+    throw new Error("Live database is not configured");
   }
 
   const supabase = getSupabaseAdmin();
@@ -271,7 +271,7 @@ export async function getWhatsAppInbox(): Promise<WhatsAppInbox> {
 
 export async function saveWhatsAppInbox(inbox: WhatsAppInbox): Promise<WhatsAppInbox> {
   if (!isSupabaseConfigured()) {
-    throw new Error("Supabase is not configured — cannot save inbox");
+    throw new Error("Live database is not configured — cannot save inbox");
   }
 
   const updated: WhatsAppInbox = {
