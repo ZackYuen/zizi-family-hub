@@ -89,6 +89,10 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     `Charlene day off today (Sunday / HK public holiday): ${snap.isHelperDayOffToday ? "YES" : "NO"}`
   );
   lines.push("");
+  lines.push(
+    'For "what should I do now?" / current task: pick the schedule item whose start–end covers CURRENT Hong Kong time. If in a gap, say so and give the NEXT upcoming task only — do not dump the whole day.'
+  );
+  lines.push("");
   lines.push("Zizi school:");
   lines.push(`- EN: ${snap.ziziSchool.en}`);
   lines.push(`- FIL: ${snap.ziziSchool.fil}`);
