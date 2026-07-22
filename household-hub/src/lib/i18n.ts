@@ -34,9 +34,14 @@ export const labels = {
   chinese: { en: "繁體中文", fil: "繁體中文", zh: "繁體中文" },
   filipino: { en: "Filipino", fil: "Filipino", zh: "Filipino" },
   forHelper: {
-    en: "Helper guide for Hong Kong",
-    fil: "Gabay para sa katulong sa Hong Kong",
-    zh: "香港家務助理指南",
+    en: "Family guide for life in Hong Kong",
+    fil: "Gabay ng pamilya para sa buhay sa Hong Kong",
+    zh: "香港家庭生活指南",
+  },
+  familyMember: {
+    en: "Our family",
+    fil: "Pamilya namin",
+    zh: "我們的家人",
   },
 } as const satisfies Record<string, LabelSet | Record<string, LabelSet>>;
 

@@ -209,9 +209,9 @@ export default function AdminPage() {
       title: { en: "New Rule", fil: "Bagong Alituntunin", zh: "新規則" },
       description: emptyBilingual(),
       consequences: {
-        en: "Tell employer immediately. Employment may be terminated depending on severity.",
-        fil: "Sabihin agad sa employer. Maaaring matapos ang trabaho depende sa kalubhaan.",
-        zh: "立即告知僱主。視乎嚴重程度可能終止僱傭。",
+        en: "If Broken: We will talk together first. If it continues, a clear written reminder; serious cases may need agency support.",
+        fil: "If Broken: Mag-uusap muna tayo. Kung magpatuloy, clear written reminder; malubhang kaso ay maaaring kailanganin ang agency.",
+        zh: "若違反：先一起商量。若繼續，清楚書面提醒；嚴重時可能需要中介協助。",
       },
       category: "general",
       priority: next.groundRules.length + 1,

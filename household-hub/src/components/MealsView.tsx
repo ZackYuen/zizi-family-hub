@@ -54,9 +54,9 @@ const ui = {
     zh: "請在下午 5:00 前核對材料是否齊全。",
   },
   askCook: {
-    en: 'Tip: Ask the bot “How to cook tonight?” for the same helper text.',
-    fil: "Tip: Tanungin ang bot “Paano magluto ngayong gabi?” para sa parehong helper.",
-    zh: "提示：可問 bot「今晚怎麼煮？」取得相同協助。",
+    en: 'Tip: Ask “How to cook tonight?” for the same guide.',
+    fil: "Tip: Tanungin “Paano magluto ngayong gabi?” para sa parehong gabay.",
+    zh: "提示：可問「今晚怎麼煮？」取得相同說明。",
   },
 };
 

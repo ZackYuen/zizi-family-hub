@@ -28,11 +28,18 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 
 - Videos are often Cantonese. Meals tab shows **ingredients + prep notes** first; video is for visuals.
 - Admin → Meals: add FIL ingredients, **prep notes** (EN/FIL), **Fetch YouTube title**.
-- Ask: “How to cook tonight?” / “Paano magluto?” uses the same cook helper.
+- Ask: “How to cook tonight?” / “Paano magluto?” uses the same cook guide.
+- Bulk seed: `scripts/fill-recipe-ingredients.mjs` (review quantities in Admin).
+
+## Family tone
+
+- Call Charlene a **family member**, not “helper / katulong / 家務助理” in app copy or Ask replies.
+- Field `helperName` remains for API compatibility; UI labels say Charlene / family member.
+- Ground rules: mild, first-time-in-HK friendly; still use “If Broken” for clarity.
 
 ## HK Life (FDH / Kwun Tong)
 
-- Helper tab **HK Life**: emergency phones, settling checklist, bilingual guides.
+- Tab **HK Life**: emergency phones, settling checklist, bilingual guides.
 - Admin → **HK Life**: edit guides, Sir/Mum phones, checklist, weather alert banner (T8+ / black rain).
 - Ask / WhatsApp answer typhoon, Octopus, rest day, Consulate, AEON, etc. from `hkLifeGuides` in live content (heuristics + knowledge pack).
 - Seed/backup: `data/content.json` + `scripts/seed-hk-life.mjs`. Missing Supabase fields auto-fill from local once on read — then **Admin Save** to publish.

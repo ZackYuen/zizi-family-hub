@@ -152,6 +152,27 @@ export async function getContent(): Promise<AppContent> {
     return filled;
   }
 
+  // Soft family welcome + milder rules from seed when remote still has harsh legacy consequences
+  const remoteBorrow = remote.groundRules?.find((r) => r.id === "rule-1");
+  const localBorrow = local.groundRules?.find((r) => r.id === "rule-1");
+  const needsMildRules =
+    localBorrow &&
+    remoteBorrow &&
+    /repatriation|terminated immediately|employment terminated/i.test(
+      remoteBorrow.consequences?.en || ""
+    ) &&
+    !/repatriation|terminated immediately/i.test(localBorrow.consequences?.en || "");
+
+  if (needsMildRules || (!remote.familyWelcome && local.familyWelcome)) {
+    const filled: AppContent = {
+      ...remote,
+      groundRules: needsMildRules ? local.groundRules : remote.groundRules,
+      familyWelcome: remote.familyWelcome ?? local.familyWelcome,
+    };
+    saveContent(filled).catch(() => {});
+    return filled;
+  }
+
   return remote;
 }
 

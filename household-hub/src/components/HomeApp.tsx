@@ -36,7 +36,7 @@ export function HomeApp({ content }: { content: AppContent }) {
               {labels.appTitle[lang]}
             </h1>
             <p className="text-xs text-stone-500">
-              {labels.welcome[lang]}, {content.helperName} · {labels.forHelper[lang]}
+              {labels.welcome[lang]}, {content.helperName} · {labels.familyMember[lang]}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -59,6 +59,11 @@ export function HomeApp({ content }: { content: AppContent }) {
       </header>
 
       <main className="mx-auto max-w-lg px-4 py-4">
+        {content.familyWelcome && (
+          <p className="mb-4 rounded-2xl bg-teal-50 px-4 py-3 text-sm leading-relaxed text-teal-950 ring-1 ring-teal-100">
+            {localized(content.familyWelcome, lang)}
+          </p>
+        )}
         {activeTab === "rules" && <GroundRulesView rules={content.groundRules} />}
         {activeTab === "schedule" && (
           <ScheduleView

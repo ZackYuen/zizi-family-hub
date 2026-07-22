@@ -107,8 +107,11 @@ export interface WhatsAppInbox {
 }
 
 export interface AppContent {
+  /** Display name for Charlene (family member) — kept as helperName for API compatibility */
   helperName: string;
   familyName: string;
+  /** Short welcome line under the header */
+  familyWelcome?: BilingualText;
   ziziSchool: BilingualText;
   groundRules: GroundRule[];
   weeklySchedule: DaySchedule[];
