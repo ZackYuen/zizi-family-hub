@@ -44,12 +44,14 @@ loadEnvFile(path.join(ROOT, ".env"));
 
 const AUTH_DIR = process.env.AUTH_DIR || path.join(ROOT, "auth_info");
 
-const LIVE_ASK_URL =
-  process.env.LIVE_ASK_URL || "https://zizi-family-hub.vercel.app/api/ask";
-const LIVE_INBOX_URL =
+const LIVE_ASK_URL = (
+  process.env.LIVE_ASK_URL || "https://zizi-family-hub.vercel.app/api/ask/"
+).replace(/\/?$/, "/");
+const LIVE_INBOX_URL = (
   process.env.LIVE_INBOX_URL ||
-  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/inbox") ||
-  "https://zizi-family-hub.vercel.app/api/inbox";
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/inbox/") ||
+  "https://zizi-family-hub.vercel.app/api/inbox/"
+).replace(/\/?$/, "/");
 const INBOX_SECRET = process.env.INBOX_SECRET || process.env.BOT_INBOX_SECRET || "";
 const BOT_NAME = process.env.BOT_NAME || "CharleneBot";
 /** Comma-separated group JIDs to listen to; empty = all groups */
@@ -66,17 +68,33 @@ const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 fs.mkdirSync(AUTH_DIR, { recursive: true });
 
 async function askFamilyHub(question) {
-  const res = await fetch(LIVE_ASK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, allowInternet: true }),
-    signal: AbortSignal.timeout(30000),
-  });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`Ask API ${res.status}: ${text.slice(0, 200)}`);
+  // Prefer trailing-slash URL; follow 308 manually if needed (some Node builds mishandle POST redirects)
+  let url = LIVE_ASK_URL;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question, allowInternet: true }),
+      signal: AbortSignal.timeout(30000),
+      redirect: "manual",
+    });
+
+    if (res.status >= 300 && res.status < 400) {
+      const loc = res.headers.get("location");
+      if (!loc) throw new Error(`Ask API ${res.status} redirect without Location`);
+      url = loc.startsWith("http")
+        ? loc
+        : new URL(loc, url).toString();
+      continue;
+    }
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`Ask API ${res.status}: ${text.slice(0, 200)}`);
+    }
+    return res.json();
   }
-  return res.json();
+  throw new Error("Ask API: too many redirects");
 }
 
 async function postInbox(payload) {

@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
   output: isGithubPages ? "export" : undefined,
   basePath: isGithubPages && basePath ? basePath : undefined,
   assetPrefix: isGithubPages && basePath ? `${basePath}/` : undefined,
-  trailingSlash: !isGithubPages,
+  // GitHub Pages wants trailing slashes; Vercel APIs break POST with 308 if this is true
+  trailingSlash: isGithubPages,
   images: { unoptimized: true },
 };
 
