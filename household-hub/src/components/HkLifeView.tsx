@@ -91,7 +91,11 @@ const ui = {
     fil: "I-tap ang topic para buksan. Kumpirmahin ang kontrata kay Sir/Mum.",
     zh: "點選主題展開。合約細節請向 Sir/Mum 確認。",
   },
-  emergency: { en: "Call now", fil: "Tumawag", zh: "立即致電" },
+  emergency: {
+    en: "Emergency phones",
+    fil: "Mga emergency phone",
+    zh: "緊急電話",
+  },
   checklist: {
     en: "Settling checklist",
     fil: "Settling checklist",
