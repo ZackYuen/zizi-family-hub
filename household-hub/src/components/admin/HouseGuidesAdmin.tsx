@@ -46,18 +46,20 @@ export function PreferencesAdmin({ content, setContent, lang }: PrefProps) {
   };
 
   return (
-    <div className="space-y-3 rounded-xl bg-teal-50/80 p-4 ring-1 ring-teal-100">
-      <div>
-        <h3 className="text-sm font-bold text-teal-950">
-          {adminT("preferences", lang)}
-        </h3>
-        <p className="mt-0.5 text-xs text-teal-800">
-          {adminT("preferencesHint", lang)}
-        </p>
+    <div className="space-y-3">
+      <div className="rounded-xl border-2 border-teal-300 bg-teal-50 px-3 py-2 text-xs text-teal-950">
+        <p className="font-bold">{adminT("preferences", lang)}</p>
+        <p className="mt-0.5">{adminT("preferencesHint", lang)}</p>
       </div>
       {tips.map((tip, i) => (
-        <div key={tip.id} className="rounded-xl bg-white p-3 ring-1 ring-stone-200">
+        <div
+          key={tip.id}
+          className="rounded-xl bg-white p-3 ring-2 ring-teal-100"
+        >
           <div className="mb-2 flex items-center justify-between gap-2">
+            <span className="rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-teal-800">
+              Preference tip
+            </span>
             <select
               className="rounded border border-stone-200 px-2 py-1 text-xs"
               value={tip.category}

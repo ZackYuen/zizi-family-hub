@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { localized } from "@/lib/localized-text";
 import type {
@@ -18,29 +19,56 @@ const prefIcons: Record<FamilyPreferenceTip["category"], string> = {
 };
 
 const prefUi = {
+  tabRules: {
+    en: "Must follow",
+    fil: "Dapat sundin",
+    zh: "必須遵守",
+  },
+  tabPrefs: {
+    en: "Preferences",
+    fil: "Preferences",
+    zh: "偏好",
+  },
   title: {
     en: "Family preferences",
     fil: "Mga preference ng pamilya",
     zh: "家庭偏好",
   },
   banner: {
-    en: "Helpful tips about how our family likes things — not Ground Rules. There is no “If Broken”. When unsure, ask Sir or Mum.",
-    fil: "Mga tip kung paano gusto ng pamilya — hindi Ground Rules. Walang “If Broken”. Kung unsure, tanungin si Sir o Mum.",
-    zh: "關於我們家習慣的貼士——不是守則。沒有 “If Broken”。不確定就問 Sir 或 Mum。",
+    en: "Soft tips only — how our family likes shopping & daily habits. Not Ground Rules. No “If Broken”. When unsure, ask Sir or Mum.",
+    fil: "Soft tips lang — kung paano gusto ng pamilya sa shopping at araw-araw. Hindi Ground Rules. Walang “If Broken”. Kung unsure, tanungin si Sir o Mum.",
+    zh: "軟性貼士而已——購物與日常習慣。不是守則。沒有 “If Broken”。不確定就問 Sir 或 Mum。",
+  },
+  badge: {
+    en: "Preference tip",
+    fil: "Preference tip",
+    zh: "偏好貼士",
+  },
+  empty: {
+    en: "No preference tips yet. Sir/Mum can add them in Admin.",
+    fil: "Wala pang preference tips. Puwedeng magdagdag sina Sir/Mum sa Admin.",
+    zh: "尚無偏好貼士。Sir/Mum 可在 Admin 新增。",
   },
 };
 
 function PreferencesSection({ tips }: { tips: FamilyPreferenceTip[] }) {
   const { lang } = useLanguage();
   const sorted = [...tips].sort((a, b) => a.priority - b.priority);
-  if (!sorted.length) return null;
 
   return (
-    <div className="space-y-3 pt-2">
-      <div className="rounded-2xl border border-teal-200 bg-gradient-to-br from-teal-50 to-emerald-50 p-4">
-        <h2 className="text-base font-bold text-teal-950">{prefUi.title[lang]}</h2>
+    <div className="space-y-3">
+      <div className="rounded-2xl border-2 border-teal-300 bg-gradient-to-br from-teal-50 to-emerald-50 p-4">
+        <p className="text-[11px] font-bold uppercase tracking-wide text-teal-700">
+          {prefUi.badge[lang]}
+        </p>
+        <h2 className="mt-1 text-base font-bold text-teal-950">{prefUi.title[lang]}</h2>
         <p className="mt-1 text-sm leading-relaxed text-teal-900">{prefUi.banner[lang]}</p>
       </div>
+      {!sorted.length && (
+        <p className="rounded-2xl bg-white px-4 py-6 text-center text-sm text-stone-500 ring-1 ring-stone-100">
+          {prefUi.empty[lang]}
+        </p>
+      )}
       {sorted.map((tip) => (
         <article
           key={tip.id}
@@ -50,9 +78,14 @@ function PreferencesSection({ tips }: { tips: FamilyPreferenceTip[] }) {
             <span className="text-lg" aria-hidden>
               {prefIcons[tip.category]}
             </span>
-            <h3 className="text-base font-semibold text-stone-900">
-              {localized(tip.title, lang)}
-            </h3>
+            <div className="min-w-0 flex-1">
+              <span className="inline-block rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-teal-800">
+                {prefUi.badge[lang]}
+              </span>
+              <h3 className="mt-1 text-base font-semibold text-stone-900">
+                {localized(tip.title, lang)}
+              </h3>
+            </div>
           </div>
           <p className="text-sm leading-relaxed text-stone-600">
             {localized(tip.body, lang)}
@@ -70,10 +103,52 @@ export function RulesAndPreferencesView({
   rules: GroundRule[];
   preferences?: FamilyPreferenceTip[];
 }) {
+  const { lang } = useLanguage();
+  const [pane, setPane] = useState<"rules" | "prefs">("rules");
+  const prefCount = preferences?.length ?? 0;
+
   return (
-    <div className="space-y-6">
-      <GroundRulesView rules={rules} />
-      <PreferencesSection tips={preferences ?? []} />
+    <div className="space-y-4">
+      <div
+        className="grid grid-cols-2 gap-1 rounded-2xl bg-stone-200/80 p-1"
+        role="tablist"
+        aria-label="Rules or preferences"
+      >
+        <button
+          type="button"
+          role="tab"
+          aria-selected={pane === "rules"}
+          onClick={() => setPane("rules")}
+          className={`rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
+            pane === "rules"
+              ? "bg-red-600 text-white shadow-sm"
+              : "bg-transparent text-stone-600"
+          }`}
+        >
+          {prefUi.tabRules[lang]}
+          <span className="ml-1 text-xs opacity-80">({rules.length})</span>
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={pane === "prefs"}
+          onClick={() => setPane("prefs")}
+          className={`rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
+            pane === "prefs"
+              ? "bg-teal-600 text-white shadow-sm"
+              : "bg-transparent text-stone-600"
+          }`}
+        >
+          {prefUi.tabPrefs[lang]}
+          <span className="ml-1 text-xs opacity-80">({prefCount})</span>
+        </button>
+      </div>
+
+      {pane === "rules" ? (
+        <GroundRulesView rules={rules} />
+      ) : (
+        <PreferencesSection tips={preferences ?? []} />
+      )}
     </div>
   );
 }

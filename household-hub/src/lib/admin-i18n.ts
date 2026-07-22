@@ -14,21 +14,46 @@ export const adminLabels = {
   adminPanel: { en: "Admin Panel", fil: "Admin Panel" },
   viewApp: { en: "View App", fil: "Tingnan ang App" },
   logout: { en: "Logout", fil: "Logout" },
-  rules: { en: "Rules", fil: "Alituntunin" },
+  rules: { en: "Rules", fil: "Alituntunin", zh: "守則" },
+  rulesSubGround: {
+    en: "Ground Rules",
+    fil: "Ground Rules",
+    zh: "守則",
+  },
+  rulesSubPrefs: {
+    en: "Preferences",
+    fil: "Preferences",
+    zh: "偏好",
+  },
+  groundRulesAdminHint: {
+    en: "Serious rules with “If Broken”. Charlene must follow these. Do not put shopping tips here.",
+    fil: "Seryosong rules na may “If Broken”. Dapat sundin ni Charlene. Huwag ilagay ang shopping tips dito.",
+    zh: "附有 “If Broken” 的嚴肅守則。Charlene 必須遵守。購物貼士請放到「偏好」。",
+  },
   preferences: {
-    en: "Family preferences (soft tips)",
-    fil: "Family preferences (soft tips)",
-    zh: "家庭偏好（軟性貼士）",
+    en: "Family preferences",
+    fil: "Family preferences",
+    zh: "家庭偏好",
   },
   preferencesHint: {
-    en: "Not ground rules — no consequences. Shown below Rules for Charlene (e.g. shopping preferences).",
-    fil: "Hindi ground rules — walang consequences. Makikita sa baba ng Rules (hal. shopping preferences).",
-    zh: "不是守則——沒有後果說明。顯示在守則下方（例如購物偏好）。",
+    en: "Soft tips only (e.g. avoid China-made food, no meat at 錢大媽). No consequences. Separate from Ground Rules.",
+    fil: "Soft tips lang (hal. iwasan ang China-made food, huwag bumili ng karne sa 錢大媽). Walang consequences. Hiwalay sa Ground Rules.",
+    zh: "軟性貼士（例如少買中國製食品、不要到錢大媽買肉）。沒有後果。與守則分開。",
   },
   addPreference: {
     en: "+ Add preference",
     fil: "+ Magdagdag ng preference",
     zh: "+ 新增偏好",
+  },
+  savePreferences: {
+    en: "Save Preferences",
+    fil: "I-save ang Preferences",
+    zh: "儲存偏好",
+  },
+  saveRulesAndPrefs: {
+    en: "Save Ground Rules & Preferences",
+    fil: "I-save ang Ground Rules & Preferences",
+    zh: "儲存守則與偏好",
   },
   appliances: { en: "Tools", fil: "Gamit", zh: "家電" },
   appliancesHint: {

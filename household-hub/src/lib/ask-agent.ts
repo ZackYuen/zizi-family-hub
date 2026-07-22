@@ -610,10 +610,10 @@ function heuristicAnswer(
         .map((p, i) => `${i + 1}. ${localized(p.title, lang)}`)
         .join("\n");
       return lang === "fil"
-        ? `Mga family preference (soft tips, hindi ground rules):\n${list}\n\nTanungin ang specific tip, o buksan ang Ground Rules tab (ibaba).`
+        ? `Mga family preference (soft tips, hindi ground rules):\n${list}\n\nTanungin ang specific tip, o buksan ang Rules tab → Preferences.`
         : lang === "zh"
-          ? `家庭偏好（軟性貼士，不是守則）：\n${list}\n\n可問某一項，或打開守則分頁下方查看。`
-          : `Family preferences (soft tips, not ground rules):\n${list}\n\nAsk about one, or open the Ground Rules tab (below the rules).`;
+          ? `家庭偏好（軟性貼士，不是守則）：\n${list}\n\n可問某一項，或打開「守則」分頁 →「偏好」。`
+          : `Family preferences (soft tips, not ground rules):\n${list}\n\nAsk about one, or open the Rules tab → Preferences.`;
     }
   }
 
