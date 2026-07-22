@@ -1,128 +1,153 @@
 import type { Lang } from "./types";
 
-/** MyMemory language codes — zh uses Traditional Chinese (zh-TW) for Hong Kong */
-const MYMEMORY: Record<Lang, string> = {
-  en: "en",
-  fil: "tl",
-  zh: "zh-TW",
-};
-
 const LANG_NAME: Record<Lang, string> = {
   en: "English",
   fil: "Filipino (Tagalog)",
   zh: "Traditional Chinese",
 };
 
-/** MyMemory often returns ads / emails when quota is hit — reject these */
-export function isBadTranslation(text: string, source?: string): boolean {
+/** Reject spam / ads / emails from bad translators */
+export function isBadTranslation(text: string, _source?: string): boolean {
   const t = text?.trim() || "";
   if (!t) return true;
   if (/@|https?:\/\/|www\./i.test(t)) return true;
   if (/email\s*:|sportbenzin|salmo\.ee|my?memory|quota|INVALID/i.test(t)) return true;
   if (/PLEASE SELECT|SUBSCRIBE|CLICK HERE|FREE TRIAL/i.test(t)) return true;
-  // Garbage Latin for food names
   if (/deformities|orchid|ratio of garlic|winter shade|pampublikong/i.test(t))
     return true;
-  if (source && t.toUpperCase() === source.toUpperCase() && /[\u4e00-\u9fff]/.test(source)) {
-    // Unchanged CJK when targeting Latin is usually a failed translate
-    return false; // allow caller to decide; not always "bad"
-  }
-  // Too many digits / weird tokens for a dish name
   if ((t.match(/\d/g) || []).length > t.length / 2) return true;
   return false;
 }
 
-async function translateWithLlm(
-  text: string,
-  from: Lang,
-  to: Lang
-): Promise<string | null> {
-  const openRouterKey = process.env.OPENROUTER_API_KEY;
-  const openAiKey = process.env.OPENAI_API_KEY;
-  const key = openRouterKey || openAiKey;
-  if (!key) return null;
+function openRouterKey(): string | undefined {
+  const raw = process.env.OPENROUTER_API_KEY?.trim();
+  if (!raw) return undefined;
+  return raw.replace(/^Bearer\s+/i, "");
+}
 
-  const endpoint = openRouterKey
-    ? "https://openrouter.ai/api/v1/chat/completions"
-    : "https://api.openai.com/v1/chat/completions";
-  const model = openRouterKey
-    ? process.env.OPENROUTER_MODEL || "openrouter/free"
-    : process.env.OPENAI_MODEL || "gpt-4o-mini";
+function openAiKey(): string | undefined {
+  return process.env.OPENAI_API_KEY?.trim() || undefined;
+}
 
+/** Models to try in order when using OpenRouter */
+function openRouterModels(): string[] {
+  const preferred = process.env.OPENROUTER_MODEL?.trim();
+  const defaults = [
+    "google/gemini-2.0-flash-001",
+    "openai/gpt-4o-mini",
+    "meta-llama/llama-3.3-70b-instruct",
+    "openrouter/free",
+  ];
+  if (preferred) return [preferred, ...defaults.filter((m) => m !== preferred)];
+  return defaults;
+}
+
+async function chatComplete(options: {
+  key: string;
+  endpoint: string;
+  model: string;
+  openRouter: boolean;
+  system: string;
+  user: string;
+}): Promise<string | null> {
   const headers: Record<string, string> = {
-    Authorization: `Bearer ${key}`,
+    Authorization: `Bearer ${options.key}`,
     "Content-Type": "application/json",
   };
-  if (openRouterKey) {
+  if (options.openRouter) {
     headers["HTTP-Referer"] =
       process.env.OPENROUTER_SITE_URL || "https://zizi-family-hub.vercel.app";
     headers["X-Title"] = process.env.OPENROUTER_APP_NAME || "Zizi Family Hub";
   }
 
-  try {
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        model,
-        temperature: 0,
-        max_tokens: 200,
-        messages: [
-          {
-            role: "system",
-            content: `You translate short household / recipe / food labels for a Hong Kong family app.
-Reply with ONLY the translation in ${LANG_NAME[to]}. No quotes, no email, no URL, no explanation.
-Keep dish names natural (Filipino Tagalog when target is Filipino). Never invent emails or ads.`,
-          },
-          {
-            role: "user",
-            content: `From ${LANG_NAME[from]}:\n${text}`,
-          },
-        ],
-      }),
-      signal: AbortSignal.timeout(20000),
-    });
-    if (!res.ok) return null;
-    const data = (await res.json()) as {
-      choices?: { message?: { content?: string } }[];
-    };
-    const out = data.choices?.[0]?.message?.content?.trim() || "";
-    if (!out || isBadTranslation(out, text)) return null;
-    return out.replace(/^["']|["']$/g, "").trim();
-  } catch {
+  const res = await fetch(options.endpoint, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      model: options.model,
+      temperature: 0,
+      max_tokens: 200,
+      messages: [
+        { role: "system", content: options.system },
+        { role: "user", content: options.user },
+      ],
+    }),
+    signal: AbortSignal.timeout(25000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    console.error("Translate LLM error", options.model, res.status, errText.slice(0, 300));
     return null;
   }
+
+  const data = (await res.json()) as {
+    choices?: { message?: { content?: string } }[];
+  };
+  const out = data.choices?.[0]?.message?.content?.trim() || "";
+  if (!out || isBadTranslation(out)) return null;
+  return out.replace(/^["'«»]|["'«»]$/g, "").trim();
 }
 
-async function translateWithMyMemory(
+async function translateWithOpenRouter(
+  text: string,
+  from: Lang,
+  to: Lang
+): Promise<string> {
+  const key = openRouterKey();
+  if (!key) throw new Error("OPENROUTER_API_KEY missing");
+
+  const system = `You translate short household / recipe / food dish names for a Hong Kong family app (Charlene).
+Reply with ONLY the translation in ${LANG_NAME[to]}.
+No quotes, no email, no URL, no ads, no explanation.
+For Filipino use natural Tagalog food names when possible (e.g. "pritong dumpling" not literal garbage).`;
+
+  const user = `Translate from ${LANG_NAME[from]} to ${LANG_NAME[to]}:\n${text}`;
+
+  const errors: string[] = [];
+  for (const model of openRouterModels()) {
+    try {
+      const out = await chatComplete({
+        key,
+        endpoint: "https://openrouter.ai/api/v1/chat/completions",
+        model,
+        openRouter: true,
+        system,
+        user,
+      });
+      if (out) return out;
+      errors.push(`${model}: empty/bad`);
+    } catch (err) {
+      errors.push(`${model}: ${err instanceof Error ? err.message : "fail"}`);
+    }
+  }
+
+  throw new Error(
+    `OpenRouter translation failed (${errors.slice(0, 2).join("; ")}). Check key / model / credits.`
+  );
+}
+
+async function translateWithOpenAI(
   text: string,
   from: Lang,
   to: Lang
 ): Promise<string | null> {
-  try {
-    const res = await fetch(
-      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${MYMEMORY[from]}|${MYMEMORY[to]}`,
-      { signal: AbortSignal.timeout(10000) }
-    );
-    if (!res.ok) return null;
-    const data = (await res.json()) as {
-      responseData?: { translatedText?: string };
-      responseStatus?: number | string;
-    };
-    // MyMemory returns 429 / EMAIL WARNING in text when over quota
-    const translated = data.responseData?.translatedText?.trim() || "";
-    if (!translated || isBadTranslation(translated, text)) return null;
-    if (translated.toUpperCase() === text.toUpperCase()) return null;
-    return translated;
-  } catch {
-    return null;
-  }
+  const key = openAiKey();
+  if (!key) return null;
+  const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  return chatComplete({
+    key,
+    endpoint: "https://api.openai.com/v1/chat/completions",
+    model,
+    openRouter: false,
+    system: `Translate to ${LANG_NAME[to]} only. No quotes or explanation.`,
+    user: `From ${LANG_NAME[from]}:\n${text}`,
+  });
 }
 
 /**
- * Translate between EN / FIL / ZH.
- * Prefers LLM (OpenRouter/OpenAI) when configured; MyMemory as fallback.
- * Rejects spam results like "Email: info@sportbenzin.ch".
+ * Translate EN / FIL / ZH for Admin.
+ * When OPENROUTER_API_KEY is set: OpenRouter ONLY (never MyMemory spam).
  */
 export async function translateText(
   text: string,
@@ -132,28 +157,25 @@ export async function translateText(
   const trimmed = text.trim();
   if (!trimmed || from === to) return trimmed;
 
-  // 1) LLM first when available (much better for food names)
-  const llm = await translateWithLlm(trimmed, from, to);
-  if (llm) return llm;
-
-  // 2) Direct MyMemory
-  const direct = await translateWithMyMemory(trimmed, from, to);
-  if (direct) return direct;
-
-  // 3) Pivot via English for zh↔fil (MyMemory is weak on that pair)
-  if (from !== "en" && to !== "en") {
-    const mid = (await translateWithLlm(trimmed, from, "en")) ||
-      (await translateWithMyMemory(trimmed, from, "en"));
-    if (mid && !isBadTranslation(mid, trimmed)) {
-      const final =
-        (await translateWithLlm(mid, "en", to)) ||
-        (await translateWithMyMemory(mid, "en", to));
-      if (final) return final;
+  if (openRouterKey()) {
+    // Direct OpenRouter — no MyMemory fallback (avoids sportbenzin email ads)
+    try {
+      return await translateWithOpenRouter(trimmed, from, to);
+    } catch (directErr) {
+      // Pivot via English for zh↔fil if direct fails
+      if (from !== "en" && to !== "en") {
+        const mid = await translateWithOpenRouter(trimmed, from, "en");
+        return translateWithOpenRouter(mid, "en", to);
+      }
+      throw directErr;
     }
   }
 
+  const openAi = await translateWithOpenAI(trimmed, from, to);
+  if (openAi) return openAi;
+
   throw new Error(
-    "Translation failed or returned spam. Try again later, or set OPENROUTER_API_KEY on Vercel for reliable food-name translation."
+    "No OPENROUTER_API_KEY on this server. Add it in Vercel → Settings → Environment Variables (Production) and redeploy."
   );
 }
 

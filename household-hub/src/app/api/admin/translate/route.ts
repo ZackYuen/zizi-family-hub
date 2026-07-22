@@ -36,15 +36,19 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "Translation looked like spam (e.g. email ad). Not applied. Add OPENROUTER_API_KEY on Vercel for better results.",
+            "Translation looked invalid. Not applied. Check OpenRouter key / model on Vercel.",
         },
         { status: 502 }
       );
     }
-    return NextResponse.json({ translation });
+    return NextResponse.json({
+      translation,
+      engine: process.env.OPENROUTER_API_KEY ? "openrouter" : "openai",
+    });
   } catch (err) {
     const message =
       err instanceof Error ? err.message : "Translation failed";
+    console.error("translate route", message);
     return NextResponse.json({ error: message }, { status: 502 });
   }
 }
