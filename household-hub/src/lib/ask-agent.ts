@@ -28,6 +28,18 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
   const lang = detectLang(question);
 
   if (
+    /what time|current time|time now|now time|幾點|现在几|現在幾|anong oras|oras na|what'?s the time/.test(
+      q
+    )
+  ) {
+    // snap.nowHongKong like "2026-07-22 12:56 (Asia/Hong_Kong)"
+    const timeOnly = snap.nowHongKong.match(/\d{2}:\d{2}/)?.[0] ?? snap.nowHongKong;
+    if (lang === "fil") return `Ngayon sa Hong Kong: ${timeOnly} (HKT).`;
+    if (lang === "zh") return `香港現在時間：${timeOnly}（HKT）。`;
+    return `Hong Kong time now: ${timeOnly} (HKT).`;
+  }
+
+  if (
     /day off|holiday|勞工|星期日|linggo|sunday|bakasyon|dayoff/.test(q) &&
     /today|ngayon|今天|charlene|helper|假/.test(q)
   ) {
@@ -172,6 +184,7 @@ async function answerWithLlm(
   const system = `You are the Zizi Family household helper assistant for Charlene (helper), Sir, and Mum.
 Answer briefly in the same language as the question (English, Filipino, or Traditional Chinese).
 Prefer FAMILY LIVE DATA below over the internet.
+For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock — that is when Admin last saved content, not now.
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
 Do not use the word 姐姐 — say Charlene.
@@ -229,6 +242,18 @@ export async function answerFamilyQuestion(
   const allowInternet = options?.allowInternet !== false;
 
   const quick = heuristicAnswer(question, snap);
+
+  // Deterministic answers (time, schedule, meals, rules) win over free LLMs
+  if (quick) {
+    return {
+      answer: quick,
+      source: "live-web",
+      usedInternet: false,
+      dataSource: snap.source,
+      lastUpdated: snap.lastUpdated,
+    };
+  }
+
   const needsWeb =
     allowInternet &&
     /weather|typhoon|天氣|bagyo|how to cook|paano magluto|substitute|palit|recipe tip/.test(
@@ -236,12 +261,7 @@ export async function answerFamilyQuestion(
     );
 
   let web = "";
-  if (
-    needsWeb ||
-    (!quick &&
-      allowInternet &&
-      (process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY))
-  ) {
+  if (needsWeb || (allowInternet && (process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY))) {
     web = await fetchWebSnippets(question);
   }
 
@@ -251,16 +271,6 @@ export async function answerFamilyQuestion(
       answer: ai,
       source: web ? "live-web+internet" : "live-web+ai",
       usedInternet: Boolean(web),
-      dataSource: snap.source,
-      lastUpdated: snap.lastUpdated,
-    };
-  }
-
-  if (quick) {
-    return {
-      answer: quick,
-      source: "live-web",
-      usedInternet: false,
       dataSource: snap.source,
       lastUpdated: snap.lastUpdated,
     };
