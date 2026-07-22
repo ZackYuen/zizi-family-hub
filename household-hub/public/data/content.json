@@ -2046,6 +2046,28 @@
         "fil": "• Huwag piliting buksan ang lid habang may pressure.\n• Layuan ang steam outlet ang mukha at kamay.\n• Huwag basain ang main body.\n• Linisin ang gasket at valves kapag sinabi nina Sir/Mum — delikado kung barado.\n• Kung unsure sa program, tanungin muna.",
         "zh": "• 有壓力時切勿強行開蓋。\n• 臉和手遠離排氣口。\n• 機身不要浸水。\n• 按 Sir/Mum 指示清潔膠圈和閥——閥堵塞很危險。\n• 不確定程式先問再開始。"
       }
+    },
+    {
+      "id": "app-whirlpool-tdlr70223",
+      "kind": "washing-machine",
+      "model": "Whirlpool TDLR70223",
+      "priority": 10,
+      "sourceUrl": "https://www.whirlpool.com.hk/english/tdlr70223-top-loading-drum-washer",
+      "title": {
+        "en": "Whirlpool TDLR70223 washing machine",
+        "fil": "Whirlpool TDLR70223 washing machine",
+        "zh": "惠而浦 TDLR70223 上置式洗衣機"
+      },
+      "tips": {
+        "en": "• Whirlpool TDLR70223: 7 kg top-load drum washer (1200 rpm, inverter motor).\n• Check pockets; zip zippers; turn dark / delicate clothes inside out.\n• Open the soft-open lid on top and load loosely — do not pack to the brim (max ~7 kg).\n• Add detergent / softener in the correct drawers (follow the panel symbols Sir/Mum showed).\n• Close the lid. Pick a program, e.g. Mixed 45', Cotton, Synthetics, Delicates, Wool, Rapid 30', Sport, Hygiene, Antistain.\n• Adjust temperature (cold–90°C) and spin if needed, then Start.\n• When it finishes, remove clothes soon so they do not smell damp.\n• Drum clean: run Drum clean (~90°C) when the machine smells or Sir/Mum asks (empty drum).\n• Hygiene / Sanitize programs use higher heat to reduce bacteria — good for towels / underwear when needed.",
+        "fil": "• Whirlpool TDLR70223: 7 kg top-load drum washer (1200 rpm, inverter).\n• Suriin ang bulsa; isara ang zipper; baliktarin ang madilim / delicate.\n• Buksan ang soft-open lid sa taas; ilagay nang maluwag — huwag siksikin (max ~7 kg).\n• Ilagay ang detergent / softener sa tamang drawer (sundin ang symbols na itinuro nina Sir/Mum).\n• Isara ang lid. Pumili ng program, hal. Mixed 45', Cotton, Synthetics, Delicates, Wool, Rapid 30', Sport, Hygiene, Antistain.\n• Ayusin ang temperature (cold–90°C) at spin kung kailangan, tapos Start.\n• Kapag tapos, alisin agad ang damit para hindi amoy-basa.\n• Drum clean: patakbuhin ang Drum clean (~90°C) kapag may amoy o inutos nina Sir/Mum (walang damit).\n• Hygiene / Sanitize: mas mainit — maganda para sa tuwalya / underwear kung kailangan.",
+        "zh": "• 惠而浦 TDLR70223：7 kg 上置式滾筒洗衣機（1200 轉、變頻摩打）。\n• 檢查口袋；拉上拉鏈；深色／易損衣物反轉。\n• 打開上蓋（soft open），衣物放鬆放入——不要塞滿（約最多 7 kg）。\n• 按 Sir/Mum 教的符號，把清潔劑／柔順劑放入正確格。\n• 蓋上蓋。選程式，例如 Mixed 45'、Cotton、Synthetics、Delicates、Wool、Rapid 30'、Sport、Hygiene、Antistain。\n• 可調溫度（冷水–90°C）及脫水轉速，然後開始。\n• 完成後盡快取出，避免濕味。\n• 筒清潔：空筒時用 Drum clean（約 90°C）——有異味或 Sir/Mum 吩咐時做。\n• Hygiene／Sanitize 用較高溫減少細菌——浴巾／內衣需要時可用。"
+      },
+      "warnings": {
+        "en": "• Do not wash waterproof items that float (can damage the machine).\n• Do not overload — imbalance can stop the spin.\n• Keep Zizi away while the drum is spinning; lid lock is for safety.\n• Unplug / switch off before any deep clean; never pour water into the control panel.\n• Ask Sir/Mum before using high-temperature Hygiene / Drum clean if unsure.",
+        "fil": "• Huwag maglaba ng waterproof na pumapalutang (puwedeng masira ang machine).\n• Huwag i-overload — puwedeng huminto ang spin.\n• Layuan si Zizi habang umiikot ang drum; may lid lock para sa safety.\n• I-off / unplug bago mag-deep clean; huwag magbuhos ng tubig sa control panel.\n• Kung unsure sa high-temp Hygiene / Drum clean, tanungin si Sir/Mum.",
+        "zh": "• 不要洗會浮起的防水物（易損壞機件）。\n• 不要過載——不平衡會令脫水停止。\n• 轉筒時 Zizi 遠離；上蓋鎖定是安全設計。\n• 深層清潔前斷電；不可向控制面板倒水。\n• 不確定高溫 Hygiene／筒清潔就先問 Sir/Mum。"
+      }
     }
   ]
 }

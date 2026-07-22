@@ -302,15 +302,28 @@ export async function getContent(): Promise<AppContent> {
         // Refresh when tips are still paragraph form (no bullet markers)
         !remote.appliances.some((a) => a.tips?.en?.includes("•")))
   );
-  if (needsPrefs || needsAppliances || needsApplianceModels) {
+  const remoteApplianceIds = new Set((remote.appliances ?? []).map((a) => a.id));
+  const missingAppliances = (local.appliances ?? []).filter(
+    (a) => !remoteApplianceIds.has(a.id)
+  );
+  const needsMissingAppliances =
+    Boolean(remote.appliances?.length) &&
+    missingAppliances.length > 0 &&
+    !needsAppliances &&
+    !needsApplianceModels;
+
+  if (needsPrefs || needsAppliances || needsApplianceModels || needsMissingAppliances) {
     const filled: AppContent = {
       ...remote,
       familyPreferences: needsPrefs
         ? local.familyPreferences
         : remote.familyPreferences,
-      appliances:
-        needsAppliances || needsApplianceModels
-          ? local.appliances
+      appliances: needsAppliances || needsApplianceModels
+        ? local.appliances
+        : needsMissingAppliances
+          ? [...(remote.appliances ?? []), ...missingAppliances].sort(
+              (a, b) => a.priority - b.priority
+            )
           : remote.appliances,
       lastUpdated: new Date().toISOString(),
     };
