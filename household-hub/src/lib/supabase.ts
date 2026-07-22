@@ -11,7 +11,7 @@ export function isSupabaseConfigured(): boolean {
 
 export function getSupabaseAdmin(): SupabaseClient {
   if (!isSupabaseConfigured()) {
-    throw new Error("Supabase is not configured");
+    throw new Error("Live database is not configured");
   }
   if (!adminClient) {
     adminClient = createClient(

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { answerFamilyQuestion } from "@/lib/ask-agent";
+import { parseSaveCommand, handleWhatsAppSave } from "@/lib/whatsapp-save";
 
 export const dynamic = "force-dynamic";
 
@@ -106,11 +107,19 @@ export async function POST(request: Request) {
             );
             continue;
           }
+          const saveCmd = parseSaveCommand(question);
+          if (saveCmd) {
+            const saved = await handleWhatsAppSave(saveCmd.text, {
+              jid: msg.from,
+            });
+            await sendWhatsAppText(
+              msg.from,
+              `${saved.answer}\n\n_(Zizi Family Hub)_`
+            );
+            continue;
+          }
           const result = await answerFamilyQuestion(question);
-          const footer =
-            result.dataSource === "supabase"
-              ? `\n\n_(live Admin data · ${result.lastUpdated.slice(0, 10)})_`
-              : `\n\n_(local data · ${result.lastUpdated.slice(0, 10)})_`;
+          const footer = `\n\n_(Zizi Family Hub)_`;
           await sendWhatsAppText(msg.from, result.answer + footer);
         }
       }

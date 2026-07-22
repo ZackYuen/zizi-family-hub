@@ -5,10 +5,17 @@ type LabelSet = { en: string; fil: string; zh: string };
 export const labels = {
   appTitle: { en: "Household Guide", fil: "Gabay sa Bahay", zh: "家庭指南" },
   welcome: { en: "Welcome", fil: "Maligayang pagdating", zh: "歡迎" },
-  groundRules: { en: "Ground Rules", fil: "Mga Alituntunin", zh: "守則" },
-  schedule: { en: "Task Schedule", fil: "Iskedyul ng Gawain", zh: "日程" },
+  groundRules: { en: "Rules", fil: "Alituntunin", zh: "守則" },
+  schedule: { en: "Schedule", fil: "Iskedyul", zh: "日程" },
   meals: { en: "Meals", fil: "Pagkain", zh: "膳食" },
+  tools: { en: "Tools", fil: "Gamit", zh: "家電" },
   ask: { en: "Ask", fil: "Tanong", zh: "提問" },
+  hkLife: { en: "HK Life", fil: "HK Life", zh: "香港生活" },
+  weatherAlert: {
+    en: "Weather alert",
+    fil: "Weather alert",
+    zh: "天氣警報",
+  },
   today: { en: "Today", fil: "Ngayon", zh: "今天" },
   allDays: { en: "All Days", fil: "Lahat ng Araw", zh: "全部" },
   breakfast: { en: "Breakfast", fil: "Almusal", zh: "早餐" },
@@ -28,9 +35,14 @@ export const labels = {
   chinese: { en: "繁體中文", fil: "繁體中文", zh: "繁體中文" },
   filipino: { en: "Filipino", fil: "Filipino", zh: "Filipino" },
   forHelper: {
-    en: "Helper guide for Hong Kong",
-    fil: "Gabay para sa katulong sa Hong Kong",
-    zh: "香港家務助理指南",
+    en: "Family guide for life in Hong Kong",
+    fil: "Gabay ng pamilya para sa buhay sa Hong Kong",
+    zh: "香港家庭生活指南",
+  },
+  familyMember: {
+    en: "Our family",
+    fil: "Pamilya namin",
+    zh: "我們的家人",
   },
 } as const satisfies Record<string, LabelSet | Record<string, LabelSet>>;
 

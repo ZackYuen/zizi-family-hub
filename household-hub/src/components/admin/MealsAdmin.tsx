@@ -24,6 +24,7 @@ const emptyRecipe = (): DinnerRecipe => ({
   subCategory: "",
   link: "",
   ingredients: [],
+  prepNotes: { en: "", fil: "", zh: "" },
 });
 
 export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
@@ -119,21 +120,30 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
   const translateAllEnToFil = async () => {
     setMessage(adminT("translating", lang));
     const next = [...recipes];
+    let ok = 0;
+    let skipped = 0;
     for (let i = 0; i < next.length; i++) {
       const en = next[i].nameEn?.trim() || (next[i].name.match(/^[a-zA-Z]/) ? next[i].name : "");
-      if (!en || next[i].nameFil?.trim()) continue;
+      const existing = next[i].nameFil?.trim() || "";
+      if (!en) continue;
+      if (existing && !/@|email\s*:|sportbenzin/i.test(existing)) continue;
       const res = await fetch("/api/admin/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: en, from: "en", to: "fil" }),
       });
-      if (res.ok) {
-        const { translation } = await res.json();
-        next[i] = { ...next[i], nameFil: translation };
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.translation && !/@|email\s*:|sportbenzin/i.test(data.translation)) {
+        next[i] = { ...next[i], nameFil: data.translation };
+        ok++;
+      } else {
+        skipped++;
       }
     }
     setRecipes(next);
-    setMessage("Translation done. Click Save Meals to publish.");
+    setMessage(
+      `Translation done (${ok} updated${skipped ? `, ${skipped} skipped` : ""}). Click Save Meals to publish.`
+    );
   };
 
   if (loading) {
@@ -301,6 +311,80 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 placeholder={adminT("recipeLink", lang)}
                 className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
               />
+              <button
+                type="button"
+                onClick={async () => {
+                  if (!editing.link) return;
+                  setMessage(adminT("fetchingTitle", lang));
+                  const res = await fetch("/api/admin/youtube-title", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url: editing.link }),
+                  });
+                  const data = await res.json().catch(() => ({}));
+                  if (!res.ok) {
+                    setMessage(data.error || adminT("saveFailed", lang));
+                    return;
+                  }
+                  const title = (data.title as string) || "";
+                  setEditing({
+                    ...editing,
+                    name: editing.name || title,
+                    nameEn: editing.nameEn || title,
+                  });
+                  setMessage(adminT("titleFetched", lang));
+                }}
+                className="w-full rounded-lg bg-sky-50 py-2 text-xs font-medium text-sky-800 ring-1 ring-sky-100"
+              >
+                {adminT("fetchYoutubeTitle", lang)}
+              </button>
+              <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-2">
+                <p className="mb-1 text-xs font-semibold text-amber-900">
+                  {adminT("prepNotes", lang)}
+                </p>
+                <p className="mb-2 text-[10px] text-amber-800">{adminT("prepNotesHint", lang)}</p>
+                <div className="space-y-2">
+                  {(["en", "fil", "zh"] as const).map((k) => (
+                    <div key={k} className="flex gap-1">
+                      <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">
+                        {k === "zh" ? "繁中" : k.toUpperCase()}
+                      </span>
+                      <textarea
+                        rows={2}
+                        value={editing.prepNotes?.[k] ?? ""}
+                        onChange={(e) =>
+                          setEditing({
+                            ...editing,
+                            prepNotes: {
+                              en: editing.prepNotes?.en ?? "",
+                              fil: editing.prepNotes?.fil ?? "",
+                              zh: editing.prepNotes?.zh ?? "",
+                              [k]: e.target.value,
+                            },
+                          })
+                        }
+                        placeholder={adminT("prepNotes", lang)}
+                        className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
+                      />
+                      <TranslateButtons
+                        sourceText={editing.prepNotes?.[k] ?? ""}
+                        sourceLang={k}
+                        onTranslated={(target, text) =>
+                          setEditing({
+                            ...editing,
+                            prepNotes: {
+                              en: editing.prepNotes?.en ?? "",
+                              fil: editing.prepNotes?.fil ?? "",
+                              zh: editing.prepNotes?.zh ?? "",
+                              [target]: text,
+                            },
+                          })
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
               <input
                 type="number"
                 value={editing.index}
@@ -331,39 +415,63 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 </div>
                 <div className="space-y-2">
                   {(editing.ingredients ?? []).map((ing, i) => (
-                    <div key={i} className="flex gap-1">
-                      <input
-                        value={ing.en}
-                        onChange={(e) => {
-                          const ingredients = [...(editing.ingredients ?? [])];
-                          ingredients[i] = { ...ing, en: e.target.value };
-                          setEditing({ ...editing, ingredients });
-                        }}
-                        placeholder={adminT("ingredientName", lang)}
-                        className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
-                      />
-                      <input
-                        value={ing.qty ?? ""}
-                        onChange={(e) => {
-                          const ingredients = [...(editing.ingredients ?? [])];
-                          ingredients[i] = { ...ing, qty: e.target.value };
-                          setEditing({ ...editing, ingredients });
-                        }}
-                        placeholder={adminT("ingredientQty", lang)}
-                        className="w-20 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const ingredients = (editing.ingredients ?? []).filter(
-                            (_, j) => j !== i
-                          );
-                          setEditing({ ...editing, ingredients });
-                        }}
-                        className="rounded-lg px-2 text-xs text-red-500"
-                      >
-                        ×
-                      </button>
+                    <div key={i} className="space-y-1 rounded-lg bg-stone-50 p-2">
+                      <div className="flex gap-1">
+                        <input
+                          value={ing.en}
+                          onChange={(e) => {
+                            const ingredients = [...(editing.ingredients ?? [])];
+                            ingredients[i] = { ...ing, en: e.target.value };
+                            setEditing({ ...editing, ingredients });
+                          }}
+                          placeholder={`${adminT("ingredientName", lang)} (EN)`}
+                          className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
+                        />
+                        <input
+                          value={ing.qty ?? ""}
+                          onChange={(e) => {
+                            const ingredients = [...(editing.ingredients ?? [])];
+                            ingredients[i] = { ...ing, qty: e.target.value };
+                            setEditing({ ...editing, ingredients });
+                          }}
+                          placeholder={adminT("ingredientQty", lang)}
+                          className="w-20 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const ingredients = (editing.ingredients ?? []).filter(
+                              (_, j) => j !== i
+                            );
+                            setEditing({ ...editing, ingredients });
+                          }}
+                          className="rounded-lg px-2 text-xs text-red-500"
+                        >
+                          ×
+                        </button>
+                      </div>
+                      <div className="flex gap-1">
+                        <input
+                          value={ing.fil ?? ""}
+                          onChange={(e) => {
+                            const ingredients = [...(editing.ingredients ?? [])];
+                            ingredients[i] = { ...ing, fil: e.target.value };
+                            setEditing({ ...editing, ingredients });
+                          }}
+                          placeholder={`${adminT("ingredientName", lang)} (FIL)`}
+                          className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
+                        />
+                        <TranslateButtons
+                          sourceText={ing.en}
+                          sourceLang="en"
+                          onTranslated={(target, text) => {
+                            if (target !== "fil") return;
+                            const ingredients = [...(editing.ingredients ?? [])];
+                            ingredients[i] = { ...ing, fil: text };
+                            setEditing({ ...editing, ingredients });
+                          }}
+                        />
+                      </div>
                     </div>
                   ))}
                 </div>

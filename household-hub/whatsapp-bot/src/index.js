@@ -1,4 +1,3 @@
-import "dotenv/config";
 import makeWASocket, {
   DisconnectReason,
   fetchLatestBaileysVersion,
@@ -15,10 +14,45 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
+
+/** Load .env without requiring the dotenv package (helps when npm install is incomplete) */
+function loadEnvFile(filePath) {
+  try {
+    if (!fs.existsSync(filePath)) return;
+    const text = fs.readFileSync(filePath, "utf8");
+    for (const line of text.split("\n")) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eq = trimmed.indexOf("=");
+      if (eq <= 0) continue;
+      const key = trimmed.slice(0, eq).trim();
+      let val = trimmed.slice(eq + 1).trim();
+      if (
+        (val.startsWith('"') && val.endsWith('"')) ||
+        (val.startsWith("'") && val.endsWith("'"))
+      ) {
+        val = val.slice(1, -1);
+      }
+      if (!(key in process.env)) process.env[key] = val;
+    }
+  } catch (err) {
+    console.warn("[warn] Could not read .env:", err?.message || err);
+  }
+}
+
+loadEnvFile(path.join(ROOT, ".env"));
+
 const AUTH_DIR = process.env.AUTH_DIR || path.join(ROOT, "auth_info");
 
-const LIVE_ASK_URL =
-  process.env.LIVE_ASK_URL || "https://zizi-family-hub.vercel.app/api/ask";
+const LIVE_ASK_URL = (
+  process.env.LIVE_ASK_URL || "https://zizi-family-hub.vercel.app/api/ask/"
+).replace(/\/?$/, "/");
+const LIVE_INBOX_URL = (
+  process.env.LIVE_INBOX_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/inbox/") ||
+  "https://zizi-family-hub.vercel.app/api/inbox/"
+).replace(/\/?$/, "/");
+const INBOX_SECRET = process.env.INBOX_SECRET || process.env.BOT_INBOX_SECRET || "";
 const BOT_NAME = process.env.BOT_NAME || "CharleneBot";
 /** Comma-separated group JIDs to listen to; empty = all groups */
 const GROUP_ALLOWLIST = (process.env.GROUP_JIDS || "")
@@ -33,18 +67,61 @@ const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
 fs.mkdirSync(AUTH_DIR, { recursive: true });
 
-async function askFamilyHub(question) {
-  const res = await fetch(LIVE_ASK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, allowInternet: true }),
-    signal: AbortSignal.timeout(30000),
-  });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`Ask API ${res.status}: ${text.slice(0, 200)}`);
+async function askFamilyHub(question, extra = {}) {
+  // Prefer trailing-slash URL; follow 308 manually if needed (some Node builds mishandle POST redirects)
+  let url = LIVE_ASK_URL;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question, allowInternet: true, ...extra }),
+      signal: AbortSignal.timeout(30000),
+      redirect: "manual",
+    });
+
+    if (res.status >= 300 && res.status < 400) {
+      const loc = res.headers.get("location");
+      if (!loc) throw new Error(`Ask API ${res.status} redirect without Location`);
+      url = loc.startsWith("http")
+        ? loc
+        : new URL(loc, url).toString();
+      continue;
+    }
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`Ask API ${res.status}: ${text.slice(0, 200)}`);
+    }
+    return res.json();
   }
-  return res.json();
+  throw new Error("Ask API: too many redirects");
+}
+
+async function postInbox(payload) {
+  if (!INBOX_SECRET) {
+    logger.debug("INBOX_SECRET not set — skip inbox log");
+    return null;
+  }
+  try {
+    const res = await fetch(LIVE_INBOX_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-inbox-secret": INBOX_SECRET,
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(35000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn({ status: res.status, t: t.slice(0, 120) }, "inbox post failed");
+      return null;
+    }
+    return res.json();
+  } catch (err) {
+    logger.warn({ err }, "inbox post error");
+    return null;
+  }
 }
 
 function extractText(msg) {
@@ -102,6 +179,35 @@ function allowedChat(jid) {
   return REPLY_DM;
 }
 
+/** Parse ?save … commands (after stripTriggers). Free-form save is LLM-digested on server. */
+function parseSaveCommand(question) {
+  // Legacy explicit forms (still work; server may still digest if digest:true)
+  const mTip = question.match(/^save\s+tip\s+([\s\S]+)$/i);
+  if (mTip) {
+    return { digest: true, text: mTip[1].trim() };
+  }
+  const mNote = question.match(/^(note|remember)\s+([\s\S]+)$/i);
+  if (mNote) {
+    return { digest: true, text: mNote[2].trim() };
+  }
+  const mRecipe = question.match(/^save\s+recipe\s+([\s\S]+)$/i);
+  if (mRecipe) {
+    return { digest: true, text: mRecipe[1].trim() };
+  }
+
+  // Preferred: ?save … or ?save "…"
+  const mSave = question.match(/^save\s+([\s\S]+)$/i);
+  if (mSave) {
+    let content = mSave[1].trim();
+    content = content
+      .replace(/^["“«]+/, "")
+      .replace(/["”»]+$/, "")
+      .trim();
+    if (content) return { digest: true, text: content };
+  }
+  return null;
+}
+
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState(AUTH_DIR);
   const { version } = await fetchLatestBaileysVersion();
@@ -135,6 +241,9 @@ async function startBot() {
     if (connection === "open") {
       console.log(`[ok] Connected as ${sock.user?.id || "unknown"}`);
       console.log(`[ok] Asking live API: ${LIVE_ASK_URL}`);
+      console.log(
+        `[ok] Inbox: ${INBOX_SECRET ? LIVE_INBOX_URL : "disabled (set INBOX_SECRET)"}`
+      );
     }
     if (connection === "close") {
       const statusCode = new Boom(lastDisconnect?.error)?.output?.statusCode;
@@ -168,7 +277,7 @@ async function startBot() {
           await sock.sendMessage(
             jid,
             {
-              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?`,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSave anything: ${TRIGGER_PREFIX}save Charlene likes less salt\nOr: ${TRIGGER_PREFIX}save "https://youtube.com/… crispy dumplings"`,
             },
             { quoted: msg }
           );
@@ -178,13 +287,51 @@ async function startBot() {
         console.log(`[ask] ${jid}: ${question}`);
         await sock.sendPresenceUpdate("composing", jid);
 
+        const saveCmd = parseSaveCommand(question);
+        if (saveCmd) {
+          const result = await postInbox({
+            digest: true,
+            text: saveCmd.text,
+            jid,
+          });
+          if (result?.item || result?.ok) {
+            const d = result?.digest;
+            const kindLabel =
+              d?.kind === "recipe_candidate"
+                ? "recipe"
+                : d?.kind === "tip_candidate"
+                  ? "HK Life tip"
+                  : "note";
+            const reply = [
+              `Saved → Admin → WA Inbox (${kindLabel})`,
+              d?.summary ? `Digest: ${d.summary}` : null,
+              d?.link ? `Link: ${d.link}` : null,
+              "Promote there after you review.",
+            ]
+              .filter(Boolean)
+              .join("\n");
+            await sock.sendMessage(jid, { text: reply }, { quoted: msg });
+            continue;
+          }
+          // Inbox secret missing / failed — fall through to Ask API (handles save server-side)
+          console.warn("[save] inbox post failed; trying Ask API save handler");
+        }
+
         let answer;
         try {
-          const result = await askFamilyHub(question);
+          const result = await askFamilyHub(question, { jid });
           answer = result.answer || "No answer.";
-          if (result.lastUpdated) {
-            answer += `\n\n_(live · ${String(result.lastUpdated).slice(0, 10)})_`;
+          if (result.handled === "save") {
+            await sock.sendMessage(jid, { text: answer.slice(0, 4000) }, { quoted: msg });
+            continue;
           }
+          answer += "\n\n_(Zizi Family Hub)_";
+          await postInbox({
+            kind: "ask",
+            text: question,
+            answer: result.answer || "",
+            jid,
+          });
         } catch (err) {
           console.error("Ask failed", err);
           answer =

@@ -66,6 +66,11 @@ export interface DinnerRecipe {
   link: string;
   /** Ingredients for shopping / prep reminder */
   ingredients?: RecipeIngredient[];
+  /**
+   * Simple EN/FIL/ZH cook notes for Charlene when the YouTube video is Cantonese.
+   * Prefer short steps — not a full transcript.
+   */
+  prepNotes?: BilingualText;
 }
 
 export interface TonightMenu {
@@ -75,12 +80,134 @@ export interface TonightMenu {
   soup: DinnerRecipe;
 }
 
+/** WhatsApp → Admin inbox (Q&A log + tip/recipe candidates) */
+export type WhatsAppInboxKind =
+  | "ask"
+  | "note"
+  | "tip_candidate"
+  | "recipe_candidate";
+
+export interface WhatsAppInboxItem {
+  id: string;
+  ts: string;
+  kind: WhatsAppInboxKind;
+  jid?: string;
+  fromName?: string;
+  text: string;
+  answer?: string;
+  /** For recipe candidates */
+  link?: string;
+  category?: DinnerRecipe["category"];
+  status: "new" | "promoted" | "dismissed";
+}
+
+export interface WhatsAppInbox {
+  items: WhatsAppInboxItem[];
+  updatedAt: string;
+}
+
 export interface AppContent {
+  /** Display name for Charlene (family member) — kept as helperName for API compatibility */
   helperName: string;
   familyName: string;
+  /** Short welcome line under the header */
+  familyWelcome?: BilingualText;
   ziziSchool: BilingualText;
   groundRules: GroundRule[];
+  /**
+   * Soft family preferences / shopping tips — helpful guidance, NOT ground rules.
+   * No consequences; shown below Ground Rules.
+   */
+  familyPreferences?: FamilyPreferenceTip[];
+  /** How to use house tools / kitchen appliances */
+  appliances?: ApplianceGuide[];
   weeklySchedule: DaySchedule[];
   monthlyTasks: BilingualText[];
   lastUpdated: string;
+  /** Where the family lives — for HK Life tips */
+  homeArea?: BilingualText;
+  hkLifeGuides?: HkLifeGuide[];
+  settlingChecklist?: SettlingCheckItem[];
+  emergencyContacts?: EmergencyContact[];
+  hkWeather?: HkWeatherFlag;
+}
+
+/** Soft preference — not a ground rule (no “If Broken”) */
+export type PreferenceCategory = "shopping" | "food" | "kitchen" | "general";
+
+export interface FamilyPreferenceTip {
+  id: string;
+  title: BilingualText;
+  body: BilingualText;
+  category: PreferenceCategory;
+  priority: number;
+}
+
+export type ApplianceKind =
+  | "vacuum"
+  | "rice-cooker"
+  | "pressure-cooker"
+  | "washing-machine"
+  | "bread-machine"
+  | "air-fryer"
+  | "water-dispenser"
+  | "range-hood"
+  | "dehumidifier"
+  | "air-purifier"
+  | "other";
+
+export interface ApplianceGuide {
+  id: string;
+  kind: ApplianceKind;
+  priority: number;
+  title: BilingualText;
+  /** Exact model if known, e.g. Dyson V12 */
+  model?: string;
+  /** How to use / daily tips */
+  tips: BilingualText;
+  /** Soft caution (still not a ground-rule consequence) */
+  warnings?: BilingualText;
+  /** Manual / support page */
+  sourceUrl?: string;
+}
+
+export type HkLifeCategory =
+  | "emergency"
+  | "rights"
+  | "weather"
+  | "money"
+  | "transport"
+  | "shopping"
+  | "health"
+  | "culture";
+
+export interface HkLifeGuide {
+  id: string;
+  category: HkLifeCategory;
+  priority: number;
+  area: "hk-general" | "kwun-tong";
+  title: BilingualText;
+  body: BilingualText;
+  sourceUrl?: string;
+  lastReviewed?: string;
+}
+
+export interface SettlingCheckItem {
+  id: string;
+  title: BilingualText;
+  done: boolean;
+}
+
+export interface EmergencyContact {
+  id: string;
+  name: BilingualText;
+  phone: string;
+  note?: BilingualText;
+}
+
+export interface HkWeatherFlag {
+  /** Manual flag from Admin when T8+ / black rain / family alert */
+  alertActive: boolean;
+  level: "none" | "t3" | "t8" | "black-rain" | "other";
+  note: BilingualText;
 }

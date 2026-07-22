@@ -21,14 +21,19 @@ const categoryColors: Record<GroundRule["category"], string> = {
 
 const ui = {
   bannerTitle: {
-    en: "If a rule is broken",
-    fil: "Kung may alituntuning labag",
-    zh: "若違反守則",
+    en: "Ground Rules — must not be broken",
+    fil: "Ground Rules — hindi pwedeng labagin",
+    zh: "守則 — 不可違反",
   },
   bannerBody: {
-    en: "Tell the employer immediately. Do not hide it. Below is what happens for each rule.",
-    fil: "Sabihin agad sa employer. Huwag itago. Nasa ibaba ang mangyayari sa bawat alituntunin.",
-    zh: "必須立刻告知僱主，不可隱瞞。以下逐項列明後果。",
+    en: "Serious family rules with “If Broken” consequences. Different from Preferences (soft tips). We speak with respect because you are family — and we are clear: there is no second chance to try breaking a rule. If something goes wrong, tell Sir or Mum immediately.",
+    fil: "Seryosong rules na may “If Broken”. Iba sa Preferences (soft tips). Respeto ang tono namin dahil pamilya ka — at malinaw: walang second chance. Kung may mali, sabihin agad kay Sir o Mum.",
+    zh: "嚴肅守則，附有 “If Broken” 後果。與「偏好」軟性貼士不同。我們用尊重的語氣，因為你是家人 — 同時說清楚：沒有第二次機會。有事立刻告訴 Sir 或 Mum。",
+  },
+  ruleBadge: {
+    en: "Ground rule",
+    fil: "Ground rule",
+    zh: "守則",
   },
   ifBroken: {
     en: "If Broken",
@@ -36,9 +41,9 @@ const ui = {
     zh: "If Broken",
   },
   tellEmployer: {
-    en: "Tell employer right away if this happens",
-    fil: "Sabihin agad sa employer kung mangyari ito",
-    zh: "一旦發生，立即告知僱主",
+    en: "Tell Sir or Mum right away — do not hide it",
+    fil: "Sabihin agad kay Sir o Mum — huwag itago",
+    zh: "立刻告訴 Sir 或 Mum — 不可隱瞞",
   },
 };
 
@@ -74,7 +79,10 @@ export function GroundRulesView({ rules }: { rules: GroundRule[] }) {
                     {index + 1}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-semibold text-stone-900">
+                    <span className="inline-block rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-800">
+                      {ui.ruleBadge[lang]}
+                    </span>
+                    <h3 className="mt-1 text-base font-semibold text-stone-900">
                       {localized(rule.title, lang)}
                     </h3>
                     <span

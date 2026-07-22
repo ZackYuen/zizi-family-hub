@@ -18,9 +18,9 @@ const ui = {
   send: { en: "Ask", fil: "Itanong", zh: "提問" },
   thinking: { en: "Looking up…", fil: "Hinahanap…", zh: "查詢中…" },
   examples: {
-    en: ["Tonight dinner?", "Is Charlene day off today?", "Pickup time?", "No borrowing money rule?"],
-    fil: ["Hapunan ngayong gabi?", "Day off ba si Charlene ngayon?", "Oras ng sundo?", "Bawal humiram ng pera?"],
-    zh: ["今晚晚餐？", "Charlene 今天放假嗎？", "接送時間？", "不准借錢的守則？"],
+    en: ["Tonight dinner?", "How to use Dyson V12?", "Philips water?", "No borrowing money rule?"],
+    fil: ["Hapunan ngayong gabi?", "Paano gamitin ang Dyson V12?", "Paano ang Philips water?", "Bawal humiram ng pera?"],
+    zh: ["今晚晚餐？", "Dyson V12 怎麼用？", "Philips 飲水機？", "不准借錢的守則？"],
   },
 };
 
@@ -51,7 +51,9 @@ export function AskView() {
       }
       setAnswer(data.answer);
       setMeta(
-        `${data.source} · ${data.dataSource} · updated ${String(data.lastUpdated).slice(0, 10)}`
+        data.lastUpdated
+          ? `Updated ${String(data.lastUpdated).slice(0, 10)}`
+          : ""
       );
     } catch {
       setAnswer("Network error");

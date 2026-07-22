@@ -1,28 +1,27 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { labels } from "@/lib/i18n";
 import type { Lang } from "@/lib/types";
 
 const OPTIONS: { id: Lang; label: string }[] = [
-  { id: "en", label: labels.english.en },
-  { id: "zh", label: labels.chinese.zh },
-  { id: "fil", label: labels.filipino.fil },
+  { id: "en", label: "EN" },
+  { id: "zh", label: "繁" },
+  { id: "fil", label: "FIL" },
 ];
 
 export function LanguageToggle() {
   const { lang, setLang } = useLanguage();
 
   return (
-    <div className="flex rounded-full bg-white/80 p-0.5 shadow-sm ring-1 ring-stone-200">
+    <div className="flex rounded-lg bg-white p-0.5 ring-1 ring-stone-200">
       {OPTIONS.map(({ id, label }) => (
         <button
           key={id}
           type="button"
           onClick={() => setLang(id)}
-          className={`rounded-full px-2.5 py-1.5 text-xs font-medium transition sm:px-3 sm:text-sm ${
+          className={`rounded-md px-2 py-1 text-xs font-semibold transition ${
             lang === id
-              ? "bg-teal-600 text-white shadow-sm"
+              ? "bg-teal-600 text-white"
               : "text-stone-600 hover:text-stone-900"
           }`}
         >

@@ -8,7 +8,7 @@ Unofficial WhatsApp Web client. Uses a **normal WhatsApp account** (scan QR), li
 
 - Node 20+
 - Always-on host: home PC / Raspberry Pi / cheap VPS (not Vercel)
-- Live site Ask API deployed (`https://zizi-family-hub.vercel.app/api/ask`)
+- Live site Ask API deployed (`https://zizi-family-hub.vercel.app/api/ask/`)
 - Optional on Vercel: `OPENROUTER_API_KEY` for smarter answers
 
 ## Quick start (PC / VPS)
@@ -69,11 +69,27 @@ Bot replies only when:
 - Mentions `@CharleneBot` / contains `CharleneBot`, or
 - WhatsApp @-mention of the bot number
 
+### Save into Admin (knowledge / meals)
+
+| Command | Effect |
+|---------|--------|
+| `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
+| `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
+| Normal `? …` asks | Logged in inbox (Q&A) for review |
+
+Works two ways:
+1. **Bot → `/api/inbox`** when `INBOX_SECRET` matches Vercel
+2. **Bot → `/api/ask`** — Ask detects `save …` and stores to inbox (so even an outdated bot that only calls Ask still works after Vercel deploy)
+
+Then open Admin → **WA Inbox** and promote to HK Life or Meals.
+
 ## Env
 
 | Variable | Meaning |
 |----------|---------|
-| `LIVE_ASK_URL` | Ask API URL |
+| `LIVE_ASK_URL` | Ask API URL (must end with `/`, e.g. `.../api/ask/`) |
+| `INBOX_SECRET` | Same secret as Vercel — preferred inbox path |
+| `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
 | `BOT_NAME` | Name people type in group |
 | `TRIGGER_PREFIX` | Default `?` |
 | `GROUP_JIDS` | Optional allowlist of group IDs |
@@ -95,5 +111,8 @@ You can run **both**; group members can use either path.
 
 - **No QR:** wait a few seconds; check firewall.
 - **Logged out:** delete `auth_info`, restart, scan again.
-- **No reply:** ensure Ask API is deployed; check `pm2 logs`; confirm message used `?` or @bot.
+- **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs`; confirm message used `?` or @bot.
 - **Ask API 404:** merge/deploy PR with `/api/ask` first.
+- **`?save` says “could not find that”:** Azure bot is outdated *and* Vercel not yet deployed with Ask-side save. Deploy this app, then on Azure: `git pull && pm2 restart zizi-whatsapp-bot`. Footer `_(live · date)_` also means the bot binary is old.
+- **Footer still `_(live · …)_`:** pull latest bot and restart pm2 — should become `_(Zizi Family Hub)_`.
+

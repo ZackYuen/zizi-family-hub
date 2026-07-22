@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { translateText } from "@/lib/translate";
+import { isBadTranslation, translateText } from "@/lib/translate";
 import type { Lang } from "@/lib/types";
 
 const LANGS: Lang[] = ["en", "fil", "zh"];
@@ -32,8 +32,23 @@ export async function POST(request: Request) {
 
   try {
     const translation = await translateText(text, from, to);
-    return NextResponse.json({ translation });
-  } catch {
-    return NextResponse.json({ error: "Translation failed" }, { status: 500 });
+    if (isBadTranslation(translation, text)) {
+      return NextResponse.json(
+        {
+          error:
+            "Translation looked invalid. Not applied. Check OpenRouter key / model on Vercel.",
+        },
+        { status: 502 }
+      );
+    }
+    return NextResponse.json({
+      translation,
+      engine: process.env.OPENROUTER_API_KEY ? "openrouter" : "openai",
+    });
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Translation failed";
+    console.error("translate route", message);
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }

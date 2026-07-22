@@ -4,14 +4,19 @@ import { useState } from "react";
 import type { AppContent } from "@/lib/types";
 import { LanguageToggle } from "./LanguageToggle";
 import { BottomNav, type TabId } from "./BottomNav";
-import { GroundRulesView } from "./GroundRulesView";
 import { ScheduleView } from "./ScheduleView";
 import { MealsView } from "./MealsView";
 import { AskView } from "./AskView";
+import { HkLifeView } from "./HkLifeView";
+import {
+  AppliancesView,
+  RulesAndPreferencesView,
+} from "./HouseGuidesViews";
 import { LiveClock } from "./LiveClock";
-import { BgmPlayer } from "./BgmPlayer";
+import { WeatherBanner } from "./WeatherBanner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
+import { localized } from "@/lib/localized-text";
 
 export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
@@ -31,19 +36,27 @@ export function HomeApp({ content }: { content: AppContent }) {
               {labels.appTitle[lang]}
             </h1>
             <p className="text-xs text-stone-500">
-              {labels.welcome[lang]}, {content.helperName} · {labels.forHelper[lang]}
+              {labels.welcome[lang]}, {content.helperName} · {labels.familyMember[lang]}
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <BgmPlayer />
-            <LanguageToggle />
-          </div>
+          <LanguageToggle />
         </div>
         <LiveClock />
+        <WeatherBanner adminAlert={content.hkWeather} />
       </header>
 
       <main className="mx-auto max-w-lg px-4 py-4">
-        {activeTab === "rules" && <GroundRulesView rules={content.groundRules} />}
+        {content.familyWelcome && (
+          <p className="mb-4 rounded-2xl bg-teal-50 px-4 py-3 text-sm leading-relaxed text-teal-950 ring-1 ring-teal-100">
+            {localized(content.familyWelcome, lang)}
+          </p>
+        )}
+        {activeTab === "rules" && (
+          <RulesAndPreferencesView
+            rules={content.groundRules}
+            preferences={content.familyPreferences}
+          />
+        )}
         {activeTab === "schedule" && (
           <ScheduleView
             schedule={content.weeklySchedule}
@@ -52,7 +65,11 @@ export function HomeApp({ content }: { content: AppContent }) {
           />
         )}
         {activeTab === "meals" && <MealsView />}
+        {activeTab === "tools" && (
+          <AppliancesView appliances={content.appliances ?? []} />
+        )}
         {activeTab === "ask" && <AskView />}
+        {activeTab === "hkLife" && <HkLifeView content={content} />}
       </main>
 
       <footer className="fixed bottom-16 left-0 right-0 text-center">

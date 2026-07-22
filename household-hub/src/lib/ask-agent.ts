@@ -1,8 +1,19 @@
 import {
   buildLiveSnapshot,
+  findLifeGuide,
   snapshotToKnowledgeText,
   type LiveFamilySnapshot,
 } from "./family-knowledge";
+import { getHongKongTimeParts } from "./i18n";
+import { localized } from "./localized-text";
+import {
+  getTaskEndTime,
+  getTaskStartTime,
+  isTaskActiveNow,
+  parseTimeToMinutes,
+  sortTasksByTime,
+} from "./schedule-utils";
+import type { HkLifeGuide, Lang, ScheduleTask } from "./types";
 
 export interface AskResult {
   answer: string;
@@ -12,10 +23,11 @@ export interface AskResult {
   lastUpdated: string;
 }
 
-function detectLang(q: string): "en" | "fil" | "zh" {
+function detectLang(q: string): Lang {
   if (/[\u4e00-\u9fff]/.test(q)) return "zh";
+  // Filipino / Tagalog cues (include common conjugated forms)
   if (
-    /\b(ano|saan|kailan|paano|ba|po|naman|salamat|ngayon|hapunan|alituntunin)\b/i.test(
+    /\b(ano|anong|saan|kailan|paano|naman|salamat|ngayon|ngayong|hapunan|alituntunin|gawain|gagawin|kakainin|kakain|kain|magkain|oras|sundo|tanghalian|ulam|gabi|po|ba)\b/i.test(
       q
     )
   )
@@ -23,9 +35,245 @@ function detectLang(q: string): "en" | "fil" | "zh" {
   return "en";
 }
 
-function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | null {
+const LANG_OVERRIDE_RE =
+  /\b((?:please\s+)?(?:reply|answer|respond|speak|write|use)(?:\s+in|\s+with)?|in|into)\s+(filipino|tagalog|chinese|mandarin|cantonese|english)\b/i;
+
+/** Explicit "reply with Filipino / 用中文" overrides question script */
+function resolveReplyLang(question: string): { lang: Lang; contentQuestion: string } {
+  const q = question.trim();
+  let lang: Lang | null = null;
+
+  const m = q.match(LANG_OVERRIDE_RE);
+  if (m) {
+    const target = m[2].toLowerCase();
+    if (target === "filipino" || target === "tagalog") lang = "fil";
+    else if (target === "chinese" || target === "mandarin" || target === "cantonese")
+      lang = "zh";
+    else if (target === "english") lang = "en";
+  } else if (/\b(filipino|tagalog)\s*(pls|please)?\s*$/i.test(q)) {
+    lang = "fil";
+  } else if (/用菲律賓|用他加祿|菲律賓文|用菲語|菲文/.test(q)) {
+    lang = "fil";
+  } else if (/用中文|繁體|簡體|请用中文|請用中文|中文回|廣東話|粤语|粵語/.test(q)) {
+    lang = "zh";
+  } else if (/用英文|英語回|in english\s*(pls|please)?/i.test(q)) {
+    lang = "en";
+  }
+
+  const contentQuestion = q
+    .replace(LANG_OVERRIDE_RE, " ")
+    .replace(/\b(filipino|tagalog|chinese|english)\s*(pls|please)?\s*$/gi, " ")
+    .replace(/用(菲律賓文?|他加祿|菲語|菲文|中文|繁體|簡體|英文|英語|廣東話)/g, " ")
+    .replace(/请用中文|請用中文|中文回[複复]?|英語回[複复]?/g, " ")
+    .replace(/[,，]+\s*$/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return {
+    lang: lang ?? detectLang(contentQuestion || q),
+    contentQuestion: contentQuestion || q,
+  };
+}
+
+function langName(lang: Lang): string {
+  return lang === "fil" ? "Filipino (Tagalog)" : lang === "zh" ? "Traditional Chinese" : "English";
+}
+
+function dishName(
+  d: { name: string; nameEn?: string; nameFil?: string },
+  lang: Lang
+): string {
+  const zh = d.name?.trim() || "";
+  const en = d.nameEn?.trim() || "";
+  const fil = d.nameFil?.trim() || "";
+  // Skip known-bad machine translations in nameFil
+  const filOk =
+    fil &&
+    !/shade|pampublikong|deformities|orchid|sportbenzin|ratio of garlic/i.test(fil) &&
+    fil.toLowerCase() !== "ulam na gulay";
+
+  if (lang === "fil") {
+    if (filOk) return en && en !== fil ? `${fil} (${en})` : fil;
+    return en || zh || fil;
+  }
+  if (lang === "zh") return zh || en || fil;
+  return en || zh || fil;
+}
+
+function ingredientName(
+  ing: { en?: string; fil?: string; zh?: string },
+  lang: Lang
+): string {
+  if (lang === "fil") return ing.fil || ing.en || ing.zh || "";
+  if (lang === "zh") return ing.zh || ing.en || ing.fil || "";
+  return ing.en || ing.fil || ing.zh || "";
+}
+
+function taskLabel(task: ScheduleTask, lang: Lang): string {
+  const start = getTaskStartTime(task);
+  const end = getTaskEndTime(task);
+  const range = task.fullDay
+    ? lang === "fil"
+      ? "Buong araw"
+      : lang === "zh"
+        ? "全日"
+        : "All day"
+    : end && end !== start
+      ? `${start}–${end}`
+      : start;
+  return `${range} — ${localized(task.task, lang)}`;
+}
+
+function formatGuide(guide: HkLifeGuide, lang: Lang): string {
+  const lines = [localized(guide.title, lang), localized(guide.body, lang)];
+  if (guide.sourceUrl) {
+    lines.push(
+      lang === "fil"
+        ? `Source: ${guide.sourceUrl}`
+        : lang === "zh"
+          ? `來源：${guide.sourceUrl}`
+          : `Source: ${guide.sourceUrl}`
+    );
+  }
+  lines.push(
+    lang === "fil"
+      ? "Kumpirmahin kay Sir/Mum o opisyal na source kung legal/kontrata."
+      : lang === "zh"
+        ? "合約／法律細節請向 Sir/Mum 或官方來源確認。"
+        : "Confirm with Sir/Mum or official sources for contract/legal details."
+  );
+  return lines.join("\n");
+}
+
+function lifeGuideAnswer(
+  snap: LiveFamilySnapshot,
+  lang: Lang,
+  predicate: (g: HkLifeGuide) => boolean
+): string | null {
+  const guide = findLifeGuide(snap.hkLifeGuides, predicate);
+  return guide ? formatGuide(guide, lang) : null;
+}
+
+/** Exact current / next task from today's HK schedule */
+function currentTaskAnswer(snap: LiveFamilySnapshot, lang: Lang): string | null {
+  if (!snap.todaySchedule?.tasks?.length) return null;
+  if (snap.isHelperDayOffToday) {
+    return lang === "fil"
+      ? "Day off ni Charlene ngayon — walang work schedule."
+      : lang === "zh"
+        ? "今天是 Charlene 放假 — 沒有工作時間表。"
+        : "Charlene day off today — no work schedule.";
+  }
+
+  const { minutesSinceMidnight } = getHongKongTimeParts();
+  const timeOnly = snap.nowHongKong.match(/\d{2}:\d{2}/)?.[0] ?? "";
+  const sorted = sortTasksByTime(snap.todaySchedule.tasks).filter((t) => !t.fullDay);
+
+  const active = sorted.find((t) => isTaskActiveNow(t, minutesSinceMidnight));
+  if (active) {
+    if (lang === "fil") {
+      return `Ngayon (${timeOnly} HKT):\n▶ ${taskLabel(active, lang)}\n\nIto ang current task.`;
+    }
+    if (lang === "zh") {
+      return `現在（${timeOnly} HKT）：\n▶ ${taskLabel(active, lang)}\n\n這是目前要做的事。`;
+    }
+    return `Now (${timeOnly} HKT):\n▶ ${taskLabel(active, lang)}\n\nThis is the current task.`;
+  }
+
+  const next = sorted.find(
+    (t) => parseTimeToMinutes(getTaskStartTime(t)) > minutesSinceMidnight
+  );
+  const prev = [...sorted]
+    .reverse()
+    .find((t) => {
+      const end = getTaskEndTime(t);
+      const endMin = end
+        ? parseTimeToMinutes(end)
+        : parseTimeToMinutes(getTaskStartTime(t)) + 30;
+      return endMin <= minutesSinceMidnight;
+    });
+
+  if (next) {
+    const nextStart = getTaskStartTime(next);
+    if (lang === "fil") {
+      return [
+        `Ngayon (${timeOnly} HKT): walang ongoing task (gap).`,
+        prev ? `Tapos na: ${taskLabel(prev, lang)}` : null,
+        `Susunod (${nextStart}):\n▶ ${taskLabel(next, lang)}`,
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }
+    if (lang === "zh") {
+      return [
+        `現在（${timeOnly} HKT）：暫無進行中的工作（空檔）。`,
+        prev ? `剛完成：${taskLabel(prev, lang)}` : null,
+        `下一項（${nextStart}）：\n▶ ${taskLabel(next, lang)}`,
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }
+    return [
+      `Now (${timeOnly} HKT): no task in progress (gap).`,
+      prev ? `Just finished: ${taskLabel(prev, lang)}` : null,
+      `Next (at ${nextStart}):\n▶ ${taskLabel(next, lang)}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  if (prev) {
+    return lang === "fil"
+      ? `Ngayon (${timeOnly} HKT): tapos na ang schedule ngayong araw.\nHuli: ${taskLabel(prev, lang)}`
+      : lang === "zh"
+        ? `現在（${timeOnly} HKT）：今天的時間表已完成。\n最後一項：${taskLabel(prev, lang)}`
+        : `Now (${timeOnly} HKT): today's schedule is finished.\nLast task: ${taskLabel(prev, lang)}`;
+  }
+
+  return null;
+}
+
+function heuristicAnswer(
+  question: string,
+  snap: LiveFamilySnapshot,
+  lang: Lang
+): string | null {
   const q = question.toLowerCase();
-  const lang = detectLang(question);
+
+  // Language-only request: "in Filipino pls" (keep Unicode letters — \W strips CJK!)
+  const hasContent = /[\p{L}\p{N}]/u.test(q);
+  if (
+    !hasContent ||
+    /^(please|pls|po|lang)?$/i.test(q.trim()) ||
+    /^(in\s+)?(filipino|tagalog|chinese|english)\s*(pls|please)?$/i.test(q.trim())
+  ) {
+    if (lang === "fil") return "Sige — itanong mo na (hal. Ano ang gagawin ko ngayon?).";
+    if (lang === "zh") return "好的 — 請直接提問（例如：我現在該做什麼？）。";
+    return "OK — please ask your question (e.g. What should I do now?).";
+  }
+
+  if (
+    /what time|current time|time now|now time|幾點|现在几|現在幾|anong oras|oras na|what'?s the time/.test(
+      q
+    ) &&
+    !/what should|gawain|task|do now|做什麼|做什么/.test(q)
+  ) {
+    const timeOnly = snap.nowHongKong.match(/\d{2}:\d{2}/)?.[0] ?? snap.nowHongKong;
+    if (lang === "fil") return `Ngayon sa Hong Kong: ${timeOnly} (HKT).`;
+    if (lang === "zh") return `香港現在時間：${timeOnly}（HKT）。`;
+    return `Hong Kong time now: ${timeOnly} (HKT).`;
+  }
+
+  // "what should I do now?" → exact current / next task (not full day list)
+  if (
+    /what should i do|do now|current task|now task|ano.*gawain|ano.*gagawin|susunod na gawain|現在(要?做|該做)|此刻|該做什麼|该做什么/.test(
+      q
+    ) ||
+    /\bwhat('s| is) next\b/.test(q) ||
+    (/\bnow\b/.test(q) && /task|do|gawain|做/.test(q))
+  ) {
+    return currentTaskAnswer(snap, lang);
+  }
 
   if (
     /day off|holiday|勞工|星期日|linggo|sunday|bakasyon|dayoff/.test(q) &&
@@ -45,15 +293,90 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
         : "No — Charlene works today. Follow today's schedule.";
   }
 
-  if (/tonight|dinner|hapunan|今晚|晚餐|menu|ulam/.test(q)) {
+  if (
+    /how to cook|paano magluto|paano lutuin|lutuin|cook (this|the|tonight)|煮法|怎麼煮|怎煮|paano.*ulam|steps? to cook|cook helper/.test(
+      q
+    )
+  ) {
+    if (!snap.tonight) {
+      return lang === "fil"
+        ? "Wala pang dinner menu — hindi ko mabigay ang cook guide."
+        : lang === "zh"
+          ? "尚未有晚餐菜單，無法提供烹調說明。"
+          : "No dinner menu yet — cannot give cook guide.";
+    }
+    const dishes = [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup];
+    const cantoneseNote =
+      lang === "fil"
+        ? "⚠️ Maraming YouTube recipe sa Cantonese. Sundin ang ingredients + prep notes sa Meals tab. Kung hindi clear ang video, tanungin si Sir/Mum."
+        : lang === "zh"
+          ? "⚠️ 不少 YouTube 食譜是廣東話。請跟 Meals 分頁的材料與準備說明。影片不清楚就問 Sir/Mum。"
+          : "⚠️ Many YouTube recipes are in Cantonese. Follow the ingredients + prep notes in the Meals tab. If the video is unclear, ask Sir/Mum.";
+
+    const blocks: string[] = [
+      lang === "fil"
+        ? "Paano magluto (hapunan ngayong gabi):"
+        : lang === "zh"
+          ? "今晚怎麼煮："
+          : "How to cook tonight:",
+      cantoneseNote,
+    ];
+
+    for (const dish of dishes) {
+      blocks.push("");
+      blocks.push(`▶ ${dishName(dish, lang)}`);
+      if (dish.ingredients?.length) {
+        blocks.push(
+          lang === "fil" ? "Mga sangkap:" : lang === "zh" ? "材料：" : "Ingredients:"
+        );
+        for (const ing of dish.ingredients) {
+          const name = ingredientName(ing, lang);
+          blocks.push(`  • ${ing.qty ? `${name} (${ing.qty})` : name}`);
+        }
+      } else {
+        blocks.push(
+          lang === "fil"
+            ? "  (wala pang ingredients — buksan ang link o hilingin kay Sir i-add)"
+            : lang === "zh"
+              ? "  （尚未列出材料 — 打開連結或請 Sir 加入）"
+              : "  (no ingredients listed — open link or ask Sir to add)"
+        );
+      }
+      if (dish.prepNotes) {
+        const notes = localized(dish.prepNotes, lang);
+        if (notes) {
+          blocks.push(
+            lang === "fil" ? "Prep notes:" : lang === "zh" ? "準備說明：" : "Prep notes:"
+          );
+          blocks.push(notes);
+        }
+      }
+      if (dish.link) blocks.push(`Video: ${dish.link}`);
+    }
+    return blocks.join("\n");
+  }
+
+  if (
+    /tonight|dinner|hapunan|今晚|晚餐|menu|ulam|kakainin|kakain|magkain|kain.*(gabi|hapunan)|食乜|食咩|今晚食/.test(
+      q
+    )
+  ) {
     if (!snap.tonight) {
       return lang === "fil"
         ? "Wala pang dinner menu ngayon."
-        : "No dinner menu available yet.";
+        : lang === "zh"
+          ? "今晚尚未有晚餐菜單。"
+          : "No dinner menu available yet.";
     }
     const { meat, vegetable, soup } = snap.tonight;
+    const cat =
+      lang === "fil"
+        ? { Meat: "Karne", Vegetable: "Gulay", Soup: "Sabaw" }
+        : lang === "zh"
+          ? { Meat: "肉類", Vegetable: "蔬菜", Soup: "湯" }
+          : { Meat: "Meat", Vegetable: "Vegetable", Soup: "Soup" };
     const line = (d: typeof meat) =>
-      `${d.category}: ${lang === "fil" ? d.nameFil || d.nameEn || d.name : d.nameEn || d.name}`;
+      `${cat[d.category]}: ${dishName(d, lang)}`;
     return [
       lang === "fil" ? "Hapunan ngayong gabi:" : lang === "zh" ? "今晚晚餐：" : "Tonight's dinner:",
       `• ${line(meat)}`,
@@ -61,30 +384,68 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
       `• ${line(soup)}`,
       lang === "fil"
         ? "Buksan ang Meals tab para sa ingredients."
-        : "Open the Meals tab for ingredients.",
+        : lang === "zh"
+          ? "可在 Meals 分頁查看材料。"
+          : "Open the Meals tab for ingredients.",
     ].join("\n");
   }
 
-  if (/ingredient|bilihin|shopping|買|材料|grocery/.test(q)) {
+  if (/ingredient|bilihin|shopping|買|材料|sangkap/.test(q) && !/aeon|yau\s*tong|supermarket|買菜/.test(q)) {
     if (!snap.tonight) return null;
     const lines: string[] = [
-      lang === "fil" ? "Ingredients ngayong gabi:" : "Tonight's ingredients:",
+      lang === "fil"
+        ? "Ingredients ngayong gabi:"
+        : lang === "zh"
+          ? "今晚材料："
+          : "Tonight's ingredients:",
     ];
     for (const dish of [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup]) {
-      lines.push(`• ${dish.nameEn || dish.name}`);
+      lines.push(`• ${dishName(dish, lang)}`);
       if (dish.ingredients?.length) {
         for (const ing of dish.ingredients) {
-          const name = ing.en || ing.fil || ing.zh || "";
+          const name = ingredientName(ing, lang);
           lines.push(`  - ${ing.qty ? `${name} (${ing.qty})` : name}`);
         }
       } else {
-        lines.push(`  - (not listed — see recipe: ${dish.link})`);
+        lines.push(
+          lang === "fil"
+            ? `  - (wala pa — tingnan: ${dish.link})`
+            : lang === "zh"
+              ? `  - （未列出 — 見食譜：${dish.link}）`
+              : `  - (not listed — see recipe: ${dish.link})`
+        );
       }
     }
     return lines.join("\n");
   }
 
-  if (/pick ?up|sundo|接|16:30|1630|school|kindergarten|eskwela/.test(q)) {
+  // HK Life weather first (before school regex)
+  if (
+    /typhoon|t8|signal\s*8|black\s*rain|bagyo|風球|八號|暴雨|rainstorm|t3|signal\s*3/.test(
+      q
+    )
+  ) {
+    const weatherNote =
+      snap.hkWeather?.alertActive
+        ? lang === "fil"
+          ? `⚠ WEATHER ALERT ON (level=${snap.hkWeather.level}): ${localized(snap.hkWeather.note, lang)}\n\n`
+          : lang === "zh"
+            ? `⚠ 天氣警報開啟（${snap.hkWeather.level}）：${localized(snap.hkWeather.note, lang)}\n\n`
+            : `⚠ WEATHER ALERT ON (level=${snap.hkWeather.level}): ${localized(snap.hkWeather.note, lang)}\n\n`
+        : "";
+    const tip =
+      lifeGuideAnswer(snap, lang, (g) => g.id === "life-typhoon") ||
+      lifeGuideAnswer(snap, lang, (g) => g.category === "weather");
+    if (tip) return weatherNote + tip;
+  }
+
+  if (
+    /pick ?up|sundo|接送|16:30|1630|drop[- ]?off|kindergarten|eskwela|school\s*(run|walk|time)|hatid/.test(
+      q
+    )
+  ) {
+    const walk = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-school-walk");
+    if (walk) return walk;
     return lang === "fil"
       ? "Zizi: Mon–Fri PM class. Umalis sa bahay 12:30 (30 min lakad) — drop-off bago 13:00. Umalis 16:00 para sunduin si Zizi ng 16:30."
       : lang === "zh"
@@ -92,31 +453,314 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
         : "Zizi: Mon–Fri PM class. Leave home 12:30 (30 min walk) — drop off by 13:00. Leave 16:00 to pick up Zizi at 16:30.";
   }
 
-  if (/rule|alituntunin|規則|ground|broken|borrow|pera|money/.test(q)) {
+  // HK Life / FDH settling tips (deterministic from guides)
+  if (/octopus|八達通|oyster\s*card/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-octopus");
+    if (tip) return tip;
+  }
+
+  if (
+    /android\s*app|must[- ]?have\s*app|kailangan.*app|必備.*(app|應用)|app.*hong\s*kong|openrice|alipayhk|\bpayme\b|myobservatory|mtr\s*mobile|anong\s*app|which\s*apps?\s*(to\s*)?(download|install)|apps?\s*to\s*(download|install)|google\s*translate/.test(
+      q
+    ) &&
+    !/whatsapp\s*(bot|number|save|\?save)/.test(q)
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-android-apps");
+    if (tip) return tip;
+  }
+
+  if (
+    /healthy\s*(holiday|rest\s*day|sunday|activity)|rest\s*day.*(hike|walk|yoga|fitness|activity)|holiday.*(hike|walk|yoga|fitness)|kadoorie|kfbg|g-?class|tamar\s*park|masusustansiya|malusog.*linggo|健康.*(休息|假|活動)|行山|yoga.*helper|nature\s*day/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-healthy-holiday");
+    if (tip) return tip;
+  }
+
+  if (
+    /rest\s*day|24\s*hours?|lingguhang\s*pahinga|休息日|statutory\s*holiday|法定假|stat\s*holiday/.test(
+      q
+    ) &&
+    !/today|ngayon|今天/.test(q)
+  ) {
+    const tip = /statutory|法定|stat\s*holiday/.test(q)
+      ? lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays")
+      : lifeGuideAnswer(snap, lang, (g) => g.id === "life-rest-day");
+    if (tip) return tip;
+  }
+
+  if (
+    /consulate|pcg|mwo|owwa|labour\s*department|labor\s*department|勞工處|領事|konsulado|9155|2171\s*1771/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-ph-support");
+    if (tip) return tip;
+  }
+
+  if (/999|ambulance|ambulansya|emergency\s*number|緊急|bombero|police|pulis/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-emergency-999");
+    if (tip) {
+      const phones = snap.emergencyContacts
+        .filter((c) => c.phone?.trim())
+        .map((c) => `• ${localized(c.name, lang)}: ${c.phone}`)
+        .join("\n");
+      return phones ? `${tip}\n\n${phones}` : tip;
+    }
+  }
+
+  if (/aeon|yau\s*tong|grocery|pamimili|買菜|supermarket/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-aeon");
+    if (tip) return tip;
+  }
+
+  if (
+    /\bmtr\b|kwun\s*tong\s*mtr|觀塘站|lam\s*tin|藍田|yau\s*tong|油塘/.test(q) ||
+    (/taxi|grab/.test(q) && /go|paano|去|saan/.test(q))
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-mtr");
+    if (tip) return tip;
+  }
+
+  if (/maw|minimum\s*(allowable\s*)?wage|5100|5,?100|kontrata|standard\s*contract|最低.*(工|薪)|id\s*407/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-contract-maw");
+    if (tip) return tip;
+  }
+
+  if (/live[- ]?in|nakatira|留宿|overnight|matulog sa labas/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-live-in");
+    if (tip) return tip;
+  }
+
+  if (/food\s*allowance|膳食津貼|allowance.*pagkain|libre.*pagkain/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-food-allowance");
+    if (tip) return tip;
+  }
+
+  if (/passport|hkid|dokumento|documents|證件|kontrata.*kopya/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-documents");
+    if (tip) return tip;
+  }
+
+  if (/heat|mainit|熱|humid|overheat|tubig.*lakad|hot\s*weather/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-heat");
+    if (tip) return tip;
+  }
+
+  if (/rubbish|basura|recycling|垃圾|recycle/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-rubbish");
+    if (tip) return tip;
+  }
+
+  if (/quiet|tahimik|安靜|maingay|noise|tv.*gabi/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-quiet");
+    if (tip) return tip;
+  }
+
+  if (/sick|lagnat|fever|vomiting|sakit.*zizi|不適|發燒/.test(q) && /zizi|bata|child|anak/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-zizi-sick");
+    if (tip) return tip;
+  }
+
+  if (/settling|checklist|bagong\s*dating|first\s*week|unang\s*linggo|安頓|清單/.test(q)) {
+    const items = snap.settlingChecklist;
+    if (items.length) {
+      const lines = items.map(
+        (item, i) =>
+          `${item.done ? "☑" : "☐"} ${i + 1}. ${localized(item.title, lang)}`
+      );
+      return lang === "fil"
+        ? `Settling checklist:\n${lines.join("\n")}\n\nBuksan ang HK Life tab.`
+        : lang === "zh"
+          ? `安頓清單：\n${lines.join("\n")}\n\n請打開 HK Life 分頁。`
+          : `Settling checklist:\n${lines.join("\n")}\n\nOpen the HK Life tab.`;
+    }
+  }
+
+  if (
+    /hk\s*life|hong\s*kong\s*life|tips?\s*(sa|for|para)?\s*(hk|hong\s*kong)|gabay.*(hong\s*kong|hk)|香港.*(貼士|生活)/.test(
+      q
+    )
+  ) {
+    const top = [...snap.hkLifeGuides]
+      .sort((a, b) => a.priority - b.priority)
+      .slice(0, 8)
+      .map((g, i) => `${i + 1}. ${localized(g.title, lang)}`)
+      .join("\n");
+    if (top) {
+      return lang === "fil"
+        ? `HK Life tips (tanungin ang topic, o buksan ang HK Life tab):\n${top}`
+        : lang === "zh"
+          ? `HK Life 貼士（可問某一主題，或打開 HK Life 分頁）：\n${top}`
+          : `HK Life tips (ask about a topic, or open the HK Life tab):\n${top}`;
+    }
+  }
+
+  if (
+    /preference|prefer|gusto ng pamilya|family tip|錢大媽|qin\s*dama|kai\s*bo|made in china|gawa sa china|中國製|中国制|avoid.*(china|meat)|huwag.*(karne|bumili)/.test(
+      q
+    )
+  ) {
+    const prefs = [...snap.familyPreferences].sort(
+      (a, b) => a.priority - b.priority
+    );
+    if (prefs.length) {
+      const china = prefs.find((p) => /china|中國|中国/i.test(p.title.en + p.body.en));
+      const qin = prefs.find((p) =>
+        /錢大媽|qin|kai bo|meat/i.test(p.title.en + p.title.zh + p.body.en)
+      );
+      const hit =
+        (/china|中國|中国|gawa sa china/i.test(q) && china) ||
+        (/錢大媽|qin|kai\s*bo|meat|karne/i.test(q) && qin) ||
+        null;
+      if (hit) {
+        return [
+          localized(hit.title, lang),
+          localized(hit.body, lang),
+          lang === "fil"
+            ? "(Preference tip — hindi ground rule.)"
+            : lang === "zh"
+              ? "（偏好貼士——不是守則。）"
+              : "(Family preference tip — not a ground rule.)",
+        ].join("\n");
+      }
+      const list = prefs
+        .map((p, i) => `${i + 1}. ${localized(p.title, lang)}`)
+        .join("\n");
+      return lang === "fil"
+        ? `Mga family preference (soft tips, hindi ground rules):\n${list}\n\nTanungin ang specific tip, o buksan ang Rules tab → Preferences.`
+        : lang === "zh"
+          ? `家庭偏好（軟性貼士，不是守則）：\n${list}\n\n可問某一項，或打開「守則」分頁 →「偏好」。`
+          : `Family preferences (soft tips, not ground rules):\n${list}\n\nAsk about one, or open the Rules tab → Preferences.`;
+    }
+  }
+
+  if (
+    /vacuum|dyson|v12|hp07|purifier|hot\+?cool|空氣清新|暖風|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|epc17|epc\s*17|高速煲|壓力鍋|washing\s*machine|washer|whirlpool|tdlr70223|tdlr|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
+      q
+    )
+  ) {
+    const apps = [...snap.appliances].sort((a, b) => a.priority - b.priority);
+    if (apps.length) {
+      const kindMatchers: { re: RegExp; kind?: string; id?: string }[] = [
+        { re: /v12|vacuum|吸塵/, kind: "vacuum" },
+        {
+          re: /hp07|purifier|hot\+?cool|空氣清新|暖風/,
+          kind: "air-purifier",
+        },
+        { re: /\bdyson\b/, kind: "vacuum" },
+        {
+          re: /zojirushi|np-?rlq|rice\s*cooker|eletr?ic\s*rice|電飯煲|飯煲/,
+          kind: "rice-cooker",
+        },
+        {
+          re: /epc17|epc\s*17|pressure\s*cooker|高速煲|壓力鍋|壓力/,
+          kind: "pressure-cooker",
+        },
+        {
+          re: /panasonic|sd-?pt1002|bread\s*machine|麵包機/,
+          kind: "bread-machine",
+        },
+        {
+          re: /easy\s*fry|air\s*fryer|氣炸/,
+          kind: "air-fryer",
+        },
+        {
+          re: /du4120|dehumidifier|linen\s*dry|抽濕|乾衣抽濕/,
+          kind: "dehumidifier",
+        },
+        {
+          re: /philips|add6910|water\s*dispenser|飲水|RO\s*water/,
+          kind: "water-dispenser",
+        },
+        {
+          re: /hitachi|hb-?st388|range\s*hood|cooker\s*hood|抽油煙/,
+          kind: "range-hood",
+        },
+        {
+          re: /whirlpool|tdlr70223|tdlr|wash(ing)?\s*machine|washer|lavander|洗濯機|洗衣機|maglaba/,
+          kind: "washing-machine",
+        },
+        { re: /\btefal\b/, kind: "air-fryer" },
+      ];
+      const matched = kindMatchers.find((m) => m.re.test(q));
+      const hit = matched
+        ? apps.find((a) => a.kind === matched.kind) ||
+          apps.find((a) =>
+            matched.re.test(
+              `${a.model || ""} ${a.title.en} ${a.title.zh || ""} ${a.id}`
+            )
+          )
+        : undefined;
+      if (hit) {
+        const caution = hit.warnings ? localized(hit.warnings, lang) : "";
+        return [
+          localized(hit.title, lang),
+          hit.model ? `Model: ${hit.model}` : null,
+          localized(hit.tips, lang),
+          caution
+            ? lang === "fil"
+              ? `Babala: ${caution}`
+              : lang === "zh"
+                ? `注意：${caution}`
+                : `Caution: ${caution}`
+            : null,
+        ]
+          .filter(Boolean)
+          .join("\n");
+      }
+      const list = apps
+        .map(
+          (a, i) =>
+            `${i + 1}. ${localized(a.title, lang)}${a.model ? ` (${a.model})` : ""}`
+        )
+        .join("\n");
+      return lang === "fil"
+        ? `Mga tools / appliances:\n${list}\n\nTanungin ang pangalan (hal. Dyson / rice cooker), o buksan ang Tools tab.`
+        : lang === "zh"
+          ? `家電／工具：\n${list}\n\n可問名稱（例如 Dyson、飯煲），或打開「家電」分頁。`
+          : `House tools / appliances:\n${list}\n\nAsk by name (e.g. Dyson, rice cooker), or open the Tools tab.`;
+    }
+  }
+
+  if (/rule|alituntunin|規則|ground|broken|borrow|pera|money|hiram/.test(q)) {
     const money = snap.groundRules.find((r) =>
       r.title.en.toLowerCase().includes("borrow")
     );
-    if (money && /borrow|pera|money|hiram/.test(q)) {
-      return `${money.title.en}\n${money.description.en}\nIf Broken: ${money.consequences?.en ?? ""}`;
+    if (money && /borrow|pera|money|hiram|借錢|借钱/.test(q)) {
+      return [
+        localized(money.title, lang),
+        localized(money.description, lang),
+        lang === "fil"
+          ? `Kung labag: ${localized(money.consequences, lang)}`
+          : lang === "zh"
+            ? `若違反：${localized(money.consequences, lang)}`
+            : `If Broken: ${localized(money.consequences, lang)}`,
+      ].join("\n");
     }
-    const titles = snap.groundRules.map((r, i) => `${i + 1}. ${r.title.en}`).join("\n");
+    const titles = snap.groundRules
+      .map((r, i) => `${i + 1}. ${localized(r.title, lang)}`)
+      .join("\n");
     return lang === "fil"
       ? `Mga ground rules:\n${titles}\n\nTanungin ang specific rule, o buksan ang Ground Rules tab.`
-      : `Ground rules:\n${titles}\n\nAsk about a specific rule, or open the Ground Rules tab.`;
+      : lang === "zh"
+        ? `守則：\n${titles}\n\n可問某一條，或打開 Ground Rules 分頁。`
+        : `Ground rules:\n${titles}\n\nAsk about a specific rule, or open the Ground Rules tab.`;
   }
 
-  if (/schedule|iskedyul|now|ngayon|ano.*gawain|what.*do|時間表/.test(q)) {
+  // Full day list only when explicitly asking for schedule overview
+  if (
+    /full schedule|whole (day )?schedule|today'?s schedule|iskedyul|時間表|buong (araw )?na schedule/.test(
+      q
+    ) ||
+    (/^schedule\??$/.test(q.trim()) || (/\bschedule\b/.test(q) && !/\bnow\b/.test(q)))
+  ) {
     if (!snap.todaySchedule) return null;
-    const tasks = snap.todaySchedule.tasks
-      .slice(0, 8)
-      .map((t) => {
-        const range = t.fullDay
-          ? "All day"
-          : `${t.startTime ?? t.time}${t.endTime ? `–${t.endTime}` : ""}`;
-        return `• ${range} ${t.task.en}`;
-      })
+    const tasks = sortTasksByTime(snap.todaySchedule.tasks)
+      .map((t) => `• ${taskLabel(t, lang)}`)
       .join("\n");
-    return `${snap.todaySchedule.day.en}:\n${tasks}`;
+    return `${localized(snap.todaySchedule.day, lang)}:\n${tasks}`;
   }
 
   return null;
@@ -150,7 +794,8 @@ async function fetchWebSnippets(query: string): Promise<string> {
 async function answerWithLlm(
   question: string,
   knowledge: string,
-  web: string
+  web: string,
+  replyLang: Lang
 ): Promise<string | null> {
   // Prefer OpenRouter (can use free models). Fall back to OpenAI.
   const openRouterKey = process.env.OPENROUTER_API_KEY;
@@ -169,12 +814,21 @@ async function answerWithLlm(
     ? process.env.OPENROUTER_MODEL || "openrouter/free"
     : process.env.OPENAI_MODEL || "gpt-4o-mini";
 
-  const system = `You are the Zizi Family household helper assistant for Charlene (helper), Sir, and Mum.
-Answer briefly in the same language as the question (English, Filipino, or Traditional Chinese).
+  const system = `You are the Zizi Family household assistant for Charlene (family member), Sir, and Mum.
+CRITICAL LANGUAGE RULE: Reply ONLY in ${langName(replyLang)}. Every sentence must be in that language.
+If the user wrote Chinese/English but asked to "reply with Filipino" (or similar), still reply ONLY in ${langName(replyLang)}.
+Do not mix languages except for unavoidable dish proper names — prefer Filipino dish names (nameFil) when replying in Filipino.
 Prefer FAMILY LIVE DATA below over the internet.
+For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DATA using the correct language names — never invent literal translations like "Winter Shade Public Soup".
+For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
+For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
+For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
+For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON / Android apps / healthy holiday questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
-Do not use the word 姐姐 — say Charlene.
+Family preferences are soft tips only — never call them ground rules or invent “If Broken” for them.
+Appliance answers should come from the Tools / appliances section; if unsure about our exact machine, tell Charlene to ask Sir/Mum.
+Do not call Charlene a "helper" or "katulong" or 家務助理 in replies — she is a family member. Do not use the word 姐姐 — say Charlene.
 
 FAMILY LIVE DATA:
 ${knowledge}
@@ -228,34 +882,10 @@ export async function answerFamilyQuestion(
   const knowledge = snapshotToKnowledgeText(snap);
   const allowInternet = options?.allowInternet !== false;
 
-  const quick = heuristicAnswer(question, snap);
-  const needsWeb =
-    allowInternet &&
-    /weather|typhoon|天氣|bagyo|how to cook|paano magluto|substitute|palit|recipe tip/.test(
-      question.toLowerCase()
-    );
+  const { lang, contentQuestion } = resolveReplyLang(question);
+  const quick = heuristicAnswer(contentQuestion, snap, lang);
 
-  let web = "";
-  if (
-    needsWeb ||
-    (!quick &&
-      allowInternet &&
-      (process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY))
-  ) {
-    web = await fetchWebSnippets(question);
-  }
-
-  const ai = await answerWithLlm(question, knowledge, web);
-  if (ai) {
-    return {
-      answer: ai,
-      source: web ? "live-web+internet" : "live-web+ai",
-      usedInternet: Boolean(web),
-      dataSource: snap.source,
-      lastUpdated: snap.lastUpdated,
-    };
-  }
-
+  // Deterministic answers (time, schedule, meals, rules) win over free LLMs
   if (quick) {
     return {
       answer: quick,
@@ -266,13 +896,35 @@ export async function answerFamilyQuestion(
     };
   }
 
+  const needsWeb =
+    allowInternet &&
+    /how to cook|paano magluto|substitute|palit|recipe tip|weather forecast|天氣預測/.test(
+      contentQuestion.toLowerCase()
+    );
+
+  let web = "";
+  if (needsWeb || (allowInternet && (process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY))) {
+    web = await fetchWebSnippets(contentQuestion);
+  }
+
+  const ai = await answerWithLlm(contentQuestion, knowledge, web, lang);
+  if (ai) {
+    return {
+      answer: ai,
+      source: web ? "live-web+internet" : "live-web+ai",
+      usedInternet: Boolean(web),
+      dataSource: snap.source,
+      lastUpdated: snap.lastUpdated,
+    };
+  }
+
   return {
     answer:
-      detectLang(question) === "fil"
-        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup time, day off, o ground rules."
-        : detectLang(question) === "zh"
-          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送時間、放假、守則。"
-          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup time, day off, or ground rules.",
+      lang === "fil"
+        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup, Tools (rice cooker), preferences, o ground rules."
+        : lang === "zh"
+          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送、家電用法、偏好貼士、守則。"
+          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup, Tools (rice cooker), preferences, or ground rules.",
     source: "live-web",
     usedInternet: false,
     dataSource: snap.source,

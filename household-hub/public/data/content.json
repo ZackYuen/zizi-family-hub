@@ -2,8 +2,9 @@
   "helperName": "Charlene",
   "familyName": "Zizi Family",
   "ziziSchool": {
-    "en": "Lam Tin Liang Leung Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
-    "fil": "Lam Tin Liang Leung Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene."
+    "en": "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
+    "fil": "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene.",
+    "zh": "藍田靈糧幼稚園 — 星期一至五下午班（13:00 前到達，步行約 30 分鐘）。星期日及香港公眾假期（香港勞工假）：Charlene 放假。"
   },
   "monthlyTasks": [
     {
@@ -27,145 +28,161 @@
     {
       "id": "rule-1",
       "title": {
-        "en": "No Borrowing Money",
-        "fil": "Huwag Humiram ng Pera"
+        "en": "No borrow money",
+        "fil": "Huwag humiram ng pera",
+        "zh": "不可借錢"
       },
       "description": {
-        "en": "Do not borrow money from anyone — employers, neighbours, or other helpers. If you need something, please ask the employer directly.",
-        "fil": "Huwag humiram ng pera mula sa sinuman — employer, kapitbahay, o ibang katulong. Kung may kailangan ka, diretso mong tanungin ang employer."
+        "en": "Borrowing money is prohibited. Do not borrow from neighbours, strangers, other domestic workers, or anyone else. If you need help, tell Sir or Mum — that is not borrowing.",
+        "fil": "Bawal humiram ng pera. Huwag humiram sa kapitbahay, estranghero, ibang domestic worker, o kaninuman. Kung may kailangan, sabihin kay Sir o Mum — hindi iyon paghiram.",
+        "zh": "禁止借錢。不可向鄰居、陌生人、他傭或任何人借錢。有需要告訴 Sir 或 Mum — 那不是借錢。"
       },
       "category": "general",
       "priority": 1,
       "consequences": {
-        "en": "First offence: serious written warning and meeting with employer. Any hidden borrowing or repeat offence: contract terminated immediately, repatriation arranged, and employer may report to the agency.",
-        "fil": "Unang paglabag: seryosong written warning at meeting sa employer. Anumang naitagong paghiram o ulit na paglabag: tatapusin agad ang kontrata, repatriation, at maaaring i-report ng employer sa agency.",
-        "zh": "第一次：嚴正書面警告及與僱主會面。任何隱瞞借錢或再犯：立即終止合約、安排遣返，僱主可向中介報告。"
+        "en": "If Broken: Immediate serious written warning and meeting with Sir/Mum. Any borrowing — including a first time that was hidden — can end the contract and repatriation; the agency will be informed. Borrowing is prohibited. No second chance.",
+        "fil": "If Broken: Agad na seryosong written warning at meeting kay Sir/Mum. Anumang paghiram — kasama ang unang beses na itinago — maaaring matapos ang kontrata at repatriation; iinforma ang agency. Bawal humiram. Walang second chance.",
+        "zh": "若違反：立即嚴正書面警告並與 Sir/Mum 會面。任何借錢（包括隱瞞的第一次）可終止合約並遣返，並通知中介。禁止借錢。沒有第二次機會。"
       }
     },
     {
       "id": "rule-2",
       "title": {
-        "en": "Zizi Comes First",
-        "fil": "Si Zizi ang Unahin"
+        "en": "Zizi comes first — he is our shared priority",
+        "fil": "Si Zizi ang unahin — shared priority natin",
+        "zh": "Zizi 優先 — 我們共同的重心"
       },
       "description": {
-        "en": "Zizi (our son) is the top priority. His meals, nap time, homework, and safety come before other household tasks. If Zizi needs attention, stop other work and help him first.",
-        "fil": "Si Zizi (ang anak namin) ang unang prayoridad. Ang pagkain, tulog, takdang-aralin, at kaligtasan niya ay mas mahalaga kaysa ibang gawaing bahay. Kung kailangan ni Zizi ng tulong, itigil muna ang iba at unahin siya."
+        "en": "You are part of our family team caring for Zizi. His meals, rest, school run, and safety come before other chores. If he needs you, pause other work and be with him.",
+        "fil": "Bahagi ka ng pamilya na nag-aalaga kay Zizi. Ang pagkain, pahinga, school run, at kaligtasan niya ay una bago ang ibang gawain. Kung kailangan ka niya, itigil muna ang iba at samahan siya.",
+        "zh": "你是照顧 Zizi 的家庭一分子。他的膳食、休息、接送與安全優先於其他家務。他需要你時，請先停下手邊工作陪伴他。"
       },
       "category": "childcare",
       "priority": 2,
       "consequences": {
-        "en": "If Zizi is left hungry, unsafe, or unattended because other tasks were prioritised: written warning. Serious neglect or repeat: employment terminated — Zizi's safety is non-negotiable.",
-        "fil": "Kung si Zizi ay gutom, delikado, o walang nagbabantay dahil inuna ang ibang gawain: written warning. Malubhang pagpapabaya o ulit: tatapusin ang trabaho — hindi pwedeng i-kompromiso ang kaligtasan ni Zizi.",
-        "zh": "若因先做其他工作而令 Zizi 餓肚、不安全或無人看管：書面警告。嚴重疏忽或再犯：終止僱傭 — Zizi 的安全絕不可妥協。"
+        "en": "If Broken: Immediate written warning. If Zizi was hungry, unsafe, or unattended because other tasks came first: this is treated as serious — contract may end the same day. Zizi’s safety has no second chance.",
+        "fil": "If Broken: Agad na written warning. Kung si Zizi ay gutom, delikado, o walang bantay dahil inuna ang ibang gawain: seryoso ito — maaaring matapos ang kontrata sa araw ding iyon. Walang second chance sa kaligtasan ni Zizi.",
+        "zh": "若違反：立即書面警告。若因先做其他事令 Zizi 挨餓、不安全或無人看管：視為嚴重 — 可即日終止合約。Zizi 的安全沒有第二次機會。"
       }
     },
     {
       "id": "rule-3",
       "title": {
-        "en": "Separate Raw & Cooked Meat Tools",
-        "fil": "Hiwalay na Gamit para sa Hilaw at Lutong Karne"
+        "en": "Keep raw and cooked tools separate",
+        "fil": "Hiwalay ang gamit para sa hilaw at luto",
+        "zh": "生熟用具分開"
       },
       "description": {
-        "en": "Always use separate chopping boards and knives for raw (fresh) meat and cooked meat. Never mix them. Wash hands and tools after handling raw meat.",
-        "fil": "Laging gumamit ng hiwalay na chopping board at kutsilyo para sa hilaw (sariwang) karne at lutong karne. Huwag pagsamahin. Maghugas ng kamay at gamit pagkatapos humawak ng hilaw na karne."
+        "en": "Use different chopping boards and knives for raw meat and cooked food. Wash hands and tools after touching raw meat. This keeps everyone — including you — healthy.",
+        "fil": "Gumamit ng iba't ibang chopping board at kutsilyo para sa hilaw na karne at lutong pagkain. Maghugas ng kamay at gamit pagkatapos humawak ng hilaw na karne. Proteksyon ito para sa lahat — kasama ka.",
+        "zh": "生肉與熟食用不同砧板和刀。處理生肉後洗手及清洗用具。這是為全家人（包括你）的健康。"
       },
       "category": "kitchen",
       "priority": 3,
       "consequences": {
-        "en": "Mixing raw and cooked tools can make the family sick. First time: retraining and written warning. If anyone gets ill or it happens again: employment terminated.",
-        "fil": "Ang paghalu ng gamit para sa hilaw at luto ay maaaring magkasakit ang pamilya. Unang beses: retraining at written warning. Kung may magkasakit o maulit: tatapusin ang trabaho.",
-        "zh": "混用生熟用具可令家人病。第一次：重新訓練及書面警告。若有人病或再犯：終止僱傭。"
+        "en": "If Broken: Immediate written warning and supervised kitchen correction the same day. Mixing raw and cooked tools again, or if anyone falls ill: contract ends. Food safety is not for trial and error.",
+        "fil": "If Broken: Agad na written warning at supervised kitchen correction sa araw ding iyon. Kung ulitin ang paghalo ng hilaw/luto, o may magkasakit: tatapusin ang kontrata. Hindi pwedeng trial-and-error ang food safety.",
+        "zh": "若違反：立即書面警告，並於當日在監督下改正。再生熟混用或有人生病：終止合約。食物安全不容試錯。"
       }
     },
     {
       "id": "rule-4",
       "title": {
-        "en": "Label Chopping Boards",
-        "fil": "Lagyan ng Label ang Chopping Board"
+        "en": "Use the labelled chopping boards",
+        "fil": "Gamitin ang may label na chopping board",
+        "zh": "使用已標示的砧板"
       },
       "description": {
-        "en": "Red board & knife = raw meat only. Green board & knife = cooked food / vegetables. Blue board = fish only. Clean and dry after each use.",
-        "fil": "Pula na board at kutsilyo = hilaw na karne lang. Berde na board at kutsilyo = lutong pagkain / gulay. Asul na board = isda lang. Linisin at patuyuin pagkatapos gamitin."
+        "en": "Red = raw meat only. Green = cooked food / vegetables. Blue = fish. Clean and dry after each use. Ask Sir/Mum if labels are unclear.",
+        "fil": "Pula = hilaw na karne lang. Berde = lutong pagkain / gulay. Asul = isda. Linisin at patuyuin pagkatapos. Tanungin si Sir/Mum kung hindi clear ang label.",
+        "zh": "紅＝生肉。綠＝熟食／蔬菜。藍＝魚。用後洗淨抹乾。標籤不清請問 Sir/Mum。"
       },
       "category": "kitchen",
       "priority": 4,
       "consequences": {
-        "en": "Using the wrong board risks food poisoning. First time: written warning and supervised retraining. Repeat or if family falls ill: employment terminated.",
-        "fil": "Maling board ay delikado sa pagkain. Unang beses: written warning at supervised retraining. Ulit o kung may magkasakit sa pamilya: tatapusin ang trabaho.",
-        "zh": "用錯砧板可導致食物中毒。第一次：書面警告及在監督下重新訓練。再犯或家人病：終止僱傭。"
+        "en": "If Broken: Immediate written warning. Using the wrong board again, or if it causes illness: contract ends. Labels must be followed from day one — no second trial.",
+        "fil": "If Broken: Agad na written warning. Ulit na maling board, o kung may magkasakit: tatapusin ang kontrata. Sundin ang label mula unang araw — walang second trial.",
+        "zh": "若違反：立即書面警告。再用錯砧板或導致生病：終止合約。標籤從第一天起必須遵守 — 沒有第二次試錯。"
       }
     },
     {
       "id": "rule-5",
       "title": {
-        "en": "Daily Rest Time",
-        "fil": "Araw-araw na Oras ng Pahinga"
+        "en": "Rest after urgent family needs are done",
+        "fil": "Magpahinga pagkatapos ng urgent na pangangailangan ng pamilya",
+        "zh": "完成緊急家事後再休息"
       },
       "description": {
-        "en": "You have a rest break every day as agreed. Please finish urgent tasks for Zizi before resting.",
-        "fil": "May oras ka ng pahinga araw-araw ayon sa kasunduan. Tapusin muna ang mga urgent na gawain para kay Zizi bago magpahinga."
+        "en": "You deserve daily rest. Please finish urgent needs for Zizi first (meals, school run, safety), then enjoy your break. Rest helps you stay well in Hong Kong.",
+        "fil": "May karapatan kang magpahinga araw-araw. Tapusin muna ang urgent para kay Zizi (pagkain, school run, kaligtasan), saka magpahinga. Ang pahinga ay tulong para sa kalusugan mo sa Hong Kong.",
+        "zh": "你每天都應有休息。請先完成 Zizi 的緊急需要（膳食、接送、安全），再休息。休息能幫助你在香港保持健康。"
       },
       "category": "general",
       "priority": 5,
       "consequences": {
-        "en": "Resting before finishing Zizi's urgent needs (meals, pickup, safety): verbal then written warning. Repeated: rest time reduced and contract reviewed; may lead to termination.",
-        "fil": "Magpahinga bago tapusin ang urgent na gawain kay Zizi (pagkain, sundo, kaligtasan): verbal tapos written warning. Paulit-ulit: bawasan ang rest time at review ng kontrata; maaaring matapos ang trabaho.",
-        "zh": "未完成 Zizi 緊急需要（膳食、接送、安全）就休息：口頭繼而書面警告。再犯：縮短休息時間及檢討合約；可能終止僱傭。"
+        "en": "If Broken: Immediate written warning. Resting while Zizi still needs meals, pickup, or safety care again: contract review the same week and may end. Rest is after urgent family needs — not optional.",
+        "fil": "If Broken: Agad na written warning. Kung ulitin ang pahinga habang kailangan pa ni Zizi ang pagkain, sundo, o safety: i-review ang kontrata sa linggo ring iyon at maaaring matapos. Ang pahinga ay pagkatapos ng urgent na needs — hindi optional.",
+        "zh": "若違反：立即書面警告。若再在 Zizi 仍需膳食／接送／安全照顧時休息：會於同週檢討合約並可能終止。休息須在緊急家事之後 — 不可自行改變。"
       }
     },
     {
       "id": "rule-6",
       "title": {
-        "en": "Keep Phone for Emergencies During Work",
-        "fil": "Telepono para sa Emergency Lang Habang Nagtatrabaho"
+        "en": "Phone during work — emergencies and family contact",
+        "fil": "Telepono sa oras ng gawain — emergency at family contact",
+        "zh": "工作時使用電話 — 緊急與家人聯絡"
       },
       "description": {
-        "en": "Personal phone use should be during rest time only. Keep phone nearby for emergencies and employer contact.",
-        "fil": "Ang personal na telepono ay sa oras ng pahinga lang. Ilagay malapit ang telepono para sa emergency at contact ng employer."
+        "en": "Keep your phone nearby for emergencies and messages from Sir/Mum. Longer personal calls or scrolling are for rest time and your day off, so Zizi stays safe and you can focus.",
+        "fil": "Ilagay ang telepono malapit para sa emergency at mensahe nina Sir/Mum. Mas mahabang personal na tawag o scrolling ay sa rest time at day off, para ligtas si Zizi at makapag-focus ka.",
+        "zh": "手機請放在附近，方便緊急情況及 Sir/Mum 聯絡。較長的私人通話或滑手機，請留在休息時間及放假日，好讓 Zizi 安全、你也能專心。"
       },
       "category": "general",
       "priority": 6,
       "consequences": {
-        "en": "Personal phone use during work (not rest time): verbal warning. Repeated or phone use while caring for Zizi: written warning, then termination if it continues.",
-        "fil": "Personal na telepono habang nagtatrabaho (hindi rest time): verbal warning. Paulit-ulit o gamit habang inaalagaan si Zizi: written warning, tapos termination kung magpatuloy.",
-        "zh": "工作時間（非休息時間）使用私人手機：口頭警告。再犯或照顧 Zizi 時使用：書面警告，仍繼續則終止僱傭。"
+        "en": "If Broken: Immediate written warning. Phone use that distracts while caring for Zizi a second time: contract ends. Keep the phone for emergencies only during work — no second chance.",
+        "fil": "If Broken: Agad na written warning. Pangalawang beses na makagambala ang telepono habang inaalagaan si Zizi: tatapusin ang kontrata. Sa oras ng gawain, telepono para sa emergency lang — walang second chance.",
+        "zh": "若違反：立即書面警告。照顧 Zizi 時再因手機分心：終止合約。工作時間手機僅作緊急用途 — 沒有第二次機會。"
       }
     },
     {
       "id": "rule-7",
       "title": {
-        "en": "Report Problems Immediately",
-        "fil": "I-report Agad ang Problema"
+        "en": "Tell Sir or Mum right away if something is wrong",
+        "fil": "Sabihin agad kay Sir o Mum kung may problema",
+        "zh": "有事立刻告訴 Sir 或 Mum"
       },
       "description": {
-        "en": "If something breaks, if Zizi is unwell, or if you are unsure about anything — tell the employer right away. Do not wait.",
-        "fil": "Kung may masira, kung may sakit si Zizi, o kung may hindi ka sigurado — sabihin agad sa employer. Huwag maghintay."
+        "en": "You are new to Hong Kong — it is OK to ask. If something breaks, Zizi feels unwell, or you are unsure, tell Sir or Mum immediately. We prefer early questions over silent worry.",
+        "fil": "Bago ka pa sa Hong Kong — OK lang magtanong. Kung may nasira, may sakit si Zizi, o hindi ka sure, sabihin agad kay Sir o Mum. Mas gusto namin ang maagang tanong kaysa tahimik na alalahanin.",
+        "zh": "你初到香港 — 發問沒問題。東西壞了、Zizi 不適或不肯定時，請立刻告訴 Sir 或 Mum。我們寧願你早問，也不要自己擔心。"
       },
       "category": "safety",
       "priority": 7,
       "consequences": {
-        "en": "Not reporting a problem in time — especially if Zizi is hurt, something breaks, or food/kitchen is unsafe — helper is held responsible for resulting harm. Serious cases: written warning or termination.",
-        "fil": "Hindi agad na i-report ang problema — lalo na kung nasaktan si Zizi, may nasira, o delikado ang pagkain/kusina — pananagutan ng helper ang resulta. Malubhang kaso: written warning o termination.",
-        "zh": "不及時報告問題 — 尤其 Zizi 受傷、物品損壞或廚房不安全 — 助理須對後果負責。嚴重：書面警告或終止僱傭。"
+        "en": "If Broken: Immediate written warning. Hiding a problem, or delay that harms Zizi or the home: contract may end immediately. Always tell Sir/Mum at once — silence is not allowed a second time.",
+        "fil": "If Broken: Agad na written warning. Pagtatago ng problema, o delay na nakakasama kay Zizi o sa bahay: maaaring matapos agad ang kontrata. Laging sabihin agad kay Sir/Mum — hindi pwedeng ulitin ang pagtatago.",
+        "zh": "若違反：立即書面警告。隱瞞問題，或延誤令 Zizi／家居受損：可立即終止合約。必須立刻告知 Sir/Mum — 不容第二次沉默。"
       }
     },
     {
       "id": "rule-8",
       "title": {
-        "en": "Lock Doors & Windows",
-        "fil": "I-lock ang Pinto at Bintana"
+        "en": "Lock doors and windows for our home",
+        "fil": "I-lock ang pinto at bintana ng tahanan natin",
+        "zh": "鎖好家門與窗戶"
       },
       "description": {
-        "en": "Always lock the main door when leaving or at night. Check windows before sleeping.",
-        "fil": "Laging i-lock ang pangunahing pinto kapag aalis o sa gabi. Suriin ang mga bintana bago matulog."
+        "en": "This is your home too while you live with us. Lock the main door when going out or at night, and check windows before sleep. Ask if you are unsure about any lock.",
+        "fil": "Tahanan mo rin ito habang nakatira ka sa amin. I-lock ang pangunahing pinto kapag aalis o sa gabi, at suriin ang bintana bago matulog. Magtanong kung hindi sure sa lock.",
+        "zh": "與我們同住期間，這裡也是你的家。出門或晚上請鎖大門，睡前檢查窗戶。鎖不肯定請問。"
       },
       "category": "safety",
       "priority": 8,
       "consequences": {
-        "en": "Leaving doors or windows unlocked: written warning. If theft, break-in, or Zizi could have been harmed results: employment terminated and helper may be held responsible.",
-        "fil": "Hindi na-lock ang pinto o bintana: written warning. Kung may nakawan, break-in, o si Zizi ay naging delikado: tatapusin ang trabaho at maaaring managot ang helper.",
-        "zh": "門窗未上鎖：書面警告。若導致盜竊、入屋或 Zizi 可能受傷：終止僱傭，助理可能須負責。"
+        "en": "If Broken: Immediate written warning. Leaving doors/windows unlocked again, or if theft/danger follows: contract ends and you may be held responsible. Locking is required every time — no second chance.",
+        "fil": "If Broken: Agad na written warning. Ulit na hindi naka-lock, o may nakawan/panganib: tatapusin ang kontrata at maaaring managot ka. Kailangan i-lock palagi — walang second chance.",
+        "zh": "若違反：立即書面警告。再忘記鎖門窗，或因而失竊／危險：終止合約並可能須負責。每次都必須上鎖 — 沒有第二次機會。"
       }
     }
   ],
@@ -233,7 +250,7 @@
           "startTime": "12:30",
           "endTime": "13:00",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten by 13:00",
             "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
           }
         },
@@ -263,7 +280,7 @@
           "startTime": "16:00",
           "endTime": "16:30",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten",
             "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
           }
         },
@@ -411,7 +428,7 @@
           "startTime": "12:30",
           "endTime": "13:00",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten by 13:00",
             "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
           }
         },
@@ -441,7 +458,7 @@
           "startTime": "16:00",
           "endTime": "16:30",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten",
             "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
           }
         },
@@ -589,7 +606,7 @@
           "startTime": "12:30",
           "endTime": "13:00",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten by 13:00",
             "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
           }
         },
@@ -619,7 +636,7 @@
           "startTime": "16:00",
           "endTime": "16:30",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten",
             "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
           }
         },
@@ -767,7 +784,7 @@
           "startTime": "12:30",
           "endTime": "13:00",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten by 13:00",
             "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
           }
         },
@@ -797,7 +814,7 @@
           "startTime": "16:00",
           "endTime": "16:30",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten",
             "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
           }
         },
@@ -945,7 +962,7 @@
           "startTime": "12:30",
           "endTime": "13:00",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Liang Leung Kindergarten by 13:00",
+            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten by 13:00",
             "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten bago 13:00"
           }
         },
@@ -975,7 +992,7 @@
           "startTime": "16:00",
           "endTime": "16:30",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Liang Leung Kindergarten",
+            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten",
             "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten"
           }
         },
@@ -1238,5 +1255,819 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-20T14:41:31.735Z"
+  "lastUpdated": "2026-07-22T11:23:40.075Z",
+  "hkLifeGuides": [
+    {
+      "id": "life-emergency-999",
+      "category": "emergency",
+      "priority": 1,
+      "area": "hk-general",
+      "title": {
+        "en": "Hong Kong emergency number",
+        "fil": "Emergency number sa Hong Kong",
+        "zh": "香港緊急電話"
+      },
+      "body": {
+        "en": "Call 999 for police, fire, or ambulance. Then call Sir or Mum immediately. Keep the phone charged.",
+        "fil": "Tumawag sa 999 para sa pulis, bombero, o ambulansya. Pagkatapos, tawagan agad si Sir o Mum. Panatilihing charged ang telepono.",
+        "zh": "報警／救護／消防請打 999，然後立刻致電 Sir 或 Mum。保持手機有電。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-family-contacts",
+      "category": "emergency",
+      "priority": 2,
+      "area": "kwun-tong",
+      "title": {
+        "en": "Call Sir or Mum first for family matters",
+        "fil": "Para sa family matters, tawagan muna si Sir o Mum",
+        "zh": "家事先聯絡 Sir 或 Mum"
+      },
+      "body": {
+        "en": "For Zizi health, school, money, visitors, or if you are unsure — tell Sir or Mum right away. Do not wait. Numbers are in the Emergency section of this app (Admin can update).",
+        "fil": "Kung may sakit si Zizi, problema sa eskwela, pera, bisita, o kung hindi ka sigurado — sabihin agad kay Sir o Mum. Nasa Emergency section ng app ang mga numero (maaaring i-update sa Admin).",
+        "zh": "Zizi 健康、學校、金錢、訪客或任何不肯定的事 — 立刻告知 Sir 或 Mum。電話在 App 緊急聯絡（Admin 可更新）。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-ph-support",
+      "category": "emergency",
+      "priority": 3,
+      "area": "hk-general",
+      "title": {
+        "en": "Philippine support in Hong Kong",
+        "fil": "Tulong mula sa Pilipinas sa Hong Kong",
+        "zh": "在港菲律賓支援"
+      },
+      "body": {
+        "en": "For serious labour/welfare issues you may contact: Labour Department 2171 1771; Philippine Consulate emergency 9155 4023; MWO hotline 5529 1880; OWWA 6345 9324 (Admiralty, United Centre). Still tell Sir/Mum first for normal family matters. Confirm numbers if needed.",
+        "fil": "Para sa seryosong labour/welfare: Labour Department 2171 1771; Philippine Consulate emergency 9155 4023; MWO 5529 1880; OWWA 6345 9324 (Admiralty, United Centre). Para sa normal na family matter, sabihin muna kay Sir/Mum.",
+        "zh": "嚴重勞工／福利事宜可聯絡：勞工處 2171 1771；菲律賓領事館緊急 9155 4023；MWO 5529 1880；OWWA 6345 9324（金鐘 United Centre）。一般家事仍先告知 Sir/Mum。"
+      },
+      "sourceUrl": "https://hongkongpcg.dfa.gov.ph/directory",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-contract-maw",
+      "category": "rights",
+      "priority": 10,
+      "area": "hk-general",
+      "title": {
+        "en": "Standard contract & minimum wage (general)",
+        "fil": "Standard contract at minimum wage (pangkalahatan)",
+        "zh": "標準合約與最低工資（一般資料）"
+      },
+      "body": {
+        "en": "FDHs in HK use the government Standard Employment Contract (ID 407). For contracts signed on/after 30 Sep 2025, Minimum Allowable Wage is HK$5,100/month (check YOUR contract — older contracts may differ). This is general info, not legal advice. Ask Sir/Mum about your terms. Source: Labour Department FDH Portal.",
+        "fil": "Ang FDH sa HK ay gumagamit ng Standard Employment Contract (ID 407). Para sa kontrata mula 30 Sep 2025, MAW ay HK$5,100/buwan (tingnan ANG IYONG kontrata). Impormasyon lang ito — hindi legal advice. Tanungin si Sir/Mum. Source: Labour Department.",
+        "zh": "外傭使用政府標準僱傭合約（ID 407）。2025年9月30日或之後簽訂的合約，最低許可工資為每月港幣$5,100（以你的合約為準）。此為一般資料，非法律意見。請向 Sir/Mum 確認。來源：勞工處。"
+      },
+      "sourceUrl": "https://www.fdh.labour.gov.hk/en/home.html",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-rest-day",
+      "category": "rights",
+      "priority": 11,
+      "area": "hk-general",
+      "title": {
+        "en": "Weekly rest day (24 hours)",
+        "fil": "Lingguhang rest day (24 oras)",
+        "zh": "每週休息日（24 小時）"
+      },
+      "body": {
+        "en": "By HK law, someone in your role should get at least one rest day every 7 days — a continuous period of at least 24 hours. In this family, Sunday and HK public holidays (勞工假) are Charlene day off. Employer generally must not force work on a rest day. Confirm details with Sir/Mum.",
+        "fil": "Ayon sa batas ng HK, dapat may hindi bababa sa isang rest day bawat 7 araw — tuloy-tuloy na hindi bababa sa 24 oras. Sa pamilyang ito, Linggo at HK public holiday (勞工假) ay day off ni Charlene. Huwag pilitin magtrabaho sa rest day. Kumpirmahin kay Sir/Mum.",
+        "zh": "香港法例下，外傭每 7 天至少有 1 個連續不少於 24 小時的休息日。本家庭：星期日及公眾假期（勞工假）為 Charlene 放假。一般不可強迫休息日工作。請向 Sir/Mum 確認。"
+      },
+      "sourceUrl": "https://www.fdh.labour.gov.hk/res/pdf/Employment_handbook_FDH_English.pdf",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-stat-holidays",
+      "category": "rights",
+      "priority": 12,
+      "area": "hk-general",
+      "title": {
+        "en": "Statutory holidays",
+        "fil": "Statutory holidays",
+        "zh": "法定假日"
+      },
+      "body": {
+        "en": "People in your role are entitled to statutory holidays (15 in 2026). Employers cannot pay cash instead of giving the holiday. If you work on a statutory holiday, an alternative holiday should be arranged under the rules. Ask Sir/Mum before changing plans.",
+        "fil": "May statutory holidays ang mga nasa papel mo (15 noong 2026). Hindi pwedeng bayaran na lang kapalit ng holiday. Kung magtrabaho sa statutory holiday, may alternative holiday ayon sa batas. Tanungin si Sir/Mum bago baguhin ang plano.",
+        "zh": "外傭享有法定假日（2026 年為 15 天）。不可用金錢代替放假。若法定假日工作，應按規定另排補假。更改前先問 Sir/Mum。"
+      },
+      "sourceUrl": "https://www.fdh.labour.gov.hk/en/faq.html",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-typhoon",
+      "category": "weather",
+      "priority": 20,
+      "area": "hk-general",
+      "title": {
+        "en": "Typhoon T8+ / Black rainstorm",
+        "fil": "Typhoon T8+ / Black rainstorm",
+        "zh": "八號風球／黑色暴雨"
+      },
+      "body": {
+        "en": "When Typhoon Signal No. 8 or above, or Black Rainstorm is in force: do not go outdoors for work (e.g. school run) unless Sir/Mum clearly say it is safe and necessary. Stay indoors. Indoor housework may still apply on a normal work day — follow Sir/Mum. On YOUR rest day you should not be forced to work. Check the weather banner in this app and ask Sir/Mum.",
+        "fil": "Kapag may Typhoon Signal No. 8 pataas o Black Rainstorm: huwag lumabas para magtrabaho (hal. hatid-sundo) maliban kung malinaw na sinabi nina Sir/Mum na safe. Manatili sa loob. Sa work day, baka may indoor gawain pa rin — sundin sina Sir/Mum. Sa REST DAY mo, hindi ka dapat pilitin magtrabaho. Tingnan ang weather banner at tanungin sina Sir/Mum.",
+        "zh": "八號或以上風球／黑色暴雨生效時：除非 Sir/Mum 明確表示安全必要，否則不要戶外工作（例如接送）。留在室內。正常工作日仍可能做室內家務 — 聽 Sir/Mum。休息日不可被強迫工作。查看 App 天氣提示並詢問 Sir/Mum。"
+      },
+      "sourceUrl": "https://www.fdh.labour.gov.hk/en/home.html",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-octopus",
+      "category": "money",
+      "priority": 30,
+      "area": "hk-general",
+      "title": {
+        "en": "Octopus card",
+        "fil": "Octopus card",
+        "zh": "八達通"
+      },
+      "body": {
+        "en": "Get an Octopus card early. Use it on MTR, buses, and many shops (7-Eleven, some supermarkets). Top up at MTR machines or 7-Eleven. Keep enough balance for school walks / shopping days. Never borrow money for top-up — ask Sir/Mum.",
+        "fil": "Kumuha agad ng Octopus. Magagamit sa MTR, bus, at maraming tindahan (7-Eleven, supermarket). Mag-top up sa MTR o 7-Eleven. Mag-iwan ng sapat na balanse. Huwag humiram ng pera — tanungin si Sir/Mum.",
+        "zh": "盡早辦理八達通。可用於港鐵、巴士及不少商店（7-Eleven、部分超市）。可在港鐵或 7-Eleven 增值。保持足夠餘額。不要借錢增值 — 問 Sir/Mum。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-no-borrow",
+      "category": "money",
+      "priority": 31,
+      "area": "hk-general",
+      "title": {
+        "en": "No borrow money — prohibited",
+        "fil": "Huwag humiram ng pera — bawal",
+        "zh": "不可借錢 — 禁止"
+      },
+      "body": {
+        "en": "Borrowing money is prohibited. Do not borrow from anyone, and do not lend to other domestic workers. If you need something, tell Sir/Mum directly — that is not borrowing. See Ground Rules.",
+        "fil": "Bawal humiram ng pera. Huwag humiram kaninuman, at huwag magpahiram sa ibang domestic worker. Kung may kailangan, diretso kay Sir/Mum — hindi iyon paghiram. Tingnan ang Ground Rules.",
+        "zh": "禁止借錢。不可向任何人借錢，也不可借給他傭。有需要直接告訴 Sir/Mum — 那不是借錢。見 Ground Rules。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-kt-school-walk",
+      "category": "transport",
+      "priority": 40,
+      "area": "kwun-tong",
+      "title": {
+        "en": "Walk to Zizi's kindergarten (Kwun Tong / Lam Tin)",
+        "fil": "Lakad papunta sa kindergarten ni Zizi (Kwun Tong / Lam Tin)",
+        "zh": "步行往 Zizi 幼稚園（觀塘／藍田）"
+      },
+      "body": {
+        "en": "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri. Walk from home is about 30 minutes. Leave by 12:30 to arrive by 13:00. Leave by 16:00 to pick up at 16:30. Bring Octopus / water on hot days. In severe weather, ask Sir/Mum before going out.",
+        "fil": "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes. Mga 30 minuto lakad mula bahay. Umalis ng 12:30 para dumating bago 13:00. Umalis ng 16:00 para sundo ng 16:30. Magdala ng Octopus / tubig kung mainit. Sa masamang panahon, tanungin muna sina Sir/Mum.",
+        "zh": "藍田靈糧幼稚園 — 星期一至五下午班。由家步行約 30 分鐘。12:30 出門，13:00 前到達；16:00 出門，16:30 接回。熱天帶八達通／水。惡劣天氣出門前先問 Sir/Mum。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-kt-mtr",
+      "category": "transport",
+      "priority": 41,
+      "area": "kwun-tong",
+      "title": {
+        "en": "Nearby MTR (Kwun Tong area)",
+        "fil": "Malapit na MTR (Kwun Tong)",
+        "zh": "附近港鐵（觀塘區）"
+      },
+      "body": {
+        "en": "Useful stations: Kwun Tong, Lam Tin, Yau Tong. For taxis, show the destination in Chinese on your phone map. Keep Sir/Mum address saved offline. Prefer walking the known school route during work hours unless told otherwise.",
+        "fil": "Mga istasyon: Kwun Tong, Lam Tin, Yau Tong. Sa taxi, ipakita sa phone map ang destination sa Chinese. I-save ang address nina Sir/Mum. Sa work hours, mas mabuti ang alam na lakad papuntang school maliban kung may ibang utos.",
+        "zh": "常用站：觀塘、藍田、油塘。的士可出示手機地圖中文目的地。儲存 Sir/Mum 地址。工作時間優先用熟悉的上學步行路線，除非另有指示。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-aeon",
+      "category": "shopping",
+      "priority": 50,
+      "area": "kwun-tong",
+      "title": {
+        "en": "Groceries — AEON Yau Tong",
+        "fil": "Pamimili — AEON Yau Tong",
+        "zh": "買菜 — 油塘 AEON"
+      },
+      "body": {
+        "en": "Family often buys food at AEON @ Yau Tong (see Tuesday schedule). Use the shopping list from tonight's Meals tab when possible. Keep receipts if Sir/Mum ask. Do not buy on credit or borrow from anyone.",
+        "fil": "Madalas bumili ng pagkain sa AEON @ Yau Tong (tingnan ang Martes na schedule). Gamitin ang shopping list sa Meals tab. Itago ang resibo kung kailangan nina Sir/Mum. Huwag bumili nang utang o humiram.",
+        "zh": "家庭常在油塘 AEON 買食材（見星期二時間表）。盡量用 Meals 分頁的購物清單。如 Sir/Mum 需要請保留收據。不要賒帳或向人借錢。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-zizi-sick",
+      "category": "health",
+      "priority": 60,
+      "area": "kwun-tong",
+      "title": {
+        "en": "If Zizi is unwell",
+        "fil": "Kung may sakit si Zizi",
+        "zh": "若 Zizi 不適"
+      },
+      "body": {
+        "en": "Fever, vomiting, injury, or unusual sleepiness: call Sir/Mum immediately. Do not give medicine unless Sir/Mum instructed. Stay with Zizi; stop non-urgent chores.",
+        "fil": "Lagnat, pagsusuka, sugat, o hindi pangkaraniwang antok: tawagan agad si Sir/Mum. Huwag magbigay ng gamot kung walang utos. Samahan si Zizi; itigil ang hindi urgent na gawain.",
+        "zh": "發燒、嘔吐、受傷或不尋常昏睡：立刻致電 Sir/Mum。未獲指示不要自行餵藥。陪伴 Zizi；暫停非緊急家務。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-heat",
+      "category": "health",
+      "priority": 61,
+      "area": "kwun-tong",
+      "title": {
+        "en": "Hot weather walking",
+        "fil": "Mainit na panahon kapag may lakad",
+        "zh": "炎熱天氣步行"
+      },
+      "body": {
+        "en": "Hong Kong summers are hot and humid. On school walks bring water for Zizi, use shade where possible, and rest if he looks overheated. Tell Sir/Mum if Zizi refuses water or seems dizzy.",
+        "fil": "Mainit at mahalumigmig ang tag-init sa HK. Magdala ng tubig para kay Zizi, humanap ng lilim, at magpahinga kung mukhang sobrang init. Sabihin kay Sir/Mum kung ayaw uminom o nahihilo.",
+        "zh": "香港夏天炎熱潮濕。上學步行請為 Zizi 帶水、盡量走陰涼處，若他過熱就休息。若拒喝水或頭暈，告知 Sir/Mum。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-quiet",
+      "category": "culture",
+      "priority": 70,
+      "area": "kwun-tong",
+      "title": {
+        "en": "Building quiet hours",
+        "fil": "Tahimik sa building tuwing gabi",
+        "zh": "大廈夜間保持安靜"
+      },
+      "body": {
+        "en": "Keep TV and voices low at night so neighbours are not disturbed. No loud calls in corridors. Follow any building notice Sir/Mum show you.",
+        "fil": "Babaan ang TV at boses sa gabi para hindi maistorbo ang kapitbahay. Walang malakas na tawag sa koridor. Sundin ang building notice na ipapakita nina Sir/Mum.",
+        "zh": "晚上調低電視及說話聲量，勿打擾鄰居。走廊不要大聲講電話。遵守 Sir/Mum 出示的大廈通告。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-rubbish",
+      "category": "culture",
+      "priority": 71,
+      "area": "kwun-tong",
+      "title": {
+        "en": "Rubbish & recycling",
+        "fil": "Basura at recycling",
+        "zh": "垃圾與回收"
+      },
+      "body": {
+        "en": "Ask Sir/Mum where to put rubbish and recycling in this building, and which days. Do not leave bags in the corridor. Keep the kitchen bin clean daily.",
+        "fil": "Tanungin si Sir/Mum kung saan at kailan itinatapon ang basura/recycling sa building. Huwag mag-iwan ng basura sa koridor. Linisin araw-araw ang basurahan sa kusina.",
+        "zh": "向 Sir/Mum 查詢本大廈垃圾／回收位置及日子。不要把垃圾袋留在走廊。每天清理廚房垃圾桶。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-live-in",
+      "category": "culture",
+      "priority": 72,
+      "area": "hk-general",
+      "title": {
+        "en": "Live-in requirement",
+        "fil": "Live-in requirement",
+        "zh": "留宿規定"
+      },
+      "body": {
+        "en": "Under the Standard Employment Contract, you live at the employer's home. Do not sleep elsewhere overnight without Sir/Mum agreement. On rest days you may go out, but return as agreed with the family.",
+        "fil": "Ayon sa Standard Employment Contract, nakatira ka sa bahay ng pamilya (ayon sa kontrata). Huwag matulog sa ibang lugar overnight kung walang sang-ayon sina Sir/Mum. Sa rest day pwede lumabas, pero umuwi ayon sa usapan.",
+        "zh": "按標準僱傭合約，外傭須住在僱主家。未得 Sir/Mum 同意不要在外過夜。休息日可外出，但按家庭約定回家。"
+      },
+      "sourceUrl": "https://www.fdh.labour.gov.hk/en/faq.html",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-food-allowance",
+      "category": "rights",
+      "priority": 13,
+      "area": "hk-general",
+      "title": {
+        "en": "Food or food allowance",
+        "fil": "Pagkain o food allowance",
+        "zh": "膳食或膳食津貼"
+      },
+      "body": {
+        "en": "Employers provide free food or a food allowance (general minimum reference HK$1,236/month when no free food — confirm your contract). In this home Charlene cooks family meals including Zizi's. Ask Sir/Mum if unsure what you may eat.",
+        "fil": "Nagbibigay ang employer ng libreng pagkain o food allowance (pangkalahatang sanggunian ≥ HK$1,236/buwan kung walang free food — tingnan ang kontrata). Dito, nagluluto si Charlene para sa pamilya kasama si Zizi. Tanungin si Sir/Mum kung ano ang pwede kainin.",
+        "zh": "僱主提供免費膳食或膳食津貼（一般參考：無免費膳食時每月不少於港幣$1,236 — 以合約為準）。本家庭由 Charlene 煮家人及 Zizi 的餐。不肯定可吃什麼時問 Sir/Mum。"
+      },
+      "sourceUrl": "https://www.fdh.labour.gov.hk/en/home.html",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-documents",
+      "category": "rights",
+      "priority": 14,
+      "area": "hk-general",
+      "title": {
+        "en": "Keep your documents safe",
+        "fil": "Ingatan ang iyong mga dokumento",
+        "zh": "妥善保管證件"
+      },
+      "body": {
+        "en": "Keep passport, HKID, and contract copies safe and reachable. Do not give original documents to strangers or other domestic workers. Tell Sir/Mum if anything is missing.",
+        "fil": "Ingatan ang passport, HKID, at kopya ng kontrata — safe pero accessible. Huwag ibigay ang original sa estranghero o ibang domestic worker. Sabihin kay Sir/Mum kung may nawawala.",
+        "zh": "護照、香港身份證及合約副本須安全且可取用。不要把正本交給陌生人或他傭。有遺失立刻告知 Sir/Mum。"
+      },
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-leave-record",
+      "category": "rights",
+      "priority": 15,
+      "area": "hk-general",
+      "title": {
+        "en": "Keep your own leave record",
+        "fil": "Mag-tala ng sariling leave record",
+        "zh": "自行記錄休假"
+      },
+      "body": {
+        "en": "Labour Department advises you to keep their own record of rest days and holidays to avoid disputes. You can note them in your phone. Ask Sir/Mum before swapping rest days.",
+        "fil": "Inirerekomenda ng Labour Department na mag-tala ka ng rest days at holidays. Pwede sa phone. Bago magpalit ng rest day, tanungin si Sir/Mum.",
+        "zh": "勞工處建議外傭自行記錄休息日及假日以免爭議。可用手機備註。調休前先問 Sir/Mum。"
+      },
+      "sourceUrl": "https://www.fdh.labour.gov.hk/res/pdf/Employment_handbook_FDH_English.pdf",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-android-apps",
+      "category": "culture",
+      "priority": 73,
+      "area": "hk-general",
+      "title": {
+        "en": "Must-have Android apps in Hong Kong",
+        "fil": "Mga dapat i-download na Android app sa Hong Kong",
+        "zh": "在港必備 Android 應用程式"
+      },
+      "body": {
+        "en": "Install from Google Play (free). Ask Sir/Mum if you need Wi‑Fi or a Hong Kong SIM.\n• WhatsApp — message Sir/Mum and this family's helper bot\n• Google Maps — walking / bus routes; save home + kindergarten\n• MTR Mobile — train routes, fares, delays\n• Octopus App — balance & top-up; some Android phones (Android 12+, NFC on, HK-sold device) can tap Octopus from the phone\n• AlipayHK or PayMe — common QR shop payments (optional; physical Octopus still covers most daily taps)\n• OpenRice — restaurants, hours, reviews\n• MyObservatory (HKO) — typhoon / rain alerts\n• Google Translate — Chinese signs & menus (camera mode)\nKeep your phone charged. Never share OTP / verification codes or lend your phone to strangers.",
+        "fil": "I-download sa Google Play (libre). Tanungin si Sir/Mum kung kailangan ng Wi‑Fi o HK SIM.\n• WhatsApp — makipag-usap kay Sir/Mum at sa family bot\n• Google Maps — lakad / bus; i-save ang bahay + kindergarten\n• MTR Mobile — ruta, pamasahe, delay\n• Octopus App — balanse at top-up; may Android phone (Android 12+, naka-NFC, binili sa HK) na pwedeng mag-tap ng Octopus mula sa phone\n• AlipayHK o PayMe — QR payment sa tindahan (opsyonal; sapat na ang physical Octopus sa araw-araw)\n• OpenRice — restawran, oras, review\n• MyObservatory (HKO) — bagyo / ulan\n• Google Translate — Chinese signs at menu (camera)\nPanatilihing charged ang phone. Huwag ibigay ang OTP / verification code o ipahiram ang phone sa estranghero.",
+        "zh": "請從 Google Play 免費下載。需要 Wi‑Fi 或香港 SIM 可問 Sir/Mum。\n• WhatsApp — 聯絡 Sir/Mum 及本家庭助手 bot\n• Google Maps — 步行／巴士；儲存住家＋幼稚園\n• MTR Mobile — 路線、車費、延誤\n• Octopus App — 查餘額／增值；部分 Android（Android 12+、開啟 NFC、香港行貨）可用手機拍卡八達通\n• AlipayHK 或 PayMe — 常見 QR 付款（可選；日常多數仍可用實體八達通）\n• OpenRice — 餐廳、營業時間、評價\n• 我的天文台 MyObservatory — 颱風／暴雨提示\n• Google 翻譯 — 中文路牌與菜單（相機模式）\n保持手機有電。切勿把 OTP／驗證碼給人或把手機借給陌生人。"
+      },
+      "sourceUrl": "https://www.discoverhongkong.com/eng/travel-guide/traveller-essentials/travel-apps.html",
+      "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-healthy-holiday",
+      "category": "health",
+      "priority": 62,
+      "area": "hk-general",
+      "title": {
+        "en": "Healthy activities on Filipino rest days",
+        "fil": "Masusustansiyang gawain sa rest day / holiday",
+        "zh": "外傭休息日健康活動"
+      },
+      "body": {
+        "en": "Your Sunday and HK public holidays (勞工假) are for rest and health — not only sitting in crowded Central parks all day.\n• Easy walk or short hike in country parks / harbourfront — bring water, hat, and Octopus; start short if you are new\n• Near Kwun Tong / Lam Tin: Jordan Valley Park, Lam Tin & Yau Tong parks, waterfront promenades — good for walking and stretching\n• Free outdoor fitness: helper-friendly Sunday groups (e.g. free sessions at Tamar Park — search current “G-Class” / park fitness posts). Join only groups you trust\n• Nature day: Kadoorie Farm & Botanic Garden (KFBG) often runs a free Sunday programme for migrant domestic workers (shuttle, vegan lunch, yoga/art). Check kfbg.org and register early — seats go fast\n• Public pools / sports centres (Leisure & Cultural Services) when open — swim or stretch\n• Church or fellowship + a walk is fine; leave time to sleep before Monday work\nAvoid: long sun with no water; heavy drinking; money-lending circles; overnight stays without Sir/Mum agreement.\nIf Typhoon T8+ / Black rain / extreme heat: stay indoors — see Weather tips.",
+        "fil": "Ang Linggo at HK public holiday (勞工假) ay para sa pahinga at kalusugan — hindi lang umupo buong araw sa siksikang park sa Central.\n• Madaling lakad o maikling hike sa country park / harbourfront — magdala ng tubig, sombrero, Octopus; magsimula sa maikli kung bago ka\n• Malapit sa Kwun Tong / Lam Tin: Jordan Valley Park, parke sa Lam Tin at Yau Tong, waterfront — maganda sa lakad at stretching\n• Libreng outdoor fitness: Sunday groups para sa helpers (hal. free sessions sa Tamar Park — hanapin ang kasalukuyang “G-Class” / park fitness posts). Sumali lang sa trusted group\n• Nature day: Madalas may libreng Sunday programme ang Kadoorie Farm & Botanic Garden (KFBG) para sa migrant domestic workers (shuttle, vegan lunch, yoga/art). Tingnan ang kfbg.org at magpa-reserve agad — mabilis maubos\n• Public pool / sports centre (Leisure & Cultural Services) kapag bukas — langoy o stretch\n• Church o fellowship + lakad ay OK; mag-iwan ng oras matulog bago ang Lunes\nIwasan: mahabang araw nang walang tubig; sobrang inuman; money-lending circle; matulog sa labas nang walang sang-ayon nina Sir/Mum.\nKung T8+ / Black rain / sobrang init: manatili sa loob — tingnan ang Weather tips.",
+        "zh": "星期日及香港公眾假期（勞工假）應用來休息與健康 — 不必整天只坐在中環擠擁的公園。\n• 郊野公園／海濱輕鬆步行或短途行山 — 帶水、帽、八達通；新手先選短線\n• 觀塘／藍田附近：佐敦谷公園、藍田及油塘公園、海濱長廊 — 適合步行伸展\n• 免費戶外健身：外傭友善的星期日團體（例如添馬公園免費操 — 搜尋最新 “G-Class”／公園健身訊息）。只參加你信任的團體\n• 親近大自然：嘉道理農場暨植物園（KFBG）常有外傭免費星期日活動（接送、素食午餐、瑜伽／藝術）。查 kfbg.org 並提早報名 — 名額很快滿\n• 公眾泳池／體育館（康文署）開放時可游泳或伸展\n• 教會／團契加散步可以；週一上班前預留睡眠時間\n避免：烈日下長時間缺水、大量飲酒、借貸圈子、未得 Sir/Mum 同意在外過夜。\n八號風球／黑雨／極端炎熱：留在室內 — 見天氣提示。"
+      },
+      "sourceUrl": "https://www.kfbg.org/en/events/free-sunday-programme-for-migrant-domestic-workers-at-kfbg",
+      "lastReviewed": "2026-07-22"
+    }
+  ],
+  "settlingChecklist": [
+    {
+      "id": "check-octopus",
+      "title": {
+        "en": "Get / top up Octopus card",
+        "fil": "Kumuha / mag-top up ng Octopus",
+        "zh": "辦理／增值八達通"
+      },
+      "done": false
+    },
+    {
+      "id": "check-android-apps",
+      "title": {
+        "en": "Install must-have Android apps (see HK Life)",
+        "fil": "I-install ang must-have Android apps (tingnan ang HK Life)",
+        "zh": "安裝必備 Android 應用（見香港生活）"
+      },
+      "done": false
+    },
+    {
+      "id": "check-school-route",
+      "title": {
+        "en": "Walk the route to kindergarten once with Sir/Mum",
+        "fil": "Lakarin ang ruta papuntang kindergarten kasama si Sir/Mum",
+        "zh": "與 Sir/Mum 走一次往幼稚園路線"
+      },
+      "done": false
+    },
+    {
+      "id": "check-emergency",
+      "title": {
+        "en": "Save Sir/Mum + 999 in phone",
+        "fil": "I-save sa phone si Sir/Mum + 999",
+        "zh": "手機儲存 Sir/Mum + 999"
+      },
+      "done": false
+    },
+    {
+      "id": "check-aeon",
+      "title": {
+        "en": "Know how to go to AEON Yau Tong",
+        "fil": "Alamin ang daan papuntang AEON Yau Tong",
+        "zh": "知道如何前往油塘 AEON"
+      },
+      "done": false
+    },
+    {
+      "id": "check-typhoon",
+      "title": {
+        "en": "Understand T8 / Black rain — ask Sir/Mum before going out",
+        "fil": "Maintindihan ang T8 / Black rain — tanungin si Sir/Mum bago lumabas",
+        "zh": "明白八號風球／黑雨 — 出門前問 Sir/Mum"
+      },
+      "done": false
+    },
+    {
+      "id": "check-rubbish",
+      "title": {
+        "en": "Learn rubbish / recycling place in the building",
+        "fil": "Alamin kung saan ang basura / recycling sa building",
+        "zh": "了解大廈垃圾／回收位置"
+      },
+      "done": false
+    },
+    {
+      "id": "check-documents",
+      "title": {
+        "en": "Know where passport / HKID / contract copies are kept",
+        "fil": "Alamin kung nasaan ang passport / HKID / kontrata",
+        "zh": "知道護照／身份證／合約存放處"
+      },
+      "done": false
+    },
+    {
+      "id": "check-rest-day",
+      "title": {
+        "en": "Confirm Sunday rest day & public holiday day off with Sir/Mum",
+        "fil": "Kumpirmahin ang Linggo rest day at public holiday day off",
+        "zh": "與 Sir/Mum 確認星期日及公眾假期放假"
+      },
+      "done": false
+    }
+  ],
+  "emergencyContacts": [
+    {
+      "id": "ec-999",
+      "name": {
+        "en": "Hong Kong Emergency",
+        "fil": "HK Emergency (999)",
+        "zh": "香港緊急求助"
+      },
+      "phone": "999",
+      "note": {
+        "en": "Police / Fire / Ambulance",
+        "fil": "Pulis / Bombero / Ambulansya",
+        "zh": "警察／消防／救護"
+      }
+    },
+    {
+      "id": "ec-sir",
+      "name": {
+        "en": "Sir (Kwok Wai Yuen)",
+        "fil": "Sir (Kwok Wai Yuen)",
+        "zh": "Sir（Kwok Wai Yuen）"
+      },
+      "phone": "",
+      "note": {
+        "en": "Add phone in Admin → HK Life",
+        "fil": "Ilagay ang numero sa Admin → HK Life",
+        "zh": "請在 Admin → HK Life 填寫電話"
+      }
+    },
+    {
+      "id": "ec-mum",
+      "name": {
+        "en": "Mum",
+        "fil": "Mum",
+        "zh": "Mum"
+      },
+      "phone": "",
+      "note": {
+        "en": "Add phone in Admin → HK Life",
+        "fil": "Ilagay ang numero sa Admin → HK Life",
+        "zh": "請在 Admin → HK Life 填寫電話"
+      }
+    },
+    {
+      "id": "ec-labour",
+      "name": {
+        "en": "Labour Department",
+        "fil": "Labour Department",
+        "zh": "勞工處"
+      },
+      "phone": "21711771",
+      "note": {
+        "en": "Employment rights enquiry (via 1823)",
+        "fil": "Tungkol sa karapatan sa trabaho",
+        "zh": "僱傭權益查詢"
+      }
+    },
+    {
+      "id": "ec-pcg",
+      "name": {
+        "en": "Philippine Consulate (emergency)",
+        "fil": "Philippine Consulate (emergency)",
+        "zh": "菲律賓領事館（緊急）"
+      },
+      "phone": "91554023",
+      "note": {
+        "en": "After-hours emergency hotline — confirm if needed",
+        "fil": "Emergency hotline — kumpirmahin kung kailangan",
+        "zh": "非辦公時間緊急熱線 — 如有需要請再確認"
+      }
+    }
+  ],
+  "hkWeather": {
+    "alertActive": false,
+    "level": "none",
+    "note": {
+      "en": "When Sir/Mum turn this on: follow typhoon / black rain guidance — ask before outdoor school runs.",
+      "fil": "Kapag binuksan ito nina Sir/Mum: sundin ang gabay sa typhoon / black rain — tanungin bago lumabas para sa school.",
+      "zh": "當 Sir/Mum 開啟此提示：遵循颱風／黑雨指引 — 戶外接送前先詢問。"
+    }
+  },
+  "homeArea": {
+    "en": "Kwun Tong, Hong Kong",
+    "fil": "Kwun Tong, Hong Kong",
+    "zh": "香港觀塘"
+  },
+  "familyWelcome": {
+    "en": "You are part of Zizi's family. This guide is for your daily life with us in Hong Kong.",
+    "fil": "Bahagi ka ng pamilya ni Zizi. Ang gabay na ito ay para sa araw-araw ninyong buhay sa Hong Kong.",
+    "zh": "你是 Zizi 家庭的一分子。這份指南幫助你在香港與我們的日常生活。"
+  },
+  "familyPreferences": [
+    {
+      "id": "pref-no-china-food",
+      "category": "food",
+      "priority": 1,
+      "title": {
+        "en": "Prefer not to buy food made in China",
+        "fil": "Iwasan ang pagkaing gawa sa China",
+        "zh": "盡量不要買中國製造的食品"
+      },
+      "body": {
+        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a ground rule. If you are unsure about a product, ask Sir or Mum.",
+        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi ground rule. Kung unsure, tanungin si Sir o Mum.",
+        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是守則。不確定就問 Sir 或 Mum。"
+      }
+    },
+    {
+      "id": "pref-no-qin-dama-meat",
+      "category": "shopping",
+      "priority": 2,
+      "title": {
+        "en": "Do not buy meat at 錢大媽 (Kai Bo / Qin Dama)",
+        "fil": "Huwag bumili ng karne sa 錢大媽 (Kai Bo)",
+        "zh": "不要到錢大媽買肉"
+      },
+      "body": {
+        "en": "Please do not buy meat from 錢大媽. Use other markets or shops Sir/Mum prefer (e.g. wet market stalls we trust, or the usual supermarket). Vegetables or other items there are OK if needed — meat is the main concern. Preference tip, not a ground rule.",
+        "fil": "Huwag bumili ng karne sa 錢大媽. Gumamit ng ibang market o tindahan na gusto nina Sir/Mum (hal. trusted wet market, o usual supermarket). Gulay o iba pang item OK kung kailangan — karne ang ayaw. Preference tip lang, hindi ground rule.",
+        "zh": "請不要在錢大媽買肉。改去 Sir/Mum 慣用的街市檔或超市。如有需要，在那裡買菜或其他東西可以——主要是不要買肉。這是偏好貼士，不是守則。"
+      }
+    }
+  ],
+  "appliances": [
+    {
+      "id": "app-dyson-v12",
+      "kind": "vacuum",
+      "model": "Dyson V12 Detect Slim",
+      "priority": 1,
+      "sourceUrl": "https://www.dyson.com/support/vacuum-cleaners/cordless/v12-detect-slim",
+      "title": {
+        "en": "Dyson V12 vacuum",
+        "fil": "Dyson V12 vacuum",
+        "zh": "Dyson V12 吸塵機"
+      },
+      "tips": {
+        "en": "• Cordless stick vac: Dyson V12.\n• Empty the bin when dirt reaches the MAX line (overfill reduces suction).\n• Hold over the rubbish, point down, firmly push the red bin-release until the base opens, then click shut.\n• Floors/carpets: illuminated cleaner head. Sofas: small tool.\n• Dock to charge after use.\n• Wash the filter about once a month: twist off anticlockwise → tap out dust → rinse with warm tap water only (no detergent) → fill/shake until clear → air-dry at least 24 hours before refitting.\n• LCD may remind you when the filter needs washing.",
+        "fil": "• Cordless stick vac: Dyson V12.\n• Alisin ang basura sa bin kapag umabot sa MAX line (kung sobra, humihina ang suction).\n• Hawakan sa ibabaw ng basurahan, pababa, pindutin nang matibay ang red bin-release hanggang bumuka ang base, tapos i-click para isara.\n• Carpet/floor: illuminated cleaner head. Sofa: maliit na tool.\n• I-dock para mag-charge pagkatapos.\n• Hugasan ang filter ~buwan-buwan: i-twist anticlockwise → tap dust → rinse sa warm tap water lang (walang detergent) → fill/shake hanggang malinaw → air-dry ≥24 oras bago ibalik.\n• Maaaring magpaalala ang LCD kung kailangan hugasan ang filter.",
+        "zh": "• 無線吸塵機：Dyson V12。\n• 塵桶到 MAX 線就要倒（過滿會減吸力）。\n• 對準垃圾桶向下，用力按紅色開蓋掣至底部打開，再按回關上。\n• 地毡／地板用照明吸頭；梳化用細配件。\n• 用完放回充電座。\n• 約每月清洗濾網：逆時針拧出 → 輕拍塵 → 只用溫自來水沖（不可用清潔劑）→ 注水搖至水清 → 風乾至少 24 小時才裝回。\n• LCD 或會提醒要洗濾網。"
+      },
+      "warnings": {
+        "en": "• Never vacuum liquids or wet spills.\n• Do not put a damp filter back — it can damage the motor.\n• Bin is not dishwasher-safe; wipe with a damp cloth only.",
+        "fil": "• Huwag i-vacuum ang liquids o basang spills.\n• Huwag ibalik ang basang filter — puwedeng masira ang motor.\n• Hindi dishwasher-safe ang bin; damp cloth lang.",
+        "zh": "• 不可吸水或未乾污漬。\n• 濾網未完全乾不要裝回——會損馬達。\n• 塵桶不可入洗碗碟機；只用濕布抹。"
+      }
+    },
+    {
+      "id": "app-panasonic-sd-pt1002",
+      "kind": "bread-machine",
+      "model": "Panasonic SD-PT1002",
+      "priority": 2,
+      "sourceUrl": "https://www.manualslib.com/products/Panasonic-Sd-Pt1002-8846843.html",
+      "title": {
+        "en": "Panasonic SD-PT1002 bread maker",
+        "fil": "Panasonic SD-PT1002 bread maker",
+        "zh": "Panasonic SD-PT1002 麵包機"
+      },
+      "tips": {
+        "en": "• Bread maker: Panasonic SD-PT1002 (panel may be Traditional Chinese).\n• Fit the correct kneading blade in the pan.\n• Measure carefully; put ingredients in recipe order (often liquids first).\n• Keep dry yeast in the yeast dispenser so it stays dry until mixing.\n• Nuts/raisins go in the raisin & nut dispenser when the menu supports it.\n• Wipe the pan outside dry, lock into the machine, close the lid.\n• Choose menu / loaf size / crust (light–standard–dark), then Start.\n• When it beeps: Stop, unplug, lift the pan with oven mitts, tip the loaf onto a rack.\n• Use the timer only with recipes Sir/Mum already tested.",
+        "fil": "• Bread maker: Panasonic SD-PT1002 (maaaring Traditional Chinese ang panel).\n• Ilagay ang tamang kneading blade sa pan.\n• Sukatin nang tama; ilagay ang ingredients ayon sa recipe order (madalas liquids muna).\n• Dry yeast sa yeast dispenser para dry hanggang maghalo.\n• Nuts/raisins sa raisin & nut dispenser kung available sa menu.\n• Patuyuin ang labas ng pan, i-lock sa machine, isara ang lid.\n• Piliin ang menu / size / crust (light–standard–dark), tapos Start.\n• Kapag may beep: Stop, unplug, buhatin ang pan gamit ang oven mitts, ilabas ang tinapay sa rack.\n• Timer: gamitin lang sa recipe na nasubukan na nina Sir/Mum.",
+        "zh": "• 麵包機：Panasonic SD-PT1002（面板可能是繁中）。\n• 裝上正確攪拌葉。\n• 分量要準；按食譜順序落料（多數先液體）。\n• 乾酵母放酵母自動投放盒，保持乾燥至開始攪拌。\n• 果仁／葡萄乾用果料盒（適用菜單時）。\n• 抹乾內鍋外、放回機內鎖好、蓋上蓋。\n• 選菜單／重量／烤色（淺／標準／深），按開始。\n• 完成響聲後：停止、拔掣、戴手套取出內鍋，倒出麵包放架上冷卻。\n• 預約計時只用 Sir/Mum 試過的食譜。"
+      },
+      "warnings": {
+        "en": "• Do not open the lid during knead/bake unless the recipe says so.\n• Pan and loaf are very hot.\n• Do not pour water into the main body.\n• If yeast sticks in a wet dispenser, dry it gently with tissue (do not rub hard).",
+        "fil": "• Huwag buksan ang lid habang nagmamasa/nagbabake maliban kung sinabi ng recipe.\n• Mainit ang pan at tinapay.\n• Huwag magbuhos ng tubig sa main body.\n• Kung basa ang yeast dispenser, patuyuin nang dahan gamit ang tissue (huwag kuskusin nang malakas).",
+        "zh": "• 揉麵／烘烤中不要開蓋（除非食譜要求）。\n• 內鍋和麵包很燙。\n• 不可向機身倒水。\n• 酵母盒潮濕時用紙巾輕抹乾（不要大力摩擦）。"
+      }
+    },
+    {
+      "id": "app-philips-add6910",
+      "kind": "water-dispenser",
+      "model": "Philips ADD6910",
+      "priority": 3,
+      "sourceUrl": "https://www.philips.com.sg/c-p/ADD6910_90/ro-water-dispenser",
+      "title": {
+        "en": "Philips ADD6910 RO water dispenser",
+        "fil": "Philips ADD6910 RO water dispenser",
+        "zh": "Philips ADD6910 RO 即熱飲水機"
+      },
+      "tips": {
+        "en": "• Philips ADD6910: plug-in RO water dispenser (no plumbing).\n• Fill only with municipal tap water in the detachable 4L raw-water tank.\n• Empty leftover wastewater in the tank before refilling when the manual says so.\n• Choose temperature: ambient / 45 / 85 / 95°C.\n• Choose volume: 150 / 210 / 300 / 500 ml, then dispense.\n• Above 45°C the safety lock turns on — unlock on the panel before hot water comes out.\n• Watch the filter-life indicator; replace the RO filter about yearly (or when indicated) and tell Sir/Mum.",
+        "fil": "• Philips ADD6910: RO water dispenser (walang plumbing).\n• Lagyan lang ng municipal tap water ang detachable 4L raw-water tank.\n• Alisin muna ang natirang wastewater bago mag-refill kung sinabi ng manual.\n• Temperature: ambient / 45 / 85 / 95°C.\n• Volume: 150 / 210 / 300 / 500 ml, tapos mag-dispense.\n• Kapag >45°C, may safety lock — i-unlock ayon sa panel bago lumabas ang mainit na tubig.\n• Bantayan ang filter-life indicator; palitan ang RO filter ~taon-taon (o kapag may babala) at sabihin kay Sir/Mum.",
+        "zh": "• Philips ADD6910：即插即用 RO 飲水機（不用駁喉）。\n• 只可把自來水倒入可拆 4L 原水箱。\n• 按說明在加水前先倒清箱內廢水。\n• 選溫度：常溫／45／85／95°C。\n• 選水量：150／210／300／500 ml，再出水。\n• 高於 45°C 會開安全鎖——先按面板解鎖才出熱水。\n• 留意濾芯壽命提示；約每年（或提示時）更換 RO 濾芯並告知 Sir/Mum。"
+      },
+      "warnings": {
+        "en": "• Hot water can scald — keep Zizi away from the spout.\n• Do not use well water / unknown water.\n• Do not tip the machine while full.\n• Filter change: ask Sir/Mum (original Philips filter only).",
+        "fil": "• Mainit ang tubig — layuan si Zizi sa spout.\n• Huwag gumamit ng well water / unknown water.\n• Huwag itagilid ang machine kung puno.\n• Pagpapalit ng filter: tanungin si Sir/Mum (original Philips filter lang).",
+        "zh": "• 熱水會燙傷——Zizi 不要靠近出水口。\n• 不要用不清楚來源的水。\n• 水箱滿時不要傾斜機身。\n• 換濾芯請問 Sir/Mum（只用原廠 Philips 濾芯）。"
+      }
+    },
+    {
+      "id": "app-zojirushi-np-rlq05",
+      "kind": "rice-cooker",
+      "model": "Zojirushi NP-RLQ05",
+      "priority": 4,
+      "sourceUrl": "https://www.zojirushi.com.hk/enproductsview.php?oid=1&pid=310&tid=1",
+      "title": {
+        "en": "Zojirushi NP-RLQ05 rice cooker",
+        "fil": "Zojirushi NP-RLQ05 rice cooker",
+        "zh": "Zojirushi NP-RLQ05 壓力 IH 飯煲"
+      },
+      "tips": {
+        "en": "• Zojirushi NP-RLQ05 (0.5–3 cups) — IH pressure rice cooker with orange LCD.\n• Always use the plastic measuring cup that came with it (not a kitchen mug).\n• Wash rice in the inner pan until water is clearer.\n• Add cold water to the matching water line for the cups + rice type (White / Long grain / Brown / Congee etc.).\n• Wipe the pan outside dry, seat it, close the lid firmly.\n• Select the menu on the LCD (e.g. White Regular, Quick, Sushi, Scorch) and press Start.\n• When done it goes to Keep Warm — fluff with the rice paddle.\n• This model cooks under pressure — wait for safe release before forcing the lid.",
+        "fil": "• Zojirushi NP-RLQ05 (0.5–3 cups) — IH pressure, orange LCD.\n• Gamitin ang plastic measuring cup na kasama (huwag ordinary mug).\n• Hugasan ang bigas sa inner pan hanggang mas malinaw ang tubig.\n• Lagyan ng malamig na tubig hanggang matching water line (cups + uri: White / Long grain / Brown / Congee atbp.).\n• Patuyuin ang labas ng pan, ilagay, isara nang maayos ang lid.\n• Piliin ang menu sa LCD (hal. White Regular, Quick, Sushi, Scorch) at Start.\n• Kapag Keep Warm na, haluin gamit ang rice paddle.\n• May pressure — hintaying safe ang release bago pilitin ang lid.",
+        "zh": "• Zojirushi NP-RLQ05（約 0.5–3 杯）——壓力 IH，橙色 LCD。\n• 必須用隨機量杯（不要用普通水杯）。\n• 在內鍋洗米至水較清。\n• 按杯數及米種水位線加冷水（白米／長米／糙米／粥等）。\n• 抹乾內鍋外、放回、蓋緊蓋。\n• 在 LCD 選菜單（如白米標準、快煮、壽司、焦香）按開始。\n• 完成後轉保溫，用飯匙翻鬆。\n• 此機有壓力；切勿在仍有壓力時強行開蓋。"
+      },
+      "warnings": {
+        "en": "• Never force the lid while pressurized.\n• Keep face away from the steam vent.\n• Do not wash the main body with water.\n• Inner pan only — no metal utensils that scratch the nonstick.",
+        "fil": "• Huwag piliting buksan ang lid habang may pressure.\n• Layuan ang steam vent ang mukha.\n• Huwag hugasan ang main body ng tubig.\n• Inner pan lang — huwag gumamit ng metal na nakakagasgas.",
+        "zh": "• 有壓力時切勿強行開蓋。\n• 臉遠離排氣口。\n• 機身不要用水沖。\n• 只用內鍋——不要用金屬餐具刮花塗層。"
+      }
+    },
+    {
+      "id": "app-hitachi-hb-st388",
+      "kind": "range-hood",
+      "model": "Hitachi HB-ST388",
+      "priority": 5,
+      "sourceUrl": "https://3dlifehk.com.hk/product/show/id/754",
+      "title": {
+        "en": "Hitachi HB-ST388 cooker hood",
+        "fil": "Hitachi HB-ST388 cooker hood (range hood)",
+        "zh": "日立 HB-ST388 抽油煙機"
+      },
+      "tips": {
+        "en": "• Hitachi HB-ST388: 28″ cooker hood (抽油煙機) — not a washing machine.\n• Twin motors: left and right can be switched independently; each has high/low speed.\n• Turn on before frying / stir-fry; leave on a few minutes after cooking to clear smoke.\n• Empty / clean oil cups when oily (do not wait until overflowing).\n• Filters and removable parts: soak in warm water + mild dish soap, rinse, dry fully, then refit.\n• Wipe the stainless surface with a soft cloth and mild cleaner.",
+        "fil": "• Hitachi HB-ST388: 28″ cooker hood (抽油煙機) — hindi washing machine.\n• Twin motors: left/right puwedeng i-on nang hiwalay; high/low speed.\n• Buksan bago magprito / mag-stir-fry; hayaan pa ng ilang minuto pagkatapos para mawala ang usok.\n• Linisin / alisin ang oil cups kapag madami nang mantika (huwag hintaying umapaw).\n• Filters: ibabad sa mainit-init na tubig + mild dish soap, banlawan, patuyuin nang tuluyan, tapos ibalik.\n• Punasan ang stainless surface ng soft cloth + mild cleaner.",
+        "zh": "• 日立 HB-ST388：28 吋抽油煙機（不是洗衣機）。\n• 左右雙摩打可獨立開關，各有高／低速。\n• 炒炸前先開，煮完再多抽幾分鐘清煙。\n• 油杯有油就要清（不要等滿溢）。\n• 濾網等易拆件：溫水＋中性洗碗液浸泡清洗，沖淨完全風乾再裝回。\n• 不鏽鋼面用軟布＋中性清潔劑抹。"
+      },
+      "warnings": {
+        "en": "• Unplug or switch off power before deep cleaning.\n• Never spray water into the motors.\n• Do not cook with strong cleaner spray falling into food.\n• Ask Sir/Mum before a full dismantle if you are unsure.",
+        "fil": "• I-off / unplug bago mag-deep clean.\n• Huwag mag-spray ng tubig papunta sa motors.\n• Huwag magluto habang may malakas na cleaner na puwedeng tumulo sa pagkain.\n• Kung unsure sa full dismantle, tanungin si Sir/Mum.",
+        "zh": "• 深層清潔前先斷電。\n• 不可向摩打噴水。\n• 清潔時勿讓強清潔劑滴入食物。\n• 不確定如何全拆就問 Sir/Mum。"
+      }
+    },
+    {
+      "id": "app-tefal-easy-fry-xxl",
+      "kind": "air-fryer",
+      "model": "Tefal Easy Fry & Grill XXL",
+      "priority": 6,
+      "sourceUrl": "https://www.tefal.com/instructions-for-use/Products-/Electrical-Cooking/Oilless-Fryer/Easy-Fry-%26-Grill-XXL/csp/7211004838",
+      "title": {
+        "en": "Tefal Easy Fry & Grill XXL",
+        "fil": "Tefal Easy Fry & Grill XXL",
+        "zh": "Tefal Easy Fry & Grill XXL 氣炸鍋"
+      },
+      "tips": {
+        "en": "• Air fryer: Tefal Easy Fry & Grill XXL.\n• Optional preheat: Start → Air Fry (often 180°C first) → adjust °C with +/− → Start until it beeps.\n• Put food in the bowl/basket — do not overcrowd.\n• Manual cook: set 40–220°C and 0–60 min, then Start.\n• Or pick an auto mode on the touchscreen.\n• Grill mode: preheats ~15 min at 220°C; flip meat halfway; oil collects in the bowl.\n• Reheat tip: about 160°C up to ~10 min.\n• Shake or turn food halfway for even cooking.",
+        "fil": "• Air fryer: Tefal Easy Fry & Grill XXL.\n• Optional preheat: Start → Air Fry (madalas 180°C) → ayusin °C gamit +/− → Start hanggang may beep.\n• Ilagay ang pagkain sa bowl/basket — huwag siksikin.\n• Manual: 40–220°C at 0–60 min, tapos Start.\n• O piliin ang auto mode sa touchscreen.\n• Grill mode: preheat ~15 min sa 220°C; baliktarin ang karne sa gitna; nagtitipon ang mantika sa bowl.\n• Reheat: ~160°C hanggang ~10 min.\n• Iling / baliktarin sa gitna para pantay ang luto.",
+        "zh": "• 氣炸鍋：Tefal Easy Fry & Grill XXL。\n• 可先預熱：Start → Air Fry（首次常 180°C）→ 用 +/− 調溫 → 再 Start 至響聲。\n• 食物放入籃／鍋——不要過滿。\n• 手動：40–220°C、0–60 分鐘後 Start。\n• 或選觸控自動模式。\n• Grill：約 220°C 預熱 15 分鐘；肉中途翻面；油聚在鍋底。\n• 翻熱：約 160°C、最多約 10 分鐘。\n• 中途搖動／翻面更均勻。"
+      },
+      "warnings": {
+        "en": "• Basket and heater get very hot — use tongs and a heat-safe mat.\n• Keep away from curtains.\n• Pulling the basket mid-cook cools the machine (OK but not ideal).\n• Do not pour a pool of oil; a light brush/spray is enough.",
+        "fil": "• Mainit ang basket at heater — gumamit ng tongs at heat-safe mat.\n• Layuan ang kurtina.\n• Kapag hinila ang basket sa gitna ng luto, lumalamig ang loob (OK pero hindi ideal).\n• Huwag magbuhos ng maraming mantika; light brush/spray sapat.",
+        "zh": "• 籃和發熱管很燙——用夾和耐熱墊。\n• 遠離窗簾。\n• 中途拉出籃會降溫（可以但不理想）。\n• 不要倒一大灘油；薄刷／噴少許即可。"
+      }
+    },
+    {
+      "id": "app-tefal-du4120g0",
+      "kind": "dehumidifier",
+      "model": "Tefal DU4120G0",
+      "priority": 7,
+      "sourceUrl": "https://www.tefal.com.hk/en/instructions-for-use/Products-/Home-Care/Humidifier-and-Dehumidifier/INTENSE-DRY-CONTROL-LINEN-DRY-20L-DU4120/csp/1830005659",
+      "title": {
+        "en": "Tefal DU4120G0 dehumidifier",
+        "fil": "Tefal DU4120G0 dehumidifier (linen dry)",
+        "zh": "Tefal DU4120G0 乾衣抽濕機"
+      },
+      "tips": {
+        "en": "• Tefal Intense Dry Control Linen Dry DU4120G0 (20L dehumidifier).\n• Place on a flat stable floor; keep air intake/outlet clear; tank floater must move freely.\n• Plug in and press ON/OFF.\n• Set target humidity (often 50% / 60% / 70%).\n• For drying laundry: use DRY (linen dry) — continuous dehumidify + swing.\n• Press SWING for wider airflow if needed.\n• Empty the water tank when full (machine usually stops or alerts).\n• Clean: unplug → damp cloth on body → clean tank → remove washable nano/pre-filter, vacuum or rinse, dry, refit.\n• Never run without the pre-filter.",
+        "fil": "• Tefal Intense Dry Control Linen Dry DU4120G0 (20L).\n• Ilagay sa flat stable floor; malaya ang air intake/outlet; libre ang floater sa tank.\n• I-plug at pindutin ang ON/OFF.\n• Itakda ang target humidity (madalas 50% / 60% / 70%).\n• Para sa damit: gamitin ang DRY (linen dry) — continuous + swing.\n• Pindutin ang SWING kung kailangan.\n• Alisin ang tubig sa tank kapag puno.\n• Linis: i-unplug → damp cloth → linisin ang tank → tanggalin ang washable nano/pre-filter, vacuum o banlawan, patuyuin, ibalik.\n• Huwag gamitin nang walang pre-filter.",
+        "zh": "• Tefal Intense Dry Control Linen Dry DU4120G0（20L 抽濕機）。\n• 放在平穩地面；入風／出風口勿遮擋；水箱浮波要能自由浮動。\n• 插電按開關。\n• 設定目標濕度（常見 50%／60%／70%）。\n• 乾衣：用 DRY（乾衣）——持續抽濕＋擺風。\n• 需要時按 SWING 擴大送風。\n• 水箱滿了要倒清。\n• 清潔：先拔掣 → 微濕布抹機 → 清／倒水箱 → 取出可清洗 nano／前置濾網，吸塵或沖洗，乾透再裝回。\n• 沒有前置濾網不要開機。"
+      },
+      "warnings": {
+        "en": "• Keep air grills unblocked.\n• Do not tip the machine when the tank has water.\n• Never use abrasive cleaners.\n• If less effective: check tank not full, room not too cold, and unit sized for the room — ask Sir/Mum if unsure.",
+        "fil": "• Huwag harangan ang air grills.\n• Huwag itagilid kung may tubig ang tank.\n• Huwag gumamit ng abrasive cleaners.\n• Kung humina: tingnan kung puno ang tank, masyadong malamig ang kwarto, o mali ang laki para sa room — tanungin si Sir/Mum kung unsure.",
+        "zh": "• 出入風口勿遮擋。\n• 水箱有水時不要傾斜機身。\n• 不要用磨蝕性清潔劑。\n• 效果變差：檢查水箱是否滿、室溫是否過低、機型是否適合房間——不確定問 Sir/Mum。"
+      }
+    },
+    {
+      "id": "app-dyson-hp07",
+      "kind": "air-purifier",
+      "model": "Dyson HP07",
+      "priority": 8,
+      "sourceUrl": "https://www.dyson.com/support/air-treatment/purifiers/purifier-hot-cool-hp7c",
+      "title": {
+        "en": "Dyson HP07 Purifier Hot+Cool",
+        "fil": "Dyson HP07 Purifier Hot+Cool",
+        "zh": "Dyson HP07 暖風＋涼風空氣清新機"
+      },
+      "tips": {
+        "en": "• Dyson HP07: Purifier Hot+Cool (cleans air + heats + cools).\n• Leave a few feet clear on all sides so air can circulate.\n• Use remote or Dyson Link app.\n• Auto mode: sensors adjust purification.\n• Set a target temperature for heating; use fan speed for cooling.\n• Oscillation spreads air; Night mode is quieter.\n• LCD shows air quality, temperature/humidity, and filter life.\n• Filters are NOT washable — replace HEPA/carbon when screen or app says so (often about yearly).\n• After a new filter: plug in, reset filter life on remote (hold Night mode ~5 seconds for HEPA; some units reset carbon via Oscillation — follow manual).\n• Wipe with a damp lint-free cloth; soft-brush dust from air inlets and the loop amplifier. No detergents or polish.",
+        "fil": "• Dyson HP07: Purifier Hot+Cool (hangin + heat + cool).\n• Mag-iwan ng espasyo sa paligid para umikot ang hangin.\n• Gamitin ang remote o Dyson Link app.\n• Auto mode: sensors ang mag-adjust.\n• Itakda ang temperature para sa heating; fan speed para sa cooling.\n• Oscillation para kumalat ang hangin; Night mode para mas tahimik.\n• LCD: air quality, temperature/humidity, filter life.\n• Hindi hugasan ang filters — palitan ang HEPA/carbon kapag sinabi ng screen/app (madalas ~taon-taon).\n• Pagkatapos ng bagong filter: i-plug, i-reset ang filter life sa remote (hold Night mode ~5 segundo para sa HEPA; iba ay Oscillation para sa carbon — sundin ang manual).\n• Punasan ng damp lint-free cloth; soft brush sa air inlets at loop amplifier. Walang detergent o polish.",
+        "zh": "• Dyson HP07：Purifier Hot+Cool（淨化＋暖風＋涼風）。\n• 四周留空間讓空氣流通。\n• 用遙控或 Dyson Link。\n• Auto：感應器自動調淨化。\n• 設定目標溫度作暖風；調風速作涼風。\n• Oscillation 擺風；Night 更靜。\n• LCD 顯示空氣質素、溫濕度、濾網壽命。\n• 濾網不可水洗——按螢幕／App 提示更換 HEPA／活性碳（多數約一年）。\n• 換新濾網後：插電，用遙控重設壽命（按住 Night 約 5 秒重設 HEPA；部分機型用 Oscillation 重設碳濾——跟說明）。\n• 機身用微濕無纖布抹；軟刷清入風孔和環形風道。不可用清潔劑或亮光劑。"
+      },
+      "warnings": {
+        "en": "• Keep away from water; never tip liquid into the machine.\n• Do not block the air inlets or amplifier.\n• Heater surfaces get hot — keep Zizi at a safe distance.\n• Ask Sir/Mum before buying / fitting replacement filters.",
+        "fil": "• Layuan ang tubig; huwag magbuhos ng liquid sa machine.\n• Huwag harangan ang air inlets o amplifier.\n• Mainit kapag heater — layuan si Zizi.\n• Bago bumili / magpalit ng filter, tanungin si Sir/Mum.",
+        "zh": "• 遠離水，不要向機內倒液體。\n• 勿遮擋入風口或風道。\n• 加熱時表面燙——Zizi 保持距離。\n• 買／換濾網前先問 Sir/Mum。"
+      }
+    },
+    {
+      "id": "app-tefal-epc17",
+      "kind": "pressure-cooker",
+      "model": "Tefal EPC17",
+      "priority": 9,
+      "sourceUrl": "https://www.manualslib.com/manual/3633070/Tefal-Epc06-Series.html",
+      "title": {
+        "en": "Tefal EPC17 electric pressure cooker",
+        "fil": "Tefal EPC17 electric pressure cooker",
+        "zh": "Tefal EPC17 電子壓力鍋／高速煲"
+      },
+      "tips": {
+        "en": "• Tefal Serie EPC17: electric pressure multicooker.\n• Always put the removable cooking bowl in first — never cook without it.\n• Add food + enough liquid (at least ~250 ml / do not go below the minimum line).\n• Do not fill past MAX; for rice/beans that expand, stay under about half.\n• Fit the pressure-limit valve (stays a little loose — normal) and make sure it is down before pressure cooking.\n• Close and lock the lid.\n• Choose a program (Pressure cook / Rice / Steam / Stew-Soup / Brown / Slow cook / etc.).\n• Pressure cook: set High / Medium / Low (HI-P / P / LO-P), adjust time if needed, then Start.\n• Machine preheats, then counts down; beeps and usually goes to Keep Warm.\n• Wait until pressure is fully released before opening — use the release method Sir/Mum showed.\n• Brown/simmer modes often need the lid open — follow the panel/manual.",
+        "fil": "• Tefal Serie EPC17: electric pressure multicooker.\n• Palaging ilagay muna ang removable cooking bowl — huwag magluto nang wala ito.\n• Lagyan ng pagkain + sapat na liquid (≥ ~250 ml / huwag baba sa minimum).\n• Huwag lampas sa MAX; para sa rice/beans na lumalaki, sa ilalim ng kalahati.\n• Ilagay ang pressure-limit valve (medyo maluwag — normal) at dapat down bago mag-pressure cook.\n• Isara at i-lock ang lid.\n• Piliin ang program (Pressure cook / Rice / Steam / Stew-Soup / Brown / Slow cook / atbp.).\n• Pressure cook: High / Medium / Low (HI-P / P / LO-P), ayusin ang oras, Start.\n• Magpre-preheat, magka-countdown, magbe-beep, Keep Warm.\n• Hintaying fully released ang pressure bago buksan — sundin ang release na itinuro nina Sir/Mum.\n• Brown/simmer: madalas bukas ang lid — sundin ang panel/manual.",
+        "zh": "• Tefal Serie EPC17：電子壓力多功能鍋。\n• 必須先放入可拆內鍋——不可空機煮。\n• 食物＋足夠液體（至少約 250 ml／勿低於最低水位）。\n• 不要超過 MAX；米／豆等會膨脹的，勿超過約一半。\n• 裝上限壓閥（會略鬆——正常），壓力煮前確認閥在下方。\n• 蓋好並鎖蓋。\n• 選程式（壓力煮／飯／蒸／燉湯／煎香／慢煮等）。\n• 壓力煮：選高／中／低壓（HI-P／P／LO-P），可調時間後按開始。\n• 先預熱再倒數，完成響聲後通常轉保溫。\n• 必須等壓力完全釋放才開蓋——用 Sir/Mum 教的洩壓方式。\n• 煎香／炆煮多數要開蓋——跟面板／說明。"
+      },
+      "warnings": {
+        "en": "• Never force the lid open while under pressure.\n• Keep face and hands away from the steam outlet.\n• Do not put the main body in water.\n• Clean the gasket and valves when Sir/Mum asks — a blocked valve is dangerous.\n• If unsure about a program, ask before starting.",
+        "fil": "• Huwag piliting buksan ang lid habang may pressure.\n• Layuan ang steam outlet ang mukha at kamay.\n• Huwag basain ang main body.\n• Linisin ang gasket at valves kapag sinabi nina Sir/Mum — delikado kung barado.\n• Kung unsure sa program, tanungin muna.",
+        "zh": "• 有壓力時切勿強行開蓋。\n• 臉和手遠離排氣口。\n• 機身不要浸水。\n• 按 Sir/Mum 指示清潔膠圈和閥——閥堵塞很危險。\n• 不確定程式先問再開始。"
+      }
+    },
+    {
+      "id": "app-whirlpool-tdlr70223",
+      "kind": "washing-machine",
+      "model": "Whirlpool TDLR70223",
+      "priority": 10,
+      "sourceUrl": "https://www.whirlpool.com.hk/english/tdlr70223-top-loading-drum-washer",
+      "title": {
+        "en": "Whirlpool TDLR70223 washing machine",
+        "fil": "Whirlpool TDLR70223 washing machine",
+        "zh": "惠而浦 TDLR70223 上置式洗衣機"
+      },
+      "tips": {
+        "en": "• Whirlpool TDLR70223: 7 kg top-load drum washer (1200 rpm, inverter motor).\n• Check pockets; zip zippers; turn dark / delicate clothes inside out.\n• Open the soft-open lid on top and load loosely — do not pack to the brim (max ~7 kg).\n• Add detergent / softener in the correct drawers (follow the panel symbols Sir/Mum showed).\n• Close the lid. Pick a program, e.g. Mixed 45', Cotton, Synthetics, Delicates, Wool, Rapid 30', Sport, Hygiene, Antistain.\n• Adjust temperature (cold–90°C) and spin if needed, then Start.\n• When it finishes, remove clothes soon so they do not smell damp.\n• Drum clean: run Drum clean (~90°C) when the machine smells or Sir/Mum asks (empty drum).\n• Hygiene / Sanitize programs use higher heat to reduce bacteria — good for towels / underwear when needed.",
+        "fil": "• Whirlpool TDLR70223: 7 kg top-load drum washer (1200 rpm, inverter).\n• Suriin ang bulsa; isara ang zipper; baliktarin ang madilim / delicate.\n• Buksan ang soft-open lid sa taas; ilagay nang maluwag — huwag siksikin (max ~7 kg).\n• Ilagay ang detergent / softener sa tamang drawer (sundin ang symbols na itinuro nina Sir/Mum).\n• Isara ang lid. Pumili ng program, hal. Mixed 45', Cotton, Synthetics, Delicates, Wool, Rapid 30', Sport, Hygiene, Antistain.\n• Ayusin ang temperature (cold–90°C) at spin kung kailangan, tapos Start.\n• Kapag tapos, alisin agad ang damit para hindi amoy-basa.\n• Drum clean: patakbuhin ang Drum clean (~90°C) kapag may amoy o inutos nina Sir/Mum (walang damit).\n• Hygiene / Sanitize: mas mainit — maganda para sa tuwalya / underwear kung kailangan.",
+        "zh": "• 惠而浦 TDLR70223：7 kg 上置式滾筒洗衣機（1200 轉、變頻摩打）。\n• 檢查口袋；拉上拉鏈；深色／易損衣物反轉。\n• 打開上蓋（soft open），衣物放鬆放入——不要塞滿（約最多 7 kg）。\n• 按 Sir/Mum 教的符號，把清潔劑／柔順劑放入正確格。\n• 蓋上蓋。選程式，例如 Mixed 45'、Cotton、Synthetics、Delicates、Wool、Rapid 30'、Sport、Hygiene、Antistain。\n• 可調溫度（冷水–90°C）及脫水轉速，然後開始。\n• 完成後盡快取出，避免濕味。\n• 筒清潔：空筒時用 Drum clean（約 90°C）——有異味或 Sir/Mum 吩咐時做。\n• Hygiene／Sanitize 用較高溫減少細菌——浴巾／內衣需要時可用。"
+      },
+      "warnings": {
+        "en": "• Do not wash waterproof items that float (can damage the machine).\n• Do not overload — imbalance can stop the spin.\n• Keep Zizi away while the drum is spinning; lid lock is for safety.\n• Unplug / switch off before any deep clean; never pour water into the control panel.\n• Ask Sir/Mum before using high-temperature Hygiene / Drum clean if unsure.",
+        "fil": "• Huwag maglaba ng waterproof na pumapalutang (puwedeng masira ang machine).\n• Huwag i-overload — puwedeng huminto ang spin.\n• Layuan si Zizi habang umiikot ang drum; may lid lock para sa safety.\n• I-off / unplug bago mag-deep clean; huwag magbuhos ng tubig sa control panel.\n• Kung unsure sa high-temp Hygiene / Drum clean, tanungin si Sir/Mum.",
+        "zh": "• 不要洗會浮起的防水物（易損壞機件）。\n• 不要過載——不平衡會令脫水停止。\n• 轉筒時 Zizi 遠離；上蓋鎖定是安全設計。\n• 深層清潔前斷電；不可向控制面板倒水。\n• 不確定高溫 Hygiene／筒清潔就先問 Sir/Mum。"
+      }
+    }
+  ]
 }
