@@ -14,14 +14,14 @@ const groundRules = [
   {
     id: "rule-1",
     title: {
-      en: "Ask the family before borrowing money",
-      fil: "Tanungin ang pamilya bago humiram ng pera",
-      zh: "借錢前先問家人",
+      en: "No borrow money",
+      fil: "Huwag humiram ng pera",
+      zh: "不可借錢",
     },
     description: {
-      en: "Please do not borrow money from neighbours, strangers, or other domestic workers. If you need something for daily life or family back home, talk to Sir or Mum — we are here to help you find a safe way.",
-      fil: "Huwag humiram ng pera sa kapitbahay, estranghero, o ibang domestic worker. Kung may kailangan para sa araw-araw o pamilya sa Pilipinas, kausapin si Sir o Mum — tutulong kami nang ligtas.",
-      zh: "請不要向鄰居、陌生人或他傭借錢。日常生活或家鄉家用有需要，請告訴 Sir 或 Mum — 我們會一起想安全的辦法。",
+      en: "Do not borrow money from anyone — neighbours, strangers, or other domestic workers. If you need something, tell Sir or Mum directly. No borrowing is allowed.",
+      fil: "Huwag humiram ng pera kaninuman — kapitbahay, estranghero, o ibang domestic worker. Kung may kailangan, diretso kay Sir o Mum. Bawal ang paghiram.",
+      zh: "不可向任何人借錢 — 鄰居、陌生人或他傭。有需要直接告訴 Sir 或 Mum。禁止借錢。",
     },
     category: "general",
     priority: 1,
