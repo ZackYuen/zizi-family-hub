@@ -7,6 +7,7 @@ import type { DinnerRecipe } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { ScheduleCalendarAdmin } from "@/components/admin/ScheduleCalendarAdmin";
 import { MealsAdmin } from "@/components/admin/MealsAdmin";
+import { HkLifeAdmin } from "@/components/admin/HkLifeAdmin";
 import { TrilingualFieldEditor } from "@/components/admin/TrilingualFieldEditor";
 import { emptyBilingual } from "@/lib/localized-text";
 
@@ -21,7 +22,7 @@ export default function AdminPage() {
   const [content, setContent] = useState<AppContent | null>(null);
   const [jsonText, setJsonText] = useState("");
   const [activeSection, setActiveSection] = useState<
-    "rules" | "schedule" | "meals" | "settings" | "json"
+    "rules" | "schedule" | "meals" | "hkLife" | "settings" | "json"
   >("rules");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -227,6 +228,7 @@ export default function AdminPage() {
     { id: "rules" as const, label: adminT("rules", lang) },
     { id: "schedule" as const, label: adminT("schedule", lang) },
     { id: "meals" as const, label: adminT("meals", lang) },
+    { id: "hkLife" as const, label: adminT("hkLife", lang) },
     { id: "settings" as const, label: adminT("settings", lang) },
     { id: "json" as const, label: adminT("json", lang) },
   ];
@@ -371,6 +373,16 @@ export default function AdminPage() {
             saving={saving}
             onSave={saveRecipes}
             setMessage={setMessage}
+          />
+        )}
+
+        {activeSection === "hkLife" && (
+          <HkLifeAdmin
+            content={content}
+            setContent={setContent}
+            lang={lang}
+            saving={saving}
+            onSave={() => saveContent(content)}
           />
         )}
 

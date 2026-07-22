@@ -16,3 +16,12 @@ Do **not** treat `household-hub/data/content.json` as what Charlene sees in prod
 2. **Baileys always-on bot** — `household-hub/whatsapp-bot/` (QR login, spare number, needs 24/7 host). See that folder’s README.
 
 Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrouter/free` for \$0 LLM.
+
+## HK Life (FDH / Kwun Tong)
+
+- Helper tab **HK Life**: emergency phones, settling checklist, bilingual guides.
+- Admin → **HK Life**: edit guides, Sir/Mum phones, checklist, weather alert banner (T8+ / black rain).
+- Ask / WhatsApp answer typhoon, Octopus, rest day, Consulate, AEON, etc. from `hkLifeGuides` in live content (heuristics + knowledge pack).
+- Seed/backup: `data/content.json` + `scripts/seed-hk-life.mjs`. Missing Supabase fields auto-fill from local once on read — then **Admin Save** to publish.
+- Legal wage/rest-day text is general guidance; always confirm with Sir/Mum / contract / Labour Department.
+

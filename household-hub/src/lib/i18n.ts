@@ -9,6 +9,12 @@ export const labels = {
   schedule: { en: "Task Schedule", fil: "Iskedyul ng Gawain", zh: "日程" },
   meals: { en: "Meals", fil: "Pagkain", zh: "膳食" },
   ask: { en: "Ask", fil: "Tanong", zh: "提問" },
+  hkLife: { en: "HK Life", fil: "HK Life", zh: "香港生活" },
+  weatherAlert: {
+    en: "Weather alert",
+    fil: "Weather alert",
+    zh: "天氣警報",
+  },
   today: { en: "Today", fil: "Ngayon", zh: "今天" },
   allDays: { en: "All Days", fil: "Lahat ng Araw", zh: "全部" },
   breakfast: { en: "Breakfast", fil: "Almusal", zh: "早餐" },

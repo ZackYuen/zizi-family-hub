@@ -3,12 +3,20 @@ import { isHelperDayOff } from "./hk-holidays";
 import { generateTonightMenu } from "./dinner";
 import { getContentWithSource, getDinnerRecipes } from "./data";
 import { getRecipeDisplayName } from "./recipe-display";
-import type { AppContent, DinnerRecipe, TonightMenu } from "./types";
+import type {
+  AppContent,
+  DinnerRecipe,
+  EmergencyContact,
+  HkLifeGuide,
+  HkWeatherFlag,
+  SettlingCheckItem,
+  TonightMenu,
+} from "./types";
 
 export interface LiveFamilySnapshot {
   source: "supabase" | "local";
   lastUpdated: string;
-  /** Current Hong Kong wall-clock, e.g. 2026-07-22 12:56 (HKT) */
+  /** Current Hong Kong wall-clock, e.g. 2026-07-22 12:56 (Asia/Hong_Kong) */
   nowHongKong: string;
   helperName: string;
   familyName: string;
@@ -20,6 +28,11 @@ export interface LiveFamilySnapshot {
   monthlyTasks: AppContent["monthlyTasks"];
   tonight: TonightMenu | null;
   recipeCount: number;
+  homeArea?: AppContent["homeArea"];
+  hkLifeGuides: HkLifeGuide[];
+  settlingChecklist: SettlingCheckItem[];
+  emergencyContacts: EmergencyContact[];
+  hkWeather?: HkWeatherFlag;
 }
 
 function formatNowHongKong(date = new Date()): string {
@@ -69,6 +82,11 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     monthlyTasks: content.monthlyTasks,
     tonight,
     recipeCount: recipes.length,
+    homeArea: content.homeArea,
+    hkLifeGuides: content.hkLifeGuides ?? [],
+    settlingChecklist: content.settlingChecklist ?? [],
+    emergencyContacts: content.emergencyContacts ?? [],
+    hkWeather: content.hkWeather,
   };
 }
 
@@ -77,6 +95,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   const lines: string[] = [];
   lines.push(`Family: ${snap.familyName}`);
   lines.push(`Helper: ${snap.helperName}`);
+  if (snap.homeArea?.en) lines.push(`Home area: ${snap.homeArea.en}`);
   lines.push(`Data source: ${snap.source} (Admin live data when supabase)`);
   lines.push(
     `CURRENT Hong Kong date/time (use this for "what time is it"): ${snap.nowHongKong}`
@@ -88,9 +107,17 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push(
     `Charlene day off today (Sunday / HK public holiday): ${snap.isHelperDayOffToday ? "YES" : "NO"}`
   );
+  if (snap.hkWeather?.alertActive) {
+    lines.push(
+      `WEATHER ALERT ACTIVE (level=${snap.hkWeather.level}): ${snap.hkWeather.note.en} / ${snap.hkWeather.note.fil}`
+    );
+  }
   lines.push("");
   lines.push(
     'For "what should I do now?" / current task: pick the schedule item whose start–end covers CURRENT Hong Kong time. If in a gap, say so and give the NEXT upcoming task only — do not dump the whole day.'
+  );
+  lines.push(
+    "HK life / FDH tips below are general guidance. For legal/contract specifics, tell Charlene to confirm with Sir/Mum or official Labour Department sources. Never invent visa/immigration advice."
   );
   lines.push("");
   lines.push("Zizi school:");
@@ -114,6 +141,36 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   for (const r of snap.groundRules) {
     lines.push(`- ${r.title.en}: ${r.description.en}`);
     if (r.consequences?.en) lines.push(`  If Broken: ${r.consequences.en}`);
+  }
+
+  if (snap.hkLifeGuides.length) {
+    lines.push("");
+    lines.push("HK Life guides (Kwun Tong + FDH basics):");
+    const sorted = [...snap.hkLifeGuides].sort((a, b) => a.priority - b.priority);
+    for (const g of sorted) {
+      lines.push(`- [${g.category}/${g.area}] ${g.title.en}`);
+      lines.push(`  EN: ${g.body.en}`);
+      lines.push(`  FIL: ${g.body.fil}`);
+      if (g.sourceUrl) lines.push(`  Source: ${g.sourceUrl}`);
+    }
+  }
+
+  if (snap.emergencyContacts.length) {
+    lines.push("");
+    lines.push("Emergency contacts:");
+    for (const c of snap.emergencyContacts) {
+      lines.push(
+        `- ${c.name.en}: ${c.phone || "(add in Admin)"} ${c.note?.en ? `— ${c.note.en}` : ""}`
+      );
+    }
+  }
+
+  if (snap.settlingChecklist.length) {
+    lines.push("");
+    lines.push("Settling checklist (first weeks in HK):");
+    for (const item of snap.settlingChecklist) {
+      lines.push(`- [${item.done ? "done" : "todo"}] ${item.title.en}`);
+    }
   }
 
   if (snap.monthlyTasks?.length) {
@@ -145,4 +202,11 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push("- Do not invent rules. If unsure, tell Charlene to ask Sir or Mum.");
 
   return lines.join("\n");
+}
+
+export function findLifeGuide(
+  guides: HkLifeGuide[],
+  predicate: (g: HkLifeGuide) => boolean
+): HkLifeGuide | undefined {
+  return [...guides].sort((a, b) => a.priority - b.priority).find(predicate);
 }
