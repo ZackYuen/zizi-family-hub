@@ -69,11 +69,24 @@ Bot replies only when:
 - Mentions `@CharleneBot` / contains `CharleneBot`, or
 - WhatsApp @-mention of the bot number
 
+### Save into Admin (knowledge / meals)
+
+Requires `INBOX_SECRET` on both Vercel and the bot:
+
+| Command | Effect |
+|---------|--------|
+| `?save tip …` | Tip candidate → Admin → WA Inbox → promote to HK Life |
+| `?save recipe <youtube-url> Meat` | Recipe candidate → promote to dinner recipes |
+| `?note …` | Free-form note in inbox |
+| Normal `? …` asks | Logged in inbox (Q&A) for review |
+
 ## Env
 
 | Variable | Meaning |
 |----------|---------|
 | `LIVE_ASK_URL` | Ask API URL |
+| `INBOX_SECRET` | Same secret as Vercel — enables inbox logging |
+| `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
 | `BOT_NAME` | Name people type in group |
 | `TRIGGER_PREFIX` | Default `?` |
 | `GROUP_JIDS` | Optional allowlist of group IDs |

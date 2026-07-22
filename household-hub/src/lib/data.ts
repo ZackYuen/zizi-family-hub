@@ -1,10 +1,17 @@
 import fs from "fs/promises";
 import path from "path";
 import { getSupabaseAdmin, isSupabaseConfigured } from "./supabase";
-import type { AppContent, DinnerRecipe } from "./types";
+import type {
+  AppContent,
+  DinnerRecipe,
+  WhatsAppInbox,
+  WhatsAppInboxItem,
+} from "./types";
 
 const CONTENT_KEY = "content";
 const RECIPES_KEY = "dinner_recipes";
+const INBOX_KEY = "whatsapp_inbox";
+const INBOX_MAX = 200;
 
 export type DataSource = "supabase" | "local";
 
@@ -207,4 +214,72 @@ export async function saveDinnerRecipes(recipes: DinnerRecipe[]): Promise<void> 
   });
 
   if (error) throw error;
+}
+
+export async function getWhatsAppInbox(): Promise<WhatsAppInbox> {
+  if (!isSupabaseConfigured()) {
+    return { items: [], updatedAt: new Date().toISOString() };
+  }
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from("app_data")
+    .select("data")
+    .eq("key", INBOX_KEY)
+    .maybeSingle();
+
+  if (error) throw error;
+  if (!data) return { items: [], updatedAt: new Date().toISOString() };
+  const parsed = data.data as WhatsAppInbox;
+  return {
+    items: Array.isArray(parsed.items) ? parsed.items : [],
+    updatedAt: parsed.updatedAt || new Date().toISOString(),
+  };
+}
+
+export async function saveWhatsAppInbox(inbox: WhatsAppInbox): Promise<WhatsAppInbox> {
+  if (!isSupabaseConfigured()) {
+    throw new Error("Supabase is not configured — cannot save inbox");
+  }
+
+  const updated: WhatsAppInbox = {
+    items: inbox.items.slice(0, INBOX_MAX),
+    updatedAt: new Date().toISOString(),
+  };
+
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase.from("app_data").upsert({
+    key: INBOX_KEY,
+    data: updated,
+    updated_at: updated.updatedAt,
+  });
+
+  if (error) throw error;
+  return updated;
+}
+
+/** Prepend a WhatsApp inbox item (newest first), capped */
+export async function appendWhatsAppInboxItem(
+  item: Omit<WhatsAppInboxItem, "id" | "ts" | "status"> & {
+    id?: string;
+    ts?: string;
+    status?: WhatsAppInboxItem["status"];
+  }
+): Promise<WhatsAppInboxItem> {
+  const inbox = await getWhatsAppInbox();
+  const full: WhatsAppInboxItem = {
+    id: item.id || `wa-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    ts: item.ts || new Date().toISOString(),
+    kind: item.kind,
+    jid: item.jid,
+    fromName: item.fromName,
+    text: item.text.slice(0, 2000),
+    answer: item.answer?.slice(0, 4000),
+    link: item.link,
+    category: item.category,
+    status: item.status || "new",
+  };
+  inbox.items = [full, ...inbox.items].slice(0, INBOX_MAX);
+  await saveWhatsAppInbox(inbox);
+  return full;
 }
