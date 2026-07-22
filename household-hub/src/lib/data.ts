@@ -152,27 +152,36 @@ export async function getContent(): Promise<AppContent> {
     return filled;
   }
 
-  // Soft family welcome from seed; firm rules when remote still has "practice / second chance" soft wording
+  // Force-refresh ground rules when live Supabase still has soft / old borrow wording
   const remoteBorrow = remote.groundRules?.find((r) => r.id === "rule-1");
   const localBorrow = local.groundRules?.find((r) => r.id === "rule-1");
-  const needsFirmRules =
+  const remoteRuleBlob = remote.groundRules
+    ?.map((r) => `${r.title?.en || ""}\n${r.description?.en || ""}\n${r.consequences?.en || ""}`)
+    .join("\n") || "";
+  const needsRuleRefresh = Boolean(
     localBorrow &&
-    remoteBorrow &&
-    /practice together|Friendly reminder first|gentle written|no trial second chance/i.test(
-      `${remoteBorrow.consequences?.en || ""} ${localBorrow.consequences?.en || ""}`
-    ) &&
-    /practice together|Friendly reminder first|gentle written|talk about timing|retrain gently/i.test(
-      remoteBorrow.consequences?.en || ""
-    );
+      remoteBorrow &&
+      (remoteBorrow.title?.en !== localBorrow.title?.en ||
+        /Ask the family before borrowing|We will talk together first|practice together|Friendly reminder first|gentle written|retrain gently|help you find a safe way|Please do not borrow/i.test(
+          remoteRuleBlob
+        ))
+  );
 
-  if (needsFirmRules || (!remote.familyWelcome && local.familyWelcome)) {
+  if (needsRuleRefresh || (!remote.familyWelcome && local.familyWelcome)) {
     const filled: AppContent = {
       ...remote,
-      groundRules: needsFirmRules ? local.groundRules : remote.groundRules,
+      groundRules: needsRuleRefresh ? local.groundRules : remote.groundRules,
       familyWelcome: remote.familyWelcome ?? local.familyWelcome,
+      lastUpdated: new Date().toISOString(),
     };
-    saveContent(filled).catch(() => {});
-    return filled;
+    // Await so the next request sees firm rules (critical for Charlene's live app)
+    try {
+      await saveContent(filled);
+      return filled;
+    } catch (err) {
+      console.error("Failed to refresh ground rules from seed", err);
+      return filled;
+    }
   }
 
   return remote;
