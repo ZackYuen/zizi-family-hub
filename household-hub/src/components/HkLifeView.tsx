@@ -93,7 +93,7 @@ const ui = {
   },
   emergency: {
     en: "Emergency phones",
-    fil: "Emergency phones (emergency lang)",
+    fil: "Mga emergency phone",
     zh: "緊急電話",
   },
   checklist: {
