@@ -164,6 +164,8 @@ function repairKindergartenNames(content: AppContent): {
  * - With Supabase: Admin-saved rows win. Repo JSON is seed/fallback only.
  * - Without Supabase: local content.json.
  * - FORCE_SEED_FROM_LOCAL=1: force push local JSON into Supabase (intentional reset).
+ * - Auto-merge may APPEND missing ids from seed; it must not wipe Admin collections.
+ * - Agents: fetch /api/live → patch-live (Admin Save). Never treat content.json as live.
  */
 export async function getContent(): Promise<AppContent> {
   if (!isSupabaseConfigured()) {
@@ -205,14 +207,20 @@ export async function getContent(): Promise<AppContent> {
   }
 
   // Fix misspelled kindergarten name (Liang Leung → Ling Liang / 靈糧) in live data
+  // Only rewrite wrong strings inside remote — do NOT replace Admin's whole ziziSchool blob
   const kg = repairKindergartenNames(remote);
   if (kg.changed) {
-    // Prefer local ziziSchool when it already has zh + correct name
     const withSchool: AppContent = {
       ...kg.content,
-      ziziSchool: local.ziziSchool?.en?.includes("Ling Liang")
-        ? local.ziziSchool
-        : kg.content.ziziSchool,
+      ziziSchool: {
+        ...kg.content.ziziSchool,
+        // Fill zh from seed only if live is still missing zh after rewrite
+        zh:
+          kg.content.ziziSchool?.zh ||
+          (local.ziziSchool?.en?.includes("Ling Liang")
+            ? local.ziziSchool.zh
+            : kg.content.ziziSchool?.zh),
+      },
     };
     try {
       await saveContent(withSchool);
@@ -221,16 +229,10 @@ export async function getContent(): Promise<AppContent> {
       console.error("Failed to repair kindergarten name", err);
       return withSchool;
     }
-  } else if (
-    local.ziziSchool?.zh &&
-    (!remote.ziziSchool?.zh ||
-      remote.ziziSchool.en?.includes("Liang Leung") ||
-      !remote.ziziSchool.en?.includes("Ling Liang"))
-  ) {
-    // If remote somehow already corrected EN but missing zh / still wrong
+  } else if (local.ziziSchool?.zh && !remote.ziziSchool?.zh) {
     const withSchool: AppContent = {
       ...remote,
-      ziziSchool: local.ziziSchool,
+      ziziSchool: { ...remote.ziziSchool, zh: local.ziziSchool.zh },
       lastUpdated: new Date().toISOString(),
     };
     try {
@@ -291,26 +293,35 @@ export async function getContent(): Promise<AppContent> {
     !remote.familyPreferences?.length && Boolean(local.familyPreferences?.length);
   const needsAppliances =
     !remote.appliances?.length && Boolean(local.appliances?.length);
-  // Refresh when live still has generic seed (no family model IDs)
-  const needsApplianceModels = Boolean(
-    local.appliances?.some((a) => a.id === "app-dyson-v12") &&
-      remote.appliances?.length &&
-      (!remote.appliances.some((a) => a.id === "app-dyson-v12") ||
-        !remote.appliances.some((a) => a.id === "app-tefal-du4120g0") ||
-        !remote.appliances.some((a) => a.id === "app-dyson-hp07") ||
-        !remote.appliances.some((a) => a.id === "app-tefal-epc17") ||
-        // Refresh when tips are still paragraph form (no bullet markers)
-        !remote.appliances.some((a) => a.tips?.en?.includes("•")))
+
+  // APPEND-ONLY: never replace Admin's appliances list with repo seed
+  const remoteApplianceIds = new Set((remote.appliances ?? []).map((a) => a.id));
+  const missingAppliances = (local.appliances ?? []).filter(
+    (a) => !remoteApplianceIds.has(a.id)
   );
-  if (needsPrefs || needsAppliances || needsApplianceModels) {
+  const remotePrefIds = new Set(
+    (remote.familyPreferences ?? []).map((p) => p.id)
+  );
+  const missingPrefs = (local.familyPreferences ?? []).filter(
+    (p) => !remotePrefIds.has(p.id)
+  );
+
+  if (needsPrefs || needsAppliances || missingAppliances.length || missingPrefs.length) {
     const filled: AppContent = {
       ...remote,
       familyPreferences: needsPrefs
         ? local.familyPreferences
-        : remote.familyPreferences,
-      appliances:
-        needsAppliances || needsApplianceModels
-          ? local.appliances
+        : missingPrefs.length
+          ? [...(remote.familyPreferences ?? []), ...missingPrefs].sort(
+              (a, b) => a.priority - b.priority
+            )
+          : remote.familyPreferences,
+      appliances: needsAppliances
+        ? local.appliances
+        : missingAppliances.length
+          ? [...(remote.appliances ?? []), ...missingAppliances].sort(
+              (a, b) => a.priority - b.priority
+            )
           : remote.appliances,
       lastUpdated: new Date().toISOString(),
     };
@@ -323,29 +334,29 @@ export async function getContent(): Promise<AppContent> {
     }
   }
 
-  // Force-refresh ground rules when live Supabase still has soft / old borrow wording
+  // Patch only soft borrow rule wording — do NOT replace all Admin ground rules
   const remoteBorrow = remote.groundRules?.find((r) => r.id === "rule-1");
   const localBorrow = local.groundRules?.find((r) => r.id === "rule-1");
-  const remoteRuleBlob = remote.groundRules
-    ?.map((r) => `${r.title?.en || ""}\n${r.description?.en || ""}\n${r.consequences?.en || ""}`)
-    .join("\n") || "";
-  const needsRuleRefresh = Boolean(
+  const remoteBorrowBlob = `${remoteBorrow?.title?.en || ""}\n${remoteBorrow?.description?.en || ""}\n${remoteBorrow?.consequences?.en || ""}`;
+  const needsRule1Refresh = Boolean(
     localBorrow &&
       remoteBorrow &&
-      (remoteBorrow.title?.en !== localBorrow.title?.en ||
-        /Ask the family before borrowing|We will talk together first|practice together|Friendly reminder first|gentle written|retrain gently|help you find a safe way|Please do not borrow/i.test(
-          remoteRuleBlob
-        ))
+      /Ask the family before borrowing|We will talk together first|practice together|Friendly reminder first|gentle written|retrain gently|help you find a safe way|Please do not borrow/i.test(
+        remoteBorrowBlob
+      )
   );
 
-  if (needsRuleRefresh || (!remote.familyWelcome && local.familyWelcome)) {
+  if (needsRule1Refresh || (!remote.familyWelcome && local.familyWelcome)) {
     const filled: AppContent = {
       ...remote,
-      groundRules: needsRuleRefresh ? local.groundRules : remote.groundRules,
+      groundRules: needsRule1Refresh
+        ? (remote.groundRules ?? []).map((r) =>
+            r.id === "rule-1" ? localBorrow! : r
+          )
+        : remote.groundRules,
       familyWelcome: remote.familyWelcome ?? local.familyWelcome,
       lastUpdated: new Date().toISOString(),
     };
-    // Await so the next request sees firm rules (critical for Charlene's live app)
     try {
       await saveContent(filled);
       return filled;
