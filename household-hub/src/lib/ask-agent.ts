@@ -25,12 +25,74 @@ export interface AskResult {
 function detectLang(q: string): Lang {
   if (/[\u4e00-\u9fff]/.test(q)) return "zh";
   if (
-    /\b(ano|saan|kailan|paano|ba|po|naman|salamat|ngayon|hapunan|alituntunin|gawain)\b/i.test(
+    /\b(ano|saan|kailan|paano|ba|po|naman|salamat|ngayon|hapunan|alituntunin|gawain|gagawin|oras|sundo|tanghalian)\b/i.test(
       q
     )
   )
     return "fil";
   return "en";
+}
+
+/** Explicit "in Filipino / 用中文 / in English" overrides question language */
+function resolveReplyLang(question: string): { lang: Lang; contentQuestion: string } {
+  const q = question.trim();
+  let lang: Lang | null = null;
+
+  if (
+    /\b(in|use|reply( in)?|answer( in)?|speak)\s+(filipino|tagalog)\b/i.test(q) ||
+    /\b(filipino|tagalog)\s+pls\b/i.test(q) ||
+    /用菲律賓|用他加祿|菲律賓文/.test(q)
+  ) {
+    lang = "fil";
+  } else if (
+    /\b(in|use|reply( in)?|answer( in)?|speak)\s+(chinese|mandarin|cantonese)\b/i.test(q) ||
+    /用中文|繁體|簡體|请用中文|請用中文|中文回/.test(q)
+  ) {
+    lang = "zh";
+  } else if (
+    /\b(in|use|reply( in)?|answer( in)?|speak)\s+english\b/i.test(q) ||
+    /用英文|英語回/.test(q)
+  ) {
+    lang = "en";
+  }
+
+  const contentQuestion = q
+    .replace(
+      /\b(in|use|reply( in)?|answer( in)?|speak)\s+(filipino|tagalog|chinese|mandarin|cantonese|english)\b/gi,
+      " "
+    )
+    .replace(/\b(filipino|tagalog)\s+pls\b/gi, " ")
+    .replace(/用(菲律賓文?|他加祿|中文|繁體|簡體|英文|英語)/g, " ")
+    .replace(/请用中文|請用中文|中文回[複复]?|英語回[複复]?/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return {
+    lang: lang ?? detectLang(contentQuestion || q),
+    contentQuestion: contentQuestion || q,
+  };
+}
+
+function langName(lang: Lang): string {
+  return lang === "fil" ? "Filipino (Tagalog)" : lang === "zh" ? "Traditional Chinese" : "English";
+}
+
+function dishName(
+  d: { name: string; nameEn?: string; nameFil?: string },
+  lang: Lang
+): string {
+  if (lang === "fil") return d.nameFil || d.nameEn || d.name;
+  if (lang === "zh") return d.name || d.nameEn || d.nameFil || "";
+  return d.nameEn || d.name || d.nameFil || "";
+}
+
+function ingredientName(
+  ing: { en?: string; fil?: string; zh?: string },
+  lang: Lang
+): string {
+  if (lang === "fil") return ing.fil || ing.en || ing.zh || "";
+  if (lang === "zh") return ing.zh || ing.en || ing.fil || "";
+  return ing.en || ing.fil || ing.zh || "";
 }
 
 function taskLabel(task: ScheduleTask, lang: Lang): string {
@@ -127,9 +189,23 @@ function currentTaskAnswer(snap: LiveFamilySnapshot, lang: Lang): string | null 
   return null;
 }
 
-function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | null {
+function heuristicAnswer(
+  question: string,
+  snap: LiveFamilySnapshot,
+  lang: Lang
+): string | null {
   const q = question.toLowerCase();
-  const lang = detectLang(question);
+
+  // Language-only request: "in Filipino pls"
+  if (
+    !q.replace(/\W+/g, " ").trim() ||
+    /^(please|pls|po|lang)?$/.test(q.trim()) ||
+    /^(in\s+)?(filipino|tagalog|chinese|english)\s*(pls|please)?$/.test(q.trim())
+  ) {
+    if (lang === "fil") return "Sige — itanong mo na (hal. Ano ang gagawin ko ngayon?).";
+    if (lang === "zh") return "好的 — 請直接提問（例如：我現在該做什麼？）。";
+    return "OK — please ask your question (e.g. What should I do now?).";
+  }
 
   if (
     /what time|current time|time now|now time|幾點|现在几|現在幾|anong oras|oras na|what'?s the time/.test(
@@ -176,11 +252,19 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
     if (!snap.tonight) {
       return lang === "fil"
         ? "Wala pang dinner menu ngayon."
-        : "No dinner menu available yet.";
+        : lang === "zh"
+          ? "今晚尚未有晚餐菜單。"
+          : "No dinner menu available yet.";
     }
     const { meat, vegetable, soup } = snap.tonight;
+    const cat =
+      lang === "fil"
+        ? { Meat: "Karne", Vegetable: "Gulay", Soup: "Sabaw" }
+        : lang === "zh"
+          ? { Meat: "肉類", Vegetable: "蔬菜", Soup: "湯" }
+          : { Meat: "Meat", Vegetable: "Vegetable", Soup: "Soup" };
     const line = (d: typeof meat) =>
-      `${d.category}: ${lang === "fil" ? d.nameFil || d.nameEn || d.name : d.nameEn || d.name}`;
+      `${cat[d.category]}: ${dishName(d, lang)}`;
     return [
       lang === "fil" ? "Hapunan ngayong gabi:" : lang === "zh" ? "今晚晚餐：" : "Tonight's dinner:",
       `• ${line(meat)}`,
@@ -188,24 +272,36 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
       `• ${line(soup)}`,
       lang === "fil"
         ? "Buksan ang Meals tab para sa ingredients."
-        : "Open the Meals tab for ingredients.",
+        : lang === "zh"
+          ? "可在 Meals 分頁查看材料。"
+          : "Open the Meals tab for ingredients.",
     ].join("\n");
   }
 
-  if (/ingredient|bilihin|shopping|買|材料|grocery/.test(q)) {
+  if (/ingredient|bilihin|shopping|買|材料|grocery|sangkap/.test(q)) {
     if (!snap.tonight) return null;
     const lines: string[] = [
-      lang === "fil" ? "Ingredients ngayong gabi:" : "Tonight's ingredients:",
+      lang === "fil"
+        ? "Ingredients ngayong gabi:"
+        : lang === "zh"
+          ? "今晚材料："
+          : "Tonight's ingredients:",
     ];
     for (const dish of [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup]) {
-      lines.push(`• ${dish.nameEn || dish.name}`);
+      lines.push(`• ${dishName(dish, lang)}`);
       if (dish.ingredients?.length) {
         for (const ing of dish.ingredients) {
-          const name = ing.en || ing.fil || ing.zh || "";
+          const name = ingredientName(ing, lang);
           lines.push(`  - ${ing.qty ? `${name} (${ing.qty})` : name}`);
         }
       } else {
-        lines.push(`  - (not listed — see recipe: ${dish.link})`);
+        lines.push(
+          lang === "fil"
+            ? `  - (wala pa — tingnan: ${dish.link})`
+            : lang === "zh"
+              ? `  - （未列出 — 見食譜：${dish.link}）`
+              : `  - (not listed — see recipe: ${dish.link})`
+        );
       }
     }
     return lines.join("\n");
@@ -219,17 +315,29 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
         : "Zizi: Mon–Fri PM class. Leave home 12:30 (30 min walk) — drop off by 13:00. Leave 16:00 to pick up Zizi at 16:30.";
   }
 
-  if (/rule|alituntunin|規則|ground|broken|borrow|pera|money/.test(q)) {
+  if (/rule|alituntunin|規則|ground|broken|borrow|pera|money|hiram/.test(q)) {
     const money = snap.groundRules.find((r) =>
       r.title.en.toLowerCase().includes("borrow")
     );
-    if (money && /borrow|pera|money|hiram/.test(q)) {
-      return `${money.title.en}\n${money.description.en}\nIf Broken: ${money.consequences?.en ?? ""}`;
+    if (money && /borrow|pera|money|hiram|借錢|借钱/.test(q)) {
+      return [
+        localized(money.title, lang),
+        localized(money.description, lang),
+        lang === "fil"
+          ? `Kung labag: ${localized(money.consequences, lang)}`
+          : lang === "zh"
+            ? `若違反：${localized(money.consequences, lang)}`
+            : `If Broken: ${localized(money.consequences, lang)}`,
+      ].join("\n");
     }
-    const titles = snap.groundRules.map((r, i) => `${i + 1}. ${r.title.en}`).join("\n");
+    const titles = snap.groundRules
+      .map((r, i) => `${i + 1}. ${localized(r.title, lang)}`)
+      .join("\n");
     return lang === "fil"
       ? `Mga ground rules:\n${titles}\n\nTanungin ang specific rule, o buksan ang Ground Rules tab.`
-      : `Ground rules:\n${titles}\n\nAsk about a specific rule, or open the Ground Rules tab.`;
+      : lang === "zh"
+        ? `守則：\n${titles}\n\n可問某一條，或打開 Ground Rules 分頁。`
+        : `Ground rules:\n${titles}\n\nAsk about a specific rule, or open the Ground Rules tab.`;
   }
 
   // Full day list only when explicitly asking for schedule overview
@@ -237,7 +345,7 @@ function heuristicAnswer(question: string, snap: LiveFamilySnapshot): string | n
     /full schedule|whole (day )?schedule|today'?s schedule|iskedyul|時間表|buong (araw )?na schedule/.test(
       q
     ) ||
-    (/^schedule\??$/.test(q.trim()) || /\bschedule\b/.test(q) && !/\bnow\b/.test(q))
+    (/^schedule\??$/.test(q.trim()) || (/\bschedule\b/.test(q) && !/\bnow\b/.test(q)))
   ) {
     if (!snap.todaySchedule) return null;
     const tasks = sortTasksByTime(snap.todaySchedule.tasks)
@@ -277,7 +385,8 @@ async function fetchWebSnippets(query: string): Promise<string> {
 async function answerWithLlm(
   question: string,
   knowledge: string,
-  web: string
+  web: string,
+  replyLang: Lang
 ): Promise<string | null> {
   // Prefer OpenRouter (can use free models). Fall back to OpenAI.
   const openRouterKey = process.env.OPENROUTER_API_KEY;
@@ -297,9 +406,11 @@ async function answerWithLlm(
     : process.env.OPENAI_MODEL || "gpt-4o-mini";
 
   const system = `You are the Zizi Family household helper assistant for Charlene (helper), Sir, and Mum.
-Answer briefly in the same language as the question (English, Filipino, or Traditional Chinese).
+CRITICAL: Reply ONLY in ${langName(replyLang)}. Do not mix languages unless quoting a dish name.
+If the user asked to use a language (e.g. "in Filipino"), obey that.
 Prefer FAMILY LIVE DATA below over the internet.
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock — that is when Admin last saved content, not now.
+For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
 Do not use the word 姐姐 — say Charlene.
@@ -356,7 +467,8 @@ export async function answerFamilyQuestion(
   const knowledge = snapshotToKnowledgeText(snap);
   const allowInternet = options?.allowInternet !== false;
 
-  const quick = heuristicAnswer(question, snap);
+  const { lang, contentQuestion } = resolveReplyLang(question);
+  const quick = heuristicAnswer(contentQuestion, snap, lang);
 
   // Deterministic answers (time, schedule, meals, rules) win over free LLMs
   if (quick) {
@@ -372,15 +484,15 @@ export async function answerFamilyQuestion(
   const needsWeb =
     allowInternet &&
     /weather|typhoon|天氣|bagyo|how to cook|paano magluto|substitute|palit|recipe tip/.test(
-      question.toLowerCase()
+      contentQuestion.toLowerCase()
     );
 
   let web = "";
   if (needsWeb || (allowInternet && (process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY))) {
-    web = await fetchWebSnippets(question);
+    web = await fetchWebSnippets(contentQuestion);
   }
 
-  const ai = await answerWithLlm(question, knowledge, web);
+  const ai = await answerWithLlm(contentQuestion, knowledge, web, lang);
   if (ai) {
     return {
       answer: ai,
@@ -393,9 +505,9 @@ export async function answerFamilyQuestion(
 
   return {
     answer:
-      detectLang(question) === "fil"
+      lang === "fil"
         ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup time, day off, o ground rules."
-        : detectLang(question) === "zh"
+        : lang === "zh"
           ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送時間、放假、守則。"
           : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup time, day off, or ground rules.",
     source: "live-web",
