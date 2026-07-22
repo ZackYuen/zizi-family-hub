@@ -350,6 +350,40 @@ const hkLifeGuides = [
     },
     "https://www.fdh.labour.gov.hk/res/pdf/Employment_handbook_FDH_English.pdf"
   ),
+  tip(
+    "life-android-apps",
+    "culture",
+    73,
+    "hk-general",
+    {
+      en: "Must-have Android apps in Hong Kong",
+      fil: "Mga dapat i-download na Android app sa Hong Kong",
+      zh: "在港必備 Android 應用程式",
+    },
+    {
+      en: "Install from Google Play (free). Ask Sir/Mum if you need Wi‑Fi or a Hong Kong SIM.\n• WhatsApp — message Sir/Mum and this family's helper bot\n• Google Maps — walking / bus routes; save home + kindergarten\n• MTR Mobile — train routes, fares, delays\n• Octopus App — balance & top-up; some Android phones (Android 12+, NFC on, HK-sold device) can tap Octopus from the phone\n• AlipayHK or PayMe — common QR shop payments (optional; physical Octopus still covers most daily taps)\n• OpenRice — restaurants, hours, reviews\n• MyObservatory (HKO) — typhoon / rain alerts\n• Google Translate — Chinese signs & menus (camera mode)\nKeep your phone charged. Never share OTP / verification codes or lend your phone to strangers.",
+      fil: "I-download sa Google Play (libre). Tanungin si Sir/Mum kung kailangan ng Wi‑Fi o HK SIM.\n• WhatsApp — makipag-usap kay Sir/Mum at sa family bot\n• Google Maps — lakad / bus; i-save ang bahay + kindergarten\n• MTR Mobile — ruta, pamasahe, delay\n• Octopus App — balanse at top-up; may Android phone (Android 12+, naka-NFC, binili sa HK) na pwedeng mag-tap ng Octopus mula sa phone\n• AlipayHK o PayMe — QR payment sa tindahan (opsyonal; sapat na ang physical Octopus sa araw-araw)\n• OpenRice — restawran, oras, review\n• MyObservatory (HKO) — bagyo / ulan\n• Google Translate — Chinese signs at menu (camera)\nPanatilihing charged ang phone. Huwag ibigay ang OTP / verification code o ipahiram ang phone sa estranghero.",
+      zh: "請從 Google Play 免費下載。需要 Wi‑Fi 或香港 SIM 可問 Sir/Mum。\n• WhatsApp — 聯絡 Sir/Mum 及本家庭助手 bot\n• Google Maps — 步行／巴士；儲存住家＋幼稚園\n• MTR Mobile — 路線、車費、延誤\n• Octopus App — 查餘額／增值；部分 Android（Android 12+、開啟 NFC、香港行貨）可用手機拍卡八達通\n• AlipayHK 或 PayMe — 常見 QR 付款（可選；日常多數仍可用實體八達通）\n• OpenRice — 餐廳、營業時間、評價\n• 我的天文台 MyObservatory — 颱風／暴雨提示\n• Google 翻譯 — 中文路牌與菜單（相機模式）\n保持手機有電。切勿把 OTP／驗證碼給人或把手機借給陌生人。",
+    },
+    "https://www.discoverhongkong.com/eng/travel-guide/traveller-essentials/travel-apps.html"
+  ),
+  tip(
+    "life-healthy-holiday",
+    "health",
+    62,
+    "hk-general",
+    {
+      en: "Healthy activities on Filipino rest days",
+      fil: "Masusustansiyang gawain sa rest day / holiday",
+      zh: "外傭休息日健康活動",
+    },
+    {
+      en: "Your Sunday and HK public holidays (勞工假) are for rest and health — not only sitting in crowded Central parks all day.\n• Easy walk or short hike in country parks / harbourfront — bring water, hat, and Octopus; start short if you are new\n• Near Kwun Tong / Lam Tin: Jordan Valley Park, Lam Tin & Yau Tong parks, waterfront promenades — good for walking and stretching\n• Free outdoor fitness: helper-friendly Sunday groups (e.g. free sessions at Tamar Park — search current “G-Class” / park fitness posts). Join only groups you trust\n• Nature day: Kadoorie Farm & Botanic Garden (KFBG) often runs a free Sunday programme for migrant domestic workers (shuttle, vegan lunch, yoga/art). Check kfbg.org and register early — seats go fast\n• Public pools / sports centres (Leisure & Cultural Services) when open — swim or stretch\n• Church or fellowship + a walk is fine; leave time to sleep before Monday work\nAvoid: long sun with no water; heavy drinking; money-lending circles; overnight stays without Sir/Mum agreement.\nIf Typhoon T8+ / Black rain / extreme heat: stay indoors — see Weather tips.",
+      fil: "Ang Linggo at HK public holiday (勞工假) ay para sa pahinga at kalusugan — hindi lang umupo buong araw sa siksikang park sa Central.\n• Madaling lakad o maikling hike sa country park / harbourfront — magdala ng tubig, sombrero, Octopus; magsimula sa maikli kung bago ka\n• Malapit sa Kwun Tong / Lam Tin: Jordan Valley Park, parke sa Lam Tin at Yau Tong, waterfront — maganda sa lakad at stretching\n• Libreng outdoor fitness: Sunday groups para sa helpers (hal. free sessions sa Tamar Park — hanapin ang kasalukuyang “G-Class” / park fitness posts). Sumali lang sa trusted group\n• Nature day: Madalas may libreng Sunday programme ang Kadoorie Farm & Botanic Garden (KFBG) para sa migrant domestic workers (shuttle, vegan lunch, yoga/art). Tingnan ang kfbg.org at magpa-reserve agad — mabilis maubos\n• Public pool / sports centre (Leisure & Cultural Services) kapag bukas — langoy o stretch\n• Church o fellowship + lakad ay OK; mag-iwan ng oras matulog bago ang Lunes\nIwasan: mahabang araw nang walang tubig; sobrang inuman; money-lending circle; matulog sa labas nang walang sang-ayon nina Sir/Mum.\nKung T8+ / Black rain / sobrang init: manatili sa loob — tingnan ang Weather tips.",
+      zh: "星期日及香港公眾假期（勞工假）應用來休息與健康 — 不必整天只坐在中環擠擁的公園。\n• 郊野公園／海濱輕鬆步行或短途行山 — 帶水、帽、八達通；新手先選短線\n• 觀塘／藍田附近：佐敦谷公園、藍田及油塘公園、海濱長廊 — 適合步行伸展\n• 免費戶外健身：外傭友善的星期日團體（例如添馬公園免費操 — 搜尋最新 “G-Class”／公園健身訊息）。只參加你信任的團體\n• 親近大自然：嘉道理農場暨植物園（KFBG）常有外傭免費星期日活動（接送、素食午餐、瑜伽／藝術）。查 kfbg.org 並提早報名 — 名額很快滿\n• 公眾泳池／體育館（康文署）開放時可游泳或伸展\n• 教會／團契加散步可以；週一上班前預留睡眠時間\n避免：烈日下長時間缺水、大量飲酒、借貸圈子、未得 Sir/Mum 同意在外過夜。\n八號風球／黑雨／極端炎熱：留在室內 — 見天氣提示。",
+    },
+    "https://www.kfbg.org/en/events/free-sunday-programme-for-migrant-domestic-workers-at-kfbg"
+  ),
 ];
 
 const settlingChecklist = [
@@ -359,6 +393,15 @@ const settlingChecklist = [
       en: "Get / top up Octopus card",
       fil: "Kumuha / mag-top up ng Octopus",
       zh: "辦理／增值八達通",
+    },
+    done: false,
+  },
+  {
+    id: "check-android-apps",
+    title: {
+      en: "Install must-have Android apps (see HK Life)",
+      fil: "I-install ang must-have Android apps (tingnan ang HK Life)",
+      zh: "安裝必備 Android 應用（見香港生活）",
     },
     done: false,
   },

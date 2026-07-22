@@ -135,13 +135,41 @@ export async function getContent(): Promise<AppContent> {
   }
 
   // Fill missing HK Life / preferences / appliances from local seed without wiping Admin edits
-  if (!remote.hkLifeGuides?.length && local.hkLifeGuides?.length) {
+  const remoteGuideIds = new Set((remote.hkLifeGuides ?? []).map((g) => g.id));
+  const missingGuides = (local.hkLifeGuides ?? []).filter(
+    (g) => !remoteGuideIds.has(g.id)
+  );
+  const remoteCheckIds = new Set((remote.settlingChecklist ?? []).map((c) => c.id));
+  const missingChecks = (local.settlingChecklist ?? []).filter(
+    (c) => !remoteCheckIds.has(c.id)
+  );
+  const needsHkLifeSeed =
+    (!remote.hkLifeGuides?.length && Boolean(local.hkLifeGuides?.length)) ||
+    missingGuides.length > 0 ||
+    missingChecks.length > 0 ||
+    (!remote.emergencyContacts?.length && Boolean(local.emergencyContacts?.length)) ||
+    (!remote.hkWeather && Boolean(local.hkWeather)) ||
+    (!remote.homeArea && Boolean(local.homeArea));
+
+  if (needsHkLifeSeed) {
+    const guides =
+      !remote.hkLifeGuides?.length && local.hkLifeGuides?.length
+        ? local.hkLifeGuides
+        : missingGuides.length
+          ? [...(remote.hkLifeGuides ?? []), ...missingGuides].sort(
+              (a, b) => a.priority - b.priority
+            )
+          : remote.hkLifeGuides;
+    const checklist =
+      !remote.settlingChecklist?.length && local.settlingChecklist?.length
+        ? local.settlingChecklist
+        : missingChecks.length
+          ? [...(remote.settlingChecklist ?? []), ...missingChecks]
+          : remote.settlingChecklist;
     const filled: AppContent = {
       ...remote,
-      hkLifeGuides: local.hkLifeGuides,
-      settlingChecklist: remote.settlingChecklist?.length
-        ? remote.settlingChecklist
-        : local.settlingChecklist,
+      hkLifeGuides: guides,
+      settlingChecklist: checklist,
       emergencyContacts: remote.emergencyContacts?.length
         ? remote.emergencyContacts
         : local.emergencyContacts,
