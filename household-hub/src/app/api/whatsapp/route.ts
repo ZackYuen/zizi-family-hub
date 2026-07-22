@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { answerFamilyQuestion } from "@/lib/ask-agent";
+import { parseSaveCommand, handleWhatsAppSave } from "@/lib/whatsapp-save";
 
 export const dynamic = "force-dynamic";
 
@@ -103,6 +104,17 @@ export async function POST(request: Request) {
             await sendWhatsAppText(
               msg.from,
               "Send ? then your question.\nExample: ? What time pick up Zizi?"
+            );
+            continue;
+          }
+          const saveCmd = parseSaveCommand(question);
+          if (saveCmd) {
+            const saved = await handleWhatsAppSave(saveCmd.text, {
+              jid: msg.from,
+            });
+            await sendWhatsAppText(
+              msg.from,
+              `${saved.answer}\n\n_(Zizi Family Hub)_`
             );
             continue;
           }

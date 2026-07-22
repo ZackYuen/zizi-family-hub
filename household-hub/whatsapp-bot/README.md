@@ -71,13 +71,15 @@ Bot replies only when:
 
 ### Save into Admin (knowledge / meals)
 
-Requires `INBOX_SECRET` on both Vercel and the bot:
-
 | Command | Effect |
 |---------|--------|
-| `?save …` or `?save "…"` | LLM digests content → Admin → WA Inbox (tip / recipe / note) |
+| `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
 | `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
 | Normal `? …` asks | Logged in inbox (Q&A) for review |
+
+Works two ways:
+1. **Bot → `/api/inbox`** when `INBOX_SECRET` matches Vercel
+2. **Bot → `/api/ask`** — Ask detects `save …` and stores to inbox (so even an outdated bot that only calls Ask still works after Vercel deploy)
 
 Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 
@@ -85,8 +87,8 @@ Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 
 | Variable | Meaning |
 |----------|---------|
-| `LIVE_ASK_URL` | Ask API URL |
-| `INBOX_SECRET` | Same secret as Vercel — enables inbox logging |
+| `LIVE_ASK_URL` | Ask API URL (must end with `/`, e.g. `.../api/ask/`) |
+| `INBOX_SECRET` | Same secret as Vercel — preferred inbox path |
 | `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
 | `BOT_NAME` | Name people type in group |
 | `TRIGGER_PREFIX` | Default `?` |
@@ -111,3 +113,6 @@ You can run **both**; group members can use either path.
 - **Logged out:** delete `auth_info`, restart, scan again.
 - **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs`; confirm message used `?` or @bot.
 - **Ask API 404:** merge/deploy PR with `/api/ask` first.
+- **`?save` says “could not find that”:** Azure bot is outdated *and* Vercel not yet deployed with Ask-side save. Deploy this app, then on Azure: `git pull && pm2 restart zizi-whatsapp-bot`. Footer `_(live · date)_` also means the bot binary is old.
+- **Footer still `_(live · …)_`:** pull latest bot and restart pm2 — should become `_(Zizi Family Hub)_`.
+

@@ -67,14 +67,14 @@ const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
 fs.mkdirSync(AUTH_DIR, { recursive: true });
 
-async function askFamilyHub(question) {
+async function askFamilyHub(question, extra = {}) {
   // Prefer trailing-slash URL; follow 308 manually if needed (some Node builds mishandle POST redirects)
   let url = LIVE_ASK_URL;
   for (let attempt = 0; attempt < 3; attempt++) {
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question, allowInternet: true }),
+      body: JSON.stringify({ question, allowInternet: true, ...extra }),
       signal: AbortSignal.timeout(30000),
       redirect: "manual",
     });
@@ -290,29 +290,37 @@ async function startBot() {
             text: saveCmd.text,
             jid,
           });
-          const d = result?.digest;
-          const kindLabel =
-            d?.kind === "recipe_candidate"
-              ? "recipe"
-              : d?.kind === "tip_candidate"
-                ? "HK Life tip"
-                : "note";
-          const reply = [
-            `Saved → Admin → WA Inbox (${kindLabel})`,
-            d?.summary ? `Digest: ${d.summary}` : null,
-            d?.link ? `Link: ${d.link}` : null,
-            "Promote there after you review.",
-          ]
-            .filter(Boolean)
-            .join("\n");
-          await sock.sendMessage(jid, { text: reply }, { quoted: msg });
-          continue;
+          if (result?.item || result?.ok) {
+            const d = result?.digest;
+            const kindLabel =
+              d?.kind === "recipe_candidate"
+                ? "recipe"
+                : d?.kind === "tip_candidate"
+                  ? "HK Life tip"
+                  : "note";
+            const reply = [
+              `Saved → Admin → WA Inbox (${kindLabel})`,
+              d?.summary ? `Digest: ${d.summary}` : null,
+              d?.link ? `Link: ${d.link}` : null,
+              "Promote there after you review.",
+            ]
+              .filter(Boolean)
+              .join("\n");
+            await sock.sendMessage(jid, { text: reply }, { quoted: msg });
+            continue;
+          }
+          // Inbox secret missing / failed — fall through to Ask API (handles save server-side)
+          console.warn("[save] inbox post failed; trying Ask API save handler");
         }
 
         let answer;
         try {
-          const result = await askFamilyHub(question);
+          const result = await askFamilyHub(question, { jid });
           answer = result.answer || "No answer.";
+          if (result.handled === "save") {
+            await sock.sendMessage(jid, { text: answer.slice(0, 4000) }, { quoted: msg });
+            continue;
+          }
           answer += "\n\n_(Zizi Family Hub)_";
           await postInbox({
             kind: "ask",
