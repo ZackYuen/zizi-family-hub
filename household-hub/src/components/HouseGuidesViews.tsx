@@ -85,6 +85,8 @@ const kindIcon: Record<ApplianceKind, string> = {
   "washing-machine": "👕",
   "bread-machine": "🍞",
   "air-fryer": "🍟",
+  "water-dispenser": "💧",
+  "range-hood": "🌬️",
   other: "🔌",
 };
 
@@ -130,13 +132,34 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
                   <span className="text-xl" aria-hidden>
                     {kindIcon[item.kind] || kindIcon.other}
                   </span>
-                  <h3 className="text-base font-semibold text-stone-900">
-                    {localized(item.title, lang)}
-                  </h3>
+                  <div className="min-w-0">
+                    <h3 className="text-base font-semibold text-stone-900">
+                      {localized(item.title, lang)}
+                    </h3>
+                    {item.model && (
+                      <p className="text-[11px] font-medium text-stone-400">
+                        {item.model}
+                      </p>
+                    )}
+                  </div>
                 </div>
                 <p className="text-sm leading-relaxed text-stone-600">
                   {localized(item.tips, lang)}
                 </p>
+                {item.sourceUrl && (
+                  <a
+                    href={item.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-block text-xs font-medium text-teal-700 underline"
+                  >
+                    {lang === "fil"
+                      ? "Manual / support"
+                      : lang === "zh"
+                        ? "說明／支援頁"
+                        : "Manual / support"}
+                  </a>
+                )}
               </div>
               {warning && (
                 <div className="border-t border-amber-100 bg-amber-50/90 px-4 py-3">

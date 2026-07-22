@@ -24,6 +24,8 @@ const APPLIANCE_KINDS: ApplianceKind[] = [
   "washing-machine",
   "bread-machine",
   "air-fryer",
+  "water-dispenser",
+  "range-hood",
   "other",
 ];
 
@@ -185,6 +187,26 @@ export function AppliancesAdmin({
               {adminT("delete", lang)}
             </button>
           </div>
+          <input
+            className="mb-2 w-full rounded border border-stone-200 px-2 py-1 text-xs"
+            placeholder="Model (e.g. Dyson V12)"
+            value={item.model || ""}
+            onChange={(e) => {
+              const next = [...list];
+              next[i] = { ...item, model: e.target.value };
+              patch(next);
+            }}
+          />
+          <input
+            className="mb-3 w-full rounded border border-stone-200 px-2 py-1 text-xs"
+            placeholder="Manual / support URL"
+            value={item.sourceUrl || ""}
+            onChange={(e) => {
+              const next = [...list];
+              next[i] = { ...item, sourceUrl: e.target.value };
+              patch(next);
+            }}
+          />
           <div className="space-y-3">
             <TrilingualFieldEditor
               value={item.title}

@@ -156,13 +156,22 @@ export async function getContent(): Promise<AppContent> {
     !remote.familyPreferences?.length && Boolean(local.familyPreferences?.length);
   const needsAppliances =
     !remote.appliances?.length && Boolean(local.appliances?.length);
-  if (needsPrefs || needsAppliances) {
+  // Refresh when live still has generic seed (no family model IDs)
+  const needsApplianceModels = Boolean(
+    local.appliances?.some((a) => a.id === "app-dyson-v12") &&
+      remote.appliances?.length &&
+      !remote.appliances.some((a) => a.id === "app-dyson-v12")
+  );
+  if (needsPrefs || needsAppliances || needsApplianceModels) {
     const filled: AppContent = {
       ...remote,
       familyPreferences: needsPrefs
         ? local.familyPreferences
         : remote.familyPreferences,
-      appliances: needsAppliances ? local.appliances : remote.appliances,
+      appliances:
+        needsAppliances || needsApplianceModels
+          ? local.appliances
+          : remote.appliances,
       lastUpdated: new Date().toISOString(),
     };
     try {

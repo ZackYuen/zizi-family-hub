@@ -618,28 +618,54 @@ function heuristicAnswer(
   }
 
   if (
-    /vacuum|rice\s*cooker|pressure\s*cooker|washing\s*machine|washer|bread\s*machine|air\s*fryer|appliance|gamit sa bahay|吸塵|電飯煲|壓力鍋|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba)/.test(
+    /vacuum|dyson|v12|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|washing\s*machine|washer|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|壓力鍋|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
       q
     )
   ) {
     const apps = [...snap.appliances].sort((a, b) => a.priority - b.priority);
     if (apps.length) {
-      const kindMatchers: { re: RegExp; kind: string }[] = [
-        { re: /vacuum|吸塵/, kind: "vacuum" },
-        { re: /rice\s*cooker|eletr?ic\s*rice|電飯煲/, kind: "rice-cooker" },
-        { re: /pressure|壓力/, kind: "pressure-cooker" },
-        { re: /wash(ing)?\s*machine|washer|lavander|洗濯機|洗衣機/, kind: "washing-machine" },
-        { re: /bread\s*machine|麵包機/, kind: "bread-machine" },
-        { re: /air\s*fryer|氣炸/, kind: "air-fryer" },
+      const kindMatchers: { re: RegExp; kind?: string; id?: string }[] = [
+        { re: /dyson|v12|vacuum|吸塵/, kind: "vacuum" },
+        {
+          re: /zojirushi|np-?rlq|rice\s*cooker|eletr?ic\s*rice|電飯煲|飯煲/,
+          kind: "rice-cooker",
+        },
+        { re: /pressure|壓力/, kind: "rice-cooker" },
+        {
+          re: /panasonic|sd-?pt1002|bread\s*machine|麵包機/,
+          kind: "bread-machine",
+        },
+        {
+          re: /tefal|easy\s*fry|air\s*fryer|氣炸/,
+          kind: "air-fryer",
+        },
+        {
+          re: /philips|add6910|water\s*dispenser|飲水|RO\s*water/,
+          kind: "water-dispenser",
+        },
+        {
+          re: /hitachi|hb-?st388|range\s*hood|cooker\s*hood|抽油煙/,
+          kind: "range-hood",
+        },
+        {
+          re: /wash(ing)?\s*machine|washer|lavander|洗濯機|洗衣機/,
+          kind: "washing-machine",
+        },
       ];
-      const matchedKind = kindMatchers.find((m) => m.re.test(q))?.kind;
-      const hit = matchedKind
-        ? apps.find((a) => a.kind === matchedKind)
+      const matched = kindMatchers.find((m) => m.re.test(q));
+      const hit = matched
+        ? apps.find((a) => a.kind === matched.kind) ||
+          apps.find((a) =>
+            matched.re.test(
+              `${a.model || ""} ${a.title.en} ${a.title.zh || ""} ${a.id}`
+            )
+          )
         : undefined;
       if (hit) {
         const caution = hit.warnings ? localized(hit.warnings, lang) : "";
         return [
           localized(hit.title, lang),
+          hit.model ? `Model: ${hit.model}` : null,
           localized(hit.tips, lang),
           caution
             ? lang === "fil"
@@ -653,13 +679,16 @@ function heuristicAnswer(
           .join("\n");
       }
       const list = apps
-        .map((a, i) => `${i + 1}. ${localized(a.title, lang)}`)
+        .map(
+          (a, i) =>
+            `${i + 1}. ${localized(a.title, lang)}${a.model ? ` (${a.model})` : ""}`
+        )
         .join("\n");
       return lang === "fil"
-        ? `Mga tools / appliances:\n${list}\n\nTanungin ang pangalan (hal. rice cooker), o buksan ang Tools tab.`
+        ? `Mga tools / appliances:\n${list}\n\nTanungin ang pangalan (hal. Dyson / rice cooker), o buksan ang Tools tab.`
         : lang === "zh"
-          ? `家電／工具：\n${list}\n\n可問名稱（例如電飯煲），或打開「家電」分頁。`
-          : `House tools / appliances:\n${list}\n\nAsk by name (e.g. rice cooker), or open the Tools tab.`;
+          ? `家電／工具：\n${list}\n\n可問名稱（例如 Dyson、飯煲），或打開「家電」分頁。`
+          : `House tools / appliances:\n${list}\n\nAsk by name (e.g. Dyson, rice cooker), or open the Tools tab.`;
     }
   }
 
