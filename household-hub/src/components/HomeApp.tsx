@@ -13,7 +13,6 @@ import {
   RulesAndPreferencesView,
 } from "./HouseGuidesViews";
 import { LiveClock } from "./LiveClock";
-import { BgmPlayer } from "./BgmPlayer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
 import { localized } from "@/lib/localized-text";
@@ -42,10 +41,7 @@ export function HomeApp({ content }: { content: AppContent }) {
               {labels.welcome[lang]}, {content.helperName} · {labels.familyMember[lang]}
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <BgmPlayer />
-            <LanguageToggle />
-          </div>
+          <LanguageToggle />
         </div>
         <LiveClock />
         {weatherOn && weather && (
