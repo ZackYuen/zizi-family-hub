@@ -88,6 +88,7 @@ const kindIcon: Record<ApplianceKind, string> = {
   "water-dispenser": "💧",
   "range-hood": "🌬️",
   dehumidifier: "💨",
+  "air-purifier": "🌀",
   other: "🔌",
 };
 

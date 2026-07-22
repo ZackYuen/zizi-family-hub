@@ -153,6 +153,7 @@ export type ApplianceKind =
   | "water-dispenser"
   | "range-hood"
   | "dehumidifier"
+  | "air-purifier"
   | "other";
 
 export interface ApplianceGuide {

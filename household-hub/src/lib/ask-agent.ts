@@ -618,14 +618,19 @@ function heuristicAnswer(
   }
 
   if (
-    /vacuum|dyson|v12|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|washing\s*machine|washer|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|壓力鍋|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
+    /vacuum|dyson|v12|hp07|purifier|hot\+?cool|空氣清新|暖風|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|washing\s*machine|washer|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|壓力鍋|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
       q
     )
   ) {
     const apps = [...snap.appliances].sort((a, b) => a.priority - b.priority);
     if (apps.length) {
       const kindMatchers: { re: RegExp; kind?: string; id?: string }[] = [
-        { re: /dyson|v12|vacuum|吸塵/, kind: "vacuum" },
+        { re: /v12|vacuum|吸塵/, kind: "vacuum" },
+        {
+          re: /hp07|purifier|hot\+?cool|空氣清新|暖風/,
+          kind: "air-purifier",
+        },
+        { re: /\bdyson\b/, kind: "vacuum" },
         {
           re: /zojirushi|np-?rlq|rice\s*cooker|eletr?ic\s*rice|電飯煲|飯煲/,
           kind: "rice-cooker",

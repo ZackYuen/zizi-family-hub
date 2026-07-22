@@ -1254,7 +1254,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-22T11:11:01.331Z",
+  "lastUpdated": "2026-07-22T11:12:05.069Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1955,6 +1955,28 @@
         "en": "Keep air grills unblocked. Do not tip the machine when the tank has water. Never use abrasive cleaners. If less effective: check tank not full, room not too cold, and unit sized for the room — ask Sir/Mum if unsure.",
         "fil": "Huwag harangan ang air grills. Huwag itagilid kung may tubig ang tank. Huwag gumamit ng abrasive cleaners. Kung humina: tingnan kung puno ang tank, masyadong malamig ang kwarto, o mali ang laki para sa room — tanungin si Sir/Mum kung unsure.",
         "zh": "出入風口勿遮擋。水箱有水時不要傾斜機身。不要用磨蝕性清潔劑。效果變差：檢查水箱是否滿、室溫是否過低、機型是否適合房間——不確定問 Sir/Mum。"
+      }
+    },
+    {
+      "id": "app-dyson-hp07",
+      "kind": "air-purifier",
+      "model": "Dyson HP07",
+      "priority": 8,
+      "sourceUrl": "https://www.dyson.com/support/air-treatment/purifiers/purifier-hot-cool-hp7c",
+      "title": {
+        "en": "Dyson HP07 Purifier Hot+Cool",
+        "fil": "Dyson HP07 Purifier Hot+Cool",
+        "zh": "Dyson HP07 暖風＋涼風空氣清新機"
+      },
+      "tips": {
+        "en": "Our Dyson HP07 is a Purifier Hot+Cool (cleans air + heats + cools). Place with a few feet clear on all sides so air can circulate. Use the remote or Dyson Link app: Auto mode lets sensors adjust purification; set a target temperature for heating; use fan speed for cooling airflow; Oscillation spreads air; Night mode for quieter use. LCD shows air quality, temperature/humidity, and filter life. Filters are NOT washable — replace HEPA/carbon when the screen or app says so (often about yearly). After fitting a new filter: plug in, then reset filter life on the remote (hold Night mode ~5 seconds for HEPA; some units also reset carbon via Oscillation — follow the on-screen / manual steps). Wipe the body with a damp lint-free cloth; soft-brush dust from air inlets and the loop amplifier. No detergents or polish.",
+        "fil": "Dyson HP07 namin: Purifier Hot+Cool (naglilinis ng hangin + heat + cool). Mag-iwan ng espasyo sa paligid para umikot ang hangin. Gamitin ang remote o Dyson Link app: Auto mode para sa sensors; itakda ang temperature para sa heating; fan speed para sa cooling; Oscillation para kumalat ang hangin; Night mode para mas tahimik. LCD: air quality, temperature/humidity, filter life. Hindi hugasan ang filters — palitan ang HEPA/carbon kapag sinabi ng screen/app (madalas ~taon-taon). Pagkatapos maglagay ng bagong filter: i-plug, i-reset ang filter life sa remote (hold Night mode ~5 segundo para sa HEPA; iba ay Oscillation para sa carbon — sundin ang manual). Punasan ng damp lint-free cloth; soft brush sa air inlets at loop amplifier. Walang detergent o polish.",
+        "zh": "Dyson HP07 是 Purifier Hot+Cool（淨化＋暖風＋涼風）。四周留空間讓空氣流通。用遙控或 Dyson Link：Auto 讓感應器自動調淨化；設定目標溫度作暖風；調風速作涼風；Oscillation 擺風；Night 更靜。LCD 顯示空氣質素、溫濕度、濾網壽命。濾網不可水洗——按螢幕／App 提示更換 HEPA／活性碳（多數約一年）。換新濾網後：插電，用遙控重設壽命（按住 Night 約 5 秒重設 HEPA；部分機型用 Oscillation 重設碳濾——跟說明）。機身用微濕無纖布抹；軟刷清入風孔和環形風道。不可用清潔劑或亮光劑。"
+      },
+      "warnings": {
+        "en": "Keep away from water and never tip liquid into the machine. Do not block the air inlets or amplifier. Heater surfaces get hot — keep Zizi at a safe distance. Ask Sir/Mum before buying / fitting replacement filters.",
+        "fil": "Layuan ang tubig; huwag magbuhos ng liquid sa machine. Huwag harangan ang air inlets o amplifier. Mainit kapag heater — layuan si Zizi. Bago bumili / magpalit ng filter, tanungin si Sir/Mum.",
+        "zh": "遠離水，不要向機內倒液體。勿遮擋入風口或風道。加熱時表面燙——Zizi 保持距離。買／換濾網前先問 Sir/Mum。"
       }
     }
   ]
