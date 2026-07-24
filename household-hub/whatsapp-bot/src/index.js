@@ -9,6 +9,7 @@ import qrcode from "qrcode-terminal";
 import pino from "pino";
 import { Boom } from "@hapi/boom";
 import fs from "fs";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -42,7 +43,10 @@ function loadEnvFile(filePath) {
 
 loadEnvFile(path.join(ROOT, ".env"));
 
-const AUTH_DIR = process.env.AUTH_DIR || path.join(ROOT, "auth_info");
+// Prefer $HOME — avoids root-owned ./auth_info from accidental `sudo node`
+const AUTH_DIR = path.resolve(
+  process.env.AUTH_DIR || path.join(os.homedir(), ".zizi-whatsapp-auth")
+);
 
 const LIVE_ASK_URL = (
   process.env.LIVE_ASK_URL || "https://zizi-family-hub.vercel.app/api/ask/"
@@ -109,7 +113,9 @@ Then rescan QR with: node src/index.js  (no sudo)
       process.exit(1);
     }
   }
-  console.log(`[ok] Session folder writable: ${dir}`);
+  console.log(
+    `[ok] Session folder writable: ${dir} (uid=${process.getuid?.() ?? "?"} gid=${process.getgid?.() ?? "?"} user=${os.userInfo().username})`
+  );
 }
 
 ensureAuthDirWritable(AUTH_DIR);
