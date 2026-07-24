@@ -65,7 +65,54 @@ const TRIGGER_PREFIX = (process.env.TRIGGER_PREFIX || "?").trim();
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
-fs.mkdirSync(AUTH_DIR, { recursive: true });
+/** Fail fast if auth_info is not writable (common after `sudo node` / root-owned files). */
+function ensureAuthDirWritable(dir) {
+  fs.mkdirSync(dir, { recursive: true });
+  const probe = path.join(dir, `.write-test-${process.pid}`);
+  try {
+    fs.writeFileSync(probe, "ok");
+    fs.unlinkSync(probe);
+  } catch (err) {
+    console.error("\n[fatal] Cannot write session folder:", dir);
+    console.error("[fatal]", err?.message || err);
+    console.error(`
+Fix on the VM (run as the same user that starts pm2 — usually ocuser, NEVER sudo node):
+
+  pm2 delete zizi-whatsapp-bot
+  sudo rm -rf "${dir}"
+  mkdir -p "${dir}"
+  chmod 700 "${dir}"
+  # if the whole bot tree was owned by root:
+  sudo chown -R "$(whoami):$(whoami)" "$(dirname "${dir}")"
+
+Then: node src/index.js   → scan QR → Ctrl+C → pm2 start ecosystem.config.cjs
+`);
+    process.exit(1);
+  }
+  // Also check existing creds.json ownership if present
+  const creds = path.join(dir, "creds.json");
+  if (fs.existsSync(creds)) {
+    try {
+      fs.accessSync(creds, fs.constants.W_OK);
+    } catch {
+      console.error("\n[fatal] auth_info/creds.json is not writable (often owned by root).");
+      console.error(`[fatal] Path: ${creds}`);
+      console.error(`
+Fix:
+
+  pm2 delete zizi-whatsapp-bot
+  sudo rm -rf "${dir}"
+  mkdir -p "${dir}" && chmod 700 "${dir}"
+
+Then rescan QR with: node src/index.js  (no sudo)
+`);
+      process.exit(1);
+    }
+  }
+  console.log(`[ok] Session folder writable: ${dir}`);
+}
+
+ensureAuthDirWritable(AUTH_DIR);
 
 async function askFamilyHub(question, extra = {}) {
   // Prefer trailing-slash URL; follow 308 manually if needed (some Node builds mishandle POST redirects)
@@ -228,7 +275,15 @@ async function startBot() {
     getMessage: async () => undefined,
   });
 
-  sock.ev.on("creds.update", saveCreds);
+  sock.ev.on("creds.update", async () => {
+    try {
+      await saveCreds();
+    } catch (err) {
+      console.error("[fatal] Failed to save auth_info (permission?).", err?.message || err);
+      console.error("[fatal] Fix ownership of auth_info, wipe session, rescan QR. Do not use sudo.");
+      process.exit(1);
+    }
+  });
 
   sock.ev.on("connection.update", (update) => {
     const { connection, lastDisconnect, qr } = update;
