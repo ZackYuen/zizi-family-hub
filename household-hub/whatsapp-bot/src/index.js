@@ -221,8 +221,11 @@ async function startBot() {
     },
     printQRInTerminal: false,
     generateHighQualityLinkPreview: false,
+    // Text Q&A bot: skip history/app-state media sync (avoids noisy mmg.whatsapp.net 403s)
     syncFullHistory: false,
+    shouldSyncHistoryMessage: () => false,
     markOnlineOnConnect: false,
+    getMessage: async () => undefined,
   });
 
   sock.ev.on("creds.update", saveCreds);

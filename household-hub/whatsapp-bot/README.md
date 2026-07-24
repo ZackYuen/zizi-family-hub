@@ -109,9 +109,10 @@ You can run **both**; group members can use either path.
 
 ## Troubleshooting
 
-- **No QR:** wait a few seconds; check firewall.
-- **Logged out:** delete `auth_info`, restart, scan again.
-- **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs`; confirm message used `?` or @bot.
+- **No QR:** wait a few seconds; check firewall. Run foreground: `node src/index.js` (not only `pm2 logs`).
+- **Logged out / MessageCounterError / Connection Closed:** delete `auth_info`, unlink old devices on the phone, start **one** process, scan once.
+- **`mmg.whatsapp.net` 403 / “transaction failed”:** history/media sync noise — ignore for text asks. Current bot skips history sync (`shouldSyncHistoryMessage: false`).
+- **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs` for `[ask]`; confirm message used `?` or @bot from a **different** phone than the linked device.
 - **Ask API 404:** merge/deploy PR with `/api/ask` first.
 - **`?save` says “could not find that”:** Azure bot is outdated *and* Vercel not yet deployed with Ask-side save. Deploy this app, then on Azure: `git pull && pm2 restart zizi-whatsapp-bot`. Footer `_(live · date)_` also means the bot binary is old.
 - **Footer still `_(live · …)_`:** pull latest bot and restart pm2 — should become `_(Zizi Family Hub)_`.
