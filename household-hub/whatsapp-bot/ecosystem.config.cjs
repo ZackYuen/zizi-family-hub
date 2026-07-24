@@ -1,3 +1,6 @@
+const os = require("os");
+const path = require("path");
+
 module.exports = {
   apps: [
     {
@@ -10,6 +13,8 @@ module.exports = {
       max_memory_restart: "300M",
       env: {
         NODE_ENV: "production",
+        // Keep session under the pm2 user's home (avoids root-owned ./auth_info)
+        AUTH_DIR: path.join(os.homedir(), ".zizi-whatsapp-auth"),
       },
     },
   ],

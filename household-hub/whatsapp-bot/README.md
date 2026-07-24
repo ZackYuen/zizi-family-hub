@@ -109,19 +109,25 @@ You can run **both**; group members can use either path.
 
 ## Troubleshooting
 
-- **`EACCES … auth_info/creds.json`:** session folder owned by root (from `sudo node` / `sudo pm2`). Keys then break (`MessageCounterError`). Fix:
+- **`EACCES … auth_info/creds.json`:** usually root-owned `./auth_info` or **two bot processes**. Prefer home session dir (`~/.zizi-whatsapp-auth`). Fix:
   ```bash
   pm2 delete zizi-whatsapp-bot
+  pkill -f 'whatsapp-bot/src/index.js' || true
+  # stop using project ./auth_info
   sudo rm -rf auth_info
-  mkdir -p auth_info && chmod 700 auth_info
-  sudo chown -R "$(whoami):$(whoami)" .
-  node src/index.js   # scan QR — never sudo
-  # after [ok] Connected:
-  # Ctrl+C
+  # remove AUTH_DIR=./auth_info from .env if present
+  sed -i '/^AUTH_DIR=/d' .env 2>/dev/null || true
+  git pull
+  mkdir -p ~/.zizi-whatsapp-auth && chmod 700 ~/.zizi-whatsapp-auth
+  node src/index.js   # must print Session folder writable: /home/…/.zizi-whatsapp-auth
+  # scan QR — never sudo — then Ctrl+C
   pm2 start ecosystem.config.cjs && pm2 save
+  # confirm only ONE process:
+  pm2 status
+  pgrep -af 'whatsapp-bot/src/index'
   ```
 - **No QR:** wait a few seconds; check firewall. Run foreground: `node src/index.js` (not only `pm2 logs`).
-- **Logged out / MessageCounterError / Connection Closed:** usually same as EACCES — wipe `auth_info`, unlink old devices on the phone, start **one** process, scan once.
+- **Logged out / MessageCounterError / Connection Closed:** usually same as EACCES or two instances — wipe session, unlink old devices, start **one** process, scan once.
 - **`mmg.whatsapp.net` 403 / “transaction failed”:** history/media sync noise — ignore for text asks. Current bot skips history sync (`shouldSyncHistoryMessage: false`).
 - **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs` for `[ask]`; confirm message used `?` or @bot from a **different** phone than the linked device.
 - **Ask API 404:** merge/deploy PR with `/api/ask` first.
