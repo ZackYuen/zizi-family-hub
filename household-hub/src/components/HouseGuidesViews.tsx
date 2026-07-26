@@ -35,9 +35,9 @@ const prefUi = {
     zh: "家庭偏好",
   },
   banner: {
-    en: "Soft tips for shopping & daily habits — not Ground Rules.",
-    fil: "Soft tips para sa shopping at araw-araw — hindi Ground Rules.",
-    zh: "購物與日常軟性貼士 — 不是守則。",
+    en: "Soft tips for shopping & daily habits — not Golden Rules.",
+    fil: "Soft tips para sa shopping at araw-araw — hindi Golden Rules.",
+    zh: "購物與日常軟性貼士 — 不是黃金守則。",
   },
   empty: {
     en: "No preference tips yet. Sir/Mum can add them in Admin.",

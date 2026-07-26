@@ -26,9 +26,9 @@ const ui = {
     zh: "必須遵守",
   },
   bannerBody: {
-    en: "Serious rules — no second chance. If something goes wrong, tell Sir or Mum right away.",
-    fil: "Seryosong rules — walang second chance. Kung may mali, sabihin agad kay Sir o Mum.",
-    zh: "嚴肅守則 — 沒有第二次機會。有事立刻告訴 Sir 或 Mum。",
+    en: "Golden Rules — no second chance. If something goes wrong, tell Sir or Mum right away.",
+    fil: "Golden Rules — walang second chance. Kung may mali, sabihin agad kay Sir o Mum.",
+    zh: "黃金守則 — 沒有第二次機會。有事立刻告訴 Sir 或 Mum。",
   },
   ifBroken: {
     en: "If Broken",

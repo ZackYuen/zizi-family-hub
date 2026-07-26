@@ -6,9 +6,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const ui = {
   title: { en: "Ask", fil: "Magtanong", zh: "提問" },
   hint: {
-    en: "Ask about schedule, meals, or rules. On WhatsApp start with ?",
-    fil: "Magtanong tungkol sa schedule, meals, o rules. Sa WhatsApp, magsimula ng ?",
-    zh: "可問時間表、餐單或守則。WhatsApp 請以 ? 開頭。",
+    en: "Ask about schedule, meals, or golden rules. On WhatsApp start with ?",
+    fil: "Magtanong tungkol sa schedule, meals, o golden rules. Sa WhatsApp, magsimula ng ?",
+    zh: "可問時間表、餐單或黃金守則。WhatsApp 請以 ? 開頭。",
   },
   placeholder: {
     en: "e.g. What time pick up Zizi?",
@@ -20,7 +20,7 @@ const ui = {
   examples: {
     en: ["Tonight dinner?", "How to use Dyson V12?", "Philips water?", "No borrowing money rule?"],
     fil: ["Hapunan ngayong gabi?", "Paano gamitin ang Dyson V12?", "Paano ang Philips water?", "Bawal humiram ng pera?"],
-    zh: ["今晚晚餐？", "Dyson V12 怎麼用？", "Philips 飲水機？", "不准借錢的守則？"],
+    zh: ["今晚晚餐？", "Dyson V12 怎麼用？", "Philips 飲水機？", "不准借錢的黃金守則？"],
   },
 };
 

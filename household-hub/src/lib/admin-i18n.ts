@@ -3,8 +3,8 @@ import type { Lang } from "./types";
 export const adminLabels = {
   login: { en: "Admin Login", fil: "Admin Login" },
   loginDesc: {
-    en: "Manage ground rules, schedule & meals for Charlene and the family",
-    fil: "Pamahalaan ang mga alituntunin, iskedyul at pagkain para kay Charlene at pamilya",
+    en: "Manage golden rules, schedule & meals for Charlene and the family",
+    fil: "Pamahalaan ang mga golden rules, iskedyul at pagkain para kay Charlene at pamilya",
   },
   password: { en: "Password", fil: "Password" },
   signIn: { en: "Sign In", fil: "Mag-sign In" },
@@ -14,11 +14,11 @@ export const adminLabels = {
   adminPanel: { en: "Admin Panel", fil: "Admin Panel" },
   viewApp: { en: "View App", fil: "Tingnan ang App" },
   logout: { en: "Logout", fil: "Logout" },
-  rules: { en: "Rules", fil: "Alituntunin", zh: "守則" },
+  rules: { en: "Golden Rules", fil: "Golden Rules", zh: "黃金守則" },
   rulesSubGround: {
-    en: "Ground Rules",
-    fil: "Ground Rules",
-    zh: "守則",
+    en: "Golden Rules",
+    fil: "Golden Rules",
+    zh: "黃金守則",
   },
   rulesSubPrefs: {
     en: "Preferences",
@@ -26,9 +26,9 @@ export const adminLabels = {
     zh: "偏好",
   },
   groundRulesAdminHint: {
-    en: "Serious rules with “If Broken”. Charlene must follow these. Do not put shopping tips here.",
-    fil: "Seryosong rules na may “If Broken”. Dapat sundin ni Charlene. Huwag ilagay ang shopping tips dito.",
-    zh: "附有 “If Broken” 的嚴肅守則。Charlene 必須遵守。購物貼士請放到「偏好」。",
+    en: "Serious golden rules with “If Broken”. Charlene must follow these. Do not put shopping tips here.",
+    fil: "Seryosong golden rules na may “If Broken”. Dapat sundin ni Charlene. Huwag ilagay ang shopping tips dito.",
+    zh: "附有 “If Broken” 的黃金守則。Charlene 必須遵守。購物貼士請放到「偏好」。",
   },
   preferences: {
     en: "Family preferences",
@@ -36,9 +36,9 @@ export const adminLabels = {
     zh: "家庭偏好",
   },
   preferencesHint: {
-    en: "Soft tips only (e.g. avoid China-made food, no meat at 錢大媽). No consequences. Separate from Ground Rules.",
-    fil: "Soft tips lang (hal. iwasan ang China-made food, huwag bumili ng karne sa 錢大媽). Walang consequences. Hiwalay sa Ground Rules.",
-    zh: "軟性貼士（例如少買中國製食品、不要到錢大媽買肉）。沒有後果。與守則分開。",
+    en: "Soft tips only (e.g. avoid China-made food, no meat at 錢大媽). No consequences. Separate from Golden Rules.",
+    fil: "Soft tips lang (hal. iwasan ang China-made food, huwag bumili ng karne sa 錢大媽). Walang consequences. Hiwalay sa Golden Rules.",
+    zh: "軟性貼士（例如少買中國製食品、不要到錢大媽買肉）。沒有後果。與黃金守則分開。",
   },
   addPreference: {
     en: "+ Add preference",
@@ -51,9 +51,9 @@ export const adminLabels = {
     zh: "儲存偏好",
   },
   saveRulesAndPrefs: {
-    en: "Save Ground Rules & Preferences",
-    fil: "I-save ang Ground Rules & Preferences",
-    zh: "儲存守則與偏好",
+    en: "Save Golden Rules & Preferences",
+    fil: "I-save ang Golden Rules & Preferences",
+    zh: "儲存黃金守則與偏好",
   },
   appliances: { en: "Tools", fil: "Gamit", zh: "家電" },
   appliancesHint: {

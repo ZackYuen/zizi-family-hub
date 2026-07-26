@@ -10,7 +10,7 @@ const geist = Geist({
 export const metadata: Metadata = {
   title: "Zizi Family Household Guide",
   description:
-    "Ground rules, task schedule and meals for Charlene — English & Filipino",
+    "Golden rules, task schedule and meals for Charlene — English & Filipino",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

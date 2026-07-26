@@ -648,20 +648,20 @@ function heuristicAnswer(
           localized(hit.title, lang),
           localized(hit.body, lang),
           lang === "fil"
-            ? "(Preference tip — hindi ground rule.)"
+            ? "(Preference tip — hindi golden rule.)"
             : lang === "zh"
-              ? "（偏好貼士——不是守則。）"
-              : "(Family preference tip — not a ground rule.)",
+              ? "（偏好貼士——不是黃金守則。）"
+              : "(Family preference tip — not a golden rule.)",
         ].join("\n");
       }
       const list = prefs
         .map((p, i) => `${i + 1}. ${localized(p.title, lang)}`)
         .join("\n");
       return lang === "fil"
-        ? `Mga family preference (soft tips, hindi ground rules):\n${list}\n\nTanungin ang specific tip, o buksan ang Rules tab → Preferences.`
+        ? `Mga family preference (soft tips, hindi golden rules):\n${list}\n\nTanungin ang specific tip, o buksan ang Golden Rules tab → Preferences.`
         : lang === "zh"
-          ? `家庭偏好（軟性貼士，不是守則）：\n${list}\n\n可問某一項，或打開「守則」分頁 →「偏好」。`
-          : `Family preferences (soft tips, not ground rules):\n${list}\n\nAsk about one, or open the Rules tab → Preferences.`;
+          ? `家庭偏好（軟性貼士，不是黃金守則）：\n${list}\n\n可問某一項，或打開「黃金守則」分頁 →「偏好」。`
+          : `Family preferences (soft tips, not golden rules):\n${list}\n\nAsk about one, or open the Golden Rules tab → Preferences.`;
     }
   }
 
@@ -761,7 +761,11 @@ function heuristicAnswer(
     }
   }
 
-  if (/rule|alituntunin|規則|ground|broken|borrow|pera|money|hiram/.test(q)) {
+  if (
+    /rule|alituntunin|規則|golden|ground|broken|borrow|pera|money|hiram|hold.*hand|hawakan|牽手|牽緊|kamay/.test(
+      q
+    )
+  ) {
     const money = snap.groundRules.find((r) =>
       r.title.en.toLowerCase().includes("borrow")
     );
@@ -776,14 +780,31 @@ function heuristicAnswer(
             : `If Broken: ${localized(money.consequences, lang)}`,
       ].join("\n");
     }
+    const ziziFirst = snap.groundRules.find((r) => r.id === "rule-2");
+    if (
+      ziziFirst &&
+      /hold.*hand|hawakan|牽手|牽緊|kamay|zizi\s*first|優先|outside|sa\s*labas|busy\s*street/.test(
+        q
+      )
+    ) {
+      return [
+        localized(ziziFirst.title, lang),
+        localized(ziziFirst.description, lang),
+        lang === "fil"
+          ? `Kung labag: ${localized(ziziFirst.consequences, lang)}`
+          : lang === "zh"
+            ? `若違反：${localized(ziziFirst.consequences, lang)}`
+            : `If Broken: ${localized(ziziFirst.consequences, lang)}`,
+      ].join("\n");
+    }
     const titles = snap.groundRules
       .map((r, i) => `${i + 1}. ${localized(r.title, lang)}`)
       .join("\n");
     return lang === "fil"
-      ? `Mga ground rules:\n${titles}\n\nTanungin ang specific rule, o buksan ang Ground Rules tab.`
+      ? `Mga golden rules:\n${titles}\n\nTanungin ang specific rule, o buksan ang Golden Rules tab.`
       : lang === "zh"
-        ? `守則：\n${titles}\n\n可問某一條，或打開 Ground Rules 分頁。`
-        : `Ground rules:\n${titles}\n\nAsk about a specific rule, or open the Ground Rules tab.`;
+        ? `黃金守則：\n${titles}\n\n可問某一條，或打開「黃金守則」分頁。`
+        : `Golden rules:\n${titles}\n\nAsk about a specific rule, or open the Golden Rules tab.`;
   }
 
   // Full day list only when explicitly asking for schedule overview
@@ -862,8 +883,8 @@ For "what time is it" / current time questions, use ONLY the field "CURRENT Hong
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
 For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON / Android apps / healthy holiday questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
-Never invent ground rules or schedule times.
-Family preferences are soft tips only — never call them ground rules or invent “If Broken” for them.
+Never invent golden rules or schedule times.
+Family preferences are soft tips only — never call them golden rules or invent “If Broken” for them.
 Appliance answers should come from the Tools / appliances section; if unsure about our exact machine, tell Charlene to ask Sir/Mum.
 Do not call Charlene a "helper" or "katulong" or 家務助理 in replies — she is a family member. Do not use the word 姐姐 — say Charlene.
 
@@ -958,10 +979,10 @@ export async function answerFamilyQuestion(
   return {
     answer:
       lang === "fil"
-        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup, Tools (rice cooker), preferences, o ground rules."
+        ? "Hindi ko mahanap ang sagot sa family hub. Pakitanong si Sir o Mum. Subukan: tonight menu, pickup, Tools (rice cooker), preferences, o golden rules."
         : lang === "zh"
-          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送、家電用法、偏好貼士、守則。"
-          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup, Tools (rice cooker), preferences, or ground rules.",
+          ? "家庭資料中找不到答案，請問 Sir 或 Mum。可試：今晚菜單、接送、家電用法、偏好貼士、黃金守則。"
+          : "I could not find that in the family hub. Please ask Sir or Mum. Try: tonight menu, pickup, Tools (rice cooker), preferences, or golden rules.",
     source: "live-web",
     usedInternet: false,
     dataSource: snap.source,
