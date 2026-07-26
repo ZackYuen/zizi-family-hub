@@ -54,23 +54,14 @@ export function isTaskActiveNow(task: ScheduleTask, minutesSinceMidnight: number
   return minutesSinceMidnight >= start && minutesSinceMidnight < end;
 }
 
+/** Task currently in its time window, or null if none (e.g. before first / after last). */
 export function getActiveTaskId(
   tasks: ScheduleTask[],
   minutesSinceMidnight: number
 ): string | null {
   const sorted = sortTasksByTime(tasks);
   const active = sorted.find((t) => isTaskActiveNow(t, minutesSinceMidnight));
-  if (active) return active.id;
-
-  let fallback: ScheduleTask | null = null;
-  for (const task of sorted) {
-    if (parseTimeToMinutes(getTaskStartTime(task)) <= minutesSinceMidnight) {
-      fallback = task;
-    } else {
-      break;
-    }
-  }
-  return fallback?.id ?? sorted[0]?.id ?? null;
+  return active?.id ?? null;
 }
 
 export function normalizeScheduleTask(task: ScheduleTask): ScheduleTask {
