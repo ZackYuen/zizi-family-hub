@@ -10,15 +10,20 @@ import {
   getActiveTaskId,
   sortTasksByTime,
 } from "@/lib/schedule-utils";
-import type { BilingualText, DaySchedule, SchoolCalendar } from "@/lib/types";
-import type { ScheduleSeason } from "@/lib/school-calendar";
+import { resolveActiveSchedule } from "@/lib/school-calendar";
+import type { AppContent, BilingualText } from "@/lib/types";
+import {
+  formatDayMonth,
+  formatWeekRangeLabel,
+  getTodayHongKongKey,
+  getWeekDays,
+  rotateDaysFrom,
+  type WeekDayInfo,
+} from "@/lib/week-utils";
 
 interface ScheduleViewProps {
-  schedule: DaySchedule[];
-  ziziSchool?: BilingualText;
+  content: AppContent;
   monthlyTasks?: BilingualText[];
-  season?: ScheduleSeason;
-  calendar?: SchoolCalendar;
 }
 
 function isDrawingTask(task: { task?: BilingualText; notes?: BilingualText }) {
@@ -27,60 +32,79 @@ function isDrawingTask(task: { task?: BilingualText; notes?: BilingualText }) {
   );
 }
 
-export function ScheduleView({
-  schedule,
-  ziziSchool,
-  monthlyTasks,
-  season,
-  calendar,
-}: ScheduleViewProps) {
+export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
   const { lang } = useLanguage();
   const todayKey = getTodayDayKey();
+  const todayDateKey = getTodayHongKongKey();
   const todayKeyRef = useRef(todayKey);
+
+  const [weekOffset, setWeekOffset] = useState(0);
   const [selectedDay, setSelectedDay] = useState(todayKey);
   const [nowMinutes, setNowMinutes] = useState(() => getHongKongTimeParts().minutesSinceMidnight);
-  const [isDayOff, setIsDayOff] = useState(() => isHelperDayOff());
 
+  const stripRef = useRef<HTMLDivElement>(null);
+  const todayBtnRef = useRef<HTMLButtonElement>(null);
+  const selectedBtnRef = useRef<HTMLButtonElement>(null);
+
+  const weekDays = useMemo(() => getWeekDays(weekOffset), [weekOffset]);
+
+  /** This week: start strip from today. Other weeks: Monday → Sunday. */
+  const orderedDays: WeekDayInfo[] = useMemo(() => {
+    if (weekOffset === 0) return rotateDaysFrom(weekDays, todayKey);
+    return weekDays;
+  }, [weekDays, weekOffset, todayKey]);
+
+  const selectedInfo =
+    orderedDays.find((d) => d.dayKey === selectedDay) ?? orderedDays[0];
+
+  const selectedDate = selectedInfo?.date ?? new Date();
+  const dayOffSelected = isHelperDayOff(selectedDate);
+  const activeForSelected = resolveActiveSchedule(content, selectedDate);
+  const daySchedule =
+    activeForSelected.schedule.find((d) => d.dayKey === selectedInfo.dayKey) ??
+    activeForSelected.schedule[0];
+
+  const sortedTasks = sortTasksByTime(daySchedule?.tasks ?? []);
+  const isViewingToday =
+    weekOffset === 0 && selectedInfo?.dateKey === todayDateKey;
+  const activeTaskId = useMemo(
+    () => (isViewingToday ? getActiveTaskId(sortedTasks, nowMinutes) : null),
+    [isViewingToday, sortedTasks, nowMinutes]
+  );
+
+  // Keep selection on today when returning to this week / midnight rollover
   useEffect(() => {
-    if (isHelperDayOff()) setSelectedDay("sunday");
-  }, []);
+    if (weekOffset === 0) {
+      setSelectedDay(isHelperDayOff() ? "sunday" : getTodayDayKey());
+    }
+  }, [weekOffset]);
 
   useEffect(() => {
     const id = setInterval(() => {
       setNowMinutes(getHongKongTimeParts().minutesSinceMidnight);
       const currentToday = getTodayDayKey();
-      const dayOff = isHelperDayOff();
-      setIsDayOff(dayOff);
-
-      if (dayOff) {
-        setSelectedDay("sunday");
-      } else if (currentToday !== todayKeyRef.current) {
-        setSelectedDay((prev) => (prev === todayKeyRef.current ? currentToday : prev));
+      if (weekOffset === 0 && currentToday !== todayKeyRef.current) {
+        setSelectedDay(isHelperDayOff() ? "sunday" : currentToday);
         todayKeyRef.current = currentToday;
       }
     }, 60_000);
     return () => clearInterval(id);
-  }, []);
+  }, [weekOffset]);
 
+  // Scroll today (or selected) into view when week/selection changes
   useEffect(() => {
-    if (isDayOff) setSelectedDay("sunday");
-  }, [isDayOff]);
-
-  const effectiveDayKey = isDayOff ? "sunday" : selectedDay;
-  const selected =
-    schedule.find((d) => d.dayKey === effectiveDayKey) ?? schedule[0];
-  const sortedTasks = sortTasksByTime(selected.tasks);
-  const isViewingToday = isDayOff || effectiveDayKey === todayKey;
-  const activeTaskId = useMemo(
-    () => (isViewingToday ? getActiveTaskId(selected.tasks, nowMinutes) : null),
-    [isViewingToday, selected.tasks, nowMinutes]
-  );
+    const el =
+      weekOffset === 0 && todayBtnRef.current
+        ? todayBtnRef.current
+        : selectedBtnRef.current;
+    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, [weekOffset, selectedDay, orderedDays]);
 
   const nowLabel = lang === "fil" ? "Ngayon" : lang === "zh" ? "現在" : "Now";
+  const weekLabel = formatWeekRangeLabel(weekDays, lang);
 
-  /** One status line — avoid stacking day-off + season + school banners */
   const statusLine = (() => {
-    if (isDayOff) {
+    if (dayOffSelected) {
       return {
         tone: "violet" as const,
         text:
@@ -91,20 +115,15 @@ export function ScheduleView({
               : "Charlene day off (Sunday / HK public holiday).",
       };
     }
-    if (season === "summer") {
+    const banner = activeForSelected.ziziSchool;
+    if (activeForSelected.season === "summer") {
       return {
         tone: "amber" as const,
-        text:
-          localized(ziziSchool, lang) ||
-          (lang === "zh"
-            ? `暑假至 ${calendar?.summerEndsOn ?? "9月1日"} — 無幼稚園。`
-            : lang === "fil"
-              ? `Summer holiday hanggang ${calendar?.summerEndsOn ?? "1 Sep"} — walang kindergarten.`
-              : `Summer holiday until ${calendar?.summerEndsOn ?? "1 Sep"} — no kindergarten.`),
+        text: localized(banner, lang),
       };
     }
-    if (ziziSchool) {
-      return { tone: "sky" as const, text: localized(ziziSchool, lang) };
+    if (banner) {
+      return { tone: "sky" as const, text: localized(banner, lang) };
     }
     return null;
   })();
@@ -124,17 +143,89 @@ export function ScheduleView({
         </p>
       )}
 
-      <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
-        {schedule.map((day) => {
-          const isToday = !isDayOff && day.dayKey === todayKey;
-          const isSelected = day.dayKey === effectiveDayKey;
+      {/* This week / next week */}
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setWeekOffset((w) => Math.max(-1, w - 1))}
+          disabled={weekOffset <= -1}
+          className="rounded-lg px-2 py-1.5 text-sm text-stone-600 ring-1 ring-stone-200 disabled:opacity-30"
+          aria-label={lang === "zh" ? "上一週" : "Previous week"}
+        >
+          ‹
+        </button>
+        <div className="min-w-0 flex-1 text-center">
+          <p className="text-xs font-semibold text-stone-800">
+            {weekOffset === 0
+              ? lang === "fil"
+                ? "Ngayong linggo"
+                : lang === "zh"
+                  ? "本週"
+                  : "This week"
+              : weekOffset === 1
+                ? lang === "fil"
+                  ? "Susunod na linggo"
+                  : lang === "zh"
+                    ? "下週"
+                    : "Next week"
+                : lang === "fil"
+                  ? "Nakaraang linggo"
+                  : lang === "zh"
+                    ? "上週"
+                    : "Last week"}
+          </p>
+          <p className="text-[11px] text-stone-500">{weekLabel}</p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setWeekOffset((w) => Math.min(2, w + 1))}
+          disabled={weekOffset >= 2}
+          className="rounded-lg px-2 py-1.5 text-sm text-stone-600 ring-1 ring-stone-200 disabled:opacity-30"
+          aria-label={lang === "zh" ? "下一週" : "Next week"}
+        >
+          ›
+        </button>
+      </div>
+
+      {weekOffset !== 0 && (
+        <button
+          type="button"
+          onClick={() => setWeekOffset(0)}
+          className="w-full rounded-lg bg-teal-50 py-1.5 text-xs font-medium text-teal-800 ring-1 ring-teal-100"
+        >
+          {lang === "fil"
+            ? "Bumalik sa ngayong linggo"
+            : lang === "zh"
+              ? "回到本週"
+              : "Back to this week"}
+        </button>
+      )}
+
+      <div
+        ref={stripRef}
+        className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide"
+      >
+        {orderedDays.map((day) => {
+          const isToday = day.dateKey === todayDateKey;
+          const isSelected = day.dayKey === selectedInfo.dayKey;
           const isSunday = day.dayKey === "sunday";
+          const label =
+            content.weeklySchedule.find((d) => d.dayKey === day.dayKey)?.day ||
+            content.weeklyScheduleSummer?.find((d) => d.dayKey === day.dayKey)
+              ?.day;
           return (
             <button
-              key={day.dayKey}
+              key={`${day.dateKey}-${day.dayKey}`}
+              ref={
+                isToday
+                  ? todayBtnRef
+                  : isSelected
+                    ? selectedBtnRef
+                    : undefined
+              }
               type="button"
               onClick={() => setSelectedDay(day.dayKey)}
-              className={`shrink-0 rounded-xl px-3 py-2 text-sm font-medium transition ${
+              className={`shrink-0 rounded-xl px-3 py-2 text-left text-sm font-medium transition ${
                 isSelected
                   ? "bg-teal-600 text-white shadow-sm"
                   : isToday
@@ -144,12 +235,21 @@ export function ScheduleView({
                       : "bg-white text-stone-600 ring-1 ring-stone-200"
               }`}
             >
-              {localized(day.day, lang)}
-              {(isToday || (isDayOff && isSunday)) && (
-                <span className="ml-1 text-[10px] opacity-80">
-                  ({labels.today[lang]})
-                </span>
-              )}
+              <span className="block">
+                {label ? localized(label, lang) : day.dayKey}
+                {isToday && (
+                  <span className="ml-1 text-[10px] opacity-80">
+                    ({labels.today[lang]})
+                  </span>
+                )}
+              </span>
+              <span
+                className={`mt-0.5 block text-[10px] font-normal ${
+                  isSelected ? "text-teal-100" : "text-stone-400"
+                }`}
+              >
+                {formatDayMonth(day.date, lang)}
+              </span>
             </button>
           );
         })}
@@ -187,7 +287,9 @@ export function ScheduleView({
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-stone-900">{localized(task.task, lang)}</p>
+                <p className="text-sm font-medium text-stone-900">
+                  {localized(task.task, lang)}
+                </p>
                 {task.notes && (
                   <p className="mt-0.5 text-xs leading-snug text-stone-500">
                     {localized(task.notes, lang)}
