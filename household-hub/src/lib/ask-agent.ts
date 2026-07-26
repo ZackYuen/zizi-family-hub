@@ -549,7 +549,7 @@ function heuristicAnswer(
     }
   }
 
-  if (/yata|一田|\bapm\b|aeon|yau\s*tong|grocery|pamimili|買菜|supermarket/.test(q)) {
+  if (/yata|一田|\bapm\b|aeon|yau\s*tong|grocery|pamimili|買菜|supermarket|wet\s*market|街市|瑞和|錢大媽|qin\s*dama|kai\s*bo/.test(q)) {
     const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-aeon");
     if (tip) return tip;
   }

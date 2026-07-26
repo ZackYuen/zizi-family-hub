@@ -209,14 +209,14 @@ const hkLifeGuides = [
     50,
     "kwun-tong",
     {
-      en: "Groceries — YATA at apm (first)",
-      fil: "Pamimili — YATA sa apm (una)",
-      zh: "買菜 — apm 一田 YATA（優先）",
+      en: "Groceries — YATA, 瑞和街 wet market, AEON",
+      fil: "Pamimili — YATA, 瑞和街 wet market, AEON",
+      zh: "買菜 — 一田、瑞和街街市、AEON",
     },
     {
-      en: "First choice: YATA (一田) supermarket inside apm, linked to our Kwun Tong home (near Kwun Tong MTR, ~3 min walk). Use the shopping list from tonight’s Meals tab when possible. AEON Yau Tong / Domain only if Sir/Mum ask or something is missing. Keep receipts if asked. Do not buy on credit or borrow.",
-      fil: "Una: YATA (一田) supermarket sa apm, konektado sa Kwun Tong home namin (malapit sa Kwun Tong MTR, ~3 min lakad). Gamitin ang shopping list sa Meals tab kung pwede. AEON Yau Tong / Domain lang kung sabihin ni Sir/Mum o may kulang. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram.",
-      zh: "優先：家附近 apm 內的一田 YATA（近觀塘港鐵，步行約3分鐘）。盡量用 Meals 分頁購物清單。只有 Sir/Mum 吩咐或買不到時才去油塘／Domain AEON。如需要請保留收據。不要賒帳或向人借錢。",
+      en: "OK places to buy food: (1) YATA (一田) at apm near home — first choice. (2) Shui Wo Street wet market (瑞和街街市) in Kwun Tong — good for fresh meat and vegetables. (3) AEON Yau Tong / Domain if needed. Do NOT go to 錢大媽 (Kai Bo / Qin Dama). Use the Meals tab shopping list when possible. Keep receipts if asked. Do not buy on credit or borrow.",
+      fil: "Pwede bumili sa: (1) YATA (一田) sa apm malapit sa bahay — una. (2) Shui Wo Street wet market (瑞和街街市) sa Kwun Tong — maganda para sa sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan. HUWAG pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals tab shopping list kung pwede. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram.",
+      zh: "可以買菜的地方：(1) 家附近 apm 一田 YATA — 優先。(2) 觀塘瑞和街街市 — 適合買新鮮肉菜。(3) 有需要可去油塘／Domain AEON。不要去錢大媽。盡量用 Meals 分頁購物清單。如需要請保留收據。不要賒帳或向人借錢。",
     }
   ),
   
