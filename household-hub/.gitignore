@@ -42,3 +42,4 @@ yarn-error.log*
 next-env.d.ts
 
 .live-cache/
+scripts/_patch-*.json

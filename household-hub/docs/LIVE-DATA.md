@@ -74,6 +74,12 @@ On read, the server may **append missing ids** from seed (new guides/appliances)
 
 See `whatsapp-bot/README.md`. Runs on a PC/Pi/VPS with `pm2` or Docker, calls `POST /api/ask`.
 
+## Schedule seasons
+
+- Summer (through `schoolCalendar.summerEndsOn`): `weeklyScheduleSummer` + `ziziSchoolSummer`
+- Term (from `schoolCalendar.termStartsOn`): `weeklySchedule` + `ziziSchool` (K3 PM)
+- Rebuild: `node scripts/build-summer-k3-schedule.mjs path/to/live.json` then `npm run patch-live -- scripts/_patch-summer-k3.json`
+
 ## LLM (optional)
 
 `OPENROUTER_API_KEY` + `OPENROUTER_MODEL=openrouter/free` (\$0), or `OPENAI_API_KEY`. Without either, built-in FAQ still answers schedule / meals / rules / pickup.

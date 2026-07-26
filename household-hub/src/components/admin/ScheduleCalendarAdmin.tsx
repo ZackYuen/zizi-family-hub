@@ -36,22 +36,46 @@ function sortTasks(tasks: ScheduleTask[]) {
   tasks.splice(0, tasks.length, ...sorted);
 }
 
+type EditSeason = "term" | "summer";
+
+function getEditableDays(content: AppContent, season: EditSeason): DaySchedule[] {
+  if (season === "summer") {
+    return content.weeklyScheduleSummer?.length
+      ? content.weeklyScheduleSummer
+      : content.weeklySchedule;
+  }
+  return content.weeklySchedule;
+}
+
+function writeEditableDays(
+  content: AppContent,
+  season: EditSeason,
+  days: DaySchedule[]
+): AppContent {
+  const next = structuredClone(content);
+  if (season === "summer") next.weeklyScheduleSummer = days;
+  else next.weeklySchedule = days;
+  return next;
+}
+
 export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
   const todayKey = getTodayDayKey();
   const [selectedDay, setSelectedDay] = useState(todayKey);
   const [viewMode, setViewMode] = useState<ViewMode>("day");
   const [copyTarget, setCopyTarget] = useState("");
+  const [editSeason, setEditSeason] = useState<EditSeason>("summer");
 
-  const dayIndex = content.weeklySchedule.findIndex((d) => d.dayKey === selectedDay);
-  const day = content.weeklySchedule[dayIndex] ?? content.weeklySchedule[0];
+  const days = getEditableDays(content, editSeason);
+  const dayIndex = days.findIndex((d) => d.dayKey === selectedDay);
+  const day = days[dayIndex] ?? days[0];
 
   const updateTask = (
     taskIndex: number,
     field: "startTime" | "endTime" | "fullDay",
     value: string | boolean
   ) => {
-    const next = structuredClone(content);
-    const d = next.weeklySchedule[dayIndex];
+    const nextDays = structuredClone(days);
+    const d = nextDays[dayIndex];
     const task = d.tasks[taskIndex];
     if (field === "startTime" && typeof value === "string") {
       task.startTime = value;
@@ -61,36 +85,36 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
     } else if (field === "fullDay" && typeof value === "boolean") {
       task.fullDay = value;
     }
-    setContent(next);
+    setContent(writeEditableDays(content, editSeason, nextDays));
   };
 
   const setTaskText = (taskIndex: number, taskText: ScheduleTask["task"]) => {
-    const next = structuredClone(content);
-    next.weeklySchedule[dayIndex].tasks[taskIndex].task = taskText;
-    setContent(next);
+    const nextDays = structuredClone(days);
+    nextDays[dayIndex].tasks[taskIndex].task = taskText;
+    setContent(writeEditableDays(content, editSeason, nextDays));
   };
 
   const addTask = () => {
-    const next = structuredClone(content);
-    next.weeklySchedule[dayIndex].tasks.push({
+    const nextDays = structuredClone(days);
+    nextDays[dayIndex].tasks.push({
       id: `task-${Date.now()}`,
       time: "09:00",
       startTime: "09:00",
       task: { en: "", fil: "", zh: "" },
     });
-    sortTasks(next.weeklySchedule[dayIndex].tasks);
-    setContent(next);
+    sortTasks(nextDays[dayIndex].tasks);
+    setContent(writeEditableDays(content, editSeason, nextDays));
   };
 
   const deleteTask = (taskIndex: number) => {
-    const next = structuredClone(content);
-    next.weeklySchedule[dayIndex].tasks.splice(taskIndex, 1);
-    setContent(next);
+    const nextDays = structuredClone(days);
+    nextDays[dayIndex].tasks.splice(taskIndex, 1);
+    setContent(writeEditableDays(content, editSeason, nextDays));
   };
 
   const moveTask = (taskIndex: number, direction: -1 | 1) => {
-    const next = structuredClone(content);
-    const tasks = next.weeklySchedule[dayIndex].tasks;
+    const nextDays = structuredClone(days);
+    const tasks = nextDays[dayIndex].tasks;
     sortTasks(tasks);
     const target = taskIndex + direction;
     if (target < 0 || target >= tasks.length) return;
@@ -100,23 +124,23 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
     tasks[target].startTime = tempTime;
     tasks[target].time = tempTime;
     sortTasks(tasks);
-    setContent(next);
+    setContent(writeEditableDays(content, editSeason, nextDays));
   };
 
   const copyDayTo = (targetDayKey: string) => {
     if (!targetDayKey || targetDayKey === selectedDay) return;
-    const targetIndex = content.weeklySchedule.findIndex((d) => d.dayKey === targetDayKey);
+    const targetIndex = days.findIndex((d) => d.dayKey === targetDayKey);
     if (targetIndex < 0) return;
 
-    const next = structuredClone(content);
-    next.weeklySchedule[targetIndex].tasks = day.tasks.map((task) => ({
+    const nextDays = structuredClone(days);
+    nextDays[targetIndex].tasks = day.tasks.map((task) => ({
       ...task,
       id: `task-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       task: { ...task.task },
       notes: task.notes ? { ...task.notes } : undefined,
     }));
-    sortTasks(next.weeklySchedule[targetIndex].tasks);
-    setContent(next);
+    sortTasks(nextDays[targetIndex].tasks);
+    setContent(writeEditableDays(content, editSeason, nextDays));
     setCopyTarget("");
   };
 
@@ -127,6 +151,41 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 
   return (
     <div className="space-y-4">
+      {/* Summer vs school-term schedule editor */}
+      <div className="flex rounded-xl bg-amber-50 p-1 ring-1 ring-amber-100">
+        <button
+          type="button"
+          onClick={() => setEditSeason("summer")}
+          className={`flex-1 rounded-lg py-2 text-sm font-medium transition ${
+            editSeason === "summer"
+              ? "bg-white text-amber-800 shadow-sm"
+              : "text-amber-900/70"
+          }`}
+        >
+          {lang === "fil" ? "Summer holiday" : lang === "zh" ? "暑假日程" : "Summer holiday"}
+        </button>
+        <button
+          type="button"
+          onClick={() => setEditSeason("term")}
+          className={`flex-1 rounded-lg py-2 text-sm font-medium transition ${
+            editSeason === "term"
+              ? "bg-white text-teal-700 shadow-sm"
+              : "text-amber-900/70"
+          }`}
+        >
+          {lang === "fil" ? "School term (K3)" : lang === "zh" ? "學期 (K3)" : "School term (K3)"}
+        </button>
+      </div>
+      <p className="text-xs text-stone-500">
+        {editSeason === "summer"
+          ? lang === "zh"
+            ? "正在編輯暑假日程（至 summerEndsOn）。App 會按日期自動切換。"
+            : "Editing summer holiday week (used until summerEndsOn). App switches by date automatically."
+          : lang === "zh"
+            ? "正在編輯學期日程（由 termStartsOn 起，K3）。"
+            : "Editing school-term week (used from termStartsOn — K3)."}
+      </p>
+
       {/* View toggle */}
       <div className="flex rounded-xl bg-stone-100 p-1">
         <button
@@ -155,7 +214,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 
       {/* Week calendar strip */}
       <div className="grid grid-cols-7 gap-1 sm:gap-2">
-        {content.weeklySchedule.map((d) => {
+        {days.map((d) => {
           const isSelected = d.dayKey === selectedDay;
           const isToday = d.dayKey === todayKey;
           return (
@@ -194,7 +253,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 
       {viewMode === "week" ? (
         <WeekOverview
-          content={content}
+          days={days}
           lang={lang}
           selectedDay={selectedDay}
           onSelectDay={(dayKey) => selectDay(dayKey, "day")}
@@ -217,7 +276,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                   className="rounded-lg border border-stone-200 px-2 py-1.5 text-xs text-stone-700"
                 >
                   <option value="">{adminT("copyDayTo", lang)}</option>
-                  {content.weeklySchedule
+                  {days
                     .filter((d) => d.dayKey !== selectedDay)
                     .map((d) => (
                       <option key={d.dayKey} value={d.dayKey}>
@@ -335,18 +394,18 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 }
 
 function WeekOverview({
-  content,
+  days,
   lang,
   selectedDay,
   onSelectDay,
 }: {
-  content: AppContent;
+  days: DaySchedule[];
   lang: Lang;
   selectedDay: string;
   onSelectDay: (dayKey: string) => void;
 }) {
   const allTimes = new Set<string>();
-  for (const d of content.weeklySchedule) {
+  for (const d of days) {
     for (const t of d.tasks) allTimes.add(getTaskStartTime(t));
   }
   const times = [...allTimes].sort((a, b) => a.localeCompare(b));
@@ -357,7 +416,7 @@ function WeekOverview({
 
       {/* Mobile: stacked day columns */}
       <div className="space-y-3 lg:hidden">
-        {content.weeklySchedule.map((d) => (
+        {days.map((d) => (
           <DayColumn
             key={d.dayKey}
             day={d}
@@ -373,7 +432,7 @@ function WeekOverview({
         <div className="min-w-[900px]">
           <div className="grid grid-cols-8 gap-1">
             <div className="p-2 text-xs font-semibold text-stone-400">{adminT("time", lang)}</div>
-            {content.weeklySchedule.map((d) => (
+            {days.map((d) => (
               <button
                 key={d.dayKey}
                 type="button"
@@ -392,7 +451,7 @@ function WeekOverview({
               <WeekGridRow
                 key={time}
                 time={time}
-                days={content.weeklySchedule}
+                days={days}
                 lang={lang}
                 selectedDay={selectedDay}
                 onSelectDay={onSelectDay}
