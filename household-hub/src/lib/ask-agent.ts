@@ -442,11 +442,18 @@ function heuristicAnswer(
   if (
     /\bmilk\b|gatas|牛奶|glass\s*straw|warm\s*(the\s*)?milk|painitin.*gatas/.test(q)
   ) {
+    if (snap.isHelperDayOffToday) {
+      return lang === "fil"
+        ? "Ngayon day off ni Charlene — hindi kasama ang gatas task sa kanyang schedule. Sir/Mum ang bahala kay Zizi kung may gatas."
+        : lang === "zh"
+          ? "今天是 Charlene 放假 — 日程沒有牛奶任務。Zizi 的牛奶由 Sir/Mum 安排。"
+          : "Today is Charlene’s day off — the milk task is not on her schedule. Sir/Mum handle Zizi’s milk if needed.";
+    }
     return lang === "fil"
-      ? "Tuwing umaga: pakuluan ang tubig, painitin ang gatas ni Zizi sa baso, painumin gamit ang glass straw (huwag plastic)."
+      ? "Tuwing umaga (hindi sa day off ni Charlene): pakuluan ang tubig, painitin ang gatas ni Zizi sa baso, painumin gamit ang glass straw (huwag plastic)."
       : lang === "zh"
-        ? "每天早上：先煲滾水，用熱水把 Zizi 的牛奶溫在玻璃杯裡，用玻璃吸管給他喝（不要用膠吸管）。"
-        : "Every morning: boil water, warm Zizi’s milk in a glass, and let him drink with a glass straw (not plastic).";
+        ? "每天早上（Charlene 放假日除外）：先煲滾水，用熱水把 Zizi 的牛奶溫在玻璃杯裡，用玻璃吸管給他喝（不要用膠吸管）。"
+        : "Every morning (not on Charlene’s day off): boil water, warm Zizi’s milk in a glass, and let him drink with a glass straw (not plastic).";
   }
 
   if (

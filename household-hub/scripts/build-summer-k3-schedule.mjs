@@ -347,8 +347,8 @@ function buildSummerSchedule(termWeekly) {
           "00:00",
           null,
           "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-          "Day off ni Charlene — Linggo at HK public holidays (香港勞工假). Kindergarten: Lunes–Biyernes lang.",
-          "Charlene 放假 — 星期日及香港公眾假期。幼稚園僅周一至五。",
+          "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
+          "Charlene 放假 — 星期日及香港公眾假期（香港勞工假）。Zizi 幼稚園只上星期一至五。",
           { fullDay: true }
         ),
       ],

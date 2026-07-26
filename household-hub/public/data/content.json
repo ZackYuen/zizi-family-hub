@@ -892,19 +892,19 @@
         },
         {
           "id": "m-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "m3",
@@ -1089,19 +1089,19 @@
         },
         {
           "id": "t-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "t3",
@@ -1286,19 +1286,19 @@
         },
         {
           "id": "w-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "w3",
@@ -1483,19 +1483,19 @@
         },
         {
           "id": "th-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "th3",
@@ -1680,19 +1680,19 @@
         },
         {
           "id": "f-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "f3",
@@ -1877,19 +1877,19 @@
         },
         {
           "id": "s-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "s3",
@@ -2032,27 +2032,11 @@
       },
       "tasks": [
         {
-          "id": "su-milk",
-          "time": "09:50",
-          "startTime": "09:50",
-          "endTime": "10:10",
-          "task": {
-            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
-          },
-          "notes": {
-            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
-        },
-        {
           "id": "su0",
           "task": {
             "en": "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
+            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
+            "zh": "Charlene 放假 — 星期日及香港公眾假期（香港勞工假）。Zizi 幼稚園只上星期一至五。"
           },
           "time": "00:00",
           "fullDay": true,
@@ -2258,19 +2242,19 @@
         },
         {
           "id": "sm-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sm3",
@@ -2448,19 +2432,19 @@
         },
         {
           "id": "st-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "st3",
@@ -2638,19 +2622,19 @@
         },
         {
           "id": "sw-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sw3",
@@ -2855,19 +2839,19 @@
         },
         {
           "id": "sth-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sth3",
@@ -3045,19 +3029,19 @@
         },
         {
           "id": "sf-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sf3",
@@ -3260,19 +3244,19 @@
         },
         {
           "id": "s-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "s3",
@@ -3415,27 +3399,11 @@
       },
       "tasks": [
         {
-          "id": "su-milk",
-          "time": "09:50",
-          "startTime": "09:50",
-          "endTime": "10:10",
-          "task": {
-            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
-          },
-          "notes": {
-            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
-        },
-        {
           "id": "su0",
           "task": {
             "en": "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
+            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
+            "zh": "Charlene 放假 — 星期日及香港公眾假期（香港勞工假）。Zizi 幼稚園只上星期一至五。"
           },
           "time": "00:00",
           "fullDay": true,
