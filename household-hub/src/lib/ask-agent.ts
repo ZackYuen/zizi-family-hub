@@ -440,6 +440,16 @@ function heuristicAnswer(
   }
 
   if (
+    /\bmilk\b|gatas|牛奶|glass\s*straw|warm\s*(the\s*)?milk|painitin.*gatas/.test(q)
+  ) {
+    return lang === "fil"
+      ? "Tuwing umaga: pakuluan ang tubig, painitin ang gatas ni Zizi sa baso, painumin gamit ang glass straw (huwag plastic)."
+      : lang === "zh"
+        ? "每天早上：先煲滾水，用熱水把 Zizi 的牛奶溫在玻璃杯裡，用玻璃吸管給他喝（不要用膠吸管）。"
+        : "Every morning: boil water, warm Zizi’s milk in a glass, and let him drink with a glass straw (not plastic).";
+  }
+
+  if (
     /drawing\s*class|one\s*point|觀塘工業|paint(ing)?\s*class|art\s*class|drawing\s*(lesson|studio)/.test(
       q
     )
