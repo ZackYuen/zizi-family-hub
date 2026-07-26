@@ -168,9 +168,9 @@ const toolsUi = {
     zh: "家電與工具",
   },
   hint: {
-    en: "Grouped by use. Ask Sir/Mum if buttons look different.",
-    fil: "Naka-grupo ayon sa gamit. Tanungin si Sir/Mum kung iba ang buttons.",
-    zh: "按用途分類。按鈕不一樣就問 Sir/Mum。",
+    en: "Tap a category to expand. Ask Sir/Mum if buttons look different.",
+    fil: "I-tap ang category para mag-expand. Tanungin si Sir/Mum kung iba ang buttons.",
+    zh: "點分類展開。按鈕不一樣就問 Sir/Mum。",
   },
   caution: {
     en: "Caution",
@@ -183,6 +183,30 @@ const toolsUi = {
     zh: (n: number) => `${n} 項`,
   },
 };
+
+const TOOLS_OPEN_KEY = "tools-open-categories";
+
+function loadOpenToolCategories(fallback: string[]): string[] {
+  try {
+    const raw = localStorage.getItem(TOOLS_OPEN_KEY);
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw) as string[];
+    return Array.isArray(parsed) ? parsed : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function ToolsChevron({ open }: { open: boolean }) {
+  return (
+    <span
+      aria-hidden
+      className={`inline-block text-stone-400 transition-transform ${open ? "rotate-180" : ""}`}
+    >
+      ▾
+    </span>
+  );
+}
 
 /** Split tip text into bullet lines (supports • / - / numbered / newlines). */
 function tipLines(text: string): string[] {
@@ -229,6 +253,27 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
       .sort((a, b) => a.priority - b.priority),
   })).filter((g) => g.items.length > 0);
 
+  const defaultOpen = byCategory[0] ? [byCategory[0].category] : [];
+  const [openIds, setOpenIds] = useState<string[]>(() =>
+    typeof window === "undefined"
+      ? defaultOpen
+      : loadOpenToolCategories(defaultOpen)
+  );
+
+  const onToggle = (id: string) => {
+    setOpenIds((prev) => {
+      const next = prev.includes(id)
+        ? prev.filter((x) => x !== id)
+        : [...prev, id];
+      try {
+        localStorage.setItem(TOOLS_OPEN_KEY, JSON.stringify(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  };
+
   return (
     <div className="space-y-3">
       <div className="rounded-xl bg-stone-100 px-3 py-2.5 ring-1 ring-stone-200">
@@ -236,82 +281,98 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
         <p className="mt-0.5 text-xs text-stone-600">{toolsUi.hint[lang]}</p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {byCategory.map(({ category, items }) => {
           const meta = applianceCategoryMeta[category];
+          const open = openIds.includes(category);
           return (
-            <section key={category} className="space-y-2">
-              <div className="flex items-center gap-2 px-0.5">
-                <span className="text-base" aria-hidden>
+            <section
+              key={category}
+              className="overflow-hidden rounded-2xl bg-white ring-1 ring-stone-100"
+            >
+              <button
+                type="button"
+                onClick={() => onToggle(category)}
+                aria-expanded={open}
+                className="flex w-full items-center gap-3 px-4 py-3.5 text-left"
+              >
+                <span
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-stone-50 text-base ring-1 ring-stone-100"
+                  aria-hidden
+                >
                   {meta.icon}
                 </span>
-                <h3 className="text-xs font-bold uppercase tracking-wide text-stone-500">
-                  {meta[lang]}
-                </h3>
-                <span className="text-[11px] text-stone-400">
-                  {toolsUi.items[lang](items.length)}
-                </span>
-              </div>
-              <div className="space-y-2.5">
-                {items.map((item) => {
-                  const warning = item.warnings
-                    ? localized(item.warnings, lang)
-                    : "";
-                  return (
-                    <article
-                      key={item.id}
-                      className="overflow-hidden rounded-2xl bg-white ring-1 ring-stone-100"
-                    >
-                      <div className="p-3.5">
-                        <div className="mb-2 flex items-center gap-2">
-                          <span className="text-lg" aria-hidden>
-                            {kindIcon[item.kind] || kindIcon.other}
-                          </span>
-                          <div className="min-w-0">
-                            <h3 className="text-sm font-semibold text-stone-900">
-                              {localized(item.title, lang)}
-                            </h3>
-                            {item.model && (
-                              <p className="text-[11px] text-stone-400">
-                                {item.model}
-                              </p>
-                            )}
+                <div className="min-w-0 flex-1">
+                  <div className="font-semibold text-stone-900">{meta[lang]}</div>
+                  <p className="mt-0.5 text-xs text-stone-500">
+                    {toolsUi.items[lang](items.length)}
+                  </p>
+                </div>
+                <ToolsChevron open={open} />
+              </button>
+
+              {open && (
+                <div className="space-y-2.5 border-t border-stone-100/80 px-3 pb-3 pt-2">
+                  {items.map((item) => {
+                    const warning = item.warnings
+                      ? localized(item.warnings, lang)
+                      : "";
+                    return (
+                      <article
+                        key={item.id}
+                        className="overflow-hidden rounded-xl bg-stone-50/80 ring-1 ring-stone-100"
+                      >
+                        <div className="p-3.5">
+                          <div className="mb-2 flex items-center gap-2">
+                            <span className="text-lg" aria-hidden>
+                              {kindIcon[item.kind] || kindIcon.other}
+                            </span>
+                            <div className="min-w-0">
+                              <h3 className="text-sm font-semibold text-stone-900">
+                                {localized(item.title, lang)}
+                              </h3>
+                              {item.model && (
+                                <p className="text-[11px] text-stone-400">
+                                  {item.model}
+                                </p>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <BulletList
-                          text={localized(item.tips, lang)}
-                          className="text-sm leading-relaxed text-stone-600"
-                        />
-                        {item.sourceUrl && (
-                          <a
-                            href={item.sourceUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-2 inline-block text-xs font-medium text-teal-700 underline"
-                          >
-                            {lang === "fil"
-                              ? "Manual / support"
-                              : lang === "zh"
-                                ? "說明／支援頁"
-                                : "Manual / support"}
-                          </a>
-                        )}
-                      </div>
-                      {warning && (
-                        <div className="border-t border-amber-100 bg-amber-50/90 px-4 py-3">
-                          <p className="mb-1 text-xs font-bold uppercase tracking-wide text-amber-900">
-                            {toolsUi.caution[lang]}
-                          </p>
                           <BulletList
-                            text={warning}
-                            className="text-sm leading-relaxed text-amber-950"
+                            text={localized(item.tips, lang)}
+                            className="text-sm leading-relaxed text-stone-600"
                           />
+                          {item.sourceUrl && (
+                            <a
+                              href={item.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-2 inline-block text-xs font-medium text-teal-700 underline"
+                            >
+                              {lang === "fil"
+                                ? "Manual / support"
+                                : lang === "zh"
+                                  ? "說明／支援頁"
+                                  : "Manual / support"}
+                            </a>
+                          )}
                         </div>
-                      )}
-                    </article>
-                  );
-                })}
-              </div>
+                        {warning && (
+                          <div className="border-t border-amber-100 bg-amber-50/90 px-4 py-3">
+                            <p className="mb-1 text-xs font-bold uppercase tracking-wide text-amber-900">
+                              {toolsUi.caution[lang]}
+                            </p>
+                            <BulletList
+                              text={warning}
+                              className="text-sm leading-relaxed text-amber-950"
+                            />
+                          </div>
+                        )}
+                      </article>
+                    );
+                  })}
+                </div>
+              )}
             </section>
           );
         })}
