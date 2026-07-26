@@ -38,9 +38,22 @@ export function getScheduleSeason(
 }
 
 export const SUMMER_SCHOOL_BANNER: BilingualText = {
-  en: "Summer holiday until 1 Sep 2026 — no kindergarten. Wed & Fri 14:00–15:00 drawing class at One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). School resumes 2 Sep — K3 PM class.",
-  fil: "Summer holiday hanggang 1 Sep 2026 — walang kindergarten. Miyerkules at Biyernes 14:00–15:00 drawing class sa One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). Balik-eskwela 2 Sep — K3 PM class.",
-  zh: "暑假至 2026-09-01 — 無幼稚園。逢星期三、五 14:00–15:00 繪畫班：One Point Studio，觀塘工業中心一期12樓B室。9月2日復課 — K3 下午班。",
+  en: "Summer holiday until 1 Sep 2026 — no kindergarten. Open Wednesday / Friday on the schedule for drawing class (14:00–15:00). School resumes 2 Sep — K3 PM class.",
+  fil: "Summer holiday hanggang 1 Sep 2026 — walang kindergarten. Buksan ang Miyerkules / Biyernes sa schedule para sa drawing class (14:00–15:00). Balik-eskwela 2 Sep — K3 PM class.",
+  zh: "暑假至 2026-09-01 — 無幼稚園。請打開星期三／五日程查看繪畫班（14:00–15:00）。9月2日復課 — K3 下午班。",
+};
+
+/** Full venue — kept on Wed/Fri calendar task notes */
+export const DRAWING_CLASS_NOTES: BilingualText = {
+  en: "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+  fil: "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+  zh: "One Point Studio · 觀塘工業中心一期12樓B室",
+};
+
+export const DRAWING_CLASS_TASK: BilingualText = {
+  en: "Drawing class (14:00–15:00)",
+  fil: "Drawing class (14:00–15:00)",
+  zh: "繪畫班（14:00–15:00）",
 };
 
 export const TERM_K3_SCHOOL_BANNER: BilingualText = {

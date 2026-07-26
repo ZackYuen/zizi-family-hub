@@ -23,21 +23,27 @@ const SCHOOL_CALENDAR = {
 };
 
 const SUMMER_BANNER = {
-  en: "Summer holiday until 1 Sep 2026 — no kindergarten. Wed & Fri 14:00–15:00 drawing class at One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). School resumes 2 Sep — K3 PM class.",
-  fil: "Summer holiday hanggang 1 Sep 2026 — walang kindergarten. Miyerkules at Biyernes 14:00–15:00 drawing class sa One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). Balik-eskwela 2 Sep — K3 PM class.",
-  zh: "暑假至 2026-09-01 — 無幼稚園。逢星期三、五 14:00–15:00 繪畫班：One Point Studio，觀塘工業中心一期12樓B室。9月2日復課 — K3 下午班。",
+  en: "Summer holiday until 1 Sep 2026 — no kindergarten. Open Wednesday / Friday on the schedule for drawing class (14:00–15:00). School resumes 2 Sep — K3 PM class.",
+  fil: "Summer holiday hanggang 1 Sep 2026 — walang kindergarten. Buksan ang Miyerkules / Biyernes sa schedule para sa drawing class (14:00–15:00). Balik-eskwela 2 Sep — K3 PM class.",
+  zh: "暑假至 2026-09-01 — 無幼稚園。請打開星期三／五日程查看繪畫班（14:00–15:00）。9月2日復課 — K3 下午班。",
+};
+
+const DRAWING_TASK = {
+  en: "Drawing class (14:00–15:00)",
+  fil: "Drawing class (14:00–15:00)",
+  zh: "繪畫班（14:00–15:00）",
+};
+
+const DRAWING_NOTES = {
+  en: "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+  fil: "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+  zh: "One Point Studio · 觀塘工業中心一期12樓B室",
 };
 
 const TERM_BANNER = {
   en: "Lam Tin Ling Liang Kindergarten — K3 PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
   fil: "Lam Tin Ling Liang Kindergarten — K3 PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene.",
   zh: "藍田靈糧幼稚園 — K3 星期一至五下午班（13:00 前到達，步行約 30 分鐘）。星期日及香港公眾假期（香港勞工假）：Charlene 放假。",
-};
-
-const DRAWING = {
-  en: "Drawing class — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室)",
-  fil: "Drawing class — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室)",
-  zh: "繪畫班 — One Point Studio，觀塘工業中心一期12樓B室",
 };
 
 const DAY_LABELS = {
@@ -58,6 +64,17 @@ function t(id, start, end, en, fil, zh, extra = {}) {
     ...(end ? { endTime: end } : {}),
     task: { en, fil, zh: zh || en },
     ...extra,
+  };
+}
+
+function drawingClassTask(id) {
+  return {
+    id,
+    time: "14:00",
+    startTime: "14:00",
+    endTime: "15:00",
+    task: { ...DRAWING_TASK },
+    notes: { ...DRAWING_NOTES },
   };
 }
 
@@ -219,7 +236,7 @@ function summerDrawingDay(dayKey, prefix, choreEn, choreFil, choreZh) {
         "Biyahe / dumating sa One Point Studio",
         "前往／到達 One Point Studio"
       ),
-      t(`${prefix}7`, "14:00", "15:00", DRAWING.en, DRAWING.fil, DRAWING.zh),
+      drawingClassTask(`${prefix}7`),
       t(
         `${prefix}8`,
         "15:00",

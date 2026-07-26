@@ -124,6 +124,11 @@ export function ScheduleView({
           const isToday = !isDayOff && day.dayKey === todayKey;
           const isSelected = day.dayKey === effectiveDayKey;
           const isSunday = day.dayKey === "sunday";
+          const hasDrawing = day.tasks.some((t) =>
+            /drawing\s*class|繪畫班|one\s*point/i.test(
+              `${t.task?.en || ""} ${t.task?.zh || ""} ${t.notes?.en || ""}`
+            )
+          );
           return (
             <button
               key={day.dayKey}
@@ -131,15 +136,28 @@ export function ScheduleView({
               onClick={() => setSelectedDay(day.dayKey)}
               className={`shrink-0 rounded-xl px-3 py-2 text-sm font-medium transition ${
                 isSelected
-                  ? "bg-teal-600 text-white shadow-md"
+                  ? hasDrawing
+                    ? "bg-orange-600 text-white shadow-md"
+                    : "bg-teal-600 text-white shadow-md"
                   : isToday
                     ? "bg-teal-50 text-teal-800 ring-2 ring-teal-300"
-                    : isSunday
-                      ? "bg-violet-50 text-violet-800 ring-1 ring-violet-200"
-                      : "bg-white text-stone-600 ring-1 ring-stone-200"
+                    : hasDrawing
+                      ? "bg-orange-50 text-orange-900 ring-1 ring-orange-200"
+                      : isSunday
+                        ? "bg-violet-50 text-violet-800 ring-1 ring-violet-200"
+                        : "bg-white text-stone-600 ring-1 ring-stone-200"
               }`}
             >
-              {localized(day.day, lang)}
+              <span className="block">{localized(day.day, lang)}</span>
+              {hasDrawing && (
+                <span
+                  className={`mt-0.5 block text-[10px] font-semibold ${
+                    isSelected ? "text-orange-100" : "text-orange-700"
+                  }`}
+                >
+                  {lang === "zh" ? "繪畫 14:00" : "Drawing 14:00"}
+                </span>
+              )}
               {(isToday || (isDayOff && isSunday)) && (
                 <span className="ml-1 text-[10px] opacity-80">
                   ({labels.today[lang]})
@@ -153,19 +171,28 @@ export function ScheduleView({
       <div className="space-y-2">
         {sortedTasks.map((task) => {
           const isNow = isViewingToday && task.id === activeTaskId;
+          const isDrawing = /drawing\s*class|繪畫班|one\s*point/i.test(
+            `${task.task?.en || ""} ${task.task?.zh || ""} ${task.notes?.en || ""}`
+          );
           return (
             <div
               key={task.id}
               className={`flex gap-3 rounded-2xl p-3 shadow-sm ring-1 ${
                 task.fullDay
                   ? "bg-violet-50 ring-violet-200"
-                  : isNow
-                    ? "bg-amber-50 ring-amber-300"
-                    : "bg-white ring-stone-100"
+                  : isDrawing
+                    ? "bg-orange-50 ring-orange-200"
+                    : isNow
+                      ? "bg-amber-50 ring-amber-300"
+                      : "bg-white ring-stone-100"
               }`}
             >
               <div className="w-[5.5rem] shrink-0">
-                <time className="block pt-0.5 text-xs font-bold leading-snug text-teal-700">
+                <time
+                  className={`block pt-0.5 text-xs font-bold leading-snug ${
+                    isDrawing ? "text-orange-700" : "text-teal-700"
+                  }`}
+                >
                   {formatTaskTimeRange(task, lang)}
                 </time>
                 {isNow && !task.fullDay && (
@@ -177,7 +204,7 @@ export function ScheduleView({
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-stone-900">{localized(task.task, lang)}</p>
                 {task.notes && (
-                  <p className="mt-0.5 text-xs text-stone-500">{localized(task.notes, lang)}</p>
+                  <p className="mt-0.5 text-xs text-stone-600">{localized(task.notes, lang)}</p>
                 )}
               </div>
             </div>
