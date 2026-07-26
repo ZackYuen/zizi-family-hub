@@ -219,22 +219,7 @@ const hkLifeGuides = [
       zh: "優先：家附近 apm 內的一田 YATA（近觀塘港鐵，步行約3分鐘）。盡量用 Meals 分頁購物清單。只有 Sir/Mum 吩咐或買不到時才去油塘／Domain AEON。如需要請保留收據。不要賒帳或向人借錢。",
     }
   ),
-  tip(
-    "life-home",
-    "culture",
-    35,
-    "kwun-tong",
-    {
-      en: "Our home (Kwun Tong flat)",
-      fil: "Bahay namin (Kwun Tong flat)",
-      zh: "我們的家（觀塘單位）",
-    },
-    {
-      en: "We live in Kwun Tong, about 660 sq ft. Family of 3: Sir, Mum, and son Zizi (Seth). Charlene lives in — so 4 people at home. Charlene has her own bedroom with air conditioner. There are 3 ACs in total. Home is about a 3-minute walk to Kwun Tong MTR and connects to apm mall (YATA supermarket is first choice for groceries).",
-      fil: "Nakatira kami sa Kwun Tong, mga 660 sq ft. Pamilya naming 3: Sir, Mum, at anak na si Zizi (Seth). Nakatira si Charlene — kaya 4 kami. May sariling kwarto si Charlene na may aircon. May 3 AC lahat. Mga 3 minutong lakad papuntang Kwun Tong MTR; konektado sa apm (YATA ang unang supermarket).",
-      zh: "我們住在觀塘，約660呎。三口之家：Sir、Mum、兒子 Zizi（Seth）。Charlene 留宿，共四人。Charlene 有獨立睡房及冷氣。全屋共 3 部冷氣。步行約3分鐘到觀塘港鐵，並連接 apm（買菜優先一田 YATA）。",
-    }
-  ),
+  
   tip(
     "life-zizi-meals",
     "culture",

@@ -559,8 +559,29 @@ function heuristicAnswer(
       q
     )
   ) {
-    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-home");
-    if (tip) return tip;
+    const area = snap.homeArea ? localized(snap.homeArea, lang) : "";
+    if (lang === "fil") {
+      return [
+        area ? `Home area: ${area}` : null,
+        "Mga 660 sq ft sa Kwun Tong. Pamilya naming 3 (Sir, Mum, Zizi) + Charlene = 4. May sariling kwarto si Charlene na may AC; 3 AC lahat. ~3 min lakad sa Kwun Tong MTR; konektado sa apm — YATA muna sa pamimili.",
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }
+    if (lang === "zh") {
+      return [
+        area ? `住址區域：${area}` : null,
+        "觀塘約660呎。三口之家（Sir、Mum、Zizi）＋Charlene 共四人。Charlene 有獨立睡房及冷氣；全屋 3 部冷氣。步行約3分鐘到觀塘港鐵，連接 apm — 買菜優先一田 YATA。",
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }
+    return [
+      area ? `Home area: ${area}` : null,
+      "~660 sq ft in Kwun Tong. Family of 3 (Sir, Mum, Zizi) + Charlene = 4. Charlene has her own bedroom with AC; 3 ACs total. ~3 min walk to Kwun Tong MTR; linked to apm — YATA first for groceries.",
+    ]
+      .filter(Boolean)
+      .join("\n");
   }
 
   if (
