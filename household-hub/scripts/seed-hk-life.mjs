@@ -231,9 +231,9 @@ const hkLifeGuides = [
       zh: "Zizi 三餐（早、午、晚）",
     },
     {
-      en: "Work days (not Charlene day off): (1) Simple breakfast — egg / pancake / siumai / 蕃薯 etc. + morning milk in a glass with glass straw. (2) Lunch — spaghetti / fried rice / noodle / 烏冬 etc., must include meat and vegetables. (3) Dinner — follow Meals tab random menu (meat + vegetable + soup) for the family. Ask Sir/Mum if Zizi refuses food or seems unwell.",
-      fil: "Work days (hindi day off ni Charlene): (1) Simpleng almusal — itlog / pancake / siumai / 蕃薯 atbp. + morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti / fried rice / noodle / 烏冬 atbp., dapat may meat at gulay. (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Sabihin kay Sir/Mum kung ayaw kumain si Zizi o may sakit.",
-      zh: "工作天（Charlene 放假除外）：(1) 簡單早餐 — 蛋／pancake／燒賣／蕃薯等＋玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉／炒飯／麵／烏冬等，必須有肉和蔬菜。(3) 晚餐 — 跟 Meals 分頁隨機菜單（肉＋菜＋湯）給一家人。若 Zizi 拒食或不適，告知 Sir/Mum。",
+      en: "Important: help Zizi “eat the rainbow” — offer colourful fruit and vegetables across the week (red, orange, yellow, green, purple/blue, white), not the same colour every day. (1) Breakfast — keep it simple: egg, pancake, siu mai, sweet potato, etc., plus morning milk in a glass with a glass straw. (2) Lunch — spaghetti, fried rice, noodles, or udon; every lunch must include meat and vegetables (not carbs only). (3) Dinner — follow the Meals tab (meat + vegetable + soup) for the family. Tell Sir/Mum if Zizi refuses food or seems unwell.",
+      fil: "Mahalaga: tulungan si Zizi na “eat the rainbow” — magbigay ng makulay na prutas at gulay sa buong linggo (pula, orange, dilaw, berde, purple/asul, puti), huwag pare-parehong kulay araw-araw. (1) Almusal — simple: itlog, pancake, siu mai, camote, atbp., plus morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti, fried rice, noodles, o udon; dapat may meat at gulay (hindi carbs lang). (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Sabihin kay Sir/Mum kung ayaw kumain si Zizi o may sakit.",
+      zh: "重要：幫助 Zizi「吃彩虹」— 一週內盡量給不同顏色的蔬果（紅、橙、黃、綠、紫／藍、白），不要每天同一種顏色。(1) 早餐 — 簡單即可：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉、炒飯、麵或烏冬；每餐必須有肉和蔬菜（不可只有澱粉）。(3) 晚餐 — 跟 Meals 分頁（肉＋菜＋湯）給一家人。若 Zizi 拒食或不適，告知 Sir/Mum。",
     }
   ),
   tip(
