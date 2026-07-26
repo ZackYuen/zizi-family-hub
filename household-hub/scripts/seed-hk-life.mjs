@@ -237,22 +237,6 @@ const hkLifeGuides = [
     }
   ),
   tip(
-    "life-weekly-chores",
-    "culture",
-    37,
-    "kwun-tong",
-    {
-      en: "Weekly house rhythm (~660 sq ft, boy at home)",
-      fil: "Lingguhang gawain sa bahay (~660 sq ft, may batang lalaki)",
-      zh: "每週家務節奏（約660呎、有小男孩）",
-    },
-    {
-      en: "Small flat, 4 people, active boy — little and often beats one huge clean. Daily: meals, dishes, kitchen bin, evening vacuum, Zizi shower, tidy toys. Mon: laundry + mop. Tue: toys + living room + YATA shop. Wed: kitchen machines deep clean. Thu: bathroom deep clean. Fri: bedrooms. Sat: iron, school bag/shoes, top-up shop. Monthly list: sheets, AC filters (×3), fridge, hood, soft toys, windows. Sunday / public holiday: Charlene day off.",
-      fil: "Maliit na flat, 4 tao, active na bata — konti pero madalas mas maganda kaysa isang malaking linis. Araw-araw: pagkain, hugas, basurahan, vacuum sa gabi, shower ni Zizi, ayos laruan. Lun: labada + mop. Mar: laruan + sala + YATA. Miy: kitchen machines. Huw: banyo. Biy: kwarto. Sab: plantsa, bag/sapatos, konting pamimili. Buwanan: sheets, AC filter (×3), ref, hood, soft toys, bintana. Linggo / holiday: day off ni Charlene.",
-      zh: "小單位、四人、活潑男孩——少量多次勝過一次大掃除。每日：三餐、洗碗、廚房垃圾桶、晚間吸塵、Zizi 洗澡、收拾玩具。一：洗衣拖地。二：玩具客廳＋一田。三：廚房電器深清。四：浴室深清。五：睡房。六：熨衣、書包鞋、補買。每月：床單、3部冷氣濾網、雪櫃、油煙機、毛公仔、窗。日／公眾假期：Charlene 放假。",
-    }
-  ),
-  tip(
     "life-zizi-sick",
     "health",
     60,
