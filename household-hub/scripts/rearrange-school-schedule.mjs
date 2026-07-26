@@ -256,9 +256,9 @@ const sundayTasks = [
     startTime: "00:00",
     fullDay: true,
     task: {
-      en: "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-      fil: "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
-      zh: "Charlene 放假 — 星期日及香港公眾假期（香港勞工假）。Zizi 幼稚園只上星期一至五。",
+      en: "Charlene day off",
+      fil: "Day off ni Charlene",
+      zh: "Charlene 放假",
     },
   },
 ];
