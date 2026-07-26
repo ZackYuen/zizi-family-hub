@@ -112,6 +112,12 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     "Tone: Charlene is treated as a member of the family, not labeled as a 'helper' in replies. Say Charlene / family member. Do not use 姐姐."
   );
   if (snap.homeArea?.en) lines.push(`Home area: ${snap.homeArea.en}`);
+  lines.push(
+    "Home facts: ~660 sq ft Kwun Tong flat; family of 3 (Sir, Mum, Zizi) + Charlene live-in = 4 people; Charlene has own bedroom with AC; 3 ACs total; ~3 min walk to Kwun Tong MTR; linked to apm mall; first supermarket = YATA (一田) at apm (AEON only if needed)."
+  );
+  lines.push(
+    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab meat+veg+soup."
+  );
   lines.push(`Data source: ${snap.source === "supabase" ? "live Admin" : "local"}`);
   lines.push(
     `CURRENT Hong Kong date/time (use this for "what time is it"): ${snap.nowHongKong}`

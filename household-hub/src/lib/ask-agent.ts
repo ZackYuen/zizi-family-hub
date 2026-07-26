@@ -390,7 +390,10 @@ function heuristicAnswer(
     ].join("\n");
   }
 
-  if (/ingredient|bilihin|shopping|買|材料|sangkap/.test(q) && !/aeon|yau\s*tong|supermarket|買菜/.test(q)) {
+  if (
+    /ingredient|bilihin|shopping|買|材料|sangkap/.test(q) &&
+    !/aeon|yata|一田|\bapm\b|yau\s*tong|supermarket|買菜/.test(q)
+  ) {
     if (!snap.tonight) return null;
     const lines: string[] = [
       lang === "fil"
@@ -442,11 +445,18 @@ function heuristicAnswer(
   if (
     /\bmilk\b|gatas|牛奶|glass\s*straw|warm\s*(the\s*)?milk|painitin.*gatas/.test(q)
   ) {
+    if (snap.isHelperDayOffToday) {
+      return lang === "fil"
+        ? "Ngayon day off ni Charlene — hindi kasama ang gatas task sa kanyang schedule. Sir/Mum ang bahala kay Zizi kung may gatas."
+        : lang === "zh"
+          ? "今天是 Charlene 放假 — 日程沒有牛奶任務。Zizi 的牛奶由 Sir/Mum 安排。"
+          : "Today is Charlene’s day off — the milk task is not on her schedule. Sir/Mum handle Zizi’s milk if needed.";
+    }
     return lang === "fil"
-      ? "Tuwing umaga: pakuluan ang tubig, painitin ang gatas ni Zizi sa baso, painumin gamit ang glass straw (huwag plastic)."
+      ? "Tuwing umaga (hindi sa day off ni Charlene): pakuluan ang tubig, painitin ang gatas ni Zizi sa baso, painumin gamit ang glass straw (huwag plastic)."
       : lang === "zh"
-        ? "每天早上：先煲滾水，用熱水把 Zizi 的牛奶溫在玻璃杯裡，用玻璃吸管給他喝（不要用膠吸管）。"
-        : "Every morning: boil water, warm Zizi’s milk in a glass, and let him drink with a glass straw (not plastic).";
+        ? "每天早上（Charlene 放假日除外）：先煲滾水，用熱水把 Zizi 的牛奶溫在玻璃杯裡，用玻璃吸管給他喝（不要用膠吸管）。"
+        : "Every morning (not on Charlene’s day off): boil water, warm Zizi’s milk in a glass, and let him drink with a glass straw (not plastic).";
   }
 
   if (
@@ -539,8 +549,36 @@ function heuristicAnswer(
     }
   }
 
-  if (/aeon|yau\s*tong|grocery|pamimili|買菜|supermarket/.test(q)) {
+  if (/yata|一田|\bapm\b|aeon|yau\s*tong|grocery|pamimili|買菜|supermarket/.test(q)) {
     const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-aeon");
+    if (tip) return tip;
+  }
+
+  if (
+    /\bhome\b|flat|apartment|660|sq\s*ft|呎|kwun\s*tong\s*(flat|home|bahay)|我們的家|bahay\s*namin|air\s*con|aircon|冷氣|kwarto\s*ni\s*charlene|charlene.*room|bedroom/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-home");
+    if (tip) return tip;
+  }
+
+  if (
+    /breakfast|almusal|早餐|lunch|tanghalian|午餐|siumai|燒賣|蕃薯|spaghetti|fried\s*rice|炒飯|烏冬|udon/.test(
+      q
+    ) &&
+    !/dinner|tonight|hapunan|今晚|晚餐/.test(q)
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-zizi-meals");
+    if (tip) return tip;
+  }
+
+  if (
+    /weekly\s*(chore|clean|house)|lingguhang|每週.*(家務|清潔)|monthly\s*task|buwanan|每月任務|mop|laundry|labada/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-weekly-chores");
     if (tip) return tip;
   }
 
@@ -860,7 +898,7 @@ For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DA
 For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
-For HK Life / FDH / typhoon / Octopus / rest day / Consulate / AEON / Android apps / healthy holiday questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract".
+For HK Life / FDH / typhoon / Octopus / rest day / Consulate / YATA(apm) / groceries / Android apps / healthy holiday / home flat questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract". First supermarket is YATA at apm near home — not AEON unless Sir/Mum say so.
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
 Family preferences are soft tips only — never call them ground rules or invent “If Broken” for them.
