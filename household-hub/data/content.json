@@ -866,8 +866,8 @@
     {
       "day": {
         "en": "Monday",
-        "fil": "Lunes",
-        "zh": "星期一"
+        "zh": "星期一",
+        "fil": "Lunes"
       },
       "tasks": [
         {
@@ -889,6 +889,22 @@
           "time": "09:45",
           "endTime": "10:15",
           "startTime": "09:45"
+        },
+        {
+          "id": "m-milk",
+          "time": "09:45",
+          "startTime": "09:45",
+          "endTime": "10:15",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
         },
         {
           "id": "m3",
@@ -1047,8 +1063,8 @@
     {
       "day": {
         "en": "Tuesday",
-        "fil": "Martes",
-        "zh": "星期二"
+        "zh": "星期二",
+        "fil": "Martes"
       },
       "tasks": [
         {
@@ -1070,6 +1086,22 @@
           "time": "09:45",
           "endTime": "10:15",
           "startTime": "09:45"
+        },
+        {
+          "id": "t-milk",
+          "time": "09:45",
+          "startTime": "09:45",
+          "endTime": "10:15",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
         },
         {
           "id": "t3",
@@ -1228,8 +1260,8 @@
     {
       "day": {
         "en": "Wednesday",
-        "fil": "Miyerkules",
-        "zh": "星期三"
+        "zh": "星期三",
+        "fil": "Miyerkules"
       },
       "tasks": [
         {
@@ -1251,6 +1283,22 @@
           "time": "09:45",
           "endTime": "10:15",
           "startTime": "09:45"
+        },
+        {
+          "id": "w-milk",
+          "time": "09:45",
+          "startTime": "09:45",
+          "endTime": "10:15",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
         },
         {
           "id": "w3",
@@ -1409,8 +1457,8 @@
     {
       "day": {
         "en": "Thursday",
-        "fil": "Huwebes",
-        "zh": "星期四"
+        "zh": "星期四",
+        "fil": "Huwebes"
       },
       "tasks": [
         {
@@ -1432,6 +1480,22 @@
           "time": "09:45",
           "endTime": "10:15",
           "startTime": "09:45"
+        },
+        {
+          "id": "th-milk",
+          "time": "09:45",
+          "startTime": "09:45",
+          "endTime": "10:15",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
         },
         {
           "id": "th3",
@@ -1590,8 +1654,8 @@
     {
       "day": {
         "en": "Friday",
-        "fil": "Biyernes",
-        "zh": "星期五"
+        "zh": "星期五",
+        "fil": "Biyernes"
       },
       "tasks": [
         {
@@ -1613,6 +1677,22 @@
           "time": "09:45",
           "endTime": "10:15",
           "startTime": "09:45"
+        },
+        {
+          "id": "f-milk",
+          "time": "09:45",
+          "startTime": "09:45",
+          "endTime": "10:15",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
         },
         {
           "id": "f3",
@@ -1771,8 +1851,8 @@
     {
       "day": {
         "en": "Saturday",
-        "fil": "Sabado",
-        "zh": "星期六"
+        "zh": "星期六",
+        "fil": "Sabado"
       },
       "tasks": [
         {
@@ -1794,6 +1874,22 @@
           "time": "09:45",
           "endTime": "10:15",
           "startTime": "09:45"
+        },
+        {
+          "id": "s-milk",
+          "time": "09:45",
+          "startTime": "09:45",
+          "endTime": "10:15",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
         },
         {
           "id": "s3",
@@ -1931,10 +2027,26 @@
     {
       "day": {
         "en": "Sunday",
-        "fil": "Linggo",
-        "zh": "星期日"
+        "zh": "星期日",
+        "fil": "Linggo"
       },
       "tasks": [
+        {
+          "id": "su-milk",
+          "time": "09:50",
+          "startTime": "09:50",
+          "endTime": "10:10",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
+        },
         {
           "id": "su0",
           "task": {
@@ -2116,934 +2228,1014 @@
   ],
   "weeklyScheduleSummer": [
     {
-      "dayKey": "monday",
       "day": {
         "en": "Monday",
-        "fil": "Lunes",
-        "zh": "星期一"
+        "zh": "星期一",
+        "fil": "Lunes"
       },
       "tasks": [
         {
           "id": "sm1",
-          "time": "09:30",
-          "startTime": "09:30",
-          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
-            "fil": "Gisingin si Zizi (Seth)",
-            "zh": "叫醒 Zizi (Seth)"
-          }
+            "zh": "叫醒 Zizi (Seth)",
+            "fil": "Gisingin si Zizi (Seth)"
+          },
+          "time": "09:30",
+          "endTime": "09:45",
+          "startTime": "09:30"
         },
         {
           "id": "sm2",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "zh": "Zizi 早餐／刷牙",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          },
+          "time": "09:45",
+          "endTime": "10:15",
+          "startTime": "09:45"
+        },
+        {
+          "id": "sm-milk",
           "time": "09:45",
           "startTime": "09:45",
           "endTime": "10:15",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo",
-            "zh": "Zizi 早餐／刷牙"
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
           }
         },
         {
           "id": "sm3",
-          "time": "10:15",
-          "startTime": "10:15",
-          "endTime": "12:00",
           "task": {
             "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）"
-          }
+            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
+            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+          },
+          "time": "10:15",
+          "endTime": "12:00",
+          "startTime": "10:15"
         },
         {
           "id": "sm4",
-          "time": "12:00",
-          "startTime": "12:00",
-          "endTime": "13:00",
           "task": {
             "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay",
-            "zh": "Zizi 在家午餐"
-          }
+            "zh": "Zizi 在家午餐",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          },
+          "time": "12:00",
+          "endTime": "13:00",
+          "startTime": "12:00"
         },
         {
           "id": "sm5",
-          "time": "13:00",
-          "startTime": "13:00",
-          "endTime": "14:00",
           "task": {
             "en": "Zizi nap / quiet time at home",
-            "fil": "Tulog / tahimik na oras ni Zizi sa bahay",
-            "zh": "Zizi 午睡／安靜時間"
-          }
+            "zh": "Zizi 午睡／安靜時間",
+            "fil": "Tulog / tahimik na oras ni Zizi sa bahay"
+          },
+          "time": "13:00",
+          "endTime": "14:00",
+          "startTime": "13:00"
         },
         {
           "id": "sm6",
-          "time": "14:00",
-          "startTime": "14:00",
-          "endTime": "16:00",
           "task": {
             "en": "Wash clothing (all clothes first, then Charlene's), vacuum, mop, toilet",
-            "fil": "Labada (lahat muna, tapos damit ni Charlene), vacuum, mop, toilet",
-            "zh": "洗衣（全家衣物後再洗 Charlene 的）、吸塵、拖地、廁所"
-          }
+            "zh": "洗衣（全家衣物後再洗 Charlene 的）、吸塵、拖地、廁所",
+            "fil": "Labada (lahat muna, tapos damit ni Charlene), vacuum, mop, toilet"
+          },
+          "time": "14:00",
+          "endTime": "16:00",
+          "startTime": "14:00"
         },
         {
           "id": "sm7",
-          "time": "16:00",
-          "startTime": "16:00",
-          "endTime": "16:30",
           "task": {
             "en": "Flexible / prepare for tea time",
-            "fil": "Flexible / maghanda para sa merienda",
-            "zh": "彈性時間／準備茶點"
-          }
+            "zh": "彈性時間／準備茶點",
+            "fil": "Flexible / maghanda para sa merienda"
+          },
+          "time": "16:00",
+          "endTime": "16:30",
+          "startTime": "16:00"
         },
         {
           "id": "sm12",
-          "time": "16:30",
-          "startTime": "16:30",
-          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi",
-            "zh": "Zizi 茶點"
-          }
+            "zh": "Zizi 茶點",
+            "fil": "Merienda ni Zizi"
+          },
+          "time": "16:30",
+          "endTime": "17:00",
+          "startTime": "16:30"
         },
         {
           "id": "sm13",
-          "time": "17:00",
-          "startTime": "17:00",
-          "endTime": "18:00",
           "task": {
             "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
-            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)",
-            "zh": "準備晚餐（查看今晚隨機菜單）"
-          }
+            "zh": "準備晚餐（查看今晚隨機菜單）",
+            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
+          },
+          "time": "17:00",
+          "endTime": "18:00",
+          "startTime": "17:00"
         },
         {
           "id": "sm14",
-          "time": "18:00",
-          "startTime": "18:00",
-          "endTime": "18:30",
           "task": {
             "en": "Cook dinner",
-            "fil": "Magluto ng hapunan",
-            "zh": "煮晚餐"
-          }
+            "zh": "煮晚餐",
+            "fil": "Magluto ng hapunan"
+          },
+          "time": "18:00",
+          "endTime": "18:30",
+          "startTime": "18:00"
         },
         {
           "id": "sm15",
-          "time": "18:30",
-          "startTime": "18:30",
-          "endTime": "20:15",
           "task": {
             "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi",
-            "zh": "Zizi 晚餐"
-          }
+            "zh": "Zizi 晚餐",
+            "fil": "Hapunan ni Zizi"
+          },
+          "time": "18:30",
+          "endTime": "20:15",
+          "startTime": "18:30"
         },
         {
           "id": "sm16",
-          "time": "20:15",
-          "startTime": "20:15",
-          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina",
-            "zh": "洗碗／整理廚房"
-          }
+            "zh": "洗碗／整理廚房",
+            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+          },
+          "time": "20:15",
+          "endTime": "20:30",
+          "startTime": "20:15"
         },
         {
           "id": "sm17",
-          "time": "20:30",
-          "startTime": "20:30",
-          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig",
-            "zh": "吸塵"
-          }
+            "zh": "吸塵",
+            "fil": "Vacuum ng sahig"
+          },
+          "time": "20:30",
+          "endTime": "21:15",
+          "startTime": "20:30"
         },
         {
           "id": "sm18",
-          "time": "21:15",
-          "startTime": "21:15",
-          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower",
-            "fil": "Paligo ni Zizi",
-            "zh": "Zizi 洗澡"
-          }
+            "zh": "Zizi 洗澡",
+            "fil": "Paligo ni Zizi"
+          },
+          "time": "21:15",
+          "endTime": "21:45",
+          "startTime": "21:15"
         },
         {
           "id": "sm19",
-          "time": "21:45",
-          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene",
-            "zh": "Charlene 休息"
-          }
+            "zh": "Charlene 休息",
+            "fil": "Oras ng pahinga ni Charlene"
+          },
+          "time": "21:45",
+          "startTime": "21:45"
         }
-      ]
+      ],
+      "dayKey": "monday"
     },
     {
-      "dayKey": "tuesday",
       "day": {
         "en": "Tuesday",
-        "fil": "Martes",
-        "zh": "星期二"
+        "zh": "星期二",
+        "fil": "Martes"
       },
       "tasks": [
         {
           "id": "st1",
-          "time": "09:30",
-          "startTime": "09:30",
-          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
-            "fil": "Gisingin si Zizi (Seth)",
-            "zh": "叫醒 Zizi (Seth)"
-          }
+            "zh": "叫醒 Zizi (Seth)",
+            "fil": "Gisingin si Zizi (Seth)"
+          },
+          "time": "09:30",
+          "endTime": "09:45",
+          "startTime": "09:30"
         },
         {
           "id": "st2",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "zh": "Zizi 早餐／刷牙",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          },
+          "time": "09:45",
+          "endTime": "10:15",
+          "startTime": "09:45"
+        },
+        {
+          "id": "st-milk",
           "time": "09:45",
           "startTime": "09:45",
           "endTime": "10:15",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo",
-            "zh": "Zizi 早餐／刷牙"
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
           }
         },
         {
           "id": "st3",
-          "time": "10:15",
-          "startTime": "10:15",
-          "endTime": "12:00",
           "task": {
             "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）"
-          }
+            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
+            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+          },
+          "time": "10:15",
+          "endTime": "12:00",
+          "startTime": "10:15"
         },
         {
           "id": "st4",
-          "time": "12:00",
-          "startTime": "12:00",
-          "endTime": "13:00",
           "task": {
             "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay",
-            "zh": "Zizi 在家午餐"
-          }
+            "zh": "Zizi 在家午餐",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          },
+          "time": "12:00",
+          "endTime": "13:00",
+          "startTime": "12:00"
         },
         {
           "id": "st5",
-          "time": "13:00",
-          "startTime": "13:00",
-          "endTime": "14:00",
           "task": {
             "en": "Zizi nap / quiet time at home",
-            "fil": "Tulog / tahimik na oras ni Zizi sa bahay",
-            "zh": "Zizi 午睡／安靜時間"
-          }
+            "zh": "Zizi 午睡／安靜時間",
+            "fil": "Tulog / tahimik na oras ni Zizi sa bahay"
+          },
+          "time": "13:00",
+          "endTime": "14:00",
+          "startTime": "13:00"
         },
         {
           "id": "st6",
-          "time": "14:00",
-          "startTime": "14:00",
-          "endTime": "16:00",
           "task": {
             "en": "Clean Zizi toys, vacuum living room, toilet, buy food (AEON @ Domain if needed)",
-            "fil": "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (AEON @ Domain kung kailangan)",
-            "zh": "清潔玩具、客廳吸塵、廁所、買菜（需要可去 Domain AEON）"
-          }
+            "zh": "清潔玩具、客廳吸塵、廁所、買菜（需要可去 Domain AEON）",
+            "fil": "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (AEON @ Domain kung kailangan)"
+          },
+          "time": "14:00",
+          "endTime": "16:00",
+          "startTime": "14:00"
         },
         {
           "id": "st7",
-          "time": "16:00",
-          "startTime": "16:00",
-          "endTime": "16:30",
           "task": {
             "en": "Flexible / prepare for tea time",
-            "fil": "Flexible / maghanda para sa merienda",
-            "zh": "彈性時間／準備茶點"
-          }
+            "zh": "彈性時間／準備茶點",
+            "fil": "Flexible / maghanda para sa merienda"
+          },
+          "time": "16:00",
+          "endTime": "16:30",
+          "startTime": "16:00"
         },
         {
           "id": "st12",
-          "time": "16:30",
-          "startTime": "16:30",
-          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi",
-            "zh": "Zizi 茶點"
-          }
+            "zh": "Zizi 茶點",
+            "fil": "Merienda ni Zizi"
+          },
+          "time": "16:30",
+          "endTime": "17:00",
+          "startTime": "16:30"
         },
         {
           "id": "st13",
-          "time": "17:00",
-          "startTime": "17:00",
-          "endTime": "18:00",
           "task": {
             "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
-            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)",
-            "zh": "準備晚餐（查看今晚隨機菜單）"
-          }
+            "zh": "準備晚餐（查看今晚隨機菜單）",
+            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
+          },
+          "time": "17:00",
+          "endTime": "18:00",
+          "startTime": "17:00"
         },
         {
           "id": "st14",
-          "time": "18:00",
-          "startTime": "18:00",
-          "endTime": "18:30",
           "task": {
             "en": "Cook dinner",
-            "fil": "Magluto ng hapunan",
-            "zh": "煮晚餐"
-          }
+            "zh": "煮晚餐",
+            "fil": "Magluto ng hapunan"
+          },
+          "time": "18:00",
+          "endTime": "18:30",
+          "startTime": "18:00"
         },
         {
           "id": "st15",
-          "time": "18:30",
-          "startTime": "18:30",
-          "endTime": "20:15",
           "task": {
             "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi",
-            "zh": "Zizi 晚餐"
-          }
+            "zh": "Zizi 晚餐",
+            "fil": "Hapunan ni Zizi"
+          },
+          "time": "18:30",
+          "endTime": "20:15",
+          "startTime": "18:30"
         },
         {
           "id": "st16",
-          "time": "20:15",
-          "startTime": "20:15",
-          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina",
-            "zh": "洗碗／整理廚房"
-          }
+            "zh": "洗碗／整理廚房",
+            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+          },
+          "time": "20:15",
+          "endTime": "20:30",
+          "startTime": "20:15"
         },
         {
           "id": "st17",
-          "time": "20:30",
-          "startTime": "20:30",
-          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig",
-            "zh": "吸塵"
-          }
+            "zh": "吸塵",
+            "fil": "Vacuum ng sahig"
+          },
+          "time": "20:30",
+          "endTime": "21:15",
+          "startTime": "20:30"
         },
         {
           "id": "st18",
-          "time": "21:15",
-          "startTime": "21:15",
-          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower",
-            "fil": "Paligo ni Zizi",
-            "zh": "Zizi 洗澡"
-          }
+            "zh": "Zizi 洗澡",
+            "fil": "Paligo ni Zizi"
+          },
+          "time": "21:15",
+          "endTime": "21:45",
+          "startTime": "21:15"
         },
         {
           "id": "st19",
-          "time": "21:45",
-          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene",
-            "zh": "Charlene 休息"
-          }
+            "zh": "Charlene 休息",
+            "fil": "Oras ng pahinga ni Charlene"
+          },
+          "time": "21:45",
+          "startTime": "21:45"
         }
-      ]
+      ],
+      "dayKey": "tuesday"
     },
     {
-      "dayKey": "wednesday",
       "day": {
         "en": "Wednesday",
-        "fil": "Miyerkules",
-        "zh": "星期三"
+        "zh": "星期三",
+        "fil": "Miyerkules"
       },
       "tasks": [
         {
           "id": "sw1",
-          "time": "09:30",
-          "startTime": "09:30",
-          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
-            "fil": "Gisingin si Zizi (Seth)",
-            "zh": "叫醒 Zizi (Seth)"
-          }
+            "zh": "叫醒 Zizi (Seth)",
+            "fil": "Gisingin si Zizi (Seth)"
+          },
+          "time": "09:30",
+          "endTime": "09:45",
+          "startTime": "09:30"
         },
         {
           "id": "sw2",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "zh": "Zizi 早餐／刷牙",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          },
+          "time": "09:45",
+          "endTime": "10:15",
+          "startTime": "09:45"
+        },
+        {
+          "id": "sw-milk",
           "time": "09:45",
           "startTime": "09:45",
           "endTime": "10:15",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo",
-            "zh": "Zizi 早餐／刷牙"
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
           }
         },
         {
           "id": "sw3",
-          "time": "10:15",
-          "startTime": "10:15",
-          "endTime": "12:00",
           "task": {
             "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）"
-          }
+            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
+            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+          },
+          "time": "10:15",
+          "endTime": "12:00",
+          "startTime": "10:15"
         },
         {
           "id": "sw4",
-          "time": "12:00",
-          "startTime": "12:00",
-          "endTime": "13:00",
           "task": {
             "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay",
-            "zh": "Zizi 在家午餐"
-          }
+            "zh": "Zizi 在家午餐",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          },
+          "time": "12:00",
+          "endTime": "13:00",
+          "startTime": "12:00"
         },
         {
           "id": "sw5",
-          "time": "13:00",
-          "startTime": "13:00",
-          "endTime": "13:30",
           "task": {
             "en": "Prepare & leave home for drawing class (Kwun Tong Industrial Centre)",
-            "fil": "Maghanda at umalis papuntang drawing class (Kwun Tong Industrial Centre)",
-            "zh": "準備出門前往繪畫班（觀塘工業中心）"
-          }
+            "zh": "準備出門前往繪畫班（觀塘工業中心）",
+            "fil": "Maghanda at umalis papuntang drawing class (Kwun Tong Industrial Centre)"
+          },
+          "time": "13:00",
+          "endTime": "13:30",
+          "startTime": "13:00"
         },
         {
           "id": "sw6",
-          "time": "13:30",
-          "startTime": "13:30",
-          "endTime": "14:00",
           "task": {
             "en": "Travel / arrive at One Point Studio",
-            "fil": "Biyahe / dumating sa One Point Studio",
-            "zh": "前往／到達 One Point Studio"
-          }
+            "zh": "前往／到達 One Point Studio",
+            "fil": "Biyahe / dumating sa One Point Studio"
+          },
+          "time": "13:30",
+          "endTime": "14:00",
+          "startTime": "13:30"
         },
         {
           "id": "sw7",
-          "time": "14:00",
-          "startTime": "14:00",
-          "endTime": "15:00",
           "task": {
             "en": "Drawing class (14:00–15:00)",
-            "fil": "Drawing class (14:00–15:00)",
-            "zh": "繪畫班（14:00–15:00）"
+            "zh": "繪畫班（14:00–15:00）",
+            "fil": "Drawing class (14:00–15:00)"
           },
+          "time": "14:00",
           "notes": {
             "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
-            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
-            "zh": "One Point Studio · 觀塘工業中心一期12樓B室"
-          }
+            "zh": "One Point Studio · 觀塘工業中心一期12樓B室",
+            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）"
+          },
+          "endTime": "15:00",
+          "startTime": "14:00"
         },
         {
           "id": "sw8",
-          "time": "15:00",
-          "startTime": "15:00",
-          "endTime": "15:30",
           "task": {
             "en": "Return home from drawing class",
-            "fil": "Umuwi mula sa drawing class",
-            "zh": "繪畫班結束回家"
-          }
+            "zh": "繪畫班結束回家",
+            "fil": "Umuwi mula sa drawing class"
+          },
+          "time": "15:00",
+          "endTime": "15:30",
+          "startTime": "15:00"
         },
         {
           "id": "sw9",
-          "time": "15:30",
-          "startTime": "15:30",
-          "endTime": "16:30",
           "task": {
             "en": "Light housework after drawing class / buy food if needed",
-            "fil": "Magaan na gawaing bahay pagkatapos ng drawing / bumili ng pagkain kung kailangan",
-            "zh": "繪畫班後輕家務／按需要買菜"
-          }
+            "zh": "繪畫班後輕家務／按需要買菜",
+            "fil": "Magaan na gawaing bahay pagkatapos ng drawing / bumili ng pagkain kung kailangan"
+          },
+          "time": "15:30",
+          "endTime": "16:30",
+          "startTime": "15:30"
         },
         {
           "id": "sw12",
-          "time": "16:30",
-          "startTime": "16:30",
-          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi",
-            "zh": "Zizi 茶點"
-          }
+            "zh": "Zizi 茶點",
+            "fil": "Merienda ni Zizi"
+          },
+          "time": "16:30",
+          "endTime": "17:00",
+          "startTime": "16:30"
         },
         {
           "id": "sw13",
-          "time": "17:00",
-          "startTime": "17:00",
-          "endTime": "18:00",
           "task": {
             "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
-            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)",
-            "zh": "準備晚餐（查看今晚隨機菜單）"
-          }
+            "zh": "準備晚餐（查看今晚隨機菜單）",
+            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
+          },
+          "time": "17:00",
+          "endTime": "18:00",
+          "startTime": "17:00"
         },
         {
           "id": "sw14",
-          "time": "18:00",
-          "startTime": "18:00",
-          "endTime": "18:30",
           "task": {
             "en": "Cook dinner",
-            "fil": "Magluto ng hapunan",
-            "zh": "煮晚餐"
-          }
+            "zh": "煮晚餐",
+            "fil": "Magluto ng hapunan"
+          },
+          "time": "18:00",
+          "endTime": "18:30",
+          "startTime": "18:00"
         },
         {
           "id": "sw15",
-          "time": "18:30",
-          "startTime": "18:30",
-          "endTime": "20:15",
           "task": {
             "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi",
-            "zh": "Zizi 晚餐"
-          }
+            "zh": "Zizi 晚餐",
+            "fil": "Hapunan ni Zizi"
+          },
+          "time": "18:30",
+          "endTime": "20:15",
+          "startTime": "18:30"
         },
         {
           "id": "sw16",
-          "time": "20:15",
-          "startTime": "20:15",
-          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina",
-            "zh": "洗碗／整理廚房"
-          }
+            "zh": "洗碗／整理廚房",
+            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+          },
+          "time": "20:15",
+          "endTime": "20:30",
+          "startTime": "20:15"
         },
         {
           "id": "sw17",
-          "time": "20:30",
-          "startTime": "20:30",
-          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig",
-            "zh": "吸塵"
-          }
+            "zh": "吸塵",
+            "fil": "Vacuum ng sahig"
+          },
+          "time": "20:30",
+          "endTime": "21:15",
+          "startTime": "20:30"
         },
         {
           "id": "sw18",
-          "time": "21:15",
-          "startTime": "21:15",
-          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower",
-            "fil": "Paligo ni Zizi",
-            "zh": "Zizi 洗澡"
-          }
+            "zh": "Zizi 洗澡",
+            "fil": "Paligo ni Zizi"
+          },
+          "time": "21:15",
+          "endTime": "21:45",
+          "startTime": "21:15"
         },
         {
           "id": "sw19",
-          "time": "21:45",
-          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene",
-            "zh": "Charlene 休息"
-          }
+            "zh": "Charlene 休息",
+            "fil": "Oras ng pahinga ni Charlene"
+          },
+          "time": "21:45",
+          "startTime": "21:45"
         }
-      ]
+      ],
+      "dayKey": "wednesday"
     },
     {
-      "dayKey": "thursday",
       "day": {
         "en": "Thursday",
-        "fil": "Huwebes",
-        "zh": "星期四"
+        "zh": "星期四",
+        "fil": "Huwebes"
       },
       "tasks": [
         {
           "id": "sth1",
-          "time": "09:30",
-          "startTime": "09:30",
-          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
-            "fil": "Gisingin si Zizi (Seth)",
-            "zh": "叫醒 Zizi (Seth)"
-          }
+            "zh": "叫醒 Zizi (Seth)",
+            "fil": "Gisingin si Zizi (Seth)"
+          },
+          "time": "09:30",
+          "endTime": "09:45",
+          "startTime": "09:30"
         },
         {
           "id": "sth2",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "zh": "Zizi 早餐／刷牙",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          },
+          "time": "09:45",
+          "endTime": "10:15",
+          "startTime": "09:45"
+        },
+        {
+          "id": "sth-milk",
           "time": "09:45",
           "startTime": "09:45",
           "endTime": "10:15",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo",
-            "zh": "Zizi 早餐／刷牙"
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
           }
         },
         {
           "id": "sth3",
-          "time": "10:15",
-          "startTime": "10:15",
-          "endTime": "12:00",
           "task": {
             "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）"
-          }
+            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
+            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+          },
+          "time": "10:15",
+          "endTime": "12:00",
+          "startTime": "10:15"
         },
         {
           "id": "sth4",
-          "time": "12:00",
-          "startTime": "12:00",
-          "endTime": "13:00",
           "task": {
             "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay",
-            "zh": "Zizi 在家午餐"
-          }
+            "zh": "Zizi 在家午餐",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          },
+          "time": "12:00",
+          "endTime": "13:00",
+          "startTime": "12:00"
         },
         {
           "id": "sth5",
-          "time": "13:00",
-          "startTime": "13:00",
-          "endTime": "14:00",
           "task": {
             "en": "Zizi nap / quiet time at home",
-            "fil": "Tulog / tahimik na oras ni Zizi sa bahay",
-            "zh": "Zizi 午睡／安靜時間"
-          }
+            "zh": "Zizi 午睡／安靜時間",
+            "fil": "Tulog / tahimik na oras ni Zizi sa bahay"
+          },
+          "time": "13:00",
+          "endTime": "14:00",
+          "startTime": "13:00"
         },
         {
           "id": "sth6",
-          "time": "14:00",
-          "startTime": "14:00",
-          "endTime": "16:00",
           "task": {
             "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain)",
-            "fil": "Vacuum, malalim na linis ng toilet (gripo/shower/mat/washing machine/curtain)",
-            "zh": "吸塵、徹底清潔廁所（龍頭／花灑／地墊／洗衣機／浴簾）"
-          }
+            "zh": "吸塵、徹底清潔廁所（龍頭／花灑／地墊／洗衣機／浴簾）",
+            "fil": "Vacuum, malalim na linis ng toilet (gripo/shower/mat/washing machine/curtain)"
+          },
+          "time": "14:00",
+          "endTime": "16:00",
+          "startTime": "14:00"
         },
         {
           "id": "sth7",
-          "time": "16:00",
-          "startTime": "16:00",
-          "endTime": "16:30",
           "task": {
             "en": "Flexible / prepare for tea time",
-            "fil": "Flexible / maghanda para sa merienda",
-            "zh": "彈性時間／準備茶點"
-          }
+            "zh": "彈性時間／準備茶點",
+            "fil": "Flexible / maghanda para sa merienda"
+          },
+          "time": "16:00",
+          "endTime": "16:30",
+          "startTime": "16:00"
         },
         {
           "id": "sth12",
-          "time": "16:30",
-          "startTime": "16:30",
-          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi",
-            "zh": "Zizi 茶點"
-          }
+            "zh": "Zizi 茶點",
+            "fil": "Merienda ni Zizi"
+          },
+          "time": "16:30",
+          "endTime": "17:00",
+          "startTime": "16:30"
         },
         {
           "id": "sth13",
-          "time": "17:00",
-          "startTime": "17:00",
-          "endTime": "18:00",
           "task": {
             "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
-            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)",
-            "zh": "準備晚餐（查看今晚隨機菜單）"
-          }
+            "zh": "準備晚餐（查看今晚隨機菜單）",
+            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
+          },
+          "time": "17:00",
+          "endTime": "18:00",
+          "startTime": "17:00"
         },
         {
           "id": "sth14",
-          "time": "18:00",
-          "startTime": "18:00",
-          "endTime": "18:30",
           "task": {
             "en": "Cook dinner",
-            "fil": "Magluto ng hapunan",
-            "zh": "煮晚餐"
-          }
+            "zh": "煮晚餐",
+            "fil": "Magluto ng hapunan"
+          },
+          "time": "18:00",
+          "endTime": "18:30",
+          "startTime": "18:00"
         },
         {
           "id": "sth15",
-          "time": "18:30",
-          "startTime": "18:30",
-          "endTime": "20:15",
           "task": {
             "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi",
-            "zh": "Zizi 晚餐"
-          }
+            "zh": "Zizi 晚餐",
+            "fil": "Hapunan ni Zizi"
+          },
+          "time": "18:30",
+          "endTime": "20:15",
+          "startTime": "18:30"
         },
         {
           "id": "sth16",
-          "time": "20:15",
-          "startTime": "20:15",
-          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina",
-            "zh": "洗碗／整理廚房"
-          }
+            "zh": "洗碗／整理廚房",
+            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+          },
+          "time": "20:15",
+          "endTime": "20:30",
+          "startTime": "20:15"
         },
         {
           "id": "sth17",
-          "time": "20:30",
-          "startTime": "20:30",
-          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig",
-            "zh": "吸塵"
-          }
+            "zh": "吸塵",
+            "fil": "Vacuum ng sahig"
+          },
+          "time": "20:30",
+          "endTime": "21:15",
+          "startTime": "20:30"
         },
         {
           "id": "sth18",
-          "time": "21:15",
-          "startTime": "21:15",
-          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower",
-            "fil": "Paligo ni Zizi",
-            "zh": "Zizi 洗澡"
-          }
+            "zh": "Zizi 洗澡",
+            "fil": "Paligo ni Zizi"
+          },
+          "time": "21:15",
+          "endTime": "21:45",
+          "startTime": "21:15"
         },
         {
           "id": "sth19",
-          "time": "21:45",
-          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene",
-            "zh": "Charlene 休息"
-          }
+            "zh": "Charlene 休息",
+            "fil": "Oras ng pahinga ni Charlene"
+          },
+          "time": "21:45",
+          "startTime": "21:45"
         }
-      ]
+      ],
+      "dayKey": "thursday"
     },
     {
-      "dayKey": "friday",
       "day": {
         "en": "Friday",
-        "fil": "Biyernes",
-        "zh": "星期五"
+        "zh": "星期五",
+        "fil": "Biyernes"
       },
       "tasks": [
         {
           "id": "sf1",
-          "time": "09:30",
-          "startTime": "09:30",
-          "endTime": "09:45",
           "task": {
             "en": "Zizi (Seth) wake up",
-            "fil": "Gisingin si Zizi (Seth)",
-            "zh": "叫醒 Zizi (Seth)"
-          }
+            "zh": "叫醒 Zizi (Seth)",
+            "fil": "Gisingin si Zizi (Seth)"
+          },
+          "time": "09:30",
+          "endTime": "09:45",
+          "startTime": "09:30"
         },
         {
           "id": "sf2",
+          "task": {
+            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
+            "zh": "Zizi 早餐／刷牙",
+            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+          },
+          "time": "09:45",
+          "endTime": "10:15",
+          "startTime": "09:45"
+        },
+        {
+          "id": "sf-milk",
           "time": "09:45",
           "startTime": "09:45",
           "endTime": "10:15",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo",
-            "zh": "Zizi 早餐／刷牙"
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
           }
         },
         {
           "id": "sf3",
-          "time": "10:15",
-          "startTime": "10:15",
-          "endTime": "12:00",
           "task": {
             "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）"
-          }
+            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
+            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+          },
+          "time": "10:15",
+          "endTime": "12:00",
+          "startTime": "10:15"
         },
         {
           "id": "sf4",
-          "time": "12:00",
-          "startTime": "12:00",
-          "endTime": "13:00",
           "task": {
             "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay",
-            "zh": "Zizi 在家午餐"
-          }
+            "zh": "Zizi 在家午餐",
+            "fil": "Tanghalian ni Zizi sa bahay"
+          },
+          "time": "12:00",
+          "endTime": "13:00",
+          "startTime": "12:00"
         },
         {
           "id": "sf5",
-          "time": "13:00",
-          "startTime": "13:00",
-          "endTime": "13:30",
           "task": {
             "en": "Prepare & leave home for drawing class (Kwun Tong Industrial Centre)",
-            "fil": "Maghanda at umalis papuntang drawing class (Kwun Tong Industrial Centre)",
-            "zh": "準備出門前往繪畫班（觀塘工業中心）"
-          }
+            "zh": "準備出門前往繪畫班（觀塘工業中心）",
+            "fil": "Maghanda at umalis papuntang drawing class (Kwun Tong Industrial Centre)"
+          },
+          "time": "13:00",
+          "endTime": "13:30",
+          "startTime": "13:00"
         },
         {
           "id": "sf6",
-          "time": "13:30",
-          "startTime": "13:30",
-          "endTime": "14:00",
           "task": {
             "en": "Travel / arrive at One Point Studio",
-            "fil": "Biyahe / dumating sa One Point Studio",
-            "zh": "前往／到達 One Point Studio"
-          }
+            "zh": "前往／到達 One Point Studio",
+            "fil": "Biyahe / dumating sa One Point Studio"
+          },
+          "time": "13:30",
+          "endTime": "14:00",
+          "startTime": "13:30"
         },
         {
           "id": "sf7",
-          "time": "14:00",
-          "startTime": "14:00",
-          "endTime": "15:00",
           "task": {
             "en": "Drawing class (14:00–15:00)",
-            "fil": "Drawing class (14:00–15:00)",
-            "zh": "繪畫班（14:00–15:00）"
+            "zh": "繪畫班（14:00–15:00）",
+            "fil": "Drawing class (14:00–15:00)"
           },
+          "time": "14:00",
           "notes": {
             "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
-            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
-            "zh": "One Point Studio · 觀塘工業中心一期12樓B室"
-          }
+            "zh": "One Point Studio · 觀塘工業中心一期12樓B室",
+            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）"
+          },
+          "endTime": "15:00",
+          "startTime": "14:00"
         },
         {
           "id": "sf8",
-          "time": "15:00",
-          "startTime": "15:00",
-          "endTime": "15:30",
           "task": {
             "en": "Return home from drawing class",
-            "fil": "Umuwi mula sa drawing class",
-            "zh": "繪畫班結束回家"
-          }
+            "zh": "繪畫班結束回家",
+            "fil": "Umuwi mula sa drawing class"
+          },
+          "time": "15:00",
+          "endTime": "15:30",
+          "startTime": "15:00"
         },
         {
           "id": "sf9",
-          "time": "15:30",
-          "startTime": "15:30",
-          "endTime": "16:30",
           "task": {
             "en": "Vacuum / tidy bedroom & toilet after drawing class",
-            "fil": "Vacuum / ayusin ang kwarto at toilet pagkatapos ng drawing",
-            "zh": "繪畫班後吸塵／整理睡房與廁所"
-          }
+            "zh": "繪畫班後吸塵／整理睡房與廁所",
+            "fil": "Vacuum / ayusin ang kwarto at toilet pagkatapos ng drawing"
+          },
+          "time": "15:30",
+          "endTime": "16:30",
+          "startTime": "15:30"
         },
         {
           "id": "sf12",
-          "time": "16:30",
-          "startTime": "16:30",
-          "endTime": "17:00",
           "task": {
             "en": "ZiZi tea time",
-            "fil": "Merienda ni Zizi",
-            "zh": "Zizi 茶點"
-          }
+            "zh": "Zizi 茶點",
+            "fil": "Merienda ni Zizi"
+          },
+          "time": "16:30",
+          "endTime": "17:00",
+          "startTime": "16:30"
         },
         {
           "id": "sf13",
-          "time": "17:00",
-          "startTime": "17:00",
-          "endTime": "18:00",
           "task": {
             "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
-            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)",
-            "zh": "準備晚餐（查看今晚隨機菜單）"
-          }
+            "zh": "準備晚餐（查看今晚隨機菜單）",
+            "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
+          },
+          "time": "17:00",
+          "endTime": "18:00",
+          "startTime": "17:00"
         },
         {
           "id": "sf14",
-          "time": "18:00",
-          "startTime": "18:00",
-          "endTime": "18:30",
           "task": {
             "en": "Cook dinner",
-            "fil": "Magluto ng hapunan",
-            "zh": "煮晚餐"
-          }
+            "zh": "煮晚餐",
+            "fil": "Magluto ng hapunan"
+          },
+          "time": "18:00",
+          "endTime": "18:30",
+          "startTime": "18:00"
         },
         {
           "id": "sf15",
-          "time": "18:30",
-          "startTime": "18:30",
-          "endTime": "20:15",
           "task": {
             "en": "ZiZi dinner",
-            "fil": "Hapunan ni Zizi",
-            "zh": "Zizi 晚餐"
-          }
+            "zh": "Zizi 晚餐",
+            "fil": "Hapunan ni Zizi"
+          },
+          "time": "18:30",
+          "endTime": "20:15",
+          "startTime": "18:30"
         },
         {
           "id": "sf16",
-          "time": "20:15",
-          "startTime": "20:15",
-          "endTime": "20:30",
           "task": {
             "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina",
-            "zh": "洗碗／整理廚房"
-          }
+            "zh": "洗碗／整理廚房",
+            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+          },
+          "time": "20:15",
+          "endTime": "20:30",
+          "startTime": "20:15"
         },
         {
           "id": "sf17",
-          "time": "20:30",
-          "startTime": "20:30",
-          "endTime": "21:15",
           "task": {
             "en": "Vacuum floor",
-            "fil": "Vacuum ng sahig",
-            "zh": "吸塵"
-          }
+            "zh": "吸塵",
+            "fil": "Vacuum ng sahig"
+          },
+          "time": "20:30",
+          "endTime": "21:15",
+          "startTime": "20:30"
         },
         {
           "id": "sf18",
-          "time": "21:15",
-          "startTime": "21:15",
-          "endTime": "21:45",
           "task": {
             "en": "ZiZi shower",
-            "fil": "Paligo ni Zizi",
-            "zh": "Zizi 洗澡"
-          }
+            "zh": "Zizi 洗澡",
+            "fil": "Paligo ni Zizi"
+          },
+          "time": "21:15",
+          "endTime": "21:45",
+          "startTime": "21:15"
         },
         {
           "id": "sf19",
-          "time": "21:45",
-          "startTime": "21:45",
           "task": {
             "en": "Charlene rest time",
-            "fil": "Oras ng pahinga ni Charlene",
-            "zh": "Charlene 休息"
-          }
+            "zh": "Charlene 休息",
+            "fil": "Oras ng pahinga ni Charlene"
+          },
+          "time": "21:45",
+          "startTime": "21:45"
         }
-      ]
+      ],
+      "dayKey": "friday"
     },
     {
       "day": {
         "en": "Saturday",
-        "fil": "Sabado",
-        "zh": "星期六"
+        "zh": "星期六",
+        "fil": "Sabado"
       },
       "tasks": [
         {
@@ -3067,11 +3259,27 @@
           "startTime": "09:45"
         },
         {
+          "id": "s-milk",
+          "time": "09:45",
+          "startTime": "09:45",
+          "endTime": "10:15",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
+        },
+        {
           "id": "s3",
           "task": {
             "en": "Play / supervise Zizi at home (Saturday — no kindergarten)",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (Sabado — walang kindergarten)",
-            "zh": "在家陪伴 Zizi（星期六 — 無幼稚園）"
+            "zh": "在家陪伴 Zizi（星期六 — 無幼稚園）",
+            "fil": "Maglaro / bantayan si Zizi sa bahay (Sabado — walang kindergarten)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -3202,10 +3410,26 @@
     {
       "day": {
         "en": "Sunday",
-        "fil": "Linggo",
-        "zh": "星期日"
+        "zh": "星期日",
+        "fil": "Linggo"
       },
       "tasks": [
+        {
+          "id": "su-milk",
+          "time": "09:50",
+          "startTime": "09:50",
+          "endTime": "10:10",
+          "task": {
+            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+          },
+          "notes": {
+            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
+          }
+        },
         {
           "id": "su0",
           "task": {
