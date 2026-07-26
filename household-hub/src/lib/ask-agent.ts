@@ -599,8 +599,54 @@ function heuristicAnswer(
       q
     )
   ) {
-    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-weekly-chores");
-    if (tip) return tip;
+    const choreHints: string[] = [];
+    if (snap.todaySchedule) {
+      const chores = snap.todaySchedule.tasks.filter((t) => {
+        const en = (t.task?.en || "").toLowerCase();
+        return /wash|vacuum|mop|clean|laundry|iron|buy food|toilet|kitchen|bedroom|toy|monthly|dishes|bin/.test(
+          en
+        );
+      });
+      if (chores.length) {
+        choreHints.push(
+          lang === "fil"
+            ? "Sa schedule ngayong araw:"
+            : lang === "zh"
+              ? "今日日程家務："
+              : "On today’s schedule:"
+        );
+        for (const t of chores) {
+          choreHints.push(`• ${taskLabel(t, lang)}`);
+        }
+      }
+    }
+    if (snap.monthlyTasks?.length) {
+      choreHints.push(
+        lang === "fil"
+          ? "Monthly list (flexible time sa schedule):"
+          : lang === "zh"
+            ? "每月清單（日程彈性時間選做）："
+            : "Monthly list (use flexible time on the schedule):"
+      );
+      for (const m of snap.monthlyTasks.slice(0, 8)) {
+        choreHints.push(`• ${localized(m, lang)}`);
+      }
+      if (snap.monthlyTasks.length > 8) {
+        choreHints.push(
+          lang === "zh" ? "• …（見日程 Monthly tasks）" : "• … (see Schedule → Monthly tasks)"
+        );
+      }
+    }
+    if (choreHints.length) {
+      return (
+        choreHints.join("\n") +
+        (lang === "fil"
+          ? "\n\nBuksan ang Schedule tab — naka-distribute na ang weekly chores doon (hindi sa HK Life tip)."
+          : lang === "zh"
+            ? "\n\n請打開「日程」分頁 — 每週家務已寫在日程裡（不是 HK Life 貼士）。"
+            : "\n\nOpen the Schedule tab — weekly chores are written into each day (not an HK Life tip).")
+      );
+    }
   }
 
   if (
