@@ -734,14 +734,14 @@
       "priority": 50,
       "lastReviewed": "2026-07-26",
       "title": {
-        "en": "Groceries — YATA at apm (first)",
-        "fil": "Pamimili — YATA sa apm (una)",
-        "zh": "買菜 — apm 一田 YATA（優先）"
+        "en": "Groceries — YATA, 瑞和街 wet market, AEON",
+        "fil": "Pamimili — YATA, 瑞和街 wet market, AEON",
+        "zh": "買菜 — 一田、瑞和街街市、AEON"
       },
       "body": {
-        "en": "First choice: YATA (一田) supermarket inside apm, linked to our Kwun Tong home (near Kwun Tong MTR, ~3 min walk). Use the shopping list from tonight’s Meals tab when possible. AEON Yau Tong / Domain only if Sir/Mum ask or something is missing. Keep receipts if asked. Do not buy on credit or borrow.",
-        "fil": "Una: YATA (一田) supermarket sa apm, konektado sa Kwun Tong home namin (malapit sa Kwun Tong MTR, ~3 min lakad). Gamitin ang shopping list sa Meals tab kung pwede. AEON Yau Tong / Domain lang kung sabihin ni Sir/Mum o may kulang. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram.",
-        "zh": "優先：家附近 apm 內的一田 YATA（近觀塘港鐵，步行約3分鐘）。盡量用 Meals 分頁購物清單。只有 Sir/Mum 吩咐或買不到時才去油塘／Domain AEON。如需要請保留收據。不要賒帳或向人借錢。"
+        "en": "OK places to buy food: (1) YATA (一田) at apm near home — first choice. (2) Shui Wo Street wet market (瑞和街街市) in Kwun Tong — good for fresh meat and vegetables. (3) AEON Yau Tong / Domain if needed. Do NOT go to 錢大媽 (Kai Bo / Qin Dama). Use the Meals tab shopping list when possible. Keep receipts if asked. Do not buy on credit or borrow.",
+        "fil": "Pwede bumili sa: (1) YATA (一田) sa apm malapit sa bahay — una. (2) Shui Wo Street wet market (瑞和街街市) sa Kwun Tong — maganda para sa sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan. HUWAG pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals tab shopping list kung pwede. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram.",
+        "zh": "可以買菜的地方：(1) 家附近 apm 一田 YATA — 優先。(2) 觀塘瑞和街街市 — 適合買新鮮肉菜。(3) 有需要可去油塘／Domain AEON。不要去錢大媽。盡量用 Meals 分頁購物清單。如需要請保留收據。不要賒帳或向人借錢。"
       }
     },
     {
@@ -1231,9 +1231,9 @@
         {
           "id": "t7",
           "task": {
-            "en": "Clean Zizi toys, vacuum floor & living room, toilet, buy food (YATA @ apm first)",
-            "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (YATA @ apm muna)",
-            "zh": "清潔玩具、客廳吸塵、廁所、買菜（優先 apm 一田 YATA）"
+            "en": "Clean Zizi toys, vacuum floor & living room, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "清潔玩具、客廳吸塵、廁所、買菜（一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1432,9 +1432,9 @@
         {
           "id": "w7",
           "task": {
-            "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food (YATA @ apm first)",
-            "fil": "Vacuum, malalim na linis ng kusina, toilet, bumili ng pagkain (YATA @ apm muna)",
-            "zh": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food（買菜優先 apm 一田 YATA）"
+            "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, malalim na linis ng kusina, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1633,9 +1633,9 @@
         {
           "id": "th7",
           "task": {
-            "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food (YATA @ apm first)",
-            "fil": "Vacuum, malalim na linis ng banyo, bumili ng pagkain (YATA @ apm muna)",
-            "zh": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food（買菜優先 apm 一田 YATA）"
+            "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, malalim na linis ng banyo, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1834,9 +1834,9 @@
         {
           "id": "f7",
           "task": {
-            "en": "Vacuum floor, deep clean bedroom, toilet, buy food (YATA @ apm first)",
-            "fil": "Vacuum, malalim na linis ng kwarto, toilet, bumili ng pagkain (YATA @ apm muna)",
-            "zh": "Vacuum floor, deep clean bedroom, toilet, buy food（買菜優先 apm 一田 YATA）"
+            "en": "Vacuum floor, deep clean bedroom, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, malalim na linis ng kwarto, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, deep clean bedroom, toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -2024,9 +2024,9 @@
         {
           "id": "s6",
           "task": {
-            "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm first)",
-            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm muna)",
-            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜優先 apm 一田 YATA）"
+            "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "14:00",
           "endTime": "16:00",
@@ -2198,18 +2198,18 @@
   "familyPreferences": [
     {
       "id": "pref-supermarket-yata",
-      "category": "shopping",
-      "priority": 0,
-      "title": {
-        "en": "First supermarket: YATA at apm (near home)",
-        "fil": "Unang supermarket: YATA sa apm (malapit sa bahay)",
-        "zh": "超市優先：家附近 apm 的一田 YATA"
-      },
       "body": {
-        "en": "Our flat links to apm mall. Buy groceries at YATA (一田) in apm first. AEON Yau Tong / Domain only if Sir/Mum ask or YATA cannot cover the list. Keep receipts if asked. Still follow food-origin and no-錢大媽-meat preferences.",
-        "fil": "Ang flat namin ay konektado sa apm. Bumili muna sa YATA (一田) sa apm. AEON Yau Tong / Domain lang kung sabihin ni Sir/Mum o kulang ang YATA. Itago ang resibo kung kailangan. Sundin pa rin ang food-origin at no-錢大媽-meat preferences.",
-        "zh": "我家連接 apm。買菜優先去 apm 的一田 YATA。只有 Sir/Mum 吩咐或一田買不到時才去油塘／Domain AEON。如需要請保留收據。仍要遵守產地偏好及不要在錢大媽買肉。"
-      }
+        "en": "Buy groceries at YATA (一田) in apm first. You may also shop at Shui Wo Street wet market (瑞和街街市) for fresh meat and veg. AEON is OK if needed. Do not go to 錢大媽. Still check food origin labels. Keep receipts if asked.",
+        "fil": "Bumili muna sa YATA (一田) sa apm. Pwede rin sa Shui Wo Street wet market (瑞和街街市) para sa sariwang karne at gulay. OK ang AEON kung kailangan. Huwag pumunta sa 錢大媽. Tingnan pa rin ang origin label. Itago ang resibo kung kailangan.",
+        "zh": "買菜優先 apm 一田 YATA。也可去瑞和街街市買新鮮肉菜。有需要可去 AEON。不要去錢大媽。仍請查看產地標籤。如需要請保留收據。"
+      },
+      "title": {
+        "en": "Shopping: YATA first; 瑞和街 wet market OK; no 錢大媽",
+        "fil": "Pamimili: YATA muna; OK ang 瑞和街 wet market; huwag sa 錢大媽",
+        "zh": "買菜：優先一田；可去瑞和街街市；不要去錢大媽"
+      },
+      "category": "shopping",
+      "priority": 0
     },
     {
       "id": "pref-no-china-food",
@@ -2229,14 +2229,14 @@
     {
       "id": "pref-no-qin-dama-meat",
       "body": {
-        "en": "Please do not buy meat from 錢大媽. Use other markets or shops Sir/Mum prefer (e.g. wet market stalls we trust, or the usual supermarket). Vegetables or other items there are OK if needed — meat is the main concern. Preference tip, not a ground rule.",
-        "zh": "請不要在錢大媽買肉。改去 Sir/Mum 慣用的街市檔或超市。如有需要，在那裡買菜或其他東西可以——主要是不要買肉。這是偏好貼士，不是守則。",
-        "fil": "Huwag bumili ng karne sa 錢大媽. Gumamit ng ibang market o tindahan na gusto nina Sir/Mum (hal. trusted wet market, o usual supermarket). Gulay o iba pang item OK kung kailangan — karne ang ayaw. Preference tip lang, hindi ground rule."
+        "en": "Please do not shop at 錢大媽. Use YATA at apm, Shui Wo Street wet market (瑞和街街市), or AEON instead. Preference tip, not a golden rule.",
+        "fil": "Huwag mamili sa 錢大媽. Gamitin ang YATA sa apm, Shui Wo Street wet market (瑞和街街市), o AEON. Preference tip lang, hindi golden rule.",
+        "zh": "請不要到錢大媽購物。改去 apm 一田、瑞和街街市或 AEON。這是偏好貼士，不是黃金守則。"
       },
       "title": {
-        "en": "Do not buy meat at 錢大媽 (Kai Bo / Qin Dama)",
-        "zh": "不要到錢大媽買肉",
-        "fil": "Huwag bumili ng karne sa 錢大媽 (Kai Bo)"
+        "en": "Do not go to 錢大媽 (Kai Bo / Qin Dama)",
+        "fil": "Huwag pumunta sa 錢大媽 (Kai Bo / Qin Dama)",
+        "zh": "不要去錢大媽"
       },
       "category": "shopping",
       "priority": 2
@@ -2651,9 +2651,9 @@
         {
           "id": "st6",
           "task": {
-            "en": "Clean Zizi toys, vacuum living room, toilet, buy food (YATA @ apm first)",
-            "zh": "清潔玩具、客廳吸塵、廁所、買菜（優先 apm 一田 YATA）",
-            "fil": "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (YATA @ apm muna)"
+            "en": "Clean Zizi toys, vacuum living room, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "zh": "清潔玩具、客廳吸塵、廁所、買菜（一田／瑞和街街市（不要錢大媽））",
+            "fil": "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "14:00",
           "endTime": "16:00",
@@ -2879,9 +2879,9 @@
         {
           "id": "sw9",
           "task": {
-            "en": "Light housework after drawing class / buy food (YATA @ apm first) if needed",
-            "zh": "繪畫班後輕家務／按需要買菜（優先 apm 一田 YATA）",
-            "fil": "Magaan na gawaing bahay pagkatapos ng drawing / bumili ng pagkain (YATA @ apm muna) kung kailangan"
+            "en": "Light housework after drawing class / buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽)) if needed",
+            "zh": "繪畫班後輕家務／按需要買菜（一田／瑞和街街市（不要錢大媽））",
+            "fil": "Magaan na gawaing bahay pagkatapos ng drawing / bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽)) kung kailangan"
           },
           "time": "15:30",
           "endTime": "16:30",
@@ -3463,9 +3463,9 @@
         {
           "id": "s6",
           "task": {
-            "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm first)",
-            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm muna)",
-            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜優先 apm 一田 YATA）"
+            "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "14:00",
           "endTime": "16:00",
