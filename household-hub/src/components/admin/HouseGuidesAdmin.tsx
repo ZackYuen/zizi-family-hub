@@ -28,6 +28,8 @@ const APPLIANCE_KINDS: ApplianceKind[] = [
   "range-hood",
   "dehumidifier",
   "air-purifier",
+  "iron",
+  "shower",
   "other",
 ];
 
