@@ -4,6 +4,11 @@ import {
   snapshotToKnowledgeText,
   type LiveFamilySnapshot,
 } from "./family-knowledge";
+import {
+  APPLIANCE_CATEGORY_ORDER,
+  applianceCategory,
+  applianceCategoryMeta,
+} from "./appliance-categories";
 import { getHongKongTimeParts } from "./i18n";
 import { localized } from "./localized-text";
 import {
@@ -806,12 +811,20 @@ function heuristicAnswer(
           .filter(Boolean)
           .join("\n");
       }
-      const list = apps
-        .map(
-          (a, i) =>
-            `${i + 1}. ${localized(a.title, lang)}${a.model ? ` (${a.model})` : ""}`
-        )
-        .join("\n");
+      const list = APPLIANCE_CATEGORY_ORDER.map((category) => {
+        const items = apps.filter((a) => applianceCategory(a.kind) === category);
+        if (!items.length) return null;
+        const heading = applianceCategoryMeta[category][lang];
+        const rows = items
+          .map(
+            (a) =>
+              `• ${localized(a.title, lang)}${a.model ? ` (${a.model})` : ""}`
+          )
+          .join("\n");
+        return `${heading}\n${rows}`;
+      })
+        .filter(Boolean)
+        .join("\n\n");
       return lang === "fil"
         ? `Mga tools / appliances:\n${list}\n\nTanungin ang pangalan (hal. Dyson / rice cooker), o buksan ang Tools tab.`
         : lang === "zh"
