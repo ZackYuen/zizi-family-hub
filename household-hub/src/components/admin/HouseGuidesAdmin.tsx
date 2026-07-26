@@ -6,6 +6,10 @@ import type {
   Lang,
   PreferenceCategory,
 } from "@/lib/types";
+import {
+  applianceCategory,
+  applianceCategoryLabel,
+} from "@/lib/appliance-categories";
 import { adminT } from "@/lib/admin-i18n";
 import { TrilingualFieldEditor } from "./TrilingualFieldEditor";
 import { emptyBilingual } from "@/lib/localized-text";
@@ -177,10 +181,13 @@ export function AppliancesAdmin({
             >
               {APPLIANCE_KINDS.map((k) => (
                 <option key={k} value={k}>
-                  {k}
+                  {k} · {applianceCategoryLabel(applianceCategory(k), lang)}
                 </option>
               ))}
             </select>
+            <span className="text-[11px] text-stone-400">
+              {applianceCategoryLabel(applianceCategory(item.kind), lang)}
+            </span>
             <button
               type="button"
               className="text-xs text-red-500"

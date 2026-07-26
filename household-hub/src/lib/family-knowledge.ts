@@ -4,6 +4,11 @@ import { generateTonightMenu } from "./dinner";
 import { getContentWithSource, getDinnerRecipes } from "./data";
 import { getRecipeDisplayName } from "./recipe-display";
 import { resolveActiveSchedule, type ScheduleSeason } from "./school-calendar";
+import {
+  APPLIANCE_CATEGORY_ORDER,
+  applianceCategory,
+  applianceCategoryMeta,
+} from "./appliance-categories";
 import type {
   AppContent,
   ApplianceGuide,
@@ -188,22 +193,28 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
 
   if (snap.appliances.length) {
     lines.push("");
-    lines.push("House tools / appliances (how-to):");
-    const sorted = [...snap.appliances].sort((a, b) => a.priority - b.priority);
-    for (const a of sorted) {
-      lines.push(
-        `- [${a.kind}] ${a.title.en}${a.model ? ` (${a.model})` : ""}`
-      );
-      for (const tipLine of a.tips.en.split(/\n+/).filter(Boolean)) {
-        lines.push(`  ${tipLine.trim()}`);
-      }
-      if (a.warnings?.en) {
-        lines.push(`  Caution:`);
-        for (const w of a.warnings.en.split(/\n+/).filter(Boolean)) {
-          lines.push(`  ${w.trim()}`);
+    lines.push("House tools / appliances (how-to, by category):");
+    for (const category of APPLIANCE_CATEGORY_ORDER) {
+      const items = snap.appliances
+        .filter((a) => applianceCategory(a.kind) === category)
+        .sort((a, b) => a.priority - b.priority);
+      if (!items.length) continue;
+      lines.push(`## ${applianceCategoryMeta[category].en}`);
+      for (const a of items) {
+        lines.push(
+          `- [${a.kind}] ${a.title.en}${a.model ? ` (${a.model})` : ""}`
+        );
+        for (const tipLine of a.tips.en.split(/\n+/).filter(Boolean)) {
+          lines.push(`  ${tipLine.trim()}`);
         }
+        if (a.warnings?.en) {
+          lines.push(`  Caution:`);
+          for (const w of a.warnings.en.split(/\n+/).filter(Boolean)) {
+            lines.push(`  ${w.trim()}`);
+          }
+        }
+        if (a.sourceUrl) lines.push(`  Manual: ${a.sourceUrl}`);
       }
-      if (a.sourceUrl) lines.push(`  Manual: ${a.sourceUrl}`);
     }
   }
 
