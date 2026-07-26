@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  APPLIANCE_CATEGORY_ORDER,
+  applianceCategory,
+  applianceCategoryMeta,
+} from "@/lib/appliance-categories";
 import { localized } from "@/lib/localized-text";
 import type {
   ApplianceGuide,
@@ -163,14 +168,19 @@ const toolsUi = {
     zh: "家電與工具",
   },
   hint: {
-    en: "How to use our machines. Ask Sir/Mum if buttons look different.",
-    fil: "Paano gamitin ang machines. Tanungin si Sir/Mum kung iba ang buttons.",
-    zh: "家中機器用法。按鈕不一樣就問 Sir/Mum。",
+    en: "Grouped by use. Ask Sir/Mum if buttons look different.",
+    fil: "Naka-grupo ayon sa gamit. Tanungin si Sir/Mum kung iba ang buttons.",
+    zh: "按用途分類。按鈕不一樣就問 Sir/Mum。",
   },
   caution: {
     en: "Caution",
     fil: "Babala",
     zh: "注意",
+  },
+  items: {
+    en: (n: number) => (n === 1 ? "1 item" : `${n} items`),
+    fil: (n: number) => (n === 1 ? "1 item" : `${n} items`),
+    zh: (n: number) => `${n} 項`,
   },
 };
 
@@ -212,7 +222,12 @@ function BulletList({
 
 export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] }) {
   const { lang } = useLanguage();
-  const sorted = [...appliances].sort((a, b) => a.priority - b.priority);
+  const byCategory = APPLIANCE_CATEGORY_ORDER.map((category) => ({
+    category,
+    items: appliances
+      .filter((a) => applianceCategory(a.kind) === category)
+      .sort((a, b) => a.priority - b.priority),
+  })).filter((g) => g.items.length > 0);
 
   return (
     <div className="space-y-3">
@@ -221,59 +236,83 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
         <p className="mt-0.5 text-xs text-stone-600">{toolsUi.hint[lang]}</p>
       </div>
 
-      <div className="space-y-2.5">
-        {sorted.map((item) => {
-          const warning = item.warnings ? localized(item.warnings, lang) : "";
+      <div className="space-y-4">
+        {byCategory.map(({ category, items }) => {
+          const meta = applianceCategoryMeta[category];
           return (
-            <article
-              key={item.id}
-              className="overflow-hidden rounded-2xl bg-white ring-1 ring-stone-100"
-            >
-              <div className="p-3.5">
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="text-lg" aria-hidden>
-                    {kindIcon[item.kind] || kindIcon.other}
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-semibold text-stone-900">
-                      {localized(item.title, lang)}
-                    </h3>
-                    {item.model && (
-                      <p className="text-[11px] text-stone-400">{item.model}</p>
-                    )}
-                  </div>
-                </div>
-                <BulletList
-                  text={localized(item.tips, lang)}
-                  className="text-sm leading-relaxed text-stone-600"
-                />
-                {item.sourceUrl && (
-                  <a
-                    href={item.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-block text-xs font-medium text-teal-700 underline"
-                  >
-                    {lang === "fil"
-                      ? "Manual / support"
-                      : lang === "zh"
-                        ? "說明／支援頁"
-                        : "Manual / support"}
-                  </a>
-                )}
+            <section key={category} className="space-y-2">
+              <div className="flex items-center gap-2 px-0.5">
+                <span className="text-base" aria-hidden>
+                  {meta.icon}
+                </span>
+                <h3 className="text-xs font-bold uppercase tracking-wide text-stone-500">
+                  {meta[lang]}
+                </h3>
+                <span className="text-[11px] text-stone-400">
+                  {toolsUi.items[lang](items.length)}
+                </span>
               </div>
-              {warning && (
-                <div className="border-t border-amber-100 bg-amber-50/90 px-4 py-3">
-                  <p className="mb-1 text-xs font-bold uppercase tracking-wide text-amber-900">
-                    {toolsUi.caution[lang]}
-                  </p>
-                  <BulletList
-                    text={warning}
-                    className="text-sm leading-relaxed text-amber-950"
-                  />
-                </div>
-              )}
-            </article>
+              <div className="space-y-2.5">
+                {items.map((item) => {
+                  const warning = item.warnings
+                    ? localized(item.warnings, lang)
+                    : "";
+                  return (
+                    <article
+                      key={item.id}
+                      className="overflow-hidden rounded-2xl bg-white ring-1 ring-stone-100"
+                    >
+                      <div className="p-3.5">
+                        <div className="mb-2 flex items-center gap-2">
+                          <span className="text-lg" aria-hidden>
+                            {kindIcon[item.kind] || kindIcon.other}
+                          </span>
+                          <div className="min-w-0">
+                            <h3 className="text-sm font-semibold text-stone-900">
+                              {localized(item.title, lang)}
+                            </h3>
+                            {item.model && (
+                              <p className="text-[11px] text-stone-400">
+                                {item.model}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        <BulletList
+                          text={localized(item.tips, lang)}
+                          className="text-sm leading-relaxed text-stone-600"
+                        />
+                        {item.sourceUrl && (
+                          <a
+                            href={item.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-2 inline-block text-xs font-medium text-teal-700 underline"
+                          >
+                            {lang === "fil"
+                              ? "Manual / support"
+                              : lang === "zh"
+                                ? "說明／支援頁"
+                                : "Manual / support"}
+                          </a>
+                        )}
+                      </div>
+                      {warning && (
+                        <div className="border-t border-amber-100 bg-amber-50/90 px-4 py-3">
+                          <p className="mb-1 text-xs font-bold uppercase tracking-wide text-amber-900">
+                            {toolsUi.caution[lang]}
+                          </p>
+                          <BulletList
+                            text={warning}
+                            className="text-sm leading-relaxed text-amber-950"
+                          />
+                        </div>
+                      )}
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
           );
         })}
       </div>

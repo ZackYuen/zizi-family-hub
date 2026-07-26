@@ -193,14 +193,14 @@ const hkLifeGuides = [
     41,
     "kwun-tong",
     {
-      en: "Nearby MTR (Kwun Tong area)",
+      en: "Nearby MTR (Kwun Tong)",
       fil: "Malapit na MTR (Kwun Tong)",
-      zh: "附近港鐵（觀塘區）",
+      zh: "附近港鐵（觀塘）",
     },
     {
-      en: "Useful stations: Kwun Tong, Lam Tin, Yau Tong. For taxis, show the destination in Chinese on your phone map. Keep Sir/Mum address saved offline. Prefer walking the known school route during work hours unless told otherwise.",
-      fil: "Mga istasyon: Kwun Tong, Lam Tin, Yau Tong. Sa taxi, ipakita sa phone map ang destination sa Chinese. I-save ang address nina Sir/Mum. Sa work hours, mas mabuti ang alam na lakad papuntang school maliban kung may ibang utos.",
-      zh: "常用站：觀塘、藍田、油塘。的士可出示手機地圖中文目的地。儲存 Sir/Mum 地址。工作時間優先用熟悉的上學步行路線，除非另有指示。",
+      en: "Home → Kwun Tong MTR is about a 3-minute walk. Useful stations: Kwun Tong (home), Lam Tin (kindergarten area), Yau Tong (only if needed). For taxis, show the Chinese destination on your phone map. Keep Sir/Mum address saved offline. Prefer the known school walking route during work hours unless told otherwise.",
+      fil: "Bahay → Kwun Tong MTR: mga 3 minutong lakad. Mga istasyon: Kwun Tong (bahay), Lam Tin (kindergarten), Yau Tong (kung kailangan lang). Sa taxi, ipakita ang Chinese destination sa phone map. I-save ang address nina Sir/Mum. Sa work hours, mas mabuti ang alam na lakad papuntang school maliban kung may ibang utos.",
+      zh: "由家步行約3分鐘到觀塘港鐵。常用站：觀塘（家）、藍田（幼稚園）、油塘（有需要才去）。的士可出示手機地圖中文目的地。儲存 Sir/Mum 地址。工作時間優先用熟悉的上學步行路線，除非另有指示。",
     }
   ),
   tip(
@@ -209,14 +209,47 @@ const hkLifeGuides = [
     50,
     "kwun-tong",
     {
-      en: "Groceries — AEON Yau Tong",
-      fil: "Pamimili — AEON Yau Tong",
-      zh: "買菜 — 油塘 AEON",
+      en: "Groceries — YATA, 瑞和街 wet market, AEON",
+      fil: "Pamimili — YATA, 瑞和街 wet market, AEON",
+      zh: "買菜 — 一田、瑞和街街市、AEON",
     },
     {
-      en: "Family often buys food at AEON @ Yau Tong (see Tuesday schedule). Use the shopping list from tonight's Meals tab when possible. Keep receipts if Sir/Mum ask. Do not buy on credit or borrow from anyone.",
-      fil: "Madalas bumili ng pagkain sa AEON @ Yau Tong (tingnan ang Martes na schedule). Gamitin ang shopping list sa Meals tab. Itago ang resibo kung kailangan nina Sir/Mum. Huwag bumili nang utang o humiram.",
-      zh: "家庭常在油塘 AEON 買食材（見星期二時間表）。盡量用 Meals 分頁的購物清單。如 Sir/Mum 需要請保留收據。不要賒帳或向人借錢。",
+      en: "OK places to buy food: (1) YATA (一田) at apm near home — first choice. (2) Shui Wo Street wet market (瑞和街街市) in Kwun Tong — good for fresh meat and vegetables. (3) AEON Yau Tong / Domain if needed. Do NOT go to 錢大媽 (Kai Bo / Qin Dama). Use the Meals tab shopping list when possible. Keep receipts if asked. Do not buy on credit or borrow.",
+      fil: "Pwede bumili sa: (1) YATA (一田) sa apm malapit sa bahay — una. (2) Shui Wo Street wet market (瑞和街街市) sa Kwun Tong — maganda para sa sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan. HUWAG pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals tab shopping list kung pwede. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram.",
+      zh: "可以買菜的地方：(1) 家附近 apm 一田 YATA — 優先。(2) 觀塘瑞和街街市 — 適合買新鮮肉菜。(3) 有需要可去油塘／Domain AEON。不要去錢大媽。盡量用 Meals 分頁購物清單。如需要請保留收據。不要賒帳或向人借錢。",
+    }
+  ),
+  
+  tip(
+    "life-zizi-meals",
+    "culture",
+    36,
+    "kwun-tong",
+    {
+      en: "Zizi meals (breakfast, lunch, dinner)",
+      fil: "Pagkain ni Zizi (almusal, tanghalian, dinner)",
+      zh: "Zizi 三餐（早、午、晚）",
+    },
+    {
+      en: "Important: help Zizi “eat the rainbow” — offer colourful fruit and vegetables across the week (red, orange, yellow, green, purple/blue, white), not the same colour every day. (1) Breakfast — keep it simple: egg, pancake, siu mai, sweet potato, etc., plus morning milk in a glass with a glass straw. (2) Lunch — spaghetti, fried rice, noodles, or udon; every lunch must include meat and vegetables (not carbs only). (3) Dinner — follow the Meals tab (meat + vegetable + soup) for the family. Tell Sir/Mum if Zizi refuses food or seems unwell.",
+      fil: "Mahalaga: tulungan si Zizi na “eat the rainbow” — magbigay ng makulay na prutas at gulay sa buong linggo (pula, orange, dilaw, berde, purple/asul, puti), huwag pare-parehong kulay araw-araw. (1) Almusal — simple: itlog, pancake, siu mai, camote, atbp., plus morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti, fried rice, noodles, o udon; dapat may meat at gulay (hindi carbs lang). (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Sabihin kay Sir/Mum kung ayaw kumain si Zizi o may sakit.",
+      zh: "重要：幫助 Zizi「吃彩虹」— 一週內盡量給不同顏色的蔬果（紅、橙、黃、綠、紫／藍、白），不要每天同一種顏色。(1) 早餐 — 簡單即可：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉、炒飯、麵或烏冬；每餐必須有肉和蔬菜（不可只有澱粉）。(3) 晚餐 — 跟 Meals 分頁（肉＋菜＋湯）給一家人。若 Zizi 拒食或不適，告知 Sir/Mum。",
+    }
+  ),
+  tip(
+    "life-weekly-chores",
+    "culture",
+    37,
+    "kwun-tong",
+    {
+      en: "Weekly house rhythm (~660 sq ft, boy at home)",
+      fil: "Lingguhang gawain sa bahay (~660 sq ft, may batang lalaki)",
+      zh: "每週家務節奏（約660呎、有小男孩）",
+    },
+    {
+      en: "Small flat, 4 people, active boy — little and often beats one huge clean. Daily: meals, dishes, kitchen bin, evening vacuum, Zizi shower, tidy toys. Mon: laundry + mop. Tue: toys + living room + YATA shop. Wed: kitchen machines deep clean. Thu: bathroom deep clean. Fri: bedrooms. Sat: iron, school bag/shoes, top-up shop. Monthly list: sheets, AC filters (×3), fridge, hood, soft toys, windows. Sunday / public holiday: Charlene day off.",
+      fil: "Maliit na flat, 4 tao, active na bata — konti pero madalas mas maganda kaysa isang malaking linis. Araw-araw: pagkain, hugas, basurahan, vacuum sa gabi, shower ni Zizi, ayos laruan. Lun: labada + mop. Mar: laruan + sala + YATA. Miy: kitchen machines. Huw: banyo. Biy: kwarto. Sab: plantsa, bag/sapatos, konting pamimili. Buwanan: sheets, AC filter (×3), ref, hood, soft toys, bintana. Linggo / holiday: day off ni Charlene.",
+      zh: "小單位、四人、活潑男孩——少量多次勝過一次大掃除。每日：三餐、洗碗、廚房垃圾桶、晚間吸塵、Zizi 洗澡、收拾玩具。一：洗衣拖地。二：玩具客廳＋一田。三：廚房電器深清。四：浴室深清。五：睡房。六：熨衣、書包鞋、補買。每月：床單、3部冷氣濾網、雪櫃、油煙機、毛公仔、窗。日／公眾假期：Charlene 放假。",
     }
   ),
   tip(
@@ -426,9 +459,9 @@ const settlingChecklist = [
   {
     id: "check-aeon",
     title: {
-      en: "Know how to go to AEON Yau Tong",
-      fil: "Alamin ang daan papuntang AEON Yau Tong",
-      zh: "知道如何前往油塘 AEON",
+      en: "Know how to go to YATA at apm (first supermarket)",
+      fil: "Alamin ang daan papuntang YATA sa apm (unang supermarket)",
+      zh: "知道如何前往 apm 一田 YATA（優先超市）",
     },
     done: false,
   },
@@ -447,6 +480,15 @@ const settlingChecklist = [
       en: "Learn rubbish / recycling place in the building",
       fil: "Alamin kung saan ang basura / recycling sa building",
       zh: "了解大廈垃圾／回收位置",
+    },
+    done: false,
+  },
+  {
+    id: "check-home-layout",
+    title: {
+      en: "Know rooms: Charlene bedroom (has AC), 3 ACs total, rubbish place",
+      fil: "Alamin ang mga kwarto: kwarto ni Charlene (may AC), 3 AC lahat, basurahan",
+      zh: "認識單位：Charlene 睡房（有冷氣）、共3部冷氣、垃圾位置",
     },
     done: false,
   },

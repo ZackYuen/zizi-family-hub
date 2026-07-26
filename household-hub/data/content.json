@@ -1,8 +1,8 @@
 {
   "homeArea": {
-    "en": "Kwun Tong, Hong Kong",
-    "zh": "香港觀塘",
-    "fil": "Kwun Tong, Hong Kong"
+    "en": "Kwun Tong (~660 sq ft) — 3 min walk to Kwun Tong MTR; linked to apm (YATA supermarket first)",
+    "fil": "Kwun Tong (~660 sq ft) — 3 min lakad sa Kwun Tong MTR; konektado sa apm (YATA supermarket muna)",
+    "zh": "觀塘（約660呎）— 步行約3分鐘到觀塘港鐵；連接 apm（超市優先一田 YATA）"
   },
   "hkWeather": {
     "note": {
@@ -237,43 +237,43 @@
     {
       "id": "app-tefal-ultraglide-5570",
       "kind": "iron",
-      "priority": 11,
+      "tips": {
+        "en": "• Tefal Ultra Glide 5570 steam iron — for shirts, uniforms, school clothes.\n• Fill the water tank with clean tap water up to MAX (do not overfill).\n• Plug in and set the dial to the fabric type (• / •• / ••• / MAX). Wait until the ready light goes off before ironing.\n• For steam: set dial in the steam zone (usually between •• and MAX) and use steam only when hot.\n• Steam boost: short presses for stubborn creases — wait a few seconds between boosts.\n• Vertical steam: hang the garment, hold iron upright, press steam intermittently top → bottom. Never steam clothes someone is wearing.\n• After use: unplug, empty leftover water when cool, wipe the soleplate gently.\n• Keep Zizi away from the hot iron and cord.",
+        "zh": "• 特福 Ultra Glide 5570 蒸氣熨斗 — 襯衫、校服、日常衣物。\n• 水箱加清水至 MAX（不要超過）。\n• 插電，按布料調溫度（•／••／•••／MAX）。待指示燈熄滅後再熨。\n• 用蒸氣：溫度調在蒸氣區（通常 •• 至 MAX），只在熨斗夠熱時出蒸氣。\n• 強力蒸氣：短按處理頑固皺褶，每次間隔數秒。\n• 垂直蒸氣：衣物掛起，熨斗直立，由上而下間歇按蒸氣。切勿對穿在身上的人噴蒸氣。\n• 用後拔電；冷卻後倒餘水，輕拭底板。\n• 熱熨斗與電線請讓 Zizi 遠離。",
+        "fil": "• Tefal Ultra Glide 5570 steam iron — para sa damit, uniporme, school clothes.\n• Punuin ang water tank ng malinis na tubig hanggang MAX (huwag sobra).\n• I-plug; itakda ang dial sa uri ng tela (• / •• / ••• / MAX). Maghintay hanggang mag-off ang ready light bago magplantsa.\n• Para sa steam: ilagay ang dial sa steam zone (madalas •• hanggang MAX); gumamit ng steam kapag mainit na.\n• Steam boost: maikling pindot para sa matigas na kunot — maghintay ng ilang segundo sa pagitan.\n• Vertical steam: isabit ang damit, hawakan nang tuwid ang iron, pindutin ang steam top → bottom. Huwag i-steam ang suot ng tao.\n• Pagkatapos: i-unplug, alisin ang tubig kapag malamig, punasan ang soleplate.\n• Layuan si Zizi sa mainit na iron at cord."
+      },
       "model": "Tefal Ultra Glide 5570",
       "title": {
         "en": "Tefal Ultra Glide 5570 iron",
-        "fil": "Tefal Ultra Glide 5570 iron",
-        "zh": "特福 Ultra Glide 5570 熨斗"
+        "zh": "特福 Ultra Glide 5570 熨斗",
+        "fil": "Tefal Ultra Glide 5570 iron"
       },
-      "tips": {
-        "en": "• Tefal Ultra Glide 5570 steam iron — for shirts, uniforms, school clothes.\n• Fill the water tank with clean tap water up to MAX (do not overfill).\n• Plug in and set the dial to the fabric type (• / •• / ••• / MAX). Wait until the ready light goes off before ironing.\n• For steam: set dial in the steam zone (usually between •• and MAX) and use steam only when hot.\n• Steam boost: short presses for stubborn creases — wait a few seconds between boosts.\n• Vertical steam: hang the garment, hold iron upright, press steam intermittently top → bottom. Never steam clothes someone is wearing.\n• After use: unplug, empty leftover water when cool, wipe the soleplate gently.\n• Keep Zizi away from the hot iron and cord.",
-        "fil": "• Tefal Ultra Glide 5570 steam iron — para sa damit, uniporme, school clothes.\n• Punuin ang water tank ng malinis na tubig hanggang MAX (huwag sobra).\n• I-plug; itakda ang dial sa uri ng tela (• / •• / ••• / MAX). Maghintay hanggang mag-off ang ready light bago magplantsa.\n• Para sa steam: ilagay ang dial sa steam zone (madalas •• hanggang MAX); gumamit ng steam kapag mainit na.\n• Steam boost: maikling pindot para sa matigas na kunot — maghintay ng ilang segundo sa pagitan.\n• Vertical steam: isabit ang damit, hawakan nang tuwid ang iron, pindutin ang steam top → bottom. Huwag i-steam ang suot ng tao.\n• Pagkatapos: i-unplug, alisin ang tubig kapag malamig, punasan ang soleplate.\n• Layuan si Zizi sa mainit na iron at cord.",
-        "zh": "• 特福 Ultra Glide 5570 蒸氣熨斗 — 襯衫、校服、日常衣物。\n• 水箱加清水至 MAX（不要超過）。\n• 插電，按布料調溫度（•／••／•••／MAX）。待指示燈熄滅後再熨。\n• 用蒸氣：溫度調在蒸氣區（通常 •• 至 MAX），只在熨斗夠熱時出蒸氣。\n• 強力蒸氣：短按處理頑固皺褶，每次間隔數秒。\n• 垂直蒸氣：衣物掛起，熨斗直立，由上而下間歇按蒸氣。切勿對穿在身上的人噴蒸氣。\n• 用後拔電；冷卻後倒餘水，輕拭底板。\n• 熱熨斗與電線請讓 Zizi 遠離。"
-      },
+      "priority": 11,
       "warnings": {
         "en": "• Never leave a hot iron unattended; stand it upright on a stable board.\n• Do not iron over plastic prints, metal parts, or wet clothes that can spit water.\n• Unplug before filling/emptying water. Ask Sir/Mum before descaling if unsure.",
-        "fil": "• Huwag iwanang mainit ang iron; itayo nang patayo sa stable na board.\n• Huwag magplantsa sa plastic print, metal, o basang damit na puwedeng tumalsik.\n• I-unplug bago maglagay/alis ng tubig. Kung unsure sa descaling, tanungin si Sir/Mum.",
-        "zh": "• 熱熨斗不可離人；豎立放在穩固熨板上。\n• 不要熨膠印、金屬件，或會噴水的濕衣。\n• 加水／倒水前先拔電。不確定除垢就問 Sir/Mum。"
+        "zh": "• 熱熨斗不可離人；豎立放在穩固熨板上。\n• 不要熨膠印、金屬件，或會噴水的濕衣。\n• 加水／倒水前先拔電。不確定除垢就問 Sir/Mum。",
+        "fil": "• Huwag iwanang mainit ang iron; itayo nang patayo sa stable na board.\n• Huwag magplantsa sa plastic print, metal, o basang damit na puwedeng tumalsik.\n• I-unplug bago maglagay/alis ng tubig. Kung unsure sa descaling, tanungin si Sir/Mum."
       }
     },
     {
       "id": "app-refa-fine-bubble-s",
       "kind": "shower",
-      "priority": 12,
+      "tips": {
+        "en": "• ReFa Fine Bubble S handheld shower — switch modes on the handle (normal / fine bubble as marked).\n• Normal mode: everyday rinse and wash.\n• Fine bubble mode: softer mist of micro-bubbles — nice for face/body rinse; use as Sir/Mum showed.\n• After shower: hang the head so water drains; wipe dry if needed.\n• Do not force the mode dial or knock the head against the tiles.",
+        "zh": "• ReFa Fine Bubble S 手持花灑 — 用手柄切換模式（普通／微氣泡，以標示為準）。\n• 普通模式：日常沖洗、洗澡。\n• 微氣泡模式：更細的氣泡水 — 適合臉／身沖洗；按 Sir/Mum 教的用法。\n• 用後掛好讓餘水流出；需要時抹乾。\n• 不要硬扭模式轉盤，也不要撞擊磁磚。",
+        "fil": "• ReFa Fine Bubble S handheld shower — palitan ang mode sa handle (normal / fine bubble ayon sa marka).\n• Normal mode: pang-araw-araw na banlaw at ligo.\n• Fine bubble mode: mas malambot na micro-bubbles — maganda sa face/body rinse; sundin ang itinuro nina Sir/Mum.\n• Pagkatapos maligo: isabit ang head para matuyo ang tubig; punasan kung kailangan.\n• Huwag pilitin ang mode dial o ibaunin ang head sa tiles."
+      },
       "model": "ReFa Fine Bubble S",
       "title": {
         "en": "ReFa Fine Bubble S shower head",
-        "fil": "ReFa Fine Bubble S shower head",
-        "zh": "ReFa Fine Bubble S 花灑"
+        "zh": "ReFa Fine Bubble S 花灑",
+        "fil": "ReFa Fine Bubble S shower head"
       },
-      "tips": {
-        "en": "• ReFa Fine Bubble S handheld shower — switch modes on the handle (normal / fine bubble as marked).\n• Normal mode: everyday rinse and wash.\n• Fine bubble mode: softer mist of micro-bubbles — nice for face/body rinse; use as Sir/Mum showed.\n• After shower: hang the head so water drains; wipe dry if needed.\n• Do not force the mode dial or knock the head against the tiles.",
-        "fil": "• ReFa Fine Bubble S handheld shower — palitan ang mode sa handle (normal / fine bubble ayon sa marka).\n• Normal mode: pang-araw-araw na banlaw at ligo.\n• Fine bubble mode: mas malambot na micro-bubbles — maganda sa face/body rinse; sundin ang itinuro nina Sir/Mum.\n• Pagkatapos maligo: isabit ang head para matuyo ang tubig; punasan kung kailangan.\n• Huwag pilitin ang mode dial o ibaunin ang head sa tiles.",
-        "zh": "• ReFa Fine Bubble S 手持花灑 — 用手柄切換模式（普通／微氣泡，以標示為準）。\n• 普通模式：日常沖洗、洗澡。\n• 微氣泡模式：更細的氣泡水 — 適合臉／身沖洗；按 Sir/Mum 教的用法。\n• 用後掛好讓餘水流出；需要時抹乾。\n• 不要硬扭模式轉盤，也不要撞擊磁磚。"
-      },
+      "priority": 12,
       "warnings": {
         "en": "• Important: when Fine Bubble / bubble mode is on, the water heater may occasionally switch the heater off (or pause heating). This can happen with this shower head — it is known. If water turns cool, wait a moment or switch back to normal mode, then ask Sir/Mum if it keeps happening.\n• Do not dismantle the head. Tell Sir/Mum if flow is very weak or the head leaks.",
-        "fil": "• Mahalaga: kapag naka-Fine Bubble / bubble mode, puwedeng minsan mag-off o mag-pause ang water heater. Normal ito sa shower head na ito. Kung biglang malamig ang tubig, maghintay sandali o bumalik sa normal mode, tapos sabihin kay Sir/Mum kung paulit-ulit.\n• Huwag i-dismantle ang head. Sabihin kay Sir/Mum kung mahina ang tubig o may leak.",
-        "zh": "• 重要：開啟 Fine Bubble／微氣泡模式時，熱水爐可能偶爾關掉加熱（或暫停加熱）。這款花灑已知會這樣。若水突然變涼，先稍等或改回普通模式；若經常發生請告訴 Sir/Mum。\n• 不要拆開花灑。水流很弱或漏水時告訴 Sir/Mum。"
+        "zh": "• 重要：開啟 Fine Bubble／微氣泡模式時，熱水爐可能偶爾關掉加熱（或暫停加熱）。這款花灑已知會這樣。若水突然變涼，先稍等或改回普通模式；若經常發生請告訴 Sir/Mum。\n• 不要拆開花灑。水流很弱或漏水時告訴 Sir/Mum。",
+        "fil": "• Mahalaga: kapag naka-Fine Bubble / bubble mode, puwedeng minsan mag-off o mag-pause ang water heater. Normal ito sa shower head na ito. Kung biglang malamig ang tubig, maghintay sandali o bumalik sa normal mode, tapos sabihin kay Sir/Mum kung paulit-ulit.\n• Huwag i-dismantle ang head. Sabihin kay Sir/Mum kung mahina ang tubig o may leak."
       }
     }
   ],
@@ -281,8 +281,8 @@
   "helperName": "Charlene",
   "ziziSchool": {
     "en": "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30).",
-    "fil": "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30).",
-    "zh": "藍田靈糧幼稚園 — K3 下午班，周一至五（13:00 前送到，16:30 接）。"
+    "zh": "藍田靈糧幼稚園 — K3 下午班，周一至五（13:00 前送到，16:30 接）。",
+    "fil": "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30)."
   },
   "groundRules": [
     {
@@ -446,7 +446,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-26T02:25:08.136Z",
+  "lastUpdated": "2026-07-26T16:11:13.412Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -660,6 +660,40 @@
       "lastReviewed": "2026-07-22"
     },
     {
+      "id": "life-zizi-meals",
+      "area": "kwun-tong",
+      "category": "culture",
+      "priority": 36,
+      "lastReviewed": "2026-07-26",
+      "title": {
+        "en": "Zizi meals (breakfast, lunch, dinner)",
+        "fil": "Pagkain ni Zizi (almusal, tanghalian, dinner)",
+        "zh": "Zizi 三餐（早、午、晚）"
+      },
+      "body": {
+        "en": "Important: help Zizi “eat the rainbow” — offer colourful fruit and vegetables across the week (red, orange, yellow, green, purple/blue, white), not the same colour every day. (1) Breakfast — keep it simple: egg, pancake, siu mai, sweet potato, etc., plus morning milk in a glass with a glass straw. (2) Lunch — spaghetti, fried rice, noodles, or udon; every lunch must include meat and vegetables (not carbs only). (3) Dinner — follow the Meals tab (meat + vegetable + soup) for the family. Tell Sir/Mum if Zizi refuses food or seems unwell.",
+        "fil": "Mahalaga: tulungan si Zizi na “eat the rainbow” — magbigay ng makulay na prutas at gulay sa buong linggo (pula, orange, dilaw, berde, purple/asul, puti), huwag pare-parehong kulay araw-araw. (1) Almusal — simple: itlog, pancake, siu mai, camote, atbp., plus morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti, fried rice, noodles, o udon; dapat may meat at gulay (hindi carbs lang). (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Sabihin kay Sir/Mum kung ayaw kumain si Zizi o may sakit.",
+        "zh": "重要：幫助 Zizi「吃彩虹」— 一週內盡量給不同顏色的蔬果（紅、橙、黃、綠、紫／藍、白），不要每天同一種顏色。(1) 早餐 — 簡單即可：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉、炒飯、麵或烏冬；每餐必須有肉和蔬菜（不可只有澱粉）。(3) 晚餐 — 跟 Meals 分頁（肉＋菜＋湯）給一家人。若 Zizi 拒食或不適，告知 Sir/Mum。"
+      }
+    },
+    {
+      "id": "life-weekly-chores",
+      "area": "kwun-tong",
+      "category": "culture",
+      "priority": 37,
+      "lastReviewed": "2026-07-26",
+      "title": {
+        "en": "Weekly house rhythm (~660 sq ft, boy at home)",
+        "fil": "Lingguhang gawain sa bahay (~660 sq ft, may batang lalaki)",
+        "zh": "每週家務節奏（約660呎、有小男孩）"
+      },
+      "body": {
+        "en": "Small flat, 4 people, active boy — little and often beats one huge clean. Daily: meals, dishes, kitchen bin, evening vacuum, Zizi shower, tidy toys. Mon: laundry + mop. Tue: toys + living room + YATA shop. Wed: kitchen machines deep clean. Thu: bathroom deep clean. Fri: bedrooms. Sat: iron, school bag/shoes, top-up shop. Monthly list: sheets, AC filters (×3), fridge, hood, soft toys, windows. Sunday / public holiday: Charlene day off.",
+        "fil": "Maliit na flat, 4 tao, active na bata — konti pero madalas mas maganda kaysa isang malaking linis. Araw-araw: pagkain, hugas, basurahan, vacuum sa gabi, shower ni Zizi, ayos laruan. Lun: labada + mop. Mar: laruan + sala + YATA. Miy: kitchen machines. Huw: banyo. Biy: kwarto. Sab: plantsa, bag/sapatos, konting pamimili. Buwanan: sheets, AC filter (×3), ref, hood, soft toys, bintana. Linggo / holiday: day off ni Charlene.",
+        "zh": "小單位、四人、活潑男孩——少量多次勝過一次大掃除。每日：三餐、洗碗、廚房垃圾桶、晚間吸塵、Zizi 洗澡、收拾玩具。一：洗衣拖地。二：玩具客廳＋一田。三：廚房電器深清。四：浴室深清。五：睡房。六：熨衣、書包鞋、補買。每月：床單、3部冷氣濾網、雪櫃、油煙機、毛公仔、窗。日／公眾假期：Charlene 放假。"
+      }
+    },
+    {
       "id": "life-kt-school-walk",
       "area": "kwun-tong",
       "body": {
@@ -679,36 +713,36 @@
     {
       "id": "life-kt-mtr",
       "area": "kwun-tong",
-      "body": {
-        "en": "Useful stations: Kwun Tong, Lam Tin, Yau Tong. For taxis, show the destination in Chinese on your phone map. Keep Sir/Mum address saved offline. Prefer walking the known school route during work hours unless told otherwise.",
-        "zh": "常用站：觀塘、藍田、油塘。的士可出示手機地圖中文目的地。儲存 Sir/Mum 地址。工作時間優先用熟悉的上學步行路線，除非另有指示。",
-        "fil": "Mga istasyon: Kwun Tong, Lam Tin, Yau Tong. Sa taxi, ipakita sa phone map ang destination sa Chinese. I-save ang address nina Sir/Mum. Sa work hours, mas mabuti ang alam na lakad papuntang school maliban kung may ibang utos."
-      },
-      "title": {
-        "en": "Nearby MTR (Kwun Tong area)",
-        "zh": "附近港鐵（觀塘區）",
-        "fil": "Malapit na MTR (Kwun Tong)"
-      },
       "category": "transport",
       "priority": 41,
-      "lastReviewed": "2026-07-22"
+      "lastReviewed": "2026-07-26",
+      "title": {
+        "en": "Nearby MTR (Kwun Tong)",
+        "fil": "Malapit na MTR (Kwun Tong)",
+        "zh": "附近港鐵（觀塘）"
+      },
+      "body": {
+        "en": "Home → Kwun Tong MTR is about a 3-minute walk. Useful stations: Kwun Tong (home), Lam Tin (kindergarten area), Yau Tong (only if needed). For taxis, show the Chinese destination on your phone map. Keep Sir/Mum address saved offline. Prefer the known school walking route during work hours unless told otherwise.",
+        "fil": "Bahay → Kwun Tong MTR: mga 3 minutong lakad. Mga istasyon: Kwun Tong (bahay), Lam Tin (kindergarten), Yau Tong (kung kailangan lang). Sa taxi, ipakita ang Chinese destination sa phone map. I-save ang address nina Sir/Mum. Sa work hours, mas mabuti ang alam na lakad papuntang school maliban kung may ibang utos.",
+        "zh": "由家步行約3分鐘到觀塘港鐵。常用站：觀塘（家）、藍田（幼稚園）、油塘（有需要才去）。的士可出示手機地圖中文目的地。儲存 Sir/Mum 地址。工作時間優先用熟悉的上學步行路線，除非另有指示。"
+      }
     },
     {
       "id": "life-aeon",
       "area": "kwun-tong",
-      "body": {
-        "en": "Family often buys food at AEON @ Yau Tong (see Tuesday schedule). Use the shopping list from tonight's Meals tab when possible. Keep receipts if Sir/Mum ask. Do not buy on credit or borrow from anyone.",
-        "zh": "家庭常在油塘 AEON 買食材（見星期二時間表）。盡量用 Meals 分頁的購物清單。如 Sir/Mum 需要請保留收據。不要賒帳或向人借錢。",
-        "fil": "Madalas bumili ng pagkain sa AEON @ Yau Tong (tingnan ang Martes na schedule). Gamitin ang shopping list sa Meals tab. Itago ang resibo kung kailangan nina Sir/Mum. Huwag bumili nang utang o humiram."
-      },
-      "title": {
-        "en": "Groceries — AEON Yau Tong",
-        "zh": "買菜 — 油塘 AEON",
-        "fil": "Pamimili — AEON Yau Tong"
-      },
       "category": "shopping",
       "priority": 50,
-      "lastReviewed": "2026-07-22"
+      "lastReviewed": "2026-07-26",
+      "title": {
+        "en": "Groceries — YATA, 瑞和街 wet market, AEON",
+        "fil": "Pamimili — YATA, 瑞和街 wet market, AEON",
+        "zh": "買菜 — 一田、瑞和街街市、AEON"
+      },
+      "body": {
+        "en": "OK places to buy food: (1) YATA (一田) at apm near home — first choice. (2) Shui Wo Street wet market (瑞和街街市) in Kwun Tong — good for fresh meat and vegetables. (3) AEON Yau Tong / Domain if needed. Do NOT go to 錢大媽 (Kai Bo / Qin Dama). Use the Meals tab shopping list when possible. Keep receipts if asked. Do not buy on credit or borrow.",
+        "fil": "Pwede bumili sa: (1) YATA (一田) sa apm malapit sa bahay — una. (2) Shui Wo Street wet market (瑞和街街市) sa Kwun Tong — maganda para sa sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan. HUWAG pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals tab shopping list kung pwede. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram.",
+        "zh": "可以買菜的地方：(1) 家附近 apm 一田 YATA — 優先。(2) 觀塘瑞和街街市 — 適合買新鮮肉菜。(3) 有需要可去油塘／Domain AEON。不要去錢大媽。盡量用 Meals 分頁購物清單。如需要請保留收據。不要賒帳或向人借錢。"
+      }
     },
     {
       "id": "life-zizi-sick",
@@ -835,32 +869,76 @@
   ],
   "monthlyTasks": [
     {
-      "en": "Change pillow cover",
-      "fil": "Palitan ang pillow cover"
+      "en": "Change bed sheets & pillow covers (family beds + Charlene’s room)",
+      "fil": "Palitan ang bed sheets at pillow covers (pamilya + kwarto ni Charlene)",
+      "zh": "更換床單及枕套（家人床＋Charlene 房）"
     },
     {
-      "en": "Change bed sheet",
-      "fil": "Palitan ang bed sheet"
+      "en": "Wash curtains / wipe window tracks if dusty",
+      "fil": "Labhan ang kurtina / punasan ang window tracks kung maalikabok",
+      "zh": "清洗窗簾／抹窗槽（如有塵）"
     },
     {
-      "en": "Wash curtains",
-      "fil": "Labhan ang kurtina"
+      "en": "Deep clean range hood + built-in hob",
+      "fil": "Malalim na linis ng range hood at built-in hob",
+      "zh": "深層清潔抽油煙機及嵌入式爐灶"
     },
     {
-      "en": "Deep clean range hood and built-in hob",
-      "fil": "Malalim na linis ng range hood at built-in hob"
+      "en": "Descale bathroom (faucet / shower / mat) + clean washing-machine filter",
+      "fil": "Alisin ang scale sa banyo (gripo / shower / mat) + linisin ang washing-machine filter",
+      "zh": "浴室除垢（龍頭／花灑／地墊）＋清洗衣機隔網"
+    },
+    {
+      "en": "Wipe / clean filters of all 3 air conditioners (ask Sir/Mum before washing filters)",
+      "fil": "Punasan / linisin ang filter ng 3 aircon (tanungin muna si Sir/Mum bago hugasan)",
+      "zh": "抹／清潔全部 3 部冷氣濾網（清洗前先問 Sir/Mum）"
+    },
+    {
+      "en": "Deep clean fridge inside + check expiry dates",
+      "fil": "Malalim na linis sa loob ng ref + tingnan ang expiry",
+      "zh": "深層清潔雪櫃內部＋檢查食用期限"
+    },
+    {
+      "en": "Wash / deep clean Zizi’s soft toys & toy boxes",
+      "fil": "Labhan / malalim na linisin ang soft toys at toy boxes ni Zizi",
+      "zh": "清洗／深層清潔 Zizi 毛公仔及玩具箱"
+    },
+    {
+      "en": "Wipe kitchen cupboard doors & common surfaces (handles, switches)",
+      "fil": "Punasan ang pinto ng kitchen cupboard at common surfaces (hawakan, switch)",
+      "zh": "抹廚櫃門及常用表面（把手、開關）"
+    },
+    {
+      "en": "Clean windows inside (flat is ~660 sq ft — do room by room)",
+      "fil": "Linisin ang bintana sa loob (mga 660 sq ft — room by room)",
+      "zh": "清潔室內玻璃窗（約660呎，逐房做）"
+    },
+    {
+      "en": "Check dehumidifier water tank + air-purifier / filter status",
+      "fil": "Tingnan ang dehumidifier water tank + air-purifier / filter",
+      "zh": "檢查抽濕機水箱＋空氣清新機／濾網狀態"
+    },
+    {
+      "en": "Tidy wardrobes lightly (family + Charlene’s room) — donate/ask before throwing",
+      "fil": "Mag-ayos ng konti ang aparador (pamilya + kwarto ni Charlene) — tanungin bago magtapon",
+      "zh": "略整理衣櫃（家人＋Charlene 房）— 丟棄前先問"
+    },
+    {
+      "en": "Deep mop / vacuum under sofa & beds (dust & toys for a boy’s home)",
+      "fil": "Malalim na mop / vacuum sa ilalim ng sofa at kama (alikabok at laruan)",
+      "zh": "沙發及床底深層吸塵／拖地（小男孩家多塵多玩具）"
     }
   ],
   "familyWelcome": {
-    "en": "You are part of Zizi's family. This guide is for your daily life with us in Hong Kong.",
-    "zh": "你是 Zizi 家庭的一分子。這份指南幫助你在香港與我們的日常生活。",
-    "fil": "Bahagi ka ng pamilya ni Zizi. Ang gabay na ito ay para sa araw-araw ninyong buhay sa Hong Kong."
+    "en": "You are part of our family of 3 (Sir, Mum, Zizi) — with you, we are 4 at home. This guide is for daily life in our Kwun Tong flat.",
+    "fil": "Bahagi ka ng pamilya naming 3 (Sir, Mum, Zizi) — kasama ka, 4 kami sa bahay. Gabay ito para sa araw-araw sa Kwun Tong flat namin.",
+    "zh": "你是我們三口之家（Sir、Mum、Zizi）的一分子——連你共四人同住。這份指南是觀塘家中日常生活之用。"
   },
   "schoolCalendar": {
-    "summerEndsOn": "2026-09-01",
-    "termStartsOn": "2026-09-02",
     "grade": "K3",
-    "classSession": "PM"
+    "classSession": "PM",
+    "summerEndsOn": "2026-09-01",
+    "termStartsOn": "2026-09-02"
   },
   "weeklySchedule": [
     {
@@ -883,8 +961,9 @@
         {
           "id": "m2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -892,25 +971,26 @@
         },
         {
           "id": "m-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "m3",
           "task": {
-            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
-            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -929,8 +1009,9 @@
         {
           "id": "m5",
           "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1080,8 +1161,9 @@
         {
           "id": "t2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1089,25 +1171,26 @@
         },
         {
           "id": "t-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "t3",
           "task": {
-            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
-            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1126,8 +1209,9 @@
         {
           "id": "t5",
           "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1147,8 +1231,9 @@
         {
           "id": "t7",
           "task": {
-            "en": "Clean Zizi toys, vacuum floor & living room, toilet, buy food (AEON @ Yau Tong)",
-            "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (AEON @ Yau Tong)"
+            "en": "Clean Zizi toys, vacuum floor & living room, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "清潔玩具、客廳吸塵、廁所、買菜（一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1277,8 +1362,9 @@
         {
           "id": "w2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1286,25 +1372,26 @@
         },
         {
           "id": "w-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "w3",
           "task": {
-            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
-            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1323,8 +1410,9 @@
         {
           "id": "w5",
           "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1344,8 +1432,9 @@
         {
           "id": "w7",
           "task": {
-            "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food",
-            "fil": "Vacuum, malalim na linis ng kusina, toilet, bumili ng pagkain"
+            "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, malalim na linis ng kusina, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1474,8 +1563,9 @@
         {
           "id": "th2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1483,25 +1573,26 @@
         },
         {
           "id": "th-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "th3",
           "task": {
-            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
-            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1520,8 +1611,9 @@
         {
           "id": "th5",
           "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1541,8 +1633,9 @@
         {
           "id": "th7",
           "task": {
-            "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food",
-            "fil": "Vacuum, malalim na linis ng banyo, bumili ng pagkain"
+            "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, malalim na linis ng banyo, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1671,8 +1764,9 @@
         {
           "id": "f2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1680,25 +1774,26 @@
         },
         {
           "id": "f-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "f3",
           "task": {
-            "en": "Prepare Zizi's lunch + play / supervise Zizi at home",
-            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan si Zizi sa bahay"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1717,8 +1812,9 @@
         {
           "id": "f5",
           "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1738,8 +1834,9 @@
         {
           "id": "f7",
           "task": {
-            "en": "Vacuum floor, deep clean bedroom, toilet, buy food",
-            "fil": "Vacuum, malalim na linis ng kwarto, toilet, bumili ng pagkain"
+            "en": "Vacuum floor, deep clean bedroom, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, malalim na linis ng kwarto, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, deep clean bedroom, toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1868,8 +1965,9 @@
         {
           "id": "s2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1877,26 +1975,26 @@
         },
         {
           "id": "s-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "s3",
           "task": {
-            "en": "Prepare Zizi's lunch + play / supervise Zizi at home (no kindergarten — Mon–Fri only; K3 term from 2 Sep)",
-            "zh": "準備午餐＋在家陪伴（無幼稚園 — 僅周一至五上課；K3 由 9月2日起）",
-            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan (walang eskwela — Lunes–Biyernes lang; K3 mula 2 Sep)"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (no kindergarten — Mon–Fri only)",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（無幼稚園 — 僅周一至五）",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (walang kindergarten — Lunes–Biyernes lang)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -1905,8 +2003,9 @@
         {
           "id": "s4",
           "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -1925,8 +2024,9 @@
         {
           "id": "s6",
           "task": {
-            "en": "Vacuum floor, toilet, iron clothing, buy food",
-            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain"
+            "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "14:00",
           "endTime": "16:00",
@@ -2032,31 +2132,15 @@
       },
       "tasks": [
         {
-          "id": "su-milk",
-          "time": "09:50",
-          "startTime": "09:50",
-          "endTime": "10:10",
-          "task": {
-            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
-          },
-          "notes": {
-            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
-        },
-        {
           "id": "su0",
-          "task": {
-            "en": "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
-          },
           "time": "00:00",
+          "startTime": "00:00",
           "fullDay": true,
-          "startTime": "00:00"
+          "task": {
+            "en": "Charlene day off",
+            "fil": "Day off ni Charlene",
+            "zh": "Charlene 放假"
+          }
         }
       ],
       "dayKey": "sunday"
@@ -2064,8 +2148,8 @@
   ],
   "ziziSchoolSummer": {
     "en": "Summer holiday until 1 Sep — no kindergarten. School resumes 2 Sep (K3 PM).",
-    "fil": "Summer holiday hanggang 1 Sep — walang kindergarten. Balik-eskwela 2 Sep (K3 PM).",
-    "zh": "暑假至 9月1日 — 無幼稚園。9月2日復課（K3 下午班）。"
+    "zh": "暑假至 9月1日 — 無幼稚園。9月2日復課（K3 下午班）。",
+    "fil": "Summer holiday hanggang 1 Sep — walang kindergarten. Balik-eskwela 2 Sep (K3 PM)."
   },
   "emergencyContacts": [
     {
@@ -2113,6 +2197,21 @@
   ],
   "familyPreferences": [
     {
+      "id": "pref-supermarket-yata",
+      "body": {
+        "en": "Buy groceries at YATA (一田) in apm first. You may also shop at Shui Wo Street wet market (瑞和街街市) for fresh meat and veg. AEON is OK if needed. Do not go to 錢大媽. Still check food origin labels. Keep receipts if asked.",
+        "fil": "Bumili muna sa YATA (一田) sa apm. Pwede rin sa Shui Wo Street wet market (瑞和街街市) para sa sariwang karne at gulay. OK ang AEON kung kailangan. Huwag pumunta sa 錢大媽. Tingnan pa rin ang origin label. Itago ang resibo kung kailangan.",
+        "zh": "買菜優先 apm 一田 YATA。也可去瑞和街街市買新鮮肉菜。有需要可去 AEON。不要去錢大媽。仍請查看產地標籤。如需要請保留收據。"
+      },
+      "title": {
+        "en": "Shopping: YATA first; 瑞和街 wet market OK; no 錢大媽",
+        "fil": "Pamimili: YATA muna; OK ang 瑞和街 wet market; huwag sa 錢大媽",
+        "zh": "買菜：優先一田；可去瑞和街街市；不要去錢大媽"
+      },
+      "category": "shopping",
+      "priority": 0
+    },
+    {
       "id": "pref-no-china-food",
       "body": {
         "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a ground rule. If you are unsure about a product, ask Sir or Mum.",
@@ -2130,17 +2229,62 @@
     {
       "id": "pref-no-qin-dama-meat",
       "body": {
-        "en": "Please do not buy meat from 錢大媽. Use other markets or shops Sir/Mum prefer (e.g. wet market stalls we trust, or the usual supermarket). Vegetables or other items there are OK if needed — meat is the main concern. Preference tip, not a ground rule.",
-        "zh": "請不要在錢大媽買肉。改去 Sir/Mum 慣用的街市檔或超市。如有需要，在那裡買菜或其他東西可以——主要是不要買肉。這是偏好貼士，不是守則。",
-        "fil": "Huwag bumili ng karne sa 錢大媽. Gumamit ng ibang market o tindahan na gusto nina Sir/Mum (hal. trusted wet market, o usual supermarket). Gulay o iba pang item OK kung kailangan — karne ang ayaw. Preference tip lang, hindi ground rule."
+        "en": "Please do not shop at 錢大媽. Use YATA at apm, Shui Wo Street wet market (瑞和街街市), or AEON instead. Preference tip, not a golden rule.",
+        "fil": "Huwag mamili sa 錢大媽. Gamitin ang YATA sa apm, Shui Wo Street wet market (瑞和街街市), o AEON. Preference tip lang, hindi golden rule.",
+        "zh": "請不要到錢大媽購物。改去 apm 一田、瑞和街街市或 AEON。這是偏好貼士，不是黃金守則。"
       },
       "title": {
-        "en": "Do not buy meat at 錢大媽 (Kai Bo / Qin Dama)",
-        "zh": "不要到錢大媽買肉",
-        "fil": "Huwag bumili ng karne sa 錢大媽 (Kai Bo)"
+        "en": "Do not go to 錢大媽 (Kai Bo / Qin Dama)",
+        "fil": "Huwag pumunta sa 錢大媽 (Kai Bo / Qin Dama)",
+        "zh": "不要去錢大媽"
       },
       "category": "shopping",
       "priority": 2
+    },
+    {
+      "id": "pref-zizi-breakfast",
+      "category": "food",
+      "priority": 3,
+      "title": {
+        "en": "Zizi breakfast — keep it simple",
+        "fil": "Almusal ni Zizi — simple lang",
+        "zh": "Zizi 早餐 — 簡單即可"
+      },
+      "body": {
+        "en": "Help Zizi “eat the rainbow”. Breakfast can be simple: egg, pancake, siu mai, sweet potato, or similar, plus morning milk in a glass with a glass straw (not on Charlene’s day off).",
+        "fil": "Tulungan si Zizi na “eat the rainbow”. Pwedeng simple ang almusal: itlog, pancake, siu mai, camote, o katulad, plus morning milk sa baso na may glass straw (hindi sa day off ni Charlene).",
+        "zh": "幫助 Zizi「吃彩虹」。早餐可簡單：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管（Charlene 放假除外）。"
+      }
+    },
+    {
+      "id": "pref-zizi-lunch",
+      "category": "food",
+      "priority": 4,
+      "title": {
+        "en": "Zizi lunch — meat + vegetables required",
+        "fil": "Tanghalian ni Zizi — kailangan may meat + gulay",
+        "zh": "Zizi 午餐 — 必須有肉和蔬菜"
+      },
+      "body": {
+        "en": "Help Zizi “eat the rainbow” at lunch too. Easy options: spaghetti, fried rice, noodles, or udon — every lunch must include meat and vegetables (not carbs only). Dinner still follows the Meals tab.",
+        "fil": "Tulungan din si Zizi na “eat the rainbow” sa tanghalian. Madaling options: spaghetti, fried rice, noodles, o udon — dapat may meat at gulay (hindi carbs lang). Ang dinner ay sunod pa rin sa Meals tab.",
+        "zh": "午餐也要幫助 Zizi「吃彩虹」。可選：意粉、炒飯、麵或烏冬——每餐必須有肉和蔬菜（不可只有澱粉）。晚餐仍跟 Meals 分頁。"
+      }
+    },
+    {
+      "id": "pref-home-ac",
+      "category": "general",
+      "priority": 5,
+      "title": {
+        "en": "3 air conditioners — Charlene has AC in her room",
+        "fil": "3 aircon — may AC ang kwarto ni Charlene",
+        "zh": "全屋 3 部冷氣 — Charlene 房有冷氣"
+      },
+      "body": {
+        "en": "Flat ~660 sq ft with 3 ACs total. Charlene’s own bedroom has an air conditioner. Use AC reasonably (HK heat/humidity). Ask Sir/Mum about temperature / when to switch on if unsure. Do not leave unused rooms blasting AC all day.",
+        "fil": "Mga 660 sq ft ang flat, may 3 AC. May sariling aircon ang kwarto ni Charlene. Gamitin nang makatwiran (init/humidity sa HK). Tanungin si Sir/Mum tungkol sa temperatura / kailan buksan kung unsure. Huwag hayaang naka-blast ang AC sa walang tao na kwarto buong araw.",
+        "zh": "單位約660呎，共 3 部冷氣。Charlene 睡房有冷氣。請合理使用（香港炎熱潮濕）。溫度／何時開機不肯定請問 Sir/Mum。不要讓無人房間整天猛開冷氣。"
+      }
     }
   ],
   "settlingChecklist": [
@@ -2202,9 +2346,9 @@
       "id": "check-aeon",
       "done": false,
       "title": {
-        "en": "Know how to go to AEON Yau Tong",
-        "zh": "知道如何前往油塘 AEON",
-        "fil": "Alamin ang daan papuntang AEON Yau Tong"
+        "en": "Know how to go to YATA at apm (first supermarket)",
+        "fil": "Alamin ang daan papuntang YATA sa apm (unang supermarket)",
+        "zh": "知道如何前往 apm 一田 YATA（優先超市）"
       }
     },
     {
@@ -2223,6 +2367,15 @@
         "en": "Learn rubbish / recycling place in the building",
         "zh": "了解大廈垃圾／回收位置",
         "fil": "Alamin kung saan ang basura / recycling sa building"
+      }
+    },
+    {
+      "id": "check-home-layout",
+      "done": false,
+      "title": {
+        "en": "Know rooms: Charlene bedroom (has AC), 3 ACs total, rubbish place",
+        "fil": "Alamin ang mga kwarto: kwarto ni Charlene (may AC), 3 AC lahat, basurahan",
+        "zh": "認識單位：Charlene 睡房（有冷氣）、共3部冷氣、垃圾位置"
       }
     }
   ],
@@ -2248,9 +2401,9 @@
         {
           "id": "sm2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "zh": "Zizi 早餐／刷牙",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -2258,26 +2411,26 @@
         },
         {
           "id": "sm-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sm3",
           "task": {
-            "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -2286,9 +2439,9 @@
         {
           "id": "sm4",
           "task": {
-            "en": "ZiZi lunch at home",
-            "zh": "Zizi 在家午餐",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -2438,9 +2591,9 @@
         {
           "id": "st2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "zh": "Zizi 早餐／刷牙",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -2448,26 +2601,26 @@
         },
         {
           "id": "st-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "st3",
           "task": {
-            "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -2476,9 +2629,9 @@
         {
           "id": "st4",
           "task": {
-            "en": "ZiZi lunch at home",
-            "zh": "Zizi 在家午餐",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -2498,9 +2651,9 @@
         {
           "id": "st6",
           "task": {
-            "en": "Clean Zizi toys, vacuum living room, toilet, buy food (AEON @ Domain if needed)",
-            "zh": "清潔玩具、客廳吸塵、廁所、買菜（需要可去 Domain AEON）",
-            "fil": "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (AEON @ Domain kung kailangan)"
+            "en": "Clean Zizi toys, vacuum living room, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "zh": "清潔玩具、客廳吸塵、廁所、買菜（一田／瑞和街街市（不要錢大媽））",
+            "fil": "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "14:00",
           "endTime": "16:00",
@@ -2628,9 +2781,9 @@
         {
           "id": "sw2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "zh": "Zizi 早餐／刷牙",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -2638,26 +2791,26 @@
         },
         {
           "id": "sw-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sw3",
           "task": {
-            "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -2666,9 +2819,9 @@
         {
           "id": "sw4",
           "task": {
-            "en": "ZiZi lunch at home",
-            "zh": "Zizi 在家午餐",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -2726,9 +2879,9 @@
         {
           "id": "sw9",
           "task": {
-            "en": "Light housework after drawing class / buy food if needed",
-            "zh": "繪畫班後輕家務／按需要買菜",
-            "fil": "Magaan na gawaing bahay pagkatapos ng drawing / bumili ng pagkain kung kailangan"
+            "en": "Light housework after drawing class / buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽)) if needed",
+            "zh": "繪畫班後輕家務／按需要買菜（一田／瑞和街街市（不要錢大媽））",
+            "fil": "Magaan na gawaing bahay pagkatapos ng drawing / bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽)) kung kailangan"
           },
           "time": "15:30",
           "endTime": "16:30",
@@ -2845,9 +2998,9 @@
         {
           "id": "sth2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "zh": "Zizi 早餐／刷牙",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -2855,26 +3008,26 @@
         },
         {
           "id": "sth-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sth3",
           "task": {
-            "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -2883,9 +3036,9 @@
         {
           "id": "sth4",
           "task": {
-            "en": "ZiZi lunch at home",
-            "zh": "Zizi 在家午餐",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -3035,9 +3188,9 @@
         {
           "id": "sf2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "zh": "Zizi 早餐／刷牙",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -3045,26 +3198,26 @@
         },
         {
           "id": "sf-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "sf3",
           "task": {
-            "en": "Play / supervise Zizi at home (summer holiday — no kindergarten)",
-            "zh": "在家陪伴 Zizi（暑假 — 無幼稚園）",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (summer holiday — walang kindergarten)"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -3073,9 +3226,9 @@
         {
           "id": "sf4",
           "task": {
-            "en": "ZiZi lunch at home",
-            "zh": "Zizi 在家午餐",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -3251,8 +3404,9 @@
         {
           "id": "s2",
           "task": {
-            "en": "ZiZi breakfast — Charlene prepares every morning / brush teeth",
-            "fil": "Almusal ni Zizi — ihanda ni Charlene tuwing umaga / sipilyo"
+            "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -3260,26 +3414,26 @@
         },
         {
           "id": "s-milk",
-          "time": "09:45",
-          "startTime": "09:45",
-          "endTime": "10:15",
           "task": {
             "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
+            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
           },
+          "time": "09:45",
           "notes": {
             "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
+            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+          },
+          "endTime": "10:15",
+          "startTime": "09:45"
         },
         {
           "id": "s3",
           "task": {
-            "en": "Play / supervise Zizi at home (Saturday — no kindergarten)",
-            "zh": "在家陪伴 Zizi（星期六 — 無幼稚園）",
-            "fil": "Maglaro / bantayan si Zizi sa bahay (Sabado — walang kindergarten)"
+            "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -3288,8 +3442,9 @@
         {
           "id": "s4",
           "task": {
-            "en": "ZiZi lunch at home",
-            "fil": "Tanghalian ni Zizi sa bahay"
+            "en": "ZiZi lunch at home (must include meat + vegetables)",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -3308,8 +3463,9 @@
         {
           "id": "s6",
           "task": {
-            "en": "Vacuum floor, toilet, iron clothing, buy food",
-            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain"
+            "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
+            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））"
           },
           "time": "14:00",
           "endTime": "16:00",
@@ -3415,31 +3571,15 @@
       },
       "tasks": [
         {
-          "id": "su-milk",
-          "time": "09:50",
-          "startTime": "09:50",
-          "endTime": "10:10",
-          "task": {
-            "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
-            "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw",
-            "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝"
-          },
-          "notes": {
-            "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
-            "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat.",
-            "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。"
-          }
-        },
-        {
           "id": "su0",
-          "task": {
-            "en": "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
-          },
           "time": "00:00",
+          "startTime": "00:00",
           "fullDay": true,
-          "startTime": "00:00"
+          "task": {
+            "en": "Charlene day off",
+            "fil": "Day off ni Charlene",
+            "zh": "Charlene 放假"
+          }
         }
       ],
       "dayKey": "sunday"

@@ -4,6 +4,11 @@ import { generateTonightMenu } from "./dinner";
 import { getContentWithSource, getDinnerRecipes } from "./data";
 import { getRecipeDisplayName } from "./recipe-display";
 import { resolveActiveSchedule, type ScheduleSeason } from "./school-calendar";
+import {
+  APPLIANCE_CATEGORY_ORDER,
+  applianceCategory,
+  applianceCategoryMeta,
+} from "./appliance-categories";
 import type {
   AppContent,
   ApplianceGuide,
@@ -112,6 +117,12 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     "Tone: Charlene is treated as a member of the family, not labeled as a 'helper' in replies. Say Charlene / family member. Do not use 姐姐."
   );
   if (snap.homeArea?.en) lines.push(`Home area: ${snap.homeArea.en}`);
+  lines.push(
+    "Home facts: ~660 sq ft Kwun Tong flat; family of 3 (Sir, Mum, Zizi) + Charlene live-in = 4 people; Charlene has own bedroom with AC; 3 ACs total; ~3 min walk to Kwun Tong MTR; linked to apm mall; first supermarket = YATA (一田) at apm (AEON only if needed)."
+  );
+  lines.push(
+    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab meat+veg+soup."
+  );
   lines.push(`Data source: ${snap.source === "supabase" ? "live Admin" : "local"}`);
   lines.push(
     `CURRENT Hong Kong date/time (use this for "what time is it"): ${snap.nowHongKong}`
@@ -182,22 +193,28 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
 
   if (snap.appliances.length) {
     lines.push("");
-    lines.push("House tools / appliances (how-to):");
-    const sorted = [...snap.appliances].sort((a, b) => a.priority - b.priority);
-    for (const a of sorted) {
-      lines.push(
-        `- [${a.kind}] ${a.title.en}${a.model ? ` (${a.model})` : ""}`
-      );
-      for (const tipLine of a.tips.en.split(/\n+/).filter(Boolean)) {
-        lines.push(`  ${tipLine.trim()}`);
-      }
-      if (a.warnings?.en) {
-        lines.push(`  Caution:`);
-        for (const w of a.warnings.en.split(/\n+/).filter(Boolean)) {
-          lines.push(`  ${w.trim()}`);
+    lines.push("House tools / appliances (how-to, by category):");
+    for (const category of APPLIANCE_CATEGORY_ORDER) {
+      const items = snap.appliances
+        .filter((a) => applianceCategory(a.kind) === category)
+        .sort((a, b) => a.priority - b.priority);
+      if (!items.length) continue;
+      lines.push(`## ${applianceCategoryMeta[category].en}`);
+      for (const a of items) {
+        lines.push(
+          `- [${a.kind}] ${a.title.en}${a.model ? ` (${a.model})` : ""}`
+        );
+        for (const tipLine of a.tips.en.split(/\n+/).filter(Boolean)) {
+          lines.push(`  ${tipLine.trim()}`);
         }
+        if (a.warnings?.en) {
+          lines.push(`  Caution:`);
+          for (const w of a.warnings.en.split(/\n+/).filter(Boolean)) {
+            lines.push(`  ${w.trim()}`);
+          }
+        }
+        if (a.sourceUrl) lines.push(`  Manual: ${a.sourceUrl}`);
       }
-      if (a.sourceUrl) lines.push(`  Manual: ${a.sourceUrl}`);
     }
   }
 

@@ -170,9 +170,9 @@ const CHORE_BY_DAY = {
     zh: "洗衣（全家衣物後再洗 Charlene 的）、吸塵、拖地、廁所",
   },
   tuesday: {
-    en: "Clean Zizi toys, vacuum living room, toilet, buy food (AEON @ Domain if needed)",
-    fil: "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (AEON @ Domain kung kailangan)",
-    zh: "清潔玩具、客廳吸塵、廁所、買菜（需要可去 Domain AEON）",
+    en: "Clean Zizi toys, vacuum living room, toilet, buy food (YATA @ apm first)",
+    fil: "Linisin ang laruan ni Zizi, vacuum living room, toilet, bumili ng pagkain (YATA @ apm muna)",
+    zh: "清潔玩具、客廳吸塵、廁所、買菜（優先 apm 一田 YATA）",
   },
   thursday: {
     en: "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain)",
