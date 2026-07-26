@@ -16,12 +16,10 @@ import { LiveClock } from "./LiveClock";
 import { WeatherBanner } from "./WeatherBanner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
-import { resolveActiveSchedule } from "@/lib/school-calendar";
 
 export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabId>("schedule");
-  const activeSchedule = resolveActiveSchedule(content);
 
   const updated = new Date(content.lastUpdated).toLocaleDateString(uiLocale(lang), {
     month: "short",
@@ -56,13 +54,7 @@ export function HomeApp({ content }: { content: AppContent }) {
           />
         )}
         {activeTab === "schedule" && (
-          <ScheduleView
-            schedule={activeSchedule.schedule}
-            ziziSchool={activeSchedule.ziziSchool}
-            monthlyTasks={content.monthlyTasks}
-            season={activeSchedule.season}
-            calendar={activeSchedule.calendar}
-          />
+          <ScheduleView content={content} monthlyTasks={content.monthlyTasks} />
         )}
         {activeTab === "meals" && <MealsView />}
         {activeTab === "tools" && (
