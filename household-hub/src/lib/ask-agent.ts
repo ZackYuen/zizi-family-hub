@@ -701,6 +701,14 @@ function heuristicAnswer(
           re: /whirlpool|tdlr70223|tdlr|wash(ing)?\s*machine|washer|lavander|洗濯機|洗衣機|maglaba/,
           kind: "washing-machine",
         },
+        {
+          re: /ultra\s*glide|5570|steam\s*iron|\biron\b|plantsa|熨斗/,
+          kind: "iron",
+        },
+        {
+          re: /refa|fine\s*bubble|shower\s*head|花灑|shower|bula/,
+          kind: "shower",
+        },
         { re: /\btefal\b/, kind: "air-fryer" },
       ];
       const matched = kindMatchers.find((m) => m.re.test(q));

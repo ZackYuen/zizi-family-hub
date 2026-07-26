@@ -151,6 +151,8 @@ const kindIcon: Record<ApplianceKind, string> = {
   "range-hood": "🌬️",
   dehumidifier: "💨",
   "air-purifier": "🌀",
+  iron: "🧺",
+  shower: "🚿",
   other: "🔌",
 };
 
