@@ -404,7 +404,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-26T02:18:46.688Z",
+  "lastUpdated": "2026-07-26T02:25:08.136Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -814,6 +814,12 @@
     "zh": "你是 Zizi 家庭的一分子。這份指南幫助你在香港與我們的日常生活。",
     "fil": "Bahagi ka ng pamilya ni Zizi. Ang gabay na ito ay para sa araw-araw ninyong buhay sa Hong Kong."
   },
+  "schoolCalendar": {
+    "summerEndsOn": "2026-09-01",
+    "termStartsOn": "2026-09-02",
+    "grade": "K3",
+    "classSession": "PM"
+  },
   "weeklySchedule": [
     {
       "day": {
@@ -876,8 +882,8 @@
           "id": "m6",
           "task": {
             "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -907,8 +913,8 @@
           "id": "m9",
           "task": {
             "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1057,8 +1063,8 @@
           "id": "t6",
           "task": {
             "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1088,8 +1094,8 @@
           "id": "t9",
           "task": {
             "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1238,8 +1244,8 @@
           "id": "w6",
           "task": {
             "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1269,8 +1275,8 @@
           "id": "w9",
           "task": {
             "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1419,8 +1425,8 @@
           "id": "th6",
           "task": {
             "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1450,8 +1456,8 @@
           "id": "th9",
           "task": {
             "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1600,8 +1606,8 @@
           "id": "f6",
           "task": {
             "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1631,8 +1637,8 @@
           "id": "f9",
           "task": {
             "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1751,8 +1757,8 @@
           "id": "s3",
           "task": {
             "en": "Prepare Zizi's lunch + play / supervise Zizi at home (no kindergarten — Mon–Fri only; K3 term from 2 Sep)",
-            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan (walang eskwela — Lunes–Biyernes lang; K3 mula 2 Sep)",
-            "zh": "準備午餐＋在家陪伴（無幼稚園 — 僅周一至五上課；K3 由 9月2日起）"
+            "zh": "準備午餐＋在家陪伴（無幼稚園 — 僅周一至五上課；K3 由 9月2日起）",
+            "fil": "Ihanda ang tanghalian ni Zizi + maglaro / bantayan (walang eskwela — Lunes–Biyernes lang; K3 mula 2 Sep)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -1891,8 +1897,8 @@
           "id": "su0",
           "task": {
             "en": "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
           },
           "time": "00:00",
           "fullDay": true,
@@ -1902,6 +1908,11 @@
       "dayKey": "sunday"
     }
   ],
+  "ziziSchoolSummer": {
+    "en": "Summer holiday until 1 Sep 2026 — no kindergarten. Open Wednesday / Friday on the schedule for drawing class (14:00–15:00). School resumes 2 Sep — K3 PM class.",
+    "fil": "Summer holiday hanggang 1 Sep 2026 — walang kindergarten. Buksan ang Miyerkules / Biyernes sa schedule para sa drawing class (14:00–15:00). Balik-eskwela 2 Sep — K3 PM class.",
+    "zh": "暑假至 2026-09-01 — 無幼稚園。請打開星期三／五日程查看繪畫班（14:00–15:00）。9月2日復課 — K3 下午班。"
+  },
   "emergencyContacts": [
     {
       "id": "ec-999",
@@ -2061,17 +2072,6 @@
       }
     }
   ],
-  "schoolCalendar": {
-    "summerEndsOn": "2026-09-01",
-    "termStartsOn": "2026-09-02",
-    "grade": "K3",
-    "classSession": "PM"
-  },
-  "ziziSchoolSummer": {
-    "en": "Summer holiday until 1 Sep 2026 — no kindergarten. Wed & Fri 14:00–15:00 drawing class at One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). School resumes 2 Sep — K3 PM class.",
-    "fil": "Summer holiday hanggang 1 Sep 2026 — walang kindergarten. Miyerkules at Biyernes 14:00–15:00 drawing class sa One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). Balik-eskwela 2 Sep — K3 PM class.",
-    "zh": "暑假至 2026-09-01 — 無幼稚園。逢星期三、五 14:00–15:00 繪畫班：One Point Studio，觀塘工業中心一期12樓B室。9月2日復課 — K3 下午班。"
-  },
   "weeklyScheduleSummer": [
     {
       "dayKey": "monday",
@@ -2501,9 +2501,14 @@
           "startTime": "14:00",
           "endTime": "15:00",
           "task": {
-            "en": "Drawing class — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室)",
-            "fil": "Drawing class — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室)",
-            "zh": "繪畫班 — One Point Studio，觀塘工業中心一期12樓B室"
+            "en": "Drawing class (14:00–15:00)",
+            "fil": "Drawing class (14:00–15:00)",
+            "zh": "繪畫班（14:00–15:00）"
+          },
+          "notes": {
+            "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+            "zh": "One Point Studio · 觀塘工業中心一期12樓B室"
           }
         },
         {
@@ -2871,9 +2876,14 @@
           "startTime": "14:00",
           "endTime": "15:00",
           "task": {
-            "en": "Drawing class — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室)",
-            "fil": "Drawing class — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室)",
-            "zh": "繪畫班 — One Point Studio，觀塘工業中心一期12樓B室"
+            "en": "Drawing class (14:00–15:00)",
+            "fil": "Drawing class (14:00–15:00)",
+            "zh": "繪畫班（14:00–15:00）"
+          },
+          "notes": {
+            "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B（觀塘工業中心一期12樓B室）",
+            "zh": "One Point Studio · 觀塘工業中心一期12樓B室"
           }
         },
         {
@@ -3158,8 +3168,8 @@
           "id": "su0",
           "task": {
             "en": "Charlene day off — Sunday & HK public holidays (香港勞工假). Zizi kindergarten is Mon–Fri only.",
-            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang.",
-            "zh": "藍田靈糧幼稚園（K3）"
+            "zh": "藍田靈糧幼稚園（K3）",
+            "fil": "Day off ni Charlene — Linggo at HK public holiday (香港勞工假). Eskwela ni Zizi Lunes–Biyernes lang."
           },
           "time": "00:00",
           "fullDay": true,

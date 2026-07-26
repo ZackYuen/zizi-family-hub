@@ -6,6 +6,7 @@ import type { AppContent, DaySchedule, ScheduleTask } from "@/lib/types";
 import { localized } from "@/lib/localized-text";
 import { adminT } from "@/lib/admin-i18n";
 import { getTodayDayKey } from "@/lib/i18n";
+import { getScheduleSeason } from "@/lib/school-calendar";
 import { getTaskStartTime, sortTasksByTime } from "@/lib/schedule-utils";
 import { TrilingualFieldEditor } from "./TrilingualFieldEditor";
 
@@ -63,7 +64,9 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
   const [selectedDay, setSelectedDay] = useState(todayKey);
   const [viewMode, setViewMode] = useState<ViewMode>("day");
   const [copyTarget, setCopyTarget] = useState("");
-  const [editSeason, setEditSeason] = useState<EditSeason>("summer");
+  const [editSeason, setEditSeason] = useState<EditSeason>(() =>
+    getScheduleSeason() === "summer" ? "summer" : "term"
+  );
 
   const days = getEditableDays(content, editSeason);
   const dayIndex = days.findIndex((d) => d.dayKey === selectedDay);
