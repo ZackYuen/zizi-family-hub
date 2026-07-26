@@ -6,9 +6,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const ui = {
   title: { en: "Ask", fil: "Magtanong", zh: "提問" },
   hint: {
-    en: "Quick answers from the family hub (schedule, meals, rules). Start WhatsApp questions with ?",
-    fil: "Mabilis na sagot mula sa family hub (iskedyul, pagkain, rules). Sa WhatsApp, magsimula ng ?",
-    zh: "根據家庭資料快速回答（時間表、餐單、守則）。WhatsApp 請以 ? 開頭。",
+    en: "Ask about schedule, meals, or rules. On WhatsApp start with ?",
+    fil: "Magtanong tungkol sa schedule, meals, o rules. Sa WhatsApp, magsimula ng ?",
+    zh: "可問時間表、餐單或守則。WhatsApp 請以 ? 開頭。",
   },
   placeholder: {
     en: "e.g. What time pick up Zizi?",
@@ -63,19 +63,19 @@ export function AskView() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="rounded-2xl bg-gradient-to-br from-stone-800 to-stone-900 p-4 text-white shadow-md">
-        <h2 className="text-lg font-bold">{ui.title[lang]}</h2>
-        <p className="mt-1 text-xs opacity-80">{ui.hint[lang]}</p>
+    <div className="space-y-3">
+      <div className="rounded-xl bg-stone-100 px-3 py-2.5 ring-1 ring-stone-200">
+        <h2 className="text-sm font-bold text-stone-900">{ui.title[lang]}</h2>
+        <p className="mt-0.5 text-xs text-stone-600">{ui.hint[lang]}</p>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5">
         {ui.examples[lang].map((ex) => (
           <button
             key={ex}
             type="button"
             onClick={() => ask(ex)}
-            className="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-stone-700 ring-1 ring-stone-200"
+            className="rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-stone-700 ring-1 ring-stone-200"
           >
             {ex}
           </button>

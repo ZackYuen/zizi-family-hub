@@ -33,30 +33,20 @@ const ui = {
     fil: "Wala pang step notes. Gamitin ang ingredients + pictures sa video. Tanungin si Sir/Mum kung hindi sure.",
     zh: "尚未有步驟說明。請用材料清單 + 影片畫面。不肯定就問 Sir/Mum。",
   },
-  cantoneseBanner: {
-    en: "YouTube may be Cantonese — use this checklist first",
-    fil: "Baka Cantonese ang YouTube — gamitin muna ang checklist na ito",
-    zh: "YouTube 可能是廣東話 — 請先跟此清單",
-  },
-  cantoneseBody: {
-    en: "1) Check ingredients  2) Read prep notes  3) Open video for visuals (heat / timing). Ask Sir/Mum before guessing.",
-    fil: "1) Suriin ang ingredients  2) Basahin ang prep notes  3) Buksan ang video para sa visuals (init / timing). Tanungin si Sir/Mum bago mag-guess.",
-    zh: "1) 核對材料  2) 看準備說明  3) 打開影片對照畫面（火候／時間）。不要猜測，先問 Sir/Mum。",
+  cantoneseNote: {
+    en: "Video may be Cantonese — use ingredients + prep notes first.",
+    fil: "Baka Cantonese ang video — gamitin muna ang ingredients + prep notes.",
+    zh: "影片可能是廣東話 — 請先看材料與準備說明。",
   },
   shoppingList: {
-    en: "Tonight's shopping / prep list",
-    fil: "Shopping / prep list ngayong gabi",
-    zh: "今晚購物／準備清單",
+    en: "Shopping / prep list",
+    fil: "Shopping / prep list",
+    zh: "購物／準備清單",
   },
   reminder: {
-    en: "Check you have everything before 5:00 PM.",
-    fil: "Suriin kung kompleto bago 5:00 PM.",
-    zh: "請在下午 5:00 前核對材料是否齊全。",
-  },
-  askCook: {
-    en: 'Tip: Ask “How to cook tonight?” for the same guide.',
-    fil: "Tip: Tanungin “Paano magluto ngayong gabi?” para sa parehong gabay.",
-    zh: "提示：可問「今晚怎麼煮？」取得相同說明。",
+    en: "Check before 5:00 PM.",
+    fil: "Suriin bago 5:00 PM.",
+    zh: "請在下午 5:00 前核對。",
   },
 };
 
@@ -196,48 +186,37 @@ export function MealsView() {
   );
 
   return (
-    <div className="space-y-4">
-      <div className="rounded-2xl bg-gradient-to-br from-teal-600 to-teal-700 p-4 text-white shadow-md">
-        <p className="text-xs font-medium uppercase tracking-wide opacity-80">
-          {dateStr}
-        </p>
-        <h2 className="mt-1 text-lg font-bold">{ui.tonight[lang]}</h2>
+    <div className="space-y-3">
+      <div className="rounded-xl bg-teal-50 px-3 py-2.5 ring-1 ring-teal-100">
+        <p className="text-[11px] text-teal-800">{dateStr}</p>
+        <h2 className="text-sm font-bold text-teal-950">{ui.tonight[lang]}</h2>
+        <p className="mt-0.5 text-xs text-teal-900">{ui.cookAt[lang]}</p>
       </div>
 
-      <div className="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4">
-        <h3 className="text-sm font-bold text-amber-950">{ui.cantoneseBanner[lang]}</h3>
-        <p className="mt-1 text-sm leading-relaxed text-amber-900">
-          {ui.cantoneseBody[lang]}
-        </p>
-        <p className="mt-2 text-xs text-amber-800/90">{ui.askCook[lang]}</p>
-      </div>
+      <p className="text-xs text-stone-500">{ui.cantoneseNote[lang]}</p>
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {items.map(({ key, label, recipe }) => (
           <DishCard key={key} label={label} recipe={recipe} lang={lang} />
         ))}
       </div>
 
-      <section className="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-100">
-        <h3 className="text-sm font-bold text-amber-950">{ui.shoppingList[lang]}</h3>
-        <p className="mt-1 text-xs text-amber-800">{ui.reminder[lang]}</p>
+      <section className="rounded-2xl bg-white p-3.5 ring-1 ring-stone-100">
+        <h3 className="text-sm font-bold text-stone-900">{ui.shoppingList[lang]}</h3>
+        <p className="mt-0.5 text-xs text-stone-500">{ui.reminder[lang]}</p>
         {shopping.length === 0 ? (
-          <p className="mt-2 text-xs text-amber-800/80">{ui.noIngredients[lang]}</p>
+          <p className="mt-2 text-xs text-stone-500">{ui.noIngredients[lang]}</p>
         ) : (
-          <ul className="mt-3 space-y-1.5">
+          <ul className="mt-2 space-y-1">
             {shopping.map((row, i) => (
-              <li key={`${row.line}-${i}`} className="text-sm text-amber-950">
+              <li key={`${row.line}-${i}`} className="text-sm text-stone-700">
                 ☐ {row.line}
-                <span className="ml-1 text-[10px] text-amber-700/80">({row.dish})</span>
+                <span className="ml-1 text-[10px] text-stone-400">({row.dish})</span>
               </li>
             ))}
           </ul>
         )}
       </section>
-
-      <p className="rounded-xl bg-white px-3 py-2 text-xs text-stone-600 ring-1 ring-stone-100">
-        {ui.cookAt[lang]}
-      </p>
     </div>
   );
 }

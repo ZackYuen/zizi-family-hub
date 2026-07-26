@@ -16,7 +16,6 @@ import { LiveClock } from "./LiveClock";
 import { WeatherBanner } from "./WeatherBanner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
-import { localized } from "@/lib/localized-text";
 import { resolveActiveSchedule } from "@/lib/school-calendar";
 
 export function HomeApp({ content }: { content: AppContent }) {
@@ -24,21 +23,23 @@ export function HomeApp({ content }: { content: AppContent }) {
   const [activeTab, setActiveTab] = useState<TabId>("schedule");
   const activeSchedule = resolveActiveSchedule(content);
 
-  const updated = new Date(content.lastUpdated).toLocaleDateString(
-    uiLocale(lang),
-    { weekday: "short", year: "numeric", month: "short", day: "numeric" }
-  );
+  const updated = new Date(content.lastUpdated).toLocaleDateString(uiLocale(lang), {
+    month: "short",
+    day: "numeric",
+  });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-stone-50 pb-24">
-      <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-lg items-center justify-between px-4 py-3">
-          <div>
-            <h1 className="text-lg font-bold text-stone-900">
+    <div className="min-h-screen bg-stone-50 pb-24">
+      <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-white/95 backdrop-blur-md">
+        <div className="mx-auto flex max-w-lg items-center justify-between gap-3 px-4 py-2.5">
+          <div className="min-w-0">
+            <h1 className="truncate text-base font-bold text-stone-900">
               {labels.appTitle[lang]}
             </h1>
-            <p className="text-xs text-stone-500">
-              {labels.welcome[lang]}, {content.helperName} · {labels.familyMember[lang]}
+            <p className="truncate text-[11px] text-stone-500">
+              {content.helperName}
+              <span className="text-stone-300"> · </span>
+              {labels.lastUpdated[lang]} {updated}
             </p>
           </div>
           <LanguageToggle />
@@ -47,12 +48,7 @@ export function HomeApp({ content }: { content: AppContent }) {
         <WeatherBanner adminAlert={content.hkWeather} />
       </header>
 
-      <main className="mx-auto max-w-lg px-4 py-4">
-        {content.familyWelcome && (
-          <p className="mb-4 rounded-2xl bg-teal-50 px-4 py-3 text-sm leading-relaxed text-teal-950 ring-1 ring-teal-100">
-            {localized(content.familyWelcome, lang)}
-          </p>
-        )}
+      <main className="mx-auto max-w-lg px-4 py-3">
         {activeTab === "rules" && (
           <RulesAndPreferencesView
             rules={content.groundRules}
@@ -75,12 +71,6 @@ export function HomeApp({ content }: { content: AppContent }) {
         {activeTab === "ask" && <AskView />}
         {activeTab === "hkLife" && <HkLifeView content={content} />}
       </main>
-
-      <footer className="fixed bottom-16 left-0 right-0 text-center">
-        <p className="text-[10px] text-stone-400">
-          {labels.lastUpdated[lang]}: {updated}
-        </p>
-      </footer>
 
       <BottomNav active={activeTab} onChange={setActiveTab} />
     </div>

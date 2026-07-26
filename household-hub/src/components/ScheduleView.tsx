@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { isHelperDayOff } from "@/lib/hk-holidays";
-import { getHongKongTimeParts, getTodayDayKey, labels, uiLocale } from "@/lib/i18n";
+import { getHongKongTimeParts, getTodayDayKey, labels } from "@/lib/i18n";
 import { localized } from "@/lib/localized-text";
 import {
   formatTaskTimeRange,
@@ -19,6 +19,12 @@ interface ScheduleViewProps {
   monthlyTasks?: BilingualText[];
   season?: ScheduleSeason;
   calendar?: SchoolCalendar;
+}
+
+function isDrawingTask(task: { task?: BilingualText; notes?: BilingualText }) {
+  return /drawing\s*class|繪畫班|one\s*point/i.test(
+    `${task.task?.en || ""} ${task.task?.zh || ""} ${task.notes?.en || ""}`
+  );
 }
 
 export function ScheduleView({
@@ -64,71 +70,65 @@ export function ScheduleView({
   const selected =
     schedule.find((d) => d.dayKey === effectiveDayKey) ?? schedule[0];
   const sortedTasks = sortTasksByTime(selected.tasks);
-  const isViewingToday =
-    isDayOff || effectiveDayKey === todayKey;
+  const isViewingToday = isDayOff || effectiveDayKey === todayKey;
   const activeTaskId = useMemo(
     () => (isViewingToday ? getActiveTaskId(selected.tasks, nowMinutes) : null),
     [isViewingToday, selected.tasks, nowMinutes]
   );
 
-  const nowLabel = lang === "fil" ? "Ngayon" : "Now";
-  const dayOffBanner = {
-    en: "Today is Sunday / HK public holiday (香港勞工假) — Charlene day off.",
-    fil: "Ngayon ay Linggo / HK public holiday (香港勞工假) — day off ni Charlene.",
-    zh: "今天是星期日／香港公眾假期（勞工假）— Charlene 放假。",
-  };
+  const nowLabel = lang === "fil" ? "Ngayon" : lang === "zh" ? "現在" : "Now";
 
-  const seasonBanner =
-    season === "summer"
-      ? {
-          en: `Summer mode (until ${calendar?.summerEndsOn ?? "1 Sep"}) — home days; school resumes ${calendar?.termStartsOn ?? "2 Sep"} (${calendar?.grade ?? "K3"}).`,
-          fil: `Summer mode (hanggang ${calendar?.summerEndsOn ?? "1 Sep"}) — sa bahay; balik-eskwela ${calendar?.termStartsOn ?? "2 Sep"} (${calendar?.grade ?? "K3"}).`,
-          zh: `暑假模式（至 ${calendar?.summerEndsOn ?? "9月1日"}）— 在家；${calendar?.termStartsOn ?? "9月2日"} 復課（${calendar?.grade ?? "K3"}）。`,
-        }
-      : season === "term"
-        ? {
-            en: `School term — ${calendar?.grade ?? "K3"} ${calendar?.classSession ?? "PM"} class.`,
-            fil: `School term — ${calendar?.grade ?? "K3"} ${calendar?.classSession ?? "PM"} class.`,
-            zh: `學期中 — ${calendar?.grade ?? "K3"} ${calendar?.classSession === "AM" ? "上午班" : "下午班"}。`,
-          }
-        : null;
+  /** One status line — avoid stacking day-off + season + school banners */
+  const statusLine = (() => {
+    if (isDayOff) {
+      return {
+        tone: "violet" as const,
+        text:
+          lang === "fil"
+            ? "Day off ni Charlene (Linggo / HK public holiday)."
+            : lang === "zh"
+              ? "Charlene 放假（星期日／香港公眾假期）。"
+              : "Charlene day off (Sunday / HK public holiday).",
+      };
+    }
+    if (season === "summer") {
+      return {
+        tone: "amber" as const,
+        text:
+          localized(ziziSchool, lang) ||
+          (lang === "zh"
+            ? `暑假至 ${calendar?.summerEndsOn ?? "9月1日"} — 無幼稚園。`
+            : lang === "fil"
+              ? `Summer holiday hanggang ${calendar?.summerEndsOn ?? "1 Sep"} — walang kindergarten.`
+              : `Summer holiday until ${calendar?.summerEndsOn ?? "1 Sep"} — no kindergarten.`),
+      };
+    }
+    if (ziziSchool) {
+      return { tone: "sky" as const, text: localized(ziziSchool, lang) };
+    }
+    return null;
+  })();
+
+  const toneClass =
+    statusLine?.tone === "violet"
+      ? "bg-violet-50 text-violet-900 ring-violet-100"
+      : statusLine?.tone === "amber"
+        ? "bg-amber-50 text-amber-950 ring-amber-100"
+        : "bg-sky-50 text-sky-950 ring-sky-100";
 
   return (
-    <div className="space-y-4">
-      {isDayOff && (
-        <p className="rounded-xl bg-violet-50 px-3 py-2 text-xs font-medium text-violet-900 ring-1 ring-violet-100">
-          🎉 {dayOffBanner[lang]}
+    <div className="space-y-3">
+      {statusLine && (
+        <p className={`rounded-xl px-3 py-2 text-xs leading-snug ring-1 ${toneClass}`}>
+          {statusLine.text}
         </p>
       )}
 
-      {seasonBanner && (
-        <p
-          className={`rounded-xl px-3 py-2 text-xs font-medium ring-1 ${
-            season === "summer"
-              ? "bg-amber-50 text-amber-950 ring-amber-100"
-              : "bg-sky-50 text-sky-950 ring-sky-100"
-          }`}
-        >
-          {seasonBanner[lang]}
-        </p>
-      )}
-
-      {ziziSchool && (
-        <p className="rounded-xl bg-blue-50 px-3 py-2 text-xs text-blue-900 ring-1 ring-blue-100">
-          🏫 {localized(ziziSchool, lang)}
-        </p>
-      )}
-
-      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+      <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
         {schedule.map((day) => {
           const isToday = !isDayOff && day.dayKey === todayKey;
           const isSelected = day.dayKey === effectiveDayKey;
           const isSunday = day.dayKey === "sunday";
-          const hasDrawing = day.tasks.some((t) =>
-            /drawing\s*class|繪畫班|one\s*point/i.test(
-              `${t.task?.en || ""} ${t.task?.zh || ""} ${t.notes?.en || ""}`
-            )
-          );
           return (
             <button
               key={day.dayKey}
@@ -136,28 +136,15 @@ export function ScheduleView({
               onClick={() => setSelectedDay(day.dayKey)}
               className={`shrink-0 rounded-xl px-3 py-2 text-sm font-medium transition ${
                 isSelected
-                  ? hasDrawing
-                    ? "bg-orange-600 text-white shadow-md"
-                    : "bg-teal-600 text-white shadow-md"
+                  ? "bg-teal-600 text-white shadow-sm"
                   : isToday
-                    ? "bg-teal-50 text-teal-800 ring-2 ring-teal-300"
-                    : hasDrawing
-                      ? "bg-orange-50 text-orange-900 ring-1 ring-orange-200"
-                      : isSunday
-                        ? "bg-violet-50 text-violet-800 ring-1 ring-violet-200"
-                        : "bg-white text-stone-600 ring-1 ring-stone-200"
+                    ? "bg-teal-50 text-teal-800 ring-1 ring-teal-300"
+                    : isSunday
+                      ? "bg-violet-50 text-violet-800 ring-1 ring-violet-200"
+                      : "bg-white text-stone-600 ring-1 ring-stone-200"
               }`}
             >
-              <span className="block">{localized(day.day, lang)}</span>
-              {hasDrawing && (
-                <span
-                  className={`mt-0.5 block text-[10px] font-semibold ${
-                    isSelected ? "text-orange-100" : "text-orange-700"
-                  }`}
-                >
-                  {lang === "zh" ? "繪畫 14:00" : "Drawing 14:00"}
-                </span>
-              )}
+              {localized(day.day, lang)}
               {(isToday || (isDayOff && isSunday)) && (
                 <span className="ml-1 text-[10px] opacity-80">
                   ({labels.today[lang]})
@@ -171,26 +158,24 @@ export function ScheduleView({
       <div className="space-y-2">
         {sortedTasks.map((task) => {
           const isNow = isViewingToday && task.id === activeTaskId;
-          const isDrawing = /drawing\s*class|繪畫班|one\s*point/i.test(
-            `${task.task?.en || ""} ${task.task?.zh || ""} ${task.notes?.en || ""}`
-          );
+          const drawing = isDrawingTask(task);
           return (
             <div
               key={task.id}
-              className={`flex gap-3 rounded-2xl p-3 shadow-sm ring-1 ${
+              className={`flex gap-3 rounded-2xl p-3 ring-1 ${
                 task.fullDay
                   ? "bg-violet-50 ring-violet-200"
-                  : isDrawing
-                    ? "bg-orange-50 ring-orange-200"
+                  : drawing
+                    ? "bg-orange-50/80 ring-orange-100"
                     : isNow
-                      ? "bg-amber-50 ring-amber-300"
+                      ? "bg-amber-50 ring-amber-200"
                       : "bg-white ring-stone-100"
               }`}
             >
-              <div className="w-[5.5rem] shrink-0">
+              <div className="w-[5.25rem] shrink-0">
                 <time
                   className={`block pt-0.5 text-xs font-bold leading-snug ${
-                    isDrawing ? "text-orange-700" : "text-teal-700"
+                    drawing ? "text-orange-800" : "text-teal-700"
                   }`}
                 >
                   {formatTaskTimeRange(task, lang)}
@@ -204,7 +189,9 @@ export function ScheduleView({
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-stone-900">{localized(task.task, lang)}</p>
                 {task.notes && (
-                  <p className="mt-0.5 text-xs text-stone-600">{localized(task.notes, lang)}</p>
+                  <p className="mt-0.5 text-xs leading-snug text-stone-500">
+                    {localized(task.notes, lang)}
+                  </p>
                 )}
               </div>
             </div>
@@ -215,7 +202,7 @@ export function ScheduleView({
       {monthlyTasks && monthlyTasks.length > 0 && (
         <details className="rounded-2xl bg-white p-3 ring-1 ring-stone-100">
           <summary className="cursor-pointer text-sm font-semibold text-stone-700">
-            📅 {lang === "fil" ? "Buwanang gawain" : "Monthly tasks"}
+            {lang === "fil" ? "Buwanang gawain" : lang === "zh" ? "每月工作" : "Monthly tasks"}
           </summary>
           <ul className="mt-2 space-y-1 pl-4 text-sm text-stone-600">
             {monthlyTasks.map((item) => (

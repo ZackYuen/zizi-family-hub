@@ -21,29 +21,19 @@ const categoryColors: Record<GroundRule["category"], string> = {
 
 const ui = {
   bannerTitle: {
-    en: "Ground Rules — must not be broken",
-    fil: "Ground Rules — hindi pwedeng labagin",
-    zh: "守則 — 不可違反",
+    en: "Must follow",
+    fil: "Dapat sundin",
+    zh: "必須遵守",
   },
   bannerBody: {
-    en: "Serious family rules with “If Broken” consequences. Different from Preferences (soft tips). We speak with respect because you are family — and we are clear: there is no second chance to try breaking a rule. If something goes wrong, tell Sir or Mum immediately.",
-    fil: "Seryosong rules na may “If Broken”. Iba sa Preferences (soft tips). Respeto ang tono namin dahil pamilya ka — at malinaw: walang second chance. Kung may mali, sabihin agad kay Sir o Mum.",
-    zh: "嚴肅守則，附有 “If Broken” 後果。與「偏好」軟性貼士不同。我們用尊重的語氣，因為你是家人 — 同時說清楚：沒有第二次機會。有事立刻告訴 Sir 或 Mum。",
-  },
-  ruleBadge: {
-    en: "Ground rule",
-    fil: "Ground rule",
-    zh: "守則",
+    en: "Serious rules — no second chance. If something goes wrong, tell Sir or Mum right away.",
+    fil: "Seryosong rules — walang second chance. Kung may mali, sabihin agad kay Sir o Mum.",
+    zh: "嚴肅守則 — 沒有第二次機會。有事立刻告訴 Sir 或 Mum。",
   },
   ifBroken: {
     en: "If Broken",
     fil: "If Broken",
     zh: "If Broken",
-  },
-  tellEmployer: {
-    en: "Tell Sir or Mum right away — do not hide it",
-    fil: "Sabihin agad kay Sir o Mum — huwag itago",
-    zh: "立刻告訴 Sir 或 Mum — 不可隱瞞",
   },
 };
 
@@ -53,63 +43,47 @@ export function GroundRulesView({ rules }: { rules: GroundRule[] }) {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl border-2 border-red-200 bg-gradient-to-br from-red-50 to-amber-50 p-4 shadow-sm">
-        <div className="flex gap-3">
-          <span className="text-2xl" aria-hidden>
-            ⚠️
-          </span>
-          <div>
-            <h2 className="text-base font-bold text-red-900">{ui.bannerTitle[lang]}</h2>
-            <p className="mt-1 text-sm leading-relaxed text-red-800">{ui.bannerBody[lang]}</p>
-          </div>
-        </div>
+      <div className="rounded-xl bg-red-50 px-3 py-2.5 ring-1 ring-red-100">
+        <h2 className="text-sm font-bold text-red-900">{ui.bannerTitle[lang]}</h2>
+        <p className="mt-0.5 text-xs leading-snug text-red-800">{ui.bannerBody[lang]}</p>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {sorted.map((rule, index) => {
           const consequence = localized(rule.consequences, lang);
           return (
             <article
               key={rule.id}
-              className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-100"
+              className="overflow-hidden rounded-2xl bg-white ring-1 ring-stone-100"
             >
-              <div className="p-4">
-                <div className="mb-2 flex items-start gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-800">
+              <div className="p-3.5">
+                <div className="mb-1.5 flex items-start gap-2.5">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-100 text-xs font-bold text-stone-700">
                     {index + 1}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <span className="inline-block rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-800">
-                      {ui.ruleBadge[lang]}
-                    </span>
-                    <h3 className="mt-1 text-base font-semibold text-stone-900">
+                    <h3 className="text-sm font-semibold text-stone-900">
                       {localized(rule.title, lang)}
                     </h3>
                     <span
-                      className={`mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${categoryColors[rule.category]}`}
+                      className={`mt-1 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium ring-1 ${categoryColors[rule.category]}`}
                     >
                       {categoryIcons[rule.category]}{" "}
                       {categoryLabel(rule.category, lang)}
                     </span>
                   </div>
                 </div>
-                <p className="pl-11 text-sm leading-relaxed text-stone-600">
+                <p className="pl-9 text-sm leading-relaxed text-stone-600">
                   {localized(rule.description, lang)}
                 </p>
               </div>
 
               {consequence && (
-                <div className="border-t-2 border-red-100 bg-red-50/80 px-4 py-3">
-                  <p className="mb-1 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-red-800">
-                    <span aria-hidden>🚨</span>
+                <div className="border-t border-red-100 bg-red-50/70 px-3.5 py-2.5">
+                  <p className="mb-0.5 text-[11px] font-bold uppercase tracking-wide text-red-800">
                     {ui.ifBroken[lang]}
                   </p>
-                  <p className="text-sm font-medium leading-relaxed text-red-900">
-                    {consequence}
-                  </p>
-                  <p className="mt-2 text-xs font-semibold text-red-700">
-                    → {ui.tellEmployer[lang]}
-                  </p>
+                  <p className="text-sm leading-relaxed text-red-900">{consequence}</p>
                 </div>
               )}
             </article>
