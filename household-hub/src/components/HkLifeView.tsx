@@ -87,9 +87,9 @@ const categoryMeta: Record<
 const ui = {
   title: { en: "HK Life", fil: "HK Life", zh: "香港生活" },
   subtitle: {
-    en: "Tap a topic to open. Confirm contract details with Sir/Mum.",
-    fil: "I-tap ang topic para buksan. Kumpirmahin ang kontrata kay Sir/Mum.",
-    zh: "點選主題展開。合約細節請向 Sir/Mum 確認。",
+    en: "Tap a topic. Confirm contracts with Sir/Mum.",
+    fil: "I-tap ang topic. Kumpirmahin ang kontrata kay Sir/Mum.",
+    zh: "點選主題。合約請向 Sir/Mum 確認。",
   },
   emergency: {
     en: "Emergency phones",
@@ -392,15 +392,18 @@ export function HkLifeView({ content }: { content: AppContent }) {
   ).length;
 
   return (
-    <div className="space-y-4">
-      <div>
-        <h2 className="text-xl font-bold text-stone-900">{ui.title[lang]}</h2>
-        {content.homeArea && (
-          <p className="mt-0.5 text-sm font-medium text-teal-800">
-            {localized(content.homeArea, lang)}
-          </p>
-        )}
-        <p className="mt-1 text-sm text-stone-600">{ui.subtitle[lang]}</p>
+    <div className="space-y-3">
+      <div className="rounded-xl bg-stone-100 px-3 py-2.5 ring-1 ring-stone-200">
+        <h2 className="text-sm font-bold text-stone-900">
+          {ui.title[lang]}
+          {content.homeArea ? (
+            <span className="font-normal text-stone-500">
+              {" "}
+              · {localized(content.homeArea, lang)}
+            </span>
+          ) : null}
+        </h2>
+        <p className="mt-0.5 text-xs text-stone-600">{ui.subtitle[lang]}</p>
       </div>
 
       {contacts.length > 0 && (

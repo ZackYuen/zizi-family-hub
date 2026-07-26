@@ -238,9 +238,9 @@
   "familyName": "Zizi Family",
   "helperName": "Charlene",
   "ziziSchool": {
-    "en": "Lam Tin Ling Liang Kindergarten — K3 PM class Mon–Fri only (arrive by 1:00 PM, 30 min walk). Sundays & HK public holidays (香港勞工假): Charlene day off.",
-    "fil": "Lam Tin Ling Liang Kindergarten — K3 PM class Lunes–Biyernes lang (dumating bago 1:00 PM, 30 min lakad). Linggo at HK public holiday (香港勞工假): day off ni Charlene.",
-    "zh": "藍田靈糧幼稚園 — K3 星期一至五下午班（13:00 前到達，步行約 30 分鐘）。星期日及香港公眾假期（香港勞工假）：Charlene 放假。"
+    "en": "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30).",
+    "fil": "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30).",
+    "zh": "藍田靈糧幼稚園 — K3 下午班，周一至五（13:00 前送到，16:30 接）。"
   },
   "groundRules": [
     {
@@ -1909,9 +1909,9 @@
     }
   ],
   "ziziSchoolSummer": {
-    "en": "Summer holiday until 1 Sep 2026 — no kindergarten. Open Wednesday / Friday on the schedule for drawing class (14:00–15:00). School resumes 2 Sep — K3 PM class.",
-    "fil": "Summer holiday hanggang 1 Sep 2026 — walang kindergarten. Buksan ang Miyerkules / Biyernes sa schedule para sa drawing class (14:00–15:00). Balik-eskwela 2 Sep — K3 PM class.",
-    "zh": "暑假至 2026-09-01 — 無幼稚園。請打開星期三／五日程查看繪畫班（14:00–15:00）。9月2日復課 — K3 下午班。"
+    "en": "Summer holiday until 1 Sep — no kindergarten. School resumes 2 Sep (K3 PM).",
+    "fil": "Summer holiday hanggang 1 Sep — walang kindergarten. Balik-eskwela 2 Sep (K3 PM).",
+    "zh": "暑假至 9月1日 — 無幼稚園。9月2日復課（K3 下午班）。"
   },
   "emergencyContacts": [
     {

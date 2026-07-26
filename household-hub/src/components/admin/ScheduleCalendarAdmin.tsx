@@ -179,16 +179,6 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
           {lang === "fil" ? "School term (K3)" : lang === "zh" ? "學期 (K3)" : "School term (K3)"}
         </button>
       </div>
-      <p className="text-xs text-stone-500">
-        {editSeason === "summer"
-          ? lang === "zh"
-            ? "正在編輯暑假日程（至 summerEndsOn）。App 會按日期自動切換。"
-            : "Editing summer holiday week (used until summerEndsOn). App switches by date automatically."
-          : lang === "zh"
-            ? "正在編輯學期日程（由 termStartsOn 起，K3）。"
-            : "Editing school-term week (used from termStartsOn — K3)."}
-      </p>
-
       {/* View toggle */}
       <div className="flex rounded-xl bg-stone-100 p-1">
         <button

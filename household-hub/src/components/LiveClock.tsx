@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { labels, uiLocale } from "@/lib/i18n";
+import { uiLocale } from "@/lib/i18n";
 
 const HK_TZ = "Asia/Hong_Kong";
 
@@ -34,19 +34,12 @@ export function LiveClock() {
   });
 
   return (
-    <div className="border-b border-teal-100 bg-gradient-to-r from-amber-50 via-white to-teal-50 px-4 py-2.5">
+    <div className="border-b border-stone-100 bg-stone-50/80 px-4 py-1.5">
       <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="rounded-full bg-teal-600 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-              {labels.today[lang]}
-            </span>
-            <p className="truncate text-sm font-semibold text-stone-800">{dateStr}</p>
-          </div>
-        </div>
+        <p className="truncate text-xs text-stone-600">{dateStr}</p>
         <time
           dateTime={now.toISOString()}
-          className="shrink-0 font-mono text-lg font-bold tabular-nums text-teal-700"
+          className="shrink-0 font-mono text-sm font-semibold tabular-nums text-stone-800"
         >
           {timeStr}
         </time>

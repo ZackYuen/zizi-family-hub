@@ -35,14 +35,9 @@ const prefUi = {
     zh: "家庭偏好",
   },
   banner: {
-    en: "Soft tips only — how our family likes shopping & daily habits. Not Ground Rules. No “If Broken”. When unsure, ask Sir or Mum.",
-    fil: "Soft tips lang — kung paano gusto ng pamilya sa shopping at araw-araw. Hindi Ground Rules. Walang “If Broken”. Kung unsure, tanungin si Sir o Mum.",
-    zh: "軟性貼士而已——購物與日常習慣。不是守則。沒有 “If Broken”。不確定就問 Sir 或 Mum。",
-  },
-  badge: {
-    en: "Preference tip",
-    fil: "Preference tip",
-    zh: "偏好貼士",
+    en: "Soft tips for shopping & daily habits — not Ground Rules.",
+    fil: "Soft tips para sa shopping at araw-araw — hindi Ground Rules.",
+    zh: "購物與日常軟性貼士 — 不是守則。",
   },
   empty: {
     en: "No preference tips yet. Sir/Mum can add them in Admin.",
@@ -56,13 +51,10 @@ function PreferencesSection({ tips }: { tips: FamilyPreferenceTip[] }) {
   const sorted = [...tips].sort((a, b) => a.priority - b.priority);
 
   return (
-    <div className="space-y-3">
-      <div className="rounded-2xl border-2 border-teal-300 bg-gradient-to-br from-teal-50 to-emerald-50 p-4">
-        <p className="text-[11px] font-bold uppercase tracking-wide text-teal-700">
-          {prefUi.badge[lang]}
-        </p>
-        <h2 className="mt-1 text-base font-bold text-teal-950">{prefUi.title[lang]}</h2>
-        <p className="mt-1 text-sm leading-relaxed text-teal-900">{prefUi.banner[lang]}</p>
+    <div className="space-y-2.5">
+      <div className="rounded-xl bg-teal-50 px-3 py-2.5 ring-1 ring-teal-100">
+        <h2 className="text-sm font-bold text-teal-950">{prefUi.title[lang]}</h2>
+        <p className="mt-0.5 text-xs leading-snug text-teal-900">{prefUi.banner[lang]}</p>
       </div>
       {!sorted.length && (
         <p className="rounded-2xl bg-white px-4 py-6 text-center text-sm text-stone-500 ring-1 ring-stone-100">
@@ -72,20 +64,15 @@ function PreferencesSection({ tips }: { tips: FamilyPreferenceTip[] }) {
       {sorted.map((tip) => (
         <article
           key={tip.id}
-          className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-teal-100"
+          className="rounded-2xl bg-white p-3.5 ring-1 ring-stone-100"
         >
-          <div className="mb-2 flex items-start gap-2">
-            <span className="text-lg" aria-hidden>
+          <div className="mb-1 flex items-start gap-2">
+            <span className="text-base" aria-hidden>
               {prefIcons[tip.category]}
             </span>
-            <div className="min-w-0 flex-1">
-              <span className="inline-block rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-teal-800">
-                {prefUi.badge[lang]}
-              </span>
-              <h3 className="mt-1 text-base font-semibold text-stone-900">
-                {localized(tip.title, lang)}
-              </h3>
-            </div>
+            <h3 className="text-sm font-semibold text-stone-900">
+              {localized(tip.title, lang)}
+            </h3>
           </div>
           <p className="text-sm leading-relaxed text-stone-600">
             {localized(tip.body, lang)}
@@ -174,9 +161,9 @@ const toolsUi = {
     zh: "家電與工具",
   },
   hint: {
-    en: "Short how-to for our machines. Details can change — ask Sir or Mum if the buttons look different.",
-    fil: "Maikling how-to para sa aming machines. Puwedeng mag-iba — tanungin si Sir o Mum kung iba ang buttons.",
-    zh: "家中機器的簡短用法。機型可能不同——按鈕不一樣就問 Sir 或 Mum。",
+    en: "How to use our machines. Ask Sir/Mum if buttons look different.",
+    fil: "Paano gamitin ang machines. Tanungin si Sir/Mum kung iba ang buttons.",
+    zh: "家中機器用法。按鈕不一樣就問 Sir/Mum。",
   },
   caution: {
     en: "Caution",
@@ -226,33 +213,31 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
   const sorted = [...appliances].sort((a, b) => a.priority - b.priority);
 
   return (
-    <div className="space-y-4">
-      <div className="rounded-2xl bg-gradient-to-br from-stone-800 to-stone-900 p-4 text-white shadow-md">
-        <h2 className="text-lg font-bold">{toolsUi.title[lang]}</h2>
-        <p className="mt-1 text-xs opacity-80">{toolsUi.hint[lang]}</p>
+    <div className="space-y-3">
+      <div className="rounded-xl bg-stone-100 px-3 py-2.5 ring-1 ring-stone-200">
+        <h2 className="text-sm font-bold text-stone-900">{toolsUi.title[lang]}</h2>
+        <p className="mt-0.5 text-xs text-stone-600">{toolsUi.hint[lang]}</p>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {sorted.map((item) => {
           const warning = item.warnings ? localized(item.warnings, lang) : "";
           return (
             <article
               key={item.id}
-              className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-100"
+              className="overflow-hidden rounded-2xl bg-white ring-1 ring-stone-100"
             >
-              <div className="p-4">
+              <div className="p-3.5">
                 <div className="mb-2 flex items-center gap-2">
-                  <span className="text-xl" aria-hidden>
+                  <span className="text-lg" aria-hidden>
                     {kindIcon[item.kind] || kindIcon.other}
                   </span>
                   <div className="min-w-0">
-                    <h3 className="text-base font-semibold text-stone-900">
+                    <h3 className="text-sm font-semibold text-stone-900">
                       {localized(item.title, lang)}
                     </h3>
                     {item.model && (
-                      <p className="text-[11px] font-medium text-stone-400">
-                        {item.model}
-                      </p>
+                      <p className="text-[11px] text-stone-400">{item.model}</p>
                     )}
                   </div>
                 </div>
