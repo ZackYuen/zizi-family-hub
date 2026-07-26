@@ -40,9 +40,9 @@
       "id": "app-panasonic-sd-pt1002",
       "kind": "bread-machine",
       "tips": {
-        "en": "• Bread maker: Panasonic SD-PT1002 (panel may be Traditional Chinese).\n• Fit the correct kneading blade in the pan.\n• Measure carefully; put ingredients in recipe order (often liquids first).\n• Keep dry yeast in the yeast dispenser so it stays dry until mixing.\n• Nuts/raisins go in the raisin & nut dispenser when the menu supports it.\n• Wipe the pan outside dry, lock into the machine, close the lid.\n• Choose menu / loaf size / crust (light–standard–dark), then Start.\n• When it beeps: Stop, unplug, lift the pan with oven mitts, tip the loaf onto a rack.\n• Use the timer only with recipes Sir/Mum already tested.",
-        "zh": "• 麵包機：Panasonic SD-PT1002（面板可能是繁中）。\n• 裝上正確攪拌葉。\n• 分量要準；按食譜順序落料（多數先液體）。\n• 乾酵母放酵母自動投放盒，保持乾燥至開始攪拌。\n• 果仁／葡萄乾用果料盒（適用菜單時）。\n• 抹乾內鍋外、放回機內鎖好、蓋上蓋。\n• 選菜單／重量／烤色（淺／標準／深），按開始。\n• 完成響聲後：停止、拔掣、戴手套取出內鍋，倒出麵包放架上冷卻。\n• 預約計時只用 Sir/Mum 試過的食譜。",
-        "fil": "• Bread maker: Panasonic SD-PT1002 (maaaring Traditional Chinese ang panel).\n• Ilagay ang tamang kneading blade sa pan.\n• Sukatin nang tama; ilagay ang ingredients ayon sa recipe order (madalas liquids muna).\n• Dry yeast sa yeast dispenser para dry hanggang maghalo.\n• Nuts/raisins sa raisin & nut dispenser kung available sa menu.\n• Patuyuin ang labas ng pan, i-lock sa machine, isara ang lid.\n• Piliin ang menu / size / crust (light–standard–dark), tapos Start.\n• Kapag may beep: Stop, unplug, buhatin ang pan gamit ang oven mitts, ilabas ang tinapay sa rack.\n• Timer: gamitin lang sa recipe na nasubukan na nina Sir/Mum."
+        "en": "• Bread maker: Panasonic SD-PT1002 (panel labels are Traditional Chinese).\n• See the panel picture below — numbers match the buttons:\n  ① Menu ▲/▼ (菜單) — choose program number\n  ② Size (重量) — loaf size\n  ③ Crust (烤色) — light / standard / dark (淡／標準／濃)\n  ④ Timer (預約) — delay end time (only recipes Sir/Mum tested)\n  ⑤ Start (開始) — begin\n  ⑥ Stop (取消／停止) — cancel / when finished\n• Fit the correct kneading blade; measure carefully; liquids first if the recipe says so.\n• Dry yeast in the yeast dispenser; nuts/raisins in the fruit & nut dispenser when the menu supports it.\n• Wipe pan outside dry, lock into machine, close lid → set ①–④ → press ⑤ Start.\n• When it beeps: press ⑥ Stop, unplug, lift pan with oven mitts, tip loaf onto a rack.",
+        "fil": "• Bread maker: Panasonic SD-PT1002 (Traditional Chinese ang panel).\n• Tingnan ang panel picture sa ibaba — tumutugma ang numero sa buttons:\n  ① Menu ▲/▼ (菜單) — piliin ang program\n  ② Size (重量) — laki ng tinapay\n  ③ Crust (烤色) — light / standard / dark (淡／標準／濃)\n  ④ Timer (預約) — delay (recipes lang na nasubukan nina Sir/Mum)\n  ⑤ Start (開始) — simulan\n  ⑥ Stop (取消／停止) — cancel / pagtapos\n• Tamang kneading blade; sukatin nang tama; liquids muna kung sabi ng recipe.\n• Dry yeast sa yeast dispenser; nuts/raisins sa fruit & nut dispenser kung available.\n• Patuyuin ang labas ng pan, i-lock, isara ang lid → set ①–④ → pindutin ⑤ Start.\n• Kapag may beep: ⑥ Stop, unplug, oven mitts, ilabas ang tinapay sa rack.",
+        "zh": "• 麵包機：Panasonic SD-PT1002（面板為繁體中文）。\n• 見下方面板圖 — 數字對應按鈕：\n  ① 菜單 ▲/▼ — 選程式編號\n  ② 重量 — 麵包大小\n  ③ 烤色 — 淡／標準／濃\n  ④ 預約 — 延時完成（只用 Sir/Mum 試過的食譜）\n  ⑤ 開始\n  ⑥ 取消／停止 — 取消或完成後按\n• 裝好攪拌葉；分量要準；食譜要求時先放液體。\n• 乾酵母放酵母盒；果仁／葡萄乾用果料盒（適用菜單時）。\n• 抹乾內鍋外、鎖好、蓋蓋 → 設定 ①–④ → 按 ⑤ 開始。\n• 完成響聲後：按 ⑥ 停止、拔掣、戴手套取出，倒出麵包放架上。"
       },
       "model": "Panasonic SD-PT1002",
       "title": {
@@ -56,7 +56,8 @@
         "zh": "• 揉麵／烘烤中不要開蓋（除非食譜要求）。\n• 內鍋和麵包很燙。\n• 不可向機身倒水。\n• 酵母盒潮濕時用紙巾輕抹乾（不要大力摩擦）。",
         "fil": "• Huwag buksan ang lid habang nagmamasa/nagbabake maliban kung sinabi ng recipe.\n• Mainit ang pan at tinapay.\n• Huwag magbuhos ng tubig sa main body.\n• Kung basa ang yeast dispenser, patuyuin nang dahan gamit ang tissue (huwag kuskusin nang malakas)."
       },
-      "sourceUrl": "https://www.manualslib.com/products/Panasonic-Sd-Pt1002-8846843.html"
+      "sourceUrl": "https://www.manualslib.com/products/Panasonic-Sd-Pt1002-8846843.html",
+      "imageUrl": "/images/appliances/panasonic-sd-pt1002-panel.svg"
     },
     {
       "id": "app-philips-add6910",
@@ -646,9 +647,9 @@
       "id": "life-no-borrow",
       "area": "hk-general",
       "body": {
-        "en": "Family ground rule: do not borrow money from anyone, and do not lend your money to other helpers. If you need something, ask Sir/Mum directly. See Ground Rules for consequences.",
-        "zh": "家庭守則：不要向任何人借錢，也不要借錢給其他傭工。有需要直接問 Sir/Mum。後果見 Ground Rules。",
-        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang helper. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Ground Rules para sa resulta."
+        "en": "Family golden rule: do not borrow money from anyone, and do not lend your money to other helpers. If you need something, ask Sir/Mum directly. See Golden Rules for consequences.",
+        "zh": "家庭守則：不要向任何人借錢，也不要借錢給其他傭工。有需要直接問 Sir/Mum。後果見黃金守則。",
+        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang helper. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Golden Rules para sa resulta."
       },
       "title": {
         "en": "Do not borrow or lend money",
@@ -662,36 +663,19 @@
     {
       "id": "life-zizi-meals",
       "area": "kwun-tong",
-      "category": "culture",
-      "priority": 36,
-      "lastReviewed": "2026-07-26",
+      "body": {
+        "en": "Important: help Zizi “eat the rainbow” — colourful fruit and vegetables across the week (red, orange, yellow, green, purple/blue, white), not the same colour every day. (1) Breakfast — keep it simple: egg, pancake, siu mai, sweet potato, etc., plus morning milk in a glass with a glass straw. (2) Lunch — spaghetti, fried rice, noodles, or udon; every lunch must include meat and vegetables (not carbs only). (3) Dinner — follow the Meals tab (meat + vegetable + soup) for the family. If Zizi holds food in his mouth without chewing: stay calm, gently remind him to chew, or use a simple visual timer (e.g. sand timer / phone timer). Do not force or scold. Tell Sir/Mum if it happens often or he seems unwell.",
+        "fil": "Mahalaga: tulungan si Zizi na “eat the rainbow” — magbigay ng makulay na prutas at gulay sa buong linggo (pula, orange, dilaw, berde, purple/asul, puti), huwag pare-parehong kulay araw-araw. (1) Almusal — simple: itlog, pancake, siu mai, camote, atbp., plus morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti, fried rice, noodles, o udon; dapat may meat at gulay (hindi carbs lang). (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Kung hinahawakan ni Zizi ang pagkain sa bibig nang hindi ngumunguya: manatiling kalmado, maalalahanin siyang ngumuya, o gumamit ng simpleng visual timer (hal. sand timer / phone timer). Huwag pilitin o pagalitan. Sabihin kay Sir/Mum kung madalas o mukhang may sakit.",
+        "zh": "重要：幫助 Zizi「吃彩虹」— 一週內盡量給不同顏色的蔬果（紅、橙、黃、綠、紫／藍、白），不要每天同一種顏色。(1) 早餐 — 簡單即可：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉、炒飯、麵或烏冬；每餐必須有肉和蔬菜（不可只有澱粉）。(3) 晚餐 — 跟 Meals 分頁（肉＋菜＋湯）給一家人。若 Zizi 把食物含在嘴裡不吞不嚼：保持冷靜，溫柔提醒他咀嚼，或用簡單視覺計時（沙漏／手機計時）。不要強迫或責罵。若經常發生或不適，告知 Sir/Mum。"
+      },
       "title": {
         "en": "Zizi meals (breakfast, lunch, dinner)",
-        "fil": "Pagkain ni Zizi (almusal, tanghalian, dinner)",
-        "zh": "Zizi 三餐（早、午、晚）"
+        "zh": "Zizi 三餐（早、午、晚）",
+        "fil": "Pagkain ni Zizi (almusal, tanghalian, dinner)"
       },
-      "body": {
-        "en": "Important: help Zizi “eat the rainbow” — offer colourful fruit and vegetables across the week (red, orange, yellow, green, purple/blue, white), not the same colour every day. (1) Breakfast — keep it simple: egg, pancake, siu mai, sweet potato, etc., plus morning milk in a glass with a glass straw. (2) Lunch — spaghetti, fried rice, noodles, or udon; every lunch must include meat and vegetables (not carbs only). (3) Dinner — follow the Meals tab (meat + vegetable + soup) for the family. Tell Sir/Mum if Zizi refuses food or seems unwell.",
-        "fil": "Mahalaga: tulungan si Zizi na “eat the rainbow” — magbigay ng makulay na prutas at gulay sa buong linggo (pula, orange, dilaw, berde, purple/asul, puti), huwag pare-parehong kulay araw-araw. (1) Almusal — simple: itlog, pancake, siu mai, camote, atbp., plus morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti, fried rice, noodles, o udon; dapat may meat at gulay (hindi carbs lang). (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Sabihin kay Sir/Mum kung ayaw kumain si Zizi o may sakit.",
-        "zh": "重要：幫助 Zizi「吃彩虹」— 一週內盡量給不同顏色的蔬果（紅、橙、黃、綠、紫／藍、白），不要每天同一種顏色。(1) 早餐 — 簡單即可：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉、炒飯、麵或烏冬；每餐必須有肉和蔬菜（不可只有澱粉）。(3) 晚餐 — 跟 Meals 分頁（肉＋菜＋湯）給一家人。若 Zizi 拒食或不適，告知 Sir/Mum。"
-      }
-    },
-    {
-      "id": "life-weekly-chores",
-      "area": "kwun-tong",
       "category": "culture",
-      "priority": 37,
-      "lastReviewed": "2026-07-26",
-      "title": {
-        "en": "Weekly house rhythm (~660 sq ft, boy at home)",
-        "fil": "Lingguhang gawain sa bahay (~660 sq ft, may batang lalaki)",
-        "zh": "每週家務節奏（約660呎、有小男孩）"
-      },
-      "body": {
-        "en": "Small flat, 4 people, active boy — little and often beats one huge clean. Daily: meals, dishes, kitchen bin, evening vacuum, Zizi shower, tidy toys. Mon: laundry + mop. Tue: toys + living room + YATA shop. Wed: kitchen machines deep clean. Thu: bathroom deep clean. Fri: bedrooms. Sat: iron, school bag/shoes, top-up shop. Monthly list: sheets, AC filters (×3), fridge, hood, soft toys, windows. Sunday / public holiday: Charlene day off.",
-        "fil": "Maliit na flat, 4 tao, active na bata — konti pero madalas mas maganda kaysa isang malaking linis. Araw-araw: pagkain, hugas, basurahan, vacuum sa gabi, shower ni Zizi, ayos laruan. Lun: labada + mop. Mar: laruan + sala + YATA. Miy: kitchen machines. Huw: banyo. Biy: kwarto. Sab: plantsa, bag/sapatos, konting pamimili. Buwanan: sheets, AC filter (×3), ref, hood, soft toys, bintana. Linggo / holiday: day off ni Charlene.",
-        "zh": "小單位、四人、活潑男孩——少量多次勝過一次大掃除。每日：三餐、洗碗、廚房垃圾桶、晚間吸塵、Zizi 洗澡、收拾玩具。一：洗衣拖地。二：玩具客廳＋一田。三：廚房電器深清。四：浴室深清。五：睡房。六：熨衣、書包鞋、補買。每月：床單、3部冷氣濾網、雪櫃、油煙機、毛公仔、窗。日／公眾假期：Charlene 放假。"
-      }
+      "priority": 36,
+      "lastReviewed": "2026-07-27"
     },
     {
       "id": "life-kt-school-walk",
@@ -713,36 +697,36 @@
     {
       "id": "life-kt-mtr",
       "area": "kwun-tong",
-      "category": "transport",
-      "priority": 41,
-      "lastReviewed": "2026-07-26",
-      "title": {
-        "en": "Nearby MTR (Kwun Tong)",
-        "fil": "Malapit na MTR (Kwun Tong)",
-        "zh": "附近港鐵（觀塘）"
-      },
       "body": {
         "en": "Home → Kwun Tong MTR is about a 3-minute walk. Useful stations: Kwun Tong (home), Lam Tin (kindergarten area), Yau Tong (only if needed). For taxis, show the Chinese destination on your phone map. Keep Sir/Mum address saved offline. Prefer the known school walking route during work hours unless told otherwise.",
-        "fil": "Bahay → Kwun Tong MTR: mga 3 minutong lakad. Mga istasyon: Kwun Tong (bahay), Lam Tin (kindergarten), Yau Tong (kung kailangan lang). Sa taxi, ipakita ang Chinese destination sa phone map. I-save ang address nina Sir/Mum. Sa work hours, mas mabuti ang alam na lakad papuntang school maliban kung may ibang utos.",
-        "zh": "由家步行約3分鐘到觀塘港鐵。常用站：觀塘（家）、藍田（幼稚園）、油塘（有需要才去）。的士可出示手機地圖中文目的地。儲存 Sir/Mum 地址。工作時間優先用熟悉的上學步行路線，除非另有指示。"
-      }
+        "zh": "由家步行約3分鐘到觀塘港鐵。常用站：觀塘（家）、藍田（幼稚園）、油塘（有需要才去）。的士可出示手機地圖中文目的地。儲存 Sir/Mum 地址。工作時間優先用熟悉的上學步行路線，除非另有指示。",
+        "fil": "Bahay → Kwun Tong MTR: mga 3 minutong lakad. Mga istasyon: Kwun Tong (bahay), Lam Tin (kindergarten), Yau Tong (kung kailangan lang). Sa taxi, ipakita ang Chinese destination sa phone map. I-save ang address nina Sir/Mum. Sa work hours, mas mabuti ang alam na lakad papuntang school maliban kung may ibang utos."
+      },
+      "title": {
+        "en": "Nearby MTR (Kwun Tong)",
+        "zh": "附近港鐵（觀塘）",
+        "fil": "Malapit na MTR (Kwun Tong)"
+      },
+      "category": "transport",
+      "priority": 41,
+      "lastReviewed": "2026-07-26"
     },
     {
       "id": "life-aeon",
       "area": "kwun-tong",
-      "category": "shopping",
-      "priority": 50,
-      "lastReviewed": "2026-07-26",
-      "title": {
-        "en": "Groceries — YATA, 瑞和街 wet market, AEON",
-        "fil": "Pamimili — YATA, 瑞和街 wet market, AEON",
-        "zh": "買菜 — 一田、瑞和街街市、AEON"
-      },
       "body": {
         "en": "OK places to buy food: (1) YATA (一田) at apm near home — first choice. (2) Shui Wo Street wet market (瑞和街街市) in Kwun Tong — good for fresh meat and vegetables. (3) AEON Yau Tong / Domain if needed. Do NOT go to 錢大媽 (Kai Bo / Qin Dama). Use the Meals tab shopping list when possible. Keep receipts if asked. Do not buy on credit or borrow.",
-        "fil": "Pwede bumili sa: (1) YATA (一田) sa apm malapit sa bahay — una. (2) Shui Wo Street wet market (瑞和街街市) sa Kwun Tong — maganda para sa sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan. HUWAG pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals tab shopping list kung pwede. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram.",
-        "zh": "可以買菜的地方：(1) 家附近 apm 一田 YATA — 優先。(2) 觀塘瑞和街街市 — 適合買新鮮肉菜。(3) 有需要可去油塘／Domain AEON。不要去錢大媽。盡量用 Meals 分頁購物清單。如需要請保留收據。不要賒帳或向人借錢。"
-      }
+        "zh": "可以買菜的地方：(1) 家附近 apm 一田 YATA — 優先。(2) 觀塘瑞和街街市 — 適合買新鮮肉菜。(3) 有需要可去油塘／Domain AEON。不要去錢大媽。盡量用 Meals 分頁購物清單。如需要請保留收據。不要賒帳或向人借錢。",
+        "fil": "Pwede bumili sa: (1) YATA (一田) sa apm malapit sa bahay — una. (2) Shui Wo Street wet market (瑞和街街市) sa Kwun Tong — maganda para sa sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan. HUWAG pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals tab shopping list kung pwede. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram."
+      },
+      "title": {
+        "en": "Groceries — YATA, 瑞和街 wet market, AEON",
+        "zh": "買菜 — 一田、瑞和街街市、AEON",
+        "fil": "Pamimili — YATA, 瑞和街 wet market, AEON"
+      },
+      "category": "shopping",
+      "priority": 50,
+      "lastReviewed": "2026-07-26"
     },
     {
       "id": "life-zizi-sick",
@@ -795,6 +779,23 @@
       "priority": 62,
       "sourceUrl": "https://www.kfbg.org/en/events/free-sunday-programme-for-migrant-domestic-workers-at-kfbg",
       "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-zizi-bike",
+      "area": "kwun-tong",
+      "category": "health",
+      "priority": 62,
+      "lastReviewed": "2026-07-27",
+      "title": {
+        "en": "Zizi bicycle practice",
+        "fil": "Pagsasanay sa bisikleta ni Zizi",
+        "zh": "Zizi 單車練習"
+      },
+      "body": {
+        "en": "When Sir/Mum ask for bicycle practice: put on Zizi’s helmet first (ask Sir/Mum where the helmet and bike are kept — usually near the flat entrance / storage they show you). Ride only in safe areas Sir/Mum approve (e.g. quiet podium / park paths — not busy roads). Stay with Zizi the whole time; hold his hand or bike as needed. Stop if he is tired or the weather is bad. Ask Sir/Mum before the first practice if you are unsure of the route.",
+        "fil": "Kapag may bicycle practice ayon kay Sir/Mum: suotin muna ang helmet ni Zizi (tanungin kung nasaan ang helmet at bike — madalas malapit sa pintuan / storage na ipapakita nila). Mag-ride lang sa safe area na aprubado nina Sir/Mum (hal. tahimik na podium / park path — hindi busy na kalsada). Samahan si Zizi palagi; hawakan ang kamay o bike kung kailangan. Huminto kung pagod o masama ang panahon. Tanungin si Sir/Mum bago ang unang practice kung unsure sa route.",
+        "zh": "當 Sir/Mum 安排單車練習：先給 Zizi 戴頭盔（頭盔與單車存放處請問 Sir/Mum，通常在家門口／他們指示的儲物處）。只在 Sir/Mum 認可的安全範圍騎（例如較靜的平台／公園徑 — 不要上繁忙馬路）。全程陪伴；需要時牽手或扶車。若他累了或天氣不好就停止。第一次練習前若不熟路線，先問 Sir/Mum。"
+      }
     },
     {
       "id": "life-quiet",
@@ -962,8 +963,8 @@
           "id": "m2",
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
-            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -989,8 +990,8 @@
           "id": "m3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -999,8 +1000,9 @@
         {
           "id": "m4",
           "task": {
-            "en": "Prepare school bag, shoes, uniform",
-            "fil": "Ihanda ang bag, sapatos, uniporme"
+            "en": "Afternoon school prep — school bag, shoes, uniform ready before lunch",
+            "fil": "Prep sa hapon para sa eskwela — school bag, sapatos, uniform bago ang tanghalian",
+            "zh": "下午上學準備 — 午餐前備好書包、鞋子、校服"
           },
           "time": "11:30",
           "endTime": "12:00",
@@ -1010,8 +1012,8 @@
           "id": "m5",
           "task": {
             "en": "ZiZi lunch at home (must include meat + vegetables)",
-            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
-            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1020,9 +1022,9 @@
         {
           "id": "m6",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
+            "en": "Leave home for afternoon class — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
+            "zh": "出門上下午班 — 步行約30分鐘，13:00 前送到藍田靈糧幼稚園（K3）",
+            "fil": "Umalis papuntang afternoon class — 30 min lakad, ihatid si Zizi sa Lam Tin Ling Liang Kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1041,8 +1043,9 @@
         {
           "id": "m8",
           "task": {
-            "en": "Flexible / monthly task (see list)",
-            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+            "en": "Flexible time — pick one monthly task (see monthly list)",
+            "zh": "彈性時間 — 做一項每月任務（見每月清單）",
+            "fil": "Flexible time — pumili ng isang monthly task (tingnan ang monthly list)"
           },
           "time": "15:30",
           "endTime": "16:00",
@@ -1051,9 +1054,9 @@
         {
           "id": "m9",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
+            "en": "Leave home for pick-up — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
+            "zh": "出門接放學 — 步行約30分鐘，16:30 於藍田靈糧幼稚園（K3）接 Zizi",
+            "fil": "Umalis para sunduin — 30 min lakad, sundo si Zizi ng 16:30 sa Lam Tin Ling Liang Kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1102,8 +1105,9 @@
         {
           "id": "m16",
           "task": {
-            "en": "Wash dishes / tidy up kitchen",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -1162,8 +1166,8 @@
           "id": "t2",
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
-            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1189,8 +1193,8 @@
           "id": "t3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1199,8 +1203,9 @@
         {
           "id": "t4",
           "task": {
-            "en": "Prepare school bag, shoes, uniform",
-            "fil": "Ihanda ang bag, sapatos, uniporme"
+            "en": "Afternoon school prep — school bag, shoes, uniform ready before lunch",
+            "fil": "Prep sa hapon para sa eskwela — school bag, sapatos, uniform bago ang tanghalian",
+            "zh": "下午上學準備 — 午餐前備好書包、鞋子、校服"
           },
           "time": "11:30",
           "endTime": "12:00",
@@ -1210,8 +1215,8 @@
           "id": "t5",
           "task": {
             "en": "ZiZi lunch at home (must include meat + vegetables)",
-            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
-            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1220,9 +1225,9 @@
         {
           "id": "t6",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
+            "en": "Leave home for afternoon class — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
+            "zh": "出門上下午班 — 步行約30分鐘，13:00 前送到藍田靈糧幼稚園（K3）",
+            "fil": "Umalis papuntang afternoon class — 30 min lakad, ihatid si Zizi sa Lam Tin Ling Liang Kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1232,8 +1237,8 @@
           "id": "t7",
           "task": {
             "en": "Clean Zizi toys, vacuum floor & living room, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
-            "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
-            "zh": "清潔玩具、客廳吸塵、廁所、買菜（一田／瑞和街街市（不要錢大媽））"
+            "zh": "清潔玩具、客廳吸塵、廁所、買菜（一田／瑞和街街市（不要錢大媽））",
+            "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1242,8 +1247,9 @@
         {
           "id": "t8",
           "task": {
-            "en": "Flexible / monthly task (see list)",
-            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+            "en": "Flexible time — pick one monthly task (see monthly list)",
+            "zh": "彈性時間 — 做一項每月任務（見每月清單）",
+            "fil": "Flexible time — pumili ng isang monthly task (tingnan ang monthly list)"
           },
           "time": "15:30",
           "endTime": "16:00",
@@ -1252,9 +1258,9 @@
         {
           "id": "t9",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
+            "en": "Leave home for pick-up — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
+            "zh": "出門接放學 — 步行約30分鐘，16:30 於藍田靈糧幼稚園（K3）接 Zizi",
+            "fil": "Umalis para sunduin — 30 min lakad, sundo si Zizi ng 16:30 sa Lam Tin Ling Liang Kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1303,8 +1309,9 @@
         {
           "id": "t16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -1363,8 +1370,8 @@
           "id": "w2",
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
-            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1390,8 +1397,8 @@
           "id": "w3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1400,8 +1407,9 @@
         {
           "id": "w4",
           "task": {
-            "en": "Prepare school bag, shoes, uniform",
-            "fil": "Ihanda ang bag, sapatos, uniporme"
+            "en": "Afternoon school prep — school bag, shoes, uniform ready before lunch",
+            "fil": "Prep sa hapon para sa eskwela — school bag, sapatos, uniform bago ang tanghalian",
+            "zh": "下午上學準備 — 午餐前備好書包、鞋子、校服"
           },
           "time": "11:30",
           "endTime": "12:00",
@@ -1411,8 +1419,8 @@
           "id": "w5",
           "task": {
             "en": "ZiZi lunch at home (must include meat + vegetables)",
-            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
-            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1421,9 +1429,9 @@
         {
           "id": "w6",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
+            "en": "Leave home for afternoon class — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
+            "zh": "出門上下午班 — 步行約30分鐘，13:00 前送到藍田靈糧幼稚園（K3）",
+            "fil": "Umalis papuntang afternoon class — 30 min lakad, ihatid si Zizi sa Lam Tin Ling Liang Kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1433,8 +1441,8 @@
           "id": "w7",
           "task": {
             "en": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
-            "fil": "Vacuum, malalim na linis ng kusina, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
-            "zh": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））"
+            "zh": "Vacuum floor, deep clean kitchen (water/bread/coffee machine), toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））",
+            "fil": "Vacuum, malalim na linis ng kusina, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1443,8 +1451,9 @@
         {
           "id": "w8",
           "task": {
-            "en": "Flexible / monthly task (see list)",
-            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+            "en": "Flexible time — pick one monthly task (see monthly list)",
+            "zh": "彈性時間 — 做一項每月任務（見每月清單）",
+            "fil": "Flexible time — pumili ng isang monthly task (tingnan ang monthly list)"
           },
           "time": "15:30",
           "endTime": "16:00",
@@ -1453,9 +1462,9 @@
         {
           "id": "w9",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
+            "en": "Leave home for pick-up — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
+            "zh": "出門接放學 — 步行約30分鐘，16:30 於藍田靈糧幼稚園（K3）接 Zizi",
+            "fil": "Umalis para sunduin — 30 min lakad, sundo si Zizi ng 16:30 sa Lam Tin Ling Liang Kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1504,8 +1513,9 @@
         {
           "id": "w16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -1564,8 +1574,8 @@
           "id": "th2",
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
-            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1591,8 +1601,8 @@
           "id": "th3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1601,8 +1611,9 @@
         {
           "id": "th4",
           "task": {
-            "en": "Prepare school bag, shoes, uniform",
-            "fil": "Ihanda ang bag, sapatos, uniporme"
+            "en": "Afternoon school prep — school bag, shoes, uniform ready before lunch",
+            "fil": "Prep sa hapon para sa eskwela — school bag, sapatos, uniform bago ang tanghalian",
+            "zh": "下午上學準備 — 午餐前備好書包、鞋子、校服"
           },
           "time": "11:30",
           "endTime": "12:00",
@@ -1612,8 +1623,8 @@
           "id": "th5",
           "task": {
             "en": "ZiZi lunch at home (must include meat + vegetables)",
-            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
-            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1622,9 +1633,9 @@
         {
           "id": "th6",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
+            "en": "Leave home for afternoon class — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
+            "zh": "出門上下午班 — 步行約30分鐘，13:00 前送到藍田靈糧幼稚園（K3）",
+            "fil": "Umalis papuntang afternoon class — 30 min lakad, ihatid si Zizi sa Lam Tin Ling Liang Kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1634,8 +1645,8 @@
           "id": "th7",
           "task": {
             "en": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
-            "fil": "Vacuum, malalim na linis ng banyo, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
-            "zh": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food（買菜一田／瑞和街街市（不要錢大媽））"
+            "zh": "Vacuum floor, deep clean toilet (faucet/shower/mat/washing machine/curtain), buy food（買菜一田／瑞和街街市（不要錢大媽））",
+            "fil": "Vacuum, malalim na linis ng banyo, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1644,8 +1655,9 @@
         {
           "id": "th8",
           "task": {
-            "en": "Flexible / monthly task (see list)",
-            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+            "en": "Flexible time — pick one monthly task (see monthly list)",
+            "zh": "彈性時間 — 做一項每月任務（見每月清單）",
+            "fil": "Flexible time — pumili ng isang monthly task (tingnan ang monthly list)"
           },
           "time": "15:30",
           "endTime": "16:00",
@@ -1654,9 +1666,9 @@
         {
           "id": "th9",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
+            "en": "Leave home for pick-up — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
+            "zh": "出門接放學 — 步行約30分鐘，16:30 於藍田靈糧幼稚園（K3）接 Zizi",
+            "fil": "Umalis para sunduin — 30 min lakad, sundo si Zizi ng 16:30 sa Lam Tin Ling Liang Kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1705,8 +1717,9 @@
         {
           "id": "th16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -1765,8 +1778,8 @@
           "id": "f2",
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
-            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -1792,8 +1805,8 @@
           "id": "f3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan"
           },
           "time": "10:15",
           "endTime": "11:30",
@@ -1802,8 +1815,9 @@
         {
           "id": "f4",
           "task": {
-            "en": "Prepare school bag, shoes, uniform",
-            "fil": "Ihanda ang bag, sapatos, uniporme"
+            "en": "Afternoon school prep — school bag, shoes, uniform ready before lunch",
+            "fil": "Prep sa hapon para sa eskwela — school bag, sapatos, uniform bago ang tanghalian",
+            "zh": "下午上學準備 — 午餐前備好書包、鞋子、校服"
           },
           "time": "11:30",
           "endTime": "12:00",
@@ -1813,8 +1827,8 @@
           "id": "f5",
           "task": {
             "en": "ZiZi lunch at home (must include meat + vegetables)",
-            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
-            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "12:30",
@@ -1823,9 +1837,9 @@
         {
           "id": "f6",
           "task": {
-            "en": "Leave home — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, hatid si Zizi sa kindergarten (K3) bago 13:00"
+            "en": "Leave home for afternoon class — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
+            "zh": "出門上下午班 — 步行約30分鐘，13:00 前送到藍田靈糧幼稚園（K3）",
+            "fil": "Umalis papuntang afternoon class — 30 min lakad, ihatid si Zizi sa Lam Tin Ling Liang Kindergarten (K3) bago 13:00"
           },
           "time": "12:30",
           "endTime": "13:00",
@@ -1834,9 +1848,9 @@
         {
           "id": "f7",
           "task": {
-            "en": "Vacuum floor, deep clean bedroom, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
-            "fil": "Vacuum, malalim na linis ng kwarto, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
-            "zh": "Vacuum floor, deep clean bedroom, toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））"
+            "en": "Vacuum floor, deep clean bedrooms, toilet, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
+            "zh": "Vacuum floor, deep clean bedroom, toilet, buy food（買菜一田／瑞和街街市（不要錢大媽））",
+            "fil": "Vacuum, malalim na linis ng kwarto, toilet, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "13:30",
           "endTime": "15:30",
@@ -1845,8 +1859,9 @@
         {
           "id": "f8",
           "task": {
-            "en": "Flexible / monthly task (see list)",
-            "fil": "Flexible / buwanang gawain (tingnan ang list)"
+            "en": "Flexible time — pick one monthly task (see monthly list)",
+            "zh": "彈性時間 — 做一項每月任務（見每月清單）",
+            "fil": "Flexible time — pumili ng isang monthly task (tingnan ang monthly list)"
           },
           "time": "15:30",
           "endTime": "16:00",
@@ -1855,9 +1870,9 @@
         {
           "id": "f9",
           "task": {
-            "en": "Leave home — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
-            "zh": "藍田靈糧幼稚園（K3）",
-            "fil": "Umalis sa bahay — 30 min lakad, sunduin si Zizi ng 16:30 sa kindergarten (K3)"
+            "en": "Leave home for pick-up — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
+            "zh": "出門接放學 — 步行約30分鐘，16:30 於藍田靈糧幼稚園（K3）接 Zizi",
+            "fil": "Umalis para sunduin — 30 min lakad, sundo si Zizi ng 16:30 sa Lam Tin Ling Liang Kindergarten (K3)"
           },
           "time": "16:00",
           "endTime": "16:30",
@@ -1906,8 +1921,9 @@
         {
           "id": "f16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -1966,8 +1982,8 @@
           "id": "s2",
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
-            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -2004,8 +2020,8 @@
           "id": "s4",
           "task": {
             "en": "ZiZi lunch at home (must include meat + vegetables)",
-            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
-            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -2025,8 +2041,8 @@
           "id": "s6",
           "task": {
             "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
-            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
-            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））"
+            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））",
+            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "14:00",
           "endTime": "16:00",
@@ -2085,8 +2101,9 @@
         {
           "id": "s12",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -2120,6 +2137,17 @@
           },
           "time": "21:45",
           "startTime": "21:45"
+        },
+        {
+          "id": "s-bike",
+          "time": "15:00",
+          "startTime": "15:00",
+          "endTime": "16:00",
+          "task": {
+            "en": "Optional: Zizi bicycle practice if Sir/Mum ask (helmet on; safe area only — see HK Life)",
+            "fil": "Optional: bicycle practice ni Zizi kung sabihin ni Sir/Mum (helmet; safe area lang — tingnan ang HK Life)",
+            "zh": "可選：若 Sir/Mum 安排則練習單車（先戴頭盔；只在安全範圍 — 見香港生活）"
+          }
         }
       ],
       "dayKey": "saturday"
@@ -2133,14 +2161,14 @@
       "tasks": [
         {
           "id": "su0",
-          "time": "00:00",
-          "startTime": "00:00",
-          "fullDay": true,
           "task": {
             "en": "Charlene day off",
-            "fil": "Day off ni Charlene",
-            "zh": "Charlene 放假"
-          }
+            "zh": "Charlene 放假",
+            "fil": "Day off ni Charlene"
+          },
+          "time": "00:00",
+          "fullDay": true,
+          "startTime": "00:00"
         }
       ],
       "dayKey": "sunday"
@@ -2200,13 +2228,13 @@
       "id": "pref-supermarket-yata",
       "body": {
         "en": "Buy groceries at YATA (一田) in apm first. You may also shop at Shui Wo Street wet market (瑞和街街市) for fresh meat and veg. AEON is OK if needed. Do not go to 錢大媽. Still check food origin labels. Keep receipts if asked.",
-        "fil": "Bumili muna sa YATA (一田) sa apm. Pwede rin sa Shui Wo Street wet market (瑞和街街市) para sa sariwang karne at gulay. OK ang AEON kung kailangan. Huwag pumunta sa 錢大媽. Tingnan pa rin ang origin label. Itago ang resibo kung kailangan.",
-        "zh": "買菜優先 apm 一田 YATA。也可去瑞和街街市買新鮮肉菜。有需要可去 AEON。不要去錢大媽。仍請查看產地標籤。如需要請保留收據。"
+        "zh": "買菜優先 apm 一田 YATA。也可去瑞和街街市買新鮮肉菜。有需要可去 AEON。不要去錢大媽。仍請查看產地標籤。如需要請保留收據。",
+        "fil": "Bumili muna sa YATA (一田) sa apm. Pwede rin sa Shui Wo Street wet market (瑞和街街市) para sa sariwang karne at gulay. OK ang AEON kung kailangan. Huwag pumunta sa 錢大媽. Tingnan pa rin ang origin label. Itago ang resibo kung kailangan."
       },
       "title": {
         "en": "Shopping: YATA first; 瑞和街 wet market OK; no 錢大媽",
-        "fil": "Pamimili: YATA muna; OK ang 瑞和街 wet market; huwag sa 錢大媽",
-        "zh": "買菜：優先一田；可去瑞和街街市；不要去錢大媽"
+        "zh": "買菜：優先一田；可去瑞和街街市；不要去錢大媽",
+        "fil": "Pamimili: YATA muna; OK ang 瑞和街 wet market; huwag sa 錢大媽"
       },
       "category": "shopping",
       "priority": 0
@@ -2214,9 +2242,9 @@
     {
       "id": "pref-no-china-food",
       "body": {
-        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a ground rule. If you are unsure about a product, ask Sir or Mum.",
-        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是守則。不確定就問 Sir 或 Mum。",
-        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi ground rule. Kung unsure, tanungin si Sir o Mum."
+        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a golden rule. If you are unsure about a product, ask Sir or Mum.",
+        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是黃金守則。不確定就問 Sir 或 Mum。",
+        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi golden rule. Kung unsure, tanungin si Sir o Mum."
       },
       "title": {
         "en": "Prefer not to buy food made in China",
@@ -2230,60 +2258,75 @@
       "id": "pref-no-qin-dama-meat",
       "body": {
         "en": "Please do not shop at 錢大媽. Use YATA at apm, Shui Wo Street wet market (瑞和街街市), or AEON instead. Preference tip, not a golden rule.",
-        "fil": "Huwag mamili sa 錢大媽. Gamitin ang YATA sa apm, Shui Wo Street wet market (瑞和街街市), o AEON. Preference tip lang, hindi golden rule.",
-        "zh": "請不要到錢大媽購物。改去 apm 一田、瑞和街街市或 AEON。這是偏好貼士，不是黃金守則。"
+        "zh": "請不要到錢大媽購物。改去 apm 一田、瑞和街街市或 AEON。這是偏好貼士，不是黃金守則。",
+        "fil": "Huwag mamili sa 錢大媽. Gamitin ang YATA sa apm, Shui Wo Street wet market (瑞和街街市), o AEON. Preference tip lang, hindi golden rule."
       },
       "title": {
         "en": "Do not go to 錢大媽 (Kai Bo / Qin Dama)",
-        "fil": "Huwag pumunta sa 錢大媽 (Kai Bo / Qin Dama)",
-        "zh": "不要去錢大媽"
+        "zh": "不要去錢大媽",
+        "fil": "Huwag pumunta sa 錢大媽 (Kai Bo / Qin Dama)"
       },
       "category": "shopping",
       "priority": 2
     },
     {
       "id": "pref-zizi-breakfast",
-      "category": "food",
-      "priority": 3,
-      "title": {
-        "en": "Zizi breakfast — keep it simple",
-        "fil": "Almusal ni Zizi — simple lang",
-        "zh": "Zizi 早餐 — 簡單即可"
-      },
       "body": {
         "en": "Help Zizi “eat the rainbow”. Breakfast can be simple: egg, pancake, siu mai, sweet potato, or similar, plus morning milk in a glass with a glass straw (not on Charlene’s day off).",
-        "fil": "Tulungan si Zizi na “eat the rainbow”. Pwedeng simple ang almusal: itlog, pancake, siu mai, camote, o katulad, plus morning milk sa baso na may glass straw (hindi sa day off ni Charlene).",
-        "zh": "幫助 Zizi「吃彩虹」。早餐可簡單：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管（Charlene 放假除外）。"
-      }
+        "zh": "幫助 Zizi「吃彩虹」。早餐可簡單：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管（Charlene 放假除外）。",
+        "fil": "Tulungan si Zizi na “eat the rainbow”. Pwedeng simple ang almusal: itlog, pancake, siu mai, camote, o katulad, plus morning milk sa baso na may glass straw (hindi sa day off ni Charlene)."
+      },
+      "title": {
+        "en": "Zizi breakfast — keep it simple",
+        "zh": "Zizi 早餐 — 簡單即可",
+        "fil": "Almusal ni Zizi — simple lang"
+      },
+      "category": "food",
+      "priority": 3
     },
     {
       "id": "pref-zizi-lunch",
-      "category": "food",
-      "priority": 4,
-      "title": {
-        "en": "Zizi lunch — meat + vegetables required",
-        "fil": "Tanghalian ni Zizi — kailangan may meat + gulay",
-        "zh": "Zizi 午餐 — 必須有肉和蔬菜"
-      },
       "body": {
         "en": "Help Zizi “eat the rainbow” at lunch too. Easy options: spaghetti, fried rice, noodles, or udon — every lunch must include meat and vegetables (not carbs only). Dinner still follows the Meals tab.",
-        "fil": "Tulungan din si Zizi na “eat the rainbow” sa tanghalian. Madaling options: spaghetti, fried rice, noodles, o udon — dapat may meat at gulay (hindi carbs lang). Ang dinner ay sunod pa rin sa Meals tab.",
-        "zh": "午餐也要幫助 Zizi「吃彩虹」。可選：意粉、炒飯、麵或烏冬——每餐必須有肉和蔬菜（不可只有澱粉）。晚餐仍跟 Meals 分頁。"
-      }
+        "zh": "午餐也要幫助 Zizi「吃彩虹」。可選：意粉、炒飯、麵或烏冬——每餐必須有肉和蔬菜（不可只有澱粉）。晚餐仍跟 Meals 分頁。",
+        "fil": "Tulungan din si Zizi na “eat the rainbow” sa tanghalian. Madaling options: spaghetti, fried rice, noodles, o udon — dapat may meat at gulay (hindi carbs lang). Ang dinner ay sunod pa rin sa Meals tab."
+      },
+      "title": {
+        "en": "Zizi lunch — meat + vegetables required",
+        "zh": "Zizi 午餐 — 必須有肉和蔬菜",
+        "fil": "Tanghalian ni Zizi — kailangan may meat + gulay"
+      },
+      "category": "food",
+      "priority": 4
     },
     {
       "id": "pref-home-ac",
-      "category": "general",
-      "priority": 5,
-      "title": {
-        "en": "3 air conditioners — Charlene has AC in her room",
-        "fil": "3 aircon — may AC ang kwarto ni Charlene",
-        "zh": "全屋 3 部冷氣 — Charlene 房有冷氣"
-      },
       "body": {
         "en": "Flat ~660 sq ft with 3 ACs total. Charlene’s own bedroom has an air conditioner. Use AC reasonably (HK heat/humidity). Ask Sir/Mum about temperature / when to switch on if unsure. Do not leave unused rooms blasting AC all day.",
-        "fil": "Mga 660 sq ft ang flat, may 3 AC. May sariling aircon ang kwarto ni Charlene. Gamitin nang makatwiran (init/humidity sa HK). Tanungin si Sir/Mum tungkol sa temperatura / kailan buksan kung unsure. Huwag hayaang naka-blast ang AC sa walang tao na kwarto buong araw.",
-        "zh": "單位約660呎，共 3 部冷氣。Charlene 睡房有冷氣。請合理使用（香港炎熱潮濕）。溫度／何時開機不肯定請問 Sir/Mum。不要讓無人房間整天猛開冷氣。"
+        "zh": "單位約660呎，共 3 部冷氣。Charlene 睡房有冷氣。請合理使用（香港炎熱潮濕）。溫度／何時開機不肯定請問 Sir/Mum。不要讓無人房間整天猛開冷氣。",
+        "fil": "Mga 660 sq ft ang flat, may 3 AC. May sariling aircon ang kwarto ni Charlene. Gamitin nang makatwiran (init/humidity sa HK). Tanungin si Sir/Mum tungkol sa temperatura / kailan buksan kung unsure. Huwag hayaang naka-blast ang AC sa walang tao na kwarto buong araw."
+      },
+      "title": {
+        "en": "3 air conditioners — Charlene has AC in her room",
+        "zh": "全屋 3 部冷氣 — Charlene 房有冷氣",
+        "fil": "3 aircon — may AC ang kwarto ni Charlene"
+      },
+      "category": "general",
+      "priority": 5
+    },
+    {
+      "id": "pref-zizi-chew",
+      "category": "food",
+      "priority": 6,
+      "title": {
+        "en": "If Zizi holds food in his mouth",
+        "fil": "Kung hinahawakan ni Zizi ang pagkain sa bibig",
+        "zh": "若 Zizi 含著食物不吞"
+      },
+      "body": {
+        "en": "Stay calm. Gently remind him to chew, or start a short visual timer. Do not force food or scold. Tell Sir/Mum if this happens often. Preference tip, not a golden rule.",
+        "fil": "Manatiling kalmado. Maalalahanin siyang ngumuya, o mag-start ng maikling visual timer. Huwag pilitin o pagalitan. Sabihin kay Sir/Mum kung madalas. Preference tip, hindi golden rule.",
+        "zh": "保持冷靜。溫柔提醒咀嚼，或開短時間視覺計時。不要強迫或責罵。若經常發生請告知 Sir/Mum。這是偏好貼士，不是黃金守則。"
       }
     }
   ],
@@ -2429,8 +2472,8 @@
           "id": "sm3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -2527,9 +2570,9 @@
         {
           "id": "sm16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "zh": "洗碗／整理廚房",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -2619,8 +2662,8 @@
           "id": "st3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -2717,9 +2760,9 @@
         {
           "id": "st16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "zh": "洗碗／整理廚房",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -2809,8 +2852,8 @@
           "id": "sw3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -2934,9 +2977,9 @@
         {
           "id": "sw16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "zh": "洗碗／整理廚房",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -3026,8 +3069,8 @@
           "id": "sth3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -3124,9 +3167,9 @@
         {
           "id": "sth16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "zh": "洗碗／整理廚房",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -3216,8 +3259,8 @@
           "id": "sf3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -3341,9 +3384,9 @@
         {
           "id": "sf16",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "zh": "洗碗／整理廚房",
-            "fil": "Hugasan ang pinggan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -3405,8 +3448,8 @@
           "id": "s2",
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / 蕃薯 etc.) + brush teeth",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo",
-            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙"
+            "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / 蕃薯 atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -3432,8 +3475,8 @@
           "id": "s3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / 烏冬 etc.) + play / supervise (summer — no kindergarten)",
-            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）"
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）",
+            "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / 烏冬 atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
           "endTime": "12:00",
@@ -3443,8 +3486,8 @@
           "id": "s4",
           "task": {
             "en": "ZiZi lunch at home (must include meat + vegetables)",
-            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)",
-            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）"
+            "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+            "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
           "time": "12:00",
           "endTime": "13:00",
@@ -3464,8 +3507,8 @@
           "id": "s6",
           "task": {
             "en": "Vacuum floor, toilet, iron clothing, buy food (YATA @ apm / 瑞和街 wet market (not 錢大媽))",
-            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))",
-            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））"
+            "zh": "Vacuum floor, toilet, iron clothing, buy food（買菜一田／瑞和街街市（不要錢大媽））",
+            "fil": "Vacuum, toilet, plantsa ng damit, bumili ng pagkain (YATA @ apm / 瑞和街 wet market (huwag 錢大媽))"
           },
           "time": "14:00",
           "endTime": "16:00",
@@ -3524,8 +3567,9 @@
         {
           "id": "s12",
           "task": {
-            "en": "Wash dishes / tidy kitchen",
-            "fil": "Hugasan / ayusin ang kusina"
+            "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+            "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+            "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
           },
           "time": "20:15",
           "endTime": "20:30",
@@ -3559,6 +3603,17 @@
           },
           "time": "21:45",
           "startTime": "21:45"
+        },
+        {
+          "id": "s-bike",
+          "time": "15:00",
+          "startTime": "15:00",
+          "endTime": "16:00",
+          "task": {
+            "en": "Optional: Zizi bicycle practice if Sir/Mum ask (helmet on; safe area only — see HK Life)",
+            "fil": "Optional: bicycle practice ni Zizi kung sabihin ni Sir/Mum (helmet; safe area lang — tingnan ang HK Life)",
+            "zh": "可選：若 Sir/Mum 安排則練習單車（先戴頭盔；只在安全範圍 — 見香港生活）"
+          }
         }
       ],
       "dayKey": "saturday"
@@ -3572,14 +3627,14 @@
       "tasks": [
         {
           "id": "su0",
-          "time": "00:00",
-          "startTime": "00:00",
-          "fullDay": true,
           "task": {
             "en": "Charlene day off",
-            "fil": "Day off ni Charlene",
-            "zh": "Charlene 放假"
-          }
+            "zh": "Charlene 放假",
+            "fil": "Day off ni Charlene"
+          },
+          "time": "00:00",
+          "fullDay": true,
+          "startTime": "00:00"
         }
       ],
       "dayKey": "sunday"

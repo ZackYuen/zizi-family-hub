@@ -338,6 +338,30 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
                               )}
                             </div>
                           </div>
+                          {item.imageUrl && (
+                            <figure className="mb-3 overflow-hidden rounded-lg ring-1 ring-stone-200">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={item.imageUrl}
+                                alt={
+                                  lang === "zh"
+                                    ? `${localized(item.title, lang)} 面板圖`
+                                    : lang === "fil"
+                                      ? `Panel guide: ${localized(item.title, lang)}`
+                                      : `Panel guide: ${localized(item.title, lang)}`
+                                }
+                                className="h-auto w-full bg-white"
+                                loading="lazy"
+                              />
+                              <figcaption className="bg-white px-2 py-1.5 text-[11px] text-stone-500">
+                                {lang === "zh"
+                                  ? "面板示意（數字對應按鈕）"
+                                  : lang === "fil"
+                                    ? "Panel guide (numero = button)"
+                                    : "Panel guide (numbers = buttons)"}
+                              </figcaption>
+                            </figure>
+                          )}
                           <BulletList
                             text={localized(item.tips, lang)}
                             className="text-sm leading-relaxed text-stone-600"

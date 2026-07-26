@@ -19,6 +19,8 @@ function isGoodTranslation(text?: string): boolean {
   if (!text?.trim()) return false;
   if (/@|Email|sportbenzin|salmo\.ee/i.test(text)) return false;
   if (/orchid|ratio of garlic|rotten|Chiton/i.test(text)) return false;
+  if (/pickpocket|WhatsApp Online|Gillette|Burning is better|triple-breasted/i.test(text))
+    return false;
   if (/[\u4e00-\u9fff]/.test(text)) return false;
   return true;
 }

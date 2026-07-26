@@ -590,12 +590,17 @@ function heuristicAnswer(
   }
 
   if (
-    /breakfast|almusal|早餐|lunch|tanghalian|午餐|siumai|燒賣|蕃薯|spaghetti|fried\s*rice|炒飯|烏冬|udon/.test(
+    /breakfast|almusal|早餐|lunch|tanghalian|午餐|siumai|燒賣|蕃薯|spaghetti|fried\s*rice|炒飯|烏冬|udon|eat\s*the\s*rainbow|彩虹|chew|ngumuya|含.*嘴|hold.*mouth|bibig/.test(
       q
     ) &&
     !/dinner|tonight|hapunan|今晚|晚餐/.test(q)
   ) {
     const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-zizi-meals");
+    if (tip) return tip;
+  }
+
+  if (/bicycle|bike|bisikleta|單車|helmet|helmete|頭盔/.test(q)) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-zizi-bike");
     if (tip) return tip;
   }
 

@@ -186,10 +186,12 @@ export interface ApplianceGuide {
   model?: string;
   /** How to use / daily tips */
   tips: BilingualText;
-  /** Soft caution (still not a ground-rule consequence) */
+  /** Soft caution (still not a golden-rule consequence) */
   warnings?: BilingualText;
   /** Manual / support page */
   sourceUrl?: string;
+  /** Optional photo / panel diagram (public path or absolute URL) */
+  imageUrl?: string;
 }
 
 export type HkLifeCategory =

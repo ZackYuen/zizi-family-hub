@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Panasonic SD-PT1002 panel guide</title>
+  <desc id="desc">Numbered Traditional Chinese control panel buttons for the bread maker</desc>
+  <rect width="640" height="420" fill="#f5f5f4"/>
+  <rect x="40" y="28" width="560" height="364" rx="24" fill="#e7e5e4" stroke="#a8a29e" stroke-width="2"/>
+  <text x="320" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#1c1917">Panasonic SD-PT1002 · Panel (A-)</text>
+
+  <!-- LCD -->
+  <rect x="180" y="78" width="280" height="70" rx="10" fill="#111827"/>
+  <text x="320" y="108" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" fill="#86efac">MENU 01</text>
+  <text x="320" y="132" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" fill="#a7f3d0">4:00</text>
+
+  <!-- Buttons row -->
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <!-- 1 Menu -->
+    <rect x="70" y="190" width="110" height="70" rx="12" fill="#fff" stroke="#78716c" stroke-width="2"/>
+    <text x="125" y="218" font-size="14" font-weight="700" fill="#0f766e">` Ü®</text>
+    <text x="125" y="240" font-size="12" fill="#44403c">Menu ² ¼</text>
+
+    <!-- 2 Size -->
+    <rect x="200" y="190" width="110" height="70" rx="12" fill="#fff" stroke="#78716c" stroke-width="2"/>
+    <text x="255" y="218" font-size="14" font-weight="700" fill="#0f766e">a ÍÏ</text>
+    <text x="255" y="240" font-size="12" fill="#44403c">Size</text>
+
+    <!-- 3 Crust -->
+    <rect x="330" y="190" width="110" height="70" rx="12" fill="#fff" stroke="#78716c" stroke-width="2"/>
+    <text x="385" y="218" font-size="14" font-weight="700" fill="#0f766e">b är</text>
+    <text x="385" y="240" font-size="12" fill="#44403c">Crust</text>
+
+    <!-- 4 Timer -->
+    <rect x="460" y="190" width="110" height="70" rx="12" fill="#fff" stroke="#78716c" stroke-width="2"/>
+    <text x="515" y="218" font-size="14" font-weight="700" fill="#0f766e">c </text>
+    <text x="515" y="240" font-size="12" fill="#44403c">Timer</text>
+
+    <!-- 5 Start -->
+    <rect x="160" y="290" width="140" height="64" rx="32" fill="#15803d" stroke="#14532d" stroke-width="2"/>
+    <text x="230" y="318" font-size="16" font-weight="700" fill="#fff">d ‹Ë</text>
+    <text x="230" y="338" font-size="12" fill="#dcfce7">Start</text>
+
+    <!-- 6 Stop -->
+    <rect x="340" y="290" width="140" height="64" rx="32" fill="#b91c1c" stroke="#7f1d1d" stroke-width="2"/>
+    <text x="410" y="318" font-size="16" font-weight="700" fill="#fff">e \b</text>
+    <text x="410" y="338" font-size="12" fill="#fee2e2">Stop / Cancel</text>
+  </g>
+
+  <text x="320" y="375" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#57534e">Order: ` Menu ’ a Size ’ b Crust ’ (c Timer optional) ’ d Start · When done: e Stop</text>
+</svg>

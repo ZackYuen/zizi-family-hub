@@ -7,6 +7,22 @@ const path = join(process.cwd(), "data", "dinner-recipes.json");
 const data = JSON.parse(readFileSync(path, "utf-8"));
 
 const byId = {
+  "d-1160": {
+    nameEn: "Braised minced pork with tofu",
+    nameFil: "Giniling na baboy na may tokwa",
+  },
+  "d-730": {
+    nameEn: "Grilled flounder / sole steak",
+    nameFil: "Inihaw na isdang flounder (sole)",
+  },
+  "d-790": {
+    nameEn: "Air-fryer breaded pork chop",
+    nameFil: "Air-fryer pork chop (breaded)",
+  },
+  "d-820": {
+    nameEn: "Pan-fried salmon steak",
+    nameFil: "Piniritong salmon steak",
+  },
   "d-1450": {
     nameEn: "Pan-fried Halibut with Garlic Butter",
     nameFil: "Piniritong Halibut na may Bawang at Mentega",
@@ -68,6 +84,7 @@ function isBad(text) {
   if (!text?.trim()) return true;
   if (/@|Email|sportbenzin|salmo\.ee/i.test(text)) return true;
   if (/orchid|ratio of garlic|rotten|Chiton/i.test(text)) return true;
+  if (/pickpocket|WhatsApp Online|Gillette|Burning is better|triple-breasted/i.test(text)) return true;
   return false;
 }
 
