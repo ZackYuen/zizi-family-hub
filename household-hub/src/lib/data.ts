@@ -395,7 +395,7 @@ export async function getContent(): Promise<AppContent> {
     }
   }
 
-  // Patch only soft borrow rule wording — do NOT replace all Admin ground rules
+  // Patch only soft borrow rule wording — do NOT replace all Admin golden rules
   const remoteBorrow = remote.groundRules?.find((r) => r.id === "rule-1");
   const localBorrow = local.groundRules?.find((r) => r.id === "rule-1");
   const remoteBorrowBlob = `${remoteBorrow?.title?.en || ""}\n${remoteBorrow?.description?.en || ""}\n${remoteBorrow?.consequences?.en || ""}`;
@@ -422,7 +422,7 @@ export async function getContent(): Promise<AppContent> {
       await saveContent(filled);
       return filled;
     } catch (err) {
-      console.error("Failed to refresh ground rules from seed", err);
+      console.error("Failed to refresh golden rules from seed", err);
       return filled;
     }
   }

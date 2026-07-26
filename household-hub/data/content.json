@@ -308,21 +308,21 @@
     {
       "id": "rule-2",
       "title": {
-        "en": "Zizi comes first — he is our shared priority",
-        "zh": "Zizi 優先 — 我們共同的重心",
-        "fil": "Si Zizi ang unahin — shared priority natin"
+        "en": "Zizi comes first — hold his hand outside",
+        "fil": "Si Zizi ang unahin — hawakan ang kamay niya sa labas",
+        "zh": "Zizi 優先 — 外出必須牽緊他的手"
       },
       "category": "childcare",
       "priority": 2,
       "description": {
-        "en": "You are part of our family team caring for Zizi. His meals, rest, school run, and safety come before other chores. If he needs you, pause other work and be with him.",
-        "zh": "你是照顧 Zizi 的家庭一分子。他的膳食、休息、接送與安全優先於其他家務。他需要你時，請先停下手邊工作陪伴他。",
-        "fil": "Bahagi ka ng pamilya na nag-aalaga kay Zizi. Ang pagkain, pahinga, school run, at kaligtasan niya ay una bago ang ibang gawain. Kung kailangan ka niya, itigil muna ang iba at samahan siya."
+        "en": "You are part of our family team caring for Zizi (our 5-year-old boy). His meals, rest, school run, and safety come before other chores. When walking outside with him, you MUST hold his hand firmly at all times — Hong Kong streets are very busy. Never let him walk ahead alone or let go in crowds, near roads, MTR, or malls. If he needs you, pause other work and be with him.",
+        "fil": "Bahagi ka ng pamilya na nag-aalaga kay Zizi (5 anyos naming batang lalaki). Ang pagkain, pahinga, school run, at kaligtasan niya ay una bago ang ibang gawain. Kapag naglalakad sa labas kasama siya, DAPAT mahigpit mong hawakan ang kamay niya palagi — napaka-busy ng kalsada sa Hong Kong. Huwag hayaang mauna siyang mag-isa o bitawan sa crowd, malapit sa kalsada, MTR, o mall. Kung kailangan ka niya, itigil muna ang iba at samahan siya.",
+        "zh": "你是照顧 Zizi（我們 5 歲的兒子）的家庭一分子。他的膳食、休息、接送與安全優先於其他家務。與他外出步行時，必須時刻牽緊他的手——香港街道非常繁忙。不可讓他獨自走在前面，也不可在人群、馬路旁、港鐵或商場鬆手。他需要你時，請先停下手邊工作陪伴他。"
       },
       "consequences": {
-        "en": "If Broken: Immediate written warning. If Zizi was hungry, unsafe, or unattended because other tasks came first: this is treated as serious — contract may end the same day. Zizi’s safety has no second chance.",
-        "zh": "若違反：立即書面警告。若因先做其他事令 Zizi 挨餓、不安全或無人看管：視為嚴重 — 可即日終止合約。Zizi 的安全沒有第二次機會。",
-        "fil": "If Broken: Agad na written warning. Kung si Zizi ay gutom, delikado, o walang bantay dahil inuna ang ibang gawain: seryoso ito — maaaring matapos ang kontrata sa araw ding iyon. Walang second chance sa kaligtasan ni Zizi."
+        "en": "If Broken: Immediate written warning. If Zizi was hungry, unsafe, unattended, or his hand was not held firmly while outside: this is treated as serious — contract may end the same day. Zizi’s safety has no second chance.",
+        "fil": "If Broken: Agad na written warning. Kung si Zizi ay gutom, delikado, walang bantay, o hindi mahigpit na hinawakan ang kamay niya sa labas: seryoso ito — maaaring matapos ang kontrata sa araw ding iyon. Walang second chance sa kaligtasan ni Zizi.",
+        "zh": "若違反：立即書面警告。若 Zizi 挨餓、不安全、無人看管，或外出時未牽緊他的手：視為嚴重 — 可即日終止合約。Zizi 的安全沒有第二次機會。"
       }
     },
     {
@@ -646,9 +646,9 @@
       "id": "life-no-borrow",
       "area": "hk-general",
       "body": {
-        "en": "Family ground rule: do not borrow money from anyone, and do not lend your money to other helpers. If you need something, ask Sir/Mum directly. See Ground Rules for consequences.",
-        "zh": "家庭守則：不要向任何人借錢，也不要借錢給其他傭工。有需要直接問 Sir/Mum。後果見 Ground Rules。",
-        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang helper. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Ground Rules para sa resulta."
+        "en": "Family golden rule: do not borrow money from anyone, and do not lend your money to other helpers. If you need something, ask Sir/Mum directly. See Golden Rules for consequences.",
+        "zh": "家庭守則：不要向任何人借錢，也不要借錢給其他傭工。有需要直接問 Sir/Mum。後果見黃金守則。",
+        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang helper. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Golden Rules para sa resulta."
       },
       "title": {
         "en": "Do not borrow or lend money",
@@ -2115,9 +2115,9 @@
     {
       "id": "pref-no-china-food",
       "body": {
-        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a ground rule. If you are unsure about a product, ask Sir or Mum.",
-        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是守則。不確定就問 Sir 或 Mum。",
-        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi ground rule. Kung unsure, tanungin si Sir o Mum."
+        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a golden rule. If you are unsure about a product, ask Sir or Mum.",
+        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是黃金守則。不確定就問 Sir 或 Mum。",
+        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi golden rule. Kung unsure, tanungin si Sir o Mum."
       },
       "title": {
         "en": "Prefer not to buy food made in China",
@@ -2130,9 +2130,9 @@
     {
       "id": "pref-no-qin-dama-meat",
       "body": {
-        "en": "Please do not buy meat from 錢大媽. Use other markets or shops Sir/Mum prefer (e.g. wet market stalls we trust, or the usual supermarket). Vegetables or other items there are OK if needed — meat is the main concern. Preference tip, not a ground rule.",
-        "zh": "請不要在錢大媽買肉。改去 Sir/Mum 慣用的街市檔或超市。如有需要，在那裡買菜或其他東西可以——主要是不要買肉。這是偏好貼士，不是守則。",
-        "fil": "Huwag bumili ng karne sa 錢大媽. Gumamit ng ibang market o tindahan na gusto nina Sir/Mum (hal. trusted wet market, o usual supermarket). Gulay o iba pang item OK kung kailangan — karne ang ayaw. Preference tip lang, hindi ground rule."
+        "en": "Please do not buy meat from 錢大媽. Use other markets or shops Sir/Mum prefer (e.g. wet market stalls we trust, or the usual supermarket). Vegetables or other items there are OK if needed — meat is the main concern. Preference tip, not a golden rule.",
+        "zh": "請不要在錢大媽買肉。改去 Sir/Mum 慣用的街市檔或超市。如有需要，在那裡買菜或其他東西可以——主要是不要買肉。這是偏好貼士，不是黃金守則。",
+        "fil": "Huwag bumili ng karne sa 錢大媽. Gumamit ng ibang market o tindahan na gusto nina Sir/Mum (hal. trusted wet market, o usual supermarket). Gulay o iba pang item OK kung kailangan — karne ang ayaw. Preference tip lang, hindi golden rule."
       },
       "title": {
         "en": "Do not buy meat at 錢大媽 (Kai Bo / Qin Dama)",

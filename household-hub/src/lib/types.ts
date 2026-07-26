@@ -131,8 +131,8 @@ export interface AppContent {
   schoolCalendar?: SchoolCalendar;
   groundRules: GroundRule[];
   /**
-   * Soft family preferences / shopping tips — helpful guidance, NOT ground rules.
-   * No consequences; shown below Ground Rules.
+   * Soft family preferences / shopping tips — helpful guidance, NOT golden rules.
+   * No consequences; shown below Golden Rules.
    */
   familyPreferences?: FamilyPreferenceTip[];
   /** How to use house tools / kitchen appliances */
@@ -151,7 +151,7 @@ export interface AppContent {
   hkWeather?: HkWeatherFlag;
 }
 
-/** Soft preference — not a ground rule (no “If Broken”) */
+/** Soft preference — not a golden rule (no “If Broken”) */
 export type PreferenceCategory = "shopping" | "food" | "kitchen" | "general";
 
 export interface FamilyPreferenceTip {
@@ -186,7 +186,7 @@ export interface ApplianceGuide {
   model?: string;
   /** How to use / daily tips */
   tips: BilingualText;
-  /** Soft caution (still not a ground-rule consequence) */
+  /** Soft caution (still not a golden-rule consequence) */
   warnings?: BilingualText;
   /** Manual / support page */
   sourceUrl?: string;
