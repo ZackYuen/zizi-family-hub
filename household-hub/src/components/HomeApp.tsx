@@ -17,10 +17,12 @@ import { WeatherBanner } from "./WeatherBanner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
 import { localized } from "@/lib/localized-text";
+import { resolveActiveSchedule } from "@/lib/school-calendar";
 
 export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabId>("schedule");
+  const activeSchedule = resolveActiveSchedule(content);
 
   const updated = new Date(content.lastUpdated).toLocaleDateString(
     uiLocale(lang),
@@ -59,9 +61,11 @@ export function HomeApp({ content }: { content: AppContent }) {
         )}
         {activeTab === "schedule" && (
           <ScheduleView
-            schedule={content.weeklySchedule}
-            ziziSchool={content.ziziSchool}
+            schedule={activeSchedule.schedule}
+            ziziSchool={activeSchedule.ziziSchool}
             monthlyTasks={content.monthlyTasks}
+            season={activeSchedule.season}
+            calendar={activeSchedule.calendar}
           />
         )}
         {activeTab === "meals" && <MealsView />}

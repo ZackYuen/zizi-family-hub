@@ -10,15 +10,24 @@ import {
   getActiveTaskId,
   sortTasksByTime,
 } from "@/lib/schedule-utils";
-import type { BilingualText, DaySchedule } from "@/lib/types";
+import type { BilingualText, DaySchedule, SchoolCalendar } from "@/lib/types";
+import type { ScheduleSeason } from "@/lib/school-calendar";
 
 interface ScheduleViewProps {
   schedule: DaySchedule[];
   ziziSchool?: BilingualText;
   monthlyTasks?: BilingualText[];
+  season?: ScheduleSeason;
+  calendar?: SchoolCalendar;
 }
 
-export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleViewProps) {
+export function ScheduleView({
+  schedule,
+  ziziSchool,
+  monthlyTasks,
+  season,
+  calendar,
+}: ScheduleViewProps) {
   const { lang } = useLanguage();
   const todayKey = getTodayDayKey();
   const todayKeyRef = useRef(todayKey);
@@ -69,11 +78,38 @@ export function ScheduleView({ schedule, ziziSchool, monthlyTasks }: ScheduleVie
     zh: "今天是星期日／香港公眾假期（勞工假）— Charlene 放假。",
   };
 
+  const seasonBanner =
+    season === "summer"
+      ? {
+          en: `Summer mode (until ${calendar?.summerEndsOn ?? "1 Sep"}) — home days; school resumes ${calendar?.termStartsOn ?? "2 Sep"} (${calendar?.grade ?? "K3"}).`,
+          fil: `Summer mode (hanggang ${calendar?.summerEndsOn ?? "1 Sep"}) — sa bahay; balik-eskwela ${calendar?.termStartsOn ?? "2 Sep"} (${calendar?.grade ?? "K3"}).`,
+          zh: `暑假模式（至 ${calendar?.summerEndsOn ?? "9月1日"}）— 在家；${calendar?.termStartsOn ?? "9月2日"} 復課（${calendar?.grade ?? "K3"}）。`,
+        }
+      : season === "term"
+        ? {
+            en: `School term — ${calendar?.grade ?? "K3"} ${calendar?.classSession ?? "PM"} class.`,
+            fil: `School term — ${calendar?.grade ?? "K3"} ${calendar?.classSession ?? "PM"} class.`,
+            zh: `學期中 — ${calendar?.grade ?? "K3"} ${calendar?.classSession === "AM" ? "上午班" : "下午班"}。`,
+          }
+        : null;
+
   return (
     <div className="space-y-4">
       {isDayOff && (
         <p className="rounded-xl bg-violet-50 px-3 py-2 text-xs font-medium text-violet-900 ring-1 ring-violet-100">
           🎉 {dayOffBanner[lang]}
+        </p>
+      )}
+
+      {seasonBanner && (
+        <p
+          className={`rounded-xl px-3 py-2 text-xs font-medium ring-1 ${
+            season === "summer"
+              ? "bg-amber-50 text-amber-950 ring-amber-100"
+              : "bg-sky-50 text-sky-950 ring-sky-100"
+          }`}
+        >
+          {seasonBanner[lang]}
         </p>
       )}
 

@@ -440,17 +440,36 @@ function heuristicAnswer(
   }
 
   if (
-    /pick ?up|sundo|接送|16:30|1630|drop[- ]?off|kindergarten|eskwela|school\s*(run|walk|time)|hatid/.test(
+    /drawing\s*class|one\s*point|觀塘工業|paint(ing)?\s*class|art\s*class|drawing\s*(lesson|studio)/.test(
       q
     )
   ) {
+    return lang === "fil"
+      ? "Drawing class (summer): Miyerkules at Biyernes 14:00–15:00 — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). Umalis ~13:00–13:30. Walang kindergarten hanggang 1 Sep; balik-eskwela 2 Sep (K3 PM)."
+      : lang === "zh"
+        ? "繪畫班（暑假）：逢星期三、五 14:00–15:00 — One Point Studio，觀塘工業中心一期12樓B室。約 13:00–13:30 出門。暑假至 9月1日無幼稚園；9月2日復課（K3 下午班）。"
+        : "Drawing class (summer): Wed & Fri 14:00–15:00 — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). Leave home ~13:00–13:30. No kindergarten until 1 Sep; school resumes 2 Sep (K3 PM).";
+  }
+
+  if (
+    /pick ?up|sundo|接送|16:30|1630|drop[- ]?off|kindergarten|eskwela|school\s*(run|walk|time)|hatid|k3\b|summer\s*holiday|balik[- ]?eskwela|復課/.test(
+      q
+    )
+  ) {
+    if (snap.scheduleSeason === "summer") {
+      return lang === "fil"
+        ? "Summer holiday ngayon (hanggang 1 Sep) — walang kindergarten. Miyerkules/Biyernes: drawing class 14:00–15:00 sa One Point Studio (觀塘工業中心一期12樓B室). Balik-eskwela 2 Sep — K3 PM (drop-off bago 13:00, sundo 16:30)."
+        : lang === "zh"
+          ? "現正暑假（至 9月1日）— 無幼稚園。星期三／五：繪畫班 14:00–15:00（One Point Studio，觀塘工業中心一期12樓B室）。9月2日復課 — K3 下午班（13:00 前送到，16:30 接）。"
+          : "Summer holiday now (until 1 Sep) — no kindergarten. Wed/Fri: drawing class 14:00–15:00 at One Point Studio (觀塘工業中心一期12樓B室). School resumes 2 Sep — K3 PM (drop-off by 13:00, pick-up 16:30).";
+    }
     const walk = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-school-walk");
     if (walk) return walk;
     return lang === "fil"
-      ? "Zizi: Mon–Fri PM class. Umalis sa bahay 12:30 (30 min lakad) — drop-off bago 13:00. Umalis 16:00 para sunduin si Zizi ng 16:30."
+      ? "Zizi: K3 Mon–Fri PM class. Umalis sa bahay 12:30 (30 min lakad) — drop-off bago 13:00. Umalis 16:00 para sunduin si Zizi ng 16:30."
       : lang === "zh"
-        ? "Zizi：星期一至五下午班。12:30 出門（步行約 30 分鐘），13:00 前送到。16:00 出門，16:30 接 Zizi。"
-        : "Zizi: Mon–Fri PM class. Leave home 12:30 (30 min walk) — drop off by 13:00. Leave 16:00 to pick up Zizi at 16:30.";
+        ? "Zizi：K3 星期一至五下午班。12:30 出門（步行約 30 分鐘），13:00 前送到。16:00 出門，16:30 接 Zizi。"
+        : "Zizi: K3 Mon–Fri PM class. Leave home 12:30 (30 min walk) — drop off by 13:00. Leave 16:00 to pick up Zizi at 16:30.";
   }
 
   // HK Life / FDH settling tips (deterministic from guides)

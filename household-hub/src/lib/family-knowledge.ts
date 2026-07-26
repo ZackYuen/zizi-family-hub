@@ -3,6 +3,7 @@ import { isHelperDayOff } from "./hk-holidays";
 import { generateTonightMenu } from "./dinner";
 import { getContentWithSource, getDinnerRecipes } from "./data";
 import { getRecipeDisplayName } from "./recipe-display";
+import { resolveActiveSchedule, type ScheduleSeason } from "./school-calendar";
 import type {
   AppContent,
   ApplianceGuide,
@@ -11,6 +12,7 @@ import type {
   FamilyPreferenceTip,
   HkLifeGuide,
   HkWeatherFlag,
+  SchoolCalendar,
   SettlingCheckItem,
   TonightMenu,
 } from "./types";
@@ -24,6 +26,8 @@ export interface LiveFamilySnapshot {
   familyName: string;
   isHelperDayOffToday: boolean;
   todayDayKey: string;
+  scheduleSeason: ScheduleSeason;
+  schoolCalendar: SchoolCalendar;
   ziziSchool: AppContent["ziziSchool"];
   todaySchedule: AppContent["weeklySchedule"][0] | null;
   groundRules: AppContent["groundRules"];
@@ -69,8 +73,9 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
   const tonight = recipes.length ? generateTonightMenu(recipes) : null;
   const dayOff = isHelperDayOff();
   const dayKey = dayOff ? "sunday" : getTodayDayKey();
+  const active = resolveActiveSchedule(content);
   const todaySchedule =
-    content.weeklySchedule.find((d) => d.dayKey === dayKey) ?? null;
+    active.schedule.find((d) => d.dayKey === dayKey) ?? null;
 
   return {
     source,
@@ -80,7 +85,9 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     familyName: content.familyName,
     isHelperDayOffToday: dayOff,
     todayDayKey: dayKey,
-    ziziSchool: content.ziziSchool,
+    scheduleSeason: active.season,
+    schoolCalendar: active.calendar,
+    ziziSchool: active.ziziSchool,
     todaySchedule,
     groundRules: content.groundRules,
     familyPreferences: content.familyPreferences ?? [],
@@ -113,6 +120,12 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     `Admin data lastUpdated (NOT the current clock — ignore for time-of-day questions): ${snap.lastUpdated}`
   );
   lines.push(`Today key: ${snap.todayDayKey}`);
+  lines.push(
+    `Schedule season: ${snap.scheduleSeason === "summer" ? "SUMMER HOLIDAY (no kindergarten)" : "SCHOOL TERM"}`
+  );
+  lines.push(
+    `School calendar: summer ends ${snap.schoolCalendar.summerEndsOn}; term starts ${snap.schoolCalendar.termStartsOn}; grade ${snap.schoolCalendar.grade} ${snap.schoolCalendar.classSession}`
+  );
   lines.push(
     `Charlene day off today (Sunday / HK public holiday): ${snap.isHelperDayOffToday ? "YES" : "NO"}`
   );

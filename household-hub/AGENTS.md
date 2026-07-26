@@ -49,6 +49,15 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 - Ask: “How to cook tonight?” / “Paano magluto?” uses the same cook guide.
 - Bulk seed: `scripts/fill-recipe-ingredients.mjs` (review quantities in Admin).
 
+## Schedule seasons (summer ↔ K3 term)
+
+- `schoolCalendar.summerEndsOn` / `termStartsOn` (HK dates) switch which week Charlene sees.
+- `weeklySchedule` = school term (K3 PM from 2026-09-02).
+- `weeklyScheduleSummer` = summer holiday (no kindergarten; Wed/Fri drawing class 14:00–15:00 at One Point Studio, 觀塘工業中心一期12樓B室).
+- App + Ask use `resolveActiveSchedule()` — do not manually wipe the inactive week.
+- Admin Schedule tab: toggle **Summer holiday** / **School term (K3)** to edit either week.
+- Rebuild seed + patch helper: `node scripts/build-summer-k3-schedule.mjs [live.json]` then `npm run patch-live -- scripts/_patch-summer-k3.json`.
+
 ## Family tone
 
 - Call Charlene a **family member**, not “helper / katulong / 家務助理” in app copy or Ask replies.

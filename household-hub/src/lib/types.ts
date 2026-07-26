@@ -33,6 +33,18 @@ export interface DaySchedule {
   tasks: ScheduleTask[];
 }
 
+/** Term vs summer holiday dates (Hong Kong calendar dates, YYYY-MM-DD). */
+export interface SchoolCalendar {
+  /** Inclusive last day of summer holiday */
+  summerEndsOn: string;
+  /** First day of school term */
+  termStartsOn: string;
+  /** e.g. K3 */
+  grade: string;
+  /** Kindergarten session */
+  classSession: "AM" | "PM";
+}
+
 export interface MealItem {
   id: string;
   meal: "breakfast" | "lunch" | "dinner" | "snack";
@@ -113,6 +125,10 @@ export interface AppContent {
   /** Short welcome line under the header */
   familyWelcome?: BilingualText;
   ziziSchool: BilingualText;
+  /** Banner while summer holiday schedule is active */
+  ziziSchoolSummer?: BilingualText;
+  /** Summer / term switch dates + grade */
+  schoolCalendar?: SchoolCalendar;
   groundRules: GroundRule[];
   /**
    * Soft family preferences / shopping tips — helpful guidance, NOT ground rules.
@@ -121,7 +137,10 @@ export interface AppContent {
   familyPreferences?: FamilyPreferenceTip[];
   /** How to use house tools / kitchen appliances */
   appliances?: ApplianceGuide[];
+  /** School-term weekly schedule (used from termStartsOn) */
   weeklySchedule: DaySchedule[];
+  /** Summer-holiday weekly schedule (used through summerEndsOn) */
+  weeklyScheduleSummer?: DaySchedule[];
   monthlyTasks: BilingualText[];
   lastUpdated: string;
   /** Where the family lives — for HK Life tips */

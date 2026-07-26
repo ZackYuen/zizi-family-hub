@@ -289,6 +289,67 @@ export async function getContent(): Promise<AppContent> {
     return filled;
   }
 
+  // Soft-fill summer/term calendar fields from seed if Admin never had them
+  const needsSummerSchedule =
+    !remote.weeklyScheduleSummer?.length &&
+    Boolean(local.weeklyScheduleSummer?.length);
+  const needsSchoolCalendar =
+    !remote.schoolCalendar?.termStartsOn && Boolean(local.schoolCalendar?.termStartsOn);
+  const needsSummerBanner =
+    !remote.ziziSchoolSummer?.en && Boolean(local.ziziSchoolSummer?.en);
+  const needsK3Banner =
+    Boolean(local.ziziSchool?.en?.includes("K3")) &&
+    !remote.ziziSchool?.en?.includes("K3");
+  const hasBrokenThuIds = remote.weeklySchedule?.some((d) =>
+    d.tasks?.some((t) => t.id === "thNaN")
+  );
+  const needsThuIdFix =
+    Boolean(hasBrokenThuIds) &&
+    Boolean(local.weeklySchedule?.find((d) => d.dayKey === "thursday"));
+
+  if (
+    needsSummerSchedule ||
+    needsSchoolCalendar ||
+    needsSummerBanner ||
+    needsK3Banner ||
+    needsThuIdFix
+  ) {
+    const filled: AppContent = {
+      ...remote,
+      weeklyScheduleSummer: needsSummerSchedule
+        ? local.weeklyScheduleSummer
+        : remote.weeklyScheduleSummer,
+      schoolCalendar: needsSchoolCalendar ? local.schoolCalendar : remote.schoolCalendar,
+      ziziSchoolSummer: needsSummerBanner
+        ? local.ziziSchoolSummer
+        : remote.ziziSchoolSummer,
+      ziziSchool: needsK3Banner ? local.ziziSchool : remote.ziziSchool,
+      weeklySchedule: needsThuIdFix
+        ? remote.weeklySchedule.map((day) => {
+            if (day.dayKey !== "thursday") return day;
+            const seedThu = local.weeklySchedule.find((d) => d.dayKey === "thursday");
+            if (!seedThu) return day;
+            return {
+              ...day,
+              tasks: day.tasks.map((task, i) => {
+                if (task.id !== "thNaN") return task;
+                const seedTask = seedThu.tasks[i];
+                return { ...task, id: seedTask?.id && seedTask.id !== "thNaN" ? seedTask.id : `th-fix-${i}` };
+              }),
+            };
+          })
+        : remote.weeklySchedule,
+      lastUpdated: new Date().toISOString(),
+    };
+    try {
+      await saveContent(filled);
+      return filled;
+    } catch (err) {
+      console.error("Failed to seed summer schedule calendar", err);
+      return filled;
+    }
+  }
+
   const needsPrefs =
     !remote.familyPreferences?.length && Boolean(local.familyPreferences?.length);
   const needsAppliances =
