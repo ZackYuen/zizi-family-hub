@@ -20,6 +20,7 @@
  *   "upsertAppliances": [ { id, ... } ],
  *   "appendHkLifeGuides": [ ... ],
  *   "upsertHkLifeGuides": [ ... ],
+ *   "upsertGroundRules": [ { id, consequences, ... } ],
  *   "appendFamilyPreferences": [ ... ],
  *   "set": { "ziziSchool": { ... }, "homeArea": { ... } },
  *   "dryRun": true
@@ -103,6 +104,16 @@ function applyPatch(content, patchObj) {
   if (patchObj.appendFamilyPreferences?.length) {
     next.familyPreferences = sortPriority(
       appendById(next.familyPreferences ?? [], patchObj.appendFamilyPreferences)
+    );
+  }
+  if (patchObj.upsertGroundRules?.length) {
+    next.groundRules = sortPriority(
+      upsertById(next.groundRules ?? [], patchObj.upsertGroundRules)
+    );
+  }
+  if (patchObj.appendGroundRules?.length) {
+    next.groundRules = sortPriority(
+      appendById(next.groundRules ?? [], patchObj.appendGroundRules)
     );
   }
   if (patchObj.set && typeof patchObj.set === "object") {
