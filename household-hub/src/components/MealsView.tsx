@@ -44,10 +44,15 @@ const ui = {
     fil: "Paano lutuin sa device na ito",
     zh: "用此家電怎麼煮",
   },
-  epcBanner: {
-    en: "Some dishes are marked Cook with EPC17 — use the Tefal pressure cooker (see steps on the card + Tools tab).",
-    fil: "May dish na naka-mark Cook with EPC17 — gamitin ang Tefal pressure cooker (steps sa card + Tools tab).",
-    zh: "部分菜式標示「用 EPC17 煮」— 請用 Tefal 壓力鍋（見卡片步驟＋家電分頁）。",
+  deviceBanner: {
+    en: "Dishes may be marked Cook with EPC17 or Cook with Easy Fry — follow the how-to on the card (panel map in Tools).",
+    fil: "May dish na naka-mark Cook with EPC17 o Cook with Easy Fry — sundin ang how-to sa card (panel map sa Tools).",
+    zh: "菜式可能標「用 EPC17 煮」或「用 Easy Fry 煮」— 請跟卡片步驟（面板圖見家電分頁）。",
+  },
+  deviceBannerGeneric: {
+    en: "Tefal kitchen helpers: look for “Cook with EPC17” (pressure) or “Cook with Easy Fry” (air fryer) on dishes. Panel guides: Tools → Cooking.",
+    fil: "Tefal helpers: hanapin ang “Luto sa EPC17” (pressure) o “Luto sa Easy Fry” (air fryer). Panel guides: Tools → Cooking.",
+    zh: "Tefal 煮食家電：餐單中有「用 EPC17 煮」（壓力鍋）或「用 Easy Fry 煮」（氣炸鍋）。面板圖：家電 → 煮食。",
   },
   customPick: {
     en: "Custom pick (Sir/Mum chose tonight)",
@@ -240,13 +245,7 @@ export function MealsView() {
 
       <div className="rounded-xl bg-amber-50/90 px-3 py-2.5 ring-1 ring-amber-100">
         <p className="text-xs leading-relaxed text-amber-950">
-          {hasDeviceDish
-            ? ui.epcBanner[lang]
-            : lang === "fil"
-              ? "Tefal EPC17 pressure cooker: may recipe sa listahan na naka-mark “Luto sa EPC17”. Tingnan Tools → Cooking para sa panel guide."
-              : lang === "zh"
-                ? "Tefal EPC17 壓力鍋：餐單中有標「用 EPC17 煮」的菜式。面板圖見「家電」→ 煮食。"
-                : "Tefal EPC17 pressure cooker: look for dishes marked “Cook with EPC17” in the recipe list. Panel guide: Tools → Cooking."}
+          {hasDeviceDish ? ui.deviceBanner[lang] : ui.deviceBannerGeneric[lang]}
         </p>
       </div>
 

@@ -264,6 +264,9 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
               >
                 <option value="">None (stove / other)</option>
                 <option value="app-tefal-epc17">Tefal EPC17 pressure cooker</option>
+                <option value="app-tefal-easy-fry-xxl">
+                  Tefal Easy Fry & Grill XXL
+                </option>
               </select>
               <div className="space-y-2 rounded-lg bg-stone-50 p-2">
                 <div className="flex gap-1">
