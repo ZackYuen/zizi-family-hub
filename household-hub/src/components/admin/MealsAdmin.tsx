@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { DinnerRecipe, Lang } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { TranslateButtons } from "./TranslateButtons";
+import { TonightOverridePanel } from "./TonightOverridePanel";
 
 type Category = DinnerRecipe["category"] | "All";
 
@@ -157,6 +158,8 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
         <p className="mt-1 text-sm text-stone-600">{adminT("mealDesc", lang)}</p>
         <p className="mt-1 text-xs text-stone-400">{recipes.length} dishes</p>
       </div>
+
+      <TonightOverridePanel lang={lang} recipes={recipes} setMessage={setMessage} />
 
       <div className="flex flex-wrap gap-2">
         <input

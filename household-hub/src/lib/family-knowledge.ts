@@ -1,7 +1,11 @@
 import { getTodayDayKey, getHongKongTimeParts } from "./i18n";
 import { isHelperDayOff } from "./hk-holidays";
-import { generateTonightMenu } from "./dinner";
-import { getContentWithSource, getDinnerRecipes } from "./data";
+import { hongKongDateKey, resolveTonightMenu } from "./dinner";
+import {
+  getContentWithSource,
+  getDinnerMenuOverrides,
+  getDinnerRecipes,
+} from "./data";
 import { getRecipeDisplayName } from "./recipe-display";
 import { resolveActiveSchedule, type ScheduleSeason } from "./school-calendar";
 import {
@@ -75,7 +79,11 @@ function ingredientLine(recipe: DinnerRecipe, lang: "en" | "fil" = "en"): string
 export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
   const { content, source } = await getContentWithSource();
   const recipes = await getDinnerRecipes();
-  const tonight = recipes.length ? generateTonightMenu(recipes) : null;
+  const overrides = await getDinnerMenuOverrides();
+  const dateKey = hongKongDateKey();
+  const tonight = recipes.length
+    ? resolveTonightMenu(recipes, dateKey, overrides.byDate[dateKey] ?? null)
+    : null;
   const dayOff = isHelperDayOff();
   const dayKey = dayOff ? "sunday" : getTodayDayKey();
   const active = resolveActiveSchedule(content);

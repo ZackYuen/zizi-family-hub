@@ -3,6 +3,8 @@ import path from "path";
 import { getSupabaseAdmin, isSupabaseConfigured } from "./supabase";
 import type {
   AppContent,
+  DinnerMenuOverride,
+  DinnerMenuOverrides,
   DinnerRecipe,
   WhatsAppInbox,
   WhatsAppInboxItem,
@@ -10,6 +12,7 @@ import type {
 
 const CONTENT_KEY = "content";
 const RECIPES_KEY = "dinner_recipes";
+const MENU_OVERRIDES_KEY = "dinner_menu_overrides";
 const INBOX_KEY = "whatsapp_inbox";
 const INBOX_MAX = 200;
 
@@ -499,6 +502,71 @@ export async function saveDinnerRecipes(recipes: DinnerRecipe[]): Promise<void> 
   });
 
   if (error) throw error;
+}
+
+export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
+  const empty: DinnerMenuOverrides = {
+    byDate: {},
+    updatedAt: new Date().toISOString(),
+  };
+  if (!isSupabaseConfigured()) return empty;
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from("app_data")
+    .select("data")
+    .eq("key", MENU_OVERRIDES_KEY)
+    .maybeSingle();
+
+  if (error) throw error;
+  if (!data?.data) return empty;
+  const parsed = data.data as DinnerMenuOverrides;
+  return {
+    byDate:
+      parsed.byDate && typeof parsed.byDate === "object" ? parsed.byDate : {},
+    updatedAt: parsed.updatedAt || new Date().toISOString(),
+  };
+}
+
+export async function saveDinnerMenuOverrides(
+  overrides: DinnerMenuOverrides
+): Promise<DinnerMenuOverrides> {
+  if (!isSupabaseConfigured()) {
+    throw new Error("Live database is not configured");
+  }
+
+  const updated: DinnerMenuOverrides = {
+    byDate: overrides.byDate || {},
+    updatedAt: new Date().toISOString(),
+  };
+
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase.from("app_data").upsert({
+    key: MENU_OVERRIDES_KEY,
+    data: updated,
+    updated_at: updated.updatedAt,
+  });
+  if (error) throw error;
+  return updated;
+}
+
+export async function upsertDinnerMenuOverride(
+  override: DinnerMenuOverride
+): Promise<DinnerMenuOverrides> {
+  const current = await getDinnerMenuOverrides();
+  current.byDate[override.date] = {
+    ...override,
+    updatedAt: new Date().toISOString(),
+  };
+  return saveDinnerMenuOverrides(current);
+}
+
+export async function clearDinnerMenuOverride(
+  date: string
+): Promise<DinnerMenuOverrides> {
+  const current = await getDinnerMenuOverrides();
+  delete current.byDate[date];
+  return saveDinnerMenuOverrides(current);
 }
 
 export async function getWhatsAppInbox(): Promise<WhatsAppInbox> {
