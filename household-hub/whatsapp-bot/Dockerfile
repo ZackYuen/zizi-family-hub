@@ -11,6 +11,8 @@ COPY src ./src
 VOLUME ["/app/auth_info"]
 
 ENV AUTH_DIR=/app/auth_info
+# Allow volume path (bot otherwise forces ~/.zizi-whatsapp-auth)
+ENV ALLOW_PROJECT_AUTH_DIR=1
 ENV NODE_ENV=production
 
 CMD ["npm", "start"]

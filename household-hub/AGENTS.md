@@ -32,6 +32,9 @@ Charlene / Sir / Mum edits in Admin must not be wiped by agents.
 
 1. **Official Cloud API** — `/api/whatsapp` on Vercel (no always-on machine; Meta fees).
 2. **Baileys always-on bot** — `household-hub/whatsapp-bot/` (QR login, spare number, needs 24/7 host). See that folder’s README.
+   - On Azure VM: **`npm run pm2:up`** (never bare `pm2 restart` — “Process not found”).
+   - Session: **`~/.zizi-whatsapp-auth` only**. Never `sudo node`, never project `./auth_info` (`EACCES` + `MessageCounterError`).
+   - One process only: `pgrep -af 'whatsapp-bot/src/index'`.
 
 Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrouter/free` for \$0 LLM.
 

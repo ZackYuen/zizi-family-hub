@@ -6,7 +6,8 @@
   "description": "Always-on Baileys WhatsApp bot for Zizi Family Hub (QR login, @mention)",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "pm2:up": "bash scripts/pm2-up.sh"
   },
   "engines": {
     "node": ">=20"
