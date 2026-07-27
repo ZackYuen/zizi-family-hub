@@ -14,6 +14,7 @@ import {
 } from "./HouseGuidesViews";
 import { LiveClock } from "./LiveClock";
 import { WeatherBanner } from "./WeatherBanner";
+import { WelcomeGreeting } from "./WelcomeGreeting";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { labels, uiLocale } from "@/lib/i18n";
 
@@ -25,21 +26,16 @@ export function HomeApp({ content }: { content: AppContent }) {
     month: "short",
     day: "numeric",
   });
+  const lastUpdatedLabel = `${labels.lastUpdated[lang]} · ${updated}`;
 
   return (
     <div className="min-h-screen bg-stone-50 pb-24">
       <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-white/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-lg items-center justify-between gap-3 px-4 py-2.5">
-          <div className="min-w-0">
-            <h1 className="truncate text-base font-bold text-stone-900">
-              {labels.appTitle[lang]}
-            </h1>
-            <p className="truncate text-[11px] text-stone-500">
-              {content.helperName}
-              <span className="text-stone-300"> · </span>
-              {labels.lastUpdated[lang]} {updated}
-            </p>
-          </div>
+        <div className="mx-auto flex max-w-lg items-start justify-between gap-3 px-4 py-2.5">
+          <WelcomeGreeting
+            name={content.helperName}
+            lastUpdatedLabel={lastUpdatedLabel}
+          />
           <LanguageToggle />
         </div>
         <LiveClock />
