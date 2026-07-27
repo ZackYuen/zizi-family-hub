@@ -703,6 +703,25 @@ function heuristicAnswer(
     if (tip) return tip;
   }
 
+  if (
+    /insurance|seguro|保險|msig|ihelper|i\s*helper|medical\s*cover|clinic\s*(cover|expense)|hospital.*(cover|insurance)|牙科.*保險|dental.*(cover|insurance)|personal\s*accident/.test(
+      q
+    )
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-msig-insurance");
+    if (tip) return tip;
+  }
+
+  if (
+    /(?:i\s*(?:am|'m)\s*sick|may\s*sakit\s*ako|我.*病|看醫生|去診所|go\s*(?:to\s*)?(?:clinic|doctor|hospital)|magpa-?(?:clinic|doctor|ospital)|dental|看牙|ngipin)/.test(
+      q
+    ) &&
+    !/zizi|bata|child|anak|baby/.test(q)
+  ) {
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-msig-insurance");
+    if (tip) return tip;
+  }
+
   if (/sick|lagnat|fever|vomiting|sakit.*zizi|不適|發燒/.test(q) && /zizi|bata|child|anak/.test(q)) {
     const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-zizi-sick");
     if (tip) return tip;

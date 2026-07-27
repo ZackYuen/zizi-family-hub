@@ -1091,7 +1091,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-27",
+  "lastUpdated": "2026-07-27T15:45:00.000Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1303,6 +1303,24 @@
       "category": "money",
       "priority": 31,
       "lastReviewed": "2026-07-22"
+    },
+    {
+      "id": "life-msig-insurance",
+      "area": "hk-general",
+      "category": "health",
+      "priority": 34,
+      "lastReviewed": "2026-07-27",
+      "sourceUrl": "https://insure.msig.hk/Channels/upload/pdf/IDHCG01_20260420110418.PDF",
+      "title": {
+        "en": "Your MSIG iHelper insurance (Enhanced Plan)",
+        "zh": "你的 MSIG iHelper 保險（Enhanced 計劃）",
+        "fil": "MSIG iHelper insurance mo (Enhanced Plan)"
+      },
+      "body": {
+        "en": "Sir/Mum bought MSIG iHelper Insurance — Enhanced Plan for Charlene. This is a short family summary only. The policy PDF and Schedule are the final rules. Always tell Sir/Mum before clinic / hospital / dental visits so they can claim.\n\nWhat you can use (Enhanced — HKD, per year unless noted):\n• Clinic (western doctor) — up to $4,000; max $200 per visit per day\n• Chinese medicine / physiotherapist — up to $700; max $150 per visit per day (need receipts)\n• Hospital / surgery — up to $30,000 (room & board etc. $350/day; surgeon up to $20,000 per operation; anaesthetist 25% of surgeon fee; operating theatre 12.5%; day-care surgery included)\n• Dental — up to $1,500; insurer pays two-thirds of the bill\n• Personal accident (rest day, in Hong Kong) — up to $100,000 for accidental death / permanent disablement\n• Your personal belongings / money (theft etc., with excess) — see policy; ask Sir/Mum\n\nAlso on the plan (mainly for Sir/Mum): Employees’ Compensation $100M/event; repatriation $20,000; replacement helper $10,000; automatic cover extension up to 3 months once a year.\n\nImportant for Charlene:\n• 14-day waiting period from the policy start for clinic, hospital, dental and service-interruption benefits\n• Keep all original receipts / invoices and give them to Sir/Mum quickly (claims need originals)\n• Tell Sir/Mum the same day if you are hurt or sick — they must notify the insurer promptly\n• Pre-existing illness may not be covered — ask Sir/Mum / MSIG if unsure\n• Optional cancer/heart or clinic top-up may or may not be on your Schedule — confirm with Sir/Mum\n• Emergency: call 999 first, then Sir/Mum\n\nPolicy wording (Enhanced): open the PDF link. Claims / questions: ask Sir/Mum, or MSIG Hong Kong customer service.",
+        "zh": "Sir/Mum 已為 Charlene 購買 MSIG iHelper 保險 — Enhanced（加強）計劃。以下只是家庭摘要；最終以保單 PDF 及附表為準。看醫生／入院／看牙前請先告知 Sir/Mum，方便索償。\n\n你可用的保障（Enhanced，港元，除註明外為每年上限）：\n• 診所（西醫）— 最高 $4,000；每次／每日最多 $200\n• 中醫／物理治療 — 最高 $700；每次／每日最多 $150（需收據）\n• 住院／手術 — 最高 $30,000（病房及其他雜費約 $350／日；外科醫生費每宗手術最高 $20,000；麻醉費為外科費 25%；手術室 12.5%；日症手術包括在內）\n• 牙科 — 最高 $1,500；保險公司支付實際費用的三分之二\n• 意外（休息日、在香港）— 意外身故／永久傷殘最高 $100,000\n• 個人物品／金錢（盜竊等，有自負額）— 詳見保單；問 Sir/Mum\n\n計劃內亦包括（主要給僱主）：僱員補償每宗事故 $1 億；遣返 $20,000；更換傭工 $10,000；每年一次最長 3 個月自動延保。\n\n請記住：\n• 診所、住院、牙科及服務中斷保障有生效日起計 14 天等候期\n• 保留所有正本收據／發票，盡快交 Sir/Mum（索償要正本）\n• 受傷或生病當天告知 Sir/Mum — 他們須盡快通知保險公司\n• 投保前已有的病未必受保 — 有疑問問 Sir/Mum／MSIG\n• 附表有否附加癌症／心臟病或診所加額 — 問 Sir/Mum\n• 緊急先打 999，再聯絡 Sir/Mum\n\n保單全文（Enhanced）：打開 PDF 連結。索償／查詢：問 Sir/Mum，或 MSIG 香港客戶服務。",
+        "fil": "Bumili sina Sir/Mum ng MSIG iHelper Insurance — Enhanced Plan para kay Charlene. Buod lang ito para sa pamilya; ang PDF ng polisiya at Schedule ang final na rules. Sabihin muna kay Sir/Mum bago magpa-clinic / hospital / dental para makapag-claim sila.\n\nPwede mong gamitin (Enhanced — HKD, kada taon maliban kung iba ang nakasaad):\n• Clinic (western doctor) — hanggang $4,000; max $200 per visit per day\n• Chinese medicine / physiotherapist — hanggang $700; max $150 per visit per day (kailangan ang resibo)\n• Hospital / surgery — hanggang $30,000 (room & board atbp. $350/araw; surgeon hanggang $20,000 bawat operation; anaesthetist 25% ng surgeon fee; operating theatre 12.5%; kasama ang day-care surgery)\n• Dental — hanggang $1,500; babayaran ng insurer ang two-thirds ng bill\n• Personal accident (rest day, sa Hong Kong) — hanggang $100,000 para sa accidental death / permanent disablement\n• Personal belongings / pera (nakaw atbp., may excess) — tingnan ang polisiya; tanungin si Sir/Mum\n\nKasama rin sa plan (pangunahin para kay Sir/Mum): Employees’ Compensation $100M/event; repatriation $20,000; replacement helper $10,000; automatic extension hanggang 3 buwan minsan sa isang taon.\n\nMahalaga para kay Charlene:\n• 14-day waiting period mula sa simula ng polisiya para sa clinic, hospital, dental at service-interruption\n• Itago ang original receipts / invoices at ibigay agad kay Sir/Mum (kailangan ng claim ang original)\n• Sabihin kay Sir/Mum sa mismong araw kung nasaktan o may sakit — kailangan nilang i-notify agad ang insurer\n• Pre-existing illness maaaring hindi covered — tanungin si Sir/Mum / MSIG kung unsure\n• Optional cancer/heart o clinic top-up — maaaring wala sa Schedule; kumpirmahin kay Sir/Mum\n• Emergency: tumawag muna sa 999, saka kay Sir/Mum\n\nBuong polisiya (Enhanced): buksan ang PDF link. Claims / tanong: kay Sir/Mum, o MSIG Hong Kong customer service."
+      }
     },
     {
       "id": "life-zizi-meals",
@@ -3055,21 +3073,21 @@
       }
     },
     {
+      "id": "check-insurance",
+      "done": false,
+      "title": {
+        "en": "Know MSIG Enhanced insurance — tell Sir/Mum before clinic / hospital",
+        "zh": "知悉 MSIG Enhanced 保險 — 看診／入院前先告知 Sir/Mum",
+        "fil": "Alamin ang MSIG Enhanced insurance — sabihin kay Sir/Mum bago magpa-clinic / hospital"
+      }
+    },
+    {
       "id": "check-rest-day",
       "done": false,
       "title": {
         "en": "Confirm Sunday rest day & public holiday day off with Sir/Mum",
         "zh": "與 Sir/Mum 確認星期日及公眾假期放假",
         "fil": "Kumpirmahin ang Linggo rest day at public holiday day off"
-      }
-    },
-    {
-      "id": "check-phone-apps",
-      "done": false,
-      "title": {
-        "en": "Install must-have phone apps — iPhone X + Android (see HK Life)",
-        "zh": "安裝必備手機應用 — iPhone X + Android（見香港生活）",
-        "fil": "I-install ang must-have phone apps — iPhone X + Android (tingnan ang HK Life)"
       }
     },
     {
@@ -3086,8 +3104,8 @@
       "done": false,
       "title": {
         "en": "Know how to go to YATA at apm (first supermarket)",
-        "fil": "Alamin ang daan papuntang YATA sa apm (unang supermarket)",
-        "zh": "知道如何前往 apm 一田 YATA（優先超市）"
+        "zh": "知道如何前往 apm 一田 YATA（優先超市）",
+        "fil": "Alamin ang daan papuntang YATA sa apm (unang supermarket)"
       }
     },
     {
@@ -3113,8 +3131,17 @@
       "done": false,
       "title": {
         "en": "Know rooms: Charlene bedroom (has AC), 3 ACs total, rubbish place",
-        "fil": "Alamin ang mga kwarto: kwarto ni Charlene (may AC), 3 AC lahat, basurahan",
-        "zh": "認識單位：Charlene 睡房（有冷氣）、共3部冷氣、垃圾位置"
+        "zh": "認識單位：Charlene 睡房（有冷氣）、共3部冷氣、垃圾位置",
+        "fil": "Alamin ang mga kwarto: kwarto ni Charlene (may AC), 3 AC lahat, basurahan"
+      }
+    },
+    {
+      "id": "check-phone-apps",
+      "done": false,
+      "title": {
+        "en": "Install must-have phone apps — iPhone X + Android (see HK Life)",
+        "zh": "安裝必備手機應用 — iPhone X + Android（見香港生活）",
+        "fil": "I-install ang must-have phone apps — iPhone X + Android (tingnan ang HK Life)"
       }
     },
     {
