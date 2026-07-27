@@ -111,10 +111,18 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
 /** Plain-text knowledge pack for the ask / WhatsApp agent */
 export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   const lines: string[] = [];
+  const appUrl = (
+    process.env.NEXT_PUBLIC_APP_URL ||
+    process.env.OPENROUTER_SITE_URL ||
+    "https://zizi-family-hub.vercel.app"
+  ).replace(/\/$/, "");
   lines.push(`Family: ${snap.familyName}`);
   lines.push(`Family member (Charlene): ${snap.helperName}`);
   lines.push(
     "Tone: Charlene is treated as a member of the family, not labeled as a 'helper' in replies. Say Charlene / family member. Do not use 姐姐."
+  );
+  lines.push(
+    `Family Hub website (Gabay sa Bahay) — share this when asked for the link/URL/app: ${appUrl}`
   );
   if (snap.homeArea?.en) lines.push(`Home area: ${snap.homeArea.en}`);
   lines.push(

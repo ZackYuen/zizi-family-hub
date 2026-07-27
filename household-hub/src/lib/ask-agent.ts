@@ -28,6 +28,15 @@ export interface AskResult {
   lastUpdated: string;
 }
 
+/** Public web app URL for Charlene (Ask / WhatsApp). */
+export function publicAppUrl(): string {
+  const raw =
+    process.env.NEXT_PUBLIC_APP_URL ||
+    process.env.OPENROUTER_SITE_URL ||
+    "https://zizi-family-hub.vercel.app";
+  return raw.replace(/\/$/, "");
+}
+
 function detectLang(q: string): Lang {
   if (/[\u4e00-\u9fff]/.test(q)) return "zh";
   // Filipino / Tagalog cues (include common conjugated forms)
@@ -267,6 +276,25 @@ function heuristicAnswer(
     if (lang === "fil") return `Ngayon sa Hong Kong: ${timeOnly} (HKT).`;
     if (lang === "zh") return `香港現在時間：${timeOnly}（HKT）。`;
     return `Hong Kong time now: ${timeOnly} (HKT).`;
+  }
+
+  // Family Hub website / app link
+  if (
+    /(family\s*hub|gabay\s*sa\s*bahay|zizi\s*(family)?\s*hub).*(link|url|website|site|app|open)/.test(
+      q
+    ) ||
+    /(link|url|website|site).*(family\s*hub|gabay\s*sa\s*bahay|zizi)/.test(q) ||
+    /^(send|give|share|open)\s*(me\s*)?(the\s*)?(link|url|website)/.test(q) ||
+    /website|app link|open the app|link ng (app|hub)|網站|網址|連結|link ng family/.test(q)
+  ) {
+    const url = publicAppUrl();
+    if (lang === "fil") {
+      return `Family Hub (Gabay sa Bahay):\n${url}\nBuksan sa Chrome/Safari sa phone.`;
+    }
+    if (lang === "zh") {
+      return `家庭 Hub（Gabay sa Bahay）連結：\n${url}\n用手機瀏覽器打開即可。`;
+    }
+    return `Family Hub (Gabay sa Bahay):\n${url}\nOpen in your phone browser.`;
   }
 
   // "what should I do now?" → exact current / next task (not full day list)
@@ -937,6 +965,7 @@ For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DA
 For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
+When asked for the Family Hub / Gabay sa Bahay / app website link or URL, give the Family Hub website URL from FAMILY LIVE DATA.
 For HK Life / FDH / typhoon / Octopus / rest day / Consulate / YATA(apm) / groceries / Android apps / healthy holiday / home flat questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract". First supermarket is YATA at apm near home — not AEON unless Sir/Mum say so.
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
