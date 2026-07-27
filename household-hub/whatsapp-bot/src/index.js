@@ -360,7 +360,7 @@ async function startBot() {
         }
         if (!shouldHandle(text, msg, sock)) {
           console.log(
-            `[msg] ignore ${jid} (need ${TRIGGER_PREFIX}… or @${BOT_NAME}): ${preview}`
+            `[msg] ignore ${jid} (need ?/？… or @${BOT_NAME}): ${preview}`
           );
           continue;
         }
