@@ -308,6 +308,12 @@ async function startBot() {
       console.log(
         `[ok] Inbox: ${INBOX_SECRET ? LIVE_INBOX_URL : "disabled (set INBOX_SECRET)"}`
       );
+      console.log(
+        `[ok] Listen: groups${GROUP_ALLOWLIST.length ? ` allowlist=${GROUP_ALLOWLIST.join(",")}` : " (all)"} · DM=${REPLY_DM ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
+      );
+      console.log(
+        "[ok] Retest from a DIFFERENT phone in the FAMILY GROUP (bot number must be a member)."
+      );
     }
     if (connection === "close") {
       const statusCode = new Boom(lastDisconnect?.error)?.output?.statusCode;
@@ -326,15 +332,32 @@ async function startBot() {
   });
 
   sock.ev.on("messages.upsert", async ({ messages, type }) => {
-    if (type !== "notify") return;
+    // "notify" = live; some Baileys builds also deliver group traffic as "append"
+    if (type !== "notify" && type !== "append") return;
     for (const msg of messages) {
       try {
         if (msg.key.fromMe) continue;
         const jid = msg.key.remoteJid;
-        if (!jid || !allowedChat(jid)) continue;
-
         const text = extractText(msg);
-        if (!shouldHandle(text, msg, sock)) continue;
+        const preview = (text || "(non-text/media)").slice(0, 80);
+
+        if (!jid) {
+          console.log(`[msg] skip type=${type} no-jid: ${preview}`);
+          continue;
+        }
+        if (!allowedChat(jid)) {
+          const why = isJidGroup(jid)
+            ? "group not in GROUP_JIDS allowlist"
+            : "DM ignored (set REPLY_DM=1 to allow)";
+          console.log(`[msg] skip ${jid} (${why}): ${preview}`);
+          continue;
+        }
+        if (!shouldHandle(text, msg, sock)) {
+          console.log(
+            `[msg] ignore ${jid} (need ${TRIGGER_PREFIX}… or @${BOT_NAME}): ${preview}`
+          );
+          continue;
+        }
 
         const question = stripTriggers(text, BOT_NAME);
         if (!question) {
