@@ -216,9 +216,15 @@ function stripTriggers(text, botName) {
 
 function shouldHandle(text, msg, sock) {
   if (!text) return false;
-  const lower = text.toLowerCase();
+  const trimmed = text.trimStart();
+  const lower = trimmed.toLowerCase();
   if (mentionedBot(msg, sock)) return true;
-  if (TRIGGER_PREFIX && lower.startsWith(TRIGGER_PREFIX.toLowerCase())) return true;
+  // ASCII "?" and fullwidth "？" (common on CJK keyboards) both wake the bot
+  if (TRIGGER_PREFIX === "?" || TRIGGER_PREFIX === "？") {
+    if (trimmed.startsWith("?") || trimmed.startsWith("？")) return true;
+  } else if (TRIGGER_PREFIX && lower.startsWith(TRIGGER_PREFIX.toLowerCase())) {
+    return true;
+  }
   if (lower.startsWith("bot:") || lower.startsWith("ask:")) return true;
   if (new RegExp(`\\b@?${BOT_NAME}\\b`, "i").test(text)) return true;
   return false;
@@ -354,7 +360,7 @@ async function startBot() {
         }
         if (!shouldHandle(text, msg, sock)) {
           console.log(
-            `[msg] ignore ${jid} (need ${TRIGGER_PREFIX}… or @${BOT_NAME}): ${preview}`
+            `[msg] ignore ${jid} (need ?/？… or @${BOT_NAME}): ${preview}`
           );
           continue;
         }
