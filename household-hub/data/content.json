@@ -1494,22 +1494,40 @@
       "lastReviewed": "2026-07-22"
     },
     {
+      "id": "life-iphone-apps",
+      "area": "hk-general",
+      "category": "culture",
+      "priority": 72,
+      "lastReviewed": "2026-07-27",
+      "sourceUrl": "https://www.discoverhongkong.com/eng/travel-guide/traveller-essentials/travel-apps.html",
+      "title": {
+        "en": "Must-have iPhone apps (iPhone X from Sir/Mum)",
+        "zh": "必備 iPhone 應用（Sir/Mum 給的 iPhone X）",
+        "fil": "Mga dapat i-install na iPhone app (iPhone X mula kay Sir/Mum)"
+      },
+      "body": {
+        "en": "Sir/Mum are giving Charlene an iPhone X for daily use in Hong Kong. Install from the App Store (free). Ask Sir/Mum for Apple ID / Wi‑Fi / Hong Kong SIM if needed.\n\nMust install:\n• WhatsApp — message Sir/Mum and this family’s CharleneBot / ? asks\n• Apple Maps or Google Maps — walking / bus; save home + kindergarten\n• MTR Mobile — train routes, fares, delays\n• Octopus App — check balance & top-up (keep your physical Octopus card for most daily taps)\n• AlipayHK or PayMe — common QR shop payments (optional)\n• OpenRice — restaurants, hours, reviews\n• MyObservatory (HKO) — typhoon / rain alerts\n• Google Translate or Apple Translate — Chinese signs & menus (camera)\n• Safari — open Family Hub (Gabay sa Bahay) and Add to Home Screen so it feels like an app\n\nSetup tips: keep the phone charged; turn on Find My only as Sir/Mum set; never share Apple ID password, OTP / verification codes, or lend the phone to strangers. If App Store asks for payment method, ask Sir/Mum — do not add your own card unless they say so.",
+        "zh": "Sir/Mum 會給 Charlene 一部 iPhone X 在港日常使用。請從 App Store 免費下載。需要 Apple ID／Wi‑Fi／香港 SIM 可問 Sir/Mum。\n\n必須安裝：\n• WhatsApp — 聯絡 Sir/Mum 及家庭 bot／用 ? 發問\n• Apple 地圖 或 Google Maps — 步行／巴士；儲存住家＋幼稚園\n• MTR Mobile — 路線、車費、延誤\n• Octopus App — 查餘額／增值（日常拍卡多數仍用實體八達通）\n• AlipayHK 或 PayMe — 常見 QR 付款（可選）\n• OpenRice — 餐廳、營業時間、評價\n• 我的天文台 MyObservatory — 颱風／暴雨提示\n• Google 翻譯 或 Apple 翻譯 — 中文路牌與菜單（相機）\n• Safari — 打開 Family Hub（Gabay sa Bahay），「加入主畫面」當應用使用\n\n設定提示：保持有電；Find My 跟 Sir/Mum 設定；切勿把 Apple ID 密碼、OTP／驗證碼給人或把手機借給陌生人。App Store 若要求付款方式，先問 Sir/Mum — 未經同意不要自己加卡。",
+        "fil": "Bibigyan nina Sir/Mum si Charlene ng iPhone X para sa araw-araw sa Hong Kong. I-install mula sa App Store (libre). Tanungin si Sir/Mum para sa Apple ID / Wi‑Fi / HK SIM kung kailangan.\n\nDapat i-install:\n• WhatsApp — makipag-usap kay Sir/Mum at sa family bot / ? asks\n• Apple Maps o Google Maps — lakad / bus; i-save ang bahay + kindergarten\n• MTR Mobile — ruta, pamasahe, delay\n• Octopus App — tingnan ang balanse at top-up (karaniwang physical Octopus pa rin ang pang-araw-araw na tap)\n• AlipayHK o PayMe — QR payment (opsyonal)\n• OpenRice — restawran, oras, review\n• MyObservatory (HKO) — bagyo / ulan\n• Google Translate o Apple Translate — Chinese signs at menu (camera)\n• Safari — buksan ang Family Hub (Gabay sa Bahay) at Add to Home Screen para parang app\n\nSetup: panatilihing charged; sundin ang Find My setting nina Sir/Mum; huwag ibigay ang Apple ID password, OTP / verification code, o ipahiram ang phone sa estranghero. Kung humihingi ang App Store ng payment method, tanungin muna si Sir/Mum — huwag magdagdag ng sariling card kung hindi nila sinabi."
+      }
+    },
+    {
       "id": "life-android-apps",
       "area": "hk-general",
       "body": {
-        "en": "Install from Google Play (free). Ask Sir/Mum if you need Wi‑Fi or a Hong Kong SIM.\n• WhatsApp — message Sir/Mum and this family's helper bot\n• Google Maps — walking / bus routes; save home + kindergarten\n• MTR Mobile — train routes, fares, delays\n• Octopus App — balance & top-up; some Android phones (Android 12+, NFC on, HK-sold device) can tap Octopus from the phone\n• AlipayHK or PayMe — common QR shop payments (optional; physical Octopus still covers most daily taps)\n• OpenRice — restaurants, hours, reviews\n• MyObservatory (HKO) — typhoon / rain alerts\n• Google Translate — Chinese signs & menus (camera mode)\nKeep your phone charged. Never share OTP / verification codes or lend your phone to strangers.",
-        "zh": "請從 Google Play 免費下載。需要 Wi‑Fi 或香港 SIM 可問 Sir/Mum。\n• WhatsApp — 聯絡 Sir/Mum 及本家庭助手 bot\n• Google Maps — 步行／巴士；儲存住家＋幼稚園\n• MTR Mobile — 路線、車費、延誤\n• Octopus App — 查餘額／增值；部分 Android（Android 12+、開啟 NFC、香港行貨）可用手機拍卡八達通\n• AlipayHK 或 PayMe — 常見 QR 付款（可選；日常多數仍可用實體八達通）\n• OpenRice — 餐廳、營業時間、評價\n• 我的天文台 MyObservatory — 颱風／暴雨提示\n• Google 翻譯 — 中文路牌與菜單（相機模式）\n保持手機有電。切勿把 OTP／驗證碼給人或把手機借給陌生人。",
-        "fil": "I-download sa Google Play (libre). Tanungin si Sir/Mum kung kailangan ng Wi‑Fi o HK SIM.\n• WhatsApp — makipag-usap kay Sir/Mum at sa family bot\n• Google Maps — lakad / bus; i-save ang bahay + kindergarten\n• MTR Mobile — ruta, pamasahe, delay\n• Octopus App — balanse at top-up; may Android phone (Android 12+, naka-NFC, binili sa HK) na pwedeng mag-tap ng Octopus mula sa phone\n• AlipayHK o PayMe — QR payment sa tindahan (opsyonal; sapat na ang physical Octopus sa araw-araw)\n• OpenRice — restawran, oras, review\n• MyObservatory (HKO) — bagyo / ulan\n• Google Translate — Chinese signs at menu (camera)\nPanatilihing charged ang phone. Huwag ibigay ang OTP / verification code o ipahiram ang phone sa estranghero."
+        "en": "If Charlene uses an Android phone (or a spare Android), install from Google Play (free). Ask Sir/Mum if you need Wi‑Fi or a Hong Kong SIM. (Main daily phone may be the iPhone X — see also the iPhone apps guide.)\n• WhatsApp — message Sir/Mum and this family's helper bot\n• Google Maps — walking / bus routes; save home + kindergarten\n• MTR Mobile — train routes, fares, delays\n• Octopus App — balance & top-up; some Android phones (Android 12+, NFC on, HK-sold device) can tap Octopus from the phone\n• AlipayHK or PayMe — common QR shop payments (optional; physical Octopus still covers most daily taps)\n• OpenRice — restaurants, hours, reviews\n• MyObservatory (HKO) — typhoon / rain alerts\n• Google Translate — Chinese signs & menus (camera mode)\n• Chrome — open Family Hub (Gabay sa Bahay) and Add to Home screen\nKeep your phone charged. Never share OTP / verification codes or lend your phone to strangers.",
+        "zh": "若 Charlene 使用 Android（或備用 Android），請從 Google Play 免費下載。需要 Wi‑Fi 或香港 SIM 可問 Sir/Mum。（日常主手機可能是 iPhone X — 另見 iPhone 應用指南。）\n• WhatsApp — 聯絡 Sir/Mum 及本家庭助手 bot\n• Google Maps — 步行／巴士；儲存住家＋幼稚園\n• MTR Mobile — 路線、車費、延誤\n• Octopus App — 查餘額／增值；部分 Android（Android 12+、開啟 NFC、香港行貨）可用手機拍卡八達通\n• AlipayHK 或 PayMe — 常見 QR 付款（可選；日常多數仍可用實體八達通）\n• OpenRice — 餐廳、營業時間、評價\n• 我的天文台 MyObservatory — 颱風／暴雨提示\n• Google 翻譯 — 中文路牌與菜單（相機模式）\n• Chrome — 打開 Family Hub（Gabay sa Bahay）並「加至主畫面」\n保持手機有電。切勿把 OTP／驗證碼給人或把手機借給陌生人。",
+        "fil": "Kung Android ang phone ni Charlene (o spare Android), i-download sa Google Play (libre). Tanungin si Sir/Mum kung kailangan ng Wi‑Fi o HK SIM. (Puwedeng iPhone X ang pang-araw-araw — tingnan din ang iPhone apps guide.)\n• WhatsApp — makipag-usap kay Sir/Mum at sa family bot\n• Google Maps — lakad / bus; i-save ang bahay + kindergarten\n• MTR Mobile — ruta, pamasahe, delay\n• Octopus App — balanse at top-up; may Android phone (Android 12+, naka-NFC, binili sa HK) na pwedeng mag-tap ng Octopus mula sa phone\n• AlipayHK o PayMe — QR payment sa tindahan (opsyonal; sapat na ang physical Octopus sa araw-araw)\n• OpenRice — restawran, oras, review\n• MyObservatory (HKO) — bagyo / ulan\n• Google Translate — Chinese signs at menu (camera)\n• Chrome — buksan ang Family Hub (Gabay sa Bahay) at Add to Home screen\nPanatilihing charged ang phone. Huwag ibigay ang OTP / verification code o ipahiram ang phone sa estranghero."
       },
       "title": {
-        "en": "Must-have Android apps in Hong Kong",
-        "zh": "在港必備 Android 應用程式",
-        "fil": "Mga dapat i-download na Android app sa Hong Kong"
+        "en": "Must-have Android apps in Hong Kong (if you use Android)",
+        "zh": "在港必備 Android 應用（若使用 Android）",
+        "fil": "Mga dapat i-download na Android app (kung Android ang phone)"
       },
       "category": "culture",
       "priority": 73,
       "sourceUrl": "https://www.discoverhongkong.com/eng/travel-guide/traveller-essentials/travel-apps.html",
-      "lastReviewed": "2026-07-22"
+      "lastReviewed": "2026-07-27"
     }
   ],
   "monthlyTasks": [
@@ -3012,12 +3030,12 @@
       }
     },
     {
-      "id": "check-android-apps",
+      "id": "check-phone-apps",
       "done": false,
       "title": {
-        "en": "Install must-have Android apps (see HK Life)",
-        "zh": "安裝必備 Android 應用（見香港生活）",
-        "fil": "I-install ang must-have Android apps (tingnan ang HK Life)"
+        "en": "Install must-have phone apps — iPhone X + Android (see HK Life)",
+        "zh": "安裝必備手機應用 — iPhone X + Android（見香港生活）",
+        "fil": "I-install ang must-have phone apps — iPhone X + Android (tingnan ang HK Life)"
       }
     },
     {
