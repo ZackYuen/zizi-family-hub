@@ -40,9 +40,9 @@
       "id": "app-panasonic-sd-pt1002",
       "kind": "bread-machine",
       "tips": {
-        "en": "• Bread maker: Panasonic SD-PT1002 (panel labels are Traditional Chinese).\n• See the panel picture below — numbers match the buttons:\n  ① Menu ▲/▼ (菜單) — choose program number\n  ② Size (重量) — loaf size\n  ③ Crust (烤色) — light / standard / dark (淡／標準／濃)\n  ④ Timer (預約) — delay end time (only recipes Sir/Mum tested)\n  ⑤ Start (開始) — begin\n  ⑥ Stop (取消／停止) — cancel / when finished\n• Fit the correct kneading blade; measure carefully; liquids first if the recipe says so.\n• Dry yeast in the yeast dispenser; nuts/raisins in the fruit & nut dispenser when the menu supports it.\n• Wipe pan outside dry, lock into machine, close lid → set ①–④ → press ⑤ Start.\n• When it beeps: press ⑥ Stop, unplug, lift pan with oven mitts, tip loaf onto a rack.",
-        "fil": "• Bread maker: Panasonic SD-PT1002 (Traditional Chinese ang panel).\n• Tingnan ang panel picture sa ibaba — tumutugma ang numero sa buttons:\n  ① Menu ▲/▼ (菜單) — piliin ang program\n  ② Size (重量) — laki ng tinapay\n  ③ Crust (烤色) — light / standard / dark (淡／標準／濃)\n  ④ Timer (預約) — delay (recipes lang na nasubukan nina Sir/Mum)\n  ⑤ Start (開始) — simulan\n  ⑥ Stop (取消／停止) — cancel / pagtapos\n• Tamang kneading blade; sukatin nang tama; liquids muna kung sabi ng recipe.\n• Dry yeast sa yeast dispenser; nuts/raisins sa fruit & nut dispenser kung available.\n• Patuyuin ang labas ng pan, i-lock, isara ang lid → set ①–④ → pindutin ⑤ Start.\n• Kapag may beep: ⑥ Stop, unplug, oven mitts, ilabas ang tinapay sa rack.",
-        "zh": "• 麵包機：Panasonic SD-PT1002（面板為繁體中文）。\n• 見下方面板圖 — 數字對應按鈕：\n  ① 菜單 ▲/▼ — 選程式編號\n  ② 重量 — 麵包大小\n  ③ 烤色 — 淡／標準／濃\n  ④ 預約 — 延時完成（只用 Sir/Mum 試過的食譜）\n  ⑤ 開始\n  ⑥ 取消／停止 — 取消或完成後按\n• 裝好攪拌葉；分量要準；食譜要求時先放液體。\n• 乾酵母放酵母盒；果仁／葡萄乾用果料盒（適用菜單時）。\n• 抹乾內鍋外、鎖好、蓋蓋 → 設定 ①–④ → 按 ⑤ 開始。\n• 完成響聲後：按 ⑥ 停止、拔掣、戴手套取出，倒出麵包放架上。"
+        "en": "• Bread maker: Panasonic SD-PT1002 (panel labels are Traditional Chinese).\n• See the panel diagram above — numbers match the buttons:\n  ① Menu ▲/▼ (菜單) — choose program number\n  ② Size (重量) — loaf size\n  ③ Crust (烤色) — light / standard / dark (淡／標準／濃)\n  ④ Timer (預約) — delay end time (only recipes Sir/Mum tested)\n  ⑤ Start (開始) — begin\n  ⑥ Stop (取消／停止) — cancel / when finished\n• Fit the correct kneading blade; measure carefully; liquids first if the recipe says so.\n• Dry yeast in the yeast dispenser; nuts/raisins in the fruit & nut dispenser when the menu supports it.\n• Wipe pan outside dry, lock into machine, close lid → set ①–④ → press ⑤ Start.\n• When it beeps: press ⑥ Stop, unplug, lift pan with oven mitts, tip loaf onto a rack.",
+        "fil": "• Bread maker: Panasonic SD-PT1002 (Traditional Chinese ang panel).\n• Tingnan ang panel diagram sa itaas — tumutugma ang numero sa buttons:\n  ① Menu ▲/▼ (菜單) — piliin ang program\n  ② Size (重量) — laki ng tinapay\n  ③ Crust (烤色) — light / standard / dark (淡／標準／濃)\n  ④ Timer (預約) — delay (recipes lang na nasubukan nina Sir/Mum)\n  ⑤ Start (開始) — simulan\n  ⑥ Stop (取消／停止) — cancel / pagtapos\n• Tamang kneading blade; sukatin nang tama; liquids muna kung sabi ng recipe.\n• Dry yeast sa yeast dispenser; nuts/raisins sa fruit & nut dispenser kung available.\n• Patuyuin ang labas ng pan, i-lock, isara ang lid → set ①–④ → pindutin ⑤ Start.\n• Kapag may beep: ⑥ Stop, unplug, oven mitts, ilabas ang tinapay sa rack.",
+        "zh": "• 麵包機：Panasonic SD-PT1002（面板為繁體中文）。\n• 見上方面板圖 — 數字對應按鈕：\n  ① 菜單 ▲/▼ — 選程式編號\n  ② 重量 — 麵包大小\n  ③ 烤色 — 淡／標準／濃\n  ④ 預約 — 延時完成（只用 Sir/Mum 試過的食譜）\n  ⑤ 開始\n  ⑥ 取消／停止 — 取消或完成後按\n• 裝好攪拌葉；分量要準；食譜要求時先放液體。\n• 乾酵母放酵母盒；果仁／葡萄乾用果料盒（適用菜單時）。\n• 抹乾內鍋外、鎖好、蓋蓋 → 設定 ①–④ → 按 ⑤ 開始。\n• 完成響聲後：按 ⑥ 停止、拔掣、戴手套取出，倒出麵包放架上。"
       },
       "model": "Panasonic SD-PT1002",
       "title": {
@@ -56,8 +56,7 @@
         "zh": "• 揉麵／烘烤中不要開蓋（除非食譜要求）。\n• 內鍋和麵包很燙。\n• 不可向機身倒水。\n• 酵母盒潮濕時用紙巾輕抹乾（不要大力摩擦）。",
         "fil": "• Huwag buksan ang lid habang nagmamasa/nagbabake maliban kung sinabi ng recipe.\n• Mainit ang pan at tinapay.\n• Huwag magbuhos ng tubig sa main body.\n• Kung basa ang yeast dispenser, patuyuin nang dahan gamit ang tissue (huwag kuskusin nang malakas)."
       },
-      "sourceUrl": "https://www.manualslib.com/products/Panasonic-Sd-Pt1002-8846843.html",
-      "imageUrl": "/images/appliances/panasonic-sd-pt1002-panel.svg"
+      "sourceUrl": "https://www.manualslib.com/products/Panasonic-Sd-Pt1002-8846843.html"
     },
     {
       "id": "app-philips-add6910",
