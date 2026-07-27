@@ -129,6 +129,12 @@ You can run **both**; group members can use either path.
 - **No QR:** wait a few seconds; check firewall. Run foreground: `node src/index.js` (not only `pm2 logs`).
 - **Logged out / MessageCounterError / Connection Closed:** usually same as EACCES or two instances — wipe session, unlink old devices, start **one** process, scan once.
 - **`mmg.whatsapp.net` 403 / “transaction failed”:** history/media sync noise — ignore for text asks. Current bot skips history sync (`shouldSyncHistoryMessage: false`).
+- **Logs quiet when you send a message:** bot only answered `[ask]` before; now it also prints `[msg] ignore/skip …`. If you still see **nothing** after a send:
+  1. Confirm `[ok] Connected as …` in `pm2 logs`.
+  2. Test in the **family group**, not a 1:1 chat (`REPLY_DM=0` by default).
+  3. Bot WhatsApp number must be **in that group**.
+  4. Message must start with `?` (e.g. `? Tonight dinner?`) from a **different** phone than the linked device.
+  5. `grep GROUP_JIDS .env` — if set, it must match the group id from logs.
 - **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs` for `[ask]`; confirm message used `?` or @bot from a **different** phone than the linked device.
 - **Ask API 404:** merge/deploy PR with `/api/ask` first.
 - **`?save` says “could not find that”:** Azure bot is outdated *and* Vercel not yet deployed with Ask-side save. Deploy this app, then on Azure: `git pull && pm2 restart zizi-whatsapp-bot`. Footer `_(live · date)_` also means the bot binary is old.
