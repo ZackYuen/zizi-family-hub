@@ -246,6 +246,22 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 <option value="Vegetable">{adminT("vegetable", lang)}</option>
                 <option value="Soup">{adminT("soup", lang)}</option>
               </select>
+              <label className="block text-[10px] font-bold uppercase tracking-wide text-stone-500">
+                Cook device (Tools)
+              </label>
+              <select
+                value={editing.cookDevice || ""}
+                onChange={(e) =>
+                  setEditing({
+                    ...editing,
+                    cookDevice: e.target.value || undefined,
+                  })
+                }
+                className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+              >
+                <option value="">None (stove / other)</option>
+                <option value="app-tefal-epc17">Tefal EPC17 pressure cooker</option>
+              </select>
               <div className="space-y-2 rounded-lg bg-stone-50 p-2">
                 <div className="flex gap-1">
                   <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">繁中</span>

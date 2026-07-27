@@ -31,7 +31,8 @@ function mergeRecipeTranslations(
   local: DinnerRecipe[]
 ): DinnerRecipe[] {
   const localMap = new Map(local.map((r) => [r.id, r]));
-  return remote.map((r) => {
+  const remoteIds = new Set(remote.map((r) => r.id));
+  const merged = remote.map((r) => {
     const seed = localMap.get(r.id);
     if (!seed) return r;
     return {
@@ -47,8 +48,15 @@ function mergeRecipeTranslations(
           ? seed.nameFil
           : r.nameFil,
       ingredients: r.ingredients?.length ? r.ingredients : seed.ingredients,
+      prepNotes: r.prepNotes?.en || r.prepNotes?.fil ? r.prepNotes : seed.prepNotes,
+      cookDevice: r.cookDevice || seed.cookDevice,
     };
   });
+  // Append seed-only recipes (e.g. new EPC17 set) without wiping Admin edits
+  for (const seed of local) {
+    if (!remoteIds.has(seed.id)) merged.push(seed);
+  }
+  return merged;
 }
 
 async function readLocalContent(): Promise<AppContent> {
