@@ -177,6 +177,17 @@ export type ApplianceKind =
   | "shower"
   | "other";
 
+export interface AppliancePanelButton {
+  /** Display number on the panel map */
+  n: number;
+  en: string;
+  fil: string;
+  zh: string;
+  hintEn?: string;
+  hintFil?: string;
+  hintZh?: string;
+}
+
 export interface ApplianceGuide {
   id: string;
   kind: ApplianceKind;
@@ -190,8 +201,13 @@ export interface ApplianceGuide {
   warnings?: BilingualText;
   /** Manual / support page */
   sourceUrl?: string;
-  /** Optional photo / panel diagram (public path or absolute URL) */
+  /**
+   * Optional external photo / diagram URL.
+   * Prefer `panelButtons` (inline) — external images often break on alternate hosts.
+   */
   imageUrl?: string;
+  /** Numbered control / panel map rendered inline in Tools */
+  panelButtons?: AppliancePanelButton[];
 }
 
 export type HkLifeCategory =
