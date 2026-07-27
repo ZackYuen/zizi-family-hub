@@ -8,8 +8,11 @@ import type {
   EmergencyContact,
   HkLifeCategory,
   HkLifeGuide,
+  SalaryPaymentItem,
   SettlingCheckItem,
+  StatutoryHolidayItem,
 } from "@/lib/types";
+import { hongKongDateLabel } from "@/lib/life-trackers";
 
 const CATEGORY_ORDER: HkLifeCategory[] = [
   "emergency",
@@ -105,6 +108,46 @@ const ui = {
     en: "Saved on this phone only.",
     fil: "Sa phone na ito lang naka-save.",
     zh: "只保存在此手機。",
+  },
+  holidays: {
+    en: "Statutory holidays 2026",
+    fil: "Statutory holidays 2026",
+    zh: "2026 法定假日",
+  },
+  holidaysHint: {
+    en: "Tap to confirm taken. Saved for Sir/Mum too.",
+    fil: "I-tap para kumpirmahing nakuha. Nakikita din ni Sir/Mum.",
+    zh: "點選確認已放假。Sir/Mum 也會看到。",
+  },
+  taken: {
+    en: "Taken",
+    fil: "Nakuha",
+    zh: "已放",
+  },
+  notTaken: {
+    en: "Not yet",
+    fil: "Wala pa",
+    zh: "未放",
+  },
+  salary: {
+    en: "Salary receipt 2026",
+    fil: "Resibo ng sahod 2026",
+    zh: "2026 薪金簽收",
+  },
+  salaryHint: {
+    en: "Tap to confirm you received salary. Saved for Sir/Mum too.",
+    fil: "I-tap para kumpirmahing natanggap ang sahod. Nakikita din ni Sir/Mum.",
+    zh: "點選確認已收薪。Sir/Mum 也會看到。",
+  },
+  received: {
+    en: "Received",
+    fil: "Natanggap",
+    zh: "已收",
+  },
+  notReceived: {
+    en: "Not yet",
+    fil: "Wala pa",
+    zh: "未收",
   },
   doneOf: {
     en: (d: number, t: number) => `${d}/${t} done`,
@@ -335,18 +378,154 @@ function ChecklistRows({
   );
 }
 
+function ConfirmMark({ on }: { on: boolean }) {
+  return (
+    <span
+      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border text-[10px] ${
+        on
+          ? "border-teal-600 bg-teal-600 text-white"
+          : "border-stone-300 bg-white text-transparent"
+      }`}
+      aria-hidden
+    >
+      ✓
+    </span>
+  );
+}
+
+function HolidayRows({
+  items,
+  onToggle,
+  busyId,
+}: {
+  items: StatutoryHolidayItem[];
+  onToggle: (id: string, next: boolean) => void;
+  busyId: string | null;
+}) {
+  const { lang } = useLanguage();
+  return (
+    <ul className="space-y-1.5">
+      {items.map((item) => {
+        const taken = item.taken;
+        const busy = busyId === item.id;
+        return (
+          <li key={item.id}>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => onToggle(item.id, !taken)}
+              className={`flex w-full items-start gap-2.5 rounded-xl px-3 py-2.5 text-left ring-1 transition disabled:opacity-60 ${
+                taken ? "bg-teal-50/80 ring-teal-100" : "bg-white ring-stone-100"
+              }`}
+            >
+              <ConfirmMark on={taken} />
+              <span className="min-w-0 flex-1">
+                <span
+                  className={`block text-sm font-medium ${
+                    taken ? "text-stone-500 line-through" : "text-stone-900"
+                  }`}
+                >
+                  {localized(item.name, lang)}
+                </span>
+                <span className="mt-0.5 block text-[11px] text-stone-500">
+                  {hongKongDateLabel(item.date, lang)}
+                  {item.altDate
+                    ? ` · alt ${hongKongDateLabel(item.altDate, lang)}`
+                    : ""}
+                  {" · "}
+                  {taken ? ui.taken[lang] : ui.notTaken[lang]}
+                </span>
+                {item.notes && (
+                  <span className="mt-1 block text-[11px] leading-snug text-amber-800/90">
+                    {localized(item.notes, lang)}
+                  </span>
+                )}
+              </span>
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function SalaryRows({
+  items,
+  onToggle,
+  busyId,
+}: {
+  items: SalaryPaymentItem[];
+  onToggle: (id: string, next: boolean) => void;
+  busyId: string | null;
+}) {
+  const { lang } = useLanguage();
+  return (
+    <ul className="space-y-1.5">
+      {items.map((item) => {
+        const received = item.received;
+        const busy = busyId === item.id;
+        return (
+          <li key={item.id}>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => onToggle(item.id, !received)}
+              className={`flex w-full items-start gap-2.5 rounded-xl px-3 py-2.5 text-left ring-1 transition disabled:opacity-60 ${
+                received
+                  ? "bg-teal-50/80 ring-teal-100"
+                  : "bg-white ring-stone-100"
+              }`}
+            >
+              <ConfirmMark on={received} />
+              <span className="min-w-0 flex-1">
+                <span
+                  className={`block text-sm font-medium ${
+                    received ? "text-stone-500 line-through" : "text-stone-900"
+                  }`}
+                >
+                  {localized(item.label, lang)}
+                </span>
+                <span className="mt-0.5 block text-[11px] text-stone-500">
+                  HK${item.amountHkd.toLocaleString("en-HK")}
+                  {item.payDate
+                    ? ` · ${hongKongDateLabel(item.payDate, lang)}`
+                    : ""}
+                  {" · "}
+                  {received ? ui.received[lang] : ui.notReceived[lang]}
+                </span>
+              </span>
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 export function HkLifeView({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
   const guides = content.hkLifeGuides ?? [];
   const contacts = content.emergencyContacts ?? [];
   const checklist = content.settlingChecklist ?? [];
+  const [holidays, setHolidays] = useState<StatutoryHolidayItem[]>(
+    () => content.statutoryHolidays ?? []
+  );
+  const [salaries, setSalaries] = useState<SalaryPaymentItem[]>(
+    () => content.salaryPayments ?? []
+  );
   const [doneMap, setDoneMap] = useState<Record<string, boolean>>({});
   const [openIds, setOpenIds] = useState<string[]>(["emergency-phones"]);
+  const [busyId, setBusyId] = useState<string | null>(null);
 
   useEffect(() => {
     setDoneMap(loadLocalDone());
     setOpenIds(loadOpenSections());
   }, []);
+
+  useEffect(() => {
+    setHolidays(content.statutoryHolidays ?? []);
+    setSalaries(content.salaryPayments ?? []);
+  }, [content.statutoryHolidays, content.salaryPayments]);
 
   const onToggleSection = (id: string) => {
     setOpenIds((prev) => {
@@ -376,6 +555,58 @@ export function HkLifeView({ content }: { content: AppContent }) {
     });
   };
 
+  const syncTracker = async (
+    kind: "holiday" | "salary",
+    id: string,
+    value: boolean
+  ) => {
+    setBusyId(id);
+    try {
+      const res = await fetch("/api/life-tracker", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind, id, value }),
+      });
+      if (!res.ok) throw new Error("save failed");
+      const data = (await res.json()) as {
+        item?: StatutoryHolidayItem | SalaryPaymentItem;
+      };
+      if (kind === "holiday" && data.item) {
+        setHolidays((prev) =>
+          prev.map((h) => (h.id === id ? (data.item as StatutoryHolidayItem) : h))
+        );
+      }
+      if (kind === "salary" && data.item) {
+        setSalaries((prev) =>
+          prev.map((s) => (s.id === id ? (data.item as SalaryPaymentItem) : s))
+        );
+      }
+    } catch {
+      // revert optimistic by reloading from content prop snapshot
+      if (kind === "holiday") {
+        setHolidays(content.statutoryHolidays ?? []);
+      } else {
+        setSalaries(content.salaryPayments ?? []);
+      }
+    } finally {
+      setBusyId(null);
+    }
+  };
+
+  const onToggleHoliday = (id: string, next: boolean) => {
+    setHolidays((prev) =>
+      prev.map((h) => (h.id === id ? { ...h, taken: next } : h))
+    );
+    void syncTracker("holiday", id, next);
+  };
+
+  const onToggleSalary = (id: string, next: boolean) => {
+    setSalaries((prev) =>
+      prev.map((s) => (s.id === id ? { ...s, received: next } : s))
+    );
+    void syncTracker("salary", id, next);
+  };
+
   const byCategory = useMemo(() => {
     const map = new Map<HkLifeCategory, HkLifeGuide[]>();
     for (const cat of CATEGORY_ORDER) map.set(cat, []);
@@ -390,6 +621,8 @@ export function HkLifeView({ content }: { content: AppContent }) {
   const checklistDone = checklist.filter(
     (i) => doneMap[i.id] ?? i.done
   ).length;
+  const holidaysTaken = holidays.filter((h) => h.taken).length;
+  const salariesReceived = salaries.filter((s) => s.received).length;
 
   return (
     <div className="space-y-3">
@@ -442,6 +675,50 @@ export function HkLifeView({ content }: { content: AppContent }) {
             items={checklist}
             doneMap={doneMap}
             onToggle={onToggleCheck}
+          />
+        </Accordion>
+      )}
+
+      {holidays.length > 0 && (
+        <Accordion
+          id="statutory-holidays"
+          open={openIds.includes("statutory-holidays")}
+          onToggle={onToggleSection}
+          title={
+            <span className="inline-flex items-center gap-2">
+              <span aria-hidden>📅</span>
+              {ui.holidays[lang]}
+            </span>
+          }
+          subtitle={`${ui.doneOf[lang](holidaysTaken, holidays.length)} · ${ui.holidaysHint[lang]}`}
+          tone="bg-amber-50/70 ring-amber-100"
+        >
+          <HolidayRows
+            items={holidays}
+            onToggle={onToggleHoliday}
+            busyId={busyId}
+          />
+        </Accordion>
+      )}
+
+      {salaries.length > 0 && (
+        <Accordion
+          id="salary-receipts"
+          open={openIds.includes("salary-receipts")}
+          onToggle={onToggleSection}
+          title={
+            <span className="inline-flex items-center gap-2">
+              <span aria-hidden>💵</span>
+              {ui.salary[lang]}
+            </span>
+          }
+          subtitle={`${ui.doneOf[lang](salariesReceived, salaries.length)} · ${ui.salaryHint[lang]}`}
+          tone="bg-emerald-50/70 ring-emerald-100"
+        >
+          <SalaryRows
+            items={salaries}
+            onToggle={onToggleSalary}
+            busyId={busyId}
           />
         </Accordion>
       )}

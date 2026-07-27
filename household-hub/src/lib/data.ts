@@ -265,10 +265,26 @@ export async function getContent(): Promise<AppContent> {
   const missingChecks = (local.settlingChecklist ?? []).filter(
     (c) => !remoteCheckIds.has(c.id)
   );
+  const remoteHolidayIds = new Set(
+    (remote.statutoryHolidays ?? []).map((h) => h.id)
+  );
+  const missingHolidays = (local.statutoryHolidays ?? []).filter(
+    (h) => !remoteHolidayIds.has(h.id)
+  );
+  const remoteSalaryIds = new Set(
+    (remote.salaryPayments ?? []).map((s) => s.id)
+  );
+  const missingSalaries = (local.salaryPayments ?? []).filter(
+    (s) => !remoteSalaryIds.has(s.id)
+  );
   const needsHkLifeSeed =
     (!remote.hkLifeGuides?.length && Boolean(local.hkLifeGuides?.length)) ||
     missingGuides.length > 0 ||
     missingChecks.length > 0 ||
+    (!remote.statutoryHolidays?.length && Boolean(local.statutoryHolidays?.length)) ||
+    missingHolidays.length > 0 ||
+    (!remote.salaryPayments?.length && Boolean(local.salaryPayments?.length)) ||
+    missingSalaries.length > 0 ||
     (!remote.emergencyContacts?.length && Boolean(local.emergencyContacts?.length)) ||
     (!remote.hkWeather && Boolean(local.hkWeather)) ||
     (!remote.homeArea && Boolean(local.homeArea));
@@ -288,10 +304,28 @@ export async function getContent(): Promise<AppContent> {
         : missingChecks.length
           ? [...(remote.settlingChecklist ?? []), ...missingChecks]
           : remote.settlingChecklist;
+    const holidays =
+      !remote.statutoryHolidays?.length && local.statutoryHolidays?.length
+        ? local.statutoryHolidays
+        : missingHolidays.length
+          ? [...(remote.statutoryHolidays ?? []), ...missingHolidays].sort((a, b) =>
+              a.date.localeCompare(b.date)
+            )
+          : remote.statutoryHolidays;
+    const salaries =
+      !remote.salaryPayments?.length && local.salaryPayments?.length
+        ? local.salaryPayments
+        : missingSalaries.length
+          ? [...(remote.salaryPayments ?? []), ...missingSalaries].sort((a, b) =>
+              a.period.localeCompare(b.period)
+            )
+          : remote.salaryPayments;
     const filled: AppContent = {
       ...remote,
       hkLifeGuides: guides,
       settlingChecklist: checklist,
+      statutoryHolidays: holidays,
+      salaryPayments: salaries,
       emergencyContacts: remote.emergencyContacts?.length
         ? remote.emergencyContacts
         : local.emergencyContacts,

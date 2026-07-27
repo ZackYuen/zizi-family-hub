@@ -169,6 +169,10 @@ export interface AppContent {
   homeArea?: BilingualText;
   hkLifeGuides?: HkLifeGuide[];
   settlingChecklist?: SettlingCheckItem[];
+  /** 2026+ statutory holidays — tap to confirm taken */
+  statutoryHolidays?: StatutoryHolidayItem[];
+  /** Monthly salary rows — tap to confirm receipt */
+  salaryPayments?: SalaryPaymentItem[];
   emergencyContacts?: EmergencyContact[];
   hkWeather?: HkWeatherFlag;
 }
@@ -257,6 +261,36 @@ export interface SettlingCheckItem {
   id: string;
   title: BilingualText;
   done: boolean;
+}
+
+/** Statutory holiday entitlement — confirm when taken / alt holiday used */
+export interface StatutoryHolidayItem {
+  id: string;
+  year: number;
+  /** YYYY-MM-DD (Hong Kong) */
+  date: string;
+  name: BilingualText;
+  /** Charlene / family confirm this holiday was taken (or alt day taken) */
+  taken: boolean;
+  takenOn?: string;
+  /** Optional alternative holiday date if she worked on the statutory day */
+  altDate?: string;
+  notes?: BilingualText;
+}
+
+/** Monthly salary — confirm receipt */
+export interface SalaryPaymentItem {
+  id: string;
+  year: number;
+  /** YYYY-MM */
+  period: string;
+  label: BilingualText;
+  amountHkd: number;
+  /** Expected or actual pay date YYYY-MM-DD */
+  payDate?: string;
+  received: boolean;
+  receivedOn?: string;
+  notes?: BilingualText;
 }
 
 export interface EmergencyContact {

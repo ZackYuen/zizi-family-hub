@@ -21,8 +21,10 @@ import type {
   FamilyPreferenceTip,
   HkLifeGuide,
   HkWeatherFlag,
+  SalaryPaymentItem,
   SchoolCalendar,
   SettlingCheckItem,
+  StatutoryHolidayItem,
   TonightMenu,
 } from "./types";
 
@@ -48,6 +50,8 @@ export interface LiveFamilySnapshot {
   homeArea?: AppContent["homeArea"];
   hkLifeGuides: HkLifeGuide[];
   settlingChecklist: SettlingCheckItem[];
+  statutoryHolidays: StatutoryHolidayItem[];
+  salaryPayments: SalaryPaymentItem[];
   emergencyContacts: EmergencyContact[];
   hkWeather?: HkWeatherFlag;
 }
@@ -111,6 +115,8 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     homeArea: content.homeArea,
     hkLifeGuides: content.hkLifeGuides ?? [],
     settlingChecklist: content.settlingChecklist ?? [],
+    statutoryHolidays: content.statutoryHolidays ?? [],
+    salaryPayments: content.salaryPayments ?? [],
     emergencyContacts: content.emergencyContacts ?? [],
     hkWeather: content.hkWeather,
   };
@@ -261,6 +267,26 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     lines.push("Settling checklist (first weeks in HK):");
     for (const item of snap.settlingChecklist) {
       lines.push(`- [${item.done ? "done" : "todo"}] ${item.title.en}`);
+    }
+  }
+
+  if (snap.statutoryHolidays.length) {
+    lines.push("");
+    lines.push("Statutory holidays tracker (confirm taken in HK Life):");
+    for (const h of snap.statutoryHolidays) {
+      lines.push(
+        `- [${h.taken ? "taken" : "not yet"}] ${h.date} ${h.name.en}${h.altDate ? ` (alt ${h.altDate})` : ""}`
+      );
+    }
+  }
+
+  if (snap.salaryPayments.length) {
+    lines.push("");
+    lines.push("Salary receipt tracker (confirm received in HK Life):");
+    for (const s of snap.salaryPayments) {
+      lines.push(
+        `- [${s.received ? "received" : "not yet"}] ${s.period} HK$${s.amountHkd} ${s.label.en}`
+      );
     }
   }
 

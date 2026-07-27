@@ -4,6 +4,10 @@ import type { AppContent, HkLifeCategory, Lang } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { TrilingualFieldEditor } from "./TrilingualFieldEditor";
 import { emptyBilingual } from "@/lib/localized-text";
+import {
+  buildSalaryPayments2026,
+  buildStatutoryHolidays2026,
+} from "@/lib/life-trackers";
 
 const CATEGORIES: HkLifeCategory[] = [
   "emergency",
@@ -29,6 +33,8 @@ interface Props {
 export function HkLifeAdmin({ content, setContent, lang, saving, onSave }: Props) {
   const guides = content.hkLifeGuides ?? [];
   const checklist = content.settlingChecklist ?? [];
+  const holidays = content.statutoryHolidays ?? [];
+  const salaries = content.salaryPayments ?? [];
   const contacts = content.emergencyContacts ?? [];
   const weather = content.hkWeather ?? {
     alertActive: false,
@@ -118,6 +124,30 @@ export function HkLifeAdmin({ content, setContent, lang, saving, onSave }: Props
     const list = [...checklist];
     list.splice(index, 1);
     patch({ settlingChecklist: list });
+  };
+
+  const updateHoliday = (index: number, next: (typeof holidays)[0]) => {
+    const list = [...holidays];
+    list[index] = next;
+    patch({ statutoryHolidays: list });
+  };
+
+  const deleteHoliday = (index: number) => {
+    const list = [...holidays];
+    list.splice(index, 1);
+    patch({ statutoryHolidays: list });
+  };
+
+  const updateSalary = (index: number, next: (typeof salaries)[0]) => {
+    const list = [...salaries];
+    list[index] = next;
+    patch({ salaryPayments: list });
+  };
+
+  const deleteSalary = (index: number) => {
+    const list = [...salaries];
+    list.splice(index, 1);
+    patch({ salaryPayments: list });
   };
 
   return (
@@ -269,6 +299,144 @@ export function HkLifeAdmin({ content, setContent, lang, saving, onSave }: Props
           className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-teal-700 ring-1 ring-teal-200"
         >
           {adminT("addChecklistItem", lang)}
+        </button>
+      </section>
+
+      {/* Statutory holidays */}
+      <section className="space-y-3">
+        <h2 className="text-sm font-bold text-stone-800">
+          {adminT("statutoryHolidays", lang)}
+        </h2>
+        <p className="text-xs text-stone-500">{adminT("statutoryHolidaysHint", lang)}</p>
+        {holidays.map((h, i) => (
+          <div key={h.id} className="rounded-xl bg-white p-4 ring-1 ring-stone-200">
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <label className="flex items-center gap-2 text-xs text-stone-600">
+                <input
+                  type="checkbox"
+                  checked={h.taken}
+                  onChange={(e) =>
+                    updateHoliday(i, { ...h, taken: e.target.checked })
+                  }
+                />
+                {adminT("markTaken", lang)}
+              </label>
+              <button
+                type="button"
+                onClick={() => deleteHoliday(i)}
+                className="text-xs text-red-500"
+              >
+                {adminT("delete", lang)}
+              </button>
+            </div>
+            <TrilingualFieldEditor
+              value={h.name}
+              onChange={(name) => updateHoliday(i, { ...h, name })}
+            />
+            <label className="mb-1 mt-2 block text-xs font-medium text-stone-500">
+              {adminT("holidayDate", lang)}
+            </label>
+            <input
+              value={h.date}
+              onChange={(e) => updateHoliday(i, { ...h, date: e.target.value })}
+              className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
+            <label className="mb-1 block text-xs font-medium text-stone-500">
+              {adminT("altDate", lang)}
+            </label>
+            <input
+              value={h.altDate ?? ""}
+              onChange={(e) =>
+                updateHoliday(i, {
+                  ...h,
+                  altDate: e.target.value || undefined,
+                })
+              }
+              className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
+            <TrilingualFieldEditor
+              value={h.notes ?? emptyBilingual()}
+              onChange={(notes) => updateHoliday(i, { ...h, notes })}
+              multiline
+            />
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => patch({ statutoryHolidays: buildStatutoryHolidays2026() })}
+          className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-teal-700 ring-1 ring-teal-200"
+        >
+          {adminT("seedHolidays2026", lang)}
+        </button>
+      </section>
+
+      {/* Salary receipts */}
+      <section className="space-y-3">
+        <h2 className="text-sm font-bold text-stone-800">
+          {adminT("salaryPayments", lang)}
+        </h2>
+        <p className="text-xs text-stone-500">{adminT("salaryPaymentsHint", lang)}</p>
+        {salaries.map((s, i) => (
+          <div key={s.id} className="rounded-xl bg-white p-4 ring-1 ring-stone-200">
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <label className="flex items-center gap-2 text-xs text-stone-600">
+                <input
+                  type="checkbox"
+                  checked={s.received}
+                  onChange={(e) =>
+                    updateSalary(i, { ...s, received: e.target.checked })
+                  }
+                />
+                {adminT("markReceived", lang)}
+              </label>
+              <button
+                type="button"
+                onClick={() => deleteSalary(i)}
+                className="text-xs text-red-500"
+              >
+                {adminT("delete", lang)}
+              </button>
+            </div>
+            <TrilingualFieldEditor
+              value={s.label}
+              onChange={(label) => updateSalary(i, { ...s, label })}
+            />
+            <label className="mb-1 mt-2 block text-xs font-medium text-stone-500">
+              {adminT("amountHkd", lang)}
+            </label>
+            <input
+              type="number"
+              value={s.amountHkd}
+              onChange={(e) =>
+                updateSalary(i, {
+                  ...s,
+                  amountHkd: Number(e.target.value) || 0,
+                })
+              }
+              className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
+            <label className="mb-1 block text-xs font-medium text-stone-500">
+              {adminT("payDate", lang)}
+            </label>
+            <input
+              value={s.payDate ?? ""}
+              onChange={(e) =>
+                updateSalary(i, {
+                  ...s,
+                  payDate: e.target.value || undefined,
+                })
+              }
+              placeholder="YYYY-MM-DD"
+              className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => patch({ salaryPayments: buildSalaryPayments2026(5100) })}
+          className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-teal-700 ring-1 ring-teal-200"
+        >
+          {adminT("seedSalary2026", lang)}
         </button>
       </section>
 

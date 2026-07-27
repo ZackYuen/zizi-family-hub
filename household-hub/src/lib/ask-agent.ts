@@ -570,15 +570,52 @@ function heuristicAnswer(
   }
 
   if (
-    /rest\s*day|24\s*hours?|lingguhang\s*pahinga|休息日|statutory\s*holiday|法定假|stat\s*holiday/.test(
+    /rest\s*day|24\s*hours?|lingguhang\s*pahinga|休息日|statutory\s*holiday|法定假|stat\s*holiday|holiday\s*list|假日清單|mga\s*holiday/.test(
       q
     ) &&
     !/today|ngayon|今天/.test(q)
   ) {
-    const tip = /statutory|法定|stat\s*holiday/.test(q)
-      ? lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays")
-      : lifeGuideAnswer(snap, lang, (g) => g.id === "life-rest-day");
+    if (/statutory|法定|stat\s*holiday|holiday\s*list|假日清單/.test(q)) {
+      const list = snap.statutoryHolidays;
+      if (list.length) {
+        const lines = list.map(
+          (h) =>
+            `${h.taken ? "☑" : "☐"} ${h.date} ${localized(h.name, lang)}${
+              h.altDate ? ` (alt ${h.altDate})` : ""
+            }`
+        );
+        const tip =
+          lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays") || "";
+        return lang === "fil"
+          ? `Statutory holidays 2026 (i-tap sa HK Life para kumpirmahin):\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
+          : lang === "zh"
+            ? `2026 法定假日（可在 HK Life 點選確認已放）：\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
+            : `Statutory holidays 2026 (confirm taken in HK Life):\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`;
+      }
+      const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays");
+      if (tip) return tip;
+    }
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-rest-day");
     if (tip) return tip;
+  }
+
+  if (
+    /salary|sahod|薪金|工資|wage|payroll|resibo.*sahod|salary\s*receipt|confirm.*salary|nakuha.*sahod|月薪/.test(
+      q
+    )
+  ) {
+    const list = snap.salaryPayments;
+    if (list.length) {
+      const lines = list.map(
+        (s) =>
+          `${s.received ? "☑" : "☐"} ${localized(s.label, lang)} — HK$${s.amountHkd.toLocaleString("en-HK")}`
+      );
+      return lang === "fil"
+        ? `Sahod / salary receipt (i-tap sa HK Life para kumpirmahin):\n${lines.join("\n")}\n\nHalaga ayon sa listahan — kumpirmahin ang kontrata kay Sir/Mum.`
+        : lang === "zh"
+          ? `薪金簽收（可在 HK Life 點選確認已收）：\n${lines.join("\n")}\n\n金額以清單為準 — 請向 Sir/Mum 確認合約。`
+          : `Salary receipts (confirm received in HK Life):\n${lines.join("\n")}\n\nAmounts follow the list — confirm your contract with Sir/Mum.`;
+    }
   }
 
   if (
