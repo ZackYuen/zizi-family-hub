@@ -231,25 +231,9 @@ const hkLifeGuides = [
       zh: "Zizi 三餐（早、午、晚）",
     },
     {
-      en: "Important: help Zizi “eat the rainbow” — offer colourful fruit and vegetables across the week (red, orange, yellow, green, purple/blue, white), not the same colour every day. (1) Breakfast — keep it simple: egg, pancake, siu mai, sweet potato, etc., plus morning milk in a glass with a glass straw. (2) Lunch — spaghetti, fried rice, noodles, or udon; every lunch must include meat and vegetables (not carbs only). (3) Dinner — follow the Meals tab (meat + vegetable + soup) for the family. Tell Sir/Mum if Zizi refuses food or seems unwell.",
-      fil: "Mahalaga: tulungan si Zizi na “eat the rainbow” — magbigay ng makulay na prutas at gulay sa buong linggo (pula, orange, dilaw, berde, purple/asul, puti), huwag pare-parehong kulay araw-araw. (1) Almusal — simple: itlog, pancake, siu mai, camote, atbp., plus morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti, fried rice, noodles, o udon; dapat may meat at gulay (hindi carbs lang). (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Sabihin kay Sir/Mum kung ayaw kumain si Zizi o may sakit.",
-      zh: "重要：幫助 Zizi「吃彩虹」— 一週內盡量給不同顏色的蔬果（紅、橙、黃、綠、紫／藍、白），不要每天同一種顏色。(1) 早餐 — 簡單即可：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉、炒飯、麵或烏冬；每餐必須有肉和蔬菜（不可只有澱粉）。(3) 晚餐 — 跟 Meals 分頁（肉＋菜＋湯）給一家人。若 Zizi 拒食或不適，告知 Sir/Mum。",
-    }
-  ),
-  tip(
-    "life-weekly-chores",
-    "culture",
-    37,
-    "kwun-tong",
-    {
-      en: "Weekly house rhythm (~660 sq ft, boy at home)",
-      fil: "Lingguhang gawain sa bahay (~660 sq ft, may batang lalaki)",
-      zh: "每週家務節奏（約660呎、有小男孩）",
-    },
-    {
-      en: "Small flat, 4 people, active boy — little and often beats one huge clean. Daily: meals, dishes, kitchen bin, evening vacuum, Zizi shower, tidy toys. Mon: laundry + mop. Tue: toys + living room + YATA shop. Wed: kitchen machines deep clean. Thu: bathroom deep clean. Fri: bedrooms. Sat: iron, school bag/shoes, top-up shop. Monthly list: sheets, AC filters (×3), fridge, hood, soft toys, windows. Sunday / public holiday: Charlene day off.",
-      fil: "Maliit na flat, 4 tao, active na bata — konti pero madalas mas maganda kaysa isang malaking linis. Araw-araw: pagkain, hugas, basurahan, vacuum sa gabi, shower ni Zizi, ayos laruan. Lun: labada + mop. Mar: laruan + sala + YATA. Miy: kitchen machines. Huw: banyo. Biy: kwarto. Sab: plantsa, bag/sapatos, konting pamimili. Buwanan: sheets, AC filter (×3), ref, hood, soft toys, bintana. Linggo / holiday: day off ni Charlene.",
-      zh: "小單位、四人、活潑男孩——少量多次勝過一次大掃除。每日：三餐、洗碗、廚房垃圾桶、晚間吸塵、Zizi 洗澡、收拾玩具。一：洗衣拖地。二：玩具客廳＋一田。三：廚房電器深清。四：浴室深清。五：睡房。六：熨衣、書包鞋、補買。每月：床單、3部冷氣濾網、雪櫃、油煙機、毛公仔、窗。日／公眾假期：Charlene 放假。",
+      en: "Important: help Zizi “eat the rainbow” — colourful fruit and vegetables across the week (red, orange, yellow, green, purple/blue, white), not the same colour every day. (1) Breakfast — keep it simple: egg, pancake, siu mai, sweet potato, etc., plus morning milk in a glass with a glass straw. (2) Lunch — spaghetti, fried rice, noodles, or udon; every lunch must include meat and vegetables (not carbs only). (3) Dinner — follow the Meals tab (meat + vegetable + soup) for the family. If Zizi holds food in his mouth without chewing: stay calm, gently remind him to chew, or use a simple visual timer. Do not force or scold. Tell Sir/Mum if it happens often or he seems unwell.",
+      fil: "Mahalaga: tulungan si Zizi na “eat the rainbow” — magbigay ng makulay na prutas at gulay sa buong linggo (pula, orange, dilaw, berde, purple/asul, puti), huwag pare-parehong kulay araw-araw. (1) Almusal — simple: itlog, pancake, siu mai, camote, atbp., plus morning milk sa baso na may glass straw. (2) Tanghalian — spaghetti, fried rice, noodles, o udon; dapat may meat at gulay (hindi carbs lang). (3) Dinner — sundin ang Meals tab (meat + gulay + sabaw) para sa pamilya. Kung hinahawakan ni Zizi ang pagkain sa bibig nang hindi ngumunguya: manatiling kalmado, maalalahanin siyang ngumuya, o gumamit ng simpleng visual timer. Huwag pilitin o pagalitan. Sabihin kay Sir/Mum kung madalas o mukhang may sakit.",
+      zh: "重要：幫助 Zizi「吃彩虹」— 一週內盡量給不同顏色的蔬果（紅、橙、黃、綠、紫／藍、白），不要每天同一種顏色。(1) 早餐 — 簡單即可：蛋、pancake、燒賣、蕃薯等，另加玻璃杯牛奶配玻璃吸管。(2) 午餐 — 意粉、炒飯、麵或烏冬；每餐必須有肉和蔬菜（不可只有澱粉）。(3) 晚餐 — 跟 Meals 分頁（肉＋菜＋湯）給一家人。若 Zizi 把食物含在嘴裡不吞不嚼：保持冷靜，溫柔提醒他咀嚼，或用簡單視覺計時。不要強迫或責罵。若經常發生或不適，告知 Sir/Mum。",
     }
   ),
   tip(
@@ -266,6 +250,22 @@ const hkLifeGuides = [
       en: "Fever, vomiting, injury, or unusual sleepiness: call Sir/Mum immediately. Do not give medicine unless Sir/Mum instructed. Stay with Zizi; stop non-urgent chores.",
       fil: "Lagnat, pagsusuka, sugat, o hindi pangkaraniwang antok: tawagan agad si Sir/Mum. Huwag magbigay ng gamot kung walang utos. Samahan si Zizi; itigil ang hindi urgent na gawain.",
       zh: "發燒、嘔吐、受傷或不尋常昏睡：立刻致電 Sir/Mum。未獲指示不要自行餵藥。陪伴 Zizi；暫停非緊急家務。",
+    }
+  ),
+  tip(
+    "life-zizi-bike",
+    "health",
+    62,
+    "kwun-tong",
+    {
+      en: "Zizi bicycle practice",
+      fil: "Pagsasanay sa bisikleta ni Zizi",
+      zh: "Zizi 單車練習",
+    },
+    {
+      en: "When Sir/Mum ask for bicycle practice: put on Zizi’s helmet first (ask Sir/Mum where the helmet and bike are kept). Ride only in safe areas Sir/Mum approve — not busy roads. Stay with Zizi the whole time. Stop if he is tired or the weather is bad.",
+      fil: "Kapag may bicycle practice ayon kay Sir/Mum: suotin muna ang helmet ni Zizi (tanungin kung nasaan ang helmet at bike). Mag-ride lang sa safe area na aprubado nina Sir/Mum — hindi busy na kalsada. Samahan si Zizi palagi. Huminto kung pagod o masama ang panahon.",
+      zh: "當 Sir/Mum 安排單車練習：先給 Zizi 戴頭盔（存放處請問 Sir/Mum）。只在認可的安全範圍騎 — 不要上繁忙馬路。全程陪伴。若他累了或天氣不好就停止。",
     }
   ),
   tip(

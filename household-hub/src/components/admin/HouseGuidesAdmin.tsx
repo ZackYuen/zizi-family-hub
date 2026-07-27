@@ -211,12 +211,22 @@ export function AppliancesAdmin({
             }}
           />
           <input
-            className="mb-3 w-full rounded border border-stone-200 px-2 py-1 text-xs"
+            className="mb-2 w-full rounded border border-stone-200 px-2 py-1 text-xs"
             placeholder="Manual / support URL"
             value={item.sourceUrl || ""}
             onChange={(e) => {
               const next = [...list];
               next[i] = { ...item, sourceUrl: e.target.value };
+              patch(next);
+            }}
+          />
+          <input
+            className="mb-3 w-full rounded border border-stone-200 px-2 py-1 text-xs"
+            placeholder="Panel / photo URL (e.g. /images/appliances/...)"
+            value={item.imageUrl || ""}
+            onChange={(e) => {
+              const next = [...list];
+              next[i] = { ...item, imageUrl: e.target.value };
               patch(next);
             }}
           />
