@@ -95,6 +95,23 @@ export interface TonightMenu {
   meat: DinnerRecipe;
   vegetable: DinnerRecipe;
   soup: DinnerRecipe;
+  /** True when Admin picked dishes for this date instead of date-hash random */
+  overridden?: boolean;
+}
+
+/** Admin override for a calendar date (Hong Kong YYYY-MM-DD) */
+export interface DinnerMenuOverride {
+  date: string;
+  meatId: string;
+  vegetableId: string;
+  soupId: string;
+  updatedAt?: string;
+}
+
+export interface DinnerMenuOverrides {
+  /** keyed by date YYYY-MM-DD */
+  byDate: Record<string, DinnerMenuOverride>;
+  updatedAt: string;
 }
 
 /** WhatsApp → Admin inbox (Q&A log + tip/recipe candidates) */

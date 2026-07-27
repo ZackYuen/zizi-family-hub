@@ -49,6 +49,11 @@ const ui = {
     fil: "May dish na naka-mark Cook with EPC17 — gamitin ang Tefal pressure cooker (steps sa card + Tools tab).",
     zh: "部分菜式標示「用 EPC17 煮」— 請用 Tefal 壓力鍋（見卡片步驟＋家電分頁）。",
   },
+  customPick: {
+    en: "Custom pick (Sir/Mum chose tonight)",
+    fil: "Custom pick (pinili nina Sir/Mum)",
+    zh: "自选（Sir/Mum 已选今晚）",
+  },
   shoppingList: {
     en: "Shopping / prep list",
     fil: "Shopping / prep list",
@@ -224,6 +229,11 @@ export function MealsView() {
         <p className="text-[11px] text-teal-800">{dateStr}</p>
         <h2 className="text-sm font-bold text-teal-950">{ui.tonight[lang]}</h2>
         <p className="mt-0.5 text-xs text-teal-900">{ui.cookAt[lang]}</p>
+        {menu.overridden && (
+          <p className="mt-1 text-[11px] font-semibold text-teal-800">
+            {ui.customPick[lang]}
+          </p>
+        )}
       </div>
 
       <p className="text-xs text-stone-500">{ui.cantoneseNote[lang]}</p>
