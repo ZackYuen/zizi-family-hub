@@ -14,6 +14,7 @@ import type {
   FamilyPreferenceTip,
   GroundRule,
 } from "@/lib/types";
+import { BreadMakerPanelGuide } from "./BreadMakerPanelGuide";
 import { GroundRulesView } from "./GroundRulesView";
 
 const prefIcons: Record<FamilyPreferenceTip["category"], string> = {
@@ -338,7 +339,13 @@ export function AppliancesView({ appliances }: { appliances: ApplianceGuide[] })
                               )}
                             </div>
                           </div>
-                          {item.imageUrl && (
+                          {(item.kind === "bread-machine" ||
+                            item.id === "app-panasonic-sd-pt1002") && (
+                            <BreadMakerPanelGuide lang={lang} />
+                          )}
+                          {item.imageUrl &&
+                            item.kind !== "bread-machine" &&
+                            item.id !== "app-panasonic-sd-pt1002" && (
                             <figure className="mb-3 overflow-hidden rounded-lg ring-1 ring-stone-200">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
