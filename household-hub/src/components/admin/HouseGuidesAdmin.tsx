@@ -220,9 +220,12 @@ export function AppliancesAdmin({
               patch(next);
             }}
           />
-          <input
+            <p className="mb-1 text-[11px] font-medium text-stone-500">
+              Panel buttons are edited in seed / patch (inline Tools diagram). Optional photo URL below is fallback only.
+            </p>
+            <input
             className="mb-3 w-full rounded border border-stone-200 px-2 py-1 text-xs"
-            placeholder="Panel / photo URL (e.g. /images/appliances/...)"
+            placeholder="Optional photo URL (prefer inline panelButtons)"
             value={item.imageUrl || ""}
             onChange={(e) => {
               const next = [...list];
