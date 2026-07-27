@@ -29,7 +29,10 @@ export function HomeApp({ content }: { content: AppContent }) {
   const lastUpdatedLabel = `${labels.lastUpdated[lang]} · ${updated}`;
 
   return (
-    <div className="min-h-screen bg-stone-50 pb-24">
+    <div
+      className="min-h-screen bg-stone-50"
+      style={{ paddingBottom: "calc(6rem + env(safe-area-inset-bottom, 0px))" }}
+    >
       <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-lg items-start justify-between gap-3 px-4 py-2.5">
           <WelcomeGreeting

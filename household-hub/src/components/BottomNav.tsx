@@ -39,7 +39,10 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
   const { lang } = useLanguage();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-stone-200 bg-white/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
+    <nav
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-stone-200 bg-white/95 backdrop-blur-md"
+      style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
+    >
       <div className="mx-auto flex max-w-lg">
         {tabs.map((tab) => {
           const isActive = active === tab.id;
@@ -48,7 +51,7 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
               key={tab.id}
               type="button"
               onClick={() => onChange(tab.id)}
-              className={`flex min-w-0 flex-1 flex-col items-center gap-0.5 px-0.5 py-2 transition ${
+              className={`flex min-w-0 flex-1 flex-col items-center gap-0.5 px-0.5 pt-2 pb-1 transition ${
                 isActive ? "text-teal-700" : "text-stone-500"
               }`}
             >
