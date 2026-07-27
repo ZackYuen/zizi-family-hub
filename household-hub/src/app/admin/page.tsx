@@ -221,9 +221,9 @@ export default function AdminPage() {
       title: { en: "New Rule", fil: "Bagong Alituntunin", zh: "新規則" },
       description: emptyBilingual(),
       consequences: {
-        en: "If Broken: Immediate written warning. Second time: contract may end. No trial second chance.",
-        fil: "If Broken: Agad na written warning. Pangalawang beses: maaaring matapos ang kontrata. Walang second chance.",
-        zh: "若違反：立即書面警告。第二次：可終止合約。沒有第二次試錯機會。",
+        en: "If Broken: Written warning and a talk with Sir/Mum. We coach and follow up — not an automatic immediate contract end (except borrow-money / Zizi-safety rules).",
+        fil: "If Broken: Written warning at usapan kay Sir/Mum. May coaching at follow-up — hindi automatic na agad matatapos ang kontrata (maliban sa borrow-money / Zizi-safety rules).",
+        zh: "若違反：書面警告並與 Sir/Mum 面談。會輔導與跟進 — 不是自動即時終止合約（借錢／Zizi 安全除外）。",
       },
       category: "general",
       priority: next.groundRules.length + 1,
