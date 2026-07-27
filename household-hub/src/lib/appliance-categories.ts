@@ -58,6 +58,7 @@ const kindToCategory: Record<ApplianceKind, ApplianceCategory> = {
   "bread-machine": "cooking",
   "air-fryer": "cooking",
   "range-hood": "cooking",
+  "gas-hob": "cooking",
   "water-dispenser": "cooking",
   vacuum: "cleaning",
   dehumidifier: "cleaning",

@@ -396,6 +396,84 @@
       ]
     },
     {
+      "id": "app-rinnai-rb2gb",
+      "kind": "gas-hob",
+      "priority": 5,
+      "model": "Rinnai RB2GB",
+      "sourceUrl": "https://gas.com.hk/product/%e6%9e%97%e5%85%a7%e7%89%8crb2gb-%e5%b5%8c%e5%85%a5%e5%bc%8f%e7%85%ae%e9%a3%9f%e7%88%90/",
+      "title": {
+        "en": "Rinnai RB2GB built-in gas hob",
+        "zh": "林內 RB2GB 嵌入式煮食爐",
+        "fil": "Rinnai RB2GB built-in gas hob (stove)"
+      },
+      "tips": {
+        "en": "• See the panel guide above — numbers match the controls.\n• Rinnai RB2GB: built-in 2-burner glass gas hob (嵌入式煮食爐) — LPG / 石油氣 in this home. Not the cooker hood (that is Hitachi HB-ST388).\n• Always turn on the cooker hood before frying / stir-fry.\n• Ignition: press the burner knob, turn anti-clockwise to high; hold 2–5 seconds so the flame-failure sensor warms, then release. If the flame goes out, turn OFF, wait ~1 minute, try again.\n• Adjust flame between high and low with the same knob. Match pot size to the burner — don’t use a tiny pot on a roaring flame.\n• After cooking: turn knobs fully to OFF. When cool, wipe the glass with a soft cloth (mild cleaner). Wash pan supports / burner caps in warm soapy water, dry fully, refit flat (no tilt / gap).\n• Ignition uses a D-size 1.5V battery under the hob — if there is no spark, tell Sir/Mum (battery may be flat or inserted wrong way).\n• If you smell gas: do not spark / switch lights; open windows; turn gas off if safe; call Sir/Mum / 999.",
+        "zh": "• 見上方面板示意 — 數字對應操作。\n• 林內 RB2GB：嵌入式雙爐頭玻璃煮食爐 — 本家用石油氣（LPG）。不是抽油煙機（抽油煙機是日立 HB-ST388）。\n• 炒炸前先開抽油煙機。\n• 點火：按下旋鈕並逆時針轉至大火；按住約 2–5 秒讓熄火保護感溫，再放手。若鬆手熄火，轉回 OFF，等約 1 分鐘再試。\n• 用同一旋鈕調大火／小火。鍋具大小要配合爐頭 — 不要小鍋配大火。\n• 煮完：旋鈕完全轉到 OFF。冷卻後用軟布＋中性清潔劑抹玻璃。鍋架／爐頭蓋用溫肥皂水清洗，完全風乾後平放裝回（勿傾斜／留縫）。\n• 點火靠爐下 D 型 1.5V 電池 — 無火花就告知 Sir/Mum（可能沒電或正負極反了）。\n• 若聞到煤氣味：不要打火／開電燈；開窗；安全則關氣；聯絡 Sir/Mum／999。",
+        "fil": "• Tingnan ang panel guide sa itaas — tumutugma ang numero sa controls.\n• Rinnai RB2GB: built-in 2-burner glass gas hob (嵌入式煮食爐) — LPG / 石油氣 sa bahay na ito. Hindi ito ang cooker hood (Hitachi HB-ST388 iyon).\n• Buksan muna ang cooker hood bago magprito / mag-stir-fry.\n• Ignition: pindutin ang knob, i-turn anti-clockwise papuntang high; hawakan 2–5 segundo para uminit ang flame-failure sensor, saka bitawan. Kung mamatay ang apoy, i-OFF, hintay ~1 minuto, subukan ulit.\n• Ayusin ang apoy (high–low) sa parehong knob. Tumugma ang laki ng kaldero sa burner — huwag maliit na kaldero sa malakas na apoy.\n• Pagkatapos magluto: i-OFF nang tuluyan ang knobs. Kapag malamig, punasan ang glass ng soft cloth (mild cleaner). Hugasan ang pan supports / burner caps sa mainit-init na soapy water, patuyuin nang tuluyan, ibalik nang pantay (walang tilt / gap).\n• Gumagamit ng D-size 1.5V battery sa ilalim para sa spark — kung walang spark, sabihin kay Sir/Mum (baka flat o baligtad ang battery).\n• Kung may amoy ng gas: huwag mag-spark / mag-switch ng ilaw; buksan ang bintana; i-off ang gas kung safe; tumawag kay Sir/Mum / 999."
+      },
+      "warnings": {
+        "en": "• LPG only — never connect the wrong gas type.\n• Never leave a lit burner unattended with children / Zizi nearby.\n• Do not use abrasive pads or strong oven cleaner on the glass top.\n• Pan supports and burner caps must sit flat before lighting.\n• Ask Sir/Mum before removing the hob or changing the battery if unsure.",
+        "zh": "• 只用石油氣 — 不可接錯氣種。\n• 有火時不要離開，尤其 Zizi 在附近。\n• 玻璃面勿用鋼絲球或強效焗爐清潔劑。\n• 點火前鍋架／爐頭蓋必須放平。\n• 不確定如何拆爐或換電池就問 Sir/Mum。",
+        "fil": "• LPG lang — huwag magkabit ng maling gas type.\n• Huwag iwanan ang naka-apoy na burner nang walang tao, lalo na kung malapit si Zizi.\n• Huwag gumamit ng abrasive pad o malakas na oven cleaner sa glass.\n• Dapat pantay ang pan supports / burner caps bago mag-light.\n• Kung unsure sa pagtanggal ng hob o pagpalit ng battery, tanungin si Sir/Mum."
+      },
+      "panelButtons": [
+        {
+          "n": 1,
+          "en": "Left burner knob",
+          "fil": "Left burner knob",
+          "zh": "左爐頭旋鈕",
+          "hintEn": "Press · turn anti-clockwise · hold 2–5s",
+          "hintFil": "Pindutin · i-turn anti-clockwise · hawakan 2–5s",
+          "hintZh": "按下·逆時針·按住2–5秒"
+        },
+        {
+          "n": 2,
+          "en": "Right burner knob",
+          "fil": "Right burner knob",
+          "zh": "右爐頭旋鈕",
+          "hintEn": "Press · turn anti-clockwise · hold 2–5s",
+          "hintFil": "Pindutin · i-turn anti-clockwise · hawakan 2–5s",
+          "hintZh": "按下·逆時針·按住2–5秒"
+        },
+        {
+          "n": 3,
+          "en": "High / Low flame",
+          "fil": "High / Low flame",
+          "zh": "大火／小火",
+          "hintEn": "Same knob adjusts flame size",
+          "hintFil": "Parehong knob ang nag-aayos ng apoy",
+          "hintZh": "同一旋鈕調火力"
+        },
+        {
+          "n": 4,
+          "en": "OFF position",
+          "fil": "OFF position",
+          "zh": "關閉位置",
+          "hintEn": "Turn fully off after cooking",
+          "hintFil": "I-OFF nang tuluyan pagkatapos magluto",
+          "hintZh": "煮完完全轉到關閉"
+        },
+        {
+          "n": 5,
+          "en": "Pan supports / caps",
+          "fil": "Pan supports / caps",
+          "zh": "鍋架／爐頭蓋",
+          "hintEn": "Wash · dry · refit flat",
+          "hintFil": "Hugasan · patuyuin · ibalik nang pantay",
+          "hintZh": "清洗·風乾·平放裝回"
+        },
+        {
+          "n": 6,
+          "en": "Ignition battery (D)",
+          "fil": "Ignition battery (D)",
+          "zh": "點火電池（D型）",
+          "hintEn": "1.5V under hob — ask Sir/Mum if no spark",
+          "hintFil": "1.5V sa ilalim — sabihin kay Sir/Mum kung walang spark",
+          "hintZh": "爐下1.5V — 無火花問Sir/Mum"
+        }
+      ]
+    },
+    {
       "id": "app-tefal-easy-fry-xxl",
       "kind": "air-fryer",
       "tips": {

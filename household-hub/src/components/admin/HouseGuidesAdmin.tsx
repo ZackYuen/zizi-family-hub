@@ -30,6 +30,7 @@ const APPLIANCE_KINDS: ApplianceKind[] = [
   "air-fryer",
   "water-dispenser",
   "range-hood",
+  "gas-hob",
   "dehumidifier",
   "air-purifier",
   "iron",

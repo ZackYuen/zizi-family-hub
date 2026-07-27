@@ -838,7 +838,7 @@ function heuristicAnswer(
   }
 
   if (
-    /vacuum|dyson|v12|hp07|purifier|hot\+?cool|空氣清新|暖風|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|epc17|epc\s*17|高速煲|壓力鍋|washing\s*machine|washer|whirlpool|tdlr70223|tdlr|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|appliance|gamit sa bahay|吸塵|電飯煲|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
+    /vacuum|dyson|v12|hp07|purifier|hot\+?cool|空氣清新|暖風|rice\s*cooker|zojirushi|np-?rlq|pressure\s*cooker|epc17|epc\s*17|高速煲|壓力鍋|washing\s*machine|washer|whirlpool|tdlr70223|tdlr|bread\s*machine|panasonic|sd-?pt1002|air\s*fryer|tefal|easy\s*fry|du4120|dehumidifier|linen\s*dry|抽濕|philips|add6910|water\s*dispenser|飲水|range\s*hood|cooker\s*hood|抽油煙|hitachi|hb-?st388|gas\s*hob|built-?in\s*hob|煮食爐|煤氣爐|石油氣爐|rinnai|林內|rb2gb|rb-?2gb|appliance|gamit sa bahay|吸塵|電飯煲|洗衣機|麵包機|氣炸|how to (use|wash|cook)|paano (gamitin|maglaba|magprito)/.test(
       q
     )
   ) {
@@ -878,6 +878,10 @@ function heuristicAnswer(
         {
           re: /hitachi|hb-?st388|range\s*hood|cooker\s*hood|抽油煙/,
           kind: "range-hood",
+        },
+        {
+          re: /rb2gb|rb-?2gb|rinnai|林內|gas\s*hob|built-?in\s*hob|煮食爐|煤氣爐|石油氣爐|stove|burner/,
+          kind: "gas-hob",
         },
         {
           re: /whirlpool|tdlr70223|tdlr|wash(ing)?\s*machine|washer|lavander|洗濯機|洗衣機|maglaba/,

@@ -197,6 +197,7 @@ export type ApplianceKind =
   | "air-fryer"
   | "water-dispenser"
   | "range-hood"
+  | "gas-hob"
   | "dehumidifier"
   | "air-purifier"
   | "iron"
