@@ -64,7 +64,7 @@ Screen lock is usually OK; **sleep is not**.
 
 Bot replies only when:
 
-- Message starts with `?` (or `TRIGGER_PREFIX`), or
+- Message starts with `?` / fullwidth `？` (or `TRIGGER_PREFIX`), or
 - Starts with `bot:` / `ask:`, or
 - Mentions `@CharleneBot` / contains `CharleneBot`, or
 - WhatsApp @-mention of the bot number
