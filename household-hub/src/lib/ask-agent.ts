@@ -532,13 +532,20 @@ function heuristicAnswer(
   }
 
   if (
-    /android\s*app|must[- ]?have\s*app|kailangan.*app|必備.*(app|應用)|app.*hong\s*kong|openrice|alipayhk|\bpayme\b|myobservatory|mtr\s*mobile|anong\s*app|which\s*apps?\s*(to\s*)?(download|install)|apps?\s*to\s*(download|install)|google\s*translate/.test(
+    /iphone|ios\s*app|app\s*store|apple\s*id|android\s*app|must[- ]?have\s*app|kailangan.*app|必備.*(app|應用)|app.*hong\s*kong|openrice|alipayhk|\bpayme\b|myobservatory|mtr\s*mobile|anong\s*app|which\s*apps?\s*(to\s*)?(download|install)|apps?\s*to\s*(download|install)|google\s*translate/.test(
       q
     ) &&
     !/whatsapp\s*(bot|number|save|\?save)/.test(q)
   ) {
-    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-android-apps");
-    if (tip) return tip;
+    const wantIphoneOnly = /iphone|ios|app\s*store|apple\s*id/.test(q) && !/android/.test(q);
+    const wantAndroidOnly = /android/.test(q) && !/iphone|ios|app\s*store/.test(q);
+    const iphone = lifeGuideAnswer(snap, lang, (g) => g.id === "life-iphone-apps");
+    const android = lifeGuideAnswer(snap, lang, (g) => g.id === "life-android-apps");
+    if (wantIphoneOnly && iphone) return iphone;
+    if (wantAndroidOnly && android) return android;
+    if (iphone && android) return `${iphone}\n\n—\n\n${android}`;
+    if (iphone) return iphone;
+    if (android) return android;
   }
 
   if (
@@ -966,7 +973,7 @@ For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from 
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
 When asked for the Family Hub / Gabay sa Bahay / app website link or URL, give the Family Hub website URL from FAMILY LIVE DATA.
-For HK Life / FDH / typhoon / Octopus / rest day / Consulate / YATA(apm) / groceries / Android apps / healthy holiday / home flat questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract". First supermarket is YATA at apm near home — not AEON unless Sir/Mum say so.
+For HK Life / FDH / typhoon / Octopus / rest day / Consulate / YATA(apm) / groceries / iPhone & Android apps / healthy holiday / home flat questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract". First supermarket is YATA at apm near home — not AEON unless Sir/Mum say so.
 If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
 Never invent ground rules or schedule times.
 Family preferences are soft tips only — never call them ground rules or invent “If Broken” for them.
