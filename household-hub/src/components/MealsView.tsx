@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { cookDeviceMeta } from "@/lib/cook-devices";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
 import { localized } from "@/lib/localized-text";
 import { uiLocale } from "@/lib/i18n";
@@ -38,6 +39,16 @@ const ui = {
     fil: "Baka Cantonese ang video — gamitin muna ang ingredients + prep notes.",
     zh: "影片可能是廣東話 — 請先看材料與準備說明。",
   },
+  deviceHowTo: {
+    en: "How to cook with this device",
+    fil: "Paano lutuin sa device na ito",
+    zh: "用此家電怎麼煮",
+  },
+  epcBanner: {
+    en: "Some dishes are marked Cook with EPC17 — use the Tefal pressure cooker (see steps on the card + Tools tab).",
+    fil: "May dish na naka-mark Cook with EPC17 — gamitin ang Tefal pressure cooker (steps sa card + Tools tab).",
+    zh: "部分菜式標示「用 EPC17 煮」— 請用 Tefal 壓力鍋（見卡片步驟＋家電分頁）。",
+  },
   shoppingList: {
     en: "Shopping / prep list",
     fil: "Shopping / prep list",
@@ -73,10 +84,11 @@ function DishCard({
   const subtitle = getRecipeSubtitle(recipe, lang);
   const ings = recipe.ingredients ?? [];
   const prep = localized(recipe.prepNotes, lang);
+  const device = cookDeviceMeta(recipe.cookDevice);
 
   return (
     <article className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-stone-100">
-      <div className="mb-2 flex items-center gap-2">
+      <div className="mb-2 flex flex-wrap items-center gap-2">
         <span className="text-xl">{categoryIcons[recipe.category]}</span>
         <span className="text-xs font-semibold uppercase tracking-wide text-teal-700">
           {label[lang]}
@@ -86,11 +98,30 @@ function DishCard({
             {recipe.subCategory}
           </span>
         )}
+        {device && (
+          <span className="rounded-full bg-teal-50 px-2 py-0.5 text-[10px] font-semibold text-teal-800 ring-1 ring-teal-200">
+            {localized(device.badge, lang)}
+          </span>
+        )}
       </div>
       <p className="text-base font-semibold text-stone-900">
         {getRecipeDisplayName(recipe, lang)}
       </p>
       {subtitle && <p className="mt-0.5 text-sm text-stone-500">{subtitle}</p>}
+
+      {device && (
+        <div className="mt-3 rounded-xl bg-teal-50/80 p-3 ring-1 ring-teal-100">
+          <p className="text-xs font-bold uppercase tracking-wide text-teal-900">
+            {ui.deviceHowTo[lang]}
+          </p>
+          <p className="mt-1 text-[11px] font-medium text-teal-800">
+            {localized(device.shortName, lang)}
+          </p>
+          <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-teal-950">
+            {localized(device.howTo, lang)}
+          </p>
+        </div>
+      )}
 
       <button
         type="button"
@@ -185,6 +216,8 @@ export function MealsView() {
     { weekday: "long", month: "short", day: "numeric" }
   );
 
+  const hasDeviceDish = items.some((x) => Boolean(x.recipe.cookDevice));
+
   return (
     <div className="space-y-3">
       <div className="rounded-xl bg-teal-50 px-3 py-2.5 ring-1 ring-teal-100">
@@ -194,6 +227,18 @@ export function MealsView() {
       </div>
 
       <p className="text-xs text-stone-500">{ui.cantoneseNote[lang]}</p>
+
+      <div className="rounded-xl bg-amber-50/90 px-3 py-2.5 ring-1 ring-amber-100">
+        <p className="text-xs leading-relaxed text-amber-950">
+          {hasDeviceDish
+            ? ui.epcBanner[lang]
+            : lang === "fil"
+              ? "Tefal EPC17 pressure cooker: may recipe sa listahan na naka-mark “Luto sa EPC17”. Tingnan Tools → Cooking para sa panel guide."
+              : lang === "zh"
+                ? "Tefal EPC17 壓力鍋：餐單中有標「用 EPC17 煮」的菜式。面板圖見「家電」→ 煮食。"
+                : "Tefal EPC17 pressure cooker: look for dishes marked “Cook with EPC17” in the recipe list. Panel guide: Tools → Cooking."}
+        </p>
+      </div>
 
       <div className="space-y-2.5">
         {items.map(({ key, label, recipe }) => (

@@ -287,6 +287,9 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     "- YouTube recipe videos are often in Cantonese. Prefer ingredients + prepNotes for Charlene; she can still open the link for visuals."
   );
   lines.push("- If prepNotes are empty, tell her to follow the shopping list and ask Sir/Mum for steps.");
+  lines.push(
+    "- Tefal EPC17 electric pressure cooker: Meals recipes with cookDevice app-tefal-epc17 are marked “Cook with EPC17”. Use the removable bowl, ≥250 ml liquid, under MAX, valve down, wait full pressure release. Panel map is in Tools. Good for soups, soy chicken, beef stew, soft tofu veg."
+  );
 
   lines.push("");
   lines.push("Important facts:");

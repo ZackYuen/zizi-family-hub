@@ -83,6 +83,11 @@ export interface DinnerRecipe {
    * Prefer short steps — not a full transcript.
    */
   prepNotes?: BilingualText;
+  /**
+   * Optional Tools appliance id (e.g. app-tefal-epc17).
+   * Meals shows a “cook with this device” guide when set.
+   */
+  cookDevice?: string;
 }
 
 export interface TonightMenu {
