@@ -33,16 +33,19 @@ Leave the terminal / process running. Closing it = bot offline.
 
 ### pm2 (simple)
 
+**Always use `npm run pm2:up`** (start *or* restart). Do not use bare `pm2 restart` — that errors with `Process … not found` when the app was never registered.
+
 ```bash
 npm install -g pm2
 cd household-hub/whatsapp-bot
-pm2 start ecosystem.config.cjs
-pm2 save
-pm2 startup   # follow the printed command
+npm run pm2:up          # start or restart safely
+pm2 startup             # follow the printed command (once)
 ```
 
 Logs: `pm2 logs zizi-whatsapp-bot`  
-QR again after logout: delete `auth_info/` and `pm2 restart zizi-whatsapp-bot`.
+
+Session lives in **`~/.zizi-whatsapp-auth`** (never project `./auth_info`).  
+QR again after logout / EACCES / MessageCounterError: wipe home session + remove project auth, then rescan (see Troubleshooting).
 
 ### Docker
 
@@ -94,7 +97,7 @@ Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 | `TRIGGER_PREFIX` | Default `?` |
 | `GROUP_JIDS` | Optional allowlist of group IDs |
 | `REPLY_DM` | `1` to also answer private chats |
-| `AUTH_DIR` | Session folder (default `./auth_info`) |
+| `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
 
 ## vs official Cloud API
 
@@ -109,25 +112,23 @@ You can run **both**; group members can use either path.
 
 ## Troubleshooting
 
-- **`EACCES … auth_info/creds.json`:** usually root-owned `./auth_info` or **two bot processes**. Prefer home session dir (`~/.zizi-whatsapp-auth`). Fix:
+- **`EACCES … auth_info/creds.json` + `MessageCounterError`:** project `./auth_info` is root-owned and/or **two bot processes**. Bot now refuses project `./auth_info` and uses `~/.zizi-whatsapp-auth`. Fix once:
   ```bash
-  pm2 delete zizi-whatsapp-bot
+  cd ~/zizi-family-hub/household-hub/whatsapp-bot
+  git pull origin main
+  pm2 delete zizi-whatsapp-bot 2>/dev/null || true
   pkill -f 'whatsapp-bot/src/index.js' || true
-  # stop using project ./auth_info
-  sudo rm -rf auth_info
-  # remove AUTH_DIR=./auth_info from .env if present
-  sed -i '/^AUTH_DIR=/d' .env 2>/dev/null || true
-  git pull
+  sudo rm -rf auth_info ~/.zizi-whatsapp-auth
+  sed -i -E '/^AUTH_DIR=(\.\/)?auth_info/d' .env 2>/dev/null || true
   mkdir -p ~/.zizi-whatsapp-auth && chmod 700 ~/.zizi-whatsapp-auth
-  node src/index.js   # must print Session folder writable: /home/…/.zizi-whatsapp-auth
+  node src/index.js   # must print: Session folder writable: /home/ocuser/.zizi-whatsapp-auth
   # scan QR — never sudo — then Ctrl+C
-  pm2 start ecosystem.config.cjs && pm2 save
-  # confirm only ONE process:
-  pm2 status
-  pgrep -af 'whatsapp-bot/src/index'
+  npm run pm2:up
+  pgrep -af 'whatsapp-bot/src/index'   # must be ONE line
   ```
+- **`pm2 restart` → Process not found:** use `npm run pm2:up` instead (starts if missing).
 - **No QR:** wait a few seconds; check firewall. Run foreground: `node src/index.js` (not only `pm2 logs`).
-- **Logged out / MessageCounterError / Connection Closed:** usually same as EACCES or two instances — wipe session, unlink old devices, start **one** process, scan once.
+- **Logged out / MessageCounterError / Connection Closed:** usually same as EACCES or two instances — wipe session, unlink old Linked Devices, start **one** process via `npm run pm2:up`, scan once.
 - **`mmg.whatsapp.net` 403 / “transaction failed”:** history/media sync noise — ignore for text asks. Current bot skips history sync (`shouldSyncHistoryMessage: false`).
 - **Logs quiet when you send a message:** bot only answered `[ask]` before; now it also prints `[msg] ignore/skip …`. If you still see **nothing** after a send:
   1. Confirm `[ok] Connected as …` in `pm2 logs`.

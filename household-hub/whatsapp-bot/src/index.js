@@ -43,10 +43,49 @@ function loadEnvFile(filePath) {
 
 loadEnvFile(path.join(ROOT, ".env"));
 
-// Prefer $HOME — avoids root-owned ./auth_info from accidental `sudo node`
-const AUTH_DIR = path.resolve(
-  process.env.AUTH_DIR || path.join(os.homedir(), ".zizi-whatsapp-auth")
-);
+/**
+ * Session dir must stay writable by the pm2 user (ocuser).
+ * Never use project ./auth_info — it often becomes root-owned after `sudo node`
+ * and causes EACCES + MessageCounterError (creds can't be saved → key desync).
+ * Docker may set AUTH_DIR=/app/auth_info with ALLOW_PROJECT_AUTH_DIR=1.
+ */
+function resolveAuthDir() {
+  const homeDefault = path.join(os.homedir(), ".zizi-whatsapp-auth");
+  const raw = (process.env.AUTH_DIR || "").trim();
+  const projectAuth = path.resolve(ROOT, "auth_info");
+  const allowProject = process.env.ALLOW_PROJECT_AUTH_DIR === "1";
+
+  if (
+    !raw ||
+    raw === "auth_info" ||
+    raw === "./auth_info" ||
+    raw === ".\\auth_info"
+  ) {
+    if (raw) {
+      console.warn(
+        `[warn] Ignoring AUTH_DIR=${raw} — project ./auth_info is forbidden. Using ${homeDefault}`
+      );
+    }
+    return homeDefault;
+  }
+
+  const resolved = path.isAbsolute(raw)
+    ? path.resolve(raw)
+    : path.resolve(ROOT, raw);
+
+  if (resolved === projectAuth && !allowProject) {
+    console.warn(
+      `[warn] AUTH_DIR resolves to project auth_info (${resolved}). Forcing ${homeDefault}`
+    );
+    console.warn(
+      "[warn] (Docker volume: set ALLOW_PROJECT_AUTH_DIR=1 if you really need /app/auth_info)"
+    );
+    return homeDefault;
+  }
+  return resolved;
+}
+
+const AUTH_DIR = resolveAuthDir();
 
 const LIVE_ASK_URL = (
   process.env.LIVE_ASK_URL || "https://zizi-family-hub.vercel.app/api/ask/"
@@ -69,7 +108,7 @@ const TRIGGER_PREFIX = (process.env.TRIGGER_PREFIX || "?").trim();
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
-/** Fail fast if auth_info is not writable (common after `sudo node` / root-owned files). */
+/** Fail fast if session folder is not writable (common after `sudo node` / root-owned files). */
 function ensureAuthDirWritable(dir) {
   fs.mkdirSync(dir, { recursive: true });
   const probe = path.join(dir, `.write-test-${process.pid}`);
@@ -82,33 +121,34 @@ function ensureAuthDirWritable(dir) {
     console.error(`
 Fix on the VM (run as the same user that starts pm2 — usually ocuser, NEVER sudo node):
 
+  npm run pm2:up   # or: bash scripts/pm2-up.sh
+  # if still broken:
   pm2 delete zizi-whatsapp-bot
-  sudo rm -rf "${dir}"
-  mkdir -p "${dir}"
-  chmod 700 "${dir}"
-  # if the whole bot tree was owned by root:
-  sudo chown -R "$(whoami):$(whoami)" "$(dirname "${dir}")"
+  pkill -f 'whatsapp-bot/src/index.js' || true
+  sudo rm -rf "${dir}" ./auth_info
+  mkdir -p "${dir}" && chmod 700 "${dir}"
+  sed -i '/^AUTH_DIR=/d' .env 2>/dev/null || true
 
-Then: node src/index.js   → scan QR → Ctrl+C → pm2 start ecosystem.config.cjs
+Then: node src/index.js   → scan QR → Ctrl+C → npm run pm2:up
 `);
     process.exit(1);
   }
-  // Also check existing creds.json ownership if present
   const creds = path.join(dir, "creds.json");
   if (fs.existsSync(creds)) {
     try {
       fs.accessSync(creds, fs.constants.W_OK);
     } catch {
-      console.error("\n[fatal] auth_info/creds.json is not writable (often owned by root).");
+      console.error("\n[fatal] Session creds.json is not writable (often owned by root).");
       console.error(`[fatal] Path: ${creds}`);
       console.error(`
 Fix:
 
   pm2 delete zizi-whatsapp-bot
-  sudo rm -rf "${dir}"
+  pkill -f 'whatsapp-bot/src/index.js' || true
+  sudo rm -rf "${dir}" ./auth_info
   mkdir -p "${dir}" && chmod 700 "${dir}"
 
-Then rescan QR with: node src/index.js  (no sudo)
+Then rescan QR with: node src/index.js  (no sudo) → npm run pm2:up
 `);
       process.exit(1);
     }
@@ -118,7 +158,76 @@ Then rescan QR with: node src/index.js  (no sudo)
   );
 }
 
+/** One bot only — two instances cause MessageCounterError / logout. */
+function acquireSingletonLock(dir) {
+  const lockPath = path.join(dir, "bot.lock");
+  let prevPid = 0;
+  try {
+    if (fs.existsSync(lockPath)) {
+      prevPid = Number(fs.readFileSync(lockPath, "utf8").split("\n")[0]) || 0;
+    }
+  } catch {
+    prevPid = 0;
+  }
+
+  if (prevPid > 0 && prevPid !== process.pid) {
+    try {
+      process.kill(prevPid, 0); // throws if not running
+      console.error(`
+[fatal] Another bot process is already running (pid ${prevPid}).
+MessageCounterError / EACCES usually means TWO instances.
+
+  pkill -f 'whatsapp-bot/src/index.js' || true
+  pm2 delete zizi-whatsapp-bot
+  npm run pm2:up
+`);
+      process.exit(1);
+    } catch {
+      /* stale lock — previous process dead */
+    }
+  }
+
+  try {
+    fs.writeFileSync(lockPath, `${process.pid}\n${new Date().toISOString()}\n`);
+  } catch (err) {
+    console.error("[fatal] Cannot write session lock:", lockPath, err?.message || err);
+    process.exit(1);
+  }
+
+  const release = () => {
+    try {
+      if (fs.existsSync(lockPath)) {
+        const cur = fs.readFileSync(lockPath, "utf8").split("\n")[0];
+        if (cur === String(process.pid)) fs.unlinkSync(lockPath);
+      }
+    } catch {
+      /* ignore */
+    }
+  };
+  process.on("exit", release);
+  process.on("SIGINT", () => {
+    release();
+    process.exit(0);
+  });
+  process.on("SIGTERM", () => {
+    release();
+    process.exit(0);
+  });
+}
+
 ensureAuthDirWritable(AUTH_DIR);
+acquireSingletonLock(AUTH_DIR);
+
+process.on("unhandledRejection", (err) => {
+  const msg = String(err?.message || err || "");
+  console.error("[unhandledRejection]", msg);
+  if (/EACCES/i.test(msg) && /creds\.json|auth_info|zizi-whatsapp-auth/i.test(msg)) {
+    console.error(
+      "[fatal] Session write denied — wipe session, remove project ./auth_info, use npm run pm2:up (never sudo)."
+    );
+    process.exit(1);
+  }
+});
 
 async function askFamilyHub(question, extra = {}) {
   // Prefer trailing-slash URL; follow 308 manually if needed (some Node builds mishandle POST redirects)
