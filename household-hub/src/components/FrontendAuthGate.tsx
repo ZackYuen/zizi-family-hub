@@ -30,29 +30,31 @@ const copy = {
   en: {
     brand: "Zizi Family Hub",
     headline: "Welcome home",
-    desc: "Sir, Mum, Zizi & Charlene — one family guide for the day.",
     google: "Continue with Google",
     loading: "Opening the family hub…",
     signOut: "Sign out",
     signedInAs: "Signed in as",
+    googleNotReady:
+      "Frontend login is on, but Google is not ready. Check Admin → Access.",
   },
   fil: {
     brand: "Zizi Family Hub",
     headline: "Maligayang pagdating",
-    desc: "Sir, Mum, Zizi at Charlene — isang gabay para sa araw-araw.",
     google: "Magpatuloy gamit ang Google",
     loading: "Binubuksan ang family hub…",
     signOut: "Sign out",
     signedInAs: "Naka-sign in bilang",
+    googleNotReady:
+      "Naka-on ang frontend login, pero hindi pa ready ang Google. Tingnan ang Admin → Access.",
   },
   zh: {
     brand: "Zizi Family Hub",
     headline: "歡迎回家",
-    desc: "Sir、Mum、Zizi 與 Charlene — 一家人的日常指南。",
     google: "使用 Google 繼續",
     loading: "正在開啟家庭 Hub…",
     signOut: "登出",
     signedInAs: "已登入",
+    googleNotReady: "已開啟前端登入，但 Google 尚未就緒。請到 Admin → Access 檢查。",
   },
 } as const;
 
