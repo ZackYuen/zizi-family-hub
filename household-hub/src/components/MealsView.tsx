@@ -3,6 +3,7 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cookDeviceMeta } from "@/lib/cook-devices";
+import { isGenericDevicePrepNotes } from "@/lib/cook-device-suggest";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
 import { localized } from "@/lib/localized-text";
 import { uiLocale } from "@/lib/i18n";
@@ -40,9 +41,9 @@ const ui = {
     zh: "影片可能是廣東話 — 請先看材料與準備說明。",
   },
   deviceHowTo: {
-    en: "How to cook this dish",
-    fil: "Paano lutuin ang dish na ito",
-    zh: "這道菜怎麼煮",
+    en: "Cook step on this device",
+    fil: "Cook step sa device na ito",
+    zh: "用此家電的煮食步驟",
   },
   deviceBasics: {
     en: "Device basics (same for all dishes on this machine)",
@@ -53,6 +54,11 @@ const ui = {
   temp: { en: "Temp", fil: "Temp", zh: "溫度" },
   time: { en: "Time", fil: "Oras", zh: "時間" },
   minutesUnit: { en: "min", fil: "min", zh: "分鐘" },
+  followPrepFirst: {
+    en: "Follow prep notes for wash / cut / blanch. Device tip is only for the cook step.",
+    fil: "Sundin muna ang prep notes (hugas / hiwa / blanch). Device tip = cook step lang.",
+    zh: "洗／切／飛水請跟準備說明。家電提示只代替「煮／炆／炸」那一步。",
+  },
   deviceBanner: {
     en: "Dishes may be marked Cook with EPC17 or Cook with Easy Fry — follow the how-to on the card (panel map in Tools).",
     fil: "May dish na naka-mark Cook with EPC17 o Cook with Easy Fry — sundin ang how-to sa card (panel map sa Tools).",
@@ -169,12 +175,17 @@ function DishCard({
   const [basicsOpen, setBasicsOpen] = useState(false);
   const subtitle = getRecipeSubtitle(recipe, lang);
   const ings = recipe.ingredients ?? [];
-  const prep = localized(recipe.prepNotes, lang);
+  const prepRaw = localized(recipe.prepNotes, lang);
   const device = cookDeviceMeta(recipe.cookDevice);
   const settings = recipe.cookSettings;
   const dishSteps = settings ? localized(settings.steps, lang) : null;
-  // When per-dish settings exist, prepNotes duplicates them — hide the gray box.
-  const showPrepBox = Boolean(prep) && !settings;
+  const prepIsGeneric = isGenericDevicePrepNotes(
+    recipe.prepNotes,
+    recipe.cookDevice
+  );
+  const prep = prepIsGeneric ? "" : prepRaw;
+  // Dish prep notes are primary. Device tip is only the cook-phase helper.
+  const showPrepBox = Boolean(prep);
 
   return (
     <article className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-stone-100">
@@ -199,6 +210,17 @@ function DishCard({
       </p>
       {subtitle && <p className="mt-0.5 text-sm text-stone-500">{subtitle}</p>}
 
+      {showPrepBox && (
+        <div className="mt-3 rounded-xl bg-stone-50 p-3 ring-1 ring-stone-100">
+          <p className="text-xs font-bold uppercase tracking-wide text-stone-600">
+            {ui.prepNotes[lang]}
+          </p>
+          <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-stone-800">
+            {prep}
+          </p>
+        </div>
+      )}
+
       {device && (
         <div className="mt-3 rounded-xl bg-teal-50/80 p-3 ring-1 ring-teal-100">
           <p className="text-xs font-bold uppercase tracking-wide text-teal-900">
@@ -207,6 +229,11 @@ function DishCard({
           <p className="mt-1 text-[11px] font-medium text-teal-800">
             {localized(device.shortName, lang)}
           </p>
+          {showPrepBox && (
+            <p className="mt-1 text-[11px] leading-snug text-teal-900/80">
+              {ui.followPrepFirst[lang]}
+            </p>
+          )}
 
           {settings ? (
             <>
@@ -223,17 +250,22 @@ function DishCard({
                   {ui.time[lang]}: {settings.minutes} {ui.minutesUnit[lang]}
                 </span>
               </div>
-              <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-teal-950">
-                {dishSteps}
-              </p>
+              {(!showPrepBox ||
+                /Device cook step only|僅代替|Cook step lang sa device/i.test(
+                  `${settings.steps.en}\n${settings.steps.zh || ""}`
+                )) && (
+                <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-teal-950">
+                  {dishSteps}
+                </p>
+              )}
             </>
-          ) : prep ? (
+          ) : !showPrepBox && prepRaw ? (
             <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-teal-950">
-              {prep}
+              {prepRaw}
             </p>
-          ) : (
+          ) : !showPrepBox ? (
             <p className="mt-1 text-xs text-teal-800">{ui.noPrep[lang]}</p>
-          )}
+          ) : null}
 
           <button
             type="button"
@@ -274,29 +306,12 @@ function DishCard({
         </div>
       )}
 
-      {showPrepBox && (
+      {!device && !showPrepBox && (
         <div className="mt-3 rounded-xl bg-stone-50 p-3 ring-1 ring-stone-100">
           <p className="text-xs font-bold uppercase tracking-wide text-stone-600">
             {ui.prepNotes[lang]}
           </p>
-          <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-stone-800">
-            {prep}
-          </p>
-        </div>
-      )}
-
-      {!device && (
-        <div className="mt-3 rounded-xl bg-stone-50 p-3 ring-1 ring-stone-100">
-          <p className="text-xs font-bold uppercase tracking-wide text-stone-600">
-            {ui.prepNotes[lang]}
-          </p>
-          {prep ? (
-            <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-stone-800">
-              {prep}
-            </p>
-          ) : (
-            <p className="mt-1 text-xs text-stone-500">{ui.noPrep[lang]}</p>
-          )}
+          <p className="mt-1 text-xs text-stone-500">{ui.noPrep[lang]}</p>
         </div>
       )}
 

@@ -203,13 +203,18 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
         <button
           type="button"
           onClick={() => {
-            const { recipes: next, tagged } = autoTagCookDevices(recipes);
+            const { recipes: next, tagged, clearedGenericPrep } =
+              autoTagCookDevices(recipes);
             setRecipes(next);
-            setMessage(
-              tagged > 0
-                ? `${adminT("autoTagDone", lang)} (${tagged})`
-                : adminT("autoTagNone", lang)
-            );
+            if (tagged > 0 || clearedGenericPrep > 0) {
+              setMessage(
+                `${adminT("autoTagDone", lang)} (${tagged} tagged${
+                  clearedGenericPrep ? `, ${clearedGenericPrep} cleared` : ""
+                })`
+              );
+            } else {
+              setMessage(adminT("autoTagNone", lang));
+            }
           }}
           className="rounded-xl bg-amber-50 px-4 py-2 text-sm font-medium text-amber-950 ring-1 ring-amber-200"
         >
@@ -306,19 +311,56 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                   : null;
                 if (!suggestion) {
                   return editing.cookDevice ? (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setEditing(
-                          applyCookDevice(editing, editing.cookDevice!, {
-                            forcePrep: true,
-                          })
-                        )
-                      }
-                      className="w-full rounded-lg bg-teal-50 py-1.5 text-[11px] font-medium text-teal-900 ring-1 ring-teal-100"
-                    >
-                      {adminT("refillDevicePrep", lang)}
-                    </button>
+                    <div className="space-y-1.5">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setEditing(
+                            applyCookDevice(editing, editing.cookDevice!, {
+                              forceSettings: true,
+                            })
+                          )
+                        }
+                        className="w-full rounded-lg bg-teal-50 py-1.5 text-[11px] font-medium text-teal-900 ring-1 ring-teal-100"
+                      >
+                        {adminT("refillDevicePrep", lang)}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          if (!editing.cookDevice) return;
+                          setMessage(adminT("adaptingCookStep", lang));
+                          const res = await fetch("/api/admin/adapt-prep-device", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                              cookDevice: editing.cookDevice,
+                              prepNotes: editing.prepNotes,
+                              dishName:
+                                editing.name || editing.nameEn || editing.nameFil,
+                              category: editing.category,
+                            }),
+                          });
+                          const data = await res.json().catch(() => ({}));
+                          if (!res.ok) {
+                            setMessage(data.error || adminT("saveFailed", lang));
+                            return;
+                          }
+                          setEditing({
+                            ...editing,
+                            prepNotes: {
+                              en: data.prepNotes?.en || "",
+                              fil: data.prepNotes?.fil || "",
+                              zh: data.prepNotes?.zh || "",
+                            },
+                          });
+                          setMessage(adminT("adaptCookStepDone", lang));
+                        }}
+                        className="w-full rounded-lg bg-sky-50 py-2 text-[11px] font-medium text-sky-900 ring-1 ring-sky-100"
+                      >
+                        {adminT("adaptCookStep", lang)}
+                      </button>
+                    </div>
                   ) : null;
                 }
                 return (

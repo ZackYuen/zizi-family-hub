@@ -328,19 +328,34 @@ export const adminLabels = {
     zh: "無（爐灶／其他）",
   },
   cookDeviceHint: {
-    en: "Tags the Meals card + links Tools panel. Soup → usually EPC17; 氣炸 / air-fry → Easy Fry (not stir-fry).",
-    fil: "Nagta-tag sa Meals card + Tools panel. Soup → EPC17; 氣炸 / air-fry → Easy Fry (hindi stir-fry).",
-    zh: "會標在膳食卡片並連到家電面板。湯類多用 EPC17；氣炸／air-fry 用 Easy Fry（炒菜不算）。",
+    en: "Badge + Tools link only. Never replaces dish prep. Use “Adapt cook step” to change simmer/fry time only.",
+    fil: "Badge + Tools link lang. Hindi pinapalitan ang dish prep. Gamitin ang “Adapt cook step” para sa simmer/fry lang.",
+    zh: "只加標籤並連到家電。不會覆蓋菜式準備說明。要用家電改炆／炸時間，請按「只改煮食步驟」。",
   },
   applySuggestedDevice: {
-    en: "Apply suggested device + starter prep",
-    fil: "I-apply ang suggested device + starter prep",
-    zh: "套用建議家電＋預設準備步驟",
+    en: "Apply suggested device (badge only — keeps prep notes)",
+    fil: "I-apply ang suggested device (badge lang — hindi binabago ang prep)",
+    zh: "套用建議家電（只加標籤 — 不改準備說明）",
   },
   refillDevicePrep: {
-    en: "Refill starter prep for this device",
-    fil: "I-refill ang starter prep para sa device na ito",
-    zh: "重填此家電的預設準備步驟",
+    en: "Refresh device cook-step tip only",
+    fil: "I-refresh ang device cook-step tip lang",
+    zh: "只更新家電「煮食步驟」提示",
+  },
+  adaptCookStep: {
+    en: "Adapt cook step for device (keep wash/cut)",
+    fil: "I-adapt ang cook step para sa device (panatilihin ang hugas/hiwa)",
+    zh: "只改煮食步驟以配合家電（保留洗切飛水）",
+  },
+  adaptingCookStep: {
+    en: "Adapting cook step…",
+    fil: "Ina-adapt ang cook step…",
+    zh: "正在改寫煮食步驟…",
+  },
+  adaptCookStepDone: {
+    en: "Cook step adapted — review prep notes, then Save Meals.",
+    fil: "Na-adapt ang cook step — i-check ang prep notes, tapos Save Meals.",
+    zh: "已改寫煮食步驟 — 請檢查準備說明，然後儲存膳食。",
   },
   autoTagDevices: {
     en: "Auto-tag: Soup→EPC17, 氣炸→Easy Fry",
@@ -348,9 +363,9 @@ export const adminLabels = {
     zh: "一鍵標記：湯→EPC17，氣炸→Easy Fry",
   },
   autoTagDone: {
-    en: "Tagged dishes with starter prep. Review, then Save Meals.",
-    fil: "Na-tag ang dishes + starter prep. I-check, tapos Save Meals.",
-    zh: "已標記菜式並填入預設準備步驟。請檢查後儲存膳食。",
+    en: "Tagged devices (prep notes kept). Cleared generic device dumps if found. Save Meals.",
+    fil: "Na-tag ang devices (prep notes pinanatili). Cleared generic dumps kung meron. Save Meals.",
+    zh: "已標記家電（保留準備說明）。若有誤蓋的通用步驟已清除。請儲存膳食。",
   },
   autoTagNone: {
     en: "Nothing new to tag (already set, or not soup / air-fry).",
