@@ -3538,7 +3538,7 @@
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / sweet potato etc.) + brush teeth",
             "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / sweet potato atbp.) + magsipilyo"
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / camote atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -3568,7 +3568,7 @@
             "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / udon atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
-          "endTime": "12:00",
+          "endTime": "10:45",
           "startTime": "10:15"
         },
         {
@@ -3578,9 +3578,9 @@
             "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
             "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
-          "time": "12:00",
-          "endTime": "13:00",
-          "startTime": "12:00"
+          "time": "10:45",
+          "endTime": "11:15",
+          "startTime": "10:45"
         },
         {
           "id": "sw5",
@@ -3589,9 +3589,9 @@
             "zh": "準備出門前往繪畫班（觀塘工業中心）",
             "fil": "Maghanda at umalis papuntang drawing class (Kwun Tong Industrial Centre)"
           },
-          "time": "13:00",
-          "endTime": "13:30",
-          "startTime": "13:00"
+          "time": "11:15",
+          "endTime": "11:30",
+          "startTime": "11:15"
         },
         {
           "id": "sw6",
@@ -3600,25 +3600,30 @@
             "zh": "前往／到達 One Point Studio",
             "fil": "Biyahe / dumating sa One Point Studio"
           },
-          "time": "13:30",
-          "endTime": "14:00",
-          "startTime": "13:30"
-        },
-        {
-          "id": "sw7",
-          "task": {
-            "en": "Drawing class (14:00–15:00)",
-            "zh": "繪畫班（14:00–15:00）",
-            "fil": "Drawing class (14:00–15:00)"
-          },
-          "time": "14:00",
+          "time": "11:30",
           "notes": {
             "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B",
             "zh": "One Point Studio · 觀塘工業中心一期12樓B室",
             "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B"
           },
-          "endTime": "15:00",
-          "startTime": "14:00"
+          "endTime": "12:00",
+          "startTime": "11:30"
+        },
+        {
+          "id": "sw7",
+          "task": {
+            "en": "Drawing class (12:00–13:00)",
+            "zh": "繪畫班（12:00–13:00）",
+            "fil": "Drawing class (12:00–13:00)"
+          },
+          "time": "12:00",
+          "notes": {
+            "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B",
+            "zh": "One Point Studio · 觀塘工業中心一期12樓B室",
+            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B"
+          },
+          "endTime": "13:00",
+          "startTime": "12:00"
         },
         {
           "id": "sw8",
@@ -3627,9 +3632,9 @@
             "zh": "繪畫班結束回家",
             "fil": "Umuwi mula sa drawing class"
           },
-          "time": "15:00",
-          "endTime": "15:30",
-          "startTime": "15:00"
+          "time": "13:00",
+          "endTime": "13:30",
+          "startTime": "13:00"
         },
         {
           "id": "sw9",
@@ -3638,9 +3643,9 @@
             "zh": "繪畫班後輕家務／按需要買菜（一田／瑞和街街市（不要錢大媽））",
             "fil": "Magaan na gawaing bahay pagkatapos ng drawing / bumili ng pagkain (YATA @ apm / Shui Wo Street wet market (huwag Qin Dama / Kai Bo)) kung kailangan"
           },
-          "time": "15:30",
+          "time": "13:30",
           "endTime": "16:30",
-          "startTime": "15:30"
+          "startTime": "13:30"
         },
         {
           "id": "sw12",
@@ -3961,7 +3966,7 @@
           "task": {
             "en": "ZiZi breakfast — simple (egg / pancake / siumai / sweet potato etc.) + brush teeth",
             "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
-            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / sweet potato atbp.) + magsipilyo"
+            "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / camote atbp.) + magsipilyo"
           },
           "time": "09:45",
           "endTime": "10:15",
@@ -3991,7 +3996,7 @@
             "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / udon atbp.) + laruin / bantayan (summer — walang kindergarten)"
           },
           "time": "10:15",
-          "endTime": "12:00",
+          "endTime": "10:45",
           "startTime": "10:15"
         },
         {
@@ -4001,9 +4006,9 @@
             "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
             "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
           },
-          "time": "12:00",
-          "endTime": "13:00",
-          "startTime": "12:00"
+          "time": "10:45",
+          "endTime": "11:15",
+          "startTime": "10:45"
         },
         {
           "id": "sf5",
@@ -4012,9 +4017,9 @@
             "zh": "準備出門前往繪畫班（觀塘工業中心）",
             "fil": "Maghanda at umalis papuntang drawing class (Kwun Tong Industrial Centre)"
           },
-          "time": "13:00",
-          "endTime": "13:30",
-          "startTime": "13:00"
+          "time": "11:15",
+          "endTime": "11:30",
+          "startTime": "11:15"
         },
         {
           "id": "sf6",
@@ -4023,25 +4028,30 @@
             "zh": "前往／到達 One Point Studio",
             "fil": "Biyahe / dumating sa One Point Studio"
           },
-          "time": "13:30",
-          "endTime": "14:00",
-          "startTime": "13:30"
-        },
-        {
-          "id": "sf7",
-          "task": {
-            "en": "Drawing class (14:00–15:00)",
-            "zh": "繪畫班（14:00–15:00）",
-            "fil": "Drawing class (14:00–15:00)"
-          },
-          "time": "14:00",
+          "time": "11:30",
           "notes": {
             "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B",
             "zh": "One Point Studio · 觀塘工業中心一期12樓B室",
             "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B"
           },
-          "endTime": "15:00",
-          "startTime": "14:00"
+          "endTime": "12:00",
+          "startTime": "11:30"
+        },
+        {
+          "id": "sf7",
+          "task": {
+            "en": "Drawing class (12:00–13:00)",
+            "zh": "繪畫班（12:00–13:00）",
+            "fil": "Drawing class (12:00–13:00)"
+          },
+          "time": "12:00",
+          "notes": {
+            "en": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B",
+            "zh": "One Point Studio · 觀塘工業中心一期12樓B室",
+            "fil": "One Point Studio · Kwun Tong Industrial Centre Phase 1, 12/F Room B"
+          },
+          "endTime": "13:00",
+          "startTime": "12:00"
         },
         {
           "id": "sf8",
@@ -4050,9 +4060,9 @@
             "zh": "繪畫班結束回家",
             "fil": "Umuwi mula sa drawing class"
           },
-          "time": "15:00",
-          "endTime": "15:30",
-          "startTime": "15:00"
+          "time": "13:00",
+          "endTime": "13:30",
+          "startTime": "13:00"
         },
         {
           "id": "sf9",
@@ -4061,9 +4071,9 @@
             "zh": "繪畫班後吸塵／整理睡房與廁所",
             "fil": "Vacuum / ayusin ang kwarto at toilet pagkatapos ng drawing"
           },
-          "time": "15:30",
+          "time": "13:30",
           "endTime": "16:30",
-          "startTime": "15:30"
+          "startTime": "13:30"
         },
         {
           "id": "sf12",
