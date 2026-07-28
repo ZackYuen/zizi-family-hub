@@ -288,15 +288,29 @@ export const adminLabels = {
     zh: "簡短步驟，即使聽不懂廣東話也能跟。",
   },
   fetchYoutubeTitle: {
-    en: "Fetch YouTube title → fill Chinese/EN name",
-    fil: "Kunin ang YouTube title → Chinese/EN name",
-    zh: "擷取 YouTube 標題 → 填入中／英名稱",
+    en: "Fetch YouTube → names + prep notes + ingredients",
+    fil: "Kunin mula sa YouTube → names + prep notes + ingredients",
+    zh: "從 YouTube 擷取 → 名稱＋準備說明＋材料",
   },
-  fetchingTitle: { en: "Fetching title…", fil: "Kinukuha ang title…", zh: "擷取標題中…" },
+  fetchingTitle: {
+    en: "Fetching YouTube (title, prep, ingredients)… may take ~20s",
+    fil: "Kinukuha ang YouTube (title, prep, ingredients)… ~20s",
+    zh: "擷取 YouTube（標題、準備、材料）中…約 20 秒",
+  },
   titleFetched: {
-    en: "Title fetched — translate to FIL if needed, then add prep notes.",
-    fil: "Nakuha ang title — isalin sa FIL kung kailangan, tapos magdagdag ng prep notes.",
-    zh: "已取得標題 — 可翻譯成 FIL，並加上準備說明。",
+    en: "YouTube fetched — review prep notes & ingredients, then Save Meals.",
+    fil: "Nakuha mula sa YouTube — i-check ang prep notes & ingredients, tapos Save Meals.",
+    zh: "已從 YouTube 擷取 — 請檢查準備說明與材料，然後儲存膳食。",
+  },
+  youtubeFetchPartial: {
+    en: "Title only — enrichment failed. Check OpenRouter key, or fill prep/ingredients manually.",
+    fil: "Title lang — hindi complete ang enrichment. Tingnan ang OpenRouter key, o manual na magdagdag.",
+    zh: "只取得標題 — 強化失敗。請檢查 OpenRouter，或手動填準備／材料。",
+  },
+  youtubeReplaceConfirm: {
+    en: "Replace existing prep notes and/or ingredients with YouTube fetch?",
+    fil: "Palitan ang existing prep notes at/o ingredients ng YouTube fetch?",
+    zh: "要用 YouTube 擷取內容取代現有準備說明／材料嗎？",
   },
 } as const;
 

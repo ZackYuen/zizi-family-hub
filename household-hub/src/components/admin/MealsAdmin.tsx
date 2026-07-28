@@ -337,11 +337,27 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 type="button"
                 onClick={async () => {
                   if (!editing.link) return;
+                  const hasPrep = Boolean(
+                    editing.prepNotes?.en?.trim() ||
+                      editing.prepNotes?.fil?.trim() ||
+                      editing.prepNotes?.zh?.trim()
+                  );
+                  const hasIng = Boolean(editing.ingredients?.length);
+                  let replaceExtras = true;
+                  if (hasPrep || hasIng) {
+                    replaceExtras = window.confirm(
+                      adminT("youtubeReplaceConfirm", lang)
+                    );
+                  }
                   setMessage(adminT("fetchingTitle", lang));
                   const res = await fetch("/api/admin/youtube-title", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ url: editing.link }),
+                    body: JSON.stringify({
+                      url: editing.link,
+                      enrich: true,
+                      category: editing.category,
+                    }),
                   });
                   const data = await res.json().catch(() => ({}));
                   if (!res.ok) {
@@ -349,12 +365,41 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                     return;
                   }
                   const title = (data.title as string) || "";
-                  setEditing({
+                  const next = {
                     ...editing,
-                    name: editing.name || title,
-                    nameEn: editing.nameEn || title,
-                  });
-                  setMessage(adminT("titleFetched", lang));
+                    name: editing.name || (data.nameZh as string) || title,
+                    nameEn: editing.nameEn || (data.nameEn as string) || title,
+                    nameFil:
+                      editing.nameFil ||
+                      (data.nameFil as string) ||
+                      editing.nameFil,
+                  };
+                  if (replaceExtras) {
+                    if (data.prepNotes) {
+                      next.prepNotes = {
+                        en: (data.prepNotes.en as string) || "",
+                        fil: (data.prepNotes.fil as string) || "",
+                        zh: (data.prepNotes.zh as string) || "",
+                      };
+                    }
+                    if (Array.isArray(data.ingredients) && data.ingredients.length) {
+                      next.ingredients = data.ingredients;
+                    }
+                  }
+                  setEditing(next);
+                  if (data.warning || data.used?.llm === false) {
+                    setMessage(adminT("youtubeFetchPartial", lang));
+                  } else {
+                    const bits: string[] = [];
+                    if (data.used?.captions) bits.push("captions");
+                    if (data.used?.description) bits.push("description");
+                    if (data.used?.web) bits.push("web");
+                    setMessage(
+                      `${adminT("titleFetched", lang)}${
+                        bits.length ? ` (${bits.join(" + ")})` : ""
+                      }`
+                    );
+                  }
                 }}
                 className="w-full rounded-lg bg-sky-50 py-2 text-xs font-medium text-sky-800 ring-1 ring-sky-100"
               >
