@@ -43,10 +43,19 @@ const ui = {
     zh: "影片可能是廣東話 — 請先看材料與準備說明。",
   },
   deviceHowTo: {
-    en: "How to cook with this device",
-    fil: "Paano lutuin sa device na ito",
-    zh: "用此家電怎麼煮",
+    en: "How to cook this dish",
+    fil: "Paano lutuin ang dish na ito",
+    zh: "這道菜怎麼煮",
   },
+  deviceBasics: {
+    en: "Device basics (same for all dishes on this machine)",
+    fil: "Device basics (pareho sa lahat ng dish sa machine na ito)",
+    zh: "機具基本（此機所有菜相同）",
+  },
+  mode: { en: "Mode", fil: "Mode", zh: "模式" },
+  temp: { en: "Temp", fil: "Temp", zh: "溫度" },
+  time: { en: "Time", fil: "Oras", zh: "時間" },
+  minutesUnit: { en: "min", fil: "min", zh: "分鐘" },
   deviceBanner: {
     en: "Dishes may be marked Cook with EPC17 or Cook with Easy Fry — follow the how-to on the card (panel map in Tools).",
     fil: "May dish na naka-mark Cook with EPC17 o Cook with Easy Fry — sundin ang how-to sa card (panel map sa Tools).",
@@ -140,10 +149,15 @@ function DishCard({
   defaultOpen?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const [basicsOpen, setBasicsOpen] = useState(false);
   const subtitle = getRecipeSubtitle(recipe, lang);
   const ings = recipe.ingredients ?? [];
   const prep = localized(recipe.prepNotes, lang);
   const device = cookDeviceMeta(recipe.cookDevice);
+  const settings = recipe.cookSettings;
+  const dishSteps = settings ? localized(settings.steps, lang) : null;
+  // When per-dish settings exist, prepNotes duplicates them — hide the gray box.
+  const showPrepBox = Boolean(prep) && !settings;
 
   return (
     <article className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-stone-100">
@@ -176,9 +190,46 @@ function DishCard({
           <p className="mt-1 text-[11px] font-medium text-teal-800">
             {localized(device.shortName, lang)}
           </p>
-          <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-teal-950">
-            {localized(device.howTo, lang)}
-          </p>
+
+          {settings ? (
+            <>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                <span className="rounded-lg bg-white px-2 py-1 text-[11px] font-semibold text-teal-900 ring-1 ring-teal-200">
+                  {ui.mode[lang]}: {localized(settings.mode, lang)}
+                </span>
+                {settings.tempC && (
+                  <span className="rounded-lg bg-white px-2 py-1 text-[11px] font-semibold text-teal-900 ring-1 ring-teal-200">
+                    {ui.temp[lang]}: {settings.tempC}°C
+                  </span>
+                )}
+                <span className="rounded-lg bg-white px-2 py-1 text-[11px] font-semibold text-teal-900 ring-1 ring-teal-200">
+                  {ui.time[lang]}: {settings.minutes} {ui.minutesUnit[lang]}
+                </span>
+              </div>
+              <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-teal-950">
+                {dishSteps}
+              </p>
+            </>
+          ) : prep ? (
+            <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-teal-950">
+              {prep}
+            </p>
+          ) : (
+            <p className="mt-1 text-xs text-teal-800">{ui.noPrep[lang]}</p>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setBasicsOpen((v) => !v)}
+            className="mt-2 text-[11px] font-semibold text-teal-800 underline-offset-2 hover:underline"
+          >
+            {ui.deviceBasics[lang]} {basicsOpen ? "▾" : "▸"}
+          </button>
+          {basicsOpen && (
+            <p className="mt-1 whitespace-pre-line text-xs leading-relaxed text-teal-900/80">
+              {localized(device.howTo, lang)}
+            </p>
+          )}
         </div>
       )}
 
@@ -206,18 +257,31 @@ function DishCard({
         </div>
       )}
 
-      <div className="mt-3 rounded-xl bg-stone-50 p-3 ring-1 ring-stone-100">
-        <p className="text-xs font-bold uppercase tracking-wide text-stone-600">
-          {ui.prepNotes[lang]}
-        </p>
-        {prep ? (
+      {showPrepBox && (
+        <div className="mt-3 rounded-xl bg-stone-50 p-3 ring-1 ring-stone-100">
+          <p className="text-xs font-bold uppercase tracking-wide text-stone-600">
+            {ui.prepNotes[lang]}
+          </p>
           <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-stone-800">
             {prep}
           </p>
-        ) : (
-          <p className="mt-1 text-xs text-stone-500">{ui.noPrep[lang]}</p>
-        )}
-      </div>
+        </div>
+      )}
+
+      {!device && (
+        <div className="mt-3 rounded-xl bg-stone-50 p-3 ring-1 ring-stone-100">
+          <p className="text-xs font-bold uppercase tracking-wide text-stone-600">
+            {ui.prepNotes[lang]}
+          </p>
+          {prep ? (
+            <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-stone-800">
+              {prep}
+            </p>
+          ) : (
+            <p className="mt-1 text-xs text-stone-500">{ui.noPrep[lang]}</p>
+          )}
+        </div>
+      )}
 
       <a
         href={recipe.link}

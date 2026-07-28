@@ -603,11 +603,25 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Light oil on enoki. Air Fry ~160–180°C, 8–12 min; shake halfway. Don’t overcrowd. Soft for Zizi — cut shorter if needed.",
-        "fil": "Easy Fry XXL: Light oil sa enoki. Air Fry ~160–180°C, 8–12 min; iling sa gitna. Huwag siksikin. Soft para kay Zizi.",
-        "zh": "Easy Fry XXL：金針菇薄油。氣炸約 160–180°C、8–12 分鐘；中途搖動。不要過滿。可切短給 Zizi。"
+        "en": "Air Fry 160–170°C, 8–12 min.\n1) Trim enoki; light oil only.\n2) Single layer — don’t overcrowd.\n3) Air Fry 160–170°C, 8–12 min; shake halfway.\n4) Soft for Zizi — cut shorter if needed.",
+        "fil": "Air Fry 160–170°C, 8–12 min.\n1) Putulin ang enoki; light oil lang.\n2) Isang layer — huwag siksikin.\n3) Air Fry 160–170°C, 8–12 min; iling sa gitna.\n4) Soft para kay Zizi — putulin kung kailangan.",
+        "zh": "氣炸 Air Fry 160–170°C，8–12 分鐘。\n1) 金針菇去根，薄油。\n2) 單層，不要過滿。\n3) 氣炸 160–170°C、8–12 分鐘；中途搖動。\n4) 給 Zizi 可切短。"
       },
-      "cookDevice": "app-tefal-easy-fry-xxl"
+      "cookDevice": "app-tefal-easy-fry-xxl",
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "160–170",
+        "minutes": "8–12",
+        "steps": {
+          "en": "1) Trim enoki; light oil only.\n2) Single layer — don’t overcrowd.\n3) Air Fry 160–170°C, 8–12 min; shake halfway.\n4) Soft for Zizi — cut shorter if needed.",
+          "fil": "1) Putulin ang enoki; light oil lang.\n2) Isang layer — huwag siksikin.\n3) Air Fry 160–170°C, 8–12 min; iling sa gitna.\n4) Soft para kay Zizi — putulin kung kailangan.",
+          "zh": "1) 金針菇去根，薄油。\n2) 單層，不要過滿。\n3) 氣炸 160–170°C、8–12 分鐘；中途搖動。\n4) 給 Zizi 可切短。"
+        }
+      }
     },
     {
       "id": "d-52",
@@ -2541,11 +2555,25 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Slice zucchini, light oil + salt. Air Fry ~180°C, 10–15 min; turn halfway. Soft veg side for family.",
-        "fil": "Easy Fry XXL: Hiwain ang zucchini, light oil + asin. Air Fry ~180°C, 10–15 min; baliktarin sa gitna.",
-        "zh": "Easy Fry XXL：翠玉瓜切片，薄油＋鹽。約 180°C、10–15 分鐘；中途翻面。"
+        "en": "Air Fry 180–200°C, 10–15 min.\n1) Slice zucchini even thickness; light oil + salt.\n2) Spread in basket.\n3) Air Fry 180–200°C, 10–15 min; turn halfway.\n4) Soft veg side for family.",
+        "fil": "Air Fry 180–200°C, 10–15 min.\n1) Hiwain ang zucchini nang pantay; light oil + asin.\n2) Ikalat sa basket.\n3) Air Fry 180–200°C, 10–15 min; baliktarin sa gitna.\n4) Soft gulay para sa pamilya.",
+        "zh": "氣炸 Air Fry 180–200°C，10–15 分鐘。\n1) 翠玉瓜切均勻薄片；薄油＋鹽。\n2) 鋪開在籃內。\n3) 氣炸 180–200°C、10–15 分鐘；中途翻面。\n4) 軟熟作配菜。"
       },
-      "cookDevice": "app-tefal-easy-fry-xxl"
+      "cookDevice": "app-tefal-easy-fry-xxl",
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "180–200",
+        "minutes": "10–15",
+        "steps": {
+          "en": "1) Slice zucchini even thickness; light oil + salt.\n2) Spread in basket.\n3) Air Fry 180–200°C, 10–15 min; turn halfway.\n4) Soft veg side for family.",
+          "fil": "1) Hiwain ang zucchini nang pantay; light oil + asin.\n2) Ikalat sa basket.\n3) Air Fry 180–200°C, 10–15 min; baliktarin sa gitna.\n4) Soft gulay para sa pamilya.",
+          "zh": "1) 翠玉瓜切均勻薄片；薄油＋鹽。\n2) 鋪開在籃內。\n3) 氣炸 180–200°C、10–15 分鐘；中途翻面。\n4) 軟熟作配菜。"
+        }
+      }
     },
     {
       "id": "d-150",
@@ -3523,11 +3551,25 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Marinate pork (lemongrass). Optional preheat 180°C. Air Fry ~180–190°C, 12–18 min; flip halfway. Cut small for Zizi. Check doneness.",
-        "fil": "Easy Fry XXL: Marinate pork (lemongrass). Optional preheat 180°C. Air Fry ~180–190°C, 12–18 min; baliktarin sa gitna. Cut maliit para kay Zizi.",
-        "zh": "Easy Fry XXL：香茅醃豬扒。可預熱 180°C。約 180–190°C、12–18 分鐘；中途翻面。切小塊給 Zizi。確認熟透。"
+        "en": "Air Fry 190–200°C, 12–16 min.\n1) Marinate pork with lemongrass.\n2) Optional preheat Air Fry 190°C.\n3) Air Fry 190–200°C, 12–16 min; flip halfway (Tefal chop guide ~200°C).\n4) Cut small for Zizi; check fully cooked.",
+        "fil": "Air Fry 190–200°C, 12–16 min.\n1) Marinate ang pork sa lemongrass.\n2) Optional preheat Air Fry 190°C.\n3) Air Fry 190–200°C, 12–16 min; baliktarin sa gitna.\n4) Cut maliit para kay Zizi; tiyaking luto.",
+        "zh": "氣炸 Air Fry 190–200°C，12–16 分鐘。\n1) 香茅醃豬扒。\n2) 可預熱氣炸 190°C。\n3) 190–200°C、12–16 分鐘；中途翻面（Tefal 豬扒約 200°C）。\n4) 切小塊給 Zizi；確認熟透。"
       },
-      "cookDevice": "app-tefal-easy-fry-xxl"
+      "cookDevice": "app-tefal-easy-fry-xxl",
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "190–200",
+        "minutes": "12–16",
+        "steps": {
+          "en": "1) Marinate pork with lemongrass.\n2) Optional preheat Air Fry 190°C.\n3) Air Fry 190–200°C, 12–16 min; flip halfway (Tefal chop guide ~200°C).\n4) Cut small for Zizi; check fully cooked.",
+          "fil": "1) Marinate ang pork sa lemongrass.\n2) Optional preheat Air Fry 190°C.\n3) Air Fry 190–200°C, 12–16 min; baliktarin sa gitna.\n4) Cut maliit para kay Zizi; tiyaking luto.",
+          "zh": "1) 香茅醃豬扒。\n2) 可預熱氣炸 190°C。\n3) 190–200°C、12–16 分鐘；中途翻面（Tefal 豬扒約 200°C）。\n4) 切小塊給 Zizi；確認熟透。"
+        }
+      }
     },
     {
       "id": "d-560",
@@ -3565,11 +3607,25 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Pat fish dry; light oil. Air Fry ~180°C, 8–14 min depending on thickness; flip once. Bones out for Zizi. Ask Sir/Mum if unsure of time.",
-        "fil": "Easy Fry XXL: Patuyuin ang isda; light oil. Air Fry ~180°C, 8–14 min; baliktarin minsan. Alisin buto para kay Zizi.",
-        "zh": "Easy Fry XXL：魚塊抹乾薄油。約 180°C、8–14 分鐘（視厚薄）；翻一次。給 Zizi 去骨。時間不肯定問 Sir/Mum。"
+        "en": "Air Fry 160–180°C, 8–14 min.\n1) Pat fish/seafood dry; light oil.\n2) Single layer in basket.\n3) Air Fry 160–180°C, 8–14 min by thickness (shrimp often ~170°C, shorter); flip once.\n4) Bones out for Zizi. Ask Sir/Mum if unsure.",
+        "fil": "Air Fry 160–180°C, 8–14 min.\n1) Patuyuin ang isda/seafood; light oil.\n2) Isang layer sa basket.\n3) Air Fry 160–180°C, 8–14 min ayon sa kapal (hipon ~170°C, mas maikli); baliktarin minsan.\n4) Alisin buto para kay Zizi.",
+        "zh": "氣炸 Air Fry 160–180°C，8–14 分鐘。\n1) 魚／海鮮抹乾薄油。\n2) 單層。\n3) 氣炸 160–180°C、8–14 分鐘視厚薄（蝦約 170°C、時間較短）；翻一次。\n4) 給 Zizi 去骨。不肯定問 Sir/Mum。"
       },
-      "cookDevice": "app-tefal-easy-fry-xxl"
+      "cookDevice": "app-tefal-easy-fry-xxl",
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "160–180",
+        "minutes": "8–14",
+        "steps": {
+          "en": "1) Pat fish/seafood dry; light oil.\n2) Single layer in basket.\n3) Air Fry 160–180°C, 8–14 min by thickness (shrimp often ~170°C, shorter); flip once.\n4) Bones out for Zizi. Ask Sir/Mum if unsure.",
+          "fil": "1) Patuyuin ang isda/seafood; light oil.\n2) Isang layer sa basket.\n3) Air Fry 160–180°C, 8–14 min ayon sa kapal (hipon ~170°C, mas maikli); baliktarin minsan.\n4) Alisin buto para kay Zizi.",
+          "zh": "1) 魚／海鮮抹乾薄油。\n2) 單層。\n3) 氣炸 160–180°C、8–14 分鐘視厚薄（蝦約 170°C、時間較短）；翻一次。\n4) 給 Zizi 去骨。不肯定問 Sir/Mum。"
+        }
+      }
     },
     {
       "id": "d-590",
@@ -4182,11 +4238,25 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Breaded chop; light spray oil. Air Fry ~180–190°C, 12–16 min; flip halfway for crisp. Cut for Zizi. Don’t pour oil.",
-        "fil": "Easy Fry XXL: Breaded chop; light spray oil. Air Fry ~180–190°C, 12–16 min; baliktarin sa gitna. Cut para kay Zizi.",
-        "zh": "Easy Fry XXL：吉列豬扒薄噴油。約 180–190°C、12–16 分鐘；中途翻面更脆。切給 Zizi。不要倒油。"
+        "en": "Air Fry 190–200°C, 12–16 min.\n1) Breaded chop — light spray oil only (no oil pool).\n2) Air Fry 190–200°C, 12–16 min; flip halfway for crisp.\n3) Cut for Zizi; check cooked through.",
+        "fil": "Air Fry 190–200°C, 12–16 min.\n1) Breaded chop — light spray oil lang.\n2) Air Fry 190–200°C, 12–16 min; baliktarin sa gitna.\n3) Cut para kay Zizi; tiyaking luto.",
+        "zh": "氣炸 Air Fry 190–200°C，12–16 分鐘。\n1) 吉列豬扒 — 薄噴油即可。\n2) 氣炸 190–200°C、12–16 分鐘；中途翻面更脆。\n3) 切給 Zizi；確認熟透。"
       },
-      "cookDevice": "app-tefal-easy-fry-xxl"
+      "cookDevice": "app-tefal-easy-fry-xxl",
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "190–200",
+        "minutes": "12–16",
+        "steps": {
+          "en": "1) Breaded chop — light spray oil only (no oil pool).\n2) Air Fry 190–200°C, 12–16 min; flip halfway for crisp.\n3) Cut for Zizi; check cooked through.",
+          "fil": "1) Breaded chop — light spray oil lang.\n2) Air Fry 190–200°C, 12–16 min; baliktarin sa gitna.\n3) Cut para kay Zizi; tiyaking luto.",
+          "zh": "1) 吉列豬扒 — 薄噴油即可。\n2) 氣炸 190–200°C、12–16 分鐘；中途翻面更脆。\n3) 切給 Zizi；確認熟透。"
+        }
+      }
     },
     {
       "id": "d-800",
@@ -5799,9 +5869,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: 1) Blanch ribs 3–5 min, rinse. 2) Bowl in → ribs + corn + carrot + ginger (+ dates) + water (under MAX). 3) Valve down, lock. 4) Pressure cook HI-P ~30–35 min. 5) Natural release ≥5 min, then open safely. 6) Salt to taste. Soft meat+veg soup for Zizi.",
-        "fil": "EPC17: 1) Blanch ribs 3–5 min, banlawan. 2) Bowl → ribs + corn + carrot + ginger (+ dates) + tubig (under MAX). 3) Valve down, lock. 4) Pressure HI-P ~30–35 min. 5) Natural release ≥5 min, tapos buksan nang safe. 6) Asin sa dulo. Soft soup para kay Zizi.",
-        "zh": "EPC17：1) 排骨飛水 3–5 分鐘沖淨。2) 內鍋放排骨＋玉米＋紅蘿蔔＋薑（可加紅棗）＋水（勿超 MAX）。3) 閥按下、鎖蓋。4) 高壓 HI-P 約 30–35 分鐘。5) 自然洩壓≥5 分鐘再開蓋。6) 最後加鹽。湯軟適合 Zizi。"
+        "en": "HI-P, 30–35 min.\n1) Blanch ribs 3–5 min; rinse.\n2) Bowl in → ribs + corn + carrot + ginger (+ dates) + water (under MAX, ≥250 ml).\n3) Valve down, lock → Pressure HI-P 30–35 min.\n4) Natural release ≥5 min, then open safely.\n5) Salt to taste. Soft soup for Zizi.",
+        "fil": "HI-P, 30–35 min.\n1) Blanch ribs 3–5 min; banlawan.\n2) Bowl → ribs + corn + carrot + ginger (+ dates) + tubig (under MAX, ≥250 ml).\n3) Valve down, lock → HI-P 30–35 min.\n4) Natural release ≥5 min, tapos buksan nang safe.\n5) Asin. Soft soup para kay Zizi.",
+        "zh": "高壓 HI-P，30–35 分鐘。\n1) 排骨汆水 3–5 分鐘；沖淨。\n2) 內鍋：排骨＋玉米＋胡蘿蔔＋薑（可加紅棗）＋水（勿超 MAX，≥250 ml）。\n3) 閥下壓鎖蓋 → 高壓 HI-P 30–35 分鐘。\n4) 自然洩壓 ≥5 分鐘再開蓋。\n5) 調味。給 Zizi 軟湯。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "HI-P",
+          "fil": "HI-P",
+          "zh": "高壓 HI-P"
+        },
+        "minutes": "30–35",
+        "steps": {
+          "en": "1) Blanch ribs 3–5 min; rinse.\n2) Bowl in → ribs + corn + carrot + ginger (+ dates) + water (under MAX, ≥250 ml).\n3) Valve down, lock → Pressure HI-P 30–35 min.\n4) Natural release ≥5 min, then open safely.\n5) Salt to taste. Soft soup for Zizi.",
+          "fil": "1) Blanch ribs 3–5 min; banlawan.\n2) Bowl → ribs + corn + carrot + ginger (+ dates) + tubig (under MAX, ≥250 ml).\n3) Valve down, lock → HI-P 30–35 min.\n4) Natural release ≥5 min, tapos buksan nang safe.\n5) Asin. Soft soup para kay Zizi.",
+          "zh": "1) 排骨汆水 3–5 分鐘；沖淨。\n2) 內鍋：排骨＋玉米＋胡蘿蔔＋薑（可加紅棗）＋水（勿超 MAX，≥250 ml）。\n3) 閥下壓鎖蓋 → 高壓 HI-P 30–35 分鐘。\n4) 自然洩壓 ≥5 分鐘再開蓋。\n5) 調味。給 Zizi 軟湯。"
+        }
       }
     },
     {
@@ -5853,9 +5936,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Blanch ribs → bowl + ribs + ginger + water → HI-P 20 min. Quick-release carefully OR natural 5 min. Add winter melon (+ goji) → Pressure LO-P or Steam 8–10 min until soft. Salt. Don’t overcook melon to mush if Zizi prefers cubes.",
-        "fil": "EPC17: Blanch ribs → bowl + ribs + ginger + tubig → HI-P 20 min. Release nang safe. Lagyan winter melon (+ goji) → LO-P/Steam 8–10 min hanggang malambot. Asin. Huwag sobrang luto kung gusto ni Zizi may cubes.",
-        "zh": "EPC17：排骨飛水 → 內鍋＋排骨＋薑＋水 → HI-P 20 分鐘。安全洩壓。加冬瓜（可加枸杞）→ LO-P／蒸 8–10 分鐘至軟。加鹽。若 Zizi 要有塊感勿煮太爛。"
+        "en": "HI-P then LO-P/Steam, 20 + 8–10 min.\n1) Blanch ribs → bowl + ribs + ginger + water → HI-P 20 min.\n2) Release safely (natural ~5 min or careful quick-release).\n3) Add winter melon (+ goji) → LO-P or Steam 8–10 min until soft.\n4) Salt. Don’t turn melon to mush if Zizi likes cubes.",
+        "fil": "HI-P then LO-P/Steam, 20 + 8–10 min.\n1) Blanch ribs → bowl + ribs + ginger + tubig → HI-P 20 min.\n2) Release nang safe.\n3) Lagyan winter melon (+ goji) → LO-P o Steam 8–10 min.\n4) Asin. Huwag sobrang luto kung gusto ni Zizi may cubes.",
+        "zh": "先高壓再低壓／蒸，20 + 8–10 分鐘。\n1) 排骨汆水 → 內鍋＋薑＋水 → HI-P 20 分鐘。\n2) 安全洩壓。\n3) 下冬瓜（可枸杞）→ LO-P 或蒸 8–10 分鐘至軟。\n4) 調味。若 Zizi 要塊狀勿煮溶。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "HI-P then LO-P/Steam",
+          "fil": "HI-P then LO-P/Steam",
+          "zh": "先高壓再低壓／蒸"
+        },
+        "minutes": "20 + 8–10",
+        "steps": {
+          "en": "1) Blanch ribs → bowl + ribs + ginger + water → HI-P 20 min.\n2) Release safely (natural ~5 min or careful quick-release).\n3) Add winter melon (+ goji) → LO-P or Steam 8–10 min until soft.\n4) Salt. Don’t turn melon to mush if Zizi likes cubes.",
+          "fil": "1) Blanch ribs → bowl + ribs + ginger + tubig → HI-P 20 min.\n2) Release nang safe.\n3) Lagyan winter melon (+ goji) → LO-P o Steam 8–10 min.\n4) Asin. Huwag sobrang luto kung gusto ni Zizi may cubes.",
+          "zh": "1) 排骨汆水 → 內鍋＋薑＋水 → HI-P 20 分鐘。\n2) 安全洩壓。\n3) 下冬瓜（可枸杞）→ LO-P 或蒸 8–10 分鐘至軟。\n4) 調味。若 Zizi 要塊狀勿煮溶。"
+        }
       }
     },
     {
@@ -5907,9 +6003,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Optional Brown mode (lid often open) — sear beef/onion. Add tomato, potato, seasonings + liquid under MAX. Lock → Pressure HI-P ~25–30 min. Natural release 10 min. Soft enough for Zizi; cut smaller if needed. Serve with rice (rice cooker).",
-        "fil": "EPC17: Optional Brown (madalas bukas ang lid) — sear beef/onion. Lagyan tomato, potato, seasonings + liquid under MAX. Lock → HI-P ~25–30 min. Natural release 10 min. Malambot para kay Zizi. Serve with rice.",
-        "zh": "EPC17：可用煎香模式（多數開蓋）略煎牛肉／洋蔥。加番茄、薯仔、調味＋液體（勿超 MAX）。鎖蓋 → HI-P 約 25–30 分鐘。自然洩壓 10 分鐘。軟嫩適合 Zizi；配飯煲白飯。"
+        "en": "Brown + HI-P, 25–30 min.\n1) Optional Brown (lid often open) — sear beef/onion.\n2) Add tomato, potato, seasonings + liquid under MAX.\n3) Lock → HI-P 25–30 min.\n4) Natural release ~10 min. Cut smaller for Zizi. Serve with rice.",
+        "fil": "Brown + HI-P, 25–30 min.\n1) Optional Brown (madalas bukas lid) — sear beef/onion.\n2) Lagyan tomato, potato, seasonings + liquid under MAX.\n3) Lock → HI-P 25–30 min.\n4) Natural release ~10 min. Cut maliit para kay Zizi. May rice.",
+        "zh": "炒香＋高壓，25–30 分鐘。\n1) 可先 Brown（常開蓋）炒牛肉／洋蔥。\n2) 下番茄、薯、調味＋液體（勿超 MAX）。\n3) 鎖蓋 → HI-P 25–30 分鐘。\n4) 自然洩壓約 10 分鐘。給 Zizi 切小；配飯。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Brown + HI-P",
+          "fil": "Brown + HI-P",
+          "zh": "炒香＋高壓"
+        },
+        "minutes": "25–30",
+        "steps": {
+          "en": "1) Optional Brown (lid often open) — sear beef/onion.\n2) Add tomato, potato, seasonings + liquid under MAX.\n3) Lock → HI-P 25–30 min.\n4) Natural release ~10 min. Cut smaller for Zizi. Serve with rice.",
+          "fil": "1) Optional Brown (madalas bukas lid) — sear beef/onion.\n2) Lagyan tomato, potato, seasonings + liquid under MAX.\n3) Lock → HI-P 25–30 min.\n4) Natural release ~10 min. Cut maliit para kay Zizi. May rice.",
+          "zh": "1) 可先 Brown（常開蓋）炒牛肉／洋蔥。\n2) 下番茄、薯、調味＋液體（勿超 MAX）。\n3) 鎖蓋 → HI-P 25–30 分鐘。\n4) 自然洩壓約 10 分鐘。給 Zizi 切小；配飯。"
+        }
       }
     },
     {
@@ -5955,9 +6064,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Bowl → chicken + ginger/onion + soy + sugar + water. Valve down, lock. Pressure HI-P ~15–18 min (bone-in). Natural release 5–10 min. Sauce can reduce on Brown/simmer lid-open if Sir/Mum showed. Remove bones for Zizi.",
-        "fil": "EPC17: Bowl → chicken + ginger/onion + soy + sugar + tubig. Valve down, lock. HI-P ~15–18 min. Natural release 5–10 min. Puwedeng mag-reduce ng sauce sa Brown (bukas lid) kung itinuro nina Sir/Mum. Alisin buto para kay Zizi.",
-        "zh": "EPC17：內鍋放雞＋薑蔥＋豉油＋糖＋水。閥按下鎖蓋。HI-P 約 15–18 分鐘。自然洩壓 5–10 分鐘。可開蓋用煎香／炆煮收汁（跟 Sir/Mum）。給 Zizi 先去骨。"
+        "en": "HI-P, 15–18 min.\n1) Bowl → chicken + ginger/onion + soy + sugar + water (≥250 ml, under MAX).\n2) Valve down, lock → HI-P 15–18 min (bone-in).\n3) Natural release 5–10 min.\n4) Optional Brown lid-open to reduce sauce if Sir/Mum showed. Remove bones for Zizi.",
+        "fil": "HI-P, 15–18 min.\n1) Bowl → chicken + ginger/onion + soy + sugar + tubig.\n2) Valve down, lock → HI-P 15–18 min.\n3) Natural release 5–10 min.\n4) Optional Brown (bukas lid) para mag-reduce ng sauce. Alisin buto para kay Zizi.",
+        "zh": "高壓 HI-P，15–18 分鐘。\n1) 內鍋：雞＋薑／蔥＋豉油＋糖＋水。\n2) 閥下壓鎖蓋 → HI-P 15–18 分鐘（連骨）。\n3) 自然洩壓 5–10 分鐘。\n4) 可開蓋 Brown 收汁（若 Sir/Mum 教過）。給 Zizi 去骨。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "HI-P",
+          "fil": "HI-P",
+          "zh": "高壓 HI-P"
+        },
+        "minutes": "15–18",
+        "steps": {
+          "en": "1) Bowl → chicken + ginger/onion + soy + sugar + water (≥250 ml, under MAX).\n2) Valve down, lock → HI-P 15–18 min (bone-in).\n3) Natural release 5–10 min.\n4) Optional Brown lid-open to reduce sauce if Sir/Mum showed. Remove bones for Zizi.",
+          "fil": "1) Bowl → chicken + ginger/onion + soy + sugar + tubig.\n2) Valve down, lock → HI-P 15–18 min.\n3) Natural release 5–10 min.\n4) Optional Brown (bukas lid) para mag-reduce ng sauce. Alisin buto para kay Zizi.",
+          "zh": "1) 內鍋：雞＋薑／蔥＋豉油＋糖＋水。\n2) 閥下壓鎖蓋 → HI-P 15–18 分鐘（連骨）。\n3) 自然洩壓 5–10 分鐘。\n4) 可開蓋 Brown 收汁（若 Sir/Mum 教過）。給 Zizi 去骨。"
+        }
       }
     },
     {
@@ -6003,9 +6125,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Optional Brown onion/chicken. Add potato + curry + liquid under MAX. HI-P ~12–15 min. Natural 5 min. Mild curry for family — ask Sir/Mum how spicy. Good with rice.",
-        "fil": "EPC17: Optional Brown onion/chicken. Lagyan potato + curry + liquid under MAX. HI-P ~12–15 min. Natural 5 min. Mild para sa pamilya — tanungin si Sir/Mum kung gaano kaanghang. Maganda with rice.",
-        "zh": "EPC17：可略煎洋蔥／雞。加薯仔＋咖喱＋液體（勿超 MAX）。HI-P 約 12–15 分鐘。自然洩壓 5 分鐘。家常微辣 — 問 Sir/Mum。配飯。"
+        "en": "Brown + HI-P, 12–15 min.\n1) Optional Brown onion/chicken.\n2) Add potato + curry + liquid under MAX.\n3) HI-P 12–15 min → natural ~5 min.\n4) Mild for family — ask Sir/Mum how spicy. Good with rice.",
+        "fil": "Brown + HI-P, 12–15 min.\n1) Optional Brown onion/chicken.\n2) Lagyan potato + curry + liquid under MAX.\n3) HI-P 12–15 min → natural ~5 min.\n4) Mild — tanungin si Sir/Mum kung gaano kaanghang. May rice.",
+        "zh": "炒香＋高壓，12–15 分鐘。\n1) 可先 Brown 洋蔥／雞。\n2) 下薯＋咖喱＋液體（勿超 MAX）。\n3) HI-P 12–15 分鐘 → 自然洩壓約 5 分鐘。\n4) 家常微辣 — 問 Sir/Mum 辣度；配飯。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Brown + HI-P",
+          "fil": "Brown + HI-P",
+          "zh": "炒香＋高壓"
+        },
+        "minutes": "12–15",
+        "steps": {
+          "en": "1) Optional Brown onion/chicken.\n2) Add potato + curry + liquid under MAX.\n3) HI-P 12–15 min → natural ~5 min.\n4) Mild for family — ask Sir/Mum how spicy. Good with rice.",
+          "fil": "1) Optional Brown onion/chicken.\n2) Lagyan potato + curry + liquid under MAX.\n3) HI-P 12–15 min → natural ~5 min.\n4) Mild — tanungin si Sir/Mum kung gaano kaanghang. May rice.",
+          "zh": "1) 可先 Brown 洋蔥／雞。\n2) 下薯＋咖喱＋液體（勿超 MAX）。\n3) HI-P 12–15 分鐘 → 自然洩壓約 5 分鐘。\n4) 家常微辣 — 問 Sir/Mum 辣度；配飯。"
+        }
       }
     },
     {
@@ -6051,9 +6186,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Faster with Soup/Steam or short Pressure LO-P 3–5 min for tomatoes in water, then release. Switch to Brown/simmer lid-open: stir in beaten egg, season. Or cook fully on Brown if easier. Soft soup — good when time is short.",
-        "fil": "EPC17: Soup/Steam o LO-P 3–5 min para sa tomato + tubig, release. Brown/simmer bukas lid: haluin ang egg, timplahan. O kayang lahat sa Brown. Soft soup — mabilis.",
-        "zh": "EPC17：可用湯／蒸或低壓 LO-P 3–5 分鐘煮番茄水，洩壓後開蓋用煎香／炆煮打蛋花調味。或全程開蓋快煮。清淡快手湯。"
+        "en": "LO-P / Brown, 3–5 min.\n1) Tomato + water: Soup/Steam or LO-P 3–5 min, then release.\n2) Switch to Brown/simmer lid-open: stir in beaten egg; season.\n3) Or cook fully on Brown if easier. Soft quick soup.",
+        "fil": "LO-P / Brown, 3–5 min.\n1) Tomato + tubig: Soup/Steam o LO-P 3–5 min, release.\n2) Brown/simmer bukas lid: haluin ang egg; timplahan.\n3) O lahat sa Brown kung mas madali. Soft mabilis na soup.",
+        "zh": "低壓／炒煮，3–5 分鐘。\n1) 番茄＋水：湯／蒸或 LO-P 3–5 分鐘後洩壓。\n2) 改 Brown 開蓋：倒入蛋液攪勻調味。\n3) 或全程 Brown。快速軟湯。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "LO-P / Brown",
+          "fil": "LO-P / Brown",
+          "zh": "低壓／炒煮"
+        },
+        "minutes": "3–5",
+        "steps": {
+          "en": "1) Tomato + water: Soup/Steam or LO-P 3–5 min, then release.\n2) Switch to Brown/simmer lid-open: stir in beaten egg; season.\n3) Or cook fully on Brown if easier. Soft quick soup.",
+          "fil": "1) Tomato + tubig: Soup/Steam o LO-P 3–5 min, release.\n2) Brown/simmer bukas lid: haluin ang egg; timplahan.\n3) O lahat sa Brown kung mas madali. Soft mabilis na soup.",
+          "zh": "1) 番茄＋水：湯／蒸或 LO-P 3–5 分鐘後洩壓。\n2) 改 Brown 開蓋：倒入蛋液攪勻調味。\n3) 或全程 Brown。快速軟湯。"
+        }
       }
     },
     {
@@ -6093,9 +6241,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17 Steam: Beat eggs + warm water + salt; strain into bowl; cover with foil. Trivet + 1 cup water in cooker bowl. Steam ~8–10 min, natural 5 min. Smooth egg for Zizi — ask Sir/Mum water ratio once.",
-        "fil": "EPC17 Steam: Haluin eggs + warm water + asin; salain sa bowl; takpan foil. Trivet + 1 cup tubig sa cooker. Steam ~8–10 min, natural 5 min. Smooth para kay Zizi — tanungin si Sir/Mum sa ratio.",
-        "zh": "EPC17 蒸：蛋＋溫水＋鹽打勻過篩，蓋保鮮紙／箔。內鍋加水＋蒸架。蒸約 8–10 分鐘，再燜 5 分鐘。滑嫩適合 Zizi — 水蛋比例問 Sir/Mum 一次即可。"
+        "en": "Steam, 8–10 min.\n1) Beat eggs + warm water + salt; strain into bowl; cover foil.\n2) Trivet + ~1 cup water in cooker bowl.\n3) Steam 8–10 min, then natural ~5 min.\n4) Smooth egg for Zizi — ask Sir/Mum water ratio once.",
+        "fil": "Steam, 8–10 min.\n1) Haluin eggs + warm water + asin; salain; takpan foil.\n2) Trivet + ~1 cup tubig sa cooker.\n3) Steam 8–10 min, natural ~5 min.\n4) Smooth para kay Zizi — tanungin si Sir/Mum sa ratio.",
+        "zh": "蒸 Steam，8–10 分鐘。\n1) 蛋＋溫水＋鹽打勻；過濾入碗；蓋箔。\n2) 蒸架＋約 1 杯水。\n3) 蒸 8–10 分鐘，再自然約 5 分鐘。\n4) 給 Zizi 滑蛋 — 水蛋比例問過 Sir/Mum 一次即可。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Steam",
+          "fil": "Steam",
+          "zh": "蒸 Steam"
+        },
+        "minutes": "8–10",
+        "steps": {
+          "en": "1) Beat eggs + warm water + salt; strain into bowl; cover foil.\n2) Trivet + ~1 cup water in cooker bowl.\n3) Steam 8–10 min, then natural ~5 min.\n4) Smooth egg for Zizi — ask Sir/Mum water ratio once.",
+          "fil": "1) Haluin eggs + warm water + asin; salain; takpan foil.\n2) Trivet + ~1 cup tubig sa cooker.\n3) Steam 8–10 min, natural ~5 min.\n4) Smooth para kay Zizi — tanungin si Sir/Mum sa ratio.",
+          "zh": "1) 蛋＋溫水＋鹽打勻；過濾入碗；蓋箔。\n2) 蒸架＋約 1 杯水。\n3) 蒸 8–10 分鐘，再自然約 5 分鐘。\n4) 給 Zizi 滑蛋 — 水蛋比例問過 Sir/Mum 一次即可。"
+        }
       }
     },
     {
@@ -6135,9 +6296,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Blanch beef optional. Bowl → beef + seasonings + water under MAX → HI-P ~35–40 min. Release safely. Add radish → Pressure 8–10 min more until soft. Cut small for Zizi. Meat + veg in one pot.",
-        "fil": "EPC17: Optional blanch beef. Bowl → beef + seasonings + tubig under MAX → HI-P ~35–40 min. Safe release. Lagyan radish → Pressure 8–10 min pa. Cut maliit para kay Zizi. Meat + gulay sa isang pot.",
-        "zh": "EPC17：牛腩可飛水。內鍋＋牛腩＋調味＋水（勿超 MAX）→ HI-P 約 35–40 分鐘。安全洩壓。加蘿蔔再壓 8–10 分鐘至軟。切小塊給 Zizi。肉菜一鍋。"
+        "en": "HI-P (2 stages), 35–40 + 8–10 min.\n1) Optional blanch beef.\n2) Bowl → beef + seasonings + water under MAX → HI-P 35–40 min.\n3) Release safely → add radish → Pressure 8–10 min more until soft.\n4) Cut small for Zizi. Meat + veg in one pot.",
+        "fil": "HI-P (2 stages), 35–40 + 8–10 min.\n1) Optional blanch beef.\n2) Bowl → beef + seasonings + tubig under MAX → HI-P 35–40 min.\n3) Safe release → lagyan radish → Pressure 8–10 min pa.\n4) Cut maliit para kay Zizi.",
+        "zh": "高壓（兩段），35–40 + 8–10 分鐘。\n1) 牛腩可先汆水。\n2) 內鍋：牛＋調味＋水（勿超 MAX）→ HI-P 35–40 分鐘。\n3) 洩壓後下蘿蔔 → 再壓力 8–10 分鐘至軟。\n4) 給 Zizi 切小。一鍋肉菜。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "HI-P (2 stages)",
+          "fil": "HI-P (2 stages)",
+          "zh": "高壓（兩段）"
+        },
+        "minutes": "35–40 + 8–10",
+        "steps": {
+          "en": "1) Optional blanch beef.\n2) Bowl → beef + seasonings + water under MAX → HI-P 35–40 min.\n3) Release safely → add radish → Pressure 8–10 min more until soft.\n4) Cut small for Zizi. Meat + veg in one pot.",
+          "fil": "1) Optional blanch beef.\n2) Bowl → beef + seasonings + tubig under MAX → HI-P 35–40 min.\n3) Safe release → lagyan radish → Pressure 8–10 min pa.\n4) Cut maliit para kay Zizi.",
+          "zh": "1) 牛腩可先汆水。\n2) 內鍋：牛＋調味＋水（勿超 MAX）→ HI-P 35–40 分鐘。\n3) 洩壓後下蘿蔔 → 再壓力 8–10 分鐘至軟。\n4) 給 Zizi 切小。一鍋肉菜。"
+        }
       }
     },
     {
@@ -6177,9 +6351,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Bowl → tofu + veg + sauce + liquid under MAX. Pressure LO-P or HI-P ~5–8 min (veg soft quick). Quick-release carefully. Don’t overcook to mush. Mild for Zizi; add minced meat if Sir/Mum wants more protein.",
-        "fil": "EPC17: Bowl → tofu + gulay + sauce + liquid under MAX. LO-P o HI-P ~5–8 min. Quick-release nang ingat. Huwag sobrang luto. Mild para kay Zizi; dagdag minced meat kung gusto nina Sir/Mum.",
-        "zh": "EPC17：內鍋放豆腐＋菜＋醬汁＋液體（勿超 MAX）。低壓或高壓約 5–8 分鐘（菜易熟）。小心洩壓。勿煮太烂。清淡適合 Zizi；可加免治肉增蛋白質。"
+        "en": "LO-P or HI-P, 5–8 min.\n1) Bowl → tofu + veg + sauce + liquid under MAX (≥250 ml).\n2) LO-P or HI-P 5–8 min (veg softs fast).\n3) Careful quick-release. Don’t overcook to mush.\n4) Mild for Zizi; add minced meat if Sir/Mum wants.",
+        "fil": "LO-P or HI-P, 5–8 min.\n1) Bowl → tofu + gulay + sauce + liquid under MAX.\n2) LO-P o HI-P 5–8 min.\n3) Quick-release nang ingat. Huwag sobrang luto.\n4) Mild para kay Zizi; dagdag minced meat kung gusto nina Sir/Mum.",
+        "zh": "低壓或高壓，5–8 分鐘。\n1) 內鍋：豆腐＋菜＋醬汁＋液體（≥250 ml，勿超 MAX）。\n2) LO-P 或 HI-P 5–8 分鐘（菜很快軟）。\n3) 小心快速洩壓；勿煮溶。\n4) 給 Zizi 清淡；若要蛋白可加免治肉。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "LO-P or HI-P",
+          "fil": "LO-P or HI-P",
+          "zh": "低壓或高壓"
+        },
+        "minutes": "5–8",
+        "steps": {
+          "en": "1) Bowl → tofu + veg + sauce + liquid under MAX (≥250 ml).\n2) LO-P or HI-P 5–8 min (veg softs fast).\n3) Careful quick-release. Don’t overcook to mush.\n4) Mild for Zizi; add minced meat if Sir/Mum wants.",
+          "fil": "1) Bowl → tofu + gulay + sauce + liquid under MAX.\n2) LO-P o HI-P 5–8 min.\n3) Quick-release nang ingat. Huwag sobrang luto.\n4) Mild para kay Zizi; dagdag minced meat kung gusto nina Sir/Mum.",
+          "zh": "1) 內鍋：豆腐＋菜＋醬汁＋液體（≥250 ml，勿超 MAX）。\n2) LO-P 或 HI-P 5–8 分鐘（菜很快軟）。\n3) 小心快速洩壓；勿煮溶。\n4) 給 Zizi 清淡；若要蛋白可加免治肉。"
+        }
       }
     },
     {
@@ -6225,9 +6412,22 @@
         }
       ],
       "prepNotes": {
-        "en": "EPC17: Optional blanch chicken. Bowl → chicken + veg + ginger + water → HI-P ~25 min. Natural release 10 min. Salt. Clear light soup — remove bones before serving Zizi.",
-        "fil": "EPC17: Optional blanch chicken. Bowl → chicken + gulay + ginger + tubig → HI-P ~25 min. Natural 10 min. Asin. Clear light soup — alisin buto bago ihanda kay Zizi.",
-        "zh": "EPC17：雞可飛水。內鍋＋雞＋菜＋薑＋水 → HI-P 約 25 分鐘。自然洩壓 10 分鐘。加鹽。清淡湯 — 給 Zizi 先去骨。"
+        "en": "HI-P, 25 min.\n1) Optional blanch chicken.\n2) Bowl → chicken + veg + ginger + water → HI-P ~25 min.\n3) Natural release ~10 min. Salt.\n4) Remove bones before serving Zizi.",
+        "fil": "HI-P, 25 min.\n1) Optional blanch chicken.\n2) Bowl → chicken + gulay + ginger + tubig → HI-P ~25 min.\n3) Natural ~10 min. Asin.\n4) Alisin buto bago ihanda kay Zizi.",
+        "zh": "高壓 HI-P，25 分鐘。\n1) 雞可先汆水。\n2) 內鍋：雞＋菜＋薑＋水 → HI-P 約 25 分鐘。\n3) 自然洩壓約 10 分鐘；調味。\n4) 給 Zizi 前去骨。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "HI-P",
+          "fil": "HI-P",
+          "zh": "高壓 HI-P"
+        },
+        "minutes": "25",
+        "steps": {
+          "en": "1) Optional blanch chicken.\n2) Bowl → chicken + veg + ginger + water → HI-P ~25 min.\n3) Natural release ~10 min. Salt.\n4) Remove bones before serving Zizi.",
+          "fil": "1) Optional blanch chicken.\n2) Bowl → chicken + gulay + ginger + tubig → HI-P ~25 min.\n3) Natural ~10 min. Asin.\n4) Alisin buto bago ihanda kay Zizi.",
+          "zh": "1) 雞可先汆水。\n2) 內鍋：雞＋菜＋薑＋水 → HI-P 約 25 分鐘。\n3) 自然洩壓約 10 分鐘；調味。\n4) 給 Zizi 前去骨。"
+        }
       }
     },
     {
@@ -6261,9 +6461,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Pat dry, season. Optional preheat 180°C. Single layer in basket. Air Fry ~180–190°C, 18–25 min; flip halfway. Fully cooked for Zizi — cut smaller.",
-        "fil": "Easy Fry XXL: Patuyuin, timplahan. Optional preheat 180°C. Isang layer. Air Fry ~180–190°C, 18–25 min; baliktarin sa gitna. Luto nang tuluyan para kay Zizi.",
-        "zh": "Easy Fry XXL：抹乾調味。可預熱 180°C。單層放入。約 180–190°C、18–25 分鐘；中途翻面。確保全熟；可切小給 Zizi。"
+        "en": "Air Fry 190–200°C, 20–28 min.\n1) Pat wings dry; season. Optional preheat 190°C.\n2) Single layer — don’t stack.\n3) Air Fry 190–200°C, 20–28 min for a family batch; flip halfway (large frozen packs need longer ~30–35 min at 200°C).\n4) Fully cooked for Zizi — cut smaller.",
+        "fil": "Air Fry 190–200°C, 20–28 min.\n1) Patuyuin ang wings; timplahan. Optional preheat 190°C.\n2) Isang layer — huwag isalansan.\n3) Air Fry 190–200°C, 20–28 min; baliktarin sa gitna (malaking frozen pack ~30–35 min sa 200°C).\n4) Luto nang tuluyan para kay Zizi — cut maliit.",
+        "zh": "氣炸 Air Fry 190–200°C，20–28 分鐘。\n1) 雞翼抹乾調味；可預熱 190°C。\n2) 單層勿堆疊。\n3) 氣炸 190–200°C、家庭份 20–28 分鐘；中途翻面（大包裝急凍約 200°C、30–35 分）。\n4) 給 Zizi 要熟透並切小。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "190–200",
+        "minutes": "20–28",
+        "steps": {
+          "en": "1) Pat wings dry; season. Optional preheat 190°C.\n2) Single layer — don’t stack.\n3) Air Fry 190–200°C, 20–28 min for a family batch; flip halfway (large frozen packs need longer ~30–35 min at 200°C).\n4) Fully cooked for Zizi — cut smaller.",
+          "fil": "1) Patuyuin ang wings; timplahan. Optional preheat 190°C.\n2) Isang layer — huwag isalansan.\n3) Air Fry 190–200°C, 20–28 min; baliktarin sa gitna (malaking frozen pack ~30–35 min sa 200°C).\n4) Luto nang tuluyan para kay Zizi — cut maliit.",
+          "zh": "1) 雞翼抹乾調味；可預熱 190°C。\n2) 單層勿堆疊。\n3) 氣炸 190–200°C、家庭份 20–28 分鐘；中途翻面（大包裝急凍約 200°C、30–35 分）。\n4) 給 Zizi 要熟透並切小。"
+        }
       }
     },
     {
@@ -6297,9 +6511,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Cut wedges, toss light oil + salt. Air Fry ~180–190°C, 15–22 min; shake 2–3 times. Soft inside for Zizi — cook until tender.",
-        "fil": "Easy Fry XXL: Hiwain wedges, light oil + asin. Air Fry ~180–190°C, 15–22 min; iling 2–3 beses. Soft sa loob para kay Zizi.",
-        "zh": "Easy Fry XXL：切塊拌薄油鹽。約 180–190°C、15–22 分鐘；搖 2–3 次。外脆內軟適合 Zizi。"
+        "en": "Air Fry 190–200°C, 18–25 min.\n1) Cut wedges; toss light oil + salt; dry surface helps crisp.\n2) Air Fry 190–200°C, 18–25 min; shake 2–3 times (Tefal wedges guide ~200°C).\n3) Soft inside for Zizi — cook until tender.",
+        "fil": "Air Fry 190–200°C, 18–25 min.\n1) Hiwain wedges; light oil + asin.\n2) Air Fry 190–200°C, 18–25 min; iling 2–3 beses.\n3) Soft sa loob para kay Zizi — hanggang malambot.",
+        "zh": "氣炸 Air Fry 190–200°C，18–25 分鐘。\n1) 薯角拌薄油＋鹽。\n2) 氣炸 190–200°C、18–25 分鐘；搖 2–3 次（Tefal 薯角約 200°C）。\n3) 給 Zizi 要軟熟。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "190–200",
+        "minutes": "18–25",
+        "steps": {
+          "en": "1) Cut wedges; toss light oil + salt; dry surface helps crisp.\n2) Air Fry 190–200°C, 18–25 min; shake 2–3 times (Tefal wedges guide ~200°C).\n3) Soft inside for Zizi — cook until tender.",
+          "fil": "1) Hiwain wedges; light oil + asin.\n2) Air Fry 190–200°C, 18–25 min; iling 2–3 beses.\n3) Soft sa loob para kay Zizi — hanggang malambot.",
+          "zh": "1) 薯角拌薄油＋鹽。\n2) 氣炸 190–200°C、18–25 分鐘；搖 2–3 次（Tefal 薯角約 200°C）。\n3) 給 Zizi 要軟熟。"
+        }
       }
     },
     {
@@ -6327,9 +6555,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Season; light oil. Air Fry ~180°C, 8–12 min (thickness). No need to flip usually. Check flakes easily; remove bones/skin for Zizi.",
-        "fil": "Easy Fry XXL: Timplahan; light oil. Air Fry ~180°C, 8–12 min. Madalas hindi kailangan baliktarin. Alisin buto/balat para kay Zizi.",
-        "zh": "Easy Fry XXL：調味薄油。約 180°C、8–12 分鐘（視厚薄）。多數不用翻。確認可輕撥；給 Zizi 去骨去皮。"
+        "en": "Air Fry 140–160°C, 12–16 min.\n1) Season salmon; light oil. Do NOT use 180°C — Tefal guide is cooler for fillets.\n2) Air Fry 140–160°C, 12–16 min (official ~140°C, 14–17 min for fillets).\n3) Usually no flip. Flakes easily when done.\n4) Remove bones/skin for Zizi.",
+        "fil": "Air Fry 140–160°C, 12–16 min.\n1) Timplahan ang salmon; light oil. HUWAG 180°C — mas mababa ang temp sa Tefal guide.\n2) Air Fry 140–160°C, 12–16 min (opisyal ~140°C, 14–17 min).\n3) Madalas hindi kailangan baliktarin.\n4) Alisin buto/balat para kay Zizi.",
+        "zh": "氣炸 Air Fry 140–160°C，12–16 分鐘。\n1) 三文魚調味薄油。勿用 180°C — Tefal 指南較低溫。\n2) 氣炸 140–160°C、12–16 分鐘（官方魚柳約 140°C、14–17 分）。\n3) 通常不用翻面；輕壓可散即熟。\n4) 給 Zizi 去骨去皮。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "140–160",
+        "minutes": "12–16",
+        "steps": {
+          "en": "1) Season salmon; light oil. Do NOT use 180°C — Tefal guide is cooler for fillets.\n2) Air Fry 140–160°C, 12–16 min (official ~140°C, 14–17 min for fillets).\n3) Usually no flip. Flakes easily when done.\n4) Remove bones/skin for Zizi.",
+          "fil": "1) Timplahan ang salmon; light oil. HUWAG 180°C — mas mababa ang temp sa Tefal guide.\n2) Air Fry 140–160°C, 12–16 min (opisyal ~140°C, 14–17 min).\n3) Madalas hindi kailangan baliktarin.\n4) Alisin buto/balat para kay Zizi.",
+          "zh": "1) 三文魚調味薄油。勿用 180°C — Tefal 指南較低溫。\n2) 氣炸 140–160°C、12–16 分鐘（官方魚柳約 140°C、14–17 分）。\n3) 通常不用翻面；輕壓可散即熟。\n4) 給 Zizi 去骨去皮。"
+        }
       }
     },
     {
@@ -6357,9 +6599,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Cut similar sizes; light oil. Air Fry ~170–180°C, 10–15 min; shake halfway. Soft for Zizi — don’t burn tips. Rainbow veg side.",
-        "fil": "Easy Fry XXL: Magkaparehong laki; light oil. Air Fry ~170–180°C, 10–15 min; iling sa gitna. Soft para kay Zizi — rainbow gulay.",
-        "zh": "Easy Fry XXL：切相近大小，薄油。約 170–180°C、10–15 分鐘；中途搖。勿焦邊；適合「吃彩虹」配菜。"
+        "en": "Air Fry 190–200°C, 12–18 min.\n1) Cut veg similar sizes; light oil.\n2) Air Fry 190–200°C, 12–18 min; shake halfway (Tefal veg guide often ~200°C).\n3) Soft for Zizi — don’t burn tips.",
+        "fil": "Air Fry 190–200°C, 12–18 min.\n1) Magkaparehong laki ang gulay; light oil.\n2) Air Fry 190–200°C, 12–18 min; iling sa gitna.\n3) Soft para kay Zizi — huwag sunugin ang dulo.",
+        "zh": "氣炸 Air Fry 190–200°C，12–18 分鐘。\n1) 菜切均勻大小；薄油。\n2) 氣炸 190–200°C、12–18 分鐘；中途搖（Tefal 蔬菜常約 200°C）。\n3) 給 Zizi 要軟；勿焦邊。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "190–200",
+        "minutes": "12–18",
+        "steps": {
+          "en": "1) Cut veg similar sizes; light oil.\n2) Air Fry 190–200°C, 12–18 min; shake halfway (Tefal veg guide often ~200°C).\n3) Soft for Zizi — don’t burn tips.",
+          "fil": "1) Magkaparehong laki ang gulay; light oil.\n2) Air Fry 190–200°C, 12–18 min; iling sa gitna.\n3) Soft para kay Zizi — huwag sunugin ang dulo.",
+          "zh": "1) 菜切均勻大小；薄油。\n2) 氣炸 190–200°C、12–18 分鐘；中途搖（Tefal 蔬菜常約 200°C）。\n3) 給 Zizi 要軟；勿焦邊。"
+        }
       }
     },
     {
@@ -6387,9 +6643,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Press tofu dry; cube; light oil/soy. Air Fry ~180°C, 12–15 min; shake once. Soft protein veg for Zizi.",
-        "fil": "Easy Fry XXL: Patuyuin tofu; cubewin; light oil/soy. Air Fry ~180°C, 12–15 min; iling minsan.",
-        "zh": "Easy Fry XXL：豆腐壓乾切塊，薄油／豉油。約 180°C、12–15 分鐘；搖一次。適合 Zizi 的蛋白質菜。"
+        "en": "Air Fry 180–190°C, 12–15 min.\n1) Press tofu dry; cube; light oil/soy.\n2) Air Fry 180–190°C, 12–15 min; shake once.\n3) Soft protein for Zizi.",
+        "fil": "Air Fry 180–190°C, 12–15 min.\n1) Patuyuin ang tofu; cubewin; light oil/soy.\n2) Air Fry 180–190°C, 12–15 min; iling minsan.\n3) Soft protein para kay Zizi.",
+        "zh": "氣炸 Air Fry 180–190°C，12–15 分鐘。\n1) 豆腐壓乾切丁；薄油／豉油。\n2) 氣炸 180–190°C、12–15 分鐘；搖一次。\n3) 給 Zizi 作軟蛋白。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "180–190",
+        "minutes": "12–15",
+        "steps": {
+          "en": "1) Press tofu dry; cube; light oil/soy.\n2) Air Fry 180–190°C, 12–15 min; shake once.\n3) Soft protein for Zizi.",
+          "fil": "1) Patuyuin ang tofu; cubewin; light oil/soy.\n2) Air Fry 180–190°C, 12–15 min; iling minsan.\n3) Soft protein para kay Zizi.",
+          "zh": "1) 豆腐壓乾切丁；薄油／豉油。\n2) 氣炸 180–190°C、12–15 分鐘；搖一次。\n3) 給 Zizi 作軟蛋白。"
+        }
       }
     },
     {
@@ -6417,9 +6687,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Marinate. Air Fry ~180–190°C, 18–25 min; flip halfway. Juices run clear. Debone/cut for Zizi.",
-        "fil": "Easy Fry XXL: Marinate. Air Fry ~180–190°C, 18–25 min; baliktarin sa gitna. Alisin buto / cut para kay Zizi.",
-        "zh": "Easy Fry XXL：醃好。約 180–190°C、18–25 分鐘；中途翻面。汁液清澈即熟。去骨切給 Zizi。"
+        "en": "Air Fry 180–190°C, 18–25 min.\n1) Marinate thigh pieces.\n2) Air Fry 180–190°C, 18–25 min; flip halfway (similar to Tefal chicken fillet band).\n3) Juices run clear. Debone/cut for Zizi.",
+        "fil": "Air Fry 180–190°C, 18–25 min.\n1) Marinate ang thigh.\n2) Air Fry 180–190°C, 18–25 min; baliktarin sa gitna.\n3) Clear ang juice. Alisin buto / cut para kay Zizi.",
+        "zh": "氣炸 Air Fry 180–190°C，18–25 分鐘。\n1) 雞腿醃味。\n2) 氣炸 180–190°C、18–25 分鐘；中途翻面。\n3) 汁液清澈即熟。給 Zizi 去骨切小。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "180–190",
+        "minutes": "18–25",
+        "steps": {
+          "en": "1) Marinate thigh pieces.\n2) Air Fry 180–190°C, 18–25 min; flip halfway (similar to Tefal chicken fillet band).\n3) Juices run clear. Debone/cut for Zizi.",
+          "fil": "1) Marinate ang thigh.\n2) Air Fry 180–190°C, 18–25 min; baliktarin sa gitna.\n3) Clear ang juice. Alisin buto / cut para kay Zizi.",
+          "zh": "1) 雞腿醃味。\n2) 氣炸 180–190°C、18–25 分鐘；中途翻面。\n3) 汁液清澈即熟。給 Zizi 去骨切小。"
+        }
       }
     },
     {
@@ -6453,9 +6737,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Light spray; single layer. Air Fry ~180°C, 8–12 min (frozen may need longer); shake/turn once. Cool slightly for Zizi.",
-        "fil": "Easy Fry XXL: Light spray; isang layer. Air Fry ~180°C, 8–12 min (frozen mas matagal); iling/baliktarin. Palamigin sandali para kay Zizi.",
-        "zh": "Easy Fry XXL：薄噴油，單層。約 180°C、8–12 分鐘（急凍可加長）；翻／搖一次。稍涼給 Zizi。"
+        "en": "Air Fry 180°C, 8–12 min.\n1) Light spray; single layer (frozen may need +2–4 min).\n2) Air Fry 180°C, 8–12 min; shake/turn once.\n3) Cool slightly for Zizi.",
+        "fil": "Air Fry 180°C, 8–12 min.\n1) Light spray; isang layer (frozen +2–4 min).\n2) Air Fry 180°C, 8–12 min; iling/baliktarin minsan.\n3) Palamigin sandali para kay Zizi.",
+        "zh": "氣炸 Air Fry 180°C，8–12 分鐘。\n1) 薄噴油；單層（急凍可多 2–4 分）。\n2) 氣炸 180°C、8–12 分鐘；搖／翻一次。\n3) 稍涼再給 Zizi。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "180",
+        "minutes": "8–12",
+        "steps": {
+          "en": "1) Light spray; single layer (frozen may need +2–4 min).\n2) Air Fry 180°C, 8–12 min; shake/turn once.\n3) Cool slightly for Zizi.",
+          "fil": "1) Light spray; isang layer (frozen +2–4 min).\n2) Air Fry 180°C, 8–12 min; iling/baliktarin minsan.\n3) Palamigin sandali para kay Zizi.",
+          "zh": "1) 薄噴油；單層（急凍可多 2–4 分）。\n2) 氣炸 180°C、8–12 分鐘；搖／翻一次。\n3) 稍涼再給 Zizi。"
+        }
       }
     },
     {
@@ -6483,9 +6781,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Light oil on cob pieces. Air Fry ~180°C, 12–15 min; turn once. Soft sweet veg — good with meat.",
-        "fil": "Easy Fry XXL: Light oil sa corn. Air Fry ~180°C, 12–15 min; baliktarin minsan. Soft matamis na gulay.",
-        "zh": "Easy Fry XXL：玉米段薄油。約 180°C、12–15 分鐘；翻一次。甜軟配肉。"
+        "en": "Air Fry 180–200°C, 12–16 min.\n1) Light oil on cob pieces.\n2) Air Fry 180–200°C, 12–16 min; turn once.\n3) Soft sweet veg — good with meat.",
+        "fil": "Air Fry 180–200°C, 12–16 min.\n1) Light oil sa corn.\n2) Air Fry 180–200°C, 12–16 min; baliktarin minsan.\n3) Soft matamis na gulay — maganda with meat.",
+        "zh": "氣炸 Air Fry 180–200°C，12–16 分鐘。\n1) 玉米段薄油。\n2) 氣炸 180–200°C、12–16 分鐘；翻一次。\n3) 軟甜配菜，配肉好。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "180–200",
+        "minutes": "12–16",
+        "steps": {
+          "en": "1) Light oil on cob pieces.\n2) Air Fry 180–200°C, 12–16 min; turn once.\n3) Soft sweet veg — good with meat.",
+          "fil": "1) Light oil sa corn.\n2) Air Fry 180–200°C, 12–16 min; baliktarin minsan.\n3) Soft matamis na gulay — maganda with meat.",
+          "zh": "1) 玉米段薄油。\n2) 氣炸 180–200°C、12–16 分鐘；翻一次。\n3) 軟甜配菜，配肉好。"
+        }
       }
     },
     {
@@ -6513,9 +6825,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL: Season; optional preheat. Air Fry ~180–190°C, 12–16 min; flip halfway. Cut small for Zizi; fully cooked.",
-        "fil": "Easy Fry XXL: Timplahan; optional preheat. Air Fry ~180–190°C, 12–16 min; baliktarin. Cut maliit para kay Zizi.",
-        "zh": "Easy Fry XXL：調味；可預熱。約 180–190°C、12–16 分鐘；中途翻面。切小塊給 Zizi；確保熟透。"
+        "en": "Air Fry 190–200°C, 10–14 min.\n1) Season chop; optional preheat 190°C.\n2) Air Fry 190–200°C, 10–14 min; flip halfway (Tefal QSG chops ~200°C, 6–12 min — extend if thick).\n3) Cut small for Zizi; fully cooked.",
+        "fil": "Air Fry 190–200°C, 10–14 min.\n1) Timplahan; optional preheat 190°C.\n2) Air Fry 190–200°C, 10–14 min; baliktarin sa gitna.\n3) Cut maliit para kay Zizi; tiyaking luto.",
+        "zh": "氣炸 Air Fry 190–200°C，10–14 分鐘。\n1) 調味；可預熱 190°C。\n2) 氣炸 190–200°C、10–14 分鐘；中途翻面（Tefal 豬扒約 200°C、6–12 分，厚則加時）。\n3) 切小給 Zizi；確認熟透。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Air Fry",
+          "fil": "Air Fry",
+          "zh": "氣炸 Air Fry"
+        },
+        "tempC": "190–200",
+        "minutes": "10–14",
+        "steps": {
+          "en": "1) Season chop; optional preheat 190°C.\n2) Air Fry 190–200°C, 10–14 min; flip halfway (Tefal QSG chops ~200°C, 6–12 min — extend if thick).\n3) Cut small for Zizi; fully cooked.",
+          "fil": "1) Timplahan; optional preheat 190°C.\n2) Air Fry 190–200°C, 10–14 min; baliktarin sa gitna.\n3) Cut maliit para kay Zizi; tiyaking luto.",
+          "zh": "1) 調味；可預熱 190°C。\n2) 氣炸 190–200°C、10–14 分鐘；中途翻面（Tefal 豬扒約 200°C、6–12 分，厚則加時）。\n3) 切小給 Zizi；確認熟透。"
+        }
       }
     },
     {
@@ -6537,9 +6863,23 @@
         }
       ],
       "prepNotes": {
-        "en": "Easy Fry XXL reheat tip: about 160°C up to ~10 min; check often. Only reheat food Sir/Mum say is OK. Shake/turn once. Not for raw food.",
-        "fil": "Easy Fry XXL reheat: ~160°C hanggang ~10 min; tingnan madalas. Leftovers lang na OK ayon kay Sir/Mum. Hindi para sa hilaw.",
-        "zh": "Easy Fry XXL 翻熱：約 160°C、最多約 10 分鐘；常查看。只翻熱 Sir/Mum 說可以的隔夜菜。中途翻／搖。不可用於生食。"
+        "en": "Reheat 160°C, up to 10 min.\n1) Only leftovers Sir/Mum say are OK — not for raw food.\n2) Spread in basket; light spray if dry.\n3) Air Fry / reheat 160°C, up to ~10 min; check often; shake/turn once.\n4) Hot basket — use tongs.",
+        "fil": "Reheat 160°C, up to 10 min.\n1) Leftovers lang na OK ayon kay Sir/Mum — hindi para sa hilaw.\n2) Ikalat sa basket; light spray kung tuyo.\n3) Reheat 160°C, hanggang ~10 min; tingnan madalas; iling/baliktarin minsan.\n4) Mainit ang basket — tongs.",
+        "zh": "翻熱 160°C，up to 10 分鐘。\n1) 只翻熱 Sir/Mum 說可以的剩菜 — 不適用生食。\n2) 鋪開；過乾可薄噴油。\n3) 翻熱 160°C、最多約 10 分鐘；常檢查；搖／翻一次。\n4) 籃燙 — 用夾。"
+      },
+      "cookSettings": {
+        "mode": {
+          "en": "Reheat",
+          "fil": "Reheat",
+          "zh": "翻熱"
+        },
+        "tempC": "160",
+        "minutes": "up to 10",
+        "steps": {
+          "en": "1) Only leftovers Sir/Mum say are OK — not for raw food.\n2) Spread in basket; light spray if dry.\n3) Air Fry / reheat 160°C, up to ~10 min; check often; shake/turn once.\n4) Hot basket — use tongs.",
+          "fil": "1) Leftovers lang na OK ayon kay Sir/Mum — hindi para sa hilaw.\n2) Ikalat sa basket; light spray kung tuyo.\n3) Reheat 160°C, hanggang ~10 min; tingnan madalas; iling/baliktarin minsan.\n4) Mainit ang basket — tongs.",
+          "zh": "1) 只翻熱 Sir/Mum 說可以的剩菜 — 不適用生食。\n2) 鋪開；過乾可薄噴油。\n3) 翻熱 160°C、最多約 10 分鐘；常檢查；搖／翻一次。\n4) 籃燙 — 用夾。"
+        }
       }
     }
   ]

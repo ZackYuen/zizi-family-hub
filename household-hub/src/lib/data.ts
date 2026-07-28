@@ -53,6 +53,9 @@ function mergeRecipeTranslations(
       ingredients: r.ingredients?.length ? r.ingredients : seed.ingredients,
       prepNotes: r.prepNotes?.en || r.prepNotes?.fil ? r.prepNotes : seed.prepNotes,
       cookDevice: r.cookDevice || seed.cookDevice,
+      cookSettings: r.cookSettings?.steps?.en
+        ? r.cookSettings
+        : seed.cookSettings,
     };
   });
   // Append seed-only recipes (e.g. new EPC17 set) without wiping Admin edits

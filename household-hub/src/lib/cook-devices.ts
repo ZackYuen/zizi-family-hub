@@ -6,6 +6,7 @@ export const COOK_DEVICES: Record<
   {
     shortName: BilingualText;
     badge: BilingualText;
+    /** Short shared basics — dish cards show per-dish cookSettings first */
     howTo: BilingualText;
   }
 > = {
@@ -21,9 +22,9 @@ export const COOK_DEVICES: Record<
       zh: "用 EPC17 煮",
     },
     howTo: {
-      en: "How to cook this with Tefal EPC17:\n1) Always put the removable bowl in first.\n2) Add food + enough liquid (≥ ~250 ml). Stay under MAX (under ~½ for rice/beans).\n3) Fit the valve (slightly loose is normal) and push it down; lock the lid.\n4) Choose Pressure cook → HI-P / P / LO-P as the prep notes say → set minutes → Start.\n5) Wait until pressure is fully released before opening (use the release Sir/Mum showed).\n6) Panel map: open Tools → Cooking → Tefal EPC17.",
-      fil: "Paano lutuin ito sa Tefal EPC17:\n1) Ilagay muna ang removable bowl.\n2) Pagkain + sapat na liquid (≥ ~250 ml). Huwag lampas sa MAX (sa ilalim ng ~½ para sa rice/beans).\n3) Ilagay ang valve (medyo maluwag — normal) at i-down; i-lock ang lid.\n4) Pressure cook → HI-P / P / LO-P ayon sa prep notes → oras → Start.\n5) Hintaying fully released ang pressure bago buksan (sundin ang release nina Sir/Mum).\n6) Panel map: Tools → Cooking → Tefal EPC17.",
-      zh: "用 Tefal EPC17 煮這道菜：\n1) 必須先放入可拆內鍋。\n2) 食物＋足夠液體（≥約 250 ml）。勿超 MAX（米／豆勿超約一半）。\n3) 裝上限壓閥（略鬆正常）並按下，鎖蓋。\n4) 選壓力煮 → 按準備說明選 HI-P／P／LO-P → 調時間 → 開始。\n5) 等壓力完全釋放才開蓋（用 Sir/Mum 教的洩壓方式）。\n6) 面板圖：打開「家電／Tools」→ 煮食 → Tefal EPC17。",
+      en: "Device basics (same for every EPC17 dish):\n• Bowl in first · liquid ≥ ~250 ml · under MAX.\n• Valve down + lock lid before pressure.\n• Use HI-P / LO-P / Steam / Brown from THIS dish’s settings.\n• Wait until pressure is fully released before opening.\n• Panel map: Tools → Cooking → Tefal EPC17.",
+      fil: "Device basics (pareho sa lahat ng EPC17 dish):\n• Bowl muna · liquid ≥ ~250 ml · under MAX.\n• Valve down + lock lid bago pressure.\n• Gamitin ang HI-P / LO-P / Steam / Brown mula sa settings NG DISH NA ITO.\n• Hintaying fully released ang pressure bago buksan.\n• Panel map: Tools → Cooking → Tefal EPC17.",
+      zh: "機具基本（每道 EPC17 菜相同）：\n• 先放內鍋 · 液體 ≥約 250 ml · 勿超 MAX。\n• 壓力前閥下壓並鎖蓋。\n• HI-P／LO-P／蒸／炒按「這道菜」設定。\n• 壓力完全釋放才開蓋。\n• 面板圖：家電 → 煮食 → Tefal EPC17。",
     },
   },
   "app-tefal-easy-fry-xxl": {
@@ -38,9 +39,9 @@ export const COOK_DEVICES: Record<
       zh: "用 Easy Fry 煮",
     },
     howTo: {
-      en: "How to cook this with Tefal Easy Fry & Grill XXL:\n1) Optional preheat: Start → Air Fry (often 180°C) → adjust °C with +/− → Start until it beeps.\n2) Put food in the basket/bowl — do not overcrowd; shake or turn halfway.\n3) Manual: set 40–220°C and minutes (see prep notes), then Start. Or pick an auto mode.\n4) Grill mode: preheat ~15 min at 220°C; flip meat halfway; oil collects in the bowl.\n5) Light oil brush/spray only — do not pour a pool of oil. Basket is hot — use tongs.\n6) Panel map: open Tools → Cooking → Tefal Easy Fry & Grill XXL.",
-      fil: "Paano lutuin ito sa Tefal Easy Fry & Grill XXL:\n1) Optional preheat: Start → Air Fry (madalas 180°C) → ayusin °C gamit +/− → Start hanggang may beep.\n2) Ilagay ang pagkain sa basket — huwag siksikin; iling / baliktarin sa gitna.\n3) Manual: 40–220°C at minuto (tingnan prep notes), Start. O auto mode.\n4) Grill: preheat ~15 min sa 220°C; baliktarin ang karne sa gitna.\n5) Light oil lang — huwag magbuhos ng maraming mantika. Mainit ang basket — gumamit ng tongs.\n6) Panel map: Tools → Cooking → Tefal Easy Fry & Grill XXL.",
-      zh: "用 Tefal Easy Fry & Grill XXL 煮這道菜：\n1) 可先預熱：Start → Air Fry（常 180°C）→ 用 +/− 調溫 → 再 Start 至響聲。\n2) 食物放入籃／鍋——不要過滿；中途搖動或翻面。\n3) 手動：40–220°C 與分鐘（見準備說明）後 Start；或選自動模式。\n4) Grill：約 220°C 預熱 15 分鐘；肉中途翻面。\n5) 薄刷／噴少許油即可——不要倒一大灘油。籃很燙——用夾。\n6) 面板圖：打開「家電／Tools」→ 煮食 → Tefal Easy Fry & Grill XXL。",
+      en: "Device basics (same for every Easy Fry dish):\n• Manual: Start → Air Fry → set °C / min from THIS dish → Start.\n• Don’t overcrowd · light oil spray only (no oil pool) · tongs for hot basket.\n• Shake / flip when the dish steps say so.\n• Panel map: Tools → Cooking → Tefal Easy Fry & Grill XXL.",
+      fil: "Device basics (pareho sa lahat ng Easy Fry dish):\n• Manual: Start → Air Fry → itakda °C / min mula sa DISH NA ITO → Start.\n• Huwag siksikin · light oil spray lang · tongs sa mainit na basket.\n• Iling / baliktarin kung sinasabi ng steps ng dish.\n• Panel map: Tools → Cooking → Tefal Easy Fry & Grill XXL.",
+      zh: "機具基本（每道 Easy Fry 菜相同）：\n• 手動：Start → Air Fry → 按「這道菜」設溫度／分鐘 → Start。\n• 不要過滿 · 薄噴油即可 · 熱籃用夾。\n• 依這道菜步驟中途搖／翻。\n• 面板圖：家電 → 煮食 → Tefal Easy Fry & Grill XXL。",
     },
   },
 };

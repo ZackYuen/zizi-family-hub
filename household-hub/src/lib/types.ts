@@ -88,6 +88,23 @@ export interface DinnerRecipe {
    * Meals shows a “cook with this device” guide when set.
    */
   cookDevice?: string;
+  /**
+   * Per-dish settings for Easy Fry / EPC17 (mode, °C, minutes, steps).
+   * Shown on the Meals card instead of the generic device howto.
+   */
+  cookSettings?: RecipeCookSettings;
+}
+
+/** Dish-specific appliance settings (not the shared device manual). */
+export interface RecipeCookSettings {
+  /** e.g. Air Fry / Grill / HI-P / LO-P / Steam / Brown / Reheat */
+  mode: BilingualText;
+  /** e.g. "180" or "160–180" — omit for pressure modes that don't use °C */
+  tempC?: string;
+  /** e.g. "18–25" or "up to 10" */
+  minutes: string;
+  /** Numbered steps for this dish only */
+  steps: BilingualText;
 }
 
 export interface TonightMenu {
