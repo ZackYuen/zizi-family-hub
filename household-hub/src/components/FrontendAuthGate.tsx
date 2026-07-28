@@ -148,7 +148,7 @@ export function FrontendAuthGate({
           <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/login-family-hero.png?v=cartoon2"
+              src="/images/login-family-hero.png?v=manga1"
               alt=""
               className="h-full w-full object-cover object-center"
             />
