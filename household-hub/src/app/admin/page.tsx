@@ -14,16 +14,27 @@ import {
   PreferencesAdmin,
 } from "@/components/admin/HouseGuidesAdmin";
 import { TrilingualFieldEditor } from "@/components/admin/TrilingualFieldEditor";
+import { AdminAuthSettingsPanel } from "@/components/admin/AdminAuthSettingsPanel";
 import { emptyBilingual } from "@/lib/localized-text";
+import { startGoogleAdminLogin } from "@/lib/google-admin-login";
+import { normalizeAdminAuth } from "@/lib/admin-auth-settings";
 
 const ADMIN_LANGS: Lang[] = ["en", "zh", "fil"];
 const ADMIN_LANG_LABEL: Record<Lang, string> = { en: "EN", zh: "繁中", fil: "FIL" };
+
+type AuthOptions = {
+  passwordEnabled: boolean;
+  googleEnabled: boolean;
+  skipLogin: boolean;
+  googleConfigured: boolean;
+};
 
 export default function AdminPage() {
   const [adminLang, setAdminLang] = useState<Lang>("en");
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [authOptions, setAuthOptions] = useState<AuthOptions | null>(null);
   const [content, setContent] = useState<AppContent | null>(null);
   const [jsonText, setJsonText] = useState("");
   const [activeSection, setActiveSection] = useState<
@@ -54,11 +65,41 @@ export default function AdminPage() {
       })
       .then((data: AppContent | null) => {
         if (data) {
-          setContent(data);
+          setContent({
+            ...data,
+            adminAuth: normalizeAdminAuth(data.adminAuth),
+          });
           setJsonText(JSON.stringify(data, null, 2));
         }
       });
   }, []);
+
+  useEffect(() => {
+    if (authed !== false) return;
+    fetch("/api/auth/options")
+      .then((r) => r.json())
+      .then((opts: AuthOptions) => setAuthOptions(opts))
+      .catch(() =>
+        setAuthOptions({
+          passwordEnabled: true,
+          googleEnabled: false,
+          skipLogin: false,
+          googleConfigured: false,
+        })
+      );
+  }, [authed]);
+
+  const afterLogin = async () => {
+    setAuthed(true);
+    const data = (await fetch("/api/admin/content").then((r) =>
+      r.json()
+    )) as AppContent;
+    setContent({
+      ...data,
+      adminAuth: normalizeAdminAuth(data.adminAuth),
+    });
+    setJsonText(JSON.stringify(data, null, 2));
+  };
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,13 +110,34 @@ export default function AdminPage() {
       body: JSON.stringify({ password }),
     });
     if (!res.ok) {
-      setError(adminT("wrongPassword", lang));
+      const payload = await res.json().catch(() => ({}));
+      setError(
+        typeof payload.error === "string"
+          ? payload.error
+          : adminT("wrongPassword", lang)
+      );
       return;
     }
-    setAuthed(true);
-    const data = await fetch("/api/admin/content").then((r) => r.json());
-    setContent(data);
-    setJsonText(JSON.stringify(data, null, 2));
+    await afterLogin();
+  };
+
+  const loginGoogle = async () => {
+    setError("");
+    const { error: gErr } = await startGoogleAdminLogin();
+    if (gErr) setError(gErr);
+  };
+
+  const loginSkip = async () => {
+    setError("");
+    const res = await fetch("/api/auth/skip", { method: "POST" });
+    if (!res.ok) {
+      const payload = await res.json().catch(() => ({}));
+      setError(
+        typeof payload.error === "string" ? payload.error : "Skip login failed"
+      );
+      return;
+    }
+    await afterLogin();
   };
 
   const logout = async () => {
@@ -169,35 +231,71 @@ export default function AdminPage() {
   }
 
   if (!authed) {
+    const showGoogle = authOptions?.googleEnabled;
+    const showPassword = authOptions?.passwordEnabled !== false;
+    const showSkip = authOptions?.skipLogin;
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-teal-50 to-stone-100 px-4">
-        <form
-          onSubmit={login}
-          className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-lg ring-1 ring-stone-200"
-        >
+        <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-lg ring-1 ring-stone-200">
           <div className="mb-4 flex justify-end gap-1">
             <AdminLangSwitch />
           </div>
-          <h1 className="mb-1 text-xl font-bold text-stone-900">{adminT("login", lang)}</h1>
-          <p className="mb-4 text-sm text-stone-500">{adminT("loginDesc", lang)}</p>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder={adminT("password", lang)}
-            className="mb-3 w-full rounded-xl border border-stone-200 px-3 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
-          />
-          {error && <p className="mb-2 text-sm text-red-600">{error}</p>}
-          <button
-            type="submit"
-            className="w-full rounded-xl bg-teal-600 py-2.5 text-sm font-semibold text-white hover:bg-teal-700"
-          >
-            {adminT("signIn", lang)}
-          </button>
+          <h1 className="mb-1 text-xl font-bold text-stone-900">
+            {adminT("login", lang)}
+          </h1>
+          <p className="mb-4 text-sm text-stone-500">
+            {adminT("loginDesc", lang)}
+          </p>
+
+          {showGoogle ? (
+            <button
+              type="button"
+              onClick={loginGoogle}
+              className="mb-3 flex w-full items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white py-2.5 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+            >
+              <GoogleIcon />
+              {adminT("signInGoogle", lang)}
+            </button>
+          ) : null}
+
+          {showSkip ? (
+            <button
+              type="button"
+              onClick={loginSkip}
+              className="mb-3 w-full rounded-xl bg-amber-100 py-2.5 text-sm font-semibold text-amber-950 ring-1 ring-amber-300 hover:bg-amber-200"
+            >
+              {adminT("skipLoginBtn", lang)}
+            </button>
+          ) : null}
+
+          {showPassword ? (
+            <form onSubmit={login}>
+              {(showGoogle || showSkip) && (
+                <p className="mb-2 text-center text-[11px] uppercase tracking-wide text-stone-400">
+                  {adminT("orPassword", lang)}
+                </p>
+              )}
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={adminT("password", lang)}
+                className="mb-3 w-full rounded-xl border border-stone-200 px-3 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
+              />
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-teal-600 py-2.5 text-sm font-semibold text-white hover:bg-teal-700"
+              >
+                {adminT("signIn", lang)}
+              </button>
+            </form>
+          ) : null}
+
+          {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
           <a href="/" className="mt-4 block text-center text-sm text-teal-700">
             {adminT("backToApp", lang)}
           </a>
-        </form>
+        </div>
       </div>
     );
   }
@@ -498,11 +596,16 @@ export default function AdminPage() {
               onChange={(ziziSchool) => setContent({ ...content, ziziSchool })}
               multiline
             />
+            <AdminAuthSettingsPanel
+              content={content}
+              setContent={setContent}
+              lang={lang}
+            />
             <button
               type="button"
               disabled={saving}
               onClick={() => saveContent(content)}
-              className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+              className="mt-4 rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
             >
               {saving ? adminT("saving", lang) : adminT("saveSettings", lang)}
             </button>
@@ -537,5 +640,28 @@ export default function AdminPage() {
         )}
       </div>
     </div>
+  );
+}
+
+function GoogleIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden>
+      <path
+        fill="#FFC107"
+        d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"
+      />
+      <path
+        fill="#FF3D00"
+        d="M6.3 14.7l6.6 4.8C14.7 16.1 19 13 24 13c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"
+      />
+      <path
+        fill="#4CAF50"
+        d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.3 36 26.8 37 24 37c-5.2 0-9.6-3.3-11.2-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"
+      />
+      <path
+        fill="#1976D2"
+        d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"
+      />
+    </svg>
   );
 }

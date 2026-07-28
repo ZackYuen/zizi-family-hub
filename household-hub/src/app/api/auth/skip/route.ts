@@ -3,26 +3,18 @@ import {
   adminAuthFromContent,
   effectiveAuthMethods,
 } from "@/lib/admin-auth-settings";
-import { getAdminPassword, setAuthenticated } from "@/lib/auth";
+import { setAuthenticated } from "@/lib/auth";
 import { getContent } from "@/lib/data";
 
-export async function POST(request: Request) {
-  const body = await request.json();
-  const { password } = body as { password?: string };
-
+export async function POST() {
   const content = await getContent();
   const methods = effectiveAuthMethods(adminAuthFromContent(content));
-  if (!methods.password) {
+  if (!methods.skip) {
     return NextResponse.json(
-      { error: "Password login is disabled" },
+      { error: "Skip login is disabled" },
       { status: 403 }
     );
   }
-
-  if (!password || password !== getAdminPassword()) {
-    return NextResponse.json({ error: "Invalid password" }, { status: 401 });
-  }
-
   await setAuthenticated();
   return NextResponse.json({ ok: true });
 }

@@ -1169,7 +1169,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-28T16:13:57.522Z",
+  "lastUpdated": "2026-07-28T16:58:17.620Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -4692,5 +4692,13 @@
       "received": false
     }
   ],
-  "statutoryHolidayEntitledFrom": "2026-10-27"
+  "statutoryHolidayEntitledFrom": "2026-10-27",
+  "adminAuth": {
+    "passwordEnabled": true,
+    "googleEnabled": true,
+    "skipLogin": false,
+    "googleAllowlist": [
+      "ghostyuen@gmail.com"
+    ]
+  }
 }
