@@ -80,9 +80,9 @@ const categoryMeta: Record<
   },
   culture: {
     icon: "🏠",
-    en: "Daily life & apps",
-    fil: "Araw-araw at apps",
-    zh: "日常與應用",
+    en: "Daily life",
+    fil: "Araw-araw",
+    zh: "日常生活",
     tone: "bg-stone-100 text-stone-800 ring-stone-200",
   },
 };
@@ -90,9 +90,9 @@ const categoryMeta: Record<
 const ui = {
   title: { en: "HK Life", fil: "HK Life", zh: "香港生活" },
   subtitle: {
-    en: "Tap a topic. Confirm contracts with Sir/Mum.",
-    fil: "I-tap ang topic. Kumpirmahin ang kontrata kay Sir/Mum.",
-    zh: "點選主題。合約請向 Sir/Mum 確認。",
+    en: "Tips for living in Hong Kong. Confirm with Sir/Mum if unsure.",
+    fil: "Mga tip para sa pamumuhay sa Hong Kong. Tanungin si Sir/Mum kung unsure.",
+    zh: "在香港生活的貼士。有疑問向 Sir/Mum 確認。",
   },
   emergency: {
     en: "Emergency phones",
@@ -100,14 +100,24 @@ const ui = {
     zh: "緊急電話",
   },
   checklist: {
-    en: "Settling checklist",
-    fil: "Settling checklist",
-    zh: "安頓清單",
+    en: "First weeks checklist",
+    fil: "Unang linggo checklist",
+    zh: "初到安頓清單",
   },
   checklistHint: {
     en: "Saved on this phone only.",
     fil: "Sa phone na ito lang naka-save.",
     zh: "只保存在此手機。",
+  },
+  records: {
+    en: "My records",
+    fil: "Mga record ko",
+    zh: "我的記錄",
+  },
+  recordsHint: {
+    en: "Holidays & salary — not living tips. Tap to confirm.",
+    fil: "Holidays at sahod — hindi living tips. I-tap para kumpirmahin.",
+    zh: "假日與薪金 — 不是生活貼士。點選確認。",
   },
   holidays: {
     en: "Statutory holidays 2026",
@@ -145,9 +155,9 @@ const ui = {
     zh: "2026 薪金簽收",
   },
   salaryHint: {
-    en: "Tap to confirm you received salary. Saved for Sir/Mum too.",
-    fil: "I-tap para kumpirmahing natanggap ang sahod. Nakikita din ni Sir/Mum.",
-    zh: "點選確認已收薪。Sir/Mum 也會看到。",
+    en: "Tap to confirm you received salary.",
+    fil: "I-tap para kumpirmahing natanggap ang sahod.",
+    zh: "點選確認已收薪。",
   },
   received: {
     en: "Received",
@@ -164,7 +174,7 @@ const ui = {
     fil: (d: number, t: number) => `${d}/${t} tapos`,
     zh: (d: number, t: number) => `已完成 ${d}/${t}`,
   },
-  topics: { en: "Topics", fil: "Mga topic", zh: "主題" },
+  topics: { en: "Living tips", fil: "Living tips", zh: "生活貼士" },
   tips: {
     en: (n: number) => `${n} tips`,
     fil: (n: number) => `${n} tip`,
@@ -712,50 +722,6 @@ export function HkLifeView({ content }: { content: AppContent }) {
         </Accordion>
       )}
 
-      {holidays.length > 0 && (
-        <Accordion
-          id="statutory-holidays"
-          open={openIds.includes("statutory-holidays")}
-          onToggle={onToggleSection}
-          title={
-            <span className="inline-flex items-center gap-2">
-              <span aria-hidden>📅</span>
-              {ui.holidays[lang]}
-            </span>
-          }
-          subtitle={`${ui.entitledOf[lang](holidaysTaken, holidaysEntitled)} · ${ui.holidaysHint[lang]}`}
-          tone="bg-amber-50/70 ring-amber-100"
-        >
-          <HolidayRows
-            items={holidays}
-            onToggle={onToggleHoliday}
-            busyId={busyId}
-          />
-        </Accordion>
-      )}
-
-      {salaries.length > 0 && (
-        <Accordion
-          id="salary-receipts"
-          open={openIds.includes("salary-receipts")}
-          onToggle={onToggleSection}
-          title={
-            <span className="inline-flex items-center gap-2">
-              <span aria-hidden>💵</span>
-              {ui.salary[lang]}
-            </span>
-          }
-          subtitle={`${ui.doneOf[lang](salariesReceived, salaries.length)} · ${ui.salaryHint[lang]}`}
-          tone="bg-emerald-50/70 ring-emerald-100"
-        >
-          <SalaryRows
-            items={salaries}
-            onToggle={onToggleSalary}
-            busyId={busyId}
-          />
-        </Accordion>
-      )}
-
       <div className="space-y-2">
         <h3 className="px-0.5 text-xs font-bold uppercase tracking-wide text-stone-500">
           {ui.topics[lang]}
@@ -792,6 +758,57 @@ export function HkLifeView({ content }: { content: AppContent }) {
           );
         })}
       </div>
+
+      {(holidays.length > 0 || salaries.length > 0) && (
+        <div className="space-y-2 pt-1">
+          <h3 className="px-0.5 text-xs font-bold uppercase tracking-wide text-stone-500">
+            {ui.records[lang]}
+          </h3>
+          <p className="px-0.5 text-[11px] text-stone-400">{ui.recordsHint[lang]}</p>
+          {holidays.length > 0 && (
+            <Accordion
+              id="statutory-holidays"
+              open={openIds.includes("statutory-holidays")}
+              onToggle={onToggleSection}
+              title={
+                <span className="inline-flex items-center gap-2">
+                  <span aria-hidden>📅</span>
+                  {ui.holidays[lang]}
+                </span>
+              }
+              subtitle={`${ui.entitledOf[lang](holidaysTaken, holidaysEntitled)} · ${ui.holidaysHint[lang]}`}
+              tone="bg-amber-50/70 ring-amber-100"
+            >
+              <HolidayRows
+                items={holidays}
+                onToggle={onToggleHoliday}
+                busyId={busyId}
+              />
+            </Accordion>
+          )}
+          {salaries.length > 0 && (
+            <Accordion
+              id="salary-receipts"
+              open={openIds.includes("salary-receipts")}
+              onToggle={onToggleSection}
+              title={
+                <span className="inline-flex items-center gap-2">
+                  <span aria-hidden>💵</span>
+                  {ui.salary[lang]}
+                </span>
+              }
+              subtitle={`${ui.doneOf[lang](salariesReceived, salaries.length)} · ${ui.salaryHint[lang]}`}
+              tone="bg-emerald-50/70 ring-emerald-100"
+            >
+              <SalaryRows
+                items={salaries}
+                onToggle={onToggleSalary}
+                busyId={busyId}
+              />
+            </Accordion>
+          )}
+        </div>
+      )}
     </div>
   );
 }

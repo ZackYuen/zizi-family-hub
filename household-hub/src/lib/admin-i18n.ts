@@ -97,9 +97,9 @@ export const adminLabels = {
   saveJson: { en: "Save JSON", fil: "I-save ang JSON" },
   saveHkLife: { en: "Save HK Life", fil: "I-save ang HK Life", zh: "儲存香港生活" },
   hkLifeHint: {
-    en: "Fill Sir/Mum phone numbers. Toggle weather alert when T8+ / black rain. Guides feed Ask + WhatsApp.",
-    fil: "Ilagay ang phone nina Sir/Mum. I-on ang weather alert kapag T8+ / black rain. Ang guides ay ginagamit ng Ask + WhatsApp.",
-    zh: "請填寫 Sir/Mum 電話。八號／黑雨時開啟天氣警報。指南會供 Ask 與 WhatsApp 使用。",
+    en: "HK Life = tips for living in Hong Kong (+ emergency & first-weeks checklist). Holiday/salary confirms are under My records. Guides also feed Ask + WhatsApp.",
+    fil: "HK Life = tips para sa pamumuhay sa Hong Kong (+ emergency at first-weeks checklist). Holiday/salary confirms ay nasa My records. Ginagamit din ng Ask + WhatsApp ang guides.",
+    zh: "香港生活＝在港生活貼士（另加緊急電話與初到清單）。假日／薪金確認在「我的記錄」。指南亦供 Ask 與 WhatsApp。",
   },
   weatherAlert: { en: "Weather alert banner", fil: "Weather alert banner", zh: "天氣警報橫幅" },
   weatherAlertOn: {

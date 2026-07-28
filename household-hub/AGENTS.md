@@ -67,10 +67,11 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 - Field `helperName` remains for API compatibility; UI labels say Charlene / family member.
 - Ground rules: respectful family tone. **Borrow money** and **Zizi safety** stay firm (may end contract). Other rules use written warning + coaching — not immediate terminate.
 
-## HK Life (FDH / Kwun Tong)
+## HK Life (living tips for Charlene in Hong Kong)
 
-- Tab **HK Life**: emergency phones, settling checklist, bilingual guides.
-- Admin → **HK Life**: edit guides, Sir/Mum phones, checklist, weather alert banner (T8+ / black rain).
+- Tab **HK Life**: tips for living in HK (emergency, first-weeks checklist, tip categories). Holiday taken / salary receipt confirms sit under **My records** (not tip content).
+- Admin → **HK Life**: edit guides, Sir/Mum phones, checklist, weather alert banner (T8+ / black rain), holiday/salary lists.
 - Ask / WhatsApp answer typhoon, Octopus, rest day, Consulate, AEON, etc. from `hkLifeGuides` in live content (heuristics + knowledge pack).
 - Seed/backup: `data/content.json` + `scripts/seed-hk-life.mjs`. Missing Supabase fields **append** from local once on read — then prefer **Admin Save** / `patch-live` to publish.
 - Legal wage/rest-day text is general guidance; always confirm with Sir/Mum / contract / Labour Department.
+- Prefer short tip bodies (bullets). Long policy detail → `sourceUrl` PDF link.
