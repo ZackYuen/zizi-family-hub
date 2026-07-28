@@ -4476,7 +4476,13 @@
         "zh": "一月一日",
         "fil": "Unang araw ng Enero"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0217",
@@ -4487,7 +4493,13 @@
         "zh": "農曆年初一",
         "fil": "Unang araw ng Lunar New Year"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0218",
@@ -4498,7 +4510,13 @@
         "zh": "農曆年初二",
         "fil": "Ikalawang araw ng Lunar New Year"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0219",
@@ -4509,7 +4527,13 @@
         "zh": "農曆年初三",
         "fil": "Ikatlong araw ng Lunar New Year"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0405",
@@ -4520,7 +4544,13 @@
         "zh": "清明節",
         "fil": "Ching Ming Festival"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0406",
@@ -4531,7 +4561,13 @@
         "zh": "復活節星期一",
         "fil": "Easter Monday"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0501",
@@ -4542,7 +4578,13 @@
         "zh": "勞動節",
         "fil": "Labour Day (Araw ng Manggagawa)"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0524",
@@ -4553,7 +4595,13 @@
         "zh": "佛誕",
         "fil": "Kaarawan ni Buddha"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0619",
@@ -4564,7 +4612,13 @@
         "zh": "端午節",
         "fil": "Tuen Ng (Dragon Boat) Festival"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0701",
@@ -4575,7 +4629,13 @@
         "zh": "香港特別行政區成立紀念日",
         "fil": "HKSAR Establishment Day"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-0926",
@@ -4586,7 +4646,13 @@
         "zh": "中秋節翌日",
         "fil": "Araw pagkatapos ng Mid-Autumn Festival"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-1001",
@@ -4597,7 +4663,13 @@
         "zh": "國慶日",
         "fil": "National Day"
       },
-      "taken": false
+      "entitled": false,
+      "taken": false,
+      "notes": {
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating)."
+      }
     },
     {
       "id": "sh-2026-1018",
@@ -4608,11 +4680,12 @@
         "zh": "重陽節",
         "fil": "Chung Yeung Festival"
       },
+      "entitled": false,
       "taken": false,
       "notes": {
-        "en": "Falls on Sunday — if Sunday is your rest day, Sir/Mum should grant the next day (19 Oct) as holiday.",
-        "zh": "適逢星期日 — 若星期日是休息日，Sir/Mum 應另放翌日（10月19日）。",
-        "fil": "Pumapatak sa Linggo — kung Linggo ang rest day, dapat magbigay sina Sir/Mum ng holiday sa susunod na araw (19 Okt)."
+        "en": "Not entitled yet — Charlene’s entitlement starts 2026-10-27 (after arrival).\nFalls on Sunday — if Sunday is your rest day, Sir/Mum should grant the next day (19 Oct) as holiday.",
+        "zh": "尚未享有 — Charlene 由 2026-10-27 起才開始享有法定假（剛到港）。\n適逢星期日 — 若星期日是休息日，Sir/Mum 應另放翌日（10月19日）。",
+        "fil": "Hindi pa entitled — magsisimula ang entitlement ni Charlene sa 2026-10-27 (pagkatapos dumating).\nPumapatak sa Linggo — kung Linggo ang rest day, dapat magbigay sina Sir/Mum ng holiday sa susunod na araw (19 Okt)."
       }
     },
     {
@@ -4624,6 +4697,7 @@
         "zh": "聖誕節（或冬至 — 由僱主選擇）",
         "fil": "Christmas Day (o Winter Solstice — pipili si Sir/Mum)"
       },
+      "entitled": true,
       "taken": false,
       "notes": {
         "en": "Employer chooses Winter Solstice (22 Dec) or Christmas Day (25 Dec). This list defaults to Christmas — change in Admin if needed.",
@@ -4640,6 +4714,7 @@
         "zh": "聖誕節後第一個周日",
         "fil": "Unang weekday pagkatapos ng Christmas Day"
       },
+      "entitled": true,
       "taken": false
     }
   ],
@@ -4788,5 +4863,6 @@
       "amountHkd": 5100,
       "received": false
     }
-  ]
+  ],
+  "statutoryHolidayEntitledFrom": "2026-10-27"
 }

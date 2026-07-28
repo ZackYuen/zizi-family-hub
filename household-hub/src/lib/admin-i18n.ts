@@ -134,11 +134,12 @@ export const adminLabels = {
     zh: "法定假日（確認已放）",
   },
   statutoryHolidaysHint: {
-    en: "Labour Department 2026 list. Charlene taps Taken in HK Life; you can also tick here and Save.",
-    fil: "Listahan 2026 ng Labour Department. I-tap ni Charlene ang Taken sa HK Life; pwede ring i-tick dito at Save.",
-    zh: "勞工處 2026 清單。Charlene 可在 HK Life 點選已放；亦可在此勾選後儲存。",
+    en: "Labour Department 2026 list. Charlene entitled from 27 Oct 2026 (after arrival). Earlier dates stay listed but cannot be confirmed taken.",
+    fil: "Listahan 2026 ng Labour Department. Entitled si Charlene mula 27 Okt 2026 (pagkatapos dumating). Ang mas maagang petsa ay nakalista pero hindi ma-confirm bilang taken.",
+    zh: "勞工處 2026 清單。Charlene 由 2026年10月27日起享有（剛到港）。較早日期仍列出但不可確認已放。",
   },
   markTaken: { en: "Taken", fil: "Nakuha", zh: "已放" },
+  markEntitled: { en: "Entitled", fil: "Entitled", zh: "可享有" },
   holidayDate: { en: "Date (YYYY-MM-DD)", fil: "Petsa (YYYY-MM-DD)", zh: "日期 (YYYY-MM-DD)" },
   altDate: { en: "Alt holiday date (optional)", fil: "Alt holiday date (opsyonal)", zh: "另定假日（可選）" },
   seedHolidays2026: {

@@ -12,7 +12,7 @@ import type {
   SettlingCheckItem,
   StatutoryHolidayItem,
 } from "@/lib/types";
-import { hongKongDateLabel } from "@/lib/life-trackers";
+import { hongKongDateLabel, isHolidayEntitled } from "@/lib/life-trackers";
 
 const CATEGORY_ORDER: HkLifeCategory[] = [
   "emergency",
@@ -115,9 +115,9 @@ const ui = {
     zh: "2026 法定假日",
   },
   holidaysHint: {
-    en: "Tap to confirm taken. Saved for Sir/Mum too.",
-    fil: "I-tap para kumpirmahing nakuha. Nakikita din ni Sir/Mum.",
-    zh: "點選確認已放假。Sir/Mum 也會看到。",
+    en: "Entitled from 27 Oct 2026. Tap to confirm taken.",
+    fil: "Entitled mula 27 Okt 2026. I-tap para kumpirmahing nakuha.",
+    zh: "由 2026年10月27日起享有。點選確認已放。",
   },
   taken: {
     en: "Taken",
@@ -128,6 +128,16 @@ const ui = {
     en: "Not yet",
     fil: "Wala pa",
     zh: "未放",
+  },
+  notEntitled: {
+    en: "Not entitled yet",
+    fil: "Hindi pa entitled",
+    zh: "尚未享有",
+  },
+  entitledOf: {
+    en: (d: number, t: number) => `${d}/${t} entitled taken`,
+    fil: (d: number, t: number) => `${d}/${t} entitled nakuha`,
+    zh: (d: number, t: number) => `已放 ${d}/${t}（可享有）`,
   },
   salary: {
     en: "Salary receipt 2026",
@@ -406,23 +416,35 @@ function HolidayRows({
   return (
     <ul className="space-y-1.5">
       {items.map((item) => {
+        const entitled = isHolidayEntitled(item);
         const taken = item.taken;
         const busy = busyId === item.id;
         return (
           <li key={item.id}>
             <button
               type="button"
-              disabled={busy}
-              onClick={() => onToggle(item.id, !taken)}
-              className={`flex w-full items-start gap-2.5 rounded-xl px-3 py-2.5 text-left ring-1 transition disabled:opacity-60 ${
-                taken ? "bg-teal-50/80 ring-teal-100" : "bg-white ring-stone-100"
+              disabled={busy || !entitled}
+              onClick={() => {
+                if (!entitled) return;
+                onToggle(item.id, !taken);
+              }}
+              className={`flex w-full items-start gap-2.5 rounded-xl px-3 py-2.5 text-left ring-1 transition disabled:opacity-70 ${
+                !entitled
+                  ? "bg-stone-100 ring-stone-200"
+                  : taken
+                    ? "bg-teal-50/80 ring-teal-100"
+                    : "bg-white ring-stone-100"
               }`}
             >
-              <ConfirmMark on={taken} />
+              <ConfirmMark on={entitled && taken} />
               <span className="min-w-0 flex-1">
                 <span
                   className={`block text-sm font-medium ${
-                    taken ? "text-stone-500 line-through" : "text-stone-900"
+                    !entitled
+                      ? "text-stone-400"
+                      : taken
+                        ? "text-stone-500 line-through"
+                        : "text-stone-900"
                   }`}
                 >
                   {localized(item.name, lang)}
@@ -433,10 +455,18 @@ function HolidayRows({
                     ? ` · alt ${hongKongDateLabel(item.altDate, lang)}`
                     : ""}
                   {" · "}
-                  {taken ? ui.taken[lang] : ui.notTaken[lang]}
+                  {!entitled
+                    ? ui.notEntitled[lang]
+                    : taken
+                      ? ui.taken[lang]
+                      : ui.notTaken[lang]}
                 </span>
                 {item.notes && (
-                  <span className="mt-1 block text-[11px] leading-snug text-amber-800/90">
+                  <span
+                    className={`mt-1 block text-[11px] leading-snug ${
+                      entitled ? "text-amber-800/90" : "text-stone-400"
+                    }`}
+                  >
                     {localized(item.notes, lang)}
                   </span>
                 )}
@@ -621,7 +651,10 @@ export function HkLifeView({ content }: { content: AppContent }) {
   const checklistDone = checklist.filter(
     (i) => doneMap[i.id] ?? i.done
   ).length;
-  const holidaysTaken = holidays.filter((h) => h.taken).length;
+  const holidaysTaken = holidays.filter(
+    (h) => isHolidayEntitled(h) && h.taken
+  ).length;
+  const holidaysEntitled = holidays.filter((h) => isHolidayEntitled(h)).length;
   const salariesReceived = salaries.filter((s) => s.received).length;
 
   return (
@@ -690,7 +723,7 @@ export function HkLifeView({ content }: { content: AppContent }) {
               {ui.holidays[lang]}
             </span>
           }
-          subtitle={`${ui.doneOf[lang](holidaysTaken, holidays.length)} · ${ui.holidaysHint[lang]}`}
+          subtitle={`${ui.entitledOf[lang](holidaysTaken, holidaysEntitled)} · ${ui.holidaysHint[lang]}`}
           tone="bg-amber-50/70 ring-amber-100"
         >
           <HolidayRows

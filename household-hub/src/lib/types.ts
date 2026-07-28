@@ -171,6 +171,8 @@ export interface AppContent {
   settlingChecklist?: SettlingCheckItem[];
   /** 2026+ statutory holidays — tap to confirm taken */
   statutoryHolidays?: StatutoryHolidayItem[];
+  /** YYYY-MM-DD — Charlene entitled to statutory holidays from this date */
+  statutoryHolidayEntitledFrom?: string;
   /** Monthly salary rows — tap to confirm receipt */
   salaryPayments?: SalaryPaymentItem[];
   emergencyContacts?: EmergencyContact[];
@@ -271,6 +273,12 @@ export interface StatutoryHolidayItem {
   /** YYYY-MM-DD (Hong Kong) */
   date: string;
   name: BilingualText;
+  /**
+   * False when this holiday falls before Charlene’s entitlement start
+   * (family: entitled from 2026-10-27 after arrival).
+   * Default true when omitted (legacy rows).
+   */
+  entitled?: boolean;
   /** Charlene / family confirm this holiday was taken (or alt day taken) */
   taken: boolean;
   takenOn?: string;

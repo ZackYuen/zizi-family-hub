@@ -578,19 +578,29 @@ function heuristicAnswer(
     if (/statutory|法定|stat\s*holiday|holiday\s*list|假日清單/.test(q)) {
       const list = snap.statutoryHolidays;
       if (list.length) {
-        const lines = list.map(
-          (h) =>
-            `${h.taken ? "☑" : "☐"} ${h.date} ${localized(h.name, lang)}${
-              h.altDate ? ` (alt ${h.altDate})` : ""
-            }`
-        );
+        const from =
+          snap.statutoryHolidayEntitledFrom || "2026-10-27";
+        const lines = list.map((h) => {
+          const entitled = h.entitled !== false;
+          const mark = !entitled ? "—" : h.taken ? "☑" : "☐";
+          const tag = !entitled
+            ? lang === "zh"
+              ? "（尚未享有）"
+              : lang === "fil"
+                ? " (hindi pa entitled)"
+                : " (not entitled yet)"
+            : "";
+          return `${mark} ${h.date} ${localized(h.name, lang)}${
+            h.altDate ? ` (alt ${h.altDate})` : ""
+          }${tag}`;
+        });
         const tip =
           lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays") || "";
         return lang === "fil"
-          ? `Statutory holidays 2026 (i-tap sa HK Life para kumpirmahin):\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
+          ? `Statutory holidays 2026 — entitled mula ${from}:\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
           : lang === "zh"
-            ? `2026 法定假日（可在 HK Life 點選確認已放）：\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
-            : `Statutory holidays 2026 (confirm taken in HK Life):\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`;
+            ? `2026 法定假日 — 由 ${from} 起享有：\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
+            : `Statutory holidays 2026 — entitled from ${from}:\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`;
       }
       const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays");
       if (tip) return tip;

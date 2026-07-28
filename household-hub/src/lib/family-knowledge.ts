@@ -51,6 +51,8 @@ export interface LiveFamilySnapshot {
   hkLifeGuides: HkLifeGuide[];
   settlingChecklist: SettlingCheckItem[];
   statutoryHolidays: StatutoryHolidayItem[];
+  /** YYYY-MM-DD entitlement start for Charlene */
+  statutoryHolidayEntitledFrom?: string;
   salaryPayments: SalaryPaymentItem[];
   emergencyContacts: EmergencyContact[];
   hkWeather?: HkWeatherFlag;
@@ -116,6 +118,8 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     hkLifeGuides: content.hkLifeGuides ?? [],
     settlingChecklist: content.settlingChecklist ?? [],
     statutoryHolidays: content.statutoryHolidays ?? [],
+    statutoryHolidayEntitledFrom:
+      content.statutoryHolidayEntitledFrom || "2026-10-27",
     salaryPayments: content.salaryPayments ?? [],
     emergencyContacts: content.emergencyContacts ?? [],
     hkWeather: content.hkWeather,
@@ -272,10 +276,18 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
 
   if (snap.statutoryHolidays.length) {
     lines.push("");
-    lines.push("Statutory holidays tracker (confirm taken in HK Life):");
+    lines.push(
+      `Statutory holidays tracker (entitled from ${snap.statutoryHolidayEntitledFrom || "2026-10-27"}; confirm taken in HK Life):`
+    );
     for (const h of snap.statutoryHolidays) {
+      const status =
+        h.entitled === false
+          ? "not entitled"
+          : h.taken
+            ? "taken"
+            : "not yet";
       lines.push(
-        `- [${h.taken ? "taken" : "not yet"}] ${h.date} ${h.name.en}${h.altDate ? ` (alt ${h.altDate})` : ""}`
+        `- [${status}] ${h.date} ${h.name.en}${h.altDate ? ` (alt ${h.altDate})` : ""}`
       );
     }
   }

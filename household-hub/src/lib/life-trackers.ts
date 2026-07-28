@@ -129,18 +129,43 @@ const MONTH_NAMES: { en: string; zh: string; fil: string }[] = [
   { en: "December", zh: "十二月", fil: "Disyembre" },
 ];
 
-export function buildStatutoryHolidays2026(): StatutoryHolidayItem[] {
+/** Charlene just arrived — family tracks entitlement from this HK date. */
+export const STATUTORY_HOLIDAY_ENTITLED_FROM_2026 = "2026-10-27";
+
+export function buildStatutoryHolidays2026(
+  entitledFrom = STATUTORY_HOLIDAY_ENTITLED_FROM_2026
+): StatutoryHolidayItem[] {
+  const notEntitledNote: BilingualText = {
+    en: `Not entitled yet — Charlene’s entitlement starts ${entitledFrom} (after arrival).`,
+    zh: `尚未享有 — Charlene 由 ${entitledFrom} 起才開始享有法定假（剛到港）。`,
+    fil: `Hindi pa entitled — magsisimula ang entitlement ni Charlene sa ${entitledFrom} (pagkatapos dumating).`,
+  };
+
   return STAT_2026.map((h) => {
     const compact = h.date.replace(/-/g, "").slice(4); // MMDD
+    const entitled = h.date >= entitledFrom;
     return {
       id: `sh-2026-${compact}`,
       year: 2026,
       date: h.date,
       name: { en: h.en, zh: h.zh, fil: h.fil },
+      entitled,
       taken: false,
-      notes: h.notes,
+      notes: entitled
+        ? h.notes
+        : h.notes
+          ? {
+              en: `${notEntitledNote.en}\n${h.notes.en}`,
+              zh: `${notEntitledNote.zh}\n${h.notes.zh || h.notes.en}`,
+              fil: `${notEntitledNote.fil}\n${h.notes.fil || h.notes.en}`,
+            }
+          : notEntitledNote,
     };
   });
+}
+
+export function isHolidayEntitled(item: StatutoryHolidayItem): boolean {
+  return item.entitled !== false;
 }
 
 /** Default monthly salary rows (MAW reference HK$5,100 — confirm contract). */

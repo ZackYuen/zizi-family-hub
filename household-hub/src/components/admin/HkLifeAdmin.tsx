@@ -311,16 +311,33 @@ export function HkLifeAdmin({ content, setContent, lang, saving, onSave }: Props
         {holidays.map((h, i) => (
           <div key={h.id} className="rounded-xl bg-white p-4 ring-1 ring-stone-200">
             <div className="mb-2 flex items-center justify-between gap-2">
-              <label className="flex items-center gap-2 text-xs text-stone-600">
-                <input
-                  type="checkbox"
-                  checked={h.taken}
-                  onChange={(e) =>
-                    updateHoliday(i, { ...h, taken: e.target.checked })
-                  }
-                />
-                {adminT("markTaken", lang)}
-              </label>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-stone-600">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={h.entitled !== false}
+                    onChange={(e) =>
+                      updateHoliday(i, {
+                        ...h,
+                        entitled: e.target.checked,
+                        taken: e.target.checked ? h.taken : false,
+                      })
+                    }
+                  />
+                  {adminT("markEntitled", lang)}
+                </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={h.taken}
+                    disabled={h.entitled === false}
+                    onChange={(e) =>
+                      updateHoliday(i, { ...h, taken: e.target.checked })
+                    }
+                  />
+                  {adminT("markTaken", lang)}
+                </label>
+              </div>
               <button
                 type="button"
                 onClick={() => deleteHoliday(i)}

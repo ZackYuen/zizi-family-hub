@@ -34,6 +34,12 @@ export async function POST(request: Request) {
       if (idx < 0) {
         return NextResponse.json({ error: "Holiday not found" }, { status: 404 });
       }
+      if (list[idx].entitled === false) {
+        return NextResponse.json(
+          { error: "Not entitled to this holiday yet" },
+          { status: 400 }
+        );
+      }
       list[idx] = {
         ...list[idx],
         taken: body.value,
