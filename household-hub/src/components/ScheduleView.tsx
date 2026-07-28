@@ -2,9 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useMemberDisplayName } from "@/contexts/FrontendUserContext";
 import { isHelperDayOff } from "@/lib/hk-holidays";
 import { getHongKongTimeParts, getTodayDayKey, labels } from "@/lib/i18n";
 import { localized } from "@/lib/localized-text";
+import { personalizeHelperCopy } from "@/lib/frontend-display-name";
 import {
   formatTaskTimeRange,
   getActiveTaskId,
@@ -34,6 +36,8 @@ function isDrawingTask(task: { task?: BilingualText; notes?: BilingualText }) {
 
 export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
   const { lang } = useLanguage();
+  const memberName = useMemberDisplayName(content.helperName);
+  const helperName = content.helperName || "Charlene";
   const todayKey = getTodayDayKey();
   const todayDateKey = getTodayHongKongKey();
   const todayKeyRef = useRef(todayKey);
@@ -109,21 +113,32 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
         tone: "violet" as const,
         text:
           lang === "fil"
-            ? "Day off ni Charlene (Linggo / HK public holiday)."
+            ? `Day off ni ${memberName} (Linggo / HK public holiday).`
             : lang === "zh"
-              ? "Charlene 放假（星期日／香港公眾假期）。"
-              : "Charlene day off (Sunday / HK public holiday).",
+              ? `${memberName} 放假（星期日／香港公眾假期）。`
+              : `${memberName} day off (Sunday / HK public holiday).`,
       };
     }
     const banner = activeForSelected.ziziSchool;
     if (activeForSelected.season === "summer") {
       return {
         tone: "amber" as const,
-        text: localized(banner, lang),
+        text: personalizeHelperCopy(
+          localized(banner, lang),
+          helperName,
+          memberName
+        ),
       };
     }
     if (banner) {
-      return { tone: "sky" as const, text: localized(banner, lang) };
+      return {
+        tone: "sky" as const,
+        text: personalizeHelperCopy(
+          localized(banner, lang),
+          helperName,
+          memberName
+        ),
+      };
     }
     return null;
   })();
@@ -288,11 +303,19 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-stone-900">
-                  {localized(task.task, lang)}
+                  {personalizeHelperCopy(
+                    localized(task.task, lang),
+                    helperName,
+                    memberName
+                  )}
                 </p>
                 {task.notes && (
                   <p className="mt-0.5 text-xs leading-snug text-stone-500">
-                    {localized(task.notes, lang)}
+                    {personalizeHelperCopy(
+                      localized(task.notes, lang),
+                      helperName,
+                      memberName
+                    )}
                   </p>
                 )}
               </div>
@@ -309,7 +332,11 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
           <ul className="mt-2 space-y-1 pl-4 text-sm text-stone-600">
             {monthlyTasks.map((item) => (
               <li key={item.en} className="list-disc">
-                {localized(item, lang)}
+                {personalizeHelperCopy(
+                  localized(item, lang),
+                  helperName,
+                  memberName
+                )}
               </li>
             ))}
           </ul>

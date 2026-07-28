@@ -16,10 +16,12 @@ import { LiveClock } from "./LiveClock";
 import { WeatherBanner } from "./WeatherBanner";
 import { WelcomeGreeting } from "./WelcomeGreeting";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useMemberDisplayName } from "@/contexts/FrontendUserContext";
 import { labels, uiLocale } from "@/lib/i18n";
 
 export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
+  const memberName = useMemberDisplayName(content.helperName);
   const [activeTab, setActiveTab] = useState<TabId>("schedule");
 
   const updated = new Date(content.lastUpdated).toLocaleDateString(uiLocale(lang), {
@@ -36,7 +38,7 @@ export function HomeApp({ content }: { content: AppContent }) {
       <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-lg items-start justify-between gap-3 px-4 py-2.5">
           <WelcomeGreeting
-            name={content.helperName}
+            name={memberName}
             lastUpdatedLabel={lastUpdatedLabel}
           />
           <LanguageToggle />

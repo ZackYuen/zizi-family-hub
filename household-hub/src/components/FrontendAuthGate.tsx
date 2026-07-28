@@ -1,9 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Fraunces, Nunito } from "next/font/google";
 import { startGoogleLogin } from "@/lib/google-admin-login";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  FrontendUserProvider,
+  type FrontendUserState,
+} from "@/contexts/FrontendUserContext";
 import { LanguageToggle } from "@/components/LanguageToggle";
 
 const display = Fraunces({
@@ -24,6 +28,8 @@ type FrontendStatus = {
   googleConfigured: boolean;
   signedIn: boolean;
   email: string | null;
+  displayName: string | null;
+  helperName?: string;
 };
 
 const copy = {
@@ -81,9 +87,20 @@ export function FrontendAuthGate({
           googleConfigured: false,
           signedIn: true,
           email: null,
+          displayName: null,
         })
       );
   }, []);
+
+  const userValue: FrontendUserState = useMemo(
+    () => ({
+      loginRequired: Boolean(status?.required),
+      signedIn: Boolean(status?.signedIn),
+      email: status?.email ?? null,
+      displayName: status?.displayName ?? null,
+    }),
+    [status]
+  );
 
   if (!status) {
     return (
@@ -101,17 +118,24 @@ export function FrontendAuthGate({
   }
 
   if (!status.required || status.signedIn) {
+    const label = status.displayName || status.email;
     return (
-      <>
-        {status.required && status.email ? (
+      <FrontendUserProvider value={userValue}>
+        {status.required && label ? (
           <div className="border-b border-teal-100 bg-[#f7fffc] px-4 py-1.5 text-center text-[11px] text-stone-600">
-            {t.signedInAs} {status.email}{" "}
+            {t.signedInAs}{" "}
+            <span className="font-semibold text-teal-800">{label}</span>{" "}
             <button
               type="button"
               className="ml-2 font-semibold text-teal-700"
               onClick={async () => {
                 await fetch("/api/auth/frontend", { method: "DELETE" });
-                setStatus({ ...status, signedIn: false, email: null });
+                setStatus({
+                  ...status,
+                  signedIn: false,
+                  email: null,
+                  displayName: null,
+                });
               }}
             >
               {t.signOut}
@@ -119,7 +143,7 @@ export function FrontendAuthGate({
           </div>
         ) : null}
         {children}
-      </>
+      </FrontendUserProvider>
     );
   }
 
