@@ -3,12 +3,14 @@ import {
   adminAuthFromContent,
   canAccessAudience,
   effectiveFrontendAuth,
+  findAccessUser,
 } from "@/lib/admin-auth-settings";
 import {
   clearFrontendSession,
   getFrontendSessionEmail,
 } from "@/lib/auth";
 import { getContent } from "@/lib/data";
+import { resolveFrontendDisplayName } from "@/lib/frontend-display-name";
 
 /** Public status for the family app gate */
 export async function GET() {
@@ -20,6 +22,17 @@ export async function GET() {
     !frontend.required ||
     (Boolean(email) && canAccessAudience(email, settings, "frontend"));
 
+  const user = allowed && email ? findAccessUser(email, settings) : null;
+  const displayName =
+    allowed && email
+      ? resolveFrontendDisplayName({
+          email,
+          user,
+          settings,
+          fallback: content.helperName || "Friend",
+        })
+      : null;
+
   return NextResponse.json({
     required: frontend.required,
     googleEnabled: frontend.google,
@@ -29,6 +42,8 @@ export async function GET() {
     ),
     signedIn: Boolean(email) && allowed,
     email: allowed ? email : null,
+    displayName,
+    helperName: content.helperName || "Charlene",
   });
 }
 
