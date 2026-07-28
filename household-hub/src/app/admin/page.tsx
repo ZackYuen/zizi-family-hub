@@ -578,7 +578,7 @@ export default function AdminPage() {
             setContent={setContent}
             lang={lang}
             saving={saving}
-            onSave={() => saveContent(content)}
+            onSave={(updated) => saveContent(updated)}
           />
         )}
 

@@ -28,15 +28,24 @@ function cleanEmail(raw: string): string {
     .toLowerCase();
 }
 
+/** Keep draft rows (empty / partial email) so Admin “+ Add user” can edit them. */
 function normalizeUser(
   raw: Partial<AccessUser> & { email?: string },
   index: number
 ): AccessUser | null {
-  const email = cleanEmail(raw.email || "");
-  if (!email || !email.includes("@")) return null;
+  const id =
+    (raw.id && String(raw.id).trim()) ||
+    `user-draft-${index}-${Math.random().toString(36).slice(2, 8)}`;
+  const emailRaw = String(raw.email ?? "").trim();
+  const email = cleanEmail(emailRaw);
+
+  // Drop completely empty anonymous junk (no id from caller and no email)
+  if (!raw.id && !emailRaw) return null;
+
   return {
-    id: raw.id || `user-${email.replace(/[^a-z0-9]+/g, "-")}-${index}`,
-    email,
+    id,
+    // Preserve in-progress typing; only normalize when it looks like an email
+    email: email.includes("@") ? email : emailRaw,
     name: (raw.name || "").trim() || undefined,
     admin: Boolean(raw.admin),
     frontend: Boolean(raw.frontend),
@@ -44,7 +53,11 @@ function normalizeUser(
   };
 }
 
-/** Migrate legacy googleAllowlist → users; fill frontend flags. */
+function isValidEmail(email: string): boolean {
+  return Boolean(email && email.includes("@"));
+}
+
+/** Migrate legacy googleAllowlist → users; keep draft users while editing. */
 export function normalizeAdminAuth(
   raw?: Partial<AdminAuthSettings> | null
 ): AdminAuthSettings {
@@ -54,20 +67,23 @@ export function normalizeAdminAuth(
         .filter((u): u is AccessUser => Boolean(u))
     : [];
 
+  // Key by id so multiple draft (empty-email) rows are not collapsed
+  const byId = new Map<string, AccessUser>();
+  for (const u of fromUsers) byId.set(u.id, u);
+
   const legacyEmails = Array.isArray(raw?.googleAllowlist)
     ? raw!.googleAllowlist.map(cleanEmail).filter(Boolean)
     : [];
 
-  const byEmail = new Map<string, AccessUser>();
-  for (const u of fromUsers) byEmail.set(u.email, u);
-
   for (const email of legacyEmails) {
-    const existing = byEmail.get(email);
+    if (!isValidEmail(email)) continue;
+    const existing = [...byId.values()].find((u) => cleanEmail(u.email) === email);
     if (existing) {
-      byEmail.set(email, { ...existing, admin: true, enabled: true });
+      byId.set(existing.id, { ...existing, admin: true, enabled: true });
     } else {
-      byEmail.set(email, {
-        id: `user-${email.replace(/[^a-z0-9]+/g, "-")}`,
+      const id = `user-${email.replace(/[^a-z0-9]+/g, "-")}`;
+      byId.set(id, {
+        id,
         email,
         admin: true,
         frontend: false,
@@ -76,25 +92,36 @@ export function normalizeAdminAuth(
     }
   }
 
-  let users = [...byEmail.values()];
+  let users = [...byId.values()];
   if (!users.length) {
     users = DEFAULT_ADMIN_AUTH.users.map((u) => ({ ...u }));
   }
 
-  // Ensure at least one enabled admin Google user if Google admin is on
-  const hasAdminUser = users.some((u) => u.admin && u.enabled);
+  // Ensure at least one enabled admin with a real email (for Google Admin)
+  const hasAdminUser = users.some(
+    (u) => u.admin && u.enabled && isValidEmail(u.email)
+  );
   if (!hasAdminUser) {
-    users = [
-      {
-        id: "user-ghostyuen",
-        email: DEFAULT_ADMIN_EMAIL,
-        name: "Sir",
-        admin: true,
-        frontend: true,
-        enabled: true,
-      },
-      ...users.filter((u) => u.email !== DEFAULT_ADMIN_EMAIL),
-    ];
+    const already = users.find((u) => cleanEmail(u.email) === DEFAULT_ADMIN_EMAIL);
+    if (already) {
+      users = users.map((u) =>
+        u.id === already.id
+          ? { ...u, admin: true, enabled: true, email: DEFAULT_ADMIN_EMAIL }
+          : u
+      );
+    } else {
+      users = [
+        {
+          id: "user-ghostyuen",
+          email: DEFAULT_ADMIN_EMAIL,
+          name: "Sir",
+          admin: true,
+          frontend: true,
+          enabled: true,
+        },
+        ...users,
+      ];
+    }
   }
 
   return {
@@ -106,10 +133,9 @@ export function normalizeAdminAuth(
     frontendGoogleEnabled:
       raw?.frontendGoogleEnabled ?? DEFAULT_ADMIN_AUTH.frontendGoogleEnabled,
     users,
-    // Keep allowlist derived for any old callers / display
     googleAllowlist: users
-      .filter((u) => u.admin && u.enabled)
-      .map((u) => u.email),
+      .filter((u) => u.admin && u.enabled && isValidEmail(u.email))
+      .map((u) => cleanEmail(u.email)),
   };
 }
 
@@ -125,7 +151,11 @@ export function findAccessUser(
 ): AccessUser | null {
   if (!email) return null;
   const needle = cleanEmail(email);
-  return settings.users.find((u) => u.email === needle) ?? null;
+  return (
+    settings.users.find(
+      (u) => isValidEmail(u.email) && cleanEmail(u.email) === needle
+    ) ?? null
+  );
 }
 
 export function canAccessAudience(
@@ -163,7 +193,15 @@ export function effectiveFrontendAuth(settings: AdminAuthSettings): {
   google: boolean;
 } {
   const required = Boolean(settings.frontendLoginRequired);
-  const google =
-    required && settings.frontendGoogleEnabled !== false;
+  const google = required && settings.frontendGoogleEnabled !== false;
   return { required, google };
+}
+
+/** Drop draft rows without a real email before persisting (optional cleanup). */
+export function sanitizeAdminAuthForSave(
+  settings: AdminAuthSettings
+): AdminAuthSettings {
+  const normalized = normalizeAdminAuth(settings);
+  const users = normalized.users.filter((u) => isValidEmail(u.email));
+  return normalizeAdminAuth({ ...normalized, users });
 }
