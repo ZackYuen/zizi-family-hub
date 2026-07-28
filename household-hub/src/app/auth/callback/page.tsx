@@ -2,12 +2,12 @@
 
 import { GoogleAuthCallback } from "@/components/GoogleAuthCallback";
 
-export default function AdminGoogleCallbackPage() {
+export default function FrontendGoogleCallbackPage() {
   return (
     <GoogleAuthCallback
-      defaultAudience="admin"
-      failHref="/admin"
-      okHref="/admin"
+      defaultAudience="frontend"
+      failHref="/"
+      okHref="/"
     />
   );
 }

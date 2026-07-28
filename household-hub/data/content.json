@@ -1169,7 +1169,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-28T16:58:17.613Z",
+  "lastUpdated": "2026-07-28T17:08:17.890Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -4697,6 +4697,18 @@
     "passwordEnabled": true,
     "googleEnabled": true,
     "skipLogin": false,
+    "frontendLoginRequired": false,
+    "frontendGoogleEnabled": true,
+    "users": [
+      {
+        "id": "user-ghostyuen",
+        "email": "ghostyuen@gmail.com",
+        "name": "Sir",
+        "admin": true,
+        "frontend": true,
+        "enabled": true
+      }
+    ],
     "googleAllowlist": [
       "ghostyuen@gmail.com"
     ]
