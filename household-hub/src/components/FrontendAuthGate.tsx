@@ -54,7 +54,8 @@ const copy = {
     loading: "正在開啟家庭 Hub…",
     signOut: "登出",
     signedInAs: "已登入",
-    googleNotReady: "已開啟前端登入，但 Google 尚未就緒。請到 Admin → Access 檢查。",
+    googleNotReady:
+      "已開啟前端登入，但 Google 尚未就緒。請到 Admin → Access 檢查。",
   },
 } as const;
 
@@ -130,19 +131,11 @@ export function FrontendAuthGate({
         color: "#1f3a36",
       }}
     >
-      {/* Atmosphere */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
             "radial-gradient(90% 70% at 70% 10%, #9ee5d8 0%, transparent 55%), radial-gradient(80% 60% at 10% 90%, #f6c9a8 0%, transparent 50%), linear-gradient(165deg, #e8faf6 0%, #f8f1e7 48%, #f0e4d4 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
         }}
       />
 
@@ -151,27 +144,21 @@ export function FrontendAuthGate({
           <LanguageToggle />
         </div>
 
-        {/* Full-bleed family hero */}
-        <div className="login-hero-enter relative -mx-4 mb-6 overflow-hidden sm:-mx-6">
+        <div className="login-hero-enter relative -mx-4 mb-5 overflow-hidden sm:-mx-6">
           <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/login-family-hero.png"
-              alt="Sir, Mum, Zizi and Charlene together"
-              className="h-full w-full object-cover object-[center_30%]"
+              src="/images/login-family-hero.png?v=cartoon2"
+              alt=""
+              className="h-full w-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1f3a36]/55 via-[#1f3a36]/10 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 px-5 pb-5 pt-16 text-white">
-              <p
-                className="login-fade-up text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-100"
-                style={{ animationDelay: "80ms" }}
-              >
-                Gabay sa Bahay
-              </p>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1f3a36]/45 via-transparent to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 px-5 pb-4 pt-12 text-white">
               <h1
-                className="login-fade-up mt-1 text-[2rem] leading-tight text-white sm:text-[2.35rem]"
+                className="login-fade-up text-[1.85rem] leading-tight sm:text-[2.15rem]"
                 style={{
                   fontFamily: "var(--font-login-display), Georgia, serif",
-                  animationDelay: "160ms",
+                  animationDelay: "120ms",
                 }}
               >
                 {t.brand}
@@ -180,16 +167,16 @@ export function FrontendAuthGate({
           </div>
         </div>
 
-        <div className="login-fade-up mx-auto w-full max-w-sm" style={{ animationDelay: "240ms" }}>
+        <div
+          className="login-fade-up mx-auto w-full max-w-sm"
+          style={{ animationDelay: "220ms" }}
+        >
           <h2
-            className="text-[1.65rem] leading-snug text-[#1f3a36]"
+            className="text-[1.45rem] leading-snug text-[#1f3a36]"
             style={{ fontFamily: "var(--font-login-display), Georgia, serif" }}
           >
             {t.headline}
           </h2>
-          <p className="mt-2 text-[0.95rem] leading-relaxed text-[#4a6761]">
-            {t.desc}
-          </p>
 
           {status.googleEnabled ? (
             <button
@@ -204,15 +191,14 @@ export function FrontendAuthGate({
                   setBusy(false);
                 }
               }}
-              className="login-cta-press mt-7 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#0f766e] py-3.5 text-[0.95rem] font-bold text-white shadow-[0_12px_28px_-12px_rgba(15,118,110,0.7)] transition hover:bg-[#0d9488] disabled:opacity-60"
+              className="login-cta-press mt-6 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#0f766e] py-3.5 text-[0.95rem] font-bold text-white shadow-[0_12px_28px_-12px_rgba(15,118,110,0.7)] transition hover:bg-[#0d9488] disabled:opacity-60"
             >
               <GoogleG />
               {busy ? "…" : t.google}
             </button>
           ) : (
             <p className="mt-6 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-950 ring-1 ring-amber-200">
-              Frontend login is on, but Google is not ready. Ask Sir/Mum to check
-              Admin → Access.
+              {t.googleNotReady}
             </p>
           )}
 
@@ -222,26 +208,14 @@ export function FrontendAuthGate({
         </div>
       </div>
 
-      <style jsx global>{`
+      <style>{`
         @keyframes loginFadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(14px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(14px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes loginHeroIn {
-          from {
-            opacity: 0;
-            transform: scale(1.04);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
+          from { opacity: 0; transform: scale(1.04); }
+          to { opacity: 1; transform: scale(1); }
         }
         .login-fade-up {
           animation: loginFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -249,9 +223,7 @@ export function FrontendAuthGate({
         .login-hero-enter {
           animation: loginHeroIn 1s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
-        .login-cta-press:active {
-          transform: scale(0.98);
-        }
+        .login-cta-press:active { transform: scale(0.98); }
       `}</style>
     </div>
   );
