@@ -278,14 +278,19 @@ export const adminLabels = {
   dismiss: { en: "Dismiss", fil: "Dismiss", zh: "忽略" },
   refresh: { en: "Refresh", fil: "Refresh", zh: "重新整理" },
   prepNotes: {
-    en: "Prep notes (EN/FIL — for Cantonese videos)",
-    fil: "Prep notes (EN/FIL — para sa Cantonese video)",
-    zh: "準備說明（影片為廣東話時給 Charlene）",
+    en: "Prep notes (EN / FIL / 繁中)",
+    fil: "Prep notes (EN / FIL / 繁中)",
+    zh: "準備說明（EN／FIL／繁中）",
   },
   prepNotesHint: {
     en: "Short steps Charlene can follow without understanding Cantonese audio.",
     fil: "Maikling steps na masusunod ni Charlene kahit Cantonese ang video.",
     zh: "簡短步驟，即使聽不懂廣東話也能跟。",
+  },
+  ingredientsHint: {
+    en: "Each ingredient needs EN + FIL + 繁中 (use →繁 / →FIL buttons).",
+    fil: "Bawat ingredient: EN + FIL + 繁中 (gamitin ang →繁 / →FIL).",
+    zh: "每項材料請填 EN＋FIL＋繁中（可用 →繁／→FIL 按鈕）。",
   },
   fetchYoutubeTitle: {
     en: "Fetch YouTube → names + prep notes + ingredients",

@@ -556,21 +556,24 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                     {adminT("addIngredient", lang)}
                   </button>
                 </div>
+                <p className="mb-2 text-[10px] text-stone-500">
+                  {adminT("ingredientsHint", lang)}
+                </p>
                 <div className="space-y-2">
                   {(editing.ingredients ?? []).map((ing, i) => (
                     <div key={i} className="space-y-1 rounded-lg bg-stone-50 p-2">
                       <div className="flex gap-1">
                         <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">
-                          EN
+                          繁中
                         </span>
                         <input
-                          value={ing.en}
+                          value={ing.zh ?? ""}
                           onChange={(e) => {
                             const ingredients = [...(editing.ingredients ?? [])];
-                            ingredients[i] = { ...ing, en: e.target.value };
+                            ingredients[i] = { ...ing, zh: e.target.value };
                             setEditing({ ...editing, ingredients });
                           }}
-                          placeholder={`${adminT("ingredientName", lang)} (EN)`}
+                          placeholder={`${adminT("ingredientName", lang)} (繁中)`}
                           className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
                         />
                         <input
@@ -584,15 +587,15 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                           className="w-20 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
                         />
                         <TranslateButtons
-                          sourceText={ing.en}
-                          sourceLang="en"
+                          sourceText={ing.zh ?? ""}
+                          sourceLang="zh"
                           compact
                           onTranslated={(target, text) => {
                             const ingredients = [...(editing.ingredients ?? [])];
                             ingredients[i] = {
                               ...ingredients[i],
+                              ...(target === "en" ? { en: text } : {}),
                               ...(target === "fil" ? { fil: text } : {}),
-                              ...(target === "zh" ? { zh: text } : {}),
                             };
                             setEditing({ ...editing, ingredients });
                           }}
@@ -609,6 +612,35 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                         >
                           ×
                         </button>
+                      </div>
+                      <div className="flex gap-1">
+                        <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">
+                          EN
+                        </span>
+                        <input
+                          value={ing.en}
+                          onChange={(e) => {
+                            const ingredients = [...(editing.ingredients ?? [])];
+                            ingredients[i] = { ...ing, en: e.target.value };
+                            setEditing({ ...editing, ingredients });
+                          }}
+                          placeholder={`${adminT("ingredientName", lang)} (EN)`}
+                          className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
+                        />
+                        <TranslateButtons
+                          sourceText={ing.en}
+                          sourceLang="en"
+                          compact
+                          onTranslated={(target, text) => {
+                            const ingredients = [...(editing.ingredients ?? [])];
+                            ingredients[i] = {
+                              ...ingredients[i],
+                              ...(target === "fil" ? { fil: text } : {}),
+                              ...(target === "zh" ? { zh: text } : {}),
+                            };
+                            setEditing({ ...editing, ingredients });
+                          }}
+                        />
                       </div>
                       <div className="flex gap-1">
                         <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">
@@ -634,35 +666,6 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                               ...ingredients[i],
                               ...(target === "en" ? { en: text } : {}),
                               ...(target === "zh" ? { zh: text } : {}),
-                            };
-                            setEditing({ ...editing, ingredients });
-                          }}
-                        />
-                      </div>
-                      <div className="flex gap-1">
-                        <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">
-                          繁中
-                        </span>
-                        <input
-                          value={ing.zh ?? ""}
-                          onChange={(e) => {
-                            const ingredients = [...(editing.ingredients ?? [])];
-                            ingredients[i] = { ...ing, zh: e.target.value };
-                            setEditing({ ...editing, ingredients });
-                          }}
-                          placeholder={`${adminT("ingredientName", lang)} (繁中)`}
-                          className="min-w-0 flex-1 rounded-lg border border-stone-200 px-2 py-1.5 text-sm"
-                        />
-                        <TranslateButtons
-                          sourceText={ing.zh ?? ""}
-                          sourceLang="zh"
-                          compact
-                          onTranslated={(target, text) => {
-                            const ingredients = [...(editing.ingredients ?? [])];
-                            ingredients[i] = {
-                              ...ingredients[i],
-                              ...(target === "en" ? { en: text } : {}),
-                              ...(target === "fil" ? { fil: text } : {}),
                             };
                             setEditing({ ...editing, ingredients });
                           }}
