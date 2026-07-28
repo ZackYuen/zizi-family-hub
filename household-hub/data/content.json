@@ -4707,6 +4707,14 @@
         "admin": true,
         "frontend": true,
         "enabled": true
+      },
+      {
+        "id": "user-charlene",
+        "email": "charlene.belo@icloud.com",
+        "name": "Charlene",
+        "admin": false,
+        "frontend": true,
+        "enabled": true
       }
     ],
     "googleAllowlist": [
