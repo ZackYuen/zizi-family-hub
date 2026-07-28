@@ -312,6 +312,46 @@ export const adminLabels = {
     fil: "Palitan ang existing prep notes at/o ingredients ng YouTube fetch?",
     zh: "要用 YouTube 擷取內容取代現有準備說明／材料嗎？",
   },
+  cookDeviceLabel: {
+    en: "Cook device (Tools)",
+    fil: "Cook device (Tools)",
+    zh: "煮食家電（Tools）",
+  },
+  cookDeviceNone: {
+    en: "None (stove / other)",
+    fil: "None (stove / other)",
+    zh: "無（爐灶／其他）",
+  },
+  cookDeviceHint: {
+    en: "Tags the Meals card + links Tools panel. Soup → usually EPC17; 氣炸 / air-fry → Easy Fry (not stir-fry).",
+    fil: "Nagta-tag sa Meals card + Tools panel. Soup → EPC17; 氣炸 / air-fry → Easy Fry (hindi stir-fry).",
+    zh: "會標在膳食卡片並連到家電面板。湯類多用 EPC17；氣炸／air-fry 用 Easy Fry（炒菜不算）。",
+  },
+  applySuggestedDevice: {
+    en: "Apply suggested device + starter prep",
+    fil: "I-apply ang suggested device + starter prep",
+    zh: "套用建議家電＋預設準備步驟",
+  },
+  refillDevicePrep: {
+    en: "Refill starter prep for this device",
+    fil: "I-refill ang starter prep para sa device na ito",
+    zh: "重填此家電的預設準備步驟",
+  },
+  autoTagDevices: {
+    en: "Auto-tag: Soup→EPC17, 氣炸→Easy Fry",
+    fil: "Auto-tag: Soup→EPC17, 氣炸→Easy Fry",
+    zh: "一鍵標記：湯→EPC17，氣炸→Easy Fry",
+  },
+  autoTagDone: {
+    en: "Tagged dishes with starter prep. Review, then Save Meals.",
+    fil: "Na-tag ang dishes + starter prep. I-check, tapos Save Meals.",
+    zh: "已標記菜式並填入預設準備步驟。請檢查後儲存膳食。",
+  },
+  autoTagNone: {
+    en: "Nothing new to tag (already set, or not soup / air-fry).",
+    fil: "Walang bago (naka-set na, o hindi soup / air-fry).",
+    zh: "沒有新標記（已設定，或不是湯／氣炸）。",
+  },
 } as const;
 
 export function adminT(key: keyof typeof adminLabels, lang: Lang): string {

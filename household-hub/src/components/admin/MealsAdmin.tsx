@@ -5,6 +5,12 @@ import type { DinnerRecipe, Lang } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { TranslateButtons } from "./TranslateButtons";
 import { TonightOverridePanel } from "./TonightOverridePanel";
+import {
+  applyCookDevice,
+  autoTagCookDevices,
+  suggestCookDevice,
+} from "@/lib/cook-device-suggest";
+import { localized } from "@/lib/localized-text";
 
 type Category = DinnerRecipe["category"] | "All";
 
@@ -196,6 +202,21 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
         </button>
         <button
           type="button"
+          onClick={() => {
+            const { recipes: next, tagged } = autoTagCookDevices(recipes);
+            setRecipes(next);
+            setMessage(
+              tagged > 0
+                ? `${adminT("autoTagDone", lang)} (${tagged})`
+                : adminT("autoTagNone", lang)
+            );
+          }}
+          className="rounded-xl bg-amber-50 px-4 py-2 text-sm font-medium text-amber-950 ring-1 ring-amber-200"
+        >
+          {adminT("autoTagDevices", lang)}
+        </button>
+        <button
+          type="button"
           onClick={() => fileRef.current?.click()}
           className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-stone-700 ring-1 ring-stone-200"
         >
@@ -240,9 +261,17 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
             <div className="space-y-2">
               <select
                 value={editing.category}
-                onChange={(e) =>
-                  setEditing({ ...editing, category: e.target.value as DinnerRecipe["category"] })
-                }
+                onChange={(e) => {
+                  const category = e.target.value as DinnerRecipe["category"];
+                  let next: DinnerRecipe = { ...editing, category };
+                  if (!next.cookDevice) {
+                    const suggestion = suggestCookDevice(next);
+                    if (suggestion) {
+                      next = applyCookDevice(next, suggestion.cookDevice);
+                    }
+                  }
+                  setEditing(next);
+                }}
                 className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
               >
                 <option value="Meat">{adminT("meat", lang)}</option>
@@ -250,24 +279,65 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 <option value="Soup">{adminT("soup", lang)}</option>
               </select>
               <label className="block text-[10px] font-bold uppercase tracking-wide text-stone-500">
-                Cook device (Tools)
+                {adminT("cookDeviceLabel", lang)}
               </label>
+              <p className="text-[10px] text-stone-500">{adminT("cookDeviceHint", lang)}</p>
               <select
                 value={editing.cookDevice || ""}
-                onChange={(e) =>
-                  setEditing({
-                    ...editing,
-                    cookDevice: e.target.value || undefined,
-                  })
-                }
+                onChange={(e) => {
+                  const id = e.target.value || undefined;
+                  if (!id) {
+                    setEditing({ ...editing, cookDevice: undefined });
+                    return;
+                  }
+                  setEditing(applyCookDevice(editing, id));
+                }}
                 className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
               >
-                <option value="">None (stove / other)</option>
+                <option value="">{adminT("cookDeviceNone", lang)}</option>
                 <option value="app-tefal-epc17">Tefal EPC17 pressure cooker</option>
                 <option value="app-tefal-easy-fry-xxl">
                   Tefal Easy Fry & Grill XXL
                 </option>
               </select>
+              {(() => {
+                const suggestion = !editing.cookDevice
+                  ? suggestCookDevice(editing)
+                  : null;
+                if (!suggestion) {
+                  return editing.cookDevice ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEditing(
+                          applyCookDevice(editing, editing.cookDevice!, {
+                            forcePrep: true,
+                          })
+                        )
+                      }
+                      className="w-full rounded-lg bg-teal-50 py-1.5 text-[11px] font-medium text-teal-900 ring-1 ring-teal-100"
+                    >
+                      {adminT("refillDevicePrep", lang)}
+                    </button>
+                  ) : null;
+                }
+                return (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setEditing(applyCookDevice(editing, suggestion.cookDevice))
+                    }
+                    className="w-full rounded-lg bg-amber-50 py-2 text-left text-[11px] font-medium text-amber-950 ring-1 ring-amber-200"
+                  >
+                    <span className="block font-semibold">
+                      {adminT("applySuggestedDevice", lang)}
+                    </span>
+                    <span className="mt-0.5 block text-amber-800">
+                      {localized(suggestion.reason, lang)}
+                    </span>
+                  </button>
+                );
+              })()}
               <div className="space-y-2 rounded-lg bg-stone-50 p-2">
                 <div className="flex gap-1">
                   <span className="w-9 shrink-0 pt-2 text-[10px] font-bold text-stone-400">繁中</span>
@@ -365,7 +435,7 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                     return;
                   }
                   const title = (data.title as string) || "";
-                  const next = {
+                  let next: DinnerRecipe = {
                     ...editing,
                     name: editing.name || (data.nameZh as string) || title,
                     nameEn: editing.nameEn || (data.nameEn as string) || title,
@@ -384,6 +454,12 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                     }
                     if (Array.isArray(data.ingredients) && data.ingredients.length) {
                       next.ingredients = data.ingredients;
+                    }
+                  }
+                  if (!next.cookDevice) {
+                    const suggestion = suggestCookDevice(next);
+                    if (suggestion) {
+                      next = applyCookDevice(next, suggestion.cookDevice);
                     }
                   }
                   setEditing(next);
