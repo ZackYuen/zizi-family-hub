@@ -20,6 +20,8 @@
  *   "upsertAppliances": [ { id, ... } ],
  *   "appendHkLifeGuides": [ ... ],
  *   "upsertHkLifeGuides": [ ... ],
+ *   "removeHkLifeGuides": [ "life-id" ],
+ *   "removeSettlingChecklist": [ "check-id" ],
  *   "upsertGroundRules": [ { id, consequences, ... } ],
  *   "appendFamilyPreferences": [ ... ],
  *   "set": { "ziziSchool": { ... }, "homeArea": { ... } },
@@ -99,6 +101,16 @@ function applyPatch(content, patchObj) {
   if (patchObj.upsertHkLifeGuides?.length) {
     next.hkLifeGuides = sortPriority(
       upsertById(next.hkLifeGuides ?? [], patchObj.upsertHkLifeGuides)
+    );
+  }
+  if (patchObj.removeHkLifeGuides?.length) {
+    const remove = new Set(patchObj.removeHkLifeGuides);
+    next.hkLifeGuides = (next.hkLifeGuides ?? []).filter((g) => !remove.has(g.id));
+  }
+  if (patchObj.removeSettlingChecklist?.length) {
+    const remove = new Set(patchObj.removeSettlingChecklist);
+    next.settlingChecklist = (next.settlingChecklist ?? []).filter(
+      (c) => !remove.has(c.id)
     );
   }
   if (patchObj.appendFamilyPreferences?.length) {

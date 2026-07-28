@@ -1245,36 +1245,18 @@
       "id": "life-rest-day",
       "area": "hk-general",
       "body": {
-        "en": "By HK law, a helper should get at least one rest day every 7 days — a continuous period of at least 24 hours. In this family, Sunday and HK public holidays (勞工假) are Charlene day off. Employer generally must not force work on a rest day. Confirm details with Sir/Mum.",
-        "zh": "香港法例下，外傭每 7 天至少有 1 個連續不少於 24 小時的休息日。本家庭：星期日及公眾假期（勞工假）為 Charlene 放假。一般不可強迫休息日工作。請向 Sir/Mum 確認。",
-        "fil": "Ayon sa batas ng HK, dapat may hindi bababa sa isang rest day bawat 7 araw — tuloy-tuloy na hindi bababa sa 24 oras. Sa pamilyang ito, Linggo at HK public holiday (勞工假) ay day off ni Charlene. Huwag pilitin magtrabaho sa rest day. Kumpirmahin kay Sir/Mum."
+        "en": "By HK law, you should get at least one rest day every 7 days — a continuous 24 hours. In this family, Sunday and HK public holidays (勞工假) are Charlene’s day off. Employer generally must not force work on a rest day.\n• Keep a simple note of rest days / holidays in your phone\n• Statutory holiday taken list: HK Life → My records (entitled from 27 Oct 2026)\n• Ask Sir/Mum before swapping rest days\nConfirm details with Sir/Mum / your contract.",
+        "zh": "按香港法例，每7天應有至少一個休息日（連續24小時）。本家：星期日及香港公眾假期（勞工假）為 Charlene 放假。僱主一般不可強迫休息日工作。\n• 可用手機簡單記錄休息日／假日\n• 法定假已放清單：香港生活 → 我的記錄（由 2026年10月27日起享有）\n• 調休前先問 Sir/Mum\n詳情向 Sir/Mum／合約確認。",
+        "fil": "Ayon sa batas ng HK, dapat may isang rest day kada 7 araw — tuloy-tuloy na 24 oras. Sa pamilyang ito, Linggo at HK public holidays (勞工假) ang day off ni Charlene. Karaniwang hindi pwedeng pilitin magtrabaho sa rest day.\n• Mag-tala ng rest days / holidays sa phone\n• Listahan ng statutory holiday taken: HK Life → My records (entitled mula 27 Okt 2026)\n• Bago magpalit ng rest day, tanungin si Sir/Mum\nKumpirmahin kay Sir/Mum / kontrata."
       },
       "title": {
         "en": "Weekly rest day (24 hours)",
-        "zh": "每週休息日（24 小時）",
+        "zh": "每周休息日（連續24小時）",
         "fil": "Lingguhang rest day (24 oras)"
       },
       "category": "rights",
       "priority": 11,
       "sourceUrl": "https://www.fdh.labour.gov.hk/res/pdf/Employment_handbook_FDH_English.pdf",
-      "lastReviewed": "2026-07-22"
-    },
-    {
-      "id": "life-stat-holidays",
-      "area": "hk-general",
-      "body": {
-        "en": "You are entitled to HK statutory holidays (勞工假). This family tracks them under HK Life → My records. Charlene’s entitlement for confirm/taken starts 27 Oct 2026 (after arrival). If you work on a holiday, Sir/Mum must give an alternative day. Confirm your contract with Sir/Mum.",
-        "zh": "你享有香港法定假日（勞工假）。本家在「香港生活 → 我的記錄」追蹤。Charlene 由 2026年10月27日起才開始可確認已放（剛到港）。若假期要上班，Sir/Mum 須另放一天。請向 Sir/Mum 確認合約。",
-        "fil": "May statutory holidays (勞工假) sa HK. Naka-track sa HK Life → My records. Ang entitlement ni Charlene para i-confirm ang taken ay mula 27 Okt 2026 (pagkatapos dumating). Kung magtrabaho sa holiday, dapat magbigay sina Sir/Mum ng alternative day. Kumpirmahin ang kontrata kay Sir/Mum."
-      },
-      "title": {
-        "en": "Statutory holidays",
-        "zh": "法定假日",
-        "fil": "Statutory holidays"
-      },
-      "category": "rights",
-      "priority": 12,
-      "sourceUrl": "https://www.labour.gov.hk/eng/news/latest_holidays2026.htm",
       "lastReviewed": "2026-07-28"
     },
     {
@@ -1313,24 +1295,6 @@
       "lastReviewed": "2026-07-22"
     },
     {
-      "id": "life-leave-record",
-      "area": "hk-general",
-      "body": {
-        "en": "Labour Department advises helpers to keep their own record of rest days and holidays to avoid disputes. You can note them in your phone. Ask Sir/Mum before swapping rest days.",
-        "zh": "勞工處建議外傭自行記錄休息日及假日以免爭議。可用手機備註。調休前先問 Sir/Mum。",
-        "fil": "Inirerekomenda ng Labour Department na mag-tala ang helper ng rest days at holidays. Pwede sa phone. Bago magpalit ng rest day, tanungin si Sir/Mum."
-      },
-      "title": {
-        "en": "Keep your own leave record",
-        "zh": "自行記錄休假",
-        "fil": "Mag-tala ng sariling leave record"
-      },
-      "category": "rights",
-      "priority": 15,
-      "sourceUrl": "https://www.fdh.labour.gov.hk/res/pdf/Employment_handbook_FDH_English.pdf",
-      "lastReviewed": "2026-07-22"
-    },
-    {
       "id": "life-typhoon",
       "area": "hk-general",
       "body": {
@@ -1363,23 +1327,6 @@
       },
       "category": "money",
       "priority": 30,
-      "lastReviewed": "2026-07-22"
-    },
-    {
-      "id": "life-no-borrow",
-      "area": "hk-general",
-      "body": {
-        "en": "Family golden rule: do not borrow money from anyone, and do not lend your money to other helpers. If you need something, ask Sir/Mum directly. See Golden Rules for consequences.",
-        "zh": "家庭守則：不要向任何人借錢，也不要借錢給其他傭工。有需要直接問 Sir/Mum。後果見黃金守則。",
-        "fil": "Alituntunin ng pamilya: huwag humiram ng pera kaninuman, at huwag magpahiram sa ibang helper. Kung may kailangan, diretso kay Sir/Mum. Tingnan ang Golden Rules para sa resulta."
-      },
-      "title": {
-        "en": "Do not borrow or lend money",
-        "zh": "不要借貸",
-        "fil": "Huwag humiram o magpahiram ng pera"
-      },
-      "category": "money",
-      "priority": 31,
       "lastReviewed": "2026-07-22"
     },
     {
@@ -1455,18 +1402,18 @@
       "id": "life-aeon",
       "area": "kwun-tong",
       "body": {
-        "en": "OK places to buy food: (1) YATA (一田) at apm near home — first choice. (2) Shui Wo Street wet market (瑞和街街市) in Kwun Tong — good for fresh meat and vegetables. (3) AEON Yau Tong / Domain if needed. Do NOT go to 錢大媽 (Kai Bo / Qin Dama). Use the Meals tab shopping list when possible. Keep receipts if asked. Do not buy on credit or borrow.",
-        "zh": "可以買菜的地方：(1) 家附近 apm 一田 YATA — 優先。(2) 觀塘瑞和街街市 — 適合買新鮮肉菜。(3) 有需要可去油塘／Domain AEON。不要去錢大媽。盡量用 Meals 分頁購物清單。如需要請保留收據。不要賒帳或向人借錢。",
-        "fil": "Pwede bumili sa: (1) YATA (一田) sa apm malapit sa bahay — una. (2) Shui Wo Street wet market (瑞和街街市) sa Kwun Tong — maganda para sa sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan. HUWAG pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals tab shopping list kung pwede. Itago ang resibo kung kailangan. Huwag bumili nang utang o humiram."
+        "en": "OK places to buy food: (1) YATA at apm near home — first choice. (2) Shui Wo Street wet market in Kwun Tong — fresh meat and vegetables. (3) AEON Yau Tong / Domain if needed.\nFamily preference: do not go to 錢大媽 (Kai Bo / Qin Dama). Use the Meals tab shopping list when possible. Keep receipts if asked.",
+        "zh": "可買餸地方：（1）附近 apm 一田 — 首選。（2）觀塘瑞和街街市 — 新鮮肉菜。（3）需要時油塘／Domain AEON。\n家庭偏好：不要去錢大媽。可用「膳食」購物清單。若需要請保留收據。",
+        "fil": "OK bumili ng pagkain: (1) YATA sa apm malapit sa bahay — first choice. (2) Shui Wo Street wet market sa Kwun Tong — sariwang karne at gulay. (3) AEON Yau Tong / Domain kung kailangan.\nPreference ng pamilya: huwag pumunta sa 錢大媽 (Kai Bo / Qin Dama). Gamitin ang Meals shopping list kung posible. Itago ang resibo kung hinihingi."
       },
       "title": {
-        "en": "Groceries — YATA, 瑞和街 wet market, AEON",
-        "zh": "買菜 — 一田、瑞和街街市、AEON",
-        "fil": "Pamimili — YATA, 瑞和街 wet market, AEON"
+        "en": "Groceries — YATA, Shui Wo Street, AEON",
+        "zh": "買餸 — 一田、瑞和街、AEON",
+        "fil": "Pamimili — YATA, Shui Wo Street, AEON"
       },
       "category": "shopping",
       "priority": 50,
-      "lastReviewed": "2026-07-26"
+      "lastReviewed": "2026-07-28"
     },
     {
       "id": "life-zizi-sick",
@@ -1555,30 +1502,12 @@
       "lastReviewed": "2026-07-22"
     },
     {
-      "id": "life-recycle-6green-kt",
-      "area": "kwun-tong",
-      "category": "culture",
-      "priority": 70,
-      "lastReviewed": "2026-07-28",
-      "sourceUrl": "https://www.facebook.com/6green.kwuntong",
-      "title": {
-        "en": "Recycle point — Yue Wah St (Thu)",
-        "zh": "回收點 — 月華街（周四）",
-        "fil": "Recycle point — Yue Wah St (Thu)"
-      },
-      "body": {
-        "en": "GREEN@Kwun Tong mobile recycle (near 月華街 / 天星樓):\n• Thursday 10:00–13:00\n• Plastic / metal / glass as they accept that day\n• Phone 2776 5700 if unsure\nAsk Sir/Mum before going the first time. See also Rubbish & recycling.",
-        "zh": "GREEN@觀塘流動回收（月華街／天星樓附近）：\n• 星期四 10:00–13:00\n• 塑膠／金屬／玻璃（按當日接收）\n• 查詢電話 2776 5700\n第一次去先問 Sir/Mum。另見「垃圾與回收」。",
-        "fil": "GREEN@Kwun Tong mobile recycle (malapit sa Yue Wah St / Tin Sing House):\n• Huwebes 10:00–13:00\n• Plastic / metal / glass ayon sa tinatanggap nila\n• Telepono 2776 5700 kung unsure\nTanungin si Sir/Mum sa unang punta. Tingnan din ang Rubbish & recycling."
-      }
-    },
-    {
       "id": "life-rubbish",
       "area": "kwun-tong",
       "body": {
-        "en": "Ask Sir/Mum where to put rubbish and recycling in this building, and which days. Do not leave bags in the corridor. Keep the kitchen bin clean daily.\n\nCommunity recycle (plastic / metal / glass): GREEN@Kwun Tong mobile point on Yue Wah Street (月華街) near Tin Sing Mansion (天星樓), opposite pavement — Thursday 10:00–13:00. Phone 2776 5700. Check Facebook for holiday / bad-weather changes: https://www.facebook.com/6green.kwuntong — full details in HK Life guide “Recycle plastic / metal / glass — Yue Wah St (Thu)”.",
-        "zh": "向 Sir/Mum 查詢本大廈垃圾／回收位置及日子。不要把垃圾袋留在走廊。每天清理廚房垃圾桶。\n\n社區回收（膠／金屬／玻璃）：綠在觀塘流動點 — 觀塘月華街近天星樓對出行人路，星期四 10:00–13:00。電話 2776 5700。假期／惡劣天氣改期請睇 Facebook：https://www.facebook.com/6green.kwuntong — 詳情見香港生活「回收膠／金屬／玻璃 — 月華街（星期四）」。",
-        "fil": "Tanungin si Sir/Mum kung saan at kailan itinatapon ang basura/recycling sa building. Huwag mag-iwan ng basura sa koridor. Linisin araw-araw ang basurahan sa kusina.\n\nCommunity recycle (plastic / metal / glass): GREEN@Kwun Tong mobile point sa Yue Wah Street (月華街) malapit sa Tin Sing Mansion (天星樓), sidewalk sa tapat — Huwebes 10:00–13:00. Telepono 2776 5700. Check Facebook para sa holiday / masamang panahon: https://www.facebook.com/6green.kwuntong — detalyeng gabay sa HK Life “Recycle plastic / metal / glass — Yue Wah St (Thu)”."
+        "en": "Ask Sir/Mum where to put rubbish and recycling in this building, and which days. Do not leave bags in the corridor. Keep the kitchen bin clean daily.\n\nCommunity recycle (plastic / metal / glass): GREEN@Kwun Tong mobile point on Yue Wah Street near Tin Sing Mansion, opposite pavement — Thursday 10:00–13:00. Phone 2776 5700. Ask Sir/Mum before the first trip.",
+        "zh": "問 Sir/Mum 本廈垃圾／回收放哪裡、哪天收。不要把垃圾袋放走廊。廚房垃圾桶每日保持清潔。\n\n社區回收（塑膠／金屬／玻璃）：GREEN@觀塘流動點，月華街天星樓對面行人路 — 星期四 10:00–13:00。電話 2776 5700。第一次去先問 Sir/Mum。",
+        "fil": "Tanungin si Sir/Mum kung saan ang basura at recycling sa building, at anong araw. Huwag mag-iwan ng bag sa corridor. Linisin araw-araw ang kitchen bin.\n\nCommunity recycle (plastic / metal / glass): GREEN@Kwun Tong mobile point sa Yue Wah Street malapit sa Tin Sing Mansion, opposite pavement — Huwebes 10:00–13:00. Telepono 2776 5700. Tanungin si Sir/Mum sa unang punta."
       },
       "title": {
         "en": "Rubbish & recycling",
@@ -1587,7 +1516,7 @@
       },
       "category": "culture",
       "priority": 71,
-      "lastReviewed": "2026-07-27"
+      "lastReviewed": "2026-07-28"
     },
     {
       "id": "life-live-in",
@@ -1620,28 +1549,10 @@
         "fil": "Mga dapat i-install na phone app sa Hong Kong"
       },
       "body": {
-        "en": "Sir/Mum gave Charlene an iPhone X for daily use. Install free from the App Store (ask for Apple ID / Wi‑Fi / SIM if needed).\n• WhatsApp — Sir/Mum + family bot / ? asks\n• Maps (Apple or Google) — save home + kindergarten\n• MTR Mobile — trains & delays\n• Octopus App — balance / top-up (keep physical card for daily taps)\n• MyObservatory — typhoon / rain\n• Translate (Apple or Google) — signs & menus\n• Safari → Family Hub → Add to Home Screen\nOptional: AlipayHK / PayMe, OpenRice.\nNever share OTP / Apple ID password. If App Store asks for a card, ask Sir/Mum.\n(If you use Android instead, see the Android tip.)",
-        "zh": "Sir/Mum 給 Charlene 一部 iPhone X 日常使用。從 App Store 免費安裝（需要 Apple ID／Wi‑Fi／SIM 可問）。\n• WhatsApp — Sir/Mum 及家庭 bot／用 ? 發問\n• 地圖（Apple 或 Google）— 儲存住家＋幼稚園\n• MTR Mobile — 港鐵與延誤\n• Octopus App — 餘額／增值（日常多數仍用實體卡）\n• 我的天文台 — 颱風／暴雨\n• 翻譯 — 路牌與菜單\n• Safari → Family Hub → 加入主畫面\n可選：AlipayHK／PayMe、OpenRice。\n切勿分享 OTP／Apple ID 密碼。App Store 要付款方式就問 Sir/Mum。\n（若用 Android，見 Android 貼士。）",
-        "fil": "Binigyan nina Sir/Mum si Charlene ng iPhone X. I-install nang libre sa App Store (tanungin para sa Apple ID / Wi‑Fi / SIM).\n• WhatsApp — Sir/Mum + family bot / ? asks\n• Maps (Apple o Google) — i-save ang bahay + kindergarten\n• MTR Mobile — tren at delay\n• Octopus App — balanse / top-up (physical card pa rin sa araw-araw)\n• MyObservatory — bagyo / ulan\n• Translate — signs at menu\n• Safari → Family Hub → Add to Home Screen\nOpsyonal: AlipayHK / PayMe, OpenRice.\nHuwag ibigay ang OTP / Apple ID password. Kung humihingi ng card ang App Store, tanungin si Sir/Mum.\n(Kung Android, tingnan ang Android tip.)"
+        "en": "Sir/Mum gave Charlene an iPhone X for daily use. Install free from the App Store (ask for Apple ID / Wi‑Fi / SIM if needed).\n• WhatsApp — Sir/Mum + family bot / ? asks\n• Maps (Apple or Google) — save home + kindergarten\n• MTR Mobile — trains & delays\n• Octopus App — balance / top-up (keep physical card for daily taps)\n• MyObservatory — typhoon / rain\n• Translate — signs & menus\n• Safari → Family Hub → Add to Home Screen\nOptional: AlipayHK / PayMe, OpenRice.\nIf you also use Android: same apps from Google Play + Chrome → Add Family Hub to Home screen.\nNever share OTP / Apple ID password. If the store asks for a card, ask Sir/Mum.",
+        "zh": "Sir/Mum 給 Charlene 一部 iPhone X 日常使用。從 App Store 免費安裝（需要 Apple ID／Wi‑Fi／SIM 可問）。\n• WhatsApp — Sir/Mum 及家庭 bot／用 ? 發問\n• 地圖（Apple 或 Google）— 住家＋幼稚園\n• MTR Mobile — 港鐵與延誤\n• Octopus App — 餘額／增值（日常多數仍用實體卡）\n• 我的天文台 — 颱風／暴雨\n• 翻譯 — 路牌與菜單\n• Safari → Family Hub → 加入主畫面\n可選：AlipayHK／PayMe、OpenRice。\n若也用 Android：Google Play 裝同樣應用＋Chrome 把 Family Hub 加至主畫面。\n切勿分享 OTP／Apple ID 密碼。商店要付款方式就問 Sir/Mum。",
+        "fil": "Binigyan nina Sir/Mum si Charlene ng iPhone X. I-install nang libre sa App Store (tanungin para sa Apple ID / Wi‑Fi / SIM).\n• WhatsApp — Sir/Mum + family bot / ? asks\n• Maps (Apple o Google) — bahay + kindergarten\n• MTR Mobile — tren at delay\n• Octopus App — balanse / top-up (physical card pa rin sa araw-araw)\n• MyObservatory — bagyo / ulan\n• Translate — signs at menu\n• Safari → Family Hub → Add to Home Screen\nOpsyonal: AlipayHK / PayMe, OpenRice.\nKung may Android din: parehong apps sa Google Play + Chrome → Add Family Hub to Home screen.\nHuwag ibigay ang OTP / Apple ID password. Kung humihingi ng card ang store, tanungin si Sir/Mum."
       }
-    },
-    {
-      "id": "life-android-apps",
-      "area": "hk-general",
-      "body": {
-        "en": "Main phone may be the iPhone X — see “Must-have phone apps”.\nIf you also use Android: install WhatsApp, Google Maps, MTR Mobile, Octopus App, MyObservatory, Google Translate, and Chrome → Add Family Hub to Home screen. Same safety: never share OTP.",
-        "zh": "日常主機可能是 iPhone X — 見「必備手機應用」。\n若也用 Android：安裝 WhatsApp、Google Maps、MTR Mobile、Octopus App、我的天文台、Google 翻譯，以及 Chrome → 把 Family Hub 加至主畫面。同樣切勿分享 OTP。",
-        "fil": "Puwedeng iPhone X ang pang-araw-araw — tingnan ang “Must-have phone apps”.\nKung may Android din: i-install ang WhatsApp, Google Maps, MTR Mobile, Octopus App, MyObservatory, Google Translate, at Chrome → Add Family Hub to Home screen. Huwag ibigay ang OTP."
-      },
-      "title": {
-        "en": "Android apps (if you use Android)",
-        "zh": "Android 應用（若使用 Android）",
-        "fil": "Android apps (kung Android ang phone)"
-      },
-      "category": "culture",
-      "priority": 73,
-      "sourceUrl": "https://www.discoverhongkong.com/eng/travel-guide/traveller-essentials/travel-apps.html",
-      "lastReviewed": "2026-07-28"
     }
   ],
   "monthlyTasks": [
@@ -3199,9 +3110,9 @@
       "id": "check-rubbish",
       "done": false,
       "title": {
-        "en": "Learn rubbish / recycling place in the building",
-        "zh": "了解大廈垃圾／回收位置",
-        "fil": "Alamin kung saan ang basura / recycling sa building"
+        "en": "Learn rubbish place + Yue Wah St recycle (Thu 10:00–13:00)",
+        "zh": "學會垃圾位置＋月華街回收（周四 10:00–13:00）",
+        "fil": "Alamin ang basurahan + Yue Wah St recycle (Thu 10:00–13:00)"
       }
     },
     {
@@ -3217,18 +3128,9 @@
       "id": "check-phone-apps",
       "done": false,
       "title": {
-        "en": "Install must-have phone apps — iPhone X + Android (see HK Life)",
-        "zh": "安裝必備手機應用 — iPhone X + Android（見香港生活）",
-        "fil": "I-install ang must-have phone apps — iPhone X + Android (tingnan ang HK Life)"
-      }
-    },
-    {
-      "id": "check-recycle-yuewah",
-      "done": false,
-      "title": {
-        "en": "Know Yue Wah St recycle point (Thu 10:00–13:00) — see HK Life",
-        "zh": "知道月華街回收點（星期四 10:00–13:00）— 見香港生活",
-        "fil": "Alamin ang Yue Wah St recycle point (Huwebes 10:00–13:00) — tingnan ang HK Life"
+        "en": "Install must-have phone apps (see HK Life tip)",
+        "zh": "安裝必備手機應用（見香港生活貼士）",
+        "fil": "I-install ang must-have phone apps (tingnan ang HK Life tip)"
       }
     }
   ],

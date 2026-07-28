@@ -537,9 +537,7 @@ function heuristicAnswer(
     ) &&
     !/chopping\s*board|砧板|raw\s*and\s*cooked/.test(q)
   ) {
-    const tip =
-      lifeGuideAnswer(snap, lang, (g) => g.id === "life-recycle-6green-kt") ||
-      lifeGuideAnswer(snap, lang, (g) => g.id === "life-rubbish");
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-rubbish");
     if (tip) return tip;
   }
 
@@ -549,15 +547,8 @@ function heuristicAnswer(
     ) &&
     !/whatsapp\s*(bot|number|save|\?save)/.test(q)
   ) {
-    const wantIphoneOnly = /iphone|ios|app\s*store|apple\s*id/.test(q) && !/android/.test(q);
-    const wantAndroidOnly = /android/.test(q) && !/iphone|ios|app\s*store/.test(q);
-    const iphone = lifeGuideAnswer(snap, lang, (g) => g.id === "life-iphone-apps");
-    const android = lifeGuideAnswer(snap, lang, (g) => g.id === "life-android-apps");
-    if (wantIphoneOnly && iphone) return iphone;
-    if (wantAndroidOnly && android) return android;
-    if (iphone && android) return `${iphone}\n\n—\n\n${android}`;
-    if (iphone) return iphone;
-    if (android) return android;
+    const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-iphone-apps");
+    if (tip) return tip;
   }
 
   if (
@@ -595,14 +586,14 @@ function heuristicAnswer(
           }${tag}`;
         });
         const tip =
-          lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays") || "";
+          lifeGuideAnswer(snap, lang, (g) => g.id === "life-rest-day") || "";
         return lang === "fil"
-          ? `Statutory holidays 2026 — entitled mula ${from}:\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
+          ? `Statutory holidays 2026 — entitled mula ${from} (HK Life → My records):\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
           : lang === "zh"
-            ? `2026 法定假日 — 由 ${from} 起享有：\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
-            : `Statutory holidays 2026 — entitled from ${from}:\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`;
+            ? `2026 法定假日 — 由 ${from} 起享有（香港生活 → 我的記錄）：\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`
+            : `Statutory holidays 2026 — entitled from ${from} (HK Life → My records):\n${lines.join("\n")}${tip ? `\n\n${tip}` : ""}`;
       }
-      const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-stat-holidays");
+      const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-rest-day");
       if (tip) return tip;
     }
     const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-rest-day");
