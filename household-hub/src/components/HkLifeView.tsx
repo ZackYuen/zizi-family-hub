@@ -222,10 +222,10 @@ function loadLocalDone(): Record<string, boolean> {
 function loadOpenSections(): string[] {
   try {
     const raw = localStorage.getItem(OPEN_SECTIONS_KEY);
-    if (!raw) return ["emergency-phones"];
+    if (!raw) return ["emergency-phones", "places-maps"];
     return JSON.parse(raw) as string[];
   } catch {
-    return ["emergency-phones"];
+    return ["emergency-phones", "places-maps"];
   }
 }
 
