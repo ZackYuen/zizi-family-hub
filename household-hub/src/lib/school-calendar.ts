@@ -1,5 +1,12 @@
 import { getHongKongDateKey } from "./hk-holidays";
-import type { AppContent, BilingualText, DaySchedule, SchoolCalendar } from "./types";
+import { getTaskEndTime, getTaskStartTime } from "./schedule-utils";
+import type {
+  AppContent,
+  BilingualText,
+  DaySchedule,
+  ScheduleTask,
+  SchoolCalendar,
+} from "./types";
 
 /** Default: summer through 1 Sep 2026; K3 term from 2 Sep 2026 */
 export const DEFAULT_SCHOOL_CALENDAR: SchoolCalendar = {
@@ -50,11 +57,103 @@ export const DRAWING_CLASS_NOTES: BilingualText = {
   zh: "One Point Studio · 觀塘工業中心一期12樓B室",
 };
 
+/** Fallback label only — prefer times from live weeklyScheduleSummer */
 export const DRAWING_CLASS_TASK: BilingualText = {
-  en: "Drawing class (14:00–15:00)",
-  fil: "Drawing class (14:00–15:00)",
-  zh: "繪畫班（14:00–15:00）",
+  en: "Drawing class (12:00–13:00)",
+  fil: "Drawing class (12:00–13:00)",
+  zh: "繪畫班（12:00–13:00）",
 };
+
+export interface SummerDrawingClassInfo {
+  dayKeys: string[];
+  /** e.g. "Wed & Fri" / localized short labels */
+  daysEn: string;
+  daysFil: string;
+  daysZh: string;
+  classStart: string;
+  classEnd: string;
+  leaveStart: string;
+  leaveEnd: string;
+  venue: BilingualText;
+  classTask: BilingualText;
+}
+
+function isDrawingClassTask(task: ScheduleTask): boolean {
+  const en = task.task?.en || "";
+  const zh = task.task?.zh || "";
+  return /^drawing\s*class\b/i.test(en.trim()) || /^繪畫班/.test(zh.trim());
+}
+
+function isLeaveForDrawingTask(task: ScheduleTask): boolean {
+  const blob = `${task.task?.en || ""} ${task.task?.fil || ""} ${task.task?.zh || ""}`;
+  return /leave.*drawing|umalis.*drawing|出門.*繪畫/i.test(blob);
+}
+
+const DAY_SHORT: Record<string, { en: string; fil: string; zh: string }> = {
+  monday: { en: "Mon", fil: "Lunes", zh: "一" },
+  tuesday: { en: "Tue", fil: "Martes", zh: "二" },
+  wednesday: { en: "Wed", fil: "Miyerkules", zh: "三" },
+  thursday: { en: "Thu", fil: "Huwebes", zh: "四" },
+  friday: { en: "Fri", fil: "Biyernes", zh: "五" },
+  saturday: { en: "Sat", fil: "Sabado", zh: "六" },
+  sunday: { en: "Sun", fil: "Linggo", zh: "日" },
+};
+
+/** Read Wed/Fri (or whichever) drawing class times from summer schedule. */
+export function extractSummerDrawingClass(
+  schedule: DaySchedule[] | undefined | null
+): SummerDrawingClassInfo | null {
+  if (!schedule?.length) return null;
+
+  const drawingDays = schedule.filter((d) =>
+    d.tasks.some((t) => isDrawingClassTask(t))
+  );
+  if (!drawingDays.length) return null;
+
+  const sample = drawingDays[0];
+  const classTask =
+    sample.tasks.find((t) => isDrawingClassTask(t)) ?? null;
+  const leaveTask =
+    sample.tasks.find((t) => isLeaveForDrawingTask(t)) ?? null;
+  if (!classTask) return null;
+
+  const classStart = getTaskStartTime(classTask);
+  const classEnd = getTaskEndTime(classTask) || classStart;
+  const leaveStart = leaveTask ? getTaskStartTime(leaveTask) : "11:15";
+  const leaveEnd = leaveTask
+    ? getTaskEndTime(leaveTask) || leaveStart
+    : "11:30";
+
+  const dayKeys = drawingDays.map((d) => d.dayKey);
+  const shorts = dayKeys.map(
+    (k) => DAY_SHORT[k] || { en: k, fil: k, zh: k }
+  );
+
+  const venue: BilingualText = classTask.notes?.en
+    ? {
+        en: classTask.notes.en,
+        fil: classTask.notes.fil || classTask.notes.en,
+        zh: classTask.notes.zh || DRAWING_CLASS_NOTES.zh,
+      }
+    : { ...DRAWING_CLASS_NOTES };
+
+  return {
+    dayKeys,
+    daysEn: shorts.map((s) => s.en).join(" & "),
+    daysFil: shorts.map((s) => s.fil).join(" at "),
+    daysZh: shorts.map((s) => s.zh).join("、"),
+    classStart,
+    classEnd,
+    leaveStart,
+    leaveEnd,
+    venue,
+    classTask: {
+      en: classTask.task.en,
+      fil: classTask.task.fil || classTask.task.en,
+      zh: classTask.task.zh || classTask.task.en,
+    },
+  };
+}
 
 export const TERM_K3_SCHOOL_BANNER: BilingualText = {
   en: "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30).",

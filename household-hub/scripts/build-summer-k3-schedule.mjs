@@ -29,9 +29,9 @@ const SUMMER_BANNER = {
 };
 
 const DRAWING_TASK = {
-  en: "Drawing class (14:00–15:00)",
-  fil: "Drawing class (14:00–15:00)",
-  zh: "繪畫班（14:00–15:00）",
+  en: "Drawing class (12:00–13:00)",
+  fil: "Drawing class (12:00–13:00)",
+  zh: "繪畫班（12:00–13:00）",
 };
 
 const DRAWING_NOTES = {
@@ -70,9 +70,9 @@ function t(id, start, end, en, fil, zh, extra = {}) {
 function drawingClassTask(id) {
   return {
     id,
-    time: "14:00",
-    startTime: "14:00",
-    endTime: "15:00",
+    time: "12:00",
+    startTime: "12:00",
+    endTime: "13:00",
     task: { ...DRAWING_TASK },
     notes: { ...DRAWING_NOTES },
   };
@@ -222,16 +222,16 @@ function summerDrawingDay(dayKey, prefix, choreEn, choreFil, choreZh) {
       ...morningHome(prefix),
       t(
         `${prefix}5`,
-        "13:00",
-        "13:30",
+        "11:15",
+        "11:30",
         "Prepare & leave home for drawing class (Kwun Tong Industrial Centre)",
         "Maghanda at umalis papuntang drawing class (Kwun Tong Industrial Centre)",
         "準備出門前往繪畫班（觀塘工業中心）"
       ),
       t(
         `${prefix}6`,
-        "13:30",
-        "14:00",
+        "11:30",
+        "12:00",
         "Travel / arrive at One Point Studio",
         "Biyahe / dumating sa One Point Studio",
         "前往／到達 One Point Studio"
@@ -239,13 +239,13 @@ function summerDrawingDay(dayKey, prefix, choreEn, choreFil, choreZh) {
       drawingClassTask(`${prefix}7`),
       t(
         `${prefix}8`,
-        "15:00",
-        "15:30",
+        "13:00",
+        "13:30",
         "Return home from drawing class",
         "Umuwi mula sa drawing class",
         "繪畫班結束回家"
       ),
-      t(`${prefix}9`, "15:30", "16:30", choreEn, choreFil, choreZh),
+      t(`${prefix}9`, "13:30", "16:30", choreEn, choreFil, choreZh),
       ...eveningTail(prefix),
     ],
   };
