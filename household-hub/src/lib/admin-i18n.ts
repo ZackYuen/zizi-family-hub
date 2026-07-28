@@ -260,6 +260,31 @@ export const adminLabels = {
   weatherLevel: { en: "Level", fil: "Level", zh: "級別" },
   weatherNote: { en: "Alert note", fil: "Alert note", zh: "警報說明" },
   homeArea: { en: "Home area", fil: "Home area", zh: "住址區域" },
+  placesMaps: {
+    en: "Google Maps places",
+    fil: "Google Maps places",
+    zh: "Google 地圖地點",
+  },
+  placesMapsHint: {
+    en: "Shown in HK Life. Paste a Google Maps share/search link for home, kindergarten, YATA, AEON, etc.",
+    fil: "Makikita sa HK Life. Mag-paste ng Google Maps share/search link para sa bahay, kindergarten, YATA, AEON, atbp.",
+    zh: "顯示在「香港生活」。可貼上家、幼稚園、一田、AEON 等的 Google 地圖連結。",
+  },
+  mapsUrl: {
+    en: "Google Maps URL",
+    fil: "Google Maps URL",
+    zh: "Google 地圖網址",
+  },
+  placeNote: {
+    en: "Note (optional)",
+    fil: "Note (opsyonal)",
+    zh: "備註（可選）",
+  },
+  addPlace: {
+    en: "+ Add place",
+    fil: "+ Magdagdag ng lugar",
+    zh: "+ 新增地點",
+  },
   emergencyContacts: {
     en: "Emergency contacts",
     fil: "Emergency contacts",

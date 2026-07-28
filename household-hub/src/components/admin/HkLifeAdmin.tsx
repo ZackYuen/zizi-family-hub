@@ -1,6 +1,11 @@
 "use client";
 
-import type { AppContent, HkLifeCategory, Lang } from "@/lib/types";
+import type {
+  AppContent,
+  HkLifeCategory,
+  Lang,
+  PlaceMapLink,
+} from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { TrilingualFieldEditor } from "./TrilingualFieldEditor";
 import { emptyBilingual } from "@/lib/localized-text";
@@ -32,6 +37,7 @@ interface Props {
 
 export function HkLifeAdmin({ content, setContent, lang, saving, onSave }: Props) {
   const guides = content.hkLifeGuides ?? [];
+  const places = content.places ?? [];
   const checklist = content.settlingChecklist ?? [];
   const holidays = content.statutoryHolidays ?? [];
   const salaries = content.salaryPayments ?? [];
@@ -44,6 +50,48 @@ export function HkLifeAdmin({ content, setContent, lang, saving, onSave }: Props
 
   const patch = (partial: Partial<AppContent>) => {
     setContent({ ...content, ...partial });
+  };
+
+  const updatePlace = (index: number, next: PlaceMapLink) => {
+    const list = [...places];
+    list[index] = next;
+    patch({ places: list });
+  };
+
+  const addPlace = () => {
+    patch({
+      places: [
+        ...places,
+        {
+          id: `place-${Date.now()}`,
+          priority: places.length + 1,
+          name: {
+            en: "New place",
+            fil: "Bagong lugar",
+            zh: "新地點",
+          },
+          note: emptyBilingual(),
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=",
+        },
+      ],
+    });
+  };
+
+  const deletePlace = (index: number) => {
+    const list = [...places];
+    list.splice(index, 1);
+    patch({ places: list });
+  };
+
+  const movePlace = (index: number, dir: -1 | 1) => {
+    const next = index + dir;
+    if (next < 0 || next >= places.length) return;
+    const list = [...places];
+    const [item] = list.splice(index, 1);
+    list.splice(next, 0, item);
+    patch({
+      places: list.map((p, i) => ({ ...p, priority: i + 1 })),
+    });
   };
 
   const updateGuide = (index: number, next: (typeof guides)[0]) => {
@@ -213,6 +261,87 @@ export function HkLifeAdmin({ content, setContent, lang, saving, onSave }: Props
           value={content.homeArea ?? emptyBilingual()}
           onChange={(homeArea) => patch({ homeArea })}
         />
+      </section>
+
+      {/* Google Maps places */}
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-sm font-bold text-stone-800">
+            {adminT("placesMaps", lang)}
+          </h2>
+          <p className="mt-0.5 text-xs text-stone-500">
+            {adminT("placesMapsHint", lang)}
+          </p>
+        </div>
+        {places.map((place, i) => (
+          <div
+            key={place.id}
+            className="rounded-xl bg-white p-4 ring-1 ring-teal-100"
+          >
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <span className="text-xs font-semibold text-teal-800">
+                #{place.priority}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={i === 0}
+                  onClick={() => movePlace(i, -1)}
+                  className="rounded px-1.5 py-0.5 text-xs text-stone-600 ring-1 ring-stone-200 disabled:opacity-30"
+                  aria-label={adminT("moveUp", lang)}
+                >
+                  ▲
+                </button>
+                <button
+                  type="button"
+                  disabled={i === places.length - 1}
+                  onClick={() => movePlace(i, 1)}
+                  className="rounded px-1.5 py-0.5 text-xs text-stone-600 ring-1 ring-stone-200 disabled:opacity-30"
+                  aria-label={adminT("moveDown", lang)}
+                >
+                  ▼
+                </button>
+                <button
+                  type="button"
+                  onClick={() => deletePlace(i)}
+                  className="text-xs text-red-500"
+                >
+                  {adminT("delete", lang)}
+                </button>
+              </div>
+            </div>
+            <TrilingualFieldEditor
+              value={place.name}
+              onChange={(name) => updatePlace(i, { ...place, name })}
+            />
+            <label className="mb-1 mt-2 block text-xs font-medium text-stone-500">
+              {adminT("mapsUrl", lang)}
+            </label>
+            <input
+              value={place.mapsUrl}
+              onChange={(e) =>
+                updatePlace(i, { ...place, mapsUrl: e.target.value })
+              }
+              placeholder="https://www.google.com/maps/..."
+              className="mb-2 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+            />
+            <p className="mb-1 text-xs font-medium text-stone-500">
+              {adminT("placeNote", lang)}
+            </p>
+            <TrilingualFieldEditor
+              value={place.note ?? emptyBilingual()}
+              onChange={(note) => updatePlace(i, { ...place, note })}
+              multiline
+            />
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={addPlace}
+          className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-teal-700 ring-1 ring-teal-200"
+        >
+          {adminT("addPlace", lang)}
+        </button>
       </section>
 
       {/* Emergency contacts */}

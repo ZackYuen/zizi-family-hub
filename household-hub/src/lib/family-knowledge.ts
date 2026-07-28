@@ -26,6 +26,7 @@ import type {
   FamilyPreferenceTip,
   HkLifeGuide,
   HkWeatherFlag,
+  PlaceMapLink,
   SalaryPaymentItem,
   SchoolCalendar,
   SettlingCheckItem,
@@ -55,6 +56,7 @@ export interface LiveFamilySnapshot {
   tonight: TonightMenu | null;
   recipeCount: number;
   homeArea?: AppContent["homeArea"];
+  places: PlaceMapLink[];
   hkLifeGuides: HkLifeGuide[];
   settlingChecklist: SettlingCheckItem[];
   statutoryHolidays: StatutoryHolidayItem[];
@@ -130,6 +132,7 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     tonight,
     recipeCount: recipes.length,
     homeArea: content.homeArea,
+    places: content.places ?? [],
     hkLifeGuides: content.hkLifeGuides ?? [],
     settlingChecklist: content.settlingChecklist ?? [],
     statutoryHolidays: content.statutoryHolidays ?? [],
@@ -158,6 +161,14 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     `Family Hub website (Gabay sa Bahay) — share this when asked for the link/URL/app: ${appUrl}`
   );
   if (snap.homeArea?.en) lines.push(`Home area: ${snap.homeArea.en}`);
+  if (snap.places.length) {
+    lines.push("Google Maps places (share these links when Charlene asks how to get somewhere):");
+    for (const p of [...snap.places].sort((a, b) => a.priority - b.priority)) {
+      if (!p.mapsUrl?.trim()) continue;
+      const note = p.note?.en ? ` — ${p.note.en}` : "";
+      lines.push(`- ${p.name.en}${note}: ${p.mapsUrl.trim()}`);
+    }
+  }
   lines.push(
     "Home facts: ~660 sq ft Kwun Tong flat; family of 3 (Sir, Mum, Zizi) + Charlene live-in = 4 people; Charlene has own bedroom with AC; 3 ACs total; ~3 min walk to Kwun Tong MTR; linked to apm mall; first supermarket = YATA (一田) at apm (AEON only if needed)."
   );
