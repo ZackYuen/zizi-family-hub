@@ -14,9 +14,9 @@ import {
   PreferencesAdmin,
 } from "@/components/admin/HouseGuidesAdmin";
 import { TrilingualFieldEditor } from "@/components/admin/TrilingualFieldEditor";
-import { AdminAuthSettingsPanel } from "@/components/admin/AdminAuthSettingsPanel";
+import { AccessControlPanel } from "@/components/admin/AccessControlPanel";
 import { emptyBilingual } from "@/lib/localized-text";
-import { startGoogleAdminLogin } from "@/lib/google-admin-login";
+import { startGoogleLogin } from "@/lib/google-admin-login";
 import { normalizeAdminAuth } from "@/lib/admin-auth-settings";
 
 const ADMIN_LANGS: Lang[] = ["en", "zh", "fil"];
@@ -44,6 +44,7 @@ export default function AdminPage() {
     | "tools"
     | "hkLife"
     | "inbox"
+    | "access"
     | "settings"
     | "json"
   >("rules");
@@ -123,7 +124,7 @@ export default function AdminPage() {
 
   const loginGoogle = async () => {
     setError("");
-    const { error: gErr } = await startGoogleAdminLogin();
+    const { error: gErr } = await startGoogleLogin("admin");
     if (gErr) setError(gErr);
   };
 
@@ -342,6 +343,7 @@ export default function AdminPage() {
     { id: "tools" as const, label: adminT("appliances", lang) },
     { id: "hkLife" as const, label: adminT("hkLife", lang) },
     { id: "inbox" as const, label: adminT("inbox", lang) },
+    { id: "access" as const, label: adminT("accessTab", lang) },
     { id: "settings" as const, label: adminT("settings", lang) },
     { id: "json" as const, label: adminT("json", lang) },
   ];
@@ -570,6 +572,16 @@ export default function AdminPage() {
           <InboxAdmin lang={lang} setMessage={setMessage} />
         )}
 
+        {activeSection === "access" && (
+          <AccessControlPanel
+            content={content}
+            setContent={setContent}
+            lang={lang}
+            saving={saving}
+            onSave={() => saveContent(content)}
+          />
+        )}
+
         {activeSection === "settings" && (
           <div className="rounded-xl bg-white p-4 ring-1 ring-stone-200">
             <label className="mb-1 block text-sm font-medium text-stone-700">
@@ -595,11 +607,6 @@ export default function AdminPage() {
               value={content.ziziSchool ?? emptyBilingual()}
               onChange={(ziziSchool) => setContent({ ...content, ziziSchool })}
               multiline
-            />
-            <AdminAuthSettingsPanel
-              content={content}
-              setContent={setContent}
-              lang={lang}
             />
             <button
               type="button"

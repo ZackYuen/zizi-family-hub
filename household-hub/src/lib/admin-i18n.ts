@@ -30,9 +30,74 @@ export const adminLabels = {
     zh: "Admin 登入方式",
   },
   authMethodsHint: {
-    en: "Turn methods on/off for the Admin login screen. Google only allows emails on the allowlist. Keep password on as a backup.",
-    fil: "I-on/off ang mga method sa Admin login. Google: allowlist emails lang. Panatilihing naka-on ang password bilang backup.",
-    zh: "開關 Admin 登入方式。Google 只接受白名單電郵。建議保留密碼作後備。",
+    en: "Turn Admin methods on/off. Keep password on as a backup. Google Admin users are managed in the Users list.",
+    fil: "I-on/off ang Admin methods. Panatilihing naka-on ang password bilang backup. Google Admin users ay nasa Users list.",
+    zh: "開關 Admin 登入方式。建議保留密碼作後備。Google Admin 用戶在「用戶」列表管理。",
+  },
+  accessTitle: {
+    en: "Access & users",
+    fil: "Access at users",
+    zh: "權限與用戶",
+  },
+  accessHint: {
+    en: "Manage who can open Admin vs the family app, and whether the app requires login.",
+    fil: "I-manage kung sino ang pwedeng mag-Admin vs family app, at kung kailangan ba ng login ang app.",
+    zh: "管理誰可進 Admin／家庭 App，以及 App 是否需要登入。",
+  },
+  accessTab: { en: "Access", fil: "Access", zh: "權限" },
+  frontendLoginTitle: {
+    en: "Frontend (family app) login",
+    fil: "Frontend (family app) login",
+    zh: "前端（家庭 App）登入",
+  },
+  frontendLoginHint: {
+    en: "When required, Charlene must Sign in with Google before seeing Schedule / Tools / etc.",
+    fil: "Kapag required, kailangan mag-Sign in with Google si Charlene bago makita ang Schedule / Tools / atbp.",
+    zh: "開啟後，Charlene 須先用 Google 登入才能看日程／家電等。",
+  },
+  requireFrontendLogin: {
+    en: "Require frontend login",
+    fil: "Require frontend login",
+    zh: "要求前端登入",
+  },
+  enableFrontendGoogle: {
+    en: "Google login on frontend",
+    fil: "Google login sa frontend",
+    zh: "前端 Google 登入",
+  },
+  accessUsers: { en: "Users", fil: "Users", zh: "用戶" },
+  accessUsersHint: {
+    en: "Add / edit / remove people. Tick Admin and/or App (frontend). Disable to revoke without deleting.",
+    fil: "Magdagdag / mag-edit / mag-remove. I-tick ang Admin at/o App (frontend). I-disable para i-revoke nang hindi burahin.",
+    zh: "新增／編輯／刪除用戶。勾選 Admin 及／或 App（前端）。可停用而不刪除。",
+  },
+  addAccessUser: {
+    en: "+ Add user",
+    fil: "+ Magdagdag ng user",
+    zh: "+ 新增用戶",
+  },
+  userEmail: { en: "Email (Gmail)", fil: "Email (Gmail)", zh: "電郵（Gmail）" },
+  userName: {
+    en: "Name (optional)",
+    fil: "Pangalan (optional)",
+    zh: "姓名（可選）",
+  },
+  userRoleAdmin: { en: "Admin", fil: "Admin", zh: "Admin" },
+  userRoleFrontend: {
+    en: "App (frontend)",
+    fil: "App (frontend)",
+    zh: "App（前端）",
+  },
+  userEnabled: { en: "Enabled", fil: "Enabled", zh: "啟用" },
+  saveAccess: {
+    en: "Save Access",
+    fil: "I-save ang Access",
+    zh: "儲存權限",
+  },
+  frontendRedirectHint: {
+    en: "Also allow redirect: https://YOUR_SITE/auth/callback",
+    fil: "Payagan din ang redirect: https://YOUR_SITE/auth/callback",
+    zh: "並加入 redirect：https://YOUR_SITE/auth/callback",
   },
   enablePasswordLogin: {
     en: "Password login",
@@ -40,9 +105,9 @@ export const adminLabels = {
     zh: "密碼登入",
   },
   enableGoogleLogin: {
-    en: "Google login",
-    fil: "Google login",
-    zh: "Google 登入",
+    en: "Google login (Admin)",
+    fil: "Google login (Admin)",
+    zh: "Google 登入（Admin）",
   },
   enableSkipLogin: {
     en: "Skip login (no password / Google)",
@@ -60,9 +125,9 @@ export const adminLabels = {
     zh: "Google 白名單（每行一個電郵）",
   },
   googleRedirectHint: {
-    en: "In Supabase Auth → URL config, allow redirect: https://YOUR_SITE/admin/auth/callback",
-    fil: "Sa Supabase Auth → URL config, payagan ang redirect: https://YOUR_SITE/admin/auth/callback",
-    zh: "在 Supabase Auth → URL config 加入：https://YOUR_SITE/admin/auth/callback",
+    en: "In Supabase Auth → URL config, allow: …/admin/auth/callback and …/auth/callback",
+    fil: "Sa Supabase Auth → URL config, payagan: …/admin/auth/callback at …/auth/callback",
+    zh: "在 Supabase Auth → URL config 加入：…/admin/auth/callback 與 …/auth/callback",
   },
   backToApp: { en: "← Back to app", fil: "← Bumalik sa app", zh: "← 返回應用" },
   wrongPassword: { en: "Wrong password", fil: "Maling password", zh: "密碼錯誤" },

@@ -194,20 +194,45 @@ export interface AppContent {
   salaryPayments?: SalaryPaymentItem[];
   emergencyContacts?: EmergencyContact[];
   hkWeather?: HkWeatherFlag;
-  /** Admin login methods (password / Google / skip) — edited in Settings */
+  /**
+   * Access control — Admin methods, frontend login requirement, and users.
+   * Edited under Admin → Access.
+   */
   adminAuth?: AdminAuthSettings;
 }
 
-/** Admin panel sign-in options (stored in AppContent, tunable in Settings) */
+/** One person who may use Admin and/or the Charlene frontend app */
+export interface AccessUser {
+  id: string;
+  email: string;
+  /** Optional display name */
+  name?: string;
+  /** May sign into Admin (Google) */
+  admin: boolean;
+  /** May sign into frontend when frontend login is required */
+  frontend: boolean;
+  /** Soft disable without deleting */
+  enabled: boolean;
+}
+
+/** Access / login config (stored in AppContent.adminAuth) */
 export interface AdminAuthSettings {
-  /** Shared ADMIN_PASSWORD login */
+  /** Shared ADMIN_PASSWORD login for Admin */
   passwordEnabled: boolean;
-  /** Sign in with Google (Supabase Auth) */
+  /** Google login for Admin */
   googleEnabled: boolean;
-  /** Enter Admin without password/Google (family LAN only — use carefully) */
+  /** Enter Admin without credentials */
   skipLogin: boolean;
-  /** Lowercased emails allowed for Google Admin login */
-  googleAllowlist: string[];
+  /**
+   * @deprecated Prefer `users` with admin:true — still read for migration
+   */
+  googleAllowlist?: string[];
+  /** Require Google (or future methods) to open the family app */
+  frontendLoginRequired: boolean;
+  /** Show Google on frontend login (when required) */
+  frontendGoogleEnabled: boolean;
+  /** Family members — add/remove/update in Admin → Access */
+  users: AccessUser[];
 }
 
 /** Soft preference — not a ground rule (no “If Broken”) */
