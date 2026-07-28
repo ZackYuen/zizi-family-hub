@@ -27,21 +27,64 @@ export function TonightOverridePanel({
   const [preview, setPreview] = useState<TonightMenu | null>(null);
   const [busy, setBusy] = useState(false);
 
-  const meats = useMemo(
-    () => recipes.filter((r) => r.category === "Meat").sort((a, b) => a.index - b.index),
-    [recipes]
-  );
-  const vegetables = useMemo(
-    () =>
-      recipes
-        .filter((r) => r.category === "Vegetable")
-        .sort((a, b) => a.index - b.index),
-    [recipes]
-  );
-  const soups = useMemo(
-    () => recipes.filter((r) => r.category === "Soup").sort((a, b) => a.index - b.index),
-    [recipes]
-  );
+  const [meatSearch, setMeatSearch] = useState("");
+  const [vegSearch, setVegSearch] = useState("");
+  const [soupSearch, setSoupSearch] = useState("");
+
+  const meats = useMemo(() => {
+    const q = meatSearch.trim().toLowerCase();
+    const pool = recipes.filter((r) => r.category === "Meat");
+    const filtered = pool
+      .filter((r) =>
+        !q
+          ? true
+          : [r.name, r.nameEn, r.nameFil, r.subCategory]
+              .filter(Boolean)
+              .some((s) => s!.toLowerCase().includes(q))
+      )
+      .sort((a, b) => a.index - b.index);
+    if (meatId && !filtered.some((r) => r.id === meatId)) {
+      const selected = pool.find((r) => r.id === meatId);
+      if (selected) return [selected, ...filtered];
+    }
+    return filtered;
+  }, [recipes, meatSearch, meatId]);
+  const vegetables = useMemo(() => {
+    const q = vegSearch.trim().toLowerCase();
+    const pool = recipes.filter((r) => r.category === "Vegetable");
+    const filtered = pool
+      .filter((r) =>
+        !q
+          ? true
+          : [r.name, r.nameEn, r.nameFil, r.subCategory]
+              .filter(Boolean)
+              .some((s) => s!.toLowerCase().includes(q))
+      )
+      .sort((a, b) => a.index - b.index);
+    if (vegetableId && !filtered.some((r) => r.id === vegetableId)) {
+      const selected = pool.find((r) => r.id === vegetableId);
+      if (selected) return [selected, ...filtered];
+    }
+    return filtered;
+  }, [recipes, vegSearch, vegetableId]);
+  const soups = useMemo(() => {
+    const q = soupSearch.trim().toLowerCase();
+    const pool = recipes.filter((r) => r.category === "Soup");
+    const filtered = pool
+      .filter((r) =>
+        !q
+          ? true
+          : [r.name, r.nameEn, r.nameFil, r.subCategory]
+              .filter(Boolean)
+              .some((s) => s!.toLowerCase().includes(q))
+      )
+      .sort((a, b) => a.index - b.index);
+    if (soupId && !filtered.some((r) => r.id === soupId)) {
+      const selected = pool.find((r) => r.id === soupId);
+      if (selected) return [selected, ...filtered];
+    }
+    return filtered;
+  }, [recipes, soupSearch, soupId]);
 
   const load = useCallback(async (d: string) => {
     const res = await fetch(`/api/admin/dinner-override?date=${encodeURIComponent(d)}`);
@@ -132,9 +175,14 @@ export function TonightOverridePanel({
       zh: "今晚晚餐（可自选）",
     },
     hint: {
-      en: "Daily random pick is the default. If tonight’s dishes are not OK, choose Meat / Vegetable / Soup here and Save. Clear restores random for that date.",
-      fil: "Default: random araw-araw. Kung hindi OK ang dishes ngayong gabi, pumili ng Meat / Vegetable / Soup dito at Save. Clear = balik sa random.",
-      zh: "默认按日期随机。若今晚不合适，可在此自选肉／菜／汤并储存。清除后该日恢复随机。",
+      en: "Daily random pick is the default. Search and choose Meat / Vegetable / Soup if tonight’s dishes are not OK, then Save. Clear restores random for that date.",
+      fil: "Default: random araw-araw. Maghanap at pumili ng Meat / Vegetable / Soup kung hindi OK ang dishes ngayong gabi, tapos Save. Clear = balik sa random.",
+      zh: "默认按日期随机。若今晚不合适，可搜索并自选肉／菜／汤后储存。清除后该日恢复随机。",
+    },
+    search: {
+      en: "Search…",
+      fil: "Hanapin…",
+      zh: "搜尋…",
     },
     statusCustom: {
       en: "Custom pick for this date",
@@ -186,6 +234,13 @@ export function TonightOverridePanel({
       <div className="mt-3 grid gap-2 sm:grid-cols-3">
         <label className="block text-xs">
           <span className="font-bold text-amber-900">Meat</span>
+          <input
+            type="search"
+            value={meatSearch}
+            onChange={(e) => setMeatSearch(e.target.value)}
+            placeholder={copy.search[lang]}
+            className="mt-1 w-full rounded-lg border border-amber-200 bg-white px-2 py-1.5 text-sm"
+          />
           <select
             value={meatId}
             onChange={(e) => setMeatId(e.target.value)}
@@ -200,6 +255,13 @@ export function TonightOverridePanel({
         </label>
         <label className="block text-xs">
           <span className="font-bold text-amber-900">Vegetable</span>
+          <input
+            type="search"
+            value={vegSearch}
+            onChange={(e) => setVegSearch(e.target.value)}
+            placeholder={copy.search[lang]}
+            className="mt-1 w-full rounded-lg border border-amber-200 bg-white px-2 py-1.5 text-sm"
+          />
           <select
             value={vegetableId}
             onChange={(e) => setVegetableId(e.target.value)}
@@ -214,6 +276,13 @@ export function TonightOverridePanel({
         </label>
         <label className="block text-xs">
           <span className="font-bold text-amber-900">Soup</span>
+          <input
+            type="search"
+            value={soupSearch}
+            onChange={(e) => setSoupSearch(e.target.value)}
+            placeholder={copy.search[lang]}
+            className="mt-1 w-full rounded-lg border border-amber-200 bg-white px-2 py-1.5 text-sm"
+          />
           <select
             value={soupId}
             onChange={(e) => setSoupId(e.target.value)}

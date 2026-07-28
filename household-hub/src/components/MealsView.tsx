@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cookDeviceMeta } from "@/lib/cook-devices";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
@@ -10,12 +10,15 @@ import type { DinnerRecipe, RecipeIngredient, TonightMenu } from "@/lib/types";
 
 const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const;
 
+type CategoryFilter = DinnerRecipe["category"] | "All";
+
 const ui = {
   tonight: { en: "Tonight's Dinner", fil: "Hapunan Ngayong Gabi", zh: "今晚晚餐" },
   recipe: { en: "Watch video", fil: "Panoorin ang video", zh: "觀看影片" },
   meat: { en: "Meat", fil: "Karne", zh: "肉類" },
   vegetable: { en: "Vegetable", fil: "Gulay", zh: "蔬菜" },
   soup: { en: "Soup", fil: "Sabaw", zh: "湯" },
+  all: { en: "All", fil: "Lahat", zh: "全部" },
   loading: { en: "Loading tonight's menu...", fil: "Kinukuha ang menu...", zh: "載入餐單中…" },
   cookAt: {
     en: "Prepare & cook around 6:00 PM for Zizi dinner 6:30–8:00 PM",
@@ -69,6 +72,41 @@ const ui = {
     fil: "Suriin bago 5:00 PM.",
     zh: "請在下午 5:00 前核對。",
   },
+  findDish: {
+    en: "Find another dish",
+    fil: "Maghanap ng ibang ulam",
+    zh: "搜尋其他菜式",
+  },
+  findDishHint: {
+    en: "If Mum asks for a different dish (not tonight’s random pick), search here and open the recipe.",
+    fil: "Kung may hiling si Mum na ibang ulam (hindi ang random ngayong gabi), maghanap dito at buksan ang recipe.",
+    zh: "若 Mum 要求今晚隨機以外的菜式，可在此搜尋並打開食譜。",
+  },
+  searchPlaceholder: {
+    en: "Search dish name…",
+    fil: "Hanapin ang pangalan ng ulam…",
+    zh: "搜尋菜名…",
+  },
+  searchLoading: {
+    en: "Loading dishes…",
+    fil: "Kinukuha ang mga ulam…",
+    zh: "載入菜式中…",
+  },
+  noMatches: {
+    en: "No dishes match. Try another word or category.",
+    fil: "Walang tumugma. Subukan ang ibang salita o category.",
+    zh: "沒有符合的菜式。試其他關鍵字或分類。",
+  },
+  typeToSearch: {
+    en: "Type at least 2 letters to search the full recipe list.",
+    fil: "Mag-type ng hindi bababa sa 2 letra para hanapin sa buong listahan.",
+    zh: "輸入至少 2 個字以搜尋全部食譜。",
+  },
+  matches: {
+    en: (n: number) => `${n} dish${n === 1 ? "" : "es"}`,
+    fil: (n: number) => `${n} ulam`,
+    zh: (n: number) => `${n} 道菜`,
+  },
 };
 
 function ingredientLabel(ing: RecipeIngredient, lang: "en" | "fil" | "zh"): string {
@@ -81,16 +119,27 @@ function ingredientLabel(ing: RecipeIngredient, lang: "en" | "fil" | "zh"): stri
   return ing.qty ? `${name} (${ing.qty})` : name;
 }
 
+function categoryLabel(
+  category: DinnerRecipe["category"],
+  lang: "en" | "fil" | "zh"
+): { en: string; fil: string; zh: string } {
+  if (category === "Meat") return ui.meat;
+  if (category === "Vegetable") return ui.vegetable;
+  return ui.soup;
+}
+
 function DishCard({
   label,
   recipe,
   lang,
+  defaultOpen = true,
 }: {
   label: { en: string; fil: string; zh: string };
   recipe: DinnerRecipe;
   lang: "en" | "fil" | "zh";
+  defaultOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(defaultOpen);
   const subtitle = getRecipeSubtitle(recipe, lang);
   const ings = recipe.ingredients ?? [];
   const prep = localized(recipe.prepNotes, lang);
@@ -179,6 +228,129 @@ function DishCard({
         {ui.recipe[lang]} →
       </a>
     </article>
+  );
+}
+
+function RecipeSearch({ lang }: { lang: "en" | "fil" | "zh" }) {
+  const [recipes, setRecipes] = useState<DinnerRecipe[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState<CategoryFilter>("All");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const deferredSearch = useDeferredValue(search.trim().toLowerCase());
+
+  useEffect(() => {
+    fetch("/api/dinner/recipes")
+      .then((r) => r.json())
+      .then((data) => setRecipes(data.recipes ?? []))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  const matches = useMemo(() => {
+    if (deferredSearch.length < 2) return [] as DinnerRecipe[];
+    return recipes.filter((r) => {
+      if (filter !== "All" && r.category !== filter) return false;
+      return [r.name, r.nameEn, r.nameFil, r.subCategory, r.category]
+        .filter(Boolean)
+        .some((s) => s!.toLowerCase().includes(deferredSearch));
+    });
+  }, [recipes, deferredSearch, filter]);
+
+  const selected = selectedId
+    ? matches.find((r) => r.id === selectedId) ??
+      recipes.find((r) => r.id === selectedId) ??
+      null
+    : null;
+
+  return (
+    <section className="space-y-2.5 rounded-2xl bg-white p-3.5 ring-1 ring-stone-100">
+      <div>
+        <h3 className="text-sm font-bold text-stone-900">{ui.findDish[lang]}</h3>
+        <p className="mt-0.5 text-xs text-stone-500">{ui.findDishHint[lang]}</p>
+      </div>
+
+      <input
+        type="search"
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setSelectedId(null);
+        }}
+        placeholder={ui.searchPlaceholder[lang]}
+        className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400"
+        autoComplete="off"
+      />
+
+      <div className="flex flex-wrap gap-1.5">
+        {(["All", "Meat", "Vegetable", "Soup"] as CategoryFilter[]).map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            onClick={() => {
+              setFilter(cat);
+              setSelectedId(null);
+            }}
+            className={`rounded-lg px-2.5 py-1 text-xs font-medium ${
+              filter === cat
+                ? "bg-teal-600 text-white"
+                : "bg-stone-50 text-stone-600 ring-1 ring-stone-200"
+            }`}
+          >
+            {cat === "All" ? ui.all[lang] : categoryLabel(cat, lang)[lang]}
+          </button>
+        ))}
+      </div>
+
+      {loading ? (
+        <p className="text-xs text-stone-500">{ui.searchLoading[lang]}</p>
+      ) : deferredSearch.length < 2 ? (
+        <p className="text-xs text-stone-500">{ui.typeToSearch[lang]}</p>
+      ) : matches.length === 0 ? (
+        <p className="text-xs text-stone-500">{ui.noMatches[lang]}</p>
+      ) : (
+        <>
+          <p className="text-[11px] text-stone-400">{ui.matches[lang](matches.length)}</p>
+          <ul className="max-h-56 space-y-1 overflow-y-auto">
+            {matches.slice(0, 40).map((r) => (
+              <li key={r.id}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(r.id)}
+                  className={`flex w-full items-start gap-2 rounded-xl px-2.5 py-2 text-left text-sm ${
+                    selectedId === r.id
+                      ? "bg-teal-50 ring-1 ring-teal-200"
+                      : "hover:bg-stone-50"
+                  }`}
+                >
+                  <span className="mt-0.5">{categoryIcons[r.category]}</span>
+                  <span>
+                    <span className="font-medium text-stone-900">
+                      {getRecipeDisplayName(r, lang)}
+                    </span>
+                    {r.subCategory && (
+                      <span className="ml-1 text-[10px] text-stone-400">
+                        {r.subCategory}
+                      </span>
+                    )}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {selected && (
+        <DishCard
+          key={selected.id}
+          label={categoryLabel(selected.category, lang)}
+          recipe={selected}
+          lang={lang}
+          defaultOpen
+        />
+      )}
+    </section>
   );
 }
 
@@ -271,6 +443,8 @@ export function MealsView() {
           </ul>
         )}
       </section>
+
+      <RecipeSearch lang={lang} />
     </div>
   );
 }

@@ -168,12 +168,17 @@ export function isHolidayEntitled(item: StatutoryHolidayItem): boolean {
   return item.entitled !== false;
 }
 
-/** Default monthly salary rows (MAW reference HK$5,100 — confirm contract). */
+/**
+ * Default monthly salary rows from Aug 2026 (MAW reference HK$5,100 — confirm contract).
+ * Tracking starts August — earlier months are past / not listed.
+ */
 export function buildSalaryPayments2026(
   amountHkd = 5100
 ): SalaryPaymentItem[] {
-  return MONTH_NAMES.map((m, i) => {
-    const month = String(i + 1).padStart(2, "0");
+  const startMonth = 8; // August
+  return MONTH_NAMES.slice(startMonth - 1).map((m, i) => {
+    const monthNum = startMonth + i;
+    const month = String(monthNum).padStart(2, "0");
     const period = `2026-${month}`;
     return {
       id: `sal-2026-${month}`,

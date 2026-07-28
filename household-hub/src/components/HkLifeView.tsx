@@ -155,9 +155,9 @@ const ui = {
     zh: "2026 薪金簽收",
   },
   salaryHint: {
-    en: "Tap to confirm you received salary.",
-    fil: "I-tap para kumpirmahing natanggap ang sahod.",
-    zh: "點選確認已收薪。",
+    en: "From Aug 2026. Tap to confirm you received salary.",
+    fil: "Mula Ago 2026. I-tap para kumpirmahing natanggap ang sahod.",
+    zh: "由 2026 年 8 月起。點選確認已收薪。",
   },
   received: {
     en: "Received",
