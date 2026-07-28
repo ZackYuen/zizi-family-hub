@@ -1,8 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Fraunces, Nunito } from "next/font/google";
 import { startGoogleLogin } from "@/lib/google-admin-login";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageToggle } from "@/components/LanguageToggle";
+
+const display = Fraunces({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-login-display",
+});
+
+const body = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-login-body",
+});
 
 type FrontendStatus = {
   required: boolean;
@@ -14,25 +28,31 @@ type FrontendStatus = {
 
 const copy = {
   en: {
-    title: "Family Hub login",
-    desc: "Sign in with a Google account that Sir/Mum added under Admin → Access.",
-    google: "Sign in with Google",
-    loading: "Checking access…",
+    brand: "Zizi Family Hub",
+    headline: "Welcome home",
+    desc: "Sir, Mum, Zizi & Charlene — one family guide for the day.",
+    google: "Continue with Google",
+    loading: "Opening the family hub…",
     signOut: "Sign out",
+    signedInAs: "Signed in as",
   },
   fil: {
-    title: "Family Hub login",
-    desc: "Mag-sign in gamit ang Google na idinagdag ni Sir/Mum sa Admin → Access.",
-    google: "Mag-sign in gamit ang Google",
-    loading: "Tinitingnan ang access…",
+    brand: "Zizi Family Hub",
+    headline: "Maligayang pagdating",
+    desc: "Sir, Mum, Zizi at Charlene — isang gabay para sa araw-araw.",
+    google: "Magpatuloy gamit ang Google",
+    loading: "Binubuksan ang family hub…",
     signOut: "Sign out",
+    signedInAs: "Naka-sign in bilang",
   },
   zh: {
-    title: "家庭 Hub 登入",
-    desc: "請用 Sir/Mum 在 Admin → Access 加入的 Google 帳戶登入。",
-    google: "使用 Google 登入",
-    loading: "檢查權限…",
+    brand: "Zizi Family Hub",
+    headline: "歡迎回家",
+    desc: "Sir、Mum、Zizi 與 Charlene — 一家人的日常指南。",
+    google: "使用 Google 繼續",
+    loading: "正在開啟家庭 Hub…",
     signOut: "登出",
+    signedInAs: "已登入",
   },
 } as const;
 
@@ -45,8 +65,9 @@ export function FrontendAuthGate({
   const t = copy[lang] || copy.en;
   const [status, setStatus] = useState<FrontendStatus | null>(null);
   const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
 
-  const refresh = () =>
+  useEffect(() => {
     fetch("/api/auth/frontend")
       .then((r) => r.json())
       .then((data: FrontendStatus) => setStatus(data))
@@ -59,15 +80,19 @@ export function FrontendAuthGate({
           email: null,
         })
       );
-
-  useEffect(() => {
-    refresh();
   }, []);
 
   if (!status) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-stone-50">
-        <p className="text-stone-500">{t.loading}</p>
+      <div
+        className={`${display.variable} ${body.variable} flex min-h-screen items-center justify-center`}
+        style={{
+          fontFamily: "var(--font-login-body), system-ui, sans-serif",
+          background:
+            "radial-gradient(120% 80% at 50% 0%, #dff7f2 0%, #f7f1e8 55%, #efe6d8 100%)",
+        }}
+      >
+        <p className="animate-pulse text-[#3d5c56]">{t.loading}</p>
       </div>
     );
   }
@@ -76,11 +101,11 @@ export function FrontendAuthGate({
     return (
       <>
         {status.required && status.email ? (
-          <div className="border-b border-stone-200 bg-white px-4 py-1.5 text-center text-[11px] text-stone-500">
-            {status.email}{" "}
+          <div className="border-b border-teal-100 bg-[#f7fffc] px-4 py-1.5 text-center text-[11px] text-stone-600">
+            {t.signedInAs} {status.email}{" "}
             <button
               type="button"
-              className="ml-2 font-medium text-teal-700"
+              className="ml-2 font-semibold text-teal-700"
               onClick={async () => {
                 await fetch("/api/auth/frontend", { method: "DELETE" });
                 setStatus({ ...status, signedIn: false, email: null });
@@ -96,31 +121,136 @@ export function FrontendAuthGate({
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-teal-50 to-stone-100 px-4">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-lg ring-1 ring-stone-200">
-        <h1 className="mb-1 text-xl font-bold text-stone-900">{t.title}</h1>
-        <p className="mb-4 text-sm text-stone-500">{t.desc}</p>
-        {status.googleEnabled ? (
-          <button
-            type="button"
-            onClick={async () => {
-              setError("");
-              const { error: gErr } = await startGoogleLogin("frontend");
-              if (gErr) setError(gErr);
-            }}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white py-2.5 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+    <div
+      className={`${display.variable} ${body.variable} relative min-h-screen overflow-hidden`}
+      style={{
+        fontFamily: "var(--font-login-body), system-ui, sans-serif",
+        color: "#1f3a36",
+      }}
+    >
+      {/* Atmosphere */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(90% 70% at 70% 10%, #9ee5d8 0%, transparent 55%), radial-gradient(80% 60% at 10% 90%, #f6c9a8 0%, transparent 50%), linear-gradient(165deg, #e8faf6 0%, #f8f1e7 48%, #f0e4d4 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-lg flex-col px-4 pb-10 pt-5 sm:px-6">
+        <div className="mb-4 flex items-center justify-end">
+          <LanguageToggle />
+        </div>
+
+        {/* Full-bleed family hero */}
+        <div className="login-hero-enter relative -mx-4 mb-6 overflow-hidden sm:-mx-6">
+          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10]">
+            <img
+              src="/images/login-family-hero.png"
+              alt="Sir, Mum, Zizi and Charlene together"
+              className="h-full w-full object-cover object-[center_30%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1f3a36]/55 via-[#1f3a36]/10 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 px-5 pb-5 pt-16 text-white">
+              <p
+                className="login-fade-up text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-100"
+                style={{ animationDelay: "80ms" }}
+              >
+                Gabay sa Bahay
+              </p>
+              <h1
+                className="login-fade-up mt-1 text-[2rem] leading-tight text-white sm:text-[2.35rem]"
+                style={{
+                  fontFamily: "var(--font-login-display), Georgia, serif",
+                  animationDelay: "160ms",
+                }}
+              >
+                {t.brand}
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="login-fade-up mx-auto w-full max-w-sm" style={{ animationDelay: "240ms" }}>
+          <h2
+            className="text-[1.65rem] leading-snug text-[#1f3a36]"
+            style={{ fontFamily: "var(--font-login-display), Georgia, serif" }}
           >
-            <GoogleG />
-            {t.google}
-          </button>
-        ) : (
-          <p className="text-sm text-amber-800">
-            Frontend login is on, but no Google method / users are enabled.
-            Ask Sir/Mum to fix Admin → Access.
+            {t.headline}
+          </h2>
+          <p className="mt-2 text-[0.95rem] leading-relaxed text-[#4a6761]">
+            {t.desc}
           </p>
-        )}
-        {error ? <p className="mt-3 text-sm text-red-600">{error}</p> : null}
+
+          {status.googleEnabled ? (
+            <button
+              type="button"
+              disabled={busy}
+              onClick={async () => {
+                setError("");
+                setBusy(true);
+                const { error: gErr } = await startGoogleLogin("frontend");
+                if (gErr) {
+                  setError(gErr);
+                  setBusy(false);
+                }
+              }}
+              className="login-cta-press mt-7 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#0f766e] py-3.5 text-[0.95rem] font-bold text-white shadow-[0_12px_28px_-12px_rgba(15,118,110,0.7)] transition hover:bg-[#0d9488] disabled:opacity-60"
+            >
+              <GoogleG />
+              {busy ? "…" : t.google}
+            </button>
+          ) : (
+            <p className="mt-6 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-950 ring-1 ring-amber-200">
+              Frontend login is on, but Google is not ready. Ask Sir/Mum to check
+              Admin → Access.
+            </p>
+          )}
+
+          {error ? (
+            <p className="mt-3 text-center text-sm text-red-600">{error}</p>
+          ) : null}
+        </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes loginFadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes loginHeroIn {
+          from {
+            opacity: 0;
+            transform: scale(1.04);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .login-fade-up {
+          animation: loginFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .login-hero-enter {
+          animation: loginHeroIn 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .login-cta-press:active {
+          transform: scale(0.98);
+        }
+      `}</style>
     </div>
   );
 }
