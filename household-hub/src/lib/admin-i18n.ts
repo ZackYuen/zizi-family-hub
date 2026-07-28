@@ -14,11 +14,11 @@ export const adminLabels = {
   adminPanel: { en: "Admin Panel", fil: "Admin Panel" },
   viewApp: { en: "View App", fil: "Tingnan ang App" },
   logout: { en: "Logout", fil: "Logout" },
-  rules: { en: "Rules", fil: "Alituntunin", zh: "守則" },
+  rules: { en: "Golden Rules", fil: "Golden Rules", zh: "黃金守則" },
   rulesSubGround: {
-    en: "Ground Rules",
-    fil: "Ground Rules",
-    zh: "守則",
+    en: "Golden Rules",
+    fil: "Golden Rules",
+    zh: "黃金守則",
   },
   rulesSubPrefs: {
     en: "Preferences",
