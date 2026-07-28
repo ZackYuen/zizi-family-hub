@@ -194,6 +194,20 @@ export interface AppContent {
   salaryPayments?: SalaryPaymentItem[];
   emergencyContacts?: EmergencyContact[];
   hkWeather?: HkWeatherFlag;
+  /** Admin login methods (password / Google / skip) — edited in Settings */
+  adminAuth?: AdminAuthSettings;
+}
+
+/** Admin panel sign-in options (stored in AppContent, tunable in Settings) */
+export interface AdminAuthSettings {
+  /** Shared ADMIN_PASSWORD login */
+  passwordEnabled: boolean;
+  /** Sign in with Google (Supabase Auth) */
+  googleEnabled: boolean;
+  /** Enter Admin without password/Google (family LAN only — use carefully) */
+  skipLogin: boolean;
+  /** Lowercased emails allowed for Google Admin login */
+  googleAllowlist: string[];
 }
 
 /** Soft preference — not a ground rule (no “If Broken”) */
