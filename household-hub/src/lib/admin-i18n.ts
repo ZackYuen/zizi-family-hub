@@ -57,9 +57,9 @@ export const adminLabels = {
   },
   appliances: { en: "Tools", fil: "Gamit", zh: "家電" },
   appliancesHint: {
-    en: "How-to for vacuum, rice cooker, washing machine, etc. Charlene sees these under the Tools tab.",
-    fil: "How-to para sa vacuum, rice cooker, washing machine, atbp. Makikita ni Charlene sa Tools tab.",
-    zh: "吸塵機、電飯煲、洗衣機等用法。Charlene 在「家電」分頁看到。",
+    en: "How-to for vacuum, rice cooker, washing machine, etc. Charlene sees these under the Tools tab. Use ▲▼ or Priority to reorder within each category (Cooking, Cleaning…). Kind chooses the category.",
+    fil: "How-to para sa vacuum, rice cooker, washing machine, atbp. Makikita ni Charlene sa Tools tab. Gamitin ang ▲▼ o Priority para i-ayos sa loob ng category (Cooking, Cleaning…). Kind ang pumipili ng category.",
+    zh: "吸塵機、電飯煲、洗衣機等用法。Charlene 在「家電」分頁看到。用 ▲▼ 或「優先」在同類別內排序（煮食、清潔…）。Kind 決定類別。",
   },
   addAppliance: {
     en: "+ Add appliance",
@@ -202,8 +202,8 @@ export const adminLabels = {
   copyDayTo: { en: "Copy this day to…", fil: "Kopyahin ang araw sa…" },
   copy: { en: "Copy", fil: "Kopyahin" },
   tasksShort: { en: "tasks", fil: "gawain" },
-  moveUp: { en: "Move up", fil: "Itaas" },
-  moveDown: { en: "Move down", fil: "Ibaba" },
+  moveUp: { en: "Move up", fil: "Itaas", zh: "上移" },
+  moveDown: { en: "Move down", fil: "Ibaba", zh: "下移" },
   startTime: { en: "Start", fil: "Simula" },
   endTime: { en: "End", fil: "Tapos" },
   fullDay: { en: "All day", fil: "Buong araw" },
