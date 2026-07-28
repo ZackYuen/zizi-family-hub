@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cookDeviceMeta } from "@/lib/cook-devices";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
@@ -10,15 +10,12 @@ import type { DinnerRecipe, RecipeIngredient, TonightMenu } from "@/lib/types";
 
 const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const;
 
-type CategoryFilter = DinnerRecipe["category"] | "All";
-
 const ui = {
   tonight: { en: "Tonight's Dinner", fil: "Hapunan Ngayong Gabi", zh: "今晚晚餐" },
   recipe: { en: "Watch video", fil: "Panoorin ang video", zh: "觀看影片" },
   meat: { en: "Meat", fil: "Karne", zh: "肉類" },
   vegetable: { en: "Vegetable", fil: "Gulay", zh: "蔬菜" },
   soup: { en: "Soup", fil: "Sabaw", zh: "湯" },
-  all: { en: "All", fil: "Lahat", zh: "全部" },
   loading: { en: "Loading tonight's menu...", fil: "Kinukuha ang menu...", zh: "載入餐單中…" },
   cookAt: {
     en: "Prepare & cook around 6:00 PM for Zizi dinner 6:30–8:00 PM",
@@ -87,14 +84,14 @@ const ui = {
     zh: "搜尋其他菜式",
   },
   findDishHint: {
-    en: "If Mum asks for a different dish (not tonight’s random pick), search here and open the recipe.",
-    fil: "Kung may hiling si Mum na ibang ulam (hindi ang random ngayong gabi), maghanap dito at buksan ang recipe.",
-    zh: "若 Mum 要求今晚隨機以外的菜式，可在此搜尋並打開食譜。",
+    en: "Mum asked for a different dish? Type the name, tap one result.",
+    fil: "May ibang ulam si Mum? I-type ang pangalan, tapos piliin.",
+    zh: "Mum 要換菜？輸入菜名，點一下結果即可。",
   },
   searchPlaceholder: {
-    en: "Search dish name…",
-    fil: "Hanapin ang pangalan ng ulam…",
-    zh: "搜尋菜名…",
+    en: "e.g. chicken, soup, tofu…",
+    fil: "hal. chicken, soup, tofu…",
+    zh: "例如 chicken、湯、豆腐…",
   },
   searchLoading: {
     en: "Loading dishes…",
@@ -102,19 +99,39 @@ const ui = {
     zh: "載入菜式中…",
   },
   noMatches: {
-    en: "No dishes match. Try another word or category.",
-    fil: "Walang tumugma. Subukan ang ibang salita o category.",
-    zh: "沒有符合的菜式。試其他關鍵字或分類。",
+    en: "No match. Try another word.",
+    fil: "Walang tumugma. Subukan ang ibang salita.",
+    zh: "沒有符合。試其他字。",
   },
   typeToSearch: {
-    en: "Type at least 2 letters to search the full recipe list.",
-    fil: "Mag-type ng hindi bababa sa 2 letra para hanapin sa buong listahan.",
-    zh: "輸入至少 2 個字以搜尋全部食譜。",
+    en: "Type 2+ letters to search.",
+    fil: "Mag-type ng 2+ letra.",
+    zh: "輸入至少 2 個字。",
   },
   matches: {
-    en: (n: number) => `${n} dish${n === 1 ? "" : "es"}`,
-    fil: (n: number) => `${n} ulam`,
-    zh: (n: number) => `${n} 道菜`,
+    en: (n: number) => `${n} found — tap one`,
+    fil: (n: number) => `${n} nahanap — piliin`,
+    zh: (n: number) => `找到 ${n} 道 — 點選`,
+  },
+  showMore: {
+    en: (n: number) => `Show ${n} more`,
+    fil: (n: number) => `Ipakita ang ${n} pa`,
+    zh: (n: number) => `再顯示 ${n} 道`,
+  },
+  backToResults: {
+    en: "← Back to results",
+    fil: "← Bumalik sa results",
+    zh: "← 返回結果",
+  },
+  clearSearch: {
+    en: "Clear",
+    fil: "Clear",
+    zh: "清除",
+  },
+  changeDish: {
+    en: "Change dish",
+    fil: "Palitan ang ulam",
+    zh: "換一道菜",
   },
 };
 
@@ -299,8 +316,9 @@ function RecipeSearch({ lang }: { lang: "en" | "fil" | "zh" }) {
   const [recipes, setRecipes] = useState<DinnerRecipe[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState<CategoryFilter>("All");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const detailRef = useRef<HTMLDivElement>(null);
   const deferredSearch = useDeferredValue(search.trim().toLowerCase());
 
   useEffect(() => {
@@ -313,19 +331,38 @@ function RecipeSearch({ lang }: { lang: "en" | "fil" | "zh" }) {
 
   const matches = useMemo(() => {
     if (deferredSearch.length < 2) return [] as DinnerRecipe[];
-    return recipes.filter((r) => {
-      if (filter !== "All" && r.category !== filter) return false;
-      return [r.name, r.nameEn, r.nameFil, r.subCategory, r.category]
+    return recipes.filter((r) =>
+      [r.name, r.nameEn, r.nameFil, r.subCategory, r.category]
         .filter(Boolean)
-        .some((s) => s!.toLowerCase().includes(deferredSearch));
-    });
-  }, [recipes, deferredSearch, filter]);
+        .some((s) => s!.toLowerCase().includes(deferredSearch))
+    );
+  }, [recipes, deferredSearch]);
 
   const selected = selectedId
-    ? matches.find((r) => r.id === selectedId) ??
-      recipes.find((r) => r.id === selectedId) ??
-      null
+    ? recipes.find((r) => r.id === selectedId) ?? null
     : null;
+
+  const visible = showAll ? matches.slice(0, 30) : matches.slice(0, 6);
+  const hiddenCount = Math.min(matches.length, 30) - visible.length;
+
+  useEffect(() => {
+    if (!selectedId || !detailRef.current) return;
+    detailRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [selectedId]);
+
+  const pickDish = (id: string) => {
+    setSelectedId(id);
+  };
+
+  const backToResults = () => {
+    setSelectedId(null);
+  };
+
+  const clearAll = () => {
+    setSearch("");
+    setSelectedId(null);
+    setShowAll(false);
+  };
 
   return (
     <section className="space-y-2.5 rounded-2xl bg-white p-3.5 ring-1 ring-stone-100">
@@ -334,85 +371,109 @@ function RecipeSearch({ lang }: { lang: "en" | "fil" | "zh" }) {
         <p className="mt-0.5 text-xs text-stone-500">{ui.findDishHint[lang]}</p>
       </div>
 
-      <input
-        type="search"
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setSelectedId(null);
-        }}
-        placeholder={ui.searchPlaceholder[lang]}
-        className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400"
-        autoComplete="off"
-      />
-
-      <div className="flex flex-wrap gap-1.5">
-        {(["All", "Meat", "Vegetable", "Soup"] as CategoryFilter[]).map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            onClick={() => {
-              setFilter(cat);
-              setSelectedId(null);
-            }}
-            className={`rounded-lg px-2.5 py-1 text-xs font-medium ${
-              filter === cat
-                ? "bg-teal-600 text-white"
-                : "bg-stone-50 text-stone-600 ring-1 ring-stone-200"
-            }`}
-          >
-            {cat === "All" ? ui.all[lang] : categoryLabel(cat, lang)[lang]}
-          </button>
-        ))}
-      </div>
-
-      {loading ? (
-        <p className="text-xs text-stone-500">{ui.searchLoading[lang]}</p>
-      ) : deferredSearch.length < 2 ? (
-        <p className="text-xs text-stone-500">{ui.typeToSearch[lang]}</p>
-      ) : matches.length === 0 ? (
-        <p className="text-xs text-stone-500">{ui.noMatches[lang]}</p>
-      ) : (
+      {!selected && (
         <>
-          <p className="text-[11px] text-stone-400">{ui.matches[lang](matches.length)}</p>
-          <ul className="max-h-56 space-y-1 overflow-y-auto">
-            {matches.slice(0, 40).map((r) => (
-              <li key={r.id}>
+          <div className="flex gap-2">
+            <input
+              type="search"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setShowAll(false);
+              }}
+              placeholder={ui.searchPlaceholder[lang]}
+              className="min-w-0 flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 text-base text-stone-900 placeholder:text-stone-400"
+              autoComplete="off"
+              enterKeyHint="search"
+            />
+            {search && (
+              <button
+                type="button"
+                onClick={clearAll}
+                className="shrink-0 rounded-xl bg-stone-100 px-3 text-sm font-medium text-stone-600"
+              >
+                {ui.clearSearch[lang]}
+              </button>
+            )}
+          </div>
+
+          {loading ? (
+            <p className="text-xs text-stone-500">{ui.searchLoading[lang]}</p>
+          ) : deferredSearch.length < 2 ? (
+            <p className="text-xs text-stone-500">{ui.typeToSearch[lang]}</p>
+          ) : matches.length === 0 ? (
+            <p className="text-xs text-stone-500">{ui.noMatches[lang]}</p>
+          ) : (
+            <div className="space-y-1.5">
+              <p className="text-[11px] font-medium text-stone-500">
+                {ui.matches[lang](matches.length)}
+              </p>
+              <ul className="divide-y divide-stone-100 overflow-hidden rounded-xl ring-1 ring-stone-200">
+                {visible.map((r) => (
+                  <li key={r.id}>
+                    <button
+                      type="button"
+                      onClick={() => pickDish(r.id)}
+                      className="flex w-full items-center gap-3 bg-white px-3 py-3.5 text-left active:bg-teal-50"
+                    >
+                      <span className="text-lg">{categoryIcons[r.category]}</span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[15px] font-semibold leading-snug text-stone-900">
+                          {getRecipeDisplayName(r, lang)}
+                        </span>
+                        <span className="mt-0.5 block text-xs text-stone-500">
+                          {categoryLabel(r.category, lang)[lang]}
+                          {r.subCategory ? ` · ${r.subCategory}` : ""}
+                          {r.cookDevice ? " · 🍳" : ""}
+                        </span>
+                      </span>
+                      <span className="shrink-0 text-stone-300" aria-hidden>
+                        ›
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              {hiddenCount > 0 && (
                 <button
                   type="button"
-                  onClick={() => setSelectedId(r.id)}
-                  className={`flex w-full items-start gap-2 rounded-xl px-2.5 py-2 text-left text-sm ${
-                    selectedId === r.id
-                      ? "bg-teal-50 ring-1 ring-teal-200"
-                      : "hover:bg-stone-50"
-                  }`}
+                  onClick={() => setShowAll(true)}
+                  className="w-full rounded-xl py-2.5 text-sm font-semibold text-teal-800"
                 >
-                  <span className="mt-0.5">{categoryIcons[r.category]}</span>
-                  <span>
-                    <span className="font-medium text-stone-900">
-                      {getRecipeDisplayName(r, lang)}
-                    </span>
-                    {r.subCategory && (
-                      <span className="ml-1 text-[10px] text-stone-400">
-                        {r.subCategory}
-                      </span>
-                    )}
-                  </span>
+                  {ui.showMore[lang](hiddenCount)}
                 </button>
-              </li>
-            ))}
-          </ul>
+              )}
+            </div>
+          )}
         </>
       )}
 
       {selected && (
-        <DishCard
-          key={selected.id}
-          label={categoryLabel(selected.category, lang)}
-          recipe={selected}
-          lang={lang}
-          defaultOpen
-        />
+        <div ref={detailRef} className="space-y-2.5">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={backToResults}
+              className="rounded-xl bg-teal-700 px-3.5 py-2.5 text-sm font-semibold text-white"
+            >
+              {ui.backToResults[lang]}
+            </button>
+            <button
+              type="button"
+              onClick={clearAll}
+              className="rounded-xl bg-stone-100 px-3 py-2.5 text-sm font-medium text-stone-600"
+            >
+              {ui.changeDish[lang]}
+            </button>
+          </div>
+          <DishCard
+            key={selected.id}
+            label={categoryLabel(selected.category, lang)}
+            recipe={selected}
+            lang={lang}
+            defaultOpen
+          />
+        </div>
       )}
     </section>
   );
