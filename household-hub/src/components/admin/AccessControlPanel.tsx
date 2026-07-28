@@ -1,7 +1,10 @@
 "use client";
 
 import type { AccessUser, AdminAuthSettings, AppContent, Lang } from "@/lib/types";
-import { normalizeAdminAuth } from "@/lib/admin-auth-settings";
+import {
+  normalizeAdminAuth,
+  sanitizeAdminAuthForSave,
+} from "@/lib/admin-auth-settings";
 import { adminT } from "@/lib/admin-i18n";
 
 interface Props {
@@ -9,7 +12,7 @@ interface Props {
   setContent: (c: AppContent) => void;
   lang: Lang;
   saving: boolean;
-  onSave: () => void;
+  onSave: (updated: AppContent) => void;
 }
 
 export function AccessControlPanel({
@@ -38,6 +41,7 @@ export function AccessControlPanel({
 
   const addUser = () => {
     const id = `user-${Date.now()}`;
+    // Draft row with empty email — kept by normalizeAdminAuth until filled or saved
     patch({
       ...auth,
       users: [
@@ -52,6 +56,15 @@ export function AccessControlPanel({
         },
       ],
     });
+  };
+
+  const save = () => {
+    const next = {
+      ...content,
+      adminAuth: sanitizeAdminAuthForSave(auth),
+    };
+    setContent(next);
+    onSave(next);
   };
 
   return (
@@ -188,9 +201,7 @@ export function AccessControlPanel({
               className="w-full rounded border border-stone-200 px-2 py-1.5 text-sm"
               placeholder={adminT("userEmail", lang)}
               value={user.email}
-              onChange={(e) =>
-                updateUser(user.id, { email: e.target.value.trim() })
-              }
+              onChange={(e) => updateUser(user.id, { email: e.target.value })}
             />
             <input
               className="w-full rounded border border-stone-200 px-2 py-1.5 text-sm"
@@ -234,7 +245,7 @@ export function AccessControlPanel({
       <button
         type="button"
         disabled={saving}
-        onClick={onSave}
+        onClick={save}
         className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
       >
         {saving ? adminT("saving", lang) : adminT("saveAccess", lang)}
