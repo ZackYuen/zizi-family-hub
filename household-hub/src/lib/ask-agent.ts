@@ -497,11 +497,31 @@ function heuristicAnswer(
       q
     )
   ) {
+    const d = snap.drawingClass;
+    const classRange = d
+      ? `${d.classStart}–${d.classEnd}`
+      : "12:00–13:00";
+    const leaveRange = d
+      ? `${d.leaveStart}–${d.leaveEnd}`
+      : "11:15–11:30";
+    const daysEn = d?.daysEn || "Wed & Fri";
+    const daysFil = d?.daysFil || "Miyerkules at Biyernes";
+    const daysZh = d?.daysZh || "三、五";
+    const venueEn =
+      d?.venue.en ||
+      "One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室)";
+    const venueZh =
+      d?.venue.zh || "One Point Studio，觀塘工業中心一期12樓B室";
+    const summerEndLabel =
+      snap.schoolCalendar.summerEndsOn === "2026-09-01" ? "1 Sep" : snap.schoolCalendar.summerEndsOn;
+    const termStartLabel =
+      snap.schoolCalendar.termStartsOn === "2026-09-02" ? "2 Sep" : snap.schoolCalendar.termStartsOn;
+
     return lang === "fil"
-      ? "Drawing class (summer): Miyerkules at Biyernes 14:00–15:00 — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). Umalis ~13:00–13:30. Walang kindergarten hanggang 1 Sep; balik-eskwela 2 Sep (K3 PM)."
+      ? `Drawing class (summer): ${daysFil} ${classRange} — ${venueEn}. Umalis ~${leaveRange}. Walang kindergarten hanggang ${summerEndLabel}; balik-eskwela ${termStartLabel} (K3 PM).`
       : lang === "zh"
-        ? "繪畫班（暑假）：逢星期三、五 14:00–15:00 — One Point Studio，觀塘工業中心一期12樓B室。約 13:00–13:30 出門。暑假至 9月1日無幼稚園；9月2日復課（K3 下午班）。"
-        : "Drawing class (summer): Wed & Fri 14:00–15:00 — One Point Studio, Kwun Tong Industrial Centre Phase 1, 12/F Room B (觀塘工業中心一期12樓B室). Leave home ~13:00–13:30. No kindergarten until 1 Sep; school resumes 2 Sep (K3 PM).";
+        ? `繪畫班（暑假）：逢星期${daysZh} ${classRange} — ${venueZh}。約 ${leaveRange} 出門。暑假至 ${summerEndLabel} 無幼稚園；${termStartLabel} 復課（K3 下午班）。`
+        : `Drawing class (summer): ${daysEn} ${classRange} — ${venueEn}. Leave home ~${leaveRange}. No kindergarten until ${summerEndLabel}; school resumes ${termStartLabel} (K3 PM).`;
   }
 
   if (
@@ -510,11 +530,26 @@ function heuristicAnswer(
     )
   ) {
     if (snap.scheduleSeason === "summer") {
+      const d = snap.drawingClass;
+      const classRange = d
+        ? `${d.classStart}–${d.classEnd}`
+        : "12:00–13:00";
+      const daysEn = d?.daysEn || "Wed/Fri";
+      const daysFil = d?.daysFil || "Miyerkules/Biyernes";
+      const daysZh = d?.daysZh || "三／五";
+      const summerEndLabel =
+        snap.schoolCalendar.summerEndsOn === "2026-09-01"
+          ? "1 Sep"
+          : snap.schoolCalendar.summerEndsOn;
+      const termStartLabel =
+        snap.schoolCalendar.termStartsOn === "2026-09-02"
+          ? "2 Sep"
+          : snap.schoolCalendar.termStartsOn;
       return lang === "fil"
-        ? "Summer holiday ngayon (hanggang 1 Sep) — walang kindergarten. Miyerkules/Biyernes: drawing class 14:00–15:00 sa One Point Studio (觀塘工業中心一期12樓B室). Balik-eskwela 2 Sep — K3 PM (drop-off bago 13:00, sundo 16:30)."
+        ? `Summer holiday ngayon (hanggang ${summerEndLabel}) — walang kindergarten. ${daysFil}: drawing class ${classRange} sa One Point Studio (觀塘工業中心一期12樓B室). Balik-eskwela ${termStartLabel} — K3 PM (drop-off bago 13:00, sundo 16:30).`
         : lang === "zh"
-          ? "現正暑假（至 9月1日）— 無幼稚園。星期三／五：繪畫班 14:00–15:00（One Point Studio，觀塘工業中心一期12樓B室）。9月2日復課 — K3 下午班（13:00 前送到，16:30 接）。"
-          : "Summer holiday now (until 1 Sep) — no kindergarten. Wed/Fri: drawing class 14:00–15:00 at One Point Studio (觀塘工業中心一期12樓B室). School resumes 2 Sep — K3 PM (drop-off by 13:00, pick-up 16:30).";
+          ? `現正暑假（至 ${summerEndLabel}）— 無幼稚園。星期${daysZh}：繪畫班 ${classRange}（One Point Studio，觀塘工業中心一期12樓B室）。${termStartLabel} 復課 — K3 下午班（13:00 前送到，16:30 接）。`
+          : `Summer holiday now (until ${summerEndLabel}) — no kindergarten. ${daysEn}: drawing class ${classRange} at One Point Studio (觀塘工業中心一期12樓B室). School resumes ${termStartLabel} — K3 PM (drop-off by 13:00, pick-up 16:30).`;
     }
     const walk = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-school-walk");
     if (walk) return walk;

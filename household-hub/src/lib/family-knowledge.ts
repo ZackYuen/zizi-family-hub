@@ -7,7 +7,12 @@ import {
   getDinnerRecipes,
 } from "./data";
 import { getRecipeDisplayName } from "./recipe-display";
-import { resolveActiveSchedule, type ScheduleSeason } from "./school-calendar";
+import {
+  extractSummerDrawingClass,
+  resolveActiveSchedule,
+  type ScheduleSeason,
+  type SummerDrawingClassInfo,
+} from "./school-calendar";
 import {
   APPLIANCE_CATEGORY_ORDER,
   applianceCategory,
@@ -40,6 +45,8 @@ export interface LiveFamilySnapshot {
   scheduleSeason: ScheduleSeason;
   schoolCalendar: SchoolCalendar;
   ziziSchool: AppContent["ziziSchool"];
+  /** Summer Wed/Fri drawing class from live schedule (null if none). */
+  drawingClass: SummerDrawingClassInfo | null;
   todaySchedule: AppContent["weeklySchedule"][0] | null;
   groundRules: AppContent["groundRules"];
   familyPreferences: FamilyPreferenceTip[];
@@ -95,6 +102,13 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
   const active = resolveActiveSchedule(content);
   const todaySchedule =
     active.schedule.find((d) => d.dayKey === dayKey) ?? null;
+  const drawingClass = extractSummerDrawingClass(
+    content.weeklyScheduleSummer?.length
+      ? content.weeklyScheduleSummer
+      : active.season === "summer"
+        ? active.schedule
+        : null
+  );
 
   return {
     source,
@@ -107,6 +121,7 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     scheduleSeason: active.season,
     schoolCalendar: active.calendar,
     ziziSchool: active.ziziSchool,
+    drawingClass,
     todaySchedule,
     groundRules: content.groundRules,
     familyPreferences: content.familyPreferences ?? [],
@@ -183,6 +198,17 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push(`- EN: ${snap.ziziSchool.en}`);
   lines.push(`- FIL: ${snap.ziziSchool.fil}`);
   lines.push("");
+
+  if (snap.drawingClass) {
+    const d = snap.drawingClass;
+    lines.push("Summer drawing class (from live Admin schedule):");
+    lines.push(`- Days: ${d.daysEn} (${d.daysFil})`);
+    lines.push(`- Class: ${d.classStart}–${d.classEnd}`);
+    lines.push(`- Leave home: ~${d.leaveStart}–${d.leaveEnd}`);
+    lines.push(`- Venue EN: ${d.venue.en}`);
+    if (d.venue.zh) lines.push(`- Venue ZH: ${d.venue.zh}`);
+    lines.push("");
+  }
 
   if (snap.todaySchedule) {
     lines.push(`Today's schedule (${snap.todaySchedule.day.en}):`);
