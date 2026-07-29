@@ -4720,5 +4720,82 @@
     "googleAllowlist": [
       "ghostyuen@gmail.com"
     ]
-  }
+  },
+  "places": [
+    {
+      "id": "place-home",
+      "priority": 1,
+      "name": {
+        "en": "Home area (Kwun Tong MTR)",
+        "fil": "Bahay (Kwun Tong MTR)",
+        "zh": "家附近（觀塘港鐵）"
+      },
+      "note": {
+        "en": "Landmark near home (~3 min walk). Ask Sir/Mum for the exact flat pin.",
+        "fil": "Landmark malapit sa bahay (~3 min lakad). Tanungin si Sir/Mum para sa exact flat pin.",
+        "zh": "家附近地標（步行約3分鐘）。請向 Sir/Mum 要準確單位位置。"
+      },
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kwun+Tong+MTR+Station+Hong+Kong"
+    },
+    {
+      "id": "place-kindergarten",
+      "priority": 2,
+      "name": {
+        "en": "Lam Tin Ling Liang Kindergarten",
+        "fil": "Lam Tin Ling Liang Kindergarten",
+        "zh": "藍田靈糧幼稚園"
+      },
+      "note": {
+        "en": "Laguna City, Lam Tin — Zizi drop-off / pick-up",
+        "fil": "Laguna City, Lam Tin — drop-off / pick-up ni Zizi",
+        "zh": "麗港城、藍田 — Zizi 送學／接學"
+      },
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lam+Tin+Ling+Liang+Kindergarten+Laguna+City"
+    },
+    {
+      "id": "place-yata",
+      "priority": 3,
+      "name": {
+        "en": "YATA @ apm (first choice)",
+        "fil": "YATA @ apm (unang choice)",
+        "zh": "一田 YATA @ apm（首選）"
+      },
+      "note": {
+        "en": "Supermarket linked to Kwun Tong MTR / apm",
+        "fil": "Supermarket konektado sa Kwun Tong MTR / apm",
+        "zh": "連接觀塘港鐵／apm 的超市"
+      },
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=YATA+Department+Store+apm+Kwun+Tong"
+    },
+    {
+      "id": "place-shui-wo",
+      "priority": 4,
+      "name": {
+        "en": "Shui Wo Street wet market",
+        "fil": "Shui Wo Street wet market",
+        "zh": "瑞和街街市"
+      },
+      "note": {
+        "en": "Fresh meat & vegetables — OK alternative to YATA",
+        "fil": "Sariwang karne at gulay — OK alternative sa YATA",
+        "zh": "新鮮肉菜 — 一田以外的好選擇"
+      },
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Shui+Wo+Street+Market+Kwun+Tong"
+    },
+    {
+      "id": "place-aeon",
+      "priority": 5,
+      "name": {
+        "en": "AEON Domain (Yau Tong)",
+        "fil": "AEON Domain (Yau Tong)",
+        "zh": "AEON Domain（油塘）"
+      },
+      "note": {
+        "en": "Use if needed — one MTR stop from Kwun Tong",
+        "fil": "Kung kailangan — isang MTR stop mula Kwun Tong",
+        "zh": "有需要才去 — 觀塘港鐵一站"
+      },
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=AEON+STYLE+Domain+Yau+Tong"
+    }
+  ]
 }

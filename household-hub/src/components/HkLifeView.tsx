@@ -8,6 +8,7 @@ import type {
   EmergencyContact,
   HkLifeCategory,
   HkLifeGuide,
+  PlaceMapLink,
   SalaryPaymentItem,
   SettlingCheckItem,
   StatutoryHolidayItem,
@@ -175,6 +176,21 @@ const ui = {
     zh: (d: number, t: number) => `已完成 ${d}/${t}`,
   },
   topics: { en: "Living tips", fil: "Living tips", zh: "生活貼士" },
+  places: {
+    en: "Maps — key places",
+    fil: "Maps — mahahalagang lugar",
+    zh: "地圖 — 常用地點",
+  },
+  placesHint: {
+    en: "Tap to open Google Maps",
+    fil: "I-tap para buksan ang Google Maps",
+    zh: "點選開啟 Google 地圖",
+  },
+  openMaps: {
+    en: "Open Maps",
+    fil: "Buksan ang Maps",
+    zh: "開啟地圖",
+  },
   tips: {
     en: (n: number) => `${n} tips`,
     fil: (n: number) => `${n} tip`,
@@ -206,10 +222,10 @@ function loadLocalDone(): Record<string, boolean> {
 function loadOpenSections(): string[] {
   try {
     const raw = localStorage.getItem(OPEN_SECTIONS_KEY);
-    if (!raw) return ["emergency-phones"];
+    if (!raw) return ["emergency-phones", "places-maps"];
     return JSON.parse(raw) as string[];
   } catch {
-    return ["emergency-phones"];
+    return ["emergency-phones", "places-maps"];
   }
 }
 
@@ -308,6 +324,48 @@ function GuideRow({ guide }: { guide: HkLifeGuide }) {
         </div>
       )}
     </div>
+  );
+}
+
+function PlacesMaps({ places }: { places: PlaceMapLink[] }) {
+  const { lang } = useLanguage();
+  const sorted = [...places]
+    .filter((p) => p.mapsUrl?.trim())
+    .sort((a, b) => a.priority - b.priority);
+  if (!sorted.length) return null;
+  return (
+    <ul className="space-y-1.5">
+      {sorted.map((place) => (
+        <li key={place.id}>
+          <a
+            href={place.mapsUrl.trim()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-xl bg-white px-3 py-2.5 ring-1 ring-teal-100 transition active:bg-teal-50"
+          >
+            <span
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-base"
+              aria-hidden
+            >
+              📍
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold text-stone-900">
+                {localized(place.name, lang)}
+              </p>
+              {place.note ? (
+                <p className="mt-0.5 text-[11px] text-stone-500">
+                  {localized(place.note, lang)}
+                </p>
+              ) : null}
+            </div>
+            <span className="shrink-0 text-[11px] font-bold text-teal-700">
+              {ui.openMaps[lang]} →
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -545,6 +603,7 @@ function SalaryRows({
 export function HkLifeView({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
   const guides = content.hkLifeGuides ?? [];
+  const places = content.places ?? [];
   const contacts = content.emergencyContacts ?? [];
   const checklist = content.settlingChecklist ?? [];
   const [holidays, setHolidays] = useState<StatutoryHolidayItem[]>(
@@ -554,7 +613,7 @@ export function HkLifeView({ content }: { content: AppContent }) {
     () => content.salaryPayments ?? []
   );
   const [doneMap, setDoneMap] = useState<Record<string, boolean>>({});
-  const [openIds, setOpenIds] = useState<string[]>(["emergency-phones"]);
+  const [openIds, setOpenIds] = useState<string[]>(["emergency-phones", "places-maps"]);
   const [busyId, setBusyId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -697,6 +756,24 @@ export function HkLifeView({ content }: { content: AppContent }) {
           tone="bg-gradient-to-br from-red-50 to-amber-50 ring-red-100"
         >
           <EmergencyPhones contacts={contacts} />
+        </Accordion>
+      )}
+
+      {places.some((p) => p.mapsUrl?.trim()) && (
+        <Accordion
+          id="places-maps"
+          open={openIds.includes("places-maps")}
+          onToggle={onToggleSection}
+          title={
+            <span className="inline-flex items-center gap-2">
+              <span aria-hidden>🗺️</span>
+              {ui.places[lang]}
+            </span>
+          }
+          subtitle={ui.placesHint[lang]}
+          tone="bg-gradient-to-br from-teal-50 to-sky-50 ring-teal-100"
+        >
+          <PlacesMaps places={places} />
         </Accordion>
       )}
 

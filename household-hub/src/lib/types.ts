@@ -184,6 +184,11 @@ export interface AppContent {
   lastUpdated: string;
   /** Where the family lives — for HK Life tips */
   homeArea?: BilingualText;
+  /**
+   * Quick Google Maps links for key places (home, kindergarten, YATA, AEON…).
+   * Shown in HK Life; editable in Admin → HK Life.
+   */
+  places?: PlaceMapLink[];
   hkLifeGuides?: HkLifeGuide[];
   settlingChecklist?: SettlingCheckItem[];
   /** 2026+ statutory holidays — tap to confirm taken */
@@ -314,6 +319,17 @@ export interface HkLifeGuide {
   body: BilingualText;
   sourceUrl?: string;
   lastReviewed?: string;
+}
+
+/** Named place with a Maps URL (Google Maps search / share link) */
+export interface PlaceMapLink {
+  id: string;
+  priority: number;
+  name: BilingualText;
+  /** Short hint under the name (e.g. “near MTR — ask Sir/Mum for exact pin”) */
+  note?: BilingualText;
+  /** Full https URL — opens in Maps app / browser */
+  mapsUrl: string;
 }
 
 export interface SettlingCheckItem {
