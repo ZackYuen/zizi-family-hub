@@ -109,9 +109,10 @@ export interface RecipeCookSettings {
 
 export interface TonightMenu {
   date: string;
-  meat: DinnerRecipe;
-  vegetable: DinnerRecipe;
-  soup: DinnerRecipe;
+  /** Default random = one item; Admin override may be 0..n */
+  meat: DinnerRecipe[];
+  vegetable: DinnerRecipe[];
+  soup: DinnerRecipe[];
   /** True when Admin picked dishes for this date instead of date-hash random */
   overridden?: boolean;
 }
@@ -119,9 +120,18 @@ export interface TonightMenu {
 /** Admin override for a calendar date (Hong Kong YYYY-MM-DD) */
 export interface DinnerMenuOverride {
   date: string;
-  meatId: string;
-  vegetableId: string;
-  soupId: string;
+  /** Preferred: 0..n recipe IDs per category */
+  meatIds: string[];
+  vegetableIds: string[];
+  soupIds: string[];
+  /**
+   * @deprecated legacy singular — migrated to *Ids on read
+   */
+  meatId?: string;
+  /** @deprecated */
+  vegetableId?: string;
+  /** @deprecated */
+  soupId?: string;
   updatedAt?: string;
 }
 

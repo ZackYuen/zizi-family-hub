@@ -1,6 +1,6 @@
 import { getTodayDayKey, getHongKongTimeParts } from "./i18n";
 import { isHelperDayOff } from "./hk-holidays";
-import { hongKongDateKey, resolveTonightMenu } from "./dinner";
+import { hongKongDateKey, resolveTonightMenu, tonightDishes } from "./dinner";
 import {
   getContentWithSource,
   getDinnerMenuOverrides,
@@ -173,7 +173,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     "Home facts: ~660 sq ft Kwun Tong flat; family of 3 (Sir, Mum, Zizi) + Charlene live-in = 4 people; Charlene has own bedroom with AC; 3 ACs total; ~3 min walk to Kwun Tong MTR; linked to apm mall; first supermarket = YATA (一田) at apm (AEON only if needed)."
   );
   lines.push(
-    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab meat+veg+soup."
+    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab (default 1 meat + 1 vegetable + 1 soup; Admin may add/remove dishes)."
   );
   lines.push(`Data source: ${snap.source === "supabase" ? "live Admin" : "local"}`);
   lines.push(
@@ -348,7 +348,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   if (snap.tonight) {
     lines.push("");
     lines.push(`Tonight's dinner (${snap.tonight.date}):`);
-    for (const dish of [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup]) {
+    for (const dish of tonightDishes(snap.tonight)) {
       lines.push(
         `- ${dish.category}: ${getRecipeDisplayName(dish, "en")} / ${getRecipeDisplayName(dish, "fil")}`
       );

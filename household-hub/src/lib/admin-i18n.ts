@@ -393,8 +393,9 @@ export const adminLabels = {
   // Meals admin
   mealTitle: { en: "Dinner Menu Recipes", fil: "Mga Recipe sa Hapunan" },
   mealDesc: {
-    en: "Manage meat, vegetable and soup dishes. Random menu picks 1 of each nightly.",
-    fil: "Pamahalaan ang karne, gulay at sabaw. Random na pipili ng 1 bawat isa gabi-gabi.",
+    en: "Manage meat, vegetable and soup dishes. Default random = 1 of each nightly. Tonight’s override can add or remove dishes.",
+    fil: "Pamahalaan ang karne, gulay at sabaw. Default random = 1 bawat isa. Pwede magdagdag o mag-alis sa tonight override.",
+    zh: "管理肉、菜、汤食谱。默认每晚随机各1道。今晚自选可加／减菜式。",
   },
   addMeal: { en: "+ Add dish", fil: "+ Magdagdag ng ulam" },
   saveMeals: { en: "Save Meals", fil: "I-save ang Pagkain" },
