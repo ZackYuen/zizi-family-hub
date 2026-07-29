@@ -6,6 +6,7 @@ import type { Lang } from "@/lib/types";
 import type { DinnerRecipe } from "@/lib/types";
 import { adminT } from "@/lib/admin-i18n";
 import { ScheduleCalendarAdmin } from "@/components/admin/ScheduleCalendarAdmin";
+import { MonthlyTasksAdmin } from "@/components/admin/MonthlyTasksAdmin";
 import { MealsAdmin } from "@/components/admin/MealsAdmin";
 import { HkLifeAdmin } from "@/components/admin/HkLifeAdmin";
 import { InboxAdmin } from "@/components/admin/InboxAdmin";
@@ -49,6 +50,9 @@ export default function AdminPage() {
     | "json"
   >("rules");
   const [rulesPane, setRulesPane] = useState<"ground" | "prefs">("ground");
+  const [schedulePane, setSchedulePane] = useState<"weekly" | "monthly">(
+    "weekly"
+  );
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -527,7 +531,48 @@ export default function AdminPage() {
 
         {activeSection === "schedule" && (
           <div className="space-y-4">
-            <ScheduleCalendarAdmin content={content} setContent={setContent} lang={lang} />
+            <div className="grid grid-cols-2 gap-1 rounded-xl bg-stone-200/80 p-1">
+              <button
+                type="button"
+                onClick={() => setSchedulePane("weekly")}
+                className={`rounded-lg px-3 py-2 text-sm font-semibold ${
+                  schedulePane === "weekly"
+                    ? "bg-teal-600 text-white"
+                    : "text-stone-600"
+                }`}
+              >
+                {adminT("scheduleSubWeekly", lang)}
+              </button>
+              <button
+                type="button"
+                onClick={() => setSchedulePane("monthly")}
+                className={`rounded-lg px-3 py-2 text-sm font-semibold ${
+                  schedulePane === "monthly"
+                    ? "bg-amber-600 text-white"
+                    : "text-stone-600"
+                }`}
+              >
+                {adminT("scheduleSubMonthly", lang)}
+                <span className="ml-1 text-xs opacity-80">
+                  ({content.monthlyTasks?.length ?? 0})
+                </span>
+              </button>
+            </div>
+
+            {schedulePane === "weekly" ? (
+              <ScheduleCalendarAdmin
+                content={content}
+                setContent={setContent}
+                lang={lang}
+              />
+            ) : (
+              <MonthlyTasksAdmin
+                content={content}
+                setContent={setContent}
+                lang={lang}
+              />
+            )}
+
             <button
               type="button"
               disabled={saving}
