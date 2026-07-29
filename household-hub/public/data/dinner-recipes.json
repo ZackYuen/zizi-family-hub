@@ -6803,6 +6803,97 @@
           "zh": "1) 只翻熱 Sir/Mum 說可以的剩菜 — 不適用生食。\n2) 鋪開；過乾可薄噴油。\n3) 翻熱 160°C、最多約 10 分鐘；常檢查；搖／翻一次。\n4) 籃燙 — 用夾。"
         }
       }
+    },
+    {
+      "id": "d-soup-luohanguo-1785331693220",
+      "index": 1785331693220,
+      "category": "Soup",
+      "subCategory": "Herbal / dried pack",
+      "name": "羅漢果菜乾湯",
+      "nameEn": "Monk fruit & dried white cabbage soup",
+      "nameFil": "Monk fruit at dried cabbage soup (羅漢果菜乾湯)",
+      "link": "",
+      "cookDevice": "app-tefal-epc17",
+      "cookSettings": {
+        "mode": {
+          "en": "HI-P (high pressure)",
+          "zh": "HI-P（高壓）",
+          "fil": "HI-P (high pressure)"
+        },
+        "minutes": "25–30",
+        "steps": {
+          "en": "After soaking pack + blanching meat: bowl in → pack + meat + 2 ginger slices + water (≥250 ml, under MAX) → valve down, lock → HI-P 25–30 min → natural release ≥10 min → salt. (Package stove way: simmer 2 hours.)",
+          "zh": "浸洗湯料＋肉飛水後：內鍋放入湯料＋肉＋薑 2 片＋水（≥250 ml，勿超 MAX）→ 閥下壓鎖蓋 → HI-P 25–30 分鐘 → 自然洩壓 ≥10 分鐘 → 加鹽。（包裝爐上做法：文火煲 2 小時。）",
+          "fil": "Pagkatapos magbabad ng pack + blanch ng meat: ilagay sa bowl ang pack + meat + 2 luya + tubig (≥250 ml, under MAX) → valve down, lock → HI-P 25–30 min → natural release ≥10 min → asin. (Sa kalan ayon sa pack: simmer 2 oras.)"
+        }
+      },
+      "ingredients": [
+        {
+          "en": "Nam Be Hong monk fruit & dried cabbage soup pack (羅漢果菜乾湯)",
+          "zh": "南北行羅漢果菜乾湯料包",
+          "fil": "Nam Be Hong 羅漢果菜乾湯 pack",
+          "qty": "1 pack (142g)"
+        },
+        {
+          "en": "Monk fruit (in pack)",
+          "zh": "羅漢果（料包內）",
+          "fil": "Monk fruit (sa pack)",
+          "qty": "as packed"
+        },
+        {
+          "en": "Dried white cabbage (in pack)",
+          "zh": "菜乾（料包內）",
+          "fil": "Dried cabbage (sa pack)",
+          "qty": "as packed"
+        },
+        {
+          "en": "Candied date (in pack)",
+          "zh": "蜜棗（料包內）",
+          "fil": "Candied date (sa pack)",
+          "qty": "as packed"
+        },
+        {
+          "en": "Sweet apricot kernel 南杏 (in pack — tree nut)",
+          "zh": "南杏（料包內 — 含堅果）",
+          "fil": "South apricot kernel (sa pack — tree nut)",
+          "qty": "as packed"
+        },
+        {
+          "en": "Bitter apricot kernel 北杏 (in pack — tree nut)",
+          "zh": "北杏（料包內 — 含堅果）",
+          "fil": "North apricot kernel (sa pack — tree nut)",
+          "qty": "as packed"
+        },
+        {
+          "en": "Fresh ginger",
+          "zh": "生薑",
+          "fil": "Luya",
+          "qty": "2 slices"
+        },
+        {
+          "en": "Pork or chicken",
+          "zh": "豬肉或雞",
+          "fil": "Baboy o manok",
+          "qty": "as needed (family portion)"
+        },
+        {
+          "en": "Water",
+          "zh": "清水",
+          "fil": "Tubig",
+          "qty": "~12 bowls (stove) / enough in EPC17 under MAX"
+        },
+        {
+          "en": "Salt",
+          "zh": "鹽",
+          "fil": "Asin",
+          "qty": "to taste"
+        }
+      ],
+      "prepNotes": {
+        "en": "Nam Be Hong pack · serves 4–5. Contains tree nuts (南杏／北杏) — ask Sir/Mum if unsure.\n1) Soak & rinse all dry pack ingredients ~30 min.\n2) Optional: blanch pork/chicken with ginger 2–3 min; rinse.\n3) Stove (package): pot + soaked pack + meat + 2 ginger slices + ~12 bowls water → boil, then low simmer 2 hours → salt.\n4) Or EPC17: same ingredients, water ≥250 ml under MAX → HI-P 25–30 min → natural release ≥10 min → salt.\n5) Soft soup OK for Zizi; remove hard bits before serving him.",
+        "zh": "南北行湯料 · 約 4–5 人。含堅果（南杏／北杏）— 不肯定請問 Sir/Mum。\n1) 將料包材料浸洗約 30 分鐘。\n2) 可選：豬肉／雞加薑飛水 2–3 分鐘；沖淨。\n3) 爐上（跟包裝）：煲放入浸好湯料＋肉＋薑 2 片＋約 12 碗水 → 煮滾後文火煲 2 小時 → 加鹽調味。\n4) 或用 EPC17：同樣材料，水 ≥250 ml（勿超 MAX）→ HI-P 25–30 分鐘 → 自然洩壓 ≥10 分鐘 → 加鹽。\n5) 湯可給 Zizi；硬塊／果核先揀走再給他喝。",
+        "fil": "Nam Be Hong pack · para sa 4–5. May tree nuts (南杏／北杏) — tanungin si Sir/Mum kung unsure.\n1) Ibabad at hugasan ang dry pack ~30 min.\n2) Optional: blanch ang baboy/manok + luya 2–3 min; banlawan.\n3) Kalan (ayon sa pack): pack + meat + 2 luya + ~12 bowls tubig → pakuluan, tapos low simmer 2 oras → asin.\n4) O EPC17: parehong ingredients, tubig ≥250 ml under MAX → HI-P 25–30 min → natural release ≥10 min → asin.\n5) Soft soup OK kay Zizi; alisin ang matitigas na piraso bago ihain sa kanya."
+      }
     }
   ]
 }
