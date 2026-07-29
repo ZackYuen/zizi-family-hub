@@ -8,6 +8,7 @@ import { ScheduleView } from "./ScheduleView";
 import { MealsView } from "./MealsView";
 import { AskView } from "./AskView";
 import { HkLifeView } from "./HkLifeView";
+import { HelperHowtoView } from "./HelperHowtoView";
 import {
   AppliancesView,
   RulesAndPreferencesView,
@@ -23,12 +24,15 @@ export function HomeApp({ content }: { content: AppContent }) {
   const { lang } = useLanguage();
   const memberName = useMemberDisplayName(content.helperName);
   const [activeTab, setActiveTab] = useState<TabId>("schedule");
+  const [showHowto, setShowHowto] = useState(false);
 
   const updated = new Date(content.lastUpdated).toLocaleDateString(uiLocale(lang), {
     month: "short",
     day: "numeric",
   });
   const lastUpdatedLabel = `${labels.lastUpdated[lang]} · ${updated}`;
+  const helpLabel =
+    lang === "fil" ? "Tulong" : lang === "zh" ? "使用說明" : "How to use";
 
   return (
     <div
@@ -41,31 +45,64 @@ export function HomeApp({ content }: { content: AppContent }) {
             name={memberName}
             lastUpdatedLabel={lastUpdatedLabel}
           />
-          <LanguageToggle />
+          <div className="flex shrink-0 items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setShowHowto(true)}
+              aria-label={helpLabel}
+              title={helpLabel}
+              className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ring-1 transition ${
+                showHowto
+                  ? "bg-teal-600 text-white ring-teal-600"
+                  : "bg-white text-teal-800 ring-teal-200"
+              }`}
+            >
+              ?
+            </button>
+            <LanguageToggle />
+          </div>
         </div>
-        <LiveClock />
-        <WeatherBanner adminAlert={content.hkWeather} />
+        {!showHowto && (
+          <>
+            <LiveClock />
+            <WeatherBanner adminAlert={content.hkWeather} />
+          </>
+        )}
       </header>
 
       <main className="mx-auto max-w-lg px-4 py-3">
-        {activeTab === "rules" && (
-          <RulesAndPreferencesView
-            rules={content.groundRules}
-            preferences={content.familyPreferences}
+        {showHowto ? (
+          <HelperHowtoView
+            helperNameFallback={content.helperName}
+            onClose={() => setShowHowto(false)}
           />
+        ) : (
+          <>
+            {activeTab === "rules" && (
+              <RulesAndPreferencesView
+                rules={content.groundRules}
+                preferences={content.familyPreferences}
+              />
+            )}
+            {activeTab === "schedule" && (
+              <ScheduleView
+                content={content}
+                monthlyTasks={content.monthlyTasks}
+              />
+            )}
+            {activeTab === "meals" && <MealsView />}
+            {activeTab === "tools" && (
+              <AppliancesView appliances={content.appliances ?? []} />
+            )}
+            {activeTab === "ask" && <AskView />}
+            {activeTab === "hkLife" && <HkLifeView content={content} />}
+          </>
         )}
-        {activeTab === "schedule" && (
-          <ScheduleView content={content} monthlyTasks={content.monthlyTasks} />
-        )}
-        {activeTab === "meals" && <MealsView />}
-        {activeTab === "tools" && (
-          <AppliancesView appliances={content.appliances ?? []} />
-        )}
-        {activeTab === "ask" && <AskView />}
-        {activeTab === "hkLife" && <HkLifeView content={content} />}
       </main>
 
-      <BottomNav active={activeTab} onChange={setActiveTab} />
+      {!showHowto && (
+        <BottomNav active={activeTab} onChange={setActiveTab} />
+      )}
     </div>
   );
 }
