@@ -1167,9 +1167,29 @@
         "zh": "若違反：書面警告，並與 Sir/Mum 重溫家居安全。每次出門或晚上都要鎖門窗。會輔導與跟進上鎖習慣 — 不會因此即時終止合約。",
         "fil": "If Broken: Written warning at paalala sa home security kasama si Sir/Mum. I-lock ang pinto/bintana tuwing aalis o sa gabi. May coaching at follow-up sa pag-lock — hindi agad tinatapos ang kontrata dahil dito."
       }
+    },
+    {
+      "id": "rule-9",
+      "priority": 9,
+      "category": "general",
+      "title": {
+        "en": "No eating or drinking in the bedroom",
+        "zh": "睡房內不可飲食",
+        "fil": "Walang kain o inom sa kuwarto / bedroom"
+      },
+      "description": {
+        "en": "Do not eat or drink in your bedroom (or any bedroom). Please eat and drink only in the kitchen or dining area. This keeps the rooms clean and avoids ants, stains, and spills.",
+        "zh": "不可在睡房（包括你的睡房）飲食。請只在廚房或飯廳進食及飲水。保持房間清潔，避免螞蟻、污漬與濺漏。",
+        "fil": "Huwag kumain o uminom sa kuwarto / bedroom (kasama ang kuwarto mo). Kumain at uminom lang sa kusina o dining area. Para malinis ang kuwarto at maiwasan ang langgam, mantsa, at spill."
+      },
+      "consequences": {
+        "en": "If Broken: Written warning and a talk with Sir/Mum. We coach and follow up — not an automatic immediate contract end (except borrow-money / Zizi-safety rules).",
+        "fil": "If Broken: Written warning at usapan kay Sir/Mum. May coaching at follow-up — hindi automatic na agad matatapos ang kontrata (maliban sa borrow-money / Zizi-safety rules).",
+        "zh": "若違反：書面警告並與 Sir/Mum 面談。會輔導與跟進 — 不是自動即時終止合約（借錢／Zizi 安全除外）。"
+      }
     }
   ],
-  "lastUpdated": "2026-07-28T17:08:17.897Z",
+  "lastUpdated": "2026-07-29T16:45:00.000Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
