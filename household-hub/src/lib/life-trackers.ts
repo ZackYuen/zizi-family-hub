@@ -109,7 +109,7 @@ const STAT_2026: {
   {
     date: "2026-12-26",
     en: "The first weekday after Christmas Day",
-    zh: "聖誕節後第一個周日",
+    zh: "聖誕節後第一個週日",
     fil: "Unang weekday pagkatapos ng Christmas Day",
   },
 ];

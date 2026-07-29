@@ -158,7 +158,7 @@ export function extractSummerDrawingClass(
 export const TERM_K3_SCHOOL_BANNER: BilingualText = {
   en: "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30).",
   fil: "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30).",
-  zh: "藍田靈糧幼稚園 — K3 下午班，周一至五（13:00 前送到，16:30 接）。",
+  zh: "藍田靈糧幼稚園 — K3 下午班，週一至五（13:00 前送到，16:30 接）。",
 };
 
 export function resolveActiveSchedule(

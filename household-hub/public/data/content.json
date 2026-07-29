@@ -19,7 +19,7 @@
       "kind": "vacuum",
       "tips": {
         "en": "• See the panel guide above — numbers match the controls.\n• Cordless stick vac: Dyson V12.\n• Empty the bin when dirt reaches the MAX line (overfill reduces suction).\n• Hold over the rubbish, point down, firmly push the red bin-release until the base opens, then click shut.\n• Floors/carpets: illuminated cleaner head. Sofas: small tool.\n• Dock to charge after use.\n• Wash the filter about once a month: twist off anticlockwise → tap out dust → rinse with warm tap water only (no detergent) → fill/shake until clear → air-dry at least 24 hours before refitting.\n• LCD may remind you when the filter needs washing.",
-        "zh": "• 見上方面板示意 — 數字對應操作。\n• 無線吸塵機：Dyson V12。\n• 塵桶到 MAX 線就要倒（過滿會減吸力）。\n• 對準垃圾桶向下，用力按紅色開蓋掣至底部打開，再按回關上。\n• 地毡／地板用照明吸頭；梳化用細配件。\n• 用完放回充電座。\n• 約每月清洗濾網：逆時針拧出 → 輕拍塵 → 只用溫自來水沖（不可用清潔劑）→ 注水搖至水清 → 風乾至少 24 小時才裝回。\n• LCD 或會提醒要洗濾網。",
+        "zh": "• 見上方面板示意 — 數字對應操作。\n• 無線吸塵機：Dyson V12。\n• 塵桶到 MAX 線就要倒（過滿會減吸力）。\n• 對準垃圾桶向下，用力按紅色開蓋掣至底部打開，再按回關上。\n• 地氈／地板用照明吸頭；梳化用細配件。\n• 用完放回充電座。\n• 約每月清洗濾網：逆時針擰出 → 輕拍塵 → 只用溫自來水沖（不可用清潔劑）→ 注水搖至水清 → 風乾至少 24 小時才裝回。\n• LCD 或會提醒要洗濾網。",
         "fil": "• Tingnan ang panel guide sa itaas — tumutugma ang numero sa controls.\n• Cordless stick vac: Dyson V12.\n• Alisin ang basura sa bin kapag umabot sa MAX line (kung sobra, humihina ang suction).\n• Hawakan sa ibabaw ng basurahan, pababa, pindutin nang matibay ang red bin-release hanggang bumuka ang base, tapos i-click para isara.\n• Carpet/floor: illuminated cleaner head. Sofa: maliit na tool.\n• I-dock para mag-charge pagkatapos.\n• Hugasan ang filter ~buwan-buwan: i-twist anticlockwise → tap dust → rinse sa warm tap water lang (walang detergent) → fill/shake hanggang malinaw → air-dry ≥24 oras bago ibalik.\n• Maaaring magpaalala ang LCD kung kailangan hugasan ang filter."
       },
       "model": "Dyson V12 Detect Slim",
@@ -67,7 +67,7 @@
           "n": 4,
           "en": "Filter (twist)",
           "fil": "Filter (twist)",
-          "zh": "濾網（拧出）",
+          "zh": "濾網（擰出）",
           "hintEn": "Wash monthly; dry 24h",
           "hintFil": "Hugasan buwan-buwan; dry 24h",
           "hintZh": "約每月洗；風乾 24 小時"
@@ -408,7 +408,7 @@
       },
       "tips": {
         "en": "• See the panel guide above — numbers match the controls.\n• Rinnai RB2GB: built-in 2-burner glass gas hob (嵌入式煮食爐) — Towngas / 煤氣 in this home (not LPG / 石油氣). Not the cooker hood (that is Hitachi HB-ST388).\n• Always turn on the cooker hood before frying / stir-fry.\n• Ignition: press the burner knob, turn anti-clockwise to high; hold 2–5 seconds so the flame-failure sensor warms, then release. If the flame goes out, turn OFF, wait ~1 minute, try again.\n• Adjust flame between high and low with the same knob. Match pot size to the burner — don’t use a tiny pot on a roaring flame.\n• After cooking: turn knobs fully to OFF. When cool, wipe the glass with a soft cloth (mild cleaner). Wash pan supports / burner caps in warm soapy water, dry fully, refit flat (no tilt / gap).\n• Ignition uses a D-size 1.5V battery under the hob — if there is no spark, tell Sir/Mum (battery may be flat or inserted wrong way).\n• If you smell gas: do not spark / switch lights; open windows; turn gas off if safe; call Sir/Mum / 999.",
-        "zh": "• 見上方面板示意 — 數字對應操作。\n• 林內 RB2GB：嵌入式雙爐頭玻璃煮食爐 — 本家用煤氣（Towngas），不是石油氣（LPG）。不是抽油煙機（抽油煙機是日立 HB-ST388）。\n• 炒炸前先開抽油煙機。\n• 點火：按下旋鈕並逆時針轉至大火；按住約 2–5 秒讓熄火保護感溫，再放手。若鬆手熄火，轉回 OFF，等約 1 分鐘再試。\n• 用同一旋鈕調大火／小火。鍋具大小要配合爐頭 — 不要小鍋配大火。\n• 煮完：旋鈕完全轉到 OFF。冷卻後用軟布＋中性清潔劑抹玻璃。鍋架／爐頭蓋用溫肥皂水清洗，完全風乾後平放裝回（勿傾斜／留縫）。\n• 點火靠爐下 D 型 1.5V 電池 — 無火花就告知 Sir/Mum（可能沒電或正負極反了）。\n• 若聞到煤氣味：不要打火／開電燈；開窗；安全則關氣；聯絡 Sir/Mum／999。",
+        "zh": "• 見上方面板示意 — 數字對應操作。\n• 林內 RB2GB：嵌入式雙爐頭玻璃煮食爐 — 本家用煤氣（Towngas），不是石油氣（LPG）。不是抽油煙機（抽油煙機是日立 HB-ST388）。\n• 炒炸前先開抽油煙機。\n• 點火：按下旋鈕並逆時針轉至大火；按住約 2–5 秒讓熄火保護感溫，再放手。若鬆手熄火，轉回 OFF，等約 1 分鐘再試。\n• 用同一旋鈕調大火／小火。鍋具大小要配合爐頭 — 不要小鍋配大火。\n• 煮完：旋鈕完全轉到 OFF。冷卻後用軟布＋中性清潔劑抹玻璃。鍋架／爐頭蓋用溫肥皁水清洗，完全風乾後平放裝回（勿傾斜／留縫）。\n• 點火靠爐下 D 型 1.5V 電池 — 無火花就告知 Sir/Mum（可能沒電或正負極反了）。\n• 若聞到煤氣味：不要打火／開電燈；開窗；安全則關氣；聯絡 Sir/Mum／999。",
         "fil": "• Tingnan ang panel guide sa itaas — tumutugma ang numero sa controls.\n• Rinnai RB2GB: built-in 2-burner glass gas hob (嵌入式煮食爐) — Towngas / 煤氣 sa bahay na ito (hindi LPG / 石油氣). Hindi ito ang cooker hood (Hitachi HB-ST388 iyon).\n• Buksan muna ang cooker hood bago magprito / mag-stir-fry.\n• Ignition: pindutin ang knob, i-turn anti-clockwise papuntang high; hawakan 2–5 segundo para uminit ang flame-failure sensor, saka bitawan. Kung mamatay ang apoy, i-OFF, hintay ~1 minuto, subukan ulit.\n• Ayusin ang apoy (high–low) sa parehong knob. Tumugma ang laki ng kaldero sa burner — huwag maliit na kaldero sa malakas na apoy.\n• Pagkatapos magluto: i-OFF nang tuluyan ang knobs. Kapag malamig, punasan ang glass ng soft cloth (mild cleaner). Hugasan ang pan supports / burner caps sa mainit-init na soapy water, patuyuin nang tuluyan, ibalik nang pantay (walang tilt / gap).\n• Gumagamit ng D-size 1.5V battery sa ilalim para sa spark — kung walang spark, sabihin kay Sir/Mum (baka flat o baligtad ang battery).\n• Kung may amoy ng gas: huwag mag-spark / mag-switch ng ilaw; buksan ang bintana; i-off ang gas kung safe; tumawag kay Sir/Mum / 999."
       },
       "warnings": {
@@ -868,19 +868,19 @@
       "kind": "iron",
       "tips": {
         "en": "• See the panel guide above — numbers match the controls.\n• Tefal Ultra Glide 5570 steam iron — for shirts, uniforms, school clothes.\n• Fill the water tank with clean tap water up to MAX (do not overfill).\n• Plug in and set the dial to the fabric type (• / •• / ••• / MAX). Wait until the ready light goes off before ironing.\n• For steam: set dial in the steam zone (usually between •• and MAX) and use steam only when hot.\n• Steam boost: short presses for stubborn creases — wait a few seconds between boosts.\n• Vertical steam: hang the garment, hold iron upright, press steam intermittently top → bottom. Never steam clothes someone is wearing.\n• After use: unplug, empty leftover water when cool, wipe the soleplate gently.\n• Keep Zizi away from the hot iron and cord.",
-        "zh": "• 見上方面板示意 — 數字對應操作。\n• 特福 Ultra Glide 5570 蒸氣熨斗 — 襯衫、校服、日常衣物。\n• 水箱加清水至 MAX（不要超過）。\n• 插電，按布料調溫度（•／••／•••／MAX）。待指示燈熄滅後再熨。\n• 用蒸氣：溫度調在蒸氣區（通常 •• 至 MAX），只在熨斗夠熱時出蒸氣。\n• 強力蒸氣：短按處理頑固皺褶，每次間隔數秒。\n• 垂直蒸氣：衣物掛起，熨斗直立，由上而下間歇按蒸氣。切勿對穿在身上的人噴蒸氣。\n• 用後拔電；冷卻後倒餘水，輕拭底板。\n• 熱熨斗與電線請讓 Zizi 遠離。",
+        "zh": "• 見上方面板示意 — 數字對應操作。\n• 特福 Ultra Glide 5570 蒸氣熨鬥 — 襯衫、校服、日常衣物。\n• 水箱加清水至 MAX（不要超過）。\n• 插電，按布料調溫度（•／••／•••／MAX）。待指示燈熄滅後再熨。\n• 用蒸氣：溫度調在蒸氣區（通常 •• 至 MAX），只在熨鬥夠熱時出蒸氣。\n• 強力蒸氣：短按處理頑固皺褶，每次間隔數秒。\n• 垂直蒸氣：衣物掛起，熨鬥直立，由上而下間歇按蒸氣。切勿對穿在身上的人噴蒸氣。\n• 用後拔電；冷卻後倒餘水，輕拭底板。\n• 熱熨鬥與電線請讓 Zizi 遠離。",
         "fil": "• Tingnan ang panel guide sa itaas — tumutugma ang numero sa controls.\n• Tefal Ultra Glide 5570 steam iron — para sa damit, uniporme, school clothes.\n• Punuin ang water tank ng malinis na tubig hanggang MAX (huwag sobra).\n• I-plug; itakda ang dial sa uri ng tela (• / •• / ••• / MAX). Maghintay hanggang mag-off ang ready light bago magplantsa.\n• Para sa steam: ilagay ang dial sa steam zone (madalas •• hanggang MAX); gumamit ng steam kapag mainit na.\n• Steam boost: maikling pindot para sa matigas na kunot — maghintay ng ilang segundo sa pagitan.\n• Vertical steam: isabit ang damit, hawakan nang tuwid ang iron, pindutin ang steam top → bottom. Huwag i-steam ang suot ng tao.\n• Pagkatapos: i-unplug, alisin ang tubig kapag malamig, punasan ang soleplate.\n• Layuan si Zizi sa mainit na iron at cord."
       },
       "model": "Tefal Ultra Glide 5570",
       "title": {
         "en": "Tefal Ultra Glide 5570 iron",
-        "zh": "特福 Ultra Glide 5570 熨斗",
+        "zh": "特福 Ultra Glide 5570 熨鬥",
         "fil": "Tefal Ultra Glide 5570 iron"
       },
       "priority": 11,
       "warnings": {
         "en": "• Never leave a hot iron unattended; stand it upright on a stable board.\n• Do not iron over plastic prints, metal parts, or wet clothes that can spit water.\n• Unplug before filling/emptying water. Ask Sir/Mum before descaling if unsure.",
-        "zh": "• 熱熨斗不可離人；豎立放在穩固熨板上。\n• 不要熨膠印、金屬件，或會噴水的濕衣。\n• 加水／倒水前先拔電。不確定除垢就問 Sir/Mum。",
+        "zh": "• 熱熨鬥不可離人；豎立放在穩固熨板上。\n• 不要熨膠印、金屬件，或會噴水的濕衣。\n• 加水／倒水前先拔電。不確定除垢就問 Sir/Mum。",
         "fil": "• Huwag iwanang mainit ang iron; itayo nang patayo sa stable na board.\n• Huwag magplantsa sa plastic print, metal, o basang damit na puwedeng tumalsik.\n• I-unplug bago maglagay/alis ng tubig. Kung unsure sa descaling, tanungin si Sir/Mum."
       },
       "panelButtons": [
@@ -1004,7 +1004,7 @@
   "helperName": "Charlene",
   "ziziSchool": {
     "en": "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30).",
-    "zh": "藍田靈糧幼稚園 — K3 下午班，周一至五（13:00 前送到，16:30 接）。",
+    "zh": "藍田靈糧幼稚園 — K3 下午班，週一至五（13:00 前送到，16:30 接）。",
     "fil": "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30)."
   },
   "groundRules": [
@@ -1251,7 +1251,7 @@
       },
       "title": {
         "en": "Weekly rest day (24 hours)",
-        "zh": "每周休息日（連續24小時）",
+        "zh": "每週休息日（連續24小時）",
         "fil": "Lingguhang rest day (24 oras)"
       },
       "category": "rights",
@@ -2712,7 +2712,7 @@
           "id": "s3",
           "task": {
             "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / udon etc.) + play / supervise (no kindergarten — Mon–Fri only)",
-            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（無幼稚園 — 僅周一至五）",
+            "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（無幼稚園 — 僅週一至五）",
             "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / udon atbp.) + laruin / bantayan (walang kindergarten — Lunes–Biyernes lang)"
           },
           "time": "10:15",
@@ -3111,7 +3111,7 @@
       "done": false,
       "title": {
         "en": "Learn rubbish place + Yue Wah St recycle (Thu 10:00–13:00)",
-        "zh": "學會垃圾位置＋月華街回收（周四 10:00–13:00）",
+        "zh": "學會垃圾位置＋月華街回收（週四 10:00–13:00）",
         "fil": "Alamin ang basurahan + Yue Wah St recycle (Thu 10:00–13:00)"
       }
     },
@@ -4623,7 +4623,7 @@
       "date": "2026-12-26",
       "name": {
         "en": "The first weekday after Christmas Day",
-        "zh": "聖誕節後第一個周日",
+        "zh": "聖誕節後第一個週日",
         "fil": "Unang weekday pagkatapos ng Christmas Day"
       },
       "entitled": true,

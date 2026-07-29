@@ -94,7 +94,7 @@ const ui = {
   customPick: {
     en: "Custom pick (Sir/Mum chose this day)",
     fil: "Custom pick (pinili nina Sir/Mum)",
-    zh: "自选（Sir/Mum 已选此日）",
+    zh: "自選（Sir/Mum 已選此日）",
   },
   shoppingList: {
     en: "Shopping / prep checklist",
