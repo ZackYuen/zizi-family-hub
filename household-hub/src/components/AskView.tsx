@@ -20,7 +20,7 @@ const ui = {
   examples: {
     en: ["Tonight dinner?", "How to use Dyson V12?", "Philips water?", "No borrowing money rule?"],
     fil: ["Hapunan ngayong gabi?", "Paano gamitin ang Dyson V12?", "Paano ang Philips water?", "Bawal humiram ng pera?"],
-    zh: ["今晚晚餐？", "Dyson V12 怎麼用？", "Philips 飲水機？", "不准借錢的守則？"],
+    zh: ["今晚晚餐？", "Dyson V12 怎麼用？", "Philips 飲水機？", "不準借錢的守則？"],
   },
 };
 

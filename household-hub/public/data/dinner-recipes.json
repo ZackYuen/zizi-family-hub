@@ -1829,7 +1829,7 @@
     {
       "id": "d-112",
       "index": 112,
-      "name": "上汤菠菜",
+      "name": "上湯菠菜",
       "nameEn": "上汤菠菜",
       "category": "Vegetable",
       "subCategory": "Spinach",
@@ -1870,7 +1870,7 @@
     {
       "id": "d-113",
       "index": 113,
-      "name": "鸡胸⾖腐沙拉",
+      "name": "雞胸⾖腐沙拉",
       "nameEn": "鸡胸⾖腐沙拉",
       "category": "Vegetable",
       "subCategory": "Chicken",
@@ -2361,7 +2361,7 @@
           "en": "Tom yum paste / herbs",
           "qty": "2 tbsp",
           "fil": "Tom yum paste",
-          "zh": "冬陰酱／香料"
+          "zh": "冬陰醬／香料"
         },
         {
           "en": "Prawns or chicken",
@@ -2888,7 +2888,7 @@
     {
       "id": "d-320",
       "index": 320,
-      "name": "咸⽜⾁蛋餅",
+      "name": "鹹⽜⾁蛋餅",
       "nameEn": "咸⽜⾁蛋餅",
       "category": "Meat",
       "subCategory": "Beef",
@@ -3070,7 +3070,7 @@
     {
       "id": "d-380",
       "index": 380,
-      "name": "孜然洋葱爆⽺⾁卷",
+      "name": "孜然洋蔥爆⽺⾁卷",
       "nameEn": "孜然洋葱爆⽺⾁卷",
       "category": "Meat",
       "subCategory": "Mutton",
@@ -4424,7 +4424,7 @@
     {
       "id": "d-940",
       "index": 940,
-      "name": "葱油鸡丝",
+      "name": "蔥油雞絲",
       "nameEn": "葱油鸡丝",
       "category": "Meat",
       "subCategory": "Chicken",
@@ -5181,7 +5181,7 @@
     {
       "id": "d-1230",
       "index": 1230,
-      "name": "⼟⾖虾滑卷",
+      "name": "⼟⾖蝦滑卷",
       "nameEn": "⼟⾖虾滑卷",
       "category": "Meat",
       "subCategory": "Shrimp",

@@ -276,12 +276,12 @@ export function TonightOverridePanel({
     title: {
       en: "Daily menu (pick yourself)",
       fil: "Araw-araw na menu (pumili mismo)",
-      zh: "每日晚餐（可自选）",
+      zh: "每日晚餐（可自選）",
     },
     hint: {
       en: "Pick any date above. Default random = 1 meat + 1 vegetable + 1 soup. Add or remove dishes, then Save for that date. Clear restores random for that date only.",
       fil: "Pumili ng kahit anong date sa taas. Default random = 1 meat + 1 vegetable + 1 soup. Magdagdag o mag-alis, tapos Save para sa date na iyon. Clear = balik sa random para sa date na iyon lang.",
-      zh: "可在上方選任何日期。默认随机＝1肉＋1菜＋1汤。加／减菜式後儲存該日。清除只恢復該日随机。",
+      zh: "可在上方選任何日期。默認隨機＝1肉＋1菜＋1湯。加／減菜式後儲存該日。清除只恢復該日隨機。",
     },
     search: {
       en: "Search to add…",
@@ -291,12 +291,12 @@ export function TonightOverridePanel({
     statusCustom: {
       en: "Custom pick for this date",
       fil: "Custom pick para sa araw na ito",
-      zh: "此日为自选",
+      zh: "此日為自選",
     },
     statusRandom: {
       en: "Random for this date",
       fil: "Random para sa araw na ito",
-      zh: "此日为随机",
+      zh: "此日為隨機",
     },
     save: {
       en: "Save picks for this date",
@@ -306,7 +306,7 @@ export function TonightOverridePanel({
     clear: {
       en: "Clear → random again",
       fil: "Clear → random ulit",
-      zh: "清除 → 恢复随机",
+      zh: "清除 → 恢復隨機",
     },
   } as const;
 

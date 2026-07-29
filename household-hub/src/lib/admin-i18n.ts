@@ -395,7 +395,7 @@ export const adminLabels = {
   mealDesc: {
     en: "Manage meat, vegetable and soup dishes. Default random = 1 of each nightly. Tonight’s override can add or remove dishes.",
     fil: "Pamahalaan ang karne, gulay at sabaw. Default random = 1 bawat isa. Pwede magdagdag o mag-alis sa tonight override.",
-    zh: "管理肉、菜、汤食谱。默认每晚随机各1道。今晚自选可加／减菜式。",
+    zh: "管理肉、菜、湯食譜。默認每晚隨機各1道。今晚自選可加／減菜式。",
   },
   addMeal: { en: "+ Add dish", fil: "+ Magdagdag ng ulam" },
   saveMeals: { en: "Save Meals", fil: "I-save ang Pagkain" },
