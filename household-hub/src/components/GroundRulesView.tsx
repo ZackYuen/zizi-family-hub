@@ -26,9 +26,9 @@ const ui = {
     zh: "必須遵守",
   },
   bannerBody: {
-    en: "Golden Rules. Borrowing money and Zizi’s safety can end the contract. Other mistakes: warning + talk with Sir/Mum — tell them right away.",
-    fil: "Golden Rules. Ang paghiram ng pera at kaligtasan ni Zizi ay maaaring magtapos ng kontrata. Iba pang pagkakamali: warning + usapan kay Sir/Mum — sabihin agad.",
-    zh: "黃金守則。借錢與 Zizi 安全可終止合約。其他失誤：警告並與 Sir/Mum 面談 — 有事先說。",
+    en: "House Rules. Borrowing money and Zizi’s safety can end the contract. Other mistakes: warning + talk with Sir/Mum — tell them right away.",
+    fil: "House Rules. Ang paghiram ng pera at kaligtasan ni Zizi ay maaaring magtapos ng kontrata. Iba pang pagkakamali: warning + usapan kay Sir/Mum — sabihin agad.",
+    zh: "家規。借錢與 Zizi 安全可終止合約。其他失誤：警告並與 Sir/Mum 面談 — 有事先說。",
   },
   ifBroken: {
     en: "If Broken",

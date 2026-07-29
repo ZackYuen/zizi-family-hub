@@ -23,9 +23,9 @@ const copy = {
     askTitle: "5. When you are unsure — Ask",
     askBody:
       "Type your question in Ask (dinner, schedule, how to use a machine, rules…). On WhatsApp you can also send ? then your question. Better to ask than guess.",
-    rulesTitle: "6. Important family rules — Golden Rules",
+    rulesTitle: "6. Important family rules — House Rules",
     rulesBody:
-      "Read Golden Rules carefully — these must be followed (especially with Zizi’s safety). Preferences are softer tips, like where to shop. If something is unclear, ask Sir/Mum.",
+      "Read House Rules carefully — these must be followed (especially with Zizi’s safety). Preferences are softer tips, like where to shop. If something is unclear, ask Sir/Mum.",
     tipTitle: "Tips",
     tip1: "Add this website to your phone Home Screen so you can open it quickly every day.",
     tip2: "Switch language at the top (EN / 繁 / FIL) anytime.",
@@ -52,9 +52,9 @@ const copy = {
     askTitle: "5. Kung unsure — Ask",
     askBody:
       "I-type ang tanong sa Ask (hapunan, schedule, paano gamitin ang machine, rules…). Sa WhatsApp, pwede ring magpadala ng ? tapos ang tanong. Mas mabuti ang magtanong kaysa mag-guess.",
-    rulesTitle: "6. Mahahalagang rules — Golden Rules",
+    rulesTitle: "6. Mahahalagang rules — House Rules",
     rulesBody:
-      "Basahin nang mabuti ang Golden Rules — dapat sundin (lalo na ang safety ni Zizi). Ang Preferences ay softer tips, tulad ng saan mamili. Kung hindi clear, tanungin si Sir/Mum.",
+      "Basahin nang mabuti ang House Rules — dapat sundin (lalo na ang safety ni Zizi). Ang Preferences ay softer tips, tulad ng saan mamili. Kung hindi clear, tanungin si Sir/Mum.",
     tipTitle: "Mga tip",
     tip1: "I-add ang website sa Home Screen ng phone para mabilis buksan araw-araw.",
     tip2: "Palitan ang language sa itaas (EN / 繁 / FIL) kahit kailan.",
@@ -81,9 +81,9 @@ const copy = {
     askTitle: "5. 有疑問 — 提問",
     askBody:
       "在「提問」輸入問題（晚餐、日程、家電用法、守則…）。WhatsApp 也可先打 ? 再寫問題。有疑問就問，不要自己猜。",
-    rulesTitle: "6. 重要家規 — 黃金守則",
+    rulesTitle: "6. 必須遵守 — 家規",
     rulesBody:
-      "請仔細閱讀「黃金守則」— 必須遵守（尤其 Zizi 安全）。「偏好」是較軟性的提示，例如去哪裡買餸。不清楚就問 Sir/Mum。",
+      "請仔細閱讀「家規」— 必須遵守（尤其 Zizi 安全）。「偏好」是較軟性的提示，例如去哪裡買餸。不清楚就問 Sir/Mum。",
     tipTitle: "小提示",
     tip1: "把網站加到手機主畫面，每天更快打開。",
     tip2: "隨時可在上方切換語言（EN／繁／FIL）。",

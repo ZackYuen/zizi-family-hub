@@ -2945,9 +2945,9 @@
     {
       "id": "pref-no-china-food",
       "body": {
-        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a golden rule. If you are unsure about a product, ask Sir or Mum.",
-        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是黃金守則。不確定就問 Sir 或 Mum。",
-        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi golden rule. Kung unsure, tanungin si Sir o Mum."
+        "en": "When shopping, check the origin label. Prefer food made in Hong Kong, Japan, Korea, Europe, USA, or other places — not Mainland China. This is a family preference, not a House Rule. If you are unsure about a product, ask Sir or Mum.",
+        "zh": "購物時請看產地標籤。寧可選香港、日本、韓國、歐洲、美國等地製造的食品，盡量避免內地製造。這是家庭偏好，不是家規。不確定就問 Sir 或 Mum。",
+        "fil": "Kapag namimili, tingnan ang origin label. Mas gusto ang pagkaing gawa sa Hong Kong, Japan, Korea, Europe, USA, o iba — hindi Mainland China. Preference lang ito ng pamilya, hindi House Rule. Kung unsure, tanungin si Sir o Mum."
       },
       "title": {
         "en": "Prefer not to buy food made in China",
@@ -2960,9 +2960,9 @@
     {
       "id": "pref-no-qin-dama-meat",
       "body": {
-        "en": "Please do not shop at 錢大媽. Use YATA at apm, Shui Wo Street wet market (瑞和街街市), or AEON instead. Preference tip, not a golden rule.",
-        "zh": "請不要到錢大媽購物。改去 apm 一田、瑞和街街市或 AEON。這是偏好貼士，不是黃金守則。",
-        "fil": "Huwag mamili sa 錢大媽. Gamitin ang YATA sa apm, Shui Wo Street wet market (瑞和街街市), o AEON. Preference tip lang, hindi golden rule."
+        "en": "Please do not shop at 錢大媽. Use YATA at apm, Shui Wo Street wet market (瑞和街街市), or AEON instead. Preference tip, not a House Rule.",
+        "zh": "請不要到錢大媽購物。改去 apm 一田、瑞和街街市或 AEON。這是偏好貼士，不是家規。",
+        "fil": "Huwag mamili sa 錢大媽. Gamitin ang YATA sa apm, Shui Wo Street wet market (瑞和街街市), o AEON. Preference tip lang, hindi House Rule."
       },
       "title": {
         "en": "Do not go to 錢大媽 (Kai Bo / Qin Dama)",
@@ -3027,9 +3027,9 @@
         "zh": "若 Zizi 含著食物不吞"
       },
       "body": {
-        "en": "Stay calm. Gently remind him to chew, or start a short visual timer. Do not force food or scold. Tell Sir/Mum if this happens often. Preference tip, not a golden rule.",
-        "fil": "Manatiling kalmado. Maalalahanin siyang ngumuya, o mag-start ng maikling visual timer. Huwag pilitin o pagalitan. Sabihin kay Sir/Mum kung madalas. Preference tip, hindi golden rule.",
-        "zh": "保持冷靜。溫柔提醒咀嚼，或開短時間視覺計時。不要強迫或責罵。若經常發生請告知 Sir/Mum。這是偏好貼士，不是黃金守則。"
+        "en": "Stay calm. Gently remind him to chew, or start a short visual timer. Do not force food or scold. Tell Sir/Mum if this happens often. Preference tip, not a House Rule.",
+        "fil": "Manatiling kalmado. Maalalahanin siyang ngumuya, o mag-start ng maikling visual timer. Huwag pilitin o pagalitan. Sabihin kay Sir/Mum kung madalas. Preference tip, hindi House Rule.",
+        "zh": "保持冷靜。溫柔提醒咀嚼，或開短時間視覺計時。不要強迫或責罵。若經常發生請告知 Sir/Mum。這是偏好貼士，不是家規。"
       }
     }
   ],

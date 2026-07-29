@@ -135,11 +135,11 @@ export const adminLabels = {
   adminPanel: { en: "Admin Panel", fil: "Admin Panel" },
   viewApp: { en: "View App", fil: "Tingnan ang App" },
   logout: { en: "Logout", fil: "Logout" },
-  rules: { en: "Golden Rules", fil: "Golden Rules", zh: "黃金守則" },
+  rules: { en: "House Rules", fil: "House Rules", zh: "家規" },
   rulesSubGround: {
-    en: "Golden Rules",
-    fil: "Golden Rules",
-    zh: "黃金守則",
+    en: "House Rules",
+    fil: "House Rules",
+    zh: "家規",
   },
   rulesSubPrefs: {
     en: "Preferences",
@@ -157,9 +157,9 @@ export const adminLabels = {
     zh: "家庭偏好",
   },
   preferencesHint: {
-    en: "Soft tips only (e.g. avoid China-made food, no meat at 錢大媽). No consequences. Separate from Ground Rules.",
-    fil: "Soft tips lang (hal. iwasan ang China-made food, huwag bumili ng karne sa 錢大媽). Walang consequences. Hiwalay sa Ground Rules.",
-    zh: "軟性貼士（例如少買中國製食品、不要到錢大媽買肉）。沒有後果。與守則分開。",
+    en: "Soft tips only (e.g. avoid China-made food, no meat at 錢大媽). No consequences. Separate from House Rules.",
+    fil: "Soft tips lang (hal. iwasan ang China-made food, huwag bumili ng karne sa 錢大媽). Walang consequences. Hiwalay sa House Rules.",
+    zh: "軟性貼士（例如少買中國製食品、不要到錢大媽買肉）。沒有後果。與家規分開。",
   },
   addPreference: {
     en: "+ Add preference",
@@ -172,9 +172,9 @@ export const adminLabels = {
     zh: "儲存偏好",
   },
   saveRulesAndPrefs: {
-    en: "Save Ground Rules & Preferences",
-    fil: "I-save ang Ground Rules & Preferences",
-    zh: "儲存守則與偏好",
+    en: "Save House Rules & Preferences",
+    fil: "I-save ang House Rules & Preferences",
+    zh: "儲存家規與偏好",
   },
   appliances: { en: "Tools", fil: "Gamit", zh: "家電" },
   appliancesHint: {

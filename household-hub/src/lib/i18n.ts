@@ -5,7 +5,7 @@ type LabelSet = { en: string; fil: string; zh: string };
 export const labels = {
   appTitle: { en: "Household Guide", fil: "Gabay sa Bahay", zh: "家庭指南" },
   welcome: { en: "Welcome", fil: "Maligayang pagdating", zh: "歡迎" },
-  groundRules: { en: "Golden Rules", fil: "Golden Rules", zh: "黃金守則" },
+  groundRules: { en: "House Rules", fil: "House Rules", zh: "家規" },
   schedule: { en: "Schedule", fil: "Iskedyul", zh: "日程" },
   meals: { en: "Meals", fil: "Pagkain", zh: "膳食" },
   tools: { en: "Tools", fil: "Gamit", zh: "家電" },
