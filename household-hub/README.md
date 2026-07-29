@@ -60,7 +60,7 @@ Open http://localhost:3000
 ## WhatsApp Q&A bot (optional)
 
 - **Official API:** configure Meta Cloud API → `/api/whatsapp` (see `docs/LIVE-DATA.md`)
-- **Free QR bot (Baileys):** always-on process in `whatsapp-bot/` — spare WhatsApp number, scan QR, `@CharleneBot` or `ask:` in the group (bare `?` ignored in groups). Needs a PC/Pi/VPS that stays awake (`pm2` or Docker). See `whatsapp-bot/README.md`.
+- **Free QR bot (Baileys):** always-on process in `whatsapp-bot/` — spare WhatsApp number, scan QR, `?` or `@CharleneBot` in the **family group only** (`GROUP_JIDS`). Needs a PC/Pi/VPS that stays awake (`pm2` or Docker). See `whatsapp-bot/README.md`.
 
 Ask answers come from live Admin data via `/api/ask`. Add `OPENROUTER_API_KEY` on Vercel for free LLM answers.
 

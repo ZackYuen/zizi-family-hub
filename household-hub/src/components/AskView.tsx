@@ -6,9 +6,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const ui = {
   title: { en: "Ask", fil: "Magtanong", zh: "提問" },
   hint: {
-    en: "Ask about schedule, meals, or rules. On WhatsApp: @mention the bot or ask: …",
-    fil: "Magtanong tungkol sa schedule, meals, o rules. Sa WhatsApp: i-@mention ang bot o ask: …",
-    zh: "可問時間表、餐單或守則。WhatsApp：@機器人 或 ask: …",
+    en: "Ask about schedule, meals, or rules. On WhatsApp start with ?",
+    fil: "Magtanong tungkol sa schedule, meals, o rules. Sa WhatsApp, magsimula ng ?",
+    zh: "可問時間表、餐單或守則。WhatsApp 請以 ? 開頭。",
   },
   placeholder: {
     en: "e.g. What time pick up Zizi?",
