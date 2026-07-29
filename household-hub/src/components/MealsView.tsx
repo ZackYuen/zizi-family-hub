@@ -347,14 +347,16 @@ function DishCard({
         </div>
       )}
 
-      <a
-        href={recipe.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-teal-700 underline-offset-2 hover:underline"
-      >
-        {ui.recipe[lang]} →
-      </a>
+      {recipe.link?.trim() ? (
+        <a
+          href={recipe.link.trim()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-teal-700 underline-offset-2 hover:underline"
+        >
+          {ui.recipe[lang]} →
+        </a>
+      ) : null}
     </article>
   );
 }
