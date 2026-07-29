@@ -4,6 +4,7 @@ import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cookDeviceMeta } from "@/lib/cook-devices";
 import { isGenericDevicePrepNotes } from "@/lib/cook-device-suggest";
+import { tonightDishes } from "@/lib/dinner";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
 import { localized } from "@/lib/localized-text";
 import { uiLocale } from "@/lib/i18n";
@@ -510,7 +511,7 @@ export function MealsView() {
   const shopping = useMemo(() => {
     if (!menu) return [] as { dish: string; line: string }[];
     const rows: { dish: string; line: string }[] = [];
-    for (const recipe of [menu.meat, menu.vegetable, menu.soup]) {
+    for (const recipe of tonightDishes(menu)) {
       const dish = getRecipeDisplayName(recipe, lang);
       for (const ing of recipe.ingredients ?? []) {
         rows.push({ dish, line: ingredientLabel(ing, lang) });
@@ -528,9 +529,21 @@ export function MealsView() {
   if (!menu) return null;
 
   const items = [
-    { key: "meat" as const, label: ui.meat, recipe: menu.meat },
-    { key: "vegetable" as const, label: ui.vegetable, recipe: menu.vegetable },
-    { key: "soup" as const, label: ui.soup, recipe: menu.soup },
+    ...menu.meat.map((recipe, i) => ({
+      key: `meat-${recipe.id}-${i}`,
+      label: ui.meat,
+      recipe,
+    })),
+    ...menu.vegetable.map((recipe, i) => ({
+      key: `vegetable-${recipe.id}-${i}`,
+      label: ui.vegetable,
+      recipe,
+    })),
+    ...menu.soup.map((recipe, i) => ({
+      key: `soup-${recipe.id}-${i}`,
+      label: ui.soup,
+      recipe,
+    })),
   ];
 
   const dateStr = new Date(menu.date + "T12:00:00").toLocaleDateString(
@@ -561,11 +574,21 @@ export function MealsView() {
         </p>
       </div>
 
-      <div className="space-y-2.5">
-        {items.map(({ key, label, recipe }) => (
-          <DishCard key={key} label={label} recipe={recipe} lang={lang} />
-        ))}
-      </div>
+      {items.length === 0 ? (
+        <p className="rounded-xl bg-white px-3 py-4 text-center text-sm text-stone-500 ring-1 ring-stone-100">
+          {lang === "fil"
+            ? "Walang dish ngayong gabi."
+            : lang === "zh"
+              ? "今晚尚未有菜式。"
+              : "No dishes for tonight."}
+        </p>
+      ) : (
+        <div className="space-y-2.5">
+          {items.map(({ key, label, recipe }) => (
+            <DishCard key={key} label={label} recipe={recipe} lang={lang} />
+          ))}
+        </div>
+      )}
 
       <section className="rounded-2xl bg-white p-3.5 ring-1 ring-stone-100">
         <h3 className="text-sm font-bold text-stone-900">{ui.shoppingList[lang]}</h3>

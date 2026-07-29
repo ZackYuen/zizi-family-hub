@@ -9,6 +9,7 @@ import {
   applianceCategory,
   applianceCategoryMeta,
 } from "./appliance-categories";
+import { tonightDishes } from "./dinner";
 import { getHongKongTimeParts } from "./i18n";
 import { localized } from "./localized-text";
 import {
@@ -338,7 +339,14 @@ function heuristicAnswer(
           ? "尚未有晚餐菜單，無法提供烹調說明。"
           : "No dinner menu yet — cannot give cook guide.";
     }
-    const dishes = [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup];
+    const dishes = tonightDishes(snap.tonight);
+    if (!dishes.length) {
+      return lang === "fil"
+        ? "Wala pang dinner dishes — hindi ko mabigay ang cook guide."
+        : lang === "zh"
+          ? "今晚尚未有菜式，無法提供烹調說明。"
+          : "No dinner dishes tonight — cannot give cook guide.";
+    }
     const cantoneseNote =
       lang === "fil"
         ? "⚠️ Maraming YouTube recipe sa Cantonese. Sundin ang ingredients + prep notes sa Meals tab. Kung hindi clear ang video, tanungin si Sir/Mum."
@@ -401,20 +409,25 @@ function heuristicAnswer(
           ? "今晚尚未有晚餐菜單。"
           : "No dinner menu available yet.";
     }
-    const { meat, vegetable, soup } = snap.tonight;
+    const dishes = tonightDishes(snap.tonight);
+    if (!dishes.length) {
+      return lang === "fil"
+        ? "Wala pang dinner dishes ngayon."
+        : lang === "zh"
+          ? "今晚尚未有菜式。"
+          : "No dinner dishes for tonight.";
+    }
     const cat =
       lang === "fil"
         ? { Meat: "Karne", Vegetable: "Gulay", Soup: "Sabaw" }
         : lang === "zh"
           ? { Meat: "肉類", Vegetable: "蔬菜", Soup: "湯" }
           : { Meat: "Meat", Vegetable: "Vegetable", Soup: "Soup" };
-    const line = (d: typeof meat) =>
+    const line = (d: (typeof dishes)[number]) =>
       `${cat[d.category]}: ${dishName(d, lang)}`;
     return [
       lang === "fil" ? "Hapunan ngayong gabi:" : lang === "zh" ? "今晚晚餐：" : "Tonight's dinner:",
-      `• ${line(meat)}`,
-      `• ${line(vegetable)}`,
-      `• ${line(soup)}`,
+      ...dishes.map((d) => `• ${line(d)}`),
       lang === "fil"
         ? "Buksan ang Meals tab para sa ingredients."
         : lang === "zh"
@@ -435,7 +448,7 @@ function heuristicAnswer(
           ? "今晚材料："
           : "Tonight's ingredients:",
     ];
-    for (const dish of [snap.tonight.meat, snap.tonight.vegetable, snap.tonight.soup]) {
+    for (const dish of tonightDishes(snap.tonight)) {
       lines.push(`• ${dishName(dish, lang)}`);
       if (dish.ingredients?.length) {
         for (const ing of dish.ingredients) {
@@ -1076,7 +1089,7 @@ CRITICAL LANGUAGE RULE: Reply ONLY in ${langName(replyLang)}. Every sentence mus
 If the user wrote Chinese/English but asked to "reply with Filipino" (or similar), still reply ONLY in ${langName(replyLang)}.
 Do not mix languages except for unavoidable dish proper names — prefer Filipino dish names (nameFil) when replying in Filipino.
 Prefer FAMILY LIVE DATA below over the internet.
-For dinner questions, list tonight's meat / vegetable / soup from FAMILY LIVE DATA using the correct language names — never invent literal translations like "Winter Shade Public Soup".
+For dinner questions, list tonight's dishes from FAMILY LIVE DATA (meat / vegetable / soup — may be zero or more of each) using the correct language names — never invent literal translations like "Winter Shade Public Soup".
 For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.

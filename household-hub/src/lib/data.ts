@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { getSupabaseAdmin, isSupabaseConfigured } from "./supabase";
+import { normalizeDinnerOverride } from "./dinner";
 import type {
   AppContent,
   DinnerMenuOverride,
@@ -558,9 +559,15 @@ export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
   if (error) throw error;
   if (!data?.data) return empty;
   const parsed = data.data as DinnerMenuOverrides;
+  const rawByDate =
+    parsed.byDate && typeof parsed.byDate === "object" ? parsed.byDate : {};
+  const byDate: DinnerMenuOverrides["byDate"] = {};
+  for (const [date, raw] of Object.entries(rawByDate)) {
+    const normalized = normalizeDinnerOverride(raw, date);
+    if (normalized) byDate[date] = normalized;
+  }
   return {
-    byDate:
-      parsed.byDate && typeof parsed.byDate === "object" ? parsed.byDate : {},
+    byDate,
     updatedAt: parsed.updatedAt || new Date().toISOString(),
   };
 }
@@ -591,8 +598,12 @@ export async function upsertDinnerMenuOverride(
   override: DinnerMenuOverride
 ): Promise<DinnerMenuOverrides> {
   const current = await getDinnerMenuOverrides();
-  current.byDate[override.date] = {
-    ...override,
+  const normalized = normalizeDinnerOverride(override, override.date);
+  if (!normalized) {
+    throw new Error("Invalid dinner menu override");
+  }
+  current.byDate[normalized.date] = {
+    ...normalized,
     updatedAt: new Date().toISOString(),
   };
   return saveDinnerMenuOverrides(current);

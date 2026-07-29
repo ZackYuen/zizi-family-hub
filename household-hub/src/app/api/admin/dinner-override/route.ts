@@ -6,10 +6,43 @@ import {
   getDinnerRecipes,
   upsertDinnerMenuOverride,
 } from "@/lib/data";
-import { hongKongDateKey, resolveTonightMenu } from "@/lib/dinner";
-import type { DinnerMenuOverride } from "@/lib/types";
+import {
+  hongKongDateKey,
+  normalizeDinnerOverride,
+  resolveTonightMenu,
+} from "@/lib/dinner";
+import type { DinnerMenuOverride, DinnerRecipe } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+function asIds(
+  ids: string[] | undefined,
+  legacy: string | undefined
+): string[] {
+  if (Array.isArray(ids)) {
+    return ids.map((id) => String(id || "").trim()).filter(Boolean);
+  }
+  const one = String(legacy || "").trim();
+  return one ? [one] : [];
+}
+
+function resolveIds(
+  recipes: DinnerRecipe[],
+  ids: string[],
+  category: DinnerRecipe["category"]
+): { ok: DinnerRecipe[]; missing: string[] } {
+  const ok: DinnerRecipe[] = [];
+  const missing: string[] = [];
+  const seen = new Set<string>();
+  for (const id of ids) {
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const recipe = recipes.find((r) => r.id === id && r.category === category);
+    if (recipe) ok.push(recipe);
+    else missing.push(id);
+  }
+  return { ok, missing };
+}
 
 export async function GET(request: Request) {
   const authed = await isAuthenticated();
@@ -43,6 +76,10 @@ export async function PUT(request: Request) {
   try {
     const body = (await request.json()) as {
       date?: string;
+      meatIds?: string[];
+      vegetableIds?: string[];
+      soupIds?: string[];
+      /** @deprecated singular */
       meatId?: string;
       vegetableId?: string;
       soupId?: string;
@@ -64,32 +101,44 @@ export async function PUT(request: Request) {
       });
     }
 
-    if (!body.meatId || !body.vegetableId || !body.soupId) {
+    const meatIds = asIds(body.meatIds, body.meatId);
+    const vegetableIds = asIds(body.vegetableIds, body.vegetableId);
+    const soupIds = asIds(body.soupIds, body.soupId);
+
+    if (meatIds.length + vegetableIds.length + soupIds.length === 0) {
       return NextResponse.json(
-        { error: "meatId, vegetableId, and soupId are required" },
+        { error: "Add at least one dish (meat, vegetable, or soup)" },
         { status: 400 }
       );
     }
 
     const recipes = await getDinnerRecipes();
-    const meat = recipes.find((r) => r.id === body.meatId && r.category === "Meat");
-    const vegetable = recipes.find(
-      (r) => r.id === body.vegetableId && r.category === "Vegetable"
-    );
-    const soup = recipes.find((r) => r.id === body.soupId && r.category === "Soup");
-    if (!meat || !vegetable || !soup) {
+    const meat = resolveIds(recipes, meatIds, "Meat");
+    const vegetable = resolveIds(recipes, vegetableIds, "Vegetable");
+    const soup = resolveIds(recipes, soupIds, "Soup");
+
+    if (meat.missing.length || vegetable.missing.length || soup.missing.length) {
       return NextResponse.json(
-        { error: "Each pick must match the right category (Meat / Vegetable / Soup)" },
+        {
+          error:
+            "Each pick must match the right category (Meat / Vegetable / Soup)",
+          missing: {
+            meat: meat.missing,
+            vegetable: vegetable.missing,
+            soup: soup.missing,
+          },
+        },
         { status: 400 }
       );
     }
 
-    const override: DinnerMenuOverride = {
+    const override: DinnerMenuOverride = normalizeDinnerOverride({
       date,
-      meatId: meat.id,
-      vegetableId: vegetable.id,
-      soupId: soup.id,
-    };
+      meatIds: meat.ok.map((r) => r.id),
+      vegetableIds: vegetable.ok.map((r) => r.id),
+      soupIds: soup.ok.map((r) => r.id),
+    })!;
+
     const overrides = await upsertDinnerMenuOverride(override);
     const tonight = resolveTonightMenu(recipes, date, override);
 
