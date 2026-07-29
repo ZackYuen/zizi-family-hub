@@ -24,10 +24,11 @@ npm start
 2. On the spare phone: WhatsApp → **Linked Devices** → Link a device → scan.
 3. Add that WhatsApp number to the family group.
 4. In the group try:
-   - `? Tonight dinner?`
    - `@CharleneBot What time pick up Zizi?`
+   - `ask: Tonight dinner?`
+   - `ask: save Charlene likes less salt`
 
-Leave the terminal / process running. Closing it = bot offline.
+Bare `? …` is **ignored in groups** (avoids accidental replies). Use `?` only in DM if you set `REPLY_DM=1`, or set `GROUP_BARE_PREFIX=1` to restore old group `?` wake.
 
 ## Keep it always on
 
@@ -65,20 +66,31 @@ Screen lock is usually OK; **sleep is not**.
 
 ## Triggers
 
+### In groups (default)
+
 Bot replies only when:
 
-- Message starts with `?` / fullwidth `？` (or `TRIGGER_PREFIX`), or
-- Starts with `bot:` / `ask:`, or
-- Mentions `@CharleneBot` / contains `CharleneBot`, or
-- WhatsApp @-mention of the bot number
+- WhatsApp @-mention of the bot number, or
+- Message contains `@CharleneBot` / `CharleneBot`, or
+- Starts with `ask:` / `bot:` / `/ask`
+
+Bare `?` / `？` alone does **not** wake the bot in groups (stops accidental replies in other chats).
+
+### In DMs (`REPLY_DM=1`)
+
+Also wakes on leading `?` / `？` (or `TRIGGER_PREFIX`).
+
+Set `GROUP_BARE_PREFIX=1` if you want old group behavior (`? Tonight dinner?`).
 
 ### Save into Admin (knowledge / meals)
 
 | Command | Effect |
 |---------|--------|
-| `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
-| `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
-| Normal `? …` asks | Logged in inbox (Q&A) for review |
+| `ask: save …` or `@CharleneBot save …` | Digested → Admin → WA Inbox (tip / recipe / note) |
+| `ask: save tip …` / `ask: save recipe …` / `ask: note …` | Same (legacy forms; still digested) |
+| Normal asks | Logged in inbox (Q&A) for review |
+
+(If `GROUP_BARE_PREFIX=1`, `?save …` still works too.)
 
 Works two ways:
 1. **Bot → `/api/inbox`** when `INBOX_SECRET` matches Vercel
@@ -94,8 +106,9 @@ Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 | `INBOX_SECRET` | Same secret as Vercel — preferred inbox path |
 | `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
 | `BOT_NAME` | Name people type in group |
-| `TRIGGER_PREFIX` | Default `?` |
-| `GROUP_JIDS` | Optional allowlist of group IDs |
+| `TRIGGER_PREFIX` | Default `?` (used in DMs; groups ignore bare prefix unless below) |
+| `GROUP_BARE_PREFIX` | `1` = allow bare `?…` in groups (old behavior). Default off |
+| `GROUP_JIDS` | Optional allowlist of group IDs (strongly recommended) |
 | `REPLY_DM` | `1` to also answer private chats |
 | `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
 
