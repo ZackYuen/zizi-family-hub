@@ -30,6 +30,7 @@ const copy = {
     tip1: "Add this website to your phone Home Screen so you can open it quickly every day.",
     tip2: "Switch language at the top (EN / 繁 / FIL) anytime.",
     tip3: "If the page looks old, refresh. Sir/Mum update the live schedule and dinner menu.",
+    tip4: "Tap the ? at the top anytime to open this guide again.",
     close: "Got it — back to app",
   },
   fil: {
@@ -58,6 +59,7 @@ const copy = {
     tip1: "I-add ang website sa Home Screen ng phone para mabilis buksan araw-araw.",
     tip2: "Palitan ang language sa itaas (EN / 繁 / FIL) kahit kailan.",
     tip3: "Kung mukhang luma ang page, i-refresh. Ina-update nina Sir/Mum ang live schedule at dinner menu.",
+    tip4: "I-tap ang ? sa taas kahit kailan para buksan ulit ang gabay na ito.",
     close: "OK — bumalik sa app",
   },
   zh: {
@@ -86,6 +88,7 @@ const copy = {
     tip1: "把網站加到手機主畫面，每天更快打開。",
     tip2: "隨時可在上方切換語言（EN／繁／FIL）。",
     tip3: "若內容看起來舊了，請重新整理。Sir/Mum 會更新即時日程與晚餐。",
+    tip4: "隨時點上方的 ? 可再打開這份指引。",
     close: "明白了 — 返回 App",
   },
 } as const;
@@ -147,6 +150,7 @@ export function HelperHowtoView({ helperNameFallback, onClose }: Props) {
           <li>{t.tip1}</li>
           <li>{t.tip2}</li>
           <li>{t.tip3}</li>
+          <li>{t.tip4}</li>
         </ul>
       </section>
 
