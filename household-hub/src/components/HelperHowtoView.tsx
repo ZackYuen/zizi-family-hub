@@ -22,7 +22,7 @@ const copy = {
       "Before using the vacuum, washing machine, rice cooker, pressure cooker, or air fryer, open Tools. Follow the steps there. If you are unsure, ask Sir/Mum or use Ask.",
     askTitle: "5. When you are unsure — Ask",
     askBody:
-      "Type your question in Ask (dinner, schedule, how to use a machine, rules…). On WhatsApp in the family group, @mention the bot or write ask: then your question. Better to ask than guess.",
+      "Type your question in Ask (dinner, schedule, how to use a machine, rules…). On WhatsApp you can also send ? then your question. Better to ask than guess.",
     rulesTitle: "6. Important family rules — House Rules",
     rulesBody:
       "Read House Rules carefully — these must be followed (especially with Zizi’s safety). Preferences are softer tips, like where to shop. If something is unclear, ask Sir/Mum.",
@@ -51,7 +51,7 @@ const copy = {
       "Bago gamitin ang vacuum, washing machine, rice cooker, pressure cooker, o air fryer, buksan ang Tools. Sundin ang steps. Kung unsure, tanungin si Sir/Mum o gamitin ang Ask.",
     askTitle: "5. Kung unsure — Ask",
     askBody:
-      "I-type ang tanong sa Ask (hapunan, schedule, paano gamitin ang machine, rules…). Sa WhatsApp family group, i-@mention ang bot o magsulat ng ask: tapos ang tanong. Mas mabuti ang magtanong kaysa mag-guess.",
+      "I-type ang tanong sa Ask (hapunan, schedule, paano gamitin ang machine, rules…). Sa WhatsApp, pwede ring magpadala ng ? tapos ang tanong. Mas mabuti ang magtanong kaysa mag-guess.",
     rulesTitle: "6. Mahahalagang rules — House Rules",
     rulesBody:
       "Basahin nang mabuti ang House Rules — dapat sundin (lalo na ang safety ni Zizi). Ang Preferences ay softer tips, tulad ng saan mamili. Kung hindi clear, tanungin si Sir/Mum.",
@@ -80,7 +80,7 @@ const copy = {
       "使用吸塵機、洗衣機、電飯煲、壓力鍋或氣炸鍋前，先打開「家電」跟步驟。不肯定就問 Sir/Mum，或用「提問」。",
     askTitle: "5. 有疑問 — 提問",
     askBody:
-      "在「提問」輸入問題（晚餐、日程、家電用法、守則…）。WhatsApp 家庭群組請 @機器人 或寫 ask: 再寫問題。有疑問就問，不要自己猜。",
+      "在「提問」輸入問題（晚餐、日程、家電用法、守則…）。WhatsApp 也可先打 ? 再寫問題。有疑問就問，不要自己猜。",
     rulesTitle: "6. 必須遵守 — 家規",
     rulesBody:
       "請仔細閱讀「家規」— 必須遵守（尤其 Zizi 安全）。「偏好」是較軟性的提示，例如去哪裡買餸。不清楚就問 Sir/Mum。",

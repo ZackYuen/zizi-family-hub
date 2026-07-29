@@ -97,20 +97,16 @@ const LIVE_INBOX_URL = (
 ).replace(/\/?$/, "/");
 const INBOX_SECRET = process.env.INBOX_SECRET || process.env.BOT_INBOX_SECRET || "";
 const BOT_NAME = process.env.BOT_NAME || "CharleneBot";
-/** Comma-separated group JIDs to listen to; empty = all groups */
+/** Comma-separated family group JIDs. Required for group replies (empty = no groups). */
 const GROUP_ALLOWLIST = (process.env.GROUP_JIDS || "")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
+/** Escape hatch: listen in every group the number is in (old behaviour). Prefer GROUP_JIDS. */
+const GROUP_ALLOW_ALL = process.env.GROUP_ALLOW_ALL === "1";
 /** Also reply to DMs if 1 */
 const REPLY_DM = process.env.REPLY_DM === "1";
 const TRIGGER_PREFIX = (process.env.TRIGGER_PREFIX || "?").trim();
-/**
- * In groups, bare "?" / "？" often happens by accident (and is embarrassing).
- * Default: groups wake only on @mention / bot name / ask: / bot:
- * Set GROUP_BARE_PREFIX=1 to restore old "any ?…" group wake.
- */
-const GROUP_BARE_PREFIX = process.env.GROUP_BARE_PREFIX === "1";
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
@@ -323,52 +319,32 @@ function stripTriggers(text, botName) {
   t = t.replace(/@[\w.+-]+/g, " ");
   // remove bot name
   t = t.replace(new RegExp(botName, "ig"), " ");
-  // remove ? / bot: / ask: / /ask
+  // remove ? / bot: / ask:
   t = t.replace(/^\s*[?？]\s*/u, "");
   t = t.replace(/^\s*(bot|ask)\s*:\s*/i, "");
-  t = t.replace(/^\s*\/ask\s+/i, "");
   return t.replace(/\s+/g, " ").trim();
 }
 
-function hasBarePrefix(trimmed, lower) {
-  if (TRIGGER_PREFIX === "?" || TRIGGER_PREFIX === "？") {
-    return trimmed.startsWith("?") || trimmed.startsWith("？");
-  }
-  return Boolean(TRIGGER_PREFIX && lower.startsWith(TRIGGER_PREFIX.toLowerCase()));
-}
-
-function hasIntentionalGroupTrigger(text, trimmed, lower, msg, sock) {
-  if (mentionedBot(msg, sock)) return true;
-  if (lower.startsWith("bot:") || lower.startsWith("ask:") || lower.startsWith("/ask"))
-    return true;
-  if (new RegExp(`\\b@?${BOT_NAME}\\b`, "i").test(text)) return true;
-  return false;
-}
-
-function shouldHandle(text, msg, sock, jid) {
+function shouldHandle(text, msg, sock) {
   if (!text) return false;
   const trimmed = text.trimStart();
   const lower = trimmed.toLowerCase();
-  const inGroup = Boolean(jid && isJidGroup(jid));
-
-  // Groups: require intentional wake (@mention / ask: / bot name).
-  // Bare "?" replies are easy to trigger by accident in other chats.
-  if (inGroup && !GROUP_BARE_PREFIX) {
-    return hasIntentionalGroupTrigger(text, trimmed, lower, msg, sock);
-  }
-
   if (mentionedBot(msg, sock)) return true;
   // ASCII "?" and fullwidth "？" (common on CJK keyboards) both wake the bot
-  if (hasBarePrefix(trimmed, lower)) return true;
-  if (lower.startsWith("bot:") || lower.startsWith("ask:") || lower.startsWith("/ask"))
+  if (TRIGGER_PREFIX === "?" || TRIGGER_PREFIX === "？") {
+    if (trimmed.startsWith("?") || trimmed.startsWith("？")) return true;
+  } else if (TRIGGER_PREFIX && lower.startsWith(TRIGGER_PREFIX.toLowerCase())) {
     return true;
+  }
+  if (lower.startsWith("bot:") || lower.startsWith("ask:")) return true;
   if (new RegExp(`\\b@?${BOT_NAME}\\b`, "i").test(text)) return true;
   return false;
 }
 
 function allowedChat(jid) {
   if (isJidGroup(jid)) {
-    if (!GROUP_ALLOWLIST.length) return true;
+    if (GROUP_ALLOW_ALL) return true;
+    if (!GROUP_ALLOWLIST.length) return false;
     return GROUP_ALLOWLIST.includes(jid);
   }
   return REPLY_DM;
@@ -442,7 +418,7 @@ async function startBot() {
       console.log(qrUrl);
       console.log("\n(ASCII QR below — may look broken in docker logs)\n");
       qrcode.generate(qr, { small: true });
-      console.log(`\nBot triggers (groups): @${BOT_NAME}  or  ask: your question\n`);
+      console.log(`\nBot triggers: @${BOT_NAME}  or  ${TRIGGER_PREFIX} your question\n`);
     }
     if (connection === "open") {
       console.log(`[ok] Connected as ${sock.user?.id || "unknown"}`);
@@ -450,9 +426,22 @@ async function startBot() {
       console.log(
         `[ok] Inbox: ${INBOX_SECRET ? LIVE_INBOX_URL : "disabled (set INBOX_SECRET)"}`
       );
-      console.log(
-        `[ok] Listen: groups${GROUP_ALLOWLIST.length ? ` allowlist=${GROUP_ALLOWLIST.join(",")}` : " (all)"} · DM=${REPLY_DM ? "on" : "off"} · groupBare?= ${GROUP_BARE_PREFIX ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
-      );
+      if (GROUP_ALLOW_ALL) {
+        console.log(
+          `[ok] Listen: groups (ALL — set GROUP_JIDS to lock to family only) · DM=${REPLY_DM ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
+        );
+      } else if (GROUP_ALLOWLIST.length) {
+        console.log(
+          `[ok] Listen: family group(s) only=${GROUP_ALLOWLIST.join(",")} · DM=${REPLY_DM ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
+        );
+      } else {
+        console.log(
+          `[warn] GROUP_JIDS is empty — ignoring ALL groups. Add the family group id to .env (see logs: …@g.us), then npm run pm2:up.`
+        );
+        console.log(
+          `[ok] Listen: groups=off · DM=${REPLY_DM ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
+        );
+      }
       console.log(
         "[ok] Retest from a DIFFERENT phone in the FAMILY GROUP (bot number must be a member)."
       );
@@ -489,29 +478,26 @@ async function startBot() {
         }
         if (!allowedChat(jid)) {
           const why = isJidGroup(jid)
-            ? "group not in GROUP_JIDS allowlist"
+            ? GROUP_ALLOWLIST.length
+              ? "group not in GROUP_JIDS allowlist"
+              : "groups off (set GROUP_JIDS=…@g.us for family group)"
             : "DM ignored (set REPLY_DM=1 to allow)";
           console.log(`[msg] skip ${jid} (${why}): ${preview}`);
           continue;
         }
-        if (!shouldHandle(text, msg, sock, jid)) {
-          const need = isJidGroup(jid) && !GROUP_BARE_PREFIX
-            ? `need @${BOT_NAME} or ask:…`
-            : `need ?/？… or @${BOT_NAME}`;
-          console.log(`[msg] ignore ${jid} (${need}): ${preview}`);
+        if (!shouldHandle(text, msg, sock)) {
+          console.log(
+            `[msg] ignore ${jid} (need ?/？… or @${BOT_NAME}): ${preview}`
+          );
           continue;
         }
 
         const question = stripTriggers(text, BOT_NAME);
         if (!question) {
-          const tip =
-            isJidGroup(jid) && !GROUP_BARE_PREFIX
-              ? `Hi — in groups, @mention me (@${BOT_NAME}) or start with ask:\nExample: ask: Tonight dinner?\nSave: ask: save Charlene likes less salt`
-              : `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSave anything: ${TRIGGER_PREFIX}save Charlene likes less salt\nOr: ${TRIGGER_PREFIX}save "https://youtube.com/… crispy dumplings"`;
           await sock.sendMessage(
             jid,
             {
-              text: tip,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSave anything: ${TRIGGER_PREFIX}save Charlene likes less salt\nOr: ${TRIGGER_PREFIX}save "https://youtube.com/… crispy dumplings"`,
             },
             { quoted: msg }
           );
