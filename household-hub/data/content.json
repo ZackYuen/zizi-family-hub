@@ -4726,16 +4726,16 @@
       "id": "place-home",
       "priority": 1,
       "name": {
-        "en": "Home area (Kwun Tong MTR)",
-        "fil": "Bahay (Kwun Tong MTR)",
-        "zh": "家附近（觀塘港鐵）"
+        "en": "Home — 29 Yuet Wah Street",
+        "fil": "Bahay — 29 Yuet Wah Street",
+        "zh": "家 — 月華街29號"
       },
       "note": {
-        "en": "Landmark near home (~3 min walk). Ask Sir/Mum for the exact flat pin.",
-        "fil": "Landmark malapit sa bahay (~3 min lakad). Tanungin si Sir/Mum para sa exact flat pin.",
-        "zh": "家附近地標（步行約3分鐘）。請向 Sir/Mum 要準確單位位置。"
+        "en": "Kwun Tong · ~3 min walk to Kwun Tong MTR / apm",
+        "fil": "Kwun Tong · ~3 min lakad sa Kwun Tong MTR / apm",
+        "zh": "觀塘 · 步行約3分鐘到觀塘港鐵／apm"
       },
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kwun+Tong+MTR+Station+Hong+Kong"
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=29+Yuet+Wah+Street+Kwun+Tong+Hong+Kong"
     },
     {
       "id": "place-kindergarten",
