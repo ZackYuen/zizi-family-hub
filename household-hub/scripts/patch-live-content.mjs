@@ -24,6 +24,7 @@
  *   "removeSettlingChecklist": [ "check-id" ],
  *   "upsertGroundRules": [ { id, consequences, ... } ],
  *   "appendFamilyPreferences": [ ... ],
+ *   "upsertFamilyPreferences": [ { id, body, ... } ],
  *   "set": { "ziziSchool": { ... }, "homeArea": { ... } },
  *   "dryRun": true
  * }
@@ -116,6 +117,11 @@ function applyPatch(content, patchObj) {
   if (patchObj.appendFamilyPreferences?.length) {
     next.familyPreferences = sortPriority(
       appendById(next.familyPreferences ?? [], patchObj.appendFamilyPreferences)
+    );
+  }
+  if (patchObj.upsertFamilyPreferences?.length) {
+    next.familyPreferences = sortPriority(
+      upsertById(next.familyPreferences ?? [], patchObj.upsertFamilyPreferences)
     );
   }
   if (patchObj.upsertGroundRules?.length) {

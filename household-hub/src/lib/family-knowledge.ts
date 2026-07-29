@@ -233,7 +233,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   }
 
   lines.push("");
-  lines.push("Ground rules (serious — have consequences):");
+  lines.push("House Rules (serious — have consequences):");
   for (const r of snap.groundRules) {
     lines.push(`- ${r.title.en}: ${r.description.en}`);
     if (r.consequences?.en) lines.push(`  If Broken: ${r.consequences.en}`);
@@ -242,7 +242,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   if (snap.familyPreferences.length) {
     lines.push("");
     lines.push(
-      "Family preferences (SOFT tips only — NOT ground rules, no punishment):"
+      "Family preferences (SOFT tips only — NOT House Rules, no punishment):"
     );
     const sorted = [...snap.familyPreferences].sort(
       (a, b) => a.priority - b.priority
@@ -385,7 +385,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push("- Zizi needs breakfast and lunch prepared by Charlene every morning on work days.");
   lines.push("- Do not invent rules. If unsure, tell Charlene to ask Sir or Mum.");
   lines.push(
-    "- Family preferences are soft tips (shopping/food likes) — never describe them as ground rules or give “If Broken”."
+    "- Family preferences are soft tips (shopping/food likes) — never describe them as House Rules or give “If Broken”."
   );
   lines.push(
     "- Appliance tips are how-to only; if buttons differ from the guide, tell Charlene to ask Sir/Mum."

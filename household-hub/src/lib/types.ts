@@ -180,8 +180,8 @@ export interface AppContent {
   schoolCalendar?: SchoolCalendar;
   groundRules: GroundRule[];
   /**
-   * Soft family preferences / shopping tips — helpful guidance, NOT ground rules.
-   * No consequences; shown below Ground Rules.
+   * Soft family preferences / shopping tips — helpful guidance, NOT House Rules.
+   * No consequences; shown below House Rules.
    */
   familyPreferences?: FamilyPreferenceTip[];
   /** How to use house tools / kitchen appliances */
