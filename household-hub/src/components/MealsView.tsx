@@ -4,7 +4,11 @@ import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cookDeviceMeta } from "@/lib/cook-devices";
 import { isGenericDevicePrepNotes } from "@/lib/cook-device-suggest";
-import { tonightDishes } from "@/lib/dinner";
+import {
+  addHongKongDays,
+  hongKongDateKey,
+  tonightDishes,
+} from "@/lib/dinner";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
 import { localized } from "@/lib/localized-text";
 import { uiLocale } from "@/lib/i18n";
@@ -14,15 +18,32 @@ const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const
 
 const ui = {
   tonight: { en: "Tonight's Dinner", fil: "Hapunan Ngayong Gabi", zh: "今晚晚餐" },
+  tomorrow: {
+    en: "Tomorrow's Dinner",
+    fil: "Hapunan Bukas",
+    zh: "明日晚餐",
+  },
+  tabTonight: { en: "Tonight", fil: "Ngayon", zh: "今晚" },
+  tabTomorrow: { en: "Tomorrow", fil: "Bukas", zh: "明日" },
+  previewHint: {
+    en: "Preview tomorrow to shop / prep ahead.",
+    fil: "I-preview ang bukas para makapag-shop / prep nang maaga.",
+    zh: "可預覽明日餐單，方便提早買菜／準備。",
+  },
   recipe: { en: "Watch video", fil: "Panoorin ang video", zh: "觀看影片" },
   meat: { en: "Meat", fil: "Karne", zh: "肉類" },
   vegetable: { en: "Vegetable", fil: "Gulay", zh: "蔬菜" },
   soup: { en: "Soup", fil: "Sabaw", zh: "湯" },
-  loading: { en: "Loading tonight's menu...", fil: "Kinukuha ang menu...", zh: "載入餐單中…" },
+  loading: { en: "Loading menu...", fil: "Kinukuha ang menu...", zh: "載入餐單中…" },
   cookAt: {
     en: "Prepare & cook around 6:00 PM for Zizi dinner 6:30–8:00 PM",
     fil: "Maghanda at magluto bandang 6:00 PM — hapunan ni Zizi 6:30–8:00 PM",
     zh: "約下午 6:00 開始準備及烹調 — Zizi 晚餐 6:30–8:00 PM",
+  },
+  cookAtTomorrow: {
+    en: "Shop / prep today if needed — cook tomorrow around 6:00 PM.",
+    fil: "Mag-shop / prep ngayon kung kailangan — magluto bukas bandang 6:00 PM.",
+    zh: "如需可今日買菜／準備 — 明日約下午 6:00 烹調。",
   },
   ingredients: { en: "Ingredients", fil: "Mga sangkap", zh: "材料" },
   prepNotes: { en: "Prep notes (for you)", fil: "Prep notes (para sa'yo)", zh: "準備說明" },
@@ -71,19 +92,29 @@ const ui = {
     zh: "Tefal 煮食家電：餐單中有「用 EPC17 煮」（壓力鍋）或「用 Easy Fry 煮」（氣炸鍋）。面板圖：家電 → 煮食。",
   },
   customPick: {
-    en: "Custom pick (Sir/Mum chose tonight)",
+    en: "Custom pick (Sir/Mum chose this day)",
     fil: "Custom pick (pinili nina Sir/Mum)",
-    zh: "自选（Sir/Mum 已选今晚）",
+    zh: "自选（Sir/Mum 已选此日）",
   },
   shoppingList: {
-    en: "Shopping / prep list",
-    fil: "Shopping / prep list",
+    en: "Shopping / prep checklist",
+    fil: "Shopping / prep checklist",
     zh: "購物／準備清單",
   },
   reminder: {
-    en: "Check before 5:00 PM.",
-    fil: "Suriin bago 5:00 PM.",
-    zh: "請在下午 5:00 前核對。",
+    en: "Tap to check off. Saved on this phone.",
+    fil: "I-tap para i-check. Naka-save sa phone na ito.",
+    zh: "點選打勾。只保存在此手機。",
+  },
+  checklistDone: {
+    en: (d: number, t: number) => `${d}/${t} done`,
+    fil: (d: number, t: number) => `${d}/${t} tapos`,
+    zh: (d: number, t: number) => `已完成 ${d}/${t}`,
+  },
+  clearChecks: {
+    en: "Clear checks",
+    fil: "I-clear ang checks",
+    zh: "清除勾選",
   },
   findDish: {
     en: "Find another dish",
@@ -495,40 +526,139 @@ function RecipeSearch({ lang }: { lang: "en" | "fil" | "zh" }) {
   );
 }
 
-export function MealsView() {
-  const { lang } = useLanguage();
-  const [menu, setMenu] = useState<TonightMenu | null>(null);
-  const [loading, setLoading] = useState(true);
+function shoppingStorageKey(date: string) {
+  return `meals-shopping-checklist:${date}`;
+}
+
+function loadChecklist(date: string): Record<string, boolean> {
+  try {
+    const raw = localStorage.getItem(shoppingStorageKey(date));
+    if (!raw) return {};
+    return JSON.parse(raw) as Record<string, boolean>;
+  } catch {
+    return {};
+  }
+}
+
+function saveChecklist(date: string, map: Record<string, boolean>) {
+  try {
+    localStorage.setItem(shoppingStorageKey(date), JSON.stringify(map));
+  } catch {
+    /* ignore */
+  }
+}
+
+type ShoppingRow = { id: string; dish: string; line: string };
+
+function ShoppingChecklist({
+  date,
+  rows,
+  lang,
+}: {
+  date: string;
+  rows: ShoppingRow[];
+  lang: "en" | "fil" | "zh";
+}) {
+  const [checked, setChecked] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    fetch("/api/dinner/tonight")
-      .then((r) => r.json())
-      .then((data) => setMenu(data.tonight))
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
+    setChecked(loadChecklist(date));
+  }, [date]);
 
-  const shopping = useMemo(() => {
-    if (!menu) return [] as { dish: string; line: string }[];
-    const rows: { dish: string; line: string }[] = [];
-    for (const recipe of tonightDishes(menu)) {
-      const dish = getRecipeDisplayName(recipe, lang);
-      for (const ing of recipe.ingredients ?? []) {
-        rows.push({ dish, line: ingredientLabel(ing, lang) });
-      }
-    }
-    return rows;
-  }, [menu, lang]);
+  const done = rows.filter((r) => checked[r.id]).length;
 
-  if (loading) {
-    return (
-      <p className="text-center text-sm text-stone-500">{ui.loading[lang]}</p>
-    );
-  }
+  const toggle = (id: string) => {
+    setChecked((prev) => {
+      const next = { ...prev, [id]: !prev[id] };
+      saveChecklist(date, next);
+      return next;
+    });
+  };
 
-  if (!menu) return null;
+  const clearAll = () => {
+    setChecked({});
+    saveChecklist(date, {});
+  };
 
-  const items = [
+  return (
+    <section className="rounded-2xl bg-white p-3.5 ring-1 ring-stone-100">
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <h3 className="text-sm font-bold text-stone-900">
+            {ui.shoppingList[lang]}
+          </h3>
+          <p className="mt-0.5 text-xs text-stone-500">{ui.reminder[lang]}</p>
+        </div>
+        {rows.length > 0 && (
+          <div className="shrink-0 text-right">
+            <p className="text-[11px] font-semibold text-teal-800">
+              {ui.checklistDone[lang](done, rows.length)}
+            </p>
+            {done > 0 && (
+              <button
+                type="button"
+                onClick={clearAll}
+                className="mt-0.5 text-[10px] font-medium text-stone-500 underline"
+              >
+                {ui.clearChecks[lang]}
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+      {rows.length === 0 ? (
+        <p className="mt-2 text-xs text-stone-500">{ui.noIngredients[lang]}</p>
+      ) : (
+        <ul className="mt-2 space-y-1">
+          {rows.map((row) => {
+            const on = Boolean(checked[row.id]);
+            return (
+              <li key={row.id}>
+                <button
+                  type="button"
+                  onClick={() => toggle(row.id)}
+                  className={`flex w-full items-start gap-2.5 rounded-xl px-2.5 py-2 text-left ring-1 transition ${
+                    on
+                      ? "bg-teal-50/80 ring-teal-100"
+                      : "bg-stone-50/80 ring-stone-100"
+                  }`}
+                >
+                  <span
+                    className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border text-[11px] font-bold ${
+                      on
+                        ? "border-teal-600 bg-teal-600 text-white"
+                        : "border-stone-300 bg-white text-transparent"
+                    }`}
+                    aria-hidden
+                  >
+                    ✓
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={`text-sm ${
+                        on
+                          ? "text-stone-400 line-through"
+                          : "text-stone-800"
+                      }`}
+                    >
+                      {row.line}
+                    </span>
+                    <span className="ml-1 text-[10px] text-stone-400">
+                      ({row.dish})
+                    </span>
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function menuDishItems(menu: TonightMenu) {
+  return [
     ...menu.meat.map((recipe, i) => ({
       key: `meat-${recipe.id}-${i}`,
       label: ui.meat,
@@ -545,6 +675,76 @@ export function MealsView() {
       recipe,
     })),
   ];
+}
+
+export function MealsView() {
+  const { lang } = useLanguage();
+  const todayKey = hongKongDateKey();
+  const tomorrowKey = addHongKongDays(todayKey, 1);
+  const [day, setDay] = useState<"tonight" | "tomorrow">("tonight");
+  const [menus, setMenus] = useState<{
+    tonight: TonightMenu | null;
+    tomorrow: TonightMenu | null;
+  }>({ tonight: null, tomorrow: null });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    Promise.all([
+      fetch(`/api/dinner/tonight?date=${encodeURIComponent(todayKey)}`).then(
+        (r) => r.json()
+      ),
+      fetch(
+        `/api/dinner/tonight?date=${encodeURIComponent(tomorrowKey)}`
+      ).then((r) => r.json()),
+    ])
+      .then(([todayData, tomorrowData]) => {
+        if (cancelled) return;
+        setMenus({
+          tonight: todayData.tonight ?? null,
+          tomorrow: tomorrowData.tonight ?? null,
+        });
+      })
+      .catch(() => {
+        if (!cancelled) setMenus({ tonight: null, tomorrow: null });
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [todayKey, tomorrowKey]);
+
+  const menu = day === "tonight" ? menus.tonight : menus.tomorrow;
+  const isTomorrow = day === "tomorrow";
+
+  const shopping = useMemo(() => {
+    if (!menu) return [] as ShoppingRow[];
+    const rows: ShoppingRow[] = [];
+    for (const recipe of tonightDishes(menu)) {
+      const dish = getRecipeDisplayName(recipe, lang);
+      (recipe.ingredients ?? []).forEach((ing, idx) => {
+        rows.push({
+          id: `${recipe.id}:${idx}:${ingredientLabel(ing, lang)}`,
+          dish,
+          line: ingredientLabel(ing, lang),
+        });
+      });
+    }
+    return rows;
+  }, [menu, lang]);
+
+  if (loading) {
+    return (
+      <p className="text-center text-sm text-stone-500">{ui.loading[lang]}</p>
+    );
+  }
+
+  if (!menu) return null;
+
+  const items = menuDishItems(menu);
 
   const dateStr = new Date(menu.date + "T12:00:00").toLocaleDateString(
     uiLocale(lang),
@@ -555,12 +755,68 @@ export function MealsView() {
 
   return (
     <div className="space-y-3">
-      <div className="rounded-xl bg-teal-50 px-3 py-2.5 ring-1 ring-teal-100">
-        <p className="text-[11px] text-teal-800">{dateStr}</p>
-        <h2 className="text-sm font-bold text-teal-950">{ui.tonight[lang]}</h2>
-        <p className="mt-0.5 text-xs text-teal-900">{ui.cookAt[lang]}</p>
+      <div className="grid grid-cols-2 gap-1 rounded-xl bg-stone-200/80 p-1">
+        <button
+          type="button"
+          onClick={() => setDay("tonight")}
+          className={`rounded-lg px-3 py-2 text-sm font-semibold ${
+            day === "tonight"
+              ? "bg-teal-600 text-white"
+              : "text-stone-600"
+          }`}
+        >
+          {ui.tabTonight[lang]}
+        </button>
+        <button
+          type="button"
+          onClick={() => setDay("tomorrow")}
+          className={`rounded-lg px-3 py-2 text-sm font-semibold ${
+            day === "tomorrow"
+              ? "bg-sky-600 text-white"
+              : "text-stone-600"
+          }`}
+        >
+          {ui.tabTomorrow[lang]}
+        </button>
+      </div>
+
+      <div
+        className={`rounded-xl px-3 py-2.5 ring-1 ${
+          isTomorrow
+            ? "bg-sky-50 ring-sky-100"
+            : "bg-teal-50 ring-teal-100"
+        }`}
+      >
+        <p
+          className={`text-[11px] ${
+            isTomorrow ? "text-sky-800" : "text-teal-800"
+          }`}
+        >
+          {dateStr}
+        </p>
+        <h2
+          className={`text-sm font-bold ${
+            isTomorrow ? "text-sky-950" : "text-teal-950"
+          }`}
+        >
+          {isTomorrow ? ui.tomorrow[lang] : ui.tonight[lang]}
+        </h2>
+        <p
+          className={`mt-0.5 text-xs ${
+            isTomorrow ? "text-sky-900" : "text-teal-900"
+          }`}
+        >
+          {isTomorrow ? ui.cookAtTomorrow[lang] : ui.cookAt[lang]}
+        </p>
+        {isTomorrow && (
+          <p className="mt-1 text-[11px] text-sky-800">{ui.previewHint[lang]}</p>
+        )}
         {menu.overridden && (
-          <p className="mt-1 text-[11px] font-semibold text-teal-800">
+          <p
+            className={`mt-1 text-[11px] font-semibold ${
+              isTomorrow ? "text-sky-800" : "text-teal-800"
+            }`}
+          >
             {ui.customPick[lang]}
           </p>
         )}
@@ -577,10 +833,10 @@ export function MealsView() {
       {items.length === 0 ? (
         <p className="rounded-xl bg-white px-3 py-4 text-center text-sm text-stone-500 ring-1 ring-stone-100">
           {lang === "fil"
-            ? "Walang dish ngayong gabi."
+            ? "Walang dish para sa araw na ito."
             : lang === "zh"
-              ? "今晚尚未有菜式。"
-              : "No dishes for tonight."}
+              ? "此日尚未有菜式。"
+              : "No dishes for this day."}
         </p>
       ) : (
         <div className="space-y-2.5">
@@ -590,22 +846,7 @@ export function MealsView() {
         </div>
       )}
 
-      <section className="rounded-2xl bg-white p-3.5 ring-1 ring-stone-100">
-        <h3 className="text-sm font-bold text-stone-900">{ui.shoppingList[lang]}</h3>
-        <p className="mt-0.5 text-xs text-stone-500">{ui.reminder[lang]}</p>
-        {shopping.length === 0 ? (
-          <p className="mt-2 text-xs text-stone-500">{ui.noIngredients[lang]}</p>
-        ) : (
-          <ul className="mt-2 space-y-1">
-            {shopping.map((row, i) => (
-              <li key={`${row.line}-${i}`} className="text-sm text-stone-700">
-                ☐ {row.line}
-                <span className="ml-1 text-[10px] text-stone-400">({row.dish})</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+      <ShoppingChecklist date={menu.date} rows={shopping} lang={lang} />
 
       <RecipeSearch lang={lang} />
     </div>

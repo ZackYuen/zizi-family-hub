@@ -36,6 +36,13 @@ export function hongKongDateKey(date = new Date()): string {
   }).format(date);
 }
 
+/** Add/subtract calendar days from a YYYY-MM-DD key (Hong Kong date math). */
+export function addHongKongDays(dateKey: string, days: number): string {
+  const base = new Date(`${dateKey}T12:00:00+08:00`);
+  base.setTime(base.getTime() + days * 24 * 60 * 60 * 1000);
+  return hongKongDateKey(base);
+}
+
 /** Flatten tonight dishes in Meat → Vegetable → Soup order. */
 export function tonightDishes(menu: TonightMenu | null | undefined): DinnerRecipe[] {
   if (!menu) return [];
