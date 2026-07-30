@@ -16,6 +16,7 @@ export function nameFromEmail(email: string | null | undefined): string {
 
 /**
  * Prefer Access user name → email local-part → fallback (usually content.helperName).
+ * Use for greetings / visit logs only — not for schedule or task text (those stay Charlene).
  */
 export function resolveFrontendDisplayName(opts: {
   email?: string | null;
@@ -35,7 +36,10 @@ export function resolveFrontendDisplayName(opts: {
   return opts.fallback || "Friend";
 }
 
-/** Swap the household helper label for the logged-in member’s display name in UI text. */
+/**
+ * @deprecated Prefer keeping helperName in schedule/task copy.
+ * Login display name is for greetings only.
+ */
 export function personalizeHelperCopy(
   text: string,
   helperName: string,

@@ -36,7 +36,8 @@ export function useFrontendUser(): FrontendUserState {
   return useContext(FrontendUserContext);
 }
 
-/** Name for greetings / UI — logged-in Access name, else household helperName. */
+/** Name for header greeting only — logged-in Access name, else household helperName.
+ * Do not use for schedule / task copy (those stay assigned to Charlene). */
 export function useMemberDisplayName(fallbackHelperName: string): string {
   const { displayName, signedIn, loginRequired } = useFrontendUser();
   if (loginRequired && signedIn && displayName) return displayName;
