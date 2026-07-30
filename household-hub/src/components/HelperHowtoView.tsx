@@ -1,7 +1,6 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useMemberDisplayName } from "@/contexts/FrontendUserContext";
 
 const copy = {
   en: {
@@ -100,7 +99,8 @@ type Props = {
 
 export function HelperHowtoView({ helperNameFallback, onClose }: Props) {
   const { lang } = useLanguage();
-  const name = useMemberDisplayName(helperNameFallback);
+  // How-to is for Charlene (helper) — keep her name, not the logged-in account name
+  const name = helperNameFallback || "Charlene";
   const t = copy[lang] || copy.en;
 
   const sections = [
