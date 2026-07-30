@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { AppContent } from "@/lib/types";
+import type { AppContent, FrontendVisitSurface } from "@/lib/types";
 import { LanguageToggle } from "./LanguageToggle";
 import { BottomNav, type TabId } from "./BottomNav";
 import { ScheduleView } from "./ScheduleView";
@@ -18,6 +18,7 @@ import { WeatherBanner } from "./WeatherBanner";
 import { WelcomeGreeting } from "./WelcomeGreeting";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useMemberDisplayName } from "@/contexts/FrontendUserContext";
+import { useFrontendVisitLog } from "@/hooks/useFrontendVisitLog";
 import { labels, uiLocale } from "@/lib/i18n";
 
 export function HomeApp({ content }: { content: AppContent }) {
@@ -25,6 +26,9 @@ export function HomeApp({ content }: { content: AppContent }) {
   const memberName = useMemberDisplayName(content.helperName);
   const [activeTab, setActiveTab] = useState<TabId>("schedule");
   const [showHowto, setShowHowto] = useState(false);
+
+  const visitSurface: FrontendVisitSurface = showHowto ? "howto" : activeTab;
+  useFrontendVisitLog({ surface: visitSurface });
 
   const updated = new Date(content.lastUpdated).toLocaleDateString(uiLocale(lang), {
     month: "short",

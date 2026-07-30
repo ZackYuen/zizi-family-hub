@@ -167,6 +167,34 @@ export interface WhatsAppInbox {
   updatedAt: string;
 }
 
+/** Frontend app visit log (Admin → Visits) */
+export type FrontendVisitSurface =
+  | "open"
+  | "howto"
+  | "schedule"
+  | "meals"
+  | "tools"
+  | "ask"
+  | "hkLife"
+  | "rules";
+
+export interface FrontendVisitItem {
+  id: string;
+  ts: string;
+  /** What they opened */
+  surface: FrontendVisitSurface;
+  displayName?: string;
+  email?: string;
+  lang?: string;
+  /** Browser session id (same tab/session) */
+  sessionId?: string;
+}
+
+export interface FrontendVisitLog {
+  items: FrontendVisitItem[];
+  updatedAt: string;
+}
+
 export interface AppContent {
   /** Display name for Charlene (family member) — kept as helperName for API compatibility */
   helperName: string;
