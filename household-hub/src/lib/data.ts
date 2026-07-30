@@ -7,6 +7,8 @@ import type {
   DinnerMenuOverride,
   DinnerMenuOverrides,
   DinnerRecipe,
+  FrontendVisitItem,
+  FrontendVisitLog,
   WhatsAppInbox,
   WhatsAppInboxItem,
 } from "./types";
@@ -16,6 +18,8 @@ const RECIPES_KEY = "dinner_recipes";
 const MENU_OVERRIDES_KEY = "dinner_menu_overrides";
 const INBOX_KEY = "whatsapp_inbox";
 const INBOX_MAX = 200;
+const VISIT_LOG_KEY = "frontend_visit_log";
+const VISIT_LOG_MAX = 500;
 
 export type DataSource = "supabase" | "local";
 
@@ -682,5 +686,71 @@ export async function appendWhatsAppInboxItem(
   };
   inbox.items = [full, ...inbox.items].slice(0, INBOX_MAX);
   await saveWhatsAppInbox(inbox);
+  return full;
+}
+
+export async function getFrontendVisitLog(): Promise<FrontendVisitLog> {
+  if (!isSupabaseConfigured()) {
+    return { items: [], updatedAt: new Date().toISOString() };
+  }
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from("app_data")
+    .select("data")
+    .eq("key", VISIT_LOG_KEY)
+    .maybeSingle();
+
+  if (error) throw error;
+  if (!data) return { items: [], updatedAt: new Date().toISOString() };
+  const parsed = data.data as FrontendVisitLog;
+  return {
+    items: Array.isArray(parsed.items) ? parsed.items : [],
+    updatedAt: parsed.updatedAt || new Date().toISOString(),
+  };
+}
+
+export async function saveFrontendVisitLog(
+  log: FrontendVisitLog
+): Promise<FrontendVisitLog> {
+  if (!isSupabaseConfigured()) {
+    throw new Error("Live database is not configured — cannot save visit log");
+  }
+
+  const updated: FrontendVisitLog = {
+    items: log.items.slice(0, VISIT_LOG_MAX),
+    updatedAt: new Date().toISOString(),
+  };
+
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase.from("app_data").upsert({
+    key: VISIT_LOG_KEY,
+    data: updated,
+    updated_at: updated.updatedAt,
+  });
+
+  if (error) throw error;
+  return updated;
+}
+
+/** Prepend a frontend visit (newest first), capped */
+export async function appendFrontendVisit(
+  item: Omit<FrontendVisitItem, "id" | "ts"> & {
+    id?: string;
+    ts?: string;
+  }
+): Promise<FrontendVisitItem> {
+  const log = await getFrontendVisitLog();
+  const full: FrontendVisitItem = {
+    id: item.id || `visit-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    ts: item.ts || new Date().toISOString(),
+    surface: item.surface,
+    displayName: item.displayName?.slice(0, 80) || undefined,
+    email: item.email?.slice(0, 120) || undefined,
+    lang: item.lang?.slice(0, 8) || undefined,
+    sessionId: item.sessionId?.slice(0, 64) || undefined,
+  };
+  log.items = [full, ...log.items].slice(0, VISIT_LOG_MAX);
+  await saveFrontendVisitLog(log);
   return full;
 }

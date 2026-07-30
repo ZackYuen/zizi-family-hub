@@ -10,6 +10,7 @@ import { MonthlyTasksAdmin } from "@/components/admin/MonthlyTasksAdmin";
 import { MealsAdmin } from "@/components/admin/MealsAdmin";
 import { HkLifeAdmin } from "@/components/admin/HkLifeAdmin";
 import { InboxAdmin } from "@/components/admin/InboxAdmin";
+import { VisitLogAdmin } from "@/components/admin/VisitLogAdmin";
 import {
   AppliancesAdmin,
   PreferencesAdmin,
@@ -45,6 +46,7 @@ export default function AdminPage() {
     | "tools"
     | "hkLife"
     | "inbox"
+    | "visits"
     | "access"
     | "settings"
     | "json"
@@ -347,6 +349,7 @@ export default function AdminPage() {
     { id: "tools" as const, label: adminT("appliances", lang) },
     { id: "hkLife" as const, label: adminT("hkLife", lang) },
     { id: "inbox" as const, label: adminT("inbox", lang) },
+    { id: "visits" as const, label: adminT("visits", lang) },
     { id: "access" as const, label: adminT("accessTab", lang) },
     { id: "settings" as const, label: adminT("settings", lang) },
     { id: "json" as const, label: adminT("json", lang) },
@@ -615,6 +618,10 @@ export default function AdminPage() {
 
         {activeSection === "inbox" && (
           <InboxAdmin lang={lang} setMessage={setMessage} />
+        )}
+
+        {activeSection === "visits" && (
+          <VisitLogAdmin lang={lang} setMessage={setMessage} />
         )}
 
         {activeSection === "access" && (

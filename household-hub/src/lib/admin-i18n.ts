@@ -432,6 +432,33 @@ export const adminLabels = {
     zh: "Admin 儲存後，Charlene 會即時看到更新。如需要可另存 JSON 備份。",
   },
   inbox: { en: "WA Inbox", fil: "WA Inbox", zh: "WA 收件" },
+  visits: { en: "Visits", fil: "Visits", zh: "到訪" },
+  visitsHintTitle: {
+    en: "Frontend visit log",
+    fil: "Frontend visit log",
+    zh: "前台到訪記錄",
+  },
+  visitsHintBody: {
+    en: "Shows when someone opens the family app, switches tabs, or opens the ? how-to. Newest first (keeps last 500).",
+    fil: "Ipinapakita kung kailan binuksan ang family app, nagpalit ng tab, o binuksan ang ? how-to. Pinakabago muna (hanggang 500).",
+    zh: "顯示何時打開家庭 App、切換分頁，或打開 ? 使用說明。最新在上（保留約 500 筆）。",
+  },
+  visitsEmpty: {
+    en: "No visits yet. Open the family app (or ask Charlene to) — then Refresh.",
+    fil: "Wala pang visits. Buksan ang family app (o sabihin kay Charlene) — tapos Refresh.",
+    zh: "尚無到訪。請打開家庭 App（或請 Charlene 打開）— 再按重新整理。",
+  },
+  visitsFilterPlaceholder: {
+    en: "Filter by name or email…",
+    fil: "I-filter ayon sa name o email…",
+    zh: "按姓名或電郵篩選…",
+  },
+  visitsClear: { en: "Clear all", fil: "Clear all", zh: "全部清除" },
+  visitsClearConfirm: {
+    en: "Clear the entire visit log?",
+    fil: "I-clear ang buong visit log?",
+    zh: "清除全部到訪記錄？",
+  },
   inboxHintTitle: {
     en: "WhatsApp → knowledge / recipes",
     fil: "WhatsApp → knowledge / recipes",
