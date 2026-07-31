@@ -3,8 +3,18 @@ import type { Lang } from "./types";
 const LANG_NAME: Record<Lang, string> = {
   en: "English",
   fil: "Filipino (Tagalog)",
-  zh: "Traditional Chinese",
+  zh: "Traditional Chinese (Hong Kong / Taiwan — 繁體)",
 };
+
+/** App Lang → Google Translate language code */
+const GOOGLE_LANG: Record<Lang, string> = {
+  en: "en",
+  fil: "tl",
+  /** Always Traditional — never zh-CN */
+  zh: "zh-TW",
+};
+
+export type TranslateEngine = "google" | "openrouter" | "openai";
 
 /** Reject spam / ads / emails from bad translators */
 export function isBadTranslation(text: string, _source?: string): boolean {
@@ -29,7 +39,6 @@ export function isBadWeatherFilTranslation(
   const t = text?.trim() || "";
   if (!t || isBadTranslation(t, sourceEnglish)) return true;
 
-  // Meta / chain-of-thought styles seen from free OpenRouter models
   if (
     /the user wants|i need to follow|translate to tagalog|let'?s produce|constraints:|original (text|says)|combine into|however,? the user/i.test(
       t
@@ -39,10 +48,8 @@ export function isBadWeatherFilTranslation(
   }
   if (/^translate\b/i.test(t)) return true;
 
-  // Way longer than source → usually reasoning dump
   if (t.length > Math.max(220, sourceEnglish.trim().length * 1.8)) return true;
 
-  // Must look like Tagalog (common function words), not mostly English prose
   const filHits = (
     t.match(
       /\b(ang|mga|sa|ng|na|ay|at|mga|may|para|bukas|ulan|ambon|hangin|init|mainit|maulap|temperatura|digri|hanggang)\b/gi
@@ -69,7 +76,6 @@ function openAiKey(): string | undefined {
   return process.env.OPENAI_API_KEY?.trim() || undefined;
 }
 
-/** Models to try in order when using OpenRouter */
 function openRouterModels(): string[] {
   const preferred = process.env.OPENROUTER_MODEL?.trim();
   const defaults = [
@@ -130,6 +136,53 @@ async function chatComplete(options: {
   return out.replace(/^["'«»]|["'«»]$/g, "").trim();
 }
 
+/**
+ * Free Google Translate (gtx) — no API key.
+ * Use zh-TW for Chinese (Traditional), never zh-CN.
+ */
+export async function translateViaGoogle(
+  text: string,
+  sl: string,
+  tl: string
+): Promise<string | null> {
+  try {
+    const url =
+      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
+      encodeURIComponent(sl) +
+      "&tl=" +
+      encodeURIComponent(tl) +
+      "&dt=t&q=" +
+      encodeURIComponent(text);
+    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
+    if (!res.ok) return null;
+    const data = (await res.json()) as unknown;
+    if (!Array.isArray(data) || !Array.isArray(data[0])) return null;
+    const parts = data[0] as unknown[];
+    const out = parts
+      .map((p) => (Array.isArray(p) && typeof p[0] === "string" ? p[0] : ""))
+      .join("")
+      .trim();
+    if (!out || isBadTranslation(out, text)) return null;
+    return out;
+  } catch (err) {
+    console.error("Google translate", sl, tl, err);
+    return null;
+  }
+}
+
+/**
+ * Force Hong Kong / Taiwan Traditional Chinese.
+ * Safe to call on already-Traditional text.
+ */
+export async function ensureTraditionalZh(text: string): Promise<string> {
+  const trimmed = text?.trim() || "";
+  if (!trimmed) return trimmed;
+  // Skip if no CJK
+  if (!/[\u4e00-\u9fff]/.test(trimmed)) return trimmed;
+  const converted = await translateViaGoogle(trimmed, "zh-CN", "zh-TW");
+  return converted || trimmed;
+}
+
 async function translateWithOpenRouter(
   text: string,
   from: Lang,
@@ -141,7 +194,8 @@ async function translateWithOpenRouter(
   const system = `You translate short household / recipe / food dish names for a Hong Kong family app (Charlene).
 Reply with ONLY the translation in ${LANG_NAME[to]}.
 No quotes, no email, no URL, no ads, no explanation.
-For Filipino use natural Tagalog food names when possible (e.g. "pritong dumpling" not literal garbage).`;
+For Traditional Chinese use 香港繁體 (e.g. 雞蛋、麵、醬 — never Simplified 鸡蛋/面/酱).
+For Filipino use natural Tagalog food names when possible.`;
 
   const user = `Translate from ${LANG_NAME[from]} to ${LANG_NAME[to]}:\n${text}`;
 
@@ -181,43 +235,84 @@ async function translateWithOpenAI(
     endpoint: "https://api.openai.com/v1/chat/completions",
     model,
     openRouter: false,
-    system: `Translate to ${LANG_NAME[to]} only. No quotes or explanation.`,
+    system: `Translate to ${LANG_NAME[to]} only. For Chinese use Traditional (繁體), never Simplified. No quotes or explanation.`,
     user: `From ${LANG_NAME[from]}:\n${text}`,
   });
 }
 
 /**
- * Translate EN / FIL / ZH for Admin.
- * When OPENROUTER_API_KEY is set: OpenRouter ONLY (never MyMemory spam).
+ * Admin / app translation.
+ * Prefer Google Translate (zh → zh-TW). LLM is fallback only.
  */
-export async function translateText(
+export async function translateTextDetailed(
   text: string,
   from: Lang,
   to: Lang
-): Promise<string> {
+): Promise<{ text: string; engine: TranslateEngine }> {
   const trimmed = text.trim();
-  if (!trimmed || from === to) return trimmed;
+  if (!trimmed || from === to) {
+    const textOut = to === "zh" ? await ensureTraditionalZh(trimmed) : trimmed;
+    return { text: textOut, engine: "google" };
+  }
 
+  // 1) Google first
+  const google = await translateViaGoogle(
+    trimmed,
+    GOOGLE_LANG[from],
+    GOOGLE_LANG[to]
+  );
+  if (google) {
+    const textOut = to === "zh" ? await ensureTraditionalZh(google) : google;
+    return { text: textOut, engine: "google" };
+  }
+
+  // Pivot via English for zh↔fil if direct Google failed
+  if (from !== "en" && to !== "en") {
+    const mid = await translateViaGoogle(trimmed, GOOGLE_LANG[from], "en");
+    if (mid) {
+      const out = await translateViaGoogle(mid, "en", GOOGLE_LANG[to]);
+      if (out) {
+        const textOut = to === "zh" ? await ensureTraditionalZh(out) : out;
+        return { text: textOut, engine: "google" };
+      }
+    }
+  }
+
+  // 2) OpenRouter fallback
   if (openRouterKey()) {
-    // Direct OpenRouter — no MyMemory fallback (avoids sportbenzin email ads)
     try {
-      return await translateWithOpenRouter(trimmed, from, to);
+      let out = await translateWithOpenRouter(trimmed, from, to);
+      if (to === "zh") out = await ensureTraditionalZh(out);
+      return { text: out, engine: "openrouter" };
     } catch (directErr) {
-      // Pivot via English for zh↔fil if direct fails
       if (from !== "en" && to !== "en") {
         const mid = await translateWithOpenRouter(trimmed, from, "en");
-        return translateWithOpenRouter(mid, "en", to);
+        let out = await translateWithOpenRouter(mid, "en", to);
+        if (to === "zh") out = await ensureTraditionalZh(out);
+        return { text: out, engine: "openrouter" };
       }
       throw directErr;
     }
   }
 
+  // 3) OpenAI fallback
   const openAi = await translateWithOpenAI(trimmed, from, to);
-  if (openAi) return openAi;
+  if (openAi) {
+    const textOut = to === "zh" ? await ensureTraditionalZh(openAi) : openAi;
+    return { text: textOut, engine: "openai" };
+  }
 
   throw new Error(
-    "No OPENROUTER_API_KEY on this server. Add it in Vercel → Settings → Environment Variables (Production) and redeploy."
+    "Google Translate failed and no OPENROUTER_API_KEY / OPENAI_API_KEY fallback is configured."
   );
+}
+
+export async function translateText(
+  text: string,
+  from: Lang,
+  to: Lang
+): Promise<string> {
+  return (await translateTextDetailed(text, from, to)).text;
 }
 
 /** @deprecated use translateText(text, "en", "fil") */
@@ -225,36 +320,15 @@ export async function translateEnToFil(text: string): Promise<string> {
   return translateText(text, "en", "fil");
 }
 
-/**
- * Free no-key Tagalog fallback (Google gtx). Used only for weather forecasts
- * when OpenRouter / OpenAI are unavailable, so FIL mode is not stuck in English.
- */
 async function translateEnToFilViaGoogle(text: string): Promise<string | null> {
-  try {
-    const url =
-      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=tl&dt=t&q=" +
-      encodeURIComponent(text);
-    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
-    if (!res.ok) return null;
-    const data = (await res.json()) as unknown;
-    if (!Array.isArray(data) || !Array.isArray(data[0])) return null;
-    const parts = data[0] as unknown[];
-    const out = parts
-      .map((p) => (Array.isArray(p) && typeof p[0] === "string" ? p[0] : ""))
-      .join("")
-      .trim();
-    if (!out || isBadTranslation(out, text)) return null;
-    // Light weather wording polish for helpers
-    return out
-      .replace(/\bshower(s)?\b/gi, "ambon")
-      .replace(/\bdegrees\b/gi, "digri")
-      .replace(/\burban areas\b/gi, "lungsod")
-      .replace(/\bNew Territories\b/g, "New Territories")
-      .trim();
-  } catch (err) {
-    console.error("Google weather fil translate", err);
-    return null;
-  }
+  const out = await translateViaGoogle(text, "en", "tl");
+  if (!out) return null;
+  return out
+    .replace(/\bshower(s)?\b/gi, "ambon")
+    .replace(/\bdegrees\b/gi, "digri")
+    .replace(/\burban areas\b/gi, "lungsod")
+    .replace(/\bNew Territories\b/g, "New Territories")
+    .trim();
 }
 
 /**
@@ -267,7 +341,6 @@ export async function translateWeatherForecastToFil(
   const trimmed = englishForecast.trim();
   if (!trimmed) return trimmed;
 
-  // Google first — free OpenRouter models have been returning English “thinking” dumps
   const google = await translateEnToFilViaGoogle(trimmed);
   if (google && !isBadWeatherFilTranslation(google, trimmed)) return google;
 
@@ -311,7 +384,6 @@ No quotes, no email, no URL, no ads, no explanation.`;
     if (out && !isBadWeatherFilTranslation(out, trimmed)) return out;
   }
 
-  // Last resort: generic translate, still validate
   try {
     const generic = await translateText(trimmed, "en", "fil");
     if (generic && !isBadWeatherFilTranslation(generic, trimmed)) return generic;
