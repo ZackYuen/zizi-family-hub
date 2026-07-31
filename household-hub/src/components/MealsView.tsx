@@ -102,9 +102,9 @@ const ui = {
     zh: "購物／準備清單",
   },
   reminder: {
-    en: "Tap to check off. Saved on this phone.",
-    fil: "I-tap para i-check. Naka-save sa phone na ito.",
-    zh: "點選打勾。只保存在此手機。",
+    en: "Tap to check off. Shared for the whole family (all phones).",
+    fil: "I-tap para i-check. Shared sa buong pamilya (lahat ng phone).",
+    zh: "點選打勾。全家共用（所有手機同步）。",
   },
   checklistDone: {
     en: (d: number, t: number) => `${d}/${t} done`,
@@ -528,28 +528,6 @@ function RecipeSearch({ lang }: { lang: "en" | "fil" | "zh" }) {
   );
 }
 
-function shoppingStorageKey(date: string) {
-  return `meals-shopping-checklist:${date}`;
-}
-
-function loadChecklist(date: string): Record<string, boolean> {
-  try {
-    const raw = localStorage.getItem(shoppingStorageKey(date));
-    if (!raw) return {};
-    return JSON.parse(raw) as Record<string, boolean>;
-  } catch {
-    return {};
-  }
-}
-
-function saveChecklist(date: string, map: Record<string, boolean>) {
-  try {
-    localStorage.setItem(shoppingStorageKey(date), JSON.stringify(map));
-  } catch {
-    /* ignore */
-  }
-}
-
 type ShoppingRow = { id: string; dish: string; line: string };
 
 function ShoppingChecklist({
@@ -562,24 +540,62 @@ function ShoppingChecklist({
   lang: "en" | "fil" | "zh";
 }) {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    setChecked(loadChecklist(date));
+    let cancelled = false;
+    setLoading(true);
+    fetch(`/api/shopping-checklist?date=${encodeURIComponent(date)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled) return;
+        setChecked(
+          data.checked && typeof data.checked === "object" ? data.checked : {}
+        );
+      })
+      .catch(() => {
+        if (!cancelled) setChecked({});
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [date]);
+
+  const persist = async (next: Record<string, boolean>) => {
+    setSaving(true);
+    try {
+      const res = await fetch("/api/shopping-checklist", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ date, checked: next }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.checked && typeof data.checked === "object") {
+        setChecked(data.checked);
+      }
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const done = rows.filter((r) => checked[r.id]).length;
 
   const toggle = (id: string) => {
     setChecked((prev) => {
       const next = { ...prev, [id]: !prev[id] };
-      saveChecklist(date, next);
+      if (!next[id]) delete next[id];
+      void persist(next);
       return next;
     });
   };
 
   const clearAll = () => {
     setChecked({});
-    saveChecklist(date, {});
+    void persist({});
   };
 
   return (
@@ -594,7 +610,10 @@ function ShoppingChecklist({
         {rows.length > 0 && (
           <div className="shrink-0 text-right">
             <p className="text-[11px] font-semibold text-teal-800">
-              {ui.checklistDone[lang](done, rows.length)}
+              {loading
+                ? "…"
+                : ui.checklistDone[lang](done, rows.length)}
+              {saving ? " · …" : ""}
             </p>
             {done > 0 && (
               <button
@@ -619,7 +638,8 @@ function ShoppingChecklist({
                 <button
                   type="button"
                   onClick={() => toggle(row.id)}
-                  className={`flex w-full items-start gap-2.5 rounded-xl px-2.5 py-2 text-left ring-1 transition ${
+                  disabled={loading}
+                  className={`flex w-full items-start gap-2.5 rounded-xl px-2.5 py-2 text-left ring-1 transition disabled:opacity-60 ${
                     on
                       ? "bg-teal-50/80 ring-teal-100"
                       : "bg-stone-50/80 ring-stone-100"
