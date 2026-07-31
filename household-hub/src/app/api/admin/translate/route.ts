@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { isBadTranslation, translateText } from "@/lib/translate";
+import { isBadTranslation, translateTextDetailed } from "@/lib/translate";
 import type { Lang } from "@/lib/types";
 
 const LANGS: Lang[] = ["en", "fil", "zh"];
@@ -31,19 +31,23 @@ export async function POST(request: Request) {
   }
 
   try {
-    const translation = await translateText(text, from, to);
+    const { text: translation, engine } = await translateTextDetailed(
+      text,
+      from,
+      to
+    );
     if (isBadTranslation(translation, text)) {
       return NextResponse.json(
         {
           error:
-            "Translation looked invalid. Not applied. Check OpenRouter key / model on Vercel.",
+            "Translation looked invalid. Not applied. Try again, or check network / Vercel egress.",
         },
         { status: 502 }
       );
     }
     return NextResponse.json({
       translation,
-      engine: process.env.OPENROUTER_API_KEY ? "openrouter" : "openai",
+      engine,
     });
   } catch (err) {
     const message =

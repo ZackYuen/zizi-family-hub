@@ -38,7 +38,7 @@ export function TranslateButtons({
       if (!res.ok) {
         alert(
           data.error ||
-            "Translation failed. MyMemory may be over quota — try EN→FIL, or add OPENROUTER_API_KEY on Vercel."
+            "Translation failed. Google Translate may be blocked — try again, or check Vercel network."
         );
         return;
       }

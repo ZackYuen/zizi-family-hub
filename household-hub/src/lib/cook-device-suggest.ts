@@ -1,4 +1,5 @@
 import type { BilingualText, DinnerRecipe, RecipeCookSettings } from "./types";
+import { ensureTraditionalZh } from "./translate";
 
 export const COOK_DEVICE_EPC17 = "app-tefal-epc17";
 export const COOK_DEVICE_EASY_FRY = "app-tefal-easy-fry-xxl";
@@ -303,6 +304,7 @@ Rewrite so only the cook step uses the device.`;
     };
     if (!out.en && !out.fil && !out.zh) return null;
     if (isGenericDevicePrepNotes(out, options.cookDevice)) return null;
+    if (out.zh) out.zh = await ensureTraditionalZh(out.zh);
     return out;
   } catch (err) {
     console.error("adapt prep failed", err);

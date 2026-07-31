@@ -1,4 +1,5 @@
 import type { BilingualText, RecipeIngredient } from "./types";
+import { ensureTraditionalZh } from "./translate";
 
 export interface YoutubeRecipeEnrichment {
   title: string;
@@ -96,8 +97,8 @@ async function fetchCaptionsSnippet(videoId: string): Promise<string> {
     { lang: "zh-HK" },
     { lang: "zh-Hant" },
     { lang: "zh-TW" },
-    { lang: "zh" },
     { lang: "yue" },
+    // Skip bare "zh" — YouTube often serves Simplified there
     { lang: "en" },
     { lang: "en", kind: "asr" },
     { lang: "fil" },
@@ -196,7 +197,7 @@ async function llmEnrichRecipe(input: {
   const system = `You extract a home-cooking recipe for Zizi Family Hub (Hong Kong household helper Charlene).
 Return ONLY valid JSON (no markdown) with keys:
 {
-  "nameZh": "Traditional Chinese dish name (short)",
+  "nameZh": "香港繁體中文 dish name (short)",
   "nameEn": "English dish name (short)",
   "nameFil": "Filipino/Tagalog dish name (short, natural food words)",
   "ingredients": [{ "en": "", "fil": "", "zh": "", "qty": "" }],
@@ -205,6 +206,8 @@ Return ONLY valid JSON (no markdown) with keys:
 
 Rules:
 - Video may be Cantonese / Mandarin / English / Filipino — always output EN + FIL + ZH.
+- ALL Chinese fields (nameZh, ingredients[].zh, prepNotes.zh) MUST be 香港繁體中文 (Traditional Chinese).
+  Never use Simplified Chinese. Examples: 雞蛋 not 鸡蛋; 麵 not 面; 醬 not 酱; 裡 not 里; 體 not 体; 萬 not 万.
 - ingredients: shopping/prep list for ONE family dinner; include qty when known (e.g. "2 pcs", "1 tbsp"). Prefer 4–14 items.
 - prepNotes: SHORT numbered steps Charlene can follow WITHOUT understanding video audio (max ~8 steps). Not a transcript.
 - Soft for a child (Zizi) when relevant (cut small, mild, de-bone).
@@ -296,12 +299,31 @@ Extract ingredients + prep notes now.`;
         continue;
       }
 
+      // Force Traditional Chinese on every zh field (LLM often emits Simplified)
+      const [nameZh, prepZh, ...ingZh] = await Promise.all([
+        parsed.nameZh?.trim()
+          ? ensureTraditionalZh(parsed.nameZh.trim())
+          : Promise.resolve(undefined as string | undefined),
+        prepNotes.zh
+          ? ensureTraditionalZh(prepNotes.zh)
+          : Promise.resolve(""),
+        ...ingredients.map((ing) =>
+          ing.zh ? ensureTraditionalZh(ing.zh) : Promise.resolve(undefined as string | undefined)
+        ),
+      ]);
+
       return {
-        nameZh: parsed.nameZh?.trim() || undefined,
+        nameZh: nameZh || undefined,
         nameEn: parsed.nameEn?.trim() || undefined,
         nameFil: parsed.nameFil?.trim() || undefined,
-        ingredients,
-        prepNotes,
+        ingredients: ingredients.map((ing, i) => ({
+          ...ing,
+          zh: ingZh[i] || undefined,
+        })),
+        prepNotes: {
+          ...prepNotes,
+          zh: prepZh || "",
+        },
       };
     } catch (err) {
       console.error("youtube-recipe LLM fail", model, err);
