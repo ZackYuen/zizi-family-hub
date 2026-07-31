@@ -9,6 +9,7 @@ import type {
   DinnerRecipe,
   FrontendVisitItem,
   FrontendVisitLog,
+  ShoppingChecklistState,
   WhatsAppInbox,
   WhatsAppInboxItem,
 } from "./types";
@@ -20,6 +21,9 @@ const INBOX_KEY = "whatsapp_inbox";
 const INBOX_MAX = 200;
 const VISIT_LOG_KEY = "frontend_visit_log";
 const VISIT_LOG_MAX = 500;
+const SHOPPING_CHECKLIST_KEY = "shopping_checklist";
+/** Keep checklist dates for this many days */
+const SHOPPING_CHECKLIST_KEEP_DAYS = 21;
 
 export type DataSource = "supabase" | "local";
 
@@ -753,4 +757,80 @@ export async function appendFrontendVisit(
   log.items = [full, ...log.items].slice(0, VISIT_LOG_MAX);
   await saveFrontendVisitLog(log);
   return full;
+}
+
+function pruneShoppingChecklistDates(
+  byDate: Record<string, Record<string, boolean>>
+): Record<string, Record<string, boolean>> {
+  const cutoff = new Date();
+  cutoff.setUTCDate(cutoff.getUTCDate() - SHOPPING_CHECKLIST_KEEP_DAYS);
+  const cutoffKey = cutoff.toISOString().slice(0, 10);
+  const next: Record<string, Record<string, boolean>> = {};
+  for (const [date, map] of Object.entries(byDate || {})) {
+    if (date >= cutoffKey && map && typeof map === "object") {
+      next[date] = map;
+    }
+  }
+  return next;
+}
+
+export async function getShoppingChecklist(): Promise<ShoppingChecklistState> {
+  if (!isSupabaseConfigured()) {
+    return { byDate: {}, updatedAt: new Date().toISOString() };
+  }
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from("app_data")
+    .select("data")
+    .eq("key", SHOPPING_CHECKLIST_KEY)
+    .maybeSingle();
+
+  if (error) throw error;
+  if (!data) return { byDate: {}, updatedAt: new Date().toISOString() };
+  const parsed = data.data as ShoppingChecklistState;
+  return {
+    byDate:
+      parsed?.byDate && typeof parsed.byDate === "object" ? parsed.byDate : {},
+    updatedAt: parsed?.updatedAt || new Date().toISOString(),
+  };
+}
+
+export async function saveShoppingChecklist(
+  state: ShoppingChecklistState
+): Promise<ShoppingChecklistState> {
+  if (!isSupabaseConfigured()) {
+    throw new Error(
+      "Live database is not configured — cannot save shopping checklist"
+    );
+  }
+
+  const updated: ShoppingChecklistState = {
+    byDate: pruneShoppingChecklistDates(state.byDate || {}),
+    updatedAt: new Date().toISOString(),
+  };
+
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase.from("app_data").upsert({
+    key: SHOPPING_CHECKLIST_KEY,
+    data: updated,
+    updated_at: updated.updatedAt,
+  });
+
+  if (error) throw error;
+  return updated;
+}
+
+/** Replace checked map for one dinner date (shared globally). */
+export async function setShoppingChecklistForDate(
+  date: string,
+  checked: Record<string, boolean>
+): Promise<ShoppingChecklistState> {
+  const state = await getShoppingChecklist();
+  const clean: Record<string, boolean> = {};
+  for (const [id, on] of Object.entries(checked || {})) {
+    if (on && id) clean[id.slice(0, 200)] = true;
+  }
+  state.byDate[date] = clean;
+  return saveShoppingChecklist(state);
 }

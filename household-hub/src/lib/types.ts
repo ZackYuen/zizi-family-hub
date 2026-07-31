@@ -195,6 +195,13 @@ export interface FrontendVisitLog {
   updatedAt: string;
 }
 
+/** Shared Meals shopping / prep checklist (by dinner date) */
+export interface ShoppingChecklistState {
+  /** date YYYY-MM-DD → itemId → checked */
+  byDate: Record<string, Record<string, boolean>>;
+  updatedAt: string;
+}
+
 export interface AppContent {
   /** Display name for Charlene (family member) — kept as helperName for API compatibility */
   helperName: string;
