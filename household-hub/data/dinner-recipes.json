@@ -4879,34 +4879,45 @@
       "nameFil": "Honey Chicken Wings",
       "ingredients": [
         {
-          "en": "Chicken (as in video)",
-          "qty": "300–500g",
-          "fil": "Manok (ayon sa video)",
-          "zh": "雞肉（見影片）"
+          "en": "chicken wings",
+          "zh": "雞翼",
+          "fil": "mga pakpak ng manok",
+          "qty": "8 pcs"
         },
         {
-          "en": "Honey",
-          "qty": "2 tbsp",
-          "fil": "Honey",
-          "zh": "蜜糖"
+          "en": "light soy sauce",
+          "zh": "生抽",
+          "fil": "light soy sauce (toyo)",
+          "qty": "3 tbsp"
         },
         {
-          "en": "Garlic",
-          "qty": "2–3 cloves",
-          "fil": "Bawang",
-          "zh": "蒜"
+          "en": "honey",
+          "zh": "蜜糖",
+          "fil": "pulot / honey",
+          "qty": "4 tbsp"
         },
         {
-          "en": "Ginger",
-          "qty": "a few slices",
-          "fil": "Luya",
-          "zh": "薑"
+          "en": "chicken powder",
+          "zh": "雞粉",
+          "fil": "chicken powder",
+          "qty": "1 tbsp"
         },
         {
-          "en": "Spring onion",
-          "qty": "2 stalks",
-          "fil": "Sibuyas dahon",
-          "zh": "蔥"
+          "en": "sesame oil",
+          "zh": "麻油",
+          "fil": "sesame oil",
+          "qty": "1 tbsp"
+        },
+        {
+          "en": "white sugar",
+          "zh": "白砂糖",
+          "fil": "white sugar",
+          "qty": "2 tsp"
+        },
+        {
+          "en": "white pepper",
+          "zh": "白胡椒粉",
+          "fil": "white pepper"
         }
       ],
       "prepNotes": {
