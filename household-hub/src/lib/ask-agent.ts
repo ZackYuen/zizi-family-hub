@@ -248,6 +248,23 @@ function currentTaskAnswer(snap: LiveFamilySnapshot, lang: Lang): string | null 
   return null;
 }
 
+/**
+ * General cooking / common-sense technique (not “where is X in our flat”).
+ * These should reach the LLM instead of the Tools tip dump.
+ */
+function isGeneralCookingTechniqueQuestion(q: string): boolean {
+  return /foil|aluminium|aluminum|baking\s*paper|parchment|油紙|錫紙|鋁箔|container|lalagyan|baking\s*tray|oven\s*safe|directly\s*(in|into)|put\s*(it\s*)?(in|into)\s*(the\s*)?(air\s*)?fryer|do\s*i\s*need|need\s*(a\s*)?(special\s*)?(tray|pan|container|dish)|can\s*i\s*(use|put|cook)|pwede\s*(ba\s*)?(mag|gamitin|ilagay)|可以.*氣炸|氣炸.*箔|氣炸.*紙|要用.*盒|要不要.*盒|需不需要.*盒/.test(
+    q
+  );
+}
+
+/** Asking where something is stored in THIS home — family-specific, not common sense. */
+function isWhereStoredQuestion(q: string): boolean {
+  return /\bwhere\b.*(keep|store|put|find|located)|nasaan|saan\s*(naka|ang)|放在哪|在哪[裡里]|去哪[裡里]找|where.*(foil|container|tray|lalagyan)/.test(
+    q
+  );
+}
+
 function heuristicAnswer(
   question: string,
   snap: LiveFamilySnapshot,
@@ -891,6 +908,9 @@ function heuristicAnswer(
       q
     )
   ) {
+    // Foil / container / “do I need a tray?” → LLM common sense (not Tools dump).
+    // “Where is the tray in our kitchen?” stays family-specific via LLM hub rules.
+    if (!(isGeneralCookingTechniqueQuestion(q) && !isWhereStoredQuestion(q))) {
     const apps = [...snap.appliances].sort((a, b) => a.priority - b.priority);
     if (apps.length) {
       const kindMatchers: { re: RegExp; kind?: string; id?: string }[] = [
@@ -992,6 +1012,7 @@ function heuristicAnswer(
           ? `家電／工具：\n${list}\n\n可問名稱（例如 Dyson、飯煲），或打開「家電」分頁。`
           : `House tools / appliances:\n${list}\n\nAsk by name (e.g. Dyson, rice cooker), or open the Tools tab.`;
     }
+    }
   }
 
   if (/rule|alituntunin|規則|ground|broken|borrow|pera|money|hiram/.test(q)) {
@@ -1089,16 +1110,19 @@ CRITICAL LANGUAGE RULE: Reply ONLY in ${langName(replyLang)}. Every sentence mus
 If the user wrote Chinese/English but asked to "reply with Filipino" (or similar), still reply ONLY in ${langName(replyLang)}.
 Do not mix languages except for unavoidable dish proper names — prefer Filipino dish names (nameFil) when replying in Filipino.
 Prefer FAMILY LIVE DATA below over the internet.
+Answer policy — two buckets:
+(A) FAMILY-SPECIFIC (this household only): schedule, current/next task, tonight’s menu, House Rules, preferences, where things are stored in THIS flat, Zizi routines, salary/holidays, exact appliance buttons/models for OUR machines, pickup times, day-off. → Use FAMILY LIVE DATA only. If missing, say you are unsure and tell Charlene to ask Sir/Mum. Never invent these.
+(B) GENERAL COOKING / COMMON SENSE: brief, widely known food-safety or technique tips that are NOT about this flat’s inventory or rules (e.g. air-fryer wings: usually put food directly in the basket, or use aluminum foil / a small oven-safe tray — do not block airflow or cover the heater; no special “bake container” required). → OK to answer in 1–3 short sentences. Prefer FAMILY LIVE DATA / Tools tips when they already cover it. Do not invent long recipes. Do not claim “in our kitchen we keep X in Y”.
 For dinner questions, list tonight's dishes from FAMILY LIVE DATA (meat / vegetable / soup — may be zero or more of each) using the correct language names — never invent literal translations like "Winter Shade Public Soup".
-For "how to cook" / "paano magluto", use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data.
+For "how to cook" / "paano magluto" of TONIGHT’s dishes, use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data. Short common-sense technique (foil, oil, don’t overcrowd) is still OK under (B).
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
 When asked for the Family Hub / Gabay sa Bahay / app website link or URL, give the Family Hub website URL from FAMILY LIVE DATA.
 For HK Life / FDH / typhoon / Octopus / rest day / Consulate / YATA(apm) / groceries / iPhone & Android apps / recycling (Yue Wah St Thu) / healthy holiday / home flat questions, use the HK Life guides and emergency contacts in FAMILY LIVE DATA. Mark general Labour Department facts as "confirm with Sir/Mum / your contract". First supermarket is YATA at apm near home — not AEON unless Sir/Mum say so.
-If the answer is not in family data and web notes, say you are unsure and ask Charlene to check with Sir or Mum.
-Never invent House Rules or schedule times.
+If the answer is FAMILY-SPECIFIC and missing from family data (and web notes do not help), say you are unsure and ask Charlene to check with Sir or Mum.
+Never invent House Rules, schedule times, or where items are stored in this flat.
 Family preferences are soft tips only — never call them House Rules or invent “If Broken” for them.
-Appliance answers should come from the Tools / appliances section; if unsure about our exact machine, tell Charlene to ask Sir/Mum.
+For OUR appliance panel/buttons, use the Tools / appliances section; if unsure about exact buttons, tell Charlene to ask Sir/Mum. General cooking technique with that appliance can still use bucket (B).
 Do not call Charlene a "helper" or "katulong" or 家務助理 in replies — she is a family member. Do not use the word 姐姐 — say Charlene.
 
 FAMILY LIVE DATA:

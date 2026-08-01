@@ -376,6 +376,9 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push(
     "- Tefal Easy Fry & Grill XXL air fryer: Meals recipes with cookDevice app-tefal-easy-fry-xxl are marked “Cook with Easy Fry”. Preheat optional; don’t overcrowd; shake/turn halfway; light oil only; basket is hot. Grill mode ~220°C. Panel map is in Tools. Good for wings, chops, fish, veg, dumplings, reheat ~160°C."
   );
+  lines.push(
+    "- Air fryer common sense: food can usually go directly in the basket (light oil OK). Aluminum foil or a small oven-safe tray is optional — do not block airflow or cover the heater; do not fully seal the basket. Do NOT invent where foil/containers are stored in THIS flat — if she asks “where is it?”, tell her to ask Sir/Mum."
+  );
 
   lines.push("");
   lines.push("Important facts:");
