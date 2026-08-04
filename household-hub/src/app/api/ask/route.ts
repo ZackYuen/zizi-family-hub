@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { answerFamilyQuestion } from "@/lib/ask-agent";
 import { parseSaveCommand, handleWhatsAppSave } from "@/lib/whatsapp-save";
+import { isWhatsAppBotPaused } from "@/lib/whatsapp-bot-pause";
 
 export const dynamic = "force-dynamic";
 
@@ -11,12 +12,23 @@ export async function POST(request: Request) {
       allowInternet?: boolean;
       jid?: string;
       fromName?: string;
+      fromWhatsApp?: boolean;
     };
     const question = body.question?.trim();
     if (!question) {
       return NextResponse.json({ error: "question required" }, { status: 400 });
     }
-    // Saves can include a long URL + notes; asks stay shorter
+
+    // WhatsApp bot / webhook only — in-app Ask still works when paused
+    const fromWhatsApp = Boolean(body.jid) || body.fromWhatsApp === true;
+    if (fromWhatsApp && (await isWhatsAppBotPaused())) {
+      return NextResponse.json({
+        silence: true,
+        paused: true,
+        answer: "",
+      });
+    }
+
     const saveCmd = parseSaveCommand(question);
     if (saveCmd) {
       if (saveCmd.text.length > 2000) {

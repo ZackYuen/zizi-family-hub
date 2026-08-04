@@ -249,6 +249,12 @@ export interface AppContent {
    * Edited under Admin → Access.
    */
   adminAuth?: AdminAuthSettings;
+  /**
+   * When true, WhatsApp bot (and Meta WhatsApp webhook) stay silent —
+   * no replies to ? / @bot. In-app Ask still works.
+   * Edited under Admin → Settings.
+   */
+  whatsappBotPaused?: boolean;
 }
 
 /** One person who may use Admin and/or the Charlene frontend app */
