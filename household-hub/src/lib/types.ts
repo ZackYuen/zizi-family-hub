@@ -225,6 +225,11 @@ export interface AppContent {
   weeklySchedule: DaySchedule[];
   /** Summer-holiday weekly schedule (used through summerEndsOn) */
   weeklyScheduleSummer?: DaySchedule[];
+  /**
+   * One-off day plans by HK date (YYYY-MM-DD).
+   * When set, replaces that day's tasks from the weekly template (Schedule + Ask).
+   */
+  scheduleDateOverrides?: Record<string, ScheduleTask[]>;
   monthlyTasks: BilingualText[];
   lastUpdated: string;
   /** Where the family lives — for HK Life tips */
