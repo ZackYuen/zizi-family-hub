@@ -1189,7 +1189,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-29T16:45:00.000Z",
+  "lastUpdated": "2026-08-04T15:40:00.000Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -4817,5 +4817,194 @@
       },
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=AEON+STYLE+Domain+Yau+Tong"
     }
-  ]
+  ],
+  "scheduleDateOverrides": {
+    "2026-08-05": [
+      {
+        "id": "sw1",
+        "task": {
+          "en": "Zizi (Seth) wake up",
+          "zh": "叫醒 Zizi (Seth)",
+          "fil": "Gisingin si Zizi (Seth)"
+        },
+        "time": "09:30",
+        "endTime": "09:45",
+        "startTime": "09:30"
+      },
+      {
+        "id": "sw2",
+        "task": {
+          "en": "ZiZi breakfast — simple (egg / pancake / siumai / sweet potato etc.) + brush teeth",
+          "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+          "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / camote atbp.) + magsipilyo"
+        },
+        "time": "09:45",
+        "endTime": "10:15",
+        "startTime": "09:45"
+      },
+      {
+        "id": "sw-milk",
+        "task": {
+          "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+          "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+          "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
+        },
+        "time": "09:45",
+        "notes": {
+          "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+          "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+          "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+        },
+        "endTime": "10:15",
+        "startTime": "09:45"
+      },
+      {
+        "id": "sw3",
+        "task": {
+          "en": "Prepare Zizi's lunch (meat + veg: spaghetti / fried rice / noodle / udon etc.) + play / supervise (summer — no kindergarten)",
+          "zh": "準備 Zizi 午餐（肉＋菜：意粉／炒飯／麵／烏冬等）＋陪伴／看顧（暑假 — 無幼稚園）",
+          "fil": "Ihanda ang tanghalian ni Zizi (meat + gulay: spaghetti / fried rice / noodle / udon atbp.) + laruin / bantayan (summer — walang kindergarten)"
+        },
+        "time": "10:15",
+        "endTime": "10:45",
+        "startTime": "10:15"
+      },
+      {
+        "id": "sw4",
+        "task": {
+          "en": "ZiZi lunch at home (must include meat + vegetables)",
+          "zh": "ZiZi 在家午餐（必須有肉和蔬菜）",
+          "fil": "Tanghalian ni ZiZi sa bahay (dapat may meat + gulay)"
+        },
+        "time": "10:45",
+        "endTime": "11:15",
+        "startTime": "10:45"
+      },
+      {
+        "id": "sw-20260805-prep",
+        "time": "11:15",
+        "startTime": "11:15",
+        "endTime": "12:00",
+        "task": {
+          "en": "Prepare Zizi — Mum picks him up for 奧海城 (Olympian City). No drawing class today.",
+          "zh": "準備 Zizi — 媽媽帶他去奧海城。今天沒有繪畫班。",
+          "fil": "Ihanda si Zizi — Mum ang magdadala sa 奧海城 (Olympian City). Walang drawing class ngayon."
+        }
+      },
+      {
+        "id": "sw-20260805-olympian",
+        "time": "12:00",
+        "startTime": "12:00",
+        "endTime": "16:00",
+        "task": {
+          "en": "Mum takes Zizi to 奧海城 (Olympian City) 12:00–16:00 — Charlene at home (light housework / rest). No drawing class.",
+          "zh": "媽媽帶 Zizi 去奧海城 12:00–16:00 — Charlene 在家（輕家務／休息）。沒有繪畫班。",
+          "fil": "Dadalin ni Mum si Zizi sa 奧海城 (Olympian City) 12:00–16:00 — si Charlene sa bahay (magaan na gawaing bahay / pahinga). Walang drawing class."
+        },
+        "notes": {
+          "en": "Olympian City (奧海城), West Kowloon. Mum outing — Charlene does not take drawing class today.",
+          "zh": "奧海城（西九龍）。媽媽外出 — Charlene 今天不用去繪畫班。",
+          "fil": "Olympian City (奧海城), West Kowloon. Outing ni Mum — walang drawing class ngayon."
+        }
+      },
+      {
+        "id": "sw-20260805-return",
+        "time": "16:00",
+        "startTime": "16:00",
+        "endTime": "16:30",
+        "task": {
+          "en": "Zizi returns from 奧海城 with Mum — settle in at home",
+          "zh": "Zizi 與媽媽從奧海城回家 — 安頓",
+          "fil": "Uuwí si Zizi mula 奧海城 kasama si Mum — mag-settle sa bahay"
+        }
+      },
+      {
+        "id": "sw12",
+        "task": {
+          "en": "ZiZi tea time",
+          "zh": "Zizi 茶點",
+          "fil": "Merienda ni Zizi"
+        },
+        "time": "16:30",
+        "endTime": "17:00",
+        "startTime": "16:30"
+      },
+      {
+        "id": "sw13",
+        "task": {
+          "en": "Prepare food — check tonight's random dinner menu (meat + veg + soup)",
+          "zh": "準備晚餐（查看今晚隨機菜單）",
+          "fil": "Maghanda — tingnan ang random na hapunan (karne + gulay + sabaw)"
+        },
+        "time": "17:00",
+        "endTime": "18:00",
+        "startTime": "17:00"
+      },
+      {
+        "id": "sw14",
+        "task": {
+          "en": "Cook dinner",
+          "zh": "煮晚餐",
+          "fil": "Magluto ng hapunan"
+        },
+        "time": "18:00",
+        "endTime": "18:30",
+        "startTime": "18:00"
+      },
+      {
+        "id": "sw15",
+        "task": {
+          "en": "ZiZi dinner",
+          "zh": "Zizi 晚餐",
+          "fil": "Hapunan ni Zizi"
+        },
+        "time": "18:30",
+        "endTime": "20:15",
+        "startTime": "18:30"
+      },
+      {
+        "id": "sw16",
+        "task": {
+          "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+          "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+          "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
+        },
+        "time": "20:15",
+        "endTime": "20:30",
+        "startTime": "20:15"
+      },
+      {
+        "id": "sw17",
+        "task": {
+          "en": "Vacuum floor",
+          "zh": "吸塵",
+          "fil": "Vacuum ng sahig"
+        },
+        "time": "20:30",
+        "endTime": "21:15",
+        "startTime": "20:30"
+      },
+      {
+        "id": "sw18",
+        "task": {
+          "en": "ZiZi shower",
+          "zh": "Zizi 洗澡",
+          "fil": "Paligo ni Zizi"
+        },
+        "time": "21:15",
+        "endTime": "21:45",
+        "startTime": "21:15"
+      },
+      {
+        "id": "sw19",
+        "task": {
+          "en": "Charlene rest time",
+          "zh": "Charlene 休息",
+          "fil": "Oras ng pahinga ni Charlene"
+        },
+        "time": "21:45",
+        "startTime": "21:45"
+      }
+    ]
+  }
 }

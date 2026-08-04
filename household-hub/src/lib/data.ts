@@ -442,6 +442,31 @@ export async function getContent(): Promise<AppContent> {
     }
   }
 
+  // APPEND-ONLY date keys for one-off schedule overrides from seed
+  const remoteOverrideDates = new Set(
+    Object.keys(remote.scheduleDateOverrides ?? {})
+  );
+  const missingOverrideEntries = Object.entries(
+    local.scheduleDateOverrides ?? {}
+  ).filter(([date]) => !remoteOverrideDates.has(date));
+  if (missingOverrideEntries.length) {
+    const filled: AppContent = {
+      ...remote,
+      scheduleDateOverrides: {
+        ...(remote.scheduleDateOverrides ?? {}),
+        ...Object.fromEntries(missingOverrideEntries),
+      },
+      lastUpdated: new Date().toISOString(),
+    };
+    try {
+      await saveContent(filled);
+      return filled;
+    } catch (err) {
+      console.error("Failed to seed scheduleDateOverrides", err);
+      return filled;
+    }
+  }
+
   const needsPrefs =
     !remote.familyPreferences?.length && Boolean(local.familyPreferences?.length);
   const needsAppliances =

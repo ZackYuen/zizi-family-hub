@@ -10,7 +10,7 @@ import {
   getActiveTaskId,
   sortTasksByTime,
 } from "@/lib/schedule-utils";
-import { resolveActiveSchedule } from "@/lib/school-calendar";
+import { resolveActiveSchedule, resolveTasksForDate } from "@/lib/school-calendar";
 import type { AppContent, BilingualText } from "@/lib/types";
 import {
   formatDayMonth,
@@ -61,11 +61,13 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
   const selectedDate = selectedInfo?.date ?? new Date();
   const dayOffSelected = isHelperDayOff(selectedDate);
   const activeForSelected = resolveActiveSchedule(content, selectedDate);
-  const daySchedule =
-    activeForSelected.schedule.find((d) => d.dayKey === selectedInfo.dayKey) ??
-    activeForSelected.schedule[0];
+  const resolved = resolveTasksForDate(
+    content,
+    selectedInfo?.dateKey ?? getTodayHongKongKey()
+  );
 
-  const sortedTasks = sortTasksByTime(daySchedule?.tasks ?? []);
+  const sortedTasks = sortTasksByTime(resolved.tasks);
+  const isOneOffDay = resolved.fromOverride;
   const isViewingToday =
     weekOffset === 0 && selectedInfo?.dateKey === todayDateKey;
   const activeTaskId = useMemo(
@@ -144,6 +146,15 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
       {statusLine && (
         <p className={`rounded-xl px-3 py-2 text-xs leading-snug ring-1 ${toneClass}`}>
           {statusLine.text}
+        </p>
+      )}
+      {isOneOffDay && !dayOffSelected && (
+        <p className="rounded-xl bg-teal-50 px-3 py-2 text-xs leading-snug text-teal-950 ring-1 ring-teal-100">
+          {lang === "fil"
+            ? "Espesyal na araw (hindi regular na schedule)."
+            : lang === "zh"
+              ? "特別日子（非平常日程）。"
+              : "One-off day plan (not the usual weekly schedule)."}
         </p>
       )}
 

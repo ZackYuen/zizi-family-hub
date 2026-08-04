@@ -10,6 +10,8 @@ import { getRecipeDisplayName } from "./recipe-display";
 import {
   extractSummerDrawingClass,
   resolveActiveSchedule,
+  resolveTasksForDate,
+  tasksIncludeDrawingClass,
   type ScheduleSeason,
   type SummerDrawingClassInfo,
 } from "./school-calendar";
@@ -28,6 +30,7 @@ import type {
   HkWeatherFlag,
   PlaceMapLink,
   SalaryPaymentItem,
+  ScheduleTask,
   SchoolCalendar,
   SettlingCheckItem,
   StatutoryHolidayItem,
@@ -43,11 +46,19 @@ export interface LiveFamilySnapshot {
   familyName: string;
   isHelperDayOffToday: boolean;
   todayDayKey: string;
+  /** HK YYYY-MM-DD */
+  todayDateKey: string;
   scheduleSeason: ScheduleSeason;
   schoolCalendar: SchoolCalendar;
   ziziSchool: AppContent["ziziSchool"];
   /** Summer Wed/Fri drawing class from live schedule (null if none). */
   drawingClass: SummerDrawingClassInfo | null;
+  /** True when today's plan comes from scheduleDateOverrides */
+  todayFromOverride: boolean;
+  /** True when today's override (or template) includes drawing class */
+  todayHasDrawingClass: boolean;
+  /** Upcoming one-off days (date → tasks), including today */
+  scheduleDateOverrides: Record<string, ScheduleTask[]>;
   todaySchedule: AppContent["weeklySchedule"][0] | null;
   groundRules: AppContent["groundRules"];
   familyPreferences: FamilyPreferenceTip[];
@@ -102,8 +113,16 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
   const dayOff = isHelperDayOff();
   const dayKey = dayOff ? "sunday" : getTodayDayKey();
   const active = resolveActiveSchedule(content);
-  const todaySchedule =
+  const resolvedToday = resolveTasksForDate(content, dateKey);
+  const templateDay =
     active.schedule.find((d) => d.dayKey === dayKey) ?? null;
+  const todaySchedule = templateDay
+    ? { ...templateDay, tasks: resolvedToday.tasks }
+    : {
+        day: { en: dayKey, fil: dayKey, zh: dayKey },
+        dayKey,
+        tasks: resolvedToday.tasks,
+      };
   const drawingClass = extractSummerDrawingClass(
     content.weeklyScheduleSummer?.length
       ? content.weeklyScheduleSummer
@@ -111,6 +130,7 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
         ? active.schedule
         : null
   );
+  const scheduleDateOverrides = content.scheduleDateOverrides ?? {};
 
   return {
     source,
@@ -120,10 +140,14 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     familyName: content.familyName,
     isHelperDayOffToday: dayOff,
     todayDayKey: dayKey,
+    todayDateKey: dateKey,
     scheduleSeason: active.season,
     schoolCalendar: active.calendar,
     ziziSchool: active.ziziSchool,
     drawingClass,
+    todayFromOverride: resolvedToday.fromOverride,
+    todayHasDrawingClass: tasksIncludeDrawingClass(resolvedToday.tasks),
+    scheduleDateOverrides,
     todaySchedule,
     groundRules: content.groundRules,
     familyPreferences: content.familyPreferences ?? [],
@@ -218,6 +242,35 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     lines.push(`- Leave home: ~${d.leaveStart}–${d.leaveEnd}`);
     lines.push(`- Venue EN: ${d.venue.en}`);
     if (d.venue.zh) lines.push(`- Venue ZH: ${d.venue.zh}`);
+    lines.push("");
+  }
+
+  const upcomingOverrides = Object.entries(snap.scheduleDateOverrides || {})
+    .filter(([d]) => d >= snap.todayDateKey)
+    .sort(([a], [b]) => a.localeCompare(b));
+  if (upcomingOverrides.length) {
+    lines.push(
+      "ONE-OFF schedule changes (these REPLACE the usual day — highest priority):"
+    );
+    for (const [date, tasks] of upcomingOverrides) {
+      lines.push(`- ${date}${date === snap.todayDateKey ? " (TODAY)" : ""}:`);
+      for (const t of tasks) {
+        const range = t.fullDay
+          ? "All day"
+          : `${t.startTime ?? t.time}${t.endTime ? `–${t.endTime}` : ""}`;
+        lines.push(`  · ${range}: ${t.task.en}`);
+      }
+    }
+    lines.push("");
+  }
+
+  if (snap.todayFromOverride) {
+    lines.push(
+      "NOTE: Today's schedule is a one-off override (not the usual weekly template)."
+    );
+    if (!snap.todayHasDrawingClass) {
+      lines.push("NOTE: No drawing class today (cancelled / replaced).");
+    }
     lines.push("");
   }
 

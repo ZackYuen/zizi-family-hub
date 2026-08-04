@@ -527,6 +527,61 @@ function heuristicAnswer(
       q
     )
   ) {
+    const askTomorrow = /\btomorrow\b|bukas|明天|聽日|翌日/.test(q);
+    const tomorrowDate = (() => {
+      const ms =
+        new Date(`${snap.todayDateKey}T12:00:00+08:00`).getTime() +
+        86_400_000;
+      return new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Hong_Kong",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(new Date(ms));
+    })();
+    const focusDate = askTomorrow ? tomorrowDate : snap.todayDateKey;
+    const focusTasks =
+      snap.scheduleDateOverrides?.[focusDate] ||
+      (askTomorrow ? null : snap.todaySchedule?.tasks) ||
+      null;
+    const focusHasDrawing = focusTasks
+      ? focusTasks.some(
+          (t) =>
+            /^drawing\s*class\b/i.test(t.task?.en || "") ||
+            /^繪畫班/.test(t.task?.zh || "")
+        )
+      : null;
+    if (
+      snap.scheduleDateOverrides?.[focusDate] &&
+      focusHasDrawing === false
+    ) {
+      const lines = snap.scheduleDateOverrides[focusDate]
+        .filter((t) => /奧海|olympian|mum|媽媽|drawing|繪畫|no drawing/i.test(
+          `${t.task?.en || ""} ${t.task?.zh || ""}`
+        ))
+        .map((t) => {
+          const range = `${t.startTime ?? t.time}${t.endTime ? `–${t.endTime}` : ""}`;
+          return `${range}: ${lang === "zh" ? t.task.zh || t.task.en : lang === "fil" ? t.task.fil || t.task.en : t.task.en}`;
+        });
+      const when =
+        focusDate === snap.todayDateKey
+          ? lang === "fil"
+            ? "Ngayon"
+            : lang === "zh"
+              ? "今天"
+              : "Today"
+          : lang === "fil"
+            ? `Bukas (${focusDate})`
+            : lang === "zh"
+              ? `明天（${focusDate}）`
+              : `Tomorrow (${focusDate})`;
+      return lang === "fil"
+        ? `${when}: WALANG drawing class. ${lines.join(" / ") || "Tingnan ang one-off schedule."} (Normal drawing: Wed & Fri.)`
+        : lang === "zh"
+          ? `${when}：沒有繪畫班。${lines.join("／") || "見特別日程。"}（平常逢星期三、五有繪畫班。）`
+          : `${when}: NO drawing class. ${lines.join(" · ") || "See one-off schedule."} (Usual drawing: Wed & Fri.)`;
+    }
+
     const d = snap.drawingClass;
     const classRange = d
       ? `${d.classStart}–${d.classEnd}`

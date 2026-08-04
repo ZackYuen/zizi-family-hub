@@ -189,3 +189,61 @@ export function resolveActiveSchedule(
     calendar,
   };
 }
+
+/** Day-of-week key for a HK calendar date (monday…sunday). */
+export function dayKeyFromHongKongDate(date = new Date()): string {
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Hong_Kong",
+    weekday: "long",
+  })
+    .format(date)
+    .toLowerCase();
+  return weekday;
+}
+
+/**
+ * Tasks for a specific HK date — prefers scheduleDateOverrides[dateKey]
+ * over the weekly summer/term template.
+ */
+export function resolveTasksForDate(
+  content: AppContent,
+  date: Date | string
+): {
+  dateKey: string;
+  dayKey: string;
+  tasks: ScheduleTask[];
+  fromOverride: boolean;
+  season: ScheduleSeason;
+} {
+  const dateKey =
+    typeof date === "string" ? date : getHongKongDateKey(date);
+  const when =
+    typeof date === "string"
+      ? new Date(`${date}T12:00:00+08:00`)
+      : date;
+  const active = resolveActiveSchedule(content, when);
+  const dayKey = dayKeyFromHongKongDate(when);
+  const override = content.scheduleDateOverrides?.[dateKey];
+  if (override?.length) {
+    return {
+      dateKey,
+      dayKey,
+      tasks: override,
+      fromOverride: true,
+      season: active.season,
+    };
+  }
+  const day =
+    active.schedule.find((d) => d.dayKey === dayKey) ?? active.schedule[0];
+  return {
+    dateKey,
+    dayKey,
+    tasks: day?.tasks ?? [],
+    fromOverride: false,
+    season: active.season,
+  };
+}
+
+export function tasksIncludeDrawingClass(tasks: ScheduleTask[]): boolean {
+  return tasks.some((t) => isDrawingClassTask(t));
+}
