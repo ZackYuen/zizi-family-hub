@@ -365,6 +365,16 @@ export const adminLabels = {
   familyName: { en: "Family Name", fil: "Pangalan ng Pamilya" },
   schoolEn: { en: "Zizi School (English)", fil: "Eskwelahan ni Zizi (English)" },
   schoolFil: { en: "Zizi School (Filipino)", fil: "Eskwelahan ni Zizi (Filipino)" },
+  whatsappBotPaused: {
+    en: "Pause WhatsApp bot replies",
+    fil: "I-pause ang WhatsApp bot replies",
+    zh: "暫停 WhatsApp 機械人回覆",
+  },
+  whatsappBotPausedHint: {
+    en: "When on, the WhatsApp bot stays connected but does not reply. In-app Ask still works. After Save, the live bot picks this up within ~1 minute (or restart pm2).",
+    fil: "Kapag naka-on, connected pa ang WhatsApp bot pero hindi sumasagot. Gumagana pa ang in-app Ask. Pagkatapos mag-Save, kukunin ito ng live bot sa loob ng ~1 minuto (o i-restart ang pm2).",
+    zh: "開啟後，WhatsApp 機械人仍連線但不回覆。應用內 Ask 仍可用。儲存後約 1 分鐘內生效（或重啟 pm2）。",
+  },
   downloadBackup: { en: "Download backup", fil: "I-download ang backup" },
   today: { en: "Today", fil: "Ngayon" },
   addTask: { en: "+ Add task", fil: "+ Magdagdag ng gawain" },

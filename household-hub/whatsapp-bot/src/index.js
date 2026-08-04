@@ -95,6 +95,11 @@ const LIVE_INBOX_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/inbox/") ||
   "https://zizi-family-hub.vercel.app/api/inbox/"
 ).replace(/\/?$/, "/");
+const LIVE_BOT_STATUS_URL = (
+  process.env.LIVE_BOT_STATUS_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/bot-status/") ||
+  "https://zizi-family-hub.vercel.app/api/bot-status/"
+).replace(/\/?$/, "/");
 const INBOX_SECRET = process.env.INBOX_SECRET || process.env.BOT_INBOX_SECRET || "";
 const BOT_NAME = process.env.BOT_NAME || "CharleneBot";
 /** Comma-separated family group JIDs. Required for group replies (empty = no groups). */
@@ -107,6 +112,8 @@ const GROUP_ALLOW_ALL = process.env.GROUP_ALLOW_ALL === "1";
 /** Also reply to DMs if 1 */
 const REPLY_DM = process.env.REPLY_DM === "1";
 const TRIGGER_PREFIX = (process.env.TRIGGER_PREFIX || "?").trim();
+/** Local force-mute without Admin (1 = never reply) */
+const LOCAL_PAUSED = process.env.WHATSAPP_BOT_PAUSED === "1";
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
@@ -238,7 +245,12 @@ async function askFamilyHub(question, extra = {}) {
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question, allowInternet: true, ...extra }),
+      body: JSON.stringify({
+        question,
+        allowInternet: true,
+        fromWhatsApp: true,
+        ...extra,
+      }),
       signal: AbortSignal.timeout(30000),
       redirect: "manual",
     });
@@ -259,6 +271,22 @@ async function askFamilyHub(question, extra = {}) {
     return res.json();
   }
   throw new Error("Ask API: too many redirects");
+}
+
+/** Admin Settings mute, or WHATSAPP_BOT_PAUSED=1 in bot .env */
+async function isBotPaused() {
+  if (LOCAL_PAUSED) return true;
+  try {
+    const res = await fetch(LIVE_BOT_STATUS_URL, {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) return false;
+    const data = await res.json();
+    return Boolean(data?.paused);
+  } catch (err) {
+    logger.warn({ err }, "bot-status check failed — treating as not paused");
+    return false;
+  }
 }
 
 async function postInbox(payload) {
@@ -492,6 +520,11 @@ async function startBot() {
           continue;
         }
 
+        if (await isBotPaused()) {
+          console.log(`[msg] paused — no reply ${jid}: ${preview}`);
+          continue;
+        }
+
         const question = stripTriggers(text, BOT_NAME);
         if (!question) {
           await sock.sendMessage(
@@ -540,6 +573,10 @@ async function startBot() {
         let answer;
         try {
           const result = await askFamilyHub(question, { jid });
+          if (result?.silence || result?.paused) {
+            console.log(`[msg] paused (Ask silence) — no reply ${jid}`);
+            continue;
+          }
           answer = result.answer || "No answer.";
           if (result.handled === "save") {
             await sock.sendMessage(jid, { text: answer.slice(0, 4000) }, { quoted: msg });

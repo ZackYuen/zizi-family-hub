@@ -101,7 +101,17 @@ Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 | `GROUP_JIDS` | **Required** family group id(s), comma-separated. Empty = ignore all groups |
 | `GROUP_ALLOW_ALL` | `1` = listen in every group (old unsafe behaviour). Prefer `GROUP_JIDS` |
 | `REPLY_DM` | `1` to also answer private chats |
+| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute (never reply). Prefer **Admin → Settings → Pause WhatsApp bot** |
+| `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
 | `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
+
+### Pause replies (no logout)
+
+1. **Admin (preferred):** Settings → **Pause WhatsApp bot replies** → Save. Live Ask returns silence; bot checks `/api/bot-status` before replying.
+2. **Local only:** set `WHATSAPP_BOT_PAUSED=1` in bot `.env`, then `npm run pm2:up`.
+3. In-app Ask is **not** muted — only WhatsApp replies.
+
+After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot has the pause check.
 
 ## vs official Cloud API
 
@@ -140,6 +150,7 @@ You can run **both**; group members can use either path.
   3. Bot WhatsApp number must be **in that group**.
   4. Message must start with `?` (e.g. `? Tonight dinner?`) from a **different** phone than the linked device.
   5. If logs say `groups off` / `set GROUP_JIDS`, add the family `…@g.us` id from a `[msg] skip …@g.us` line, then `npm run pm2:up`.
+- **Bot connected but silent:** check Admin → Settings pause, or `WHATSAPP_BOT_PAUSED=1`, or logs `[msg] paused`. Unpause + Save (or unset env) then `npm run pm2:up`.
 - **No reply / Ask API error:** ensure `LIVE_ASK_URL` ends with `/` (`.../api/ask/`). Check `pm2 logs` for `[ask]`; confirm message used `?` or @bot from a **different** phone than the linked device.
 - **Ask API 404:** merge/deploy PR with `/api/ask` first.
 - **`?save` says “could not find that”:** Azure bot is outdated *and* Vercel not yet deployed with Ask-side save. Deploy this app, then on Azure: `git pull && pm2 restart zizi-whatsapp-bot`. Footer `_(live · date)_` also means the bot binary is old.

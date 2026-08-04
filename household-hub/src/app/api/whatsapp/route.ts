@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { answerFamilyQuestion } from "@/lib/ask-agent";
 import { parseSaveCommand, handleWhatsAppSave } from "@/lib/whatsapp-save";
+import { isWhatsAppBotPaused } from "@/lib/whatsapp-bot-pause";
 
 export const dynamic = "force-dynamic";
 
@@ -97,6 +98,10 @@ export async function POST(request: Request) {
         const messages: WhatsAppTextMessage[] = value?.messages ?? [];
         for (const msg of messages) {
           if (msg.type !== "text" || !msg.text?.body) continue;
+          if (await isWhatsAppBotPaused()) {
+            console.log("[whatsapp] paused — skip reply");
+            continue;
+          }
           const raw = msg.text.body;
           if (!shouldReply(raw)) continue;
           const question = stripTrigger(raw);

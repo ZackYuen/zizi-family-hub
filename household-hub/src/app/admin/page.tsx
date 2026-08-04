@@ -660,6 +660,29 @@ export default function AdminPage() {
               onChange={(ziziSchool) => setContent({ ...content, ziziSchool })}
               multiline
             />
+            <div className="mt-4 rounded-lg border border-stone-200 bg-stone-50 px-3 py-3">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={Boolean(content.whatsappBotPaused)}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      whatsappBotPaused: e.target.checked,
+                    })
+                  }
+                  className="mt-1 h-4 w-4 rounded border-stone-300 text-teal-600"
+                />
+                <span>
+                  <span className="block text-sm font-medium text-stone-800">
+                    {adminT("whatsappBotPaused", lang)}
+                  </span>
+                  <span className="mt-1 block text-xs text-stone-500">
+                    {adminT("whatsappBotPausedHint", lang)}
+                  </span>
+                </span>
+              </label>
+            </div>
             <button
               type="button"
               disabled={saving}
