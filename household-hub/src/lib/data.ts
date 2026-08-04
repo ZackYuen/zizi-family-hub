@@ -38,6 +38,25 @@ function isGoodTranslation(text?: string): boolean {
 }
 
 /** Merge nameEn/nameFil from local seed when Supabase entries are missing or bad */
+function recipeIngText(r: DinnerRecipe): string {
+  return JSON.stringify(r.ingredients ?? []).toLowerCase();
+}
+
+/** Photo-corrected long beans & egg still missing abalone sauce on live → prefer seed */
+function shouldPreferSeedLongBeansEgg(
+  remote: DinnerRecipe,
+  seed: DinnerRecipe
+): boolean {
+  if (remote.id !== "d-18" && seed.id !== "d-18") return false;
+  const seedHasAbalone =
+    recipeIngText(seed).includes("abalone") ||
+    recipeIngText(seed).includes("鮑魚");
+  const remoteHasAbalone =
+    recipeIngText(remote).includes("abalone") ||
+    recipeIngText(remote).includes("鮑魚");
+  return seedHasAbalone && !remoteHasAbalone;
+}
+
 function mergeRecipeTranslations(
   remote: DinnerRecipe[],
   local: DinnerRecipe[]
@@ -47,6 +66,20 @@ function mergeRecipeTranslations(
   const merged = remote.map((r) => {
     const seed = localMap.get(r.id);
     if (!seed) return r;
+    if (shouldPreferSeedLongBeansEgg(r, seed)) {
+      return {
+        ...r,
+        name: seed.name || r.name,
+        nameEn: seed.nameEn || r.nameEn,
+        nameFil: seed.nameFil || r.nameFil,
+        ingredients: seed.ingredients,
+        prepNotes: seed.prepNotes,
+        cookDevice: r.cookDevice || seed.cookDevice,
+        cookSettings: r.cookSettings?.steps?.en
+          ? r.cookSettings
+          : seed.cookSettings,
+      };
+    }
     return {
       ...r,
       nameEn: isGoodTranslation(r.nameEn)
