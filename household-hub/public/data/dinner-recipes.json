@@ -73,35 +73,49 @@
     {
       "id": "d-18",
       "index": 18,
-      "name": "⾖⾓炒蛋",
+      "name": "豆角炒蛋",
       "nameEn": "Stir-fried long beans with egg",
       "category": "Vegetable",
       "subCategory": "Green Beans",
       "link": "https://www.youtube.com/watch?v=dtZADFyUsQg",
+      "nameFil": "Stir-fried long beans with egg",
       "ingredients": [
         {
+          "en": "Long beans",
+          "qty": "4 taels (~150g)",
+          "fil": "Sitaw / long beans",
+          "zh": "豆角"
+        },
+        {
           "en": "Eggs",
-          "qty": "3"
+          "qty": "4",
+          "fil": "Itlog",
+          "zh": "雞蛋"
         },
         {
-          "en": "Green beans",
-          "qty": "200g"
-        },
-        {
-          "en": "Garlic",
-          "qty": "2 cloves"
+          "en": "Abalone sauce",
+          "qty": "a little",
+          "fil": "Abalone sauce",
+          "zh": "鮑魚汁"
         },
         {
           "en": "Oil",
-          "qty": "1 tbsp"
+          "qty": "1 tbsp (+ a little for blanching)",
+          "fil": "Mantika",
+          "zh": "油"
+        },
+        {
+          "en": "Salt",
+          "qty": "a little (for blanching)",
+          "fil": "Asin",
+          "zh": "鹽"
         }
       ],
       "prepNotes": {
-        "en": "Stir-fry beans first until tender, push aside, scramble eggs, mix. Season lightly.",
-        "fil": "Igisa muna ang beans, isaisantabi, lutuin ang itlog, paghaluin. Konting seasoning.",
-        "zh": "先炒豆角至熟，再炒蛋混合調味。"
-      },
-      "nameFil": "Stir-fried long beans with egg"
+        "en": "Prep:\n1. Trim both ends of the long beans, dice finely, wash well.\n2. Boil water with a little oil + salt; blanch diced beans 2 minutes.\n3. Drain.\n4. Beat 4 eggs; add a little abalone sauce.\n5. Mix drained beans into the egg mixture.\n\nCook:\n1. Heat 1 tbsp oil in wok on medium.\n2. Pour in bean–egg mixture.\n3. Push toward the sides and flip the egg.\n4. Fry ~1 more minute, then serve.",
+        "fil": "Handa:\n1. Putulin ang dulo ng sitaw, tadtarin nang pino, hugasan.\n2. Pakuluan ang tubig + konting mantika at asin; i-blanch ang sitaw ng 2 minuto.\n3. Patuyuin.\n4. Bugahin ang 4 itlog; magdagdag ng konting abalone sauce.\n5. Haluin ang sitaw sa itlog.\n\nLuto:\n1. Painitin ang 1 tbsp mantika sa kawali (medium).\n2. Ibuhos ang halo.\n3. Itulak sa gilid at i-flip ang itlog.\n4. Igisa pa ~1 minuto, tapos ihain.",
+        "zh": "處理：\n1. 豆角去頭尾，切成幼粒，洗淨。\n2. 煮滾水，加少許油和鹽，豆角粒焯水約2分鐘。\n3. 瀝乾。\n4. 打散4隻蛋，加少許鮑魚汁。\n5. 將豆角粒拌入蛋液。\n\n烹調：\n1. 鑊下1湯匙油，中火燒熱。\n2. 倒入豆角蛋液。\n3. 將蛋液撥向鑊邊並翻面。\n4. 再煎約1分鐘即可上碟。"
+      }
     },
     {
       "id": "d-19",
