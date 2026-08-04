@@ -124,8 +124,13 @@ export async function POST(request: Request) {
             continue;
           }
           const result = await answerFamilyQuestion(question);
+          const answer = String(result.answer || "").trim();
+          if (!answer) {
+            console.log("[whatsapp] empty answer — skip reply");
+            continue;
+          }
           const footer = `\n\n_(Zizi Family Hub)_`;
-          await sendWhatsAppText(msg.from, result.answer + footer);
+          await sendWhatsAppText(msg.from, answer + footer);
         }
       }
     }
