@@ -577,7 +577,12 @@ async function startBot() {
             console.log(`[msg] paused (Ask silence) — no reply ${jid}`);
             continue;
           }
-          answer = result.answer || "No answer.";
+          answer = String(result.answer || "").trim();
+          // Prefer silence over a filler like "No answer."
+          if (!answer) {
+            console.log(`[msg] empty answer — no reply ${jid}`);
+            continue;
+          }
           if (result.handled === "save") {
             await sock.sendMessage(jid, { text: answer.slice(0, 4000) }, { quoted: msg });
             continue;
