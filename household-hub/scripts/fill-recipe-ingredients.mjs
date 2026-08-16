@@ -177,9 +177,9 @@ function inferFromName(recipe) {
   }
 
   const prepNotes = notes(
-    `Watch the YouTube/Instagram video for heat & timing (often Cantonese). Prep: wash/cut ingredients first. Cook ${recipe.category === "Soup" ? "soup gently" : "on medium heat"}. Ask Sir/Mum if unsure about seasoning.`,
-    `Panoorin ang video para sa init at timing (madalas Cantonese). Ihanda muna ang sangkap. Lutuin ${recipe.category === "Soup" ? "ang sabaw nang dahan-dahan" : "sa medium heat"}. Tanungin si Sir/Mum kung hindi sure sa lasa.`,
-    `影片多為廣東話，先備好材料。${recipe.category === "Soup" ? "慢火煲湯" : "中火烹調"}。調味不肯定請問 Sir/Mum。`
+    `1. Wash and cut ingredients first (bite-size for Zizi).\n2. Cook ${recipe.category === "Soup" ? "as a soup: simmer or EPC17 HI-P 20–35 min, liquid ≥250 ml under MAX" : "on medium heat 5–12 min, stirring as needed"}.\n3. Season lightly with salt / soy. Debone before serving.`,
+    `1. Hugasan at hiwain muna (maliit para kay Zizi).\n2. Lutuin ${recipe.category === "Soup" ? "bilang sabaw: EPC17 HI-P 20–35 min, liquid ≥250 ml under MAX" : "sa medium heat 5–12 min"}.\n3. Konting asin / toyo. Tanggalin ang buto bago ihain.`,
+    `1. 先洗切（小塊方便 Zizi）。\n2. ${recipe.category === "Soup" ? "煲湯：爐火慢煮或 EPC17 高壓 20–35 分鐘，液體 ≥250 ml 勿超 MAX" : "中火烹調 5–12 分鐘" }。\n3. 少許鹽／豉油。上碟前去骨。`
   );
 
   return { ingredients: ings, prepNotes };

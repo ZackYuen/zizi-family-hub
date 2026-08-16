@@ -2,6 +2,10 @@ import fs from "fs/promises";
 import path from "path";
 import { getSupabaseAdmin, isSupabaseConfigured } from "./supabase";
 import { normalizeDinnerOverride } from "./dinner";
+import {
+  hasPlaceholderIngredients,
+  isGenericWatchPrepNotes,
+} from "./cook-device-suggest";
 import type {
   AppContent,
   DinnerMenuOverride,
@@ -80,6 +84,16 @@ function mergeRecipeTranslations(
           : seed.cookSettings,
       };
     }
+    const seedHasRealNotes =
+      Boolean(seed.prepNotes?.en?.trim()) &&
+      !isGenericWatchPrepNotes(seed.prepNotes);
+    const remoteGenericNotes = isGenericWatchPrepNotes(r.prepNotes);
+    const preferSeedNotes = remoteGenericNotes && seedHasRealNotes;
+    const preferSeedIngs =
+      seed.ingredients?.length &&
+      (hasPlaceholderIngredients(r.ingredients) || !r.ingredients?.length) &&
+      !hasPlaceholderIngredients(seed.ingredients);
+
     return {
       ...r,
       nameEn: isGoodTranslation(r.nameEn)
@@ -92,8 +106,16 @@ function mergeRecipeTranslations(
         : isGoodTranslation(seed.nameFil)
           ? seed.nameFil
           : r.nameFil,
-      ingredients: r.ingredients?.length ? r.ingredients : seed.ingredients,
-      prepNotes: r.prepNotes?.en || r.prepNotes?.fil ? r.prepNotes : seed.prepNotes,
+      ingredients: preferSeedIngs
+        ? seed.ingredients
+        : r.ingredients?.length
+          ? r.ingredients
+          : seed.ingredients,
+      prepNotes: preferSeedNotes
+        ? seed.prepNotes
+        : r.prepNotes?.en || r.prepNotes?.fil
+          ? r.prepNotes
+          : seed.prepNotes,
       cookDevice: r.cookDevice || seed.cookDevice,
       cookSettings: r.cookSettings?.steps?.en
         ? r.cookSettings

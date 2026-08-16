@@ -30,7 +30,9 @@ export function looksLikeAirFryDish(
   if (/stir[\s-]?fry|炒|wok/i.test(t) && !/air[\s-]?fry|氣炸|easy\s*fry/i.test(t)) {
     return false;
   }
-  return /air[\s-]?fry(?:ed)?|氣炸|easy\s*fry|reheat leftovers/i.test(t);
+  return /air[\s-]?fry(?:ed)?|氣炸|easy\s*fry|reheat leftovers|酥炸|脆皮|雞翼|wings|potato wedges|烤花椰|烤茄|roasted cauliflower|roasted eggplant/i.test(
+    t
+  );
 }
 
 /** Soup / stew that fits EPC17 (skip clear “stove only” cues). */
@@ -41,15 +43,17 @@ export function looksLikePressureSoup(
   >
 ): boolean {
   if (recipe.cookDevice === COOK_DEVICE_EPC17) return true;
-  if (recipe.category !== "Soup") return false;
   const t = dishText(recipe);
   if (/egg[\s-]?drop|蛋花|miso only|instant noodle/i.test(t)) return false;
-  return true;
+  if (recipe.category === "Soup") return true;
+  // Long braise / stew — pressure cooker instead of 1–2h stove
+  return /炆|燉|滷水|牛尾|oxtail|牛腩|牛筋|curry ribs|咖喱炆|韓式牛尾/i.test(t);
 }
 
 /**
  * Suggest Tools cook device from category / dish name.
- * Soup → EPC17; air-fry / 氣炸 → Easy Fry. Stir-fry stays none.
+ * Soup / long braise → EPC17; air-fry / 氣炸 / crispy-fry / wings / roast veg → Easy Fry.
+ * Stir-fry stays none (wok).
  */
 export function suggestCookDevice(
   recipe: Pick<
@@ -61,9 +65,9 @@ export function suggestCookDevice(
     return {
       cookDevice: COOK_DEVICE_EASY_FRY,
       reason: {
-        en: "Name looks like air-fry / 氣炸 → Easy Fry",
-        fil: "Mukhang air-fry / 氣炸 → Easy Fry",
-        zh: "名稱像氣炸菜 → Easy Fry",
+        en: "Name looks like air-fry / crispy-fry / roast → Easy Fry",
+        fil: "Mukhang air-fry / crispy-fry / roast → Easy Fry",
+        zh: "名稱像氣炸／酥炸／烤 → Easy Fry",
       },
     };
   }
@@ -71,9 +75,9 @@ export function suggestCookDevice(
     return {
       cookDevice: COOK_DEVICE_EPC17,
       reason: {
-        en: "Soup category → EPC17 pressure cooker",
-        fil: "Soup category → EPC17 pressure cooker",
-        zh: "湯類 → EPC17 壓力鍋",
+        en: "Soup / long braise → EPC17 pressure cooker",
+        fil: "Soup / long braise → EPC17 pressure cooker",
+        zh: "湯／炆燉 → EPC17 壓力鍋",
       },
     };
   }
@@ -113,6 +117,27 @@ export function starterCookSettings(cookDevice: string): RecipeCookSettings | nu
     };
   }
   return null;
+}
+
+/** Placeholder notes from the old bulk filler — not real cook steps. */
+export function isGenericWatchPrepNotes(
+  prep: BilingualText | undefined
+): boolean {
+  const en = prep?.en || "";
+  return /Watch the YouTube\/Instagram video|Ask Sir\/Mum if unsure about seasoning/.test(
+    en
+  );
+}
+
+export function hasPlaceholderIngredients(
+  ingredients: { en?: string; zh?: string; qty?: string; fil?: string }[] | undefined
+): boolean {
+  if (!ingredients?.length) return true;
+  return ingredients.some((i) =>
+    /as in video|ayon sa video|見影片|see video|from video title/i.test(
+      `${i.en || ""} ${i.zh || ""} ${i.fil || ""} ${i.qty || ""}`
+    )
+  );
 }
 
 /** True if prepNotes look like the old generic device dump (should not replace dish steps). */
