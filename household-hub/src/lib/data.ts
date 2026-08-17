@@ -630,36 +630,12 @@ export async function saveDinnerRecipes(recipes: DinnerRecipe[]): Promise<void> 
   if (error) throw error;
 }
 
-async function readLocalDinnerOverrides(): Promise<DinnerMenuOverrides> {
-  try {
-    const raw = await fs.readFile(
-      path.join(process.cwd(), "data", "dinner-overrides.json"),
-      "utf-8"
-    );
-    const parsed = JSON.parse(raw) as DinnerMenuOverrides;
-    const byDate: DinnerMenuOverrides["byDate"] = {};
-    for (const [date, rawDay] of Object.entries(parsed.byDate || {})) {
-      const normalized = normalizeDinnerOverride(rawDay, date);
-      if (normalized) byDate[date] = normalized;
-    }
-    return {
-      byDate,
-      updatedAt: parsed.updatedAt || new Date().toISOString(),
-    };
-  } catch {
-    return { byDate: {}, updatedAt: new Date().toISOString() };
-  }
-}
-
 export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
   const empty: DinnerMenuOverrides = {
     byDate: {},
     updatedAt: new Date().toISOString(),
   };
-  const local = await readLocalDinnerOverrides();
-  if (!isSupabaseConfigured()) {
-    return local.byDate && Object.keys(local.byDate).length ? local : empty;
-  }
+  if (!isSupabaseConfigured()) return empty;
 
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
@@ -669,16 +645,7 @@ export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
     .maybeSingle();
 
   if (error) throw error;
-  if (!data?.data) {
-    if (Object.keys(local.byDate).length) {
-      try {
-        return await saveDinnerMenuOverrides(local);
-      } catch {
-        return local;
-      }
-    }
-    return empty;
-  }
+  if (!data?.data) return empty;
   const parsed = data.data as DinnerMenuOverrides;
   const rawByDate =
     parsed.byDate && typeof parsed.byDate === "object" ? parsed.byDate : {};
@@ -687,28 +654,10 @@ export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
     const normalized = normalizeDinnerOverride(raw, date);
     if (normalized) byDate[date] = normalized;
   }
-
-  // Append seed-only dates (e.g. agent-set tomorrow menu) without wiping Admin
-  let added = 0;
-  for (const [date, day] of Object.entries(local.byDate)) {
-    if (!byDate[date]) {
-      byDate[date] = day;
-      added += 1;
-    }
-  }
-  const merged: DinnerMenuOverrides = {
+  return {
     byDate,
     updatedAt: parsed.updatedAt || new Date().toISOString(),
   };
-  if (added) {
-    try {
-      return await saveDinnerMenuOverrides(merged);
-    } catch (err) {
-      console.error("Failed to seed dinner overrides", err);
-      return merged;
-    }
-  }
-  return merged;
 }
 
 export async function saveDinnerMenuOverrides(
