@@ -171,7 +171,7 @@ test("skips Charlene day off (Sunday)", () => {
   assert.equal(result.items.length, 0);
 });
 
-test("reminder text is trilingual and names the leave time", () => {
+test("reminder text is generic: in 1 hour + the task, no leave/出門 wrapper", () => {
   const text = formatOutingReminderMessage({
     id: "sw5",
     dateKey: "2026-08-26",
@@ -186,6 +186,12 @@ test("reminder text is trilingual and names the leave time", () => {
   });
   assert.match(text, /11:15/);
   assert.match(text, /Charlene/);
+  assert.match(text, /In 1 hour/);
+  assert.match(text, /1小時後/);
+  assert.match(text, /Sa 1 oras/);
+  assert.doesNotMatch(text, /Leave in 1 hour/);
+  assert.doesNotMatch(text, /1小時後出門/);
+  assert.doesNotMatch(text, /alis 11:15/);
   assert.match(text, /Maghanda/);
   assert.match(text, /繪畫班/);
 });
