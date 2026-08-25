@@ -310,9 +310,39 @@ function saveSentOutingKeys(map) {
   fs.writeFileSync(SENT_LOG_PATH, JSON.stringify(pruned, null, 2));
 }
 
-function outingTargetJids() {
-  if (GROUP_ALLOWLIST.length) return GROUP_ALLOWLIST;
-  return [];
+let botStatusCache = { at: 0, paused: false, replyGroupJids: [] };
+
+async function fetchBotStatus() {
+  if (LOCAL_PAUSED) {
+    return { paused: true, replyGroupJids: botStatusCache.replyGroupJids };
+  }
+  if (botStatusCache.at && Date.now() - botStatusCache.at < 20_000) {
+    return botStatusCache;
+  }
+  try {
+    const res = await fetch(LIVE_BOT_STATUS_URL, {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) return botStatusCache.at ? botStatusCache : { paused: false, replyGroupJids: [] };
+    const data = await res.json();
+    const replyGroupJids = Array.isArray(data?.replyGroupJids)
+      ? data.replyGroupJids.map((s) => String(s).trim()).filter((s) => /@g\.us$/i.test(s))
+      : [];
+    botStatusCache = {
+      at: Date.now(),
+      paused: Boolean(data?.paused),
+      replyGroupJids,
+    };
+    return botStatusCache;
+  } catch (err) {
+    logger.warn({ err }, "bot-status check failed — treating as not paused");
+    return botStatusCache.at ? botStatusCache : { paused: false, replyGroupJids: [] };
+  }
+}
+
+function replyAllowlist(adminReplyJids) {
+  if (Array.isArray(adminReplyJids) && adminReplyJids.length) return adminReplyJids;
+  return GROUP_ALLOWLIST;
 }
 
 async function checkOutingReminders(sock) {
@@ -337,10 +367,15 @@ async function checkOutingReminders(sock) {
   const adminJids = Array.isArray(data?.groupJids)
     ? data.groupJids.map((s) => String(s).trim()).filter((s) => /@g\.us$/i.test(s))
     : [];
-  const jids = adminJids.length ? adminJids : outingTargetJids();
-  if (!jids.length) return;
-
   const due = Array.isArray(data?.due) ? data.due : [];
+  if (due.length && !adminJids.length) {
+    logger.warn(
+      "outing reminder due but Admin reminder group is empty — set Settings → WhatsApp group for outing reminders (not the reply group)"
+    );
+    return;
+  }
+  const jids = adminJids;
+  if (!jids.length) return;
   if (!due.length) return;
 
   const sent = loadSentOutingKeys();
@@ -377,7 +412,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Outing reminders: 1h before flagged leave-home tasks · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin Settings or GROUP_JIDS · ${LIVE_OUTING_REMINDERS_URL}`
+    `[ok] Outing reminders: 1h before flagged tasks · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only · ${LIVE_OUTING_REMINDERS_URL}`
   );
 }
 
@@ -387,22 +422,6 @@ function stopOutingReminderLoop() {
   outingTimer = null;
   outingTimeout = null;
   outingSock = null;
-}
-
-/** Admin Settings mute, or WHATSAPP_BOT_PAUSED=1 in bot .env */
-async function isBotPaused() {
-  if (LOCAL_PAUSED) return true;
-  try {
-    const res = await fetch(LIVE_BOT_STATUS_URL, {
-      signal: AbortSignal.timeout(8000),
-    });
-    if (!res.ok) return false;
-    const data = await res.json();
-    return Boolean(data?.paused);
-  } catch (err) {
-    logger.warn({ err }, "bot-status check failed — treating as not paused");
-    return false;
-  }
 }
 
 async function postInbox(payload) {
@@ -485,11 +504,12 @@ function shouldHandle(text, msg, sock) {
   return false;
 }
 
-function allowedChat(jid) {
+function allowedChat(jid, adminReplyJids) {
   if (isJidGroup(jid)) {
     if (GROUP_ALLOW_ALL) return true;
-    if (!GROUP_ALLOWLIST.length) return false;
-    return GROUP_ALLOWLIST.includes(jid);
+    const list = replyAllowlist(adminReplyJids);
+    if (!list.length) return false;
+    return list.includes(jid);
   }
   return REPLY_DM;
 }
@@ -570,21 +590,11 @@ async function startBot() {
       console.log(
         `[ok] Inbox: ${INBOX_SECRET ? LIVE_INBOX_URL : "disabled (set INBOX_SECRET)"}`
       );
+      console.log(
+        `[ok] Reply groups: Admin → Settings (bot-status replyGroupJids) or GROUP_JIDS=${GROUP_ALLOWLIST.join(",") || "(empty)"} · reminders: Admin reminder group only · DM=${REPLY_DM ? "on" : "off"}`
+      );
       if (GROUP_ALLOW_ALL) {
-        console.log(
-          `[ok] Listen: groups (ALL — set GROUP_JIDS to lock to family only) · DM=${REPLY_DM ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
-        );
-      } else if (GROUP_ALLOWLIST.length) {
-        console.log(
-          `[ok] Listen: family group(s) only=${GROUP_ALLOWLIST.join(",")} · DM=${REPLY_DM ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
-        );
-      } else {
-        console.log(
-          `[warn] GROUP_JIDS is empty — ignoring ALL groups. Add the family group id to .env (see logs: …@g.us), then npm run pm2:up.`
-        );
-        console.log(
-          `[ok] Listen: groups=off · DM=${REPLY_DM ? "on" : "off"} · trigger=${TRIGGER_PREFIX} / @${BOT_NAME}`
-        );
+        console.log("[ok] GROUP_ALLOW_ALL=1 — replies in every group (unsafe)");
       }
       console.log(
         "[ok] Retest from a DIFFERENT phone in the FAMILY GROUP (bot number must be a member)."
@@ -622,11 +632,13 @@ async function startBot() {
           console.log(`[msg] skip type=${type} no-jid: ${preview}`);
           continue;
         }
-        if (!allowedChat(jid)) {
+        const status = await fetchBotStatus();
+        if (!allowedChat(jid, status.replyGroupJids)) {
+          const list = replyAllowlist(status.replyGroupJids);
           const why = isJidGroup(jid)
-            ? GROUP_ALLOWLIST.length
-              ? "group not in GROUP_JIDS allowlist"
-              : "groups off (set GROUP_JIDS=…@g.us for family group)"
+            ? list.length
+              ? "group not in reply-group allowlist"
+              : "reply groups off (Admin → Settings reply group, or GROUP_JIDS)"
             : "DM ignored (set REPLY_DM=1 to allow)";
           console.log(`[msg] skip ${jid} (${why}): ${preview}`);
           continue;
@@ -638,7 +650,7 @@ async function startBot() {
           continue;
         }
 
-        if (await isBotPaused()) {
+        if (status.paused) {
           console.log(`[msg] paused — no reply ${jid}: ${preview}`);
           continue;
         }

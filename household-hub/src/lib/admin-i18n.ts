@@ -402,15 +402,25 @@ export const adminLabels = {
     fil: "I-ping ang family group 1 oras bago ang oras na ito. I-Save ang schedule pagkatapos magbago.",
     zh: "在此開始時間前1小時發到家庭群組。改完請儲存時間表。",
   },
+  whatsappReplyGroups: {
+    en: "WhatsApp group for bot replies (? / @bot)",
+    fil: "WhatsApp group para sa bot replies (? / @bot)",
+    zh: "機械人回覆的 WhatsApp 群組（? / @bot）",
+  },
+  whatsappReplyGroupsHint: {
+    en: "Where Charlene can ask ? questions. Paste 120363…@g.us (from bot logs). Several ids: comma-separated. Leave blank to use the bot’s GROUP_JIDS. Does not send outing reminders.",
+    fil: "Saan puwedeng magtanong si Charlene (?). I-paste ang 120363…@g.us (mula sa bot logs). Marami: comma-separated. Blank = GROUP_JIDS. Hindi dito ipinapadala ang outing reminder.",
+    zh: "Charlene 用 ? 提問的群組。貼上 120363…@g.us（bot 日誌）。多個用逗號分隔。留空則用 bot 的 GROUP_JIDS。不會發出門提醒。",
+  },
   whatsappReminderGroups: {
     en: "WhatsApp group for outing reminders",
     fil: "WhatsApp group para sa outing reminders",
     zh: "出門提醒的 WhatsApp 群組",
   },
   whatsappReminderGroupsHint: {
-    en: "Paste the family group id (120363…@g.us). Find it in bot logs after a group message: [msg] skip 120363…@g.us. Several ids: comma-separated. Leave blank to use the bot’s GROUP_JIDS. Save, then wait ~1 minute.",
-    fil: "I-paste ang family group id (120363…@g.us). Makikita sa bot logs: [msg] skip 120363…@g.us. Marami: comma-separated. Blank = GROUP_JIDS ng bot. I-Save, hintay ~1 minuto.",
-    zh: "貼上家庭群組 id（120363…@g.us）。在 bot 日誌出現：[msg] skip 120363…@g.us。多個用逗號分隔。留空則用 bot 的 GROUP_JIDS。儲存後約 1 分鐘生效。",
+    en: "Where the 1-hour leave-home ping is posted. Paste a different 120363…@g.us if reminders should not go to the Q&A group. Leave blank = no outing reminder is sent. Save, then wait ~1 minute.",
+    fil: "Saan ipinapadala ang 1-oras na reminder. Ibang 120363…@g.us kung ayaw sa Q&A group. Blank = walang outing reminder. I-Save, hintay ~1 minuto.",
+    zh: "1小時出門提醒發到此群。若不要發到問答群，貼另一個 120363…@g.us。留空則不發送提醒。儲存後約 1 分鐘生效。",
   },
   time: { en: "Time", fil: "Oras" },
   taskEn: { en: "Task (English)", fil: "Gawain (English)" },

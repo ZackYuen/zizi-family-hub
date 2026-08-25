@@ -98,10 +98,10 @@ Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 | `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
 | `BOT_NAME` | Name people type in group |
 | `TRIGGER_PREFIX` | Default `?` |
-| `GROUP_JIDS` | **Required** family group id(s), comma-separated. Empty = ignore all groups |
-| `GROUP_ALLOW_ALL` | `1` = listen in every group (old unsafe behaviour). Prefer `GROUP_JIDS` |
+| `GROUP_JIDS` | Fallback group(s) for **? replies** if Admin reply group is blank |
+| `GROUP_ALLOW_ALL` | `1` = reply in every group (unsafe). Prefer Admin reply group / `GROUP_JIDS` |
 | `REPLY_DM` | `1` to also answer private chats |
-| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute (never reply). Prefer **Admin → Settings → Pause WhatsApp bot** |
+| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing reminders still send |
 | `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
 | `OUTING_REMINDERS` | `0` = do not send 1-hour Zizi outing pings (on by default) |
 | `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
@@ -118,9 +118,12 @@ After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot 
 
 When Zizi must **leave home for class**, the bot posts in the family group **1 hour before** that task’s start time — **only if the task has Admin → Schedule → Remind 1h on WhatsApp checked**. Skips Charlene’s day off.
 
-**Which group:** Admin → Settings → **WhatsApp group for outing reminders** (paste `120363…@g.us`). If that is blank, the bot uses `GROUP_JIDS` from `.env`. After Save, wait ~1 minute (or `npm run pm2:up`).
+**Which groups (two separate Admin fields)**
 
-Needs the hub deployed and the bot restarted once for this feature: `git pull && npm run pm2:up`.
+1. **Bot replies (? / @bot)** — Admin → Settings → **WhatsApp group for bot replies**. Blank = `GROUP_JIDS` in `.env`.
+2. **Outing reminders** — Admin → Settings → **WhatsApp group for outing reminders**. Blank = **no reminder is sent** (does not use the reply group).
+
+After Save, wait ~1 minute. After this code change: deploy hub, then on the VPS `git pull && npm run pm2:up`.
 
 ## vs official Cloud API
 
