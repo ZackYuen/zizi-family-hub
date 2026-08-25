@@ -1,9 +1,15 @@
 import { NextResponse } from "next/server";
 import { answerFamilyQuestion } from "@/lib/ask-agent";
 import { parseSaveCommand, handleWhatsAppSave } from "@/lib/whatsapp-save";
+import {
+  addYoutubeDinnerRecipe,
+  formatAddMealReply,
+  parseAddCommand,
+} from "@/lib/add-youtube-recipe";
 import { isWhatsAppBotPaused } from "@/lib/whatsapp-bot-pause";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 export async function POST(request: Request) {
   try {
@@ -26,6 +32,22 @@ export async function POST(request: Request) {
         silence: true,
         paused: true,
         answer: "",
+      });
+    }
+
+    const addCmd = parseAddCommand(question);
+    if (addCmd) {
+      const result = await addYoutubeDinnerRecipe(addCmd.url);
+      return NextResponse.json({
+        answer: formatAddMealReply(result),
+        handled: "add",
+        duplicate: result.duplicate,
+        recipe: {
+          id: result.recipe.id,
+          name: result.recipe.name,
+          category: result.recipe.category,
+          cookDevice: result.recipe.cookDevice,
+        },
       });
     }
 

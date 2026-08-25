@@ -1,9 +1,15 @@
 import { NextResponse } from "next/server";
 import { answerFamilyQuestion } from "@/lib/ask-agent";
 import { parseSaveCommand, handleWhatsAppSave } from "@/lib/whatsapp-save";
+import {
+  addYoutubeDinnerRecipe,
+  formatAddMealReply,
+  parseAddCommand,
+} from "@/lib/add-youtube-recipe";
 import { isWhatsAppBotPaused } from "@/lib/whatsapp-bot-pause";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 type WhatsAppTextMessage = {
   from: string;
@@ -109,6 +115,15 @@ export async function POST(request: Request) {
             await sendWhatsAppText(
               msg.from,
               "Send ? then your question.\nExample: ? What time pick up Zizi?"
+            );
+            continue;
+          }
+          const addCmd = parseAddCommand(question);
+          if (addCmd) {
+            const added = await addYoutubeDinnerRecipe(addCmd.url);
+            await sendWhatsAppText(
+              msg.from,
+              `${formatAddMealReply(added)}\n\n_(Zizi Family Hub)_`
             );
             continue;
           }

@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:outing": "npx --yes tsx --test src/lib/outing-reminders.test.ts",
+    "test:add-meal": "npx --yes tsx --test src/lib/add-youtube-recipe.test.ts",
     "sync-data": "node scripts/sync-public-data.mjs",
     "seed": "node scripts/seed-supabase.mjs",
     "fetch-live": "node scripts/fetch-live-content.mjs",
