@@ -100,6 +100,17 @@ const LIVE_BOT_STATUS_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/bot-status/") ||
   "https://zizi-family-hub.vercel.app/api/bot-status/"
 ).replace(/\/?$/, "/");
+const LIVE_OUTING_REMINDERS_URL = (
+  process.env.LIVE_OUTING_REMINDERS_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/outing/") ||
+  "https://zizi-family-hub.vercel.app/api/reminders/outing/"
+).replace(/\/?$/, "/");
+/** 0 = disable 1-hour Zizi outing pings */
+const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
+const OUTING_REMINDER_MS = Math.max(
+  30_000,
+  Number(process.env.OUTING_REMINDER_POLL_MS || 60_000) || 60_000
+);
 const INBOX_SECRET = process.env.INBOX_SECRET || process.env.BOT_INBOX_SECRET || "";
 const BOT_NAME = process.env.BOT_NAME || "CharleneBot";
 /** Comma-separated family group JIDs. Required for group replies (empty = no groups). */
@@ -271,6 +282,111 @@ async function askFamilyHub(question, extra = {}) {
     return res.json();
   }
   throw new Error("Ask API: too many redirects");
+}
+
+const SENT_LOG_PATH = path.join(AUTH_DIR, "outing-reminders-sent.json");
+let outingTimer = null;
+let outingTimeout = null;
+let outingSock = null;
+
+function loadSentOutingKeys() {
+  try {
+    const raw = fs.readFileSync(SENT_LOG_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveSentOutingKeys(map) {
+  const cutoff = Date.now() - 4 * 24 * 60 * 60 * 1000;
+  const pruned = {};
+  for (const [key, ts] of Object.entries(map)) {
+    const t = Date.parse(String(ts));
+    if (!Number.isNaN(t) && t >= cutoff) pruned[key] = ts;
+  }
+  fs.mkdirSync(path.dirname(SENT_LOG_PATH), { recursive: true });
+  fs.writeFileSync(SENT_LOG_PATH, JSON.stringify(pruned, null, 2));
+}
+
+function outingTargetJids() {
+  if (GROUP_ALLOWLIST.length) return GROUP_ALLOWLIST;
+  return [];
+}
+
+async function checkOutingReminders(sock) {
+  if (!OUTING_REMINDERS_ENABLED) return;
+  if (!sock) return;
+
+  let data;
+  try {
+    const res = await fetch(LIVE_OUTING_REMINDERS_URL, {
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) {
+      logger.warn({ status: res.status }, "outing reminders fetch failed");
+      return;
+    }
+    data = await res.json();
+  } catch (err) {
+    logger.warn({ err }, "outing reminders fetch error");
+    return;
+  }
+
+  const adminJids = Array.isArray(data?.groupJids)
+    ? data.groupJids.map((s) => String(s).trim()).filter((s) => /@g\.us$/i.test(s))
+    : [];
+  const jids = adminJids.length ? adminJids : outingTargetJids();
+  if (!jids.length) return;
+
+  const due = Array.isArray(data?.due) ? data.due : [];
+  if (!due.length) return;
+
+  const sent = loadSentOutingKeys();
+  for (const item of due) {
+    const key = `${item.dateKey || data.date}:${item.id}`;
+    if (sent[key]) continue;
+    const text = String(item.text || "").trim();
+    if (!text) continue;
+    try {
+      for (const jid of jids) {
+        await sock.sendMessage(jid, { text: text.slice(0, 4000) });
+      }
+      sent[key] = new Date().toISOString();
+      saveSentOutingKeys(sent);
+      console.log(`[remind] sent outing ${key} → ${jids.join(",")}`);
+    } catch (err) {
+      logger.warn({ err, key }, "outing reminder send failed");
+    }
+  }
+}
+
+function startOutingReminderLoop(sock) {
+  outingSock = sock;
+  if (!OUTING_REMINDERS_ENABLED) {
+    console.log("[ok] Outing reminders off (OUTING_REMINDERS=0)");
+    return;
+  }
+  if (outingTimer) return;
+  const tick = () => {
+    checkOutingReminders(outingSock).catch((err) =>
+      logger.warn({ err }, "outing reminder tick failed")
+    );
+  };
+  outingTimer = setInterval(tick, OUTING_REMINDER_MS);
+  outingTimeout = setTimeout(tick, 8000);
+  console.log(
+    `[ok] Outing reminders: 1h before flagged leave-home tasks · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin Settings or GROUP_JIDS · ${LIVE_OUTING_REMINDERS_URL}`
+  );
+}
+
+function stopOutingReminderLoop() {
+  if (outingTimer) clearInterval(outingTimer);
+  if (outingTimeout) clearTimeout(outingTimeout);
+  outingTimer = null;
+  outingTimeout = null;
+  outingSock = null;
 }
 
 /** Admin Settings mute, or WHATSAPP_BOT_PAUSED=1 in bot .env */
@@ -473,8 +589,10 @@ async function startBot() {
       console.log(
         "[ok] Retest from a DIFFERENT phone in the FAMILY GROUP (bot number must be a member)."
       );
+      startOutingReminderLoop(sock);
     }
     if (connection === "close") {
+      stopOutingReminderLoop();
       const statusCode = new Boom(lastDisconnect?.error)?.output?.statusCode;
       const loggedOut = statusCode === DisconnectReason.loggedOut;
       console.log(`[warn] Connection closed (${statusCode}). Reconnecting: ${!loggedOut}`);

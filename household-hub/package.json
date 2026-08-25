@@ -8,6 +8,7 @@
     "build:pages": "node scripts/sync-public-data.mjs && GITHUB_PAGES=true NEXT_PUBLIC_BASE_PATH=/zizi-family-hub next build",
     "start": "next start",
     "lint": "eslint",
+    "test:outing": "npx --yes tsx --test src/lib/outing-reminders.test.ts",
     "sync-data": "node scripts/sync-public-data.mjs",
     "seed": "node scripts/seed-supabase.mjs",
     "fetch-live": "node scripts/fetch-live-content.mjs",

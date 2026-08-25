@@ -23,6 +23,12 @@ export interface ScheduleTask {
   startTime?: string;
   endTime?: string;
   fullDay?: boolean;
+  /**
+   * WhatsApp group ping 1 hour before startTime when Zizi must go out
+   * (kindergarten drop-off, drawing class leave-home). `false` opts out.
+   * If omitted, leave-home/class tasks are still detected from the task text.
+   */
+  outingReminder?: boolean;
   task: BilingualText;
   notes?: BilingualText;
 }
@@ -260,6 +266,12 @@ export interface AppContent {
    * Edited under Admin → Settings.
    */
   whatsappBotPaused?: boolean;
+  /**
+   * WhatsApp group JID(s) for outing reminders, comma-separated
+   * (e.g. 120363…@g.us). Edited under Admin → Settings.
+   * If empty, the bot uses GROUP_JIDS from its .env.
+   */
+  whatsappReminderGroupJids?: string;
 }
 
 /** One person who may use Admin and/or the Charlene frontend app */

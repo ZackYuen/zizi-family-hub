@@ -1735,7 +1735,8 @@
           },
           "time": "12:30",
           "endTime": "13:00",
-          "startTime": "12:30"
+          "startTime": "12:30",
+          "outingReminder": true
         },
         {
           "id": "m7",
@@ -1938,7 +1939,8 @@
           },
           "time": "12:30",
           "endTime": "13:00",
-          "startTime": "12:30"
+          "startTime": "12:30",
+          "outingReminder": true
         },
         {
           "id": "t7",
@@ -2142,7 +2144,8 @@
           },
           "time": "12:30",
           "endTime": "13:00",
-          "startTime": "12:30"
+          "startTime": "12:30",
+          "outingReminder": true
         },
         {
           "id": "w7",
@@ -2362,7 +2365,8 @@
           },
           "time": "12:30",
           "endTime": "13:00",
-          "startTime": "12:30"
+          "startTime": "12:30",
+          "outingReminder": true
         },
         {
           "id": "th7",
@@ -2566,7 +2570,8 @@
           },
           "time": "12:30",
           "endTime": "13:00",
-          "startTime": "12:30"
+          "startTime": "12:30",
+          "outingReminder": true
         },
         {
           "id": "f7",
@@ -3611,7 +3616,8 @@
           },
           "time": "11:15",
           "endTime": "11:30",
-          "startTime": "11:15"
+          "startTime": "11:15",
+          "outingReminder": true
         },
         {
           "id": "sw6",
@@ -4039,7 +4045,8 @@
           },
           "time": "11:15",
           "endTime": "11:30",
-          "startTime": "11:15"
+          "startTime": "11:15",
+          "outingReminder": true
         },
         {
           "id": "sf6",

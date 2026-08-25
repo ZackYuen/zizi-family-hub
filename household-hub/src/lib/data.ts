@@ -6,6 +6,7 @@ import {
   hasPlaceholderIngredients,
   isGenericWatchPrepNotes,
 } from "./cook-device-suggest";
+import { overlayOutingReminderFlags } from "./outing-reminders";
 import type {
   AppContent,
   DinnerMenuOverride,
@@ -247,7 +248,7 @@ function repairKindergartenNames(content: AppContent): {
  * - Auto-merge may APPEND missing ids from seed; it must not wipe Admin collections.
  * - Agents: fetch /api/live → patch-live (Admin Save). Never treat content.json as live.
  */
-export async function getContent(): Promise<AppContent> {
+async function getContentCore(): Promise<AppContent> {
   if (!isSupabaseConfigured()) {
     return readLocalContent();
   }
@@ -567,6 +568,16 @@ export async function getContent(): Promise<AppContent> {
   }
 
   return remote;
+}
+
+export async function getContent(): Promise<AppContent> {
+  const content = await getContentCore();
+  try {
+    const local = await readLocalContent();
+    return overlayOutingReminderFlags(content, local);
+  } catch {
+    return content;
+  }
 }
 
 export async function getContentWithSource(): Promise<{

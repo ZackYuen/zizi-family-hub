@@ -392,6 +392,26 @@ export const adminLabels = {
   startTime: { en: "Start", fil: "Simula" },
   endTime: { en: "End", fil: "Tapos" },
   fullDay: { en: "All day", fil: "Buong araw" },
+  outingRemind: {
+    en: "Remind 1h on WhatsApp",
+    fil: "WhatsApp reminder 1 oras",
+    zh: "WhatsApp 1小時提醒",
+  },
+  outingRemindHint: {
+    en: "Ping the family group 1 hour before this start time. Save schedule after changing.",
+    fil: "I-ping ang family group 1 oras bago ang oras na ito. I-Save ang schedule pagkatapos magbago.",
+    zh: "在此開始時間前1小時發到家庭群組。改完請儲存時間表。",
+  },
+  whatsappReminderGroups: {
+    en: "WhatsApp group for outing reminders",
+    fil: "WhatsApp group para sa outing reminders",
+    zh: "出門提醒的 WhatsApp 群組",
+  },
+  whatsappReminderGroupsHint: {
+    en: "Paste the family group id (120363…@g.us). Find it in bot logs after a group message: [msg] skip 120363…@g.us. Several ids: comma-separated. Leave blank to use the bot’s GROUP_JIDS. Save, then wait ~1 minute.",
+    fil: "I-paste ang family group id (120363…@g.us). Makikita sa bot logs: [msg] skip 120363…@g.us. Marami: comma-separated. Blank = GROUP_JIDS ng bot. I-Save, hintay ~1 minuto.",
+    zh: "貼上家庭群組 id（120363…@g.us）。在 bot 日誌出現：[msg] skip 120363…@g.us。多個用逗號分隔。留空則用 bot 的 GROUP_JIDS。儲存後約 1 分鐘生效。",
+  },
   time: { en: "Time", fil: "Oras" },
   taskEn: { en: "Task (English)", fil: "Gawain (English)" },
   taskFil: { en: "Task (Filipino)", fil: "Gawain (Filipino)" },

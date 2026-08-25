@@ -103,6 +103,7 @@ Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 | `REPLY_DM` | `1` to also answer private chats |
 | `WHATSAPP_BOT_PAUSED` | `1` = local force-mute (never reply). Prefer **Admin → Settings → Pause WhatsApp bot** |
 | `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
+| `OUTING_REMINDERS` | `0` = do not send 1-hour Zizi outing pings (on by default) |
 | `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
 
 ### Pause replies (no logout)
@@ -112,6 +113,14 @@ Then open Admin → **WA Inbox** and promote to HK Life or Meals.
 3. In-app Ask is **not** muted — only WhatsApp replies.
 
 After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot has the pause check.
+
+## Outing reminders (1 hour before class)
+
+When Zizi must **leave home for class**, the bot posts in the family group **1 hour before** that task’s start time — **only if the task has Admin → Schedule → Remind 1h on WhatsApp checked**. Skips Charlene’s day off.
+
+**Which group:** Admin → Settings → **WhatsApp group for outing reminders** (paste `120363…@g.us`). If that is blank, the bot uses `GROUP_JIDS` from `.env`. After Save, wait ~1 minute (or `npm run pm2:up`).
+
+Needs the hub deployed and the bot restarted once for this feature: `git pull && npm run pm2:up`.
 
 ## vs official Cloud API
 
