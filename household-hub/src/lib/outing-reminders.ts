@@ -148,11 +148,11 @@ export function formatOutingReminderMessage(item: OutingReminderItem): string {
   const en = item.task.en;
   const note = item.notes?.zh || item.notes?.en || item.notes?.fil || "";
   const lines = [
-    "⏰ Charlene — 1 hour / 1小時",
+    "⏰ Charlene — in 1 hour / 1小時後",
     "",
-    `FIL: Sa 1 oras (alis ${time}): ${fil}`,
-    `中文：1小時後出門（${time}）：${zh}`,
-    `EN: Leave in 1 hour (${time}): ${en}`,
+    `FIL: Sa 1 oras (${time}): ${fil}`,
+    `中文：1小時後（${time}）：${zh}`,
+    `EN: In 1 hour (${time}): ${en}`,
   ];
   if (note.trim()) {
     lines.push("", note.trim());
