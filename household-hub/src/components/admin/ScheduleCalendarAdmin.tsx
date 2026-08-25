@@ -74,7 +74,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
 
   const updateTask = (
     taskIndex: number,
-    field: "startTime" | "endTime" | "fullDay",
+    field: "startTime" | "endTime" | "fullDay" | "outingReminder",
     value: string | boolean
   ) => {
     const nextDays = structuredClone(days);
@@ -87,6 +87,8 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
       task.endTime = value || undefined;
     } else if (field === "fullDay" && typeof value === "boolean") {
       task.fullDay = value;
+    } else if (field === "outingReminder" && typeof value === "boolean") {
+      task.outingReminder = value;
     }
     setContent(writeEditableDays(content, editSeason, nextDays));
   };
@@ -310,6 +312,17 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                         className="rounded"
                       />
                       {adminT("fullDay", lang)}
+                    </label>
+                    <label className="flex items-center gap-1 text-xs text-stone-500">
+                      <input
+                        type="checkbox"
+                        checked={!!task.outingReminder}
+                        onChange={(e) =>
+                          updateTask(taskIndex, "outingReminder", e.target.checked)
+                        }
+                        className="rounded"
+                      />
+                      {adminT("outingRemind", lang)}
                     </label>
                     {!task.fullDay && (
                       <>

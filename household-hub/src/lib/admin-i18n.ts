@@ -392,6 +392,7 @@ export const adminLabels = {
   startTime: { en: "Start", fil: "Simula" },
   endTime: { en: "End", fil: "Tapos" },
   fullDay: { en: "All day", fil: "Buong araw" },
+  outingRemind: { en: "WA 1h outing", fil: "WA 1h outing", zh: "WA 出門1小時" },
   time: { en: "Time", fil: "Oras" },
   taskEn: { en: "Task (English)", fil: "Gawain (English)" },
   taskFil: { en: "Task (Filipino)", fil: "Gawain (Filipino)" },

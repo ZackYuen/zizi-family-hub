@@ -23,6 +23,12 @@ export interface ScheduleTask {
   startTime?: string;
   endTime?: string;
   fullDay?: boolean;
+  /**
+   * WhatsApp group ping 1 hour before startTime when Zizi must go out
+   * (kindergarten drop-off, drawing class leave-home). `false` opts out.
+   * If omitted, leave-home/class tasks are still detected from the task text.
+   */
+  outingReminder?: boolean;
   task: BilingualText;
   notes?: BilingualText;
 }
