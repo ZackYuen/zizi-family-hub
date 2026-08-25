@@ -79,23 +79,27 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
+| `?add https://youtube.com/…` | LLM-digests the video → **Meals (live)**. Picks Meat / Vegetable / Soup and EPC17 / Easy Fry / wok. Duplicate YouTube ids are skipped. No Inbox review. |
 | `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
 | `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
 | Normal `? …` asks | Logged in inbox (Q&A) for review |
 
-Works two ways:
+**`?add`:** Bot → `POST /api/meals/add` (`INBOX_SECRET`). Fallback: Ask detects `add …` and writes Meals itself.
+
+**`?save`:**
 1. **Bot → `/api/inbox`** when `INBOX_SECRET` matches Vercel
 2. **Bot → `/api/ask`** — Ask detects `save …` and stores to inbox (so even an outdated bot that only calls Ask still works after Vercel deploy)
 
-Then open Admin → **WA Inbox** and promote to HK Life or Meals.
+Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 
 ## Env
 
 | Variable | Meaning |
 |----------|---------|
 | `LIVE_ASK_URL` | Ask API URL (must end with `/`, e.g. `.../api/ask/`) |
-| `INBOX_SECRET` | Same secret as Vercel — preferred inbox path |
+| `INBOX_SECRET` | Same secret as Vercel — inbox + `?add` meals path |
 | `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
+| `LIVE_MEALS_ADD_URL` | Optional override (default: Ask host `/api/meals/add`) |
 | `BOT_NAME` | Name people type in group |
 | `TRIGGER_PREFIX` | Default `?` |
 | `GROUP_JIDS` | Fallback group(s) for **? replies** if Admin reply group is blank |

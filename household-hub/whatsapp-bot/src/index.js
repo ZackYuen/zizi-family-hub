@@ -105,6 +105,11 @@ const LIVE_OUTING_REMINDERS_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/outing/") ||
   "https://zizi-family-hub.vercel.app/api/reminders/outing/"
 ).replace(/\/?$/, "/");
+const LIVE_MEALS_ADD_URL = (
+  process.env.LIVE_MEALS_ADD_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/meals/add/") ||
+  "https://zizi-family-hub.vercel.app/api/meals/add/"
+).replace(/\/?$/, "/");
 /** 0 = disable 1-hour Zizi outing pings */
 const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
 const OUTING_REMINDER_MS = Math.max(
@@ -251,6 +256,7 @@ process.on("unhandledRejection", (err) => {
 
 async function askFamilyHub(question, extra = {}) {
   // Prefer trailing-slash URL; follow 308 manually if needed (some Node builds mishandle POST redirects)
+  const { timeoutMs = 30000, ...bodyExtra } = extra;
   let url = LIVE_ASK_URL;
   for (let attempt = 0; attempt < 3; attempt++) {
     const res = await fetch(url, {
@@ -260,9 +266,9 @@ async function askFamilyHub(question, extra = {}) {
         question,
         allowInternet: true,
         fromWhatsApp: true,
-        ...extra,
+        ...bodyExtra,
       }),
-      signal: AbortSignal.timeout(30000),
+      signal: AbortSignal.timeout(timeoutMs),
       redirect: "manual",
     });
 
@@ -447,6 +453,48 @@ async function postInbox(payload) {
     return res.json();
   } catch (err) {
     logger.warn({ err }, "inbox post error");
+    return null;
+  }
+}
+
+function parseAddCommand(question) {
+  const q = String(question || "").trim();
+  const m = q.match(/^add(?:\s+meal|\s+recipe)?\s+([\s\S]+)$/i);
+  if (!m) return null;
+  const rest = m[1]
+    .trim()
+    .replace(/^["“«]+/, "")
+    .replace(/["”»]+$/, "")
+    .trim();
+  const raw =
+    rest.match(/https?:\/\/\S+/i)?.[0]?.replace(/[),.;]+$/g, "") ||
+    rest.match(/(?:youtu\.be\/|youtube\.com\/)\S+/i)?.[0];
+  if (!raw) return null;
+  const href = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  if (!/youtu\.?be|youtube\.com/i.test(href)) return null;
+  return { url: href };
+}
+
+async function postMealsAdd(url) {
+  if (!INBOX_SECRET) return null;
+  try {
+    const res = await fetch(LIVE_MEALS_ADD_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-inbox-secret": INBOX_SECRET,
+      },
+      body: JSON.stringify({ url }),
+      signal: AbortSignal.timeout(70000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn({ status: res.status, t: t.slice(0, 200) }, "meals/add failed");
+      return null;
+    }
+    return res.json();
+  } catch (err) {
+    logger.warn({ err }, "meals/add error");
     return null;
   }
 }
@@ -660,7 +708,7 @@ async function startBot() {
           await sock.sendMessage(
             jid,
             {
-              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSave anything: ${TRIGGER_PREFIX}save Charlene likes less salt\nOr: ${TRIGGER_PREFIX}save "https://youtube.com/… crispy dumplings"`,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nAdd a YouTube meal: ${TRIGGER_PREFIX}add https://youtube.com/watch?v=…\nSave a note: ${TRIGGER_PREFIX}save Charlene likes less salt`,
             },
             { quoted: msg }
           );
@@ -669,6 +717,20 @@ async function startBot() {
 
         console.log(`[ask] ${jid}: ${question}`);
         await sock.sendPresenceUpdate("composing", jid);
+
+        const addCmd = parseAddCommand(question);
+        if (addCmd) {
+          const added = await postMealsAdd(addCmd.url);
+          if (added?.answer) {
+            await sock.sendMessage(
+              jid,
+              { text: String(added.answer).slice(0, 4000) },
+              { quoted: msg }
+            );
+            continue;
+          }
+          console.warn("[add] meals/add failed; trying Ask API");
+        }
 
         const saveCmd = parseSaveCommand(question);
         if (saveCmd) {
@@ -702,7 +764,10 @@ async function startBot() {
 
         let answer;
         try {
-          const result = await askFamilyHub(question, { jid });
+          const result = await askFamilyHub(question, {
+            jid,
+            timeoutMs: addCmd ? 70000 : 30000,
+          });
           if (result?.silence || result?.paused) {
             console.log(`[msg] paused (Ask silence) — no reply ${jid}`);
             continue;
@@ -713,7 +778,7 @@ async function startBot() {
             console.log(`[msg] empty answer — no reply ${jid}`);
             continue;
           }
-          if (result.handled === "save") {
+          if (result.handled === "save" || result.handled === "add") {
             await sock.sendMessage(jid, { text: answer.slice(0, 4000) }, { quoted: msg });
             continue;
           }
