@@ -4,6 +4,7 @@ import {
   formatOutingReminderMessage,
   getOutingRemindersForDate,
   OUTING_REMIND_MINUTES,
+  parseWhatsAppGroupJids,
 } from "@/lib/outing-reminders";
 
 export const dynamic = "force-dynamic";
@@ -24,6 +25,7 @@ export async function GET() {
       date: snapshot.dateKey,
       dayOff: snapshot.dayOff,
       nowMinutes: snapshot.nowMinutes,
+      groupJids: parseWhatsAppGroupJids(content.whatsappReminderGroupJids),
       due: due.map((item) => ({
         ...item,
         text: formatOutingReminderMessage(item),

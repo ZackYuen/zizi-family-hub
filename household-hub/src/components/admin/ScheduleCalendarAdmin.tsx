@@ -263,6 +263,9 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                 <p className="text-xs text-stone-500">
                   {day.tasks.length} {adminT("tasksShort", lang)}
                 </p>
+                <p className="mt-1 text-[11px] text-amber-800/80">
+                  {adminT("outingRemindHint", lang)}
+                </p>
               </div>
               <div className="flex items-center gap-1">
                 <select
@@ -313,7 +316,14 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                       />
                       {adminT("fullDay", lang)}
                     </label>
-                    <label className="flex items-center gap-1 text-xs text-stone-500">
+                    <label
+                      className={`flex items-center gap-1 text-xs ${
+                        task.outingReminder
+                          ? "font-semibold text-amber-700"
+                          : "text-stone-500"
+                      }`}
+                      title={adminT("outingRemindHint", lang)}
+                    >
                       <input
                         type="checkbox"
                         checked={!!task.outingReminder}
@@ -551,6 +561,7 @@ function DayColumn({
                 {task.fullDay ? (lang === "fil" ? "Buong araw" : "All day") : getTaskStartTime(task)}
               </span>
               <span className="line-clamp-2 text-xs text-stone-700">
+                {task.outingReminder ? "⏰ " : ""}
                 {localized(task.task, lang) || task.task.en}
               </span>
             </div>

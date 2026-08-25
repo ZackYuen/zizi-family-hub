@@ -116,9 +116,11 @@ After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot 
 
 ## Outing reminders (1 hour before class)
 
-When Zizi must **leave home for class** (kindergarten drop-off, drawing class), the bot posts in the family group **1 hour before** that leave-home time. Same live schedule as the app (including one-off days). Skips Charlene’s day off (Sunday / HK public holiday). Pick-up is not auto-reminded.
+When Zizi must **leave home for class**, the bot posts in the family group **1 hour before** that task’s start time — **only if the task has Admin → Schedule → Remind 1h on WhatsApp checked**. Skips Charlene’s day off.
 
-Needs `GROUP_JIDS` set. After this change: deploy the hub, then on the VPS `git pull && npm run pm2:up`.
+**Which group:** Admin → Settings → **WhatsApp group for outing reminders** (paste `120363…@g.us`). If that is blank, the bot uses `GROUP_JIDS` from `.env`. After Save, wait ~1 minute (or `npm run pm2:up`).
+
+Needs the hub deployed and the bot restarted once for this feature: `git pull && npm run pm2:up`.
 
 ## vs official Cloud API
 

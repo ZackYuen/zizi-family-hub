@@ -683,6 +683,25 @@ export default function AdminPage() {
                 </span>
               </label>
             </div>
+            <div className="mt-4 rounded-lg border border-stone-200 bg-stone-50 px-3 py-3">
+              <label className="block text-sm font-medium text-stone-800">
+                {adminT("whatsappReminderGroups", lang)}
+              </label>
+              <p className="mt-1 text-xs text-stone-500">
+                {adminT("whatsappReminderGroupsHint", lang)}
+              </p>
+              <input
+                value={content.whatsappReminderGroupJids ?? ""}
+                onChange={(e) =>
+                  setContent({
+                    ...content,
+                    whatsappReminderGroupJids: e.target.value,
+                  })
+                }
+                placeholder="120363xxxxxxxx@g.us"
+                className="mt-2 w-full rounded-lg border border-stone-200 bg-white px-3 py-2 font-mono text-sm"
+              />
+            </div>
             <button
               type="button"
               disabled={saving}

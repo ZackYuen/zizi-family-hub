@@ -266,6 +266,12 @@ export interface AppContent {
    * Edited under Admin → Settings.
    */
   whatsappBotPaused?: boolean;
+  /**
+   * WhatsApp group JID(s) for outing reminders, comma-separated
+   * (e.g. 120363…@g.us). Edited under Admin → Settings.
+   * If empty, the bot uses GROUP_JIDS from its .env.
+   */
+  whatsappReminderGroupJids?: string;
 }
 
 /** One person who may use Admin and/or the Charlene frontend app */

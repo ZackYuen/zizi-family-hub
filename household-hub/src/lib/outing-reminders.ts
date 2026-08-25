@@ -2,7 +2,7 @@ import { getHongKongTimeParts } from "./i18n";
 import { getHongKongDateKey, isHelperDayOff } from "./hk-holidays";
 import { resolveTasksForDate } from "./school-calendar";
 import { getTaskStartTime, parseTimeToMinutes } from "./schedule-utils";
-import type { AppContent, BilingualText, ScheduleTask } from "./types";
+import type { AppContent, BilingualText, DaySchedule, ScheduleTask } from "./types";
 
 export const OUTING_REMIND_MINUTES = 60;
 
@@ -16,54 +16,80 @@ export interface OutingReminderItem {
   notes?: BilingualText;
 }
 
-function taskBlob(task: ScheduleTask): string {
-  return [
-    task.task?.en,
-    task.task?.zh,
-    task.task?.fil,
-    task.notes?.en,
-    task.notes?.zh,
-    task.notes?.fil,
-  ]
-    .filter(Boolean)
-    .join("\n");
+/** Only tasks with Admin → Schedule → “Remind 1h on WhatsApp” checked. */
+export function isOutingLeaveTask(task: ScheduleTask): boolean {
+  return task.outingReminder === true;
 }
 
-/** True when this task is “take Zizi out to class” (leave-home), not return/travel/class-block/pick-up. */
-export function isOutingLeaveTask(task: ScheduleTask): boolean {
-  if (task.outingReminder === false) return false;
-  if (task.outingReminder === true) return true;
-  if (task.fullDay) return false;
-
-  const blob = taskBlob(task);
-  const lower = blob.toLowerCase();
-  const en = (task.task?.en || "").trim();
-  const zh = (task.task?.zh || "").trim();
-
-  if (/^drawing\s*class\b/i.test(en) || /^繪畫班/.test(zh)) return false;
-  if (/travel\s*\/\s*arrive|前往／到達|biyahe\s*\/\s*dumating/i.test(lower))
-    return false;
-  if (/\breturn home\b|umuwi mula|結束回家/.test(lower)) return false;
-  if (
-    /\bpick-?up\b|\bpick up\b|sunduin|sundo\b|接回/.test(lower) &&
-    !/drop off|ihatid|送到|afternoon class|繪畫/.test(lower)
-  ) {
-    return false;
+function seedOutingFlags(seed: AppContent): Map<string, boolean> {
+  const flags = new Map<string, boolean>();
+  const collect = (days?: DaySchedule[]) => {
+    for (const day of days || []) {
+      for (const task of day.tasks || []) {
+        if (typeof task.outingReminder === "boolean") {
+          flags.set(task.id, task.outingReminder);
+        }
+      }
+    }
+  };
+  collect(seed.weeklySchedule);
+  collect(seed.weeklyScheduleSummer);
+  for (const tasks of Object.values(seed.scheduleDateOverrides || {})) {
+    for (const task of tasks) {
+      if (typeof task.outingReminder === "boolean") {
+        flags.set(task.id, task.outingReminder);
+      }
+    }
   }
+  return flags;
+}
 
-  if (/prepare\s*&\s*leave home/i.test(blob)) return true;
-  if (/準備出門/.test(blob)) return true;
-  if (/maghanda at umalis papuntang drawing/i.test(lower)) return true;
-  if (/leave home for afternoon class/i.test(lower)) return true;
-  if (/出門上下午班|出門前往繪畫/.test(blob)) return true;
-  if (/umalis papuntang afternoon class|ihatid si zizi/i.test(lower)) return true;
-  if (
-    /leave home/.test(lower) &&
-    /(drop off|kindergarten|drawing class|afternoon class)/i.test(blob)
-  ) {
-    return true;
+function applyFlagsToDays(
+  days: DaySchedule[] | undefined,
+  flags: Map<string, boolean>
+): DaySchedule[] | undefined {
+  if (!days) return days;
+  return days.map((day) => ({
+    ...day,
+    tasks: (day.tasks || []).map((task) => {
+      if (typeof task.outingReminder === "boolean") return task;
+      if (!flags.has(task.id)) return task;
+      return { ...task, outingReminder: flags.get(task.id) };
+    }),
+  }));
+}
+
+/** Copy seed outingReminder onto live tasks that have no flag yet (do not overwrite Admin). */
+export function overlayOutingReminderFlags(
+  live: AppContent,
+  seed: AppContent
+): AppContent {
+  const flags = seedOutingFlags(seed);
+  if (!flags.size) return live;
+  const overrides = { ...(live.scheduleDateOverrides || {}) };
+  for (const [date, tasks] of Object.entries(overrides)) {
+    overrides[date] = (tasks || []).map((task) => {
+      if (typeof task.outingReminder === "boolean") return task;
+      if (!flags.has(task.id)) return task;
+      return { ...task, outingReminder: flags.get(task.id) };
+    });
   }
-  return false;
+  return {
+    ...live,
+    weeklySchedule: applyFlagsToDays(live.weeklySchedule, flags) ?? live.weeklySchedule,
+    weeklyScheduleSummer: applyFlagsToDays(live.weeklyScheduleSummer, flags),
+    scheduleDateOverrides: Object.keys(overrides).length
+      ? overrides
+      : live.scheduleDateOverrides,
+  };
+}
+
+export function parseWhatsAppGroupJids(raw?: string | null): string[] {
+  if (!raw?.trim()) return [];
+  return raw
+    .split(/[\s,;]+/)
+    .map((s) => s.trim())
+    .filter((s) => /@g\.us$/i.test(s));
 }
 
 export function getOutingRemindersForDate(

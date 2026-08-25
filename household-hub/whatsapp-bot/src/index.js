@@ -317,8 +317,6 @@ function outingTargetJids() {
 
 async function checkOutingReminders(sock) {
   if (!OUTING_REMINDERS_ENABLED) return;
-  const jids = outingTargetJids();
-  if (!jids.length) return;
   if (!sock) return;
 
   let data;
@@ -335,6 +333,12 @@ async function checkOutingReminders(sock) {
     logger.warn({ err }, "outing reminders fetch error");
     return;
   }
+
+  const adminJids = Array.isArray(data?.groupJids)
+    ? data.groupJids.map((s) => String(s).trim()).filter((s) => /@g\.us$/i.test(s))
+    : [];
+  const jids = adminJids.length ? adminJids : outingTargetJids();
+  if (!jids.length) return;
 
   const due = Array.isArray(data?.due) ? data.due : [];
   if (!due.length) return;
@@ -364,12 +368,6 @@ function startOutingReminderLoop(sock) {
     console.log("[ok] Outing reminders off (OUTING_REMINDERS=0)");
     return;
   }
-  if (!outingTargetJids().length) {
-    console.log(
-      "[warn] Outing reminders skipped — set GROUP_JIDS to the family group"
-    );
-    return;
-  }
   if (outingTimer) return;
   const tick = () => {
     checkOutingReminders(outingSock).catch((err) =>
@@ -379,7 +377,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Outing reminders: 1h before Zizi leave-home/class · poll ${OUTING_REMINDER_MS / 1000}s · ${LIVE_OUTING_REMINDERS_URL}`
+    `[ok] Outing reminders: 1h before flagged leave-home tasks · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin Settings or GROUP_JIDS · ${LIVE_OUTING_REMINDERS_URL}`
   );
 }
 
