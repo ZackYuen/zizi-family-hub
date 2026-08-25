@@ -267,9 +267,13 @@ export interface AppContent {
    */
   whatsappBotPaused?: boolean;
   /**
-   * WhatsApp group JID(s) for outing reminders, comma-separated
-   * (e.g. 120363…@g.us). Edited under Admin → Settings.
-   * If empty, the bot uses GROUP_JIDS from its .env.
+   * WhatsApp group JID(s) where the bot replies to ? / @bot, comma-separated.
+   * Edited under Admin → Settings. If empty, the bot uses GROUP_JIDS from .env.
+   */
+  whatsappReplyGroupJids?: string;
+  /**
+   * WhatsApp group JID(s) for outing reminders only, comma-separated.
+   * Edited under Admin → Settings. Not used for ? replies. If empty, no reminder is sent.
    */
   whatsappReminderGroupJids?: string;
 }
