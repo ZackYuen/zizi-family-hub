@@ -183,15 +183,22 @@ test("reminder text is generic: in 1 hour + the task, no leave/出門 wrapper", 
       fil: "Maghanda at umalis papuntang drawing class",
       zh: "準備出門前往繪畫班",
     },
+    notes: {
+      en: "Bring art bag",
+      fil: "Dalhin ang art bag",
+      zh: "帶畫袋",
+    },
   });
   assert.match(text, /11:15/);
   assert.match(text, /Charlene/);
   assert.match(text, /In 1 hour/);
-  assert.match(text, /1小時後/);
   assert.match(text, /Sa 1 oras/);
   assert.doesNotMatch(text, /Leave in 1 hour/);
-  assert.doesNotMatch(text, /1小時後出門/);
+  assert.doesNotMatch(text, /1小時後/);
+  assert.doesNotMatch(text, /中文/);
   assert.doesNotMatch(text, /alis 11:15/);
   assert.match(text, /Maghanda/);
-  assert.match(text, /繪畫班/);
+  assert.match(text, /Bring art bag/);
+  assert.doesNotMatch(text, /繪畫班/);
+  assert.doesNotMatch(text, /帶畫袋/);
 });

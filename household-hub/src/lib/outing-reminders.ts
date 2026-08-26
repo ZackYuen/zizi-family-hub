@@ -144,14 +144,12 @@ export function getOutingRemindersForDate(
 export function formatOutingReminderMessage(item: OutingReminderItem): string {
   const time = item.startTime;
   const fil = item.task.fil || item.task.en;
-  const zh = item.task.zh || item.task.en;
   const en = item.task.en;
-  const note = item.notes?.zh || item.notes?.en || item.notes?.fil || "";
+  const note = item.notes?.en || item.notes?.fil || "";
   const lines = [
-    "⏰ Charlene — in 1 hour / 1小時後",
+    "⏰ Charlene — in 1 hour",
     "",
     `FIL: Sa 1 oras (${time}): ${fil}`,
-    `中文：1小時後（${time}）：${zh}`,
     `EN: In 1 hour (${time}): ${en}`,
   ];
   if (note.trim()) {
