@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 /**
- * Admin: fetch YouTube title + optional LLM/web enrichment for prep notes & ingredients.
+ * Admin: fetch YouTube or Instagram title + LLM enrichment for prep notes & ingredients.
  * Body: { url, enrich?: boolean, category?: "Meat"|"Vegetable"|"Soup" }
  */
 export async function POST(request: Request) {
@@ -25,12 +25,15 @@ export async function POST(request: Request) {
     if (!url) {
       return NextResponse.json({ error: "url required" }, { status: 400 });
     }
-    if (!/youtu\.?be|youtube\.com/i.test(url)) {
-      return NextResponse.json({ error: "Not a YouTube URL" }, { status: 400 });
+    if (!/youtu\.?be|youtube\.com|instagram\.com|instagr\.am/i.test(url)) {
+      return NextResponse.json(
+        { error: "Need a YouTube or Instagram link" },
+        { status: 400 }
+      );
     }
 
-    // Legacy / fast path — title only
-    if (!body.enrich) {
+    // Legacy / fast path — title only (YouTube oEmbed). Instagram always goes through enrich.
+    if (!body.enrich && /youtu\.?be|youtube\.com/i.test(url)) {
       const oembed = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
       const res = await fetch(oembed, {
         headers: { "User-Agent": "ZiziFamilyHub/1.0" },

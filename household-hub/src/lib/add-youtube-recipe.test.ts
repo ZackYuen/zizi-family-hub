@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   inferRecipeCategory,
+  instagramShortcode,
   parseAddCommand,
 } from "./add-youtube-parse";
 
@@ -18,8 +19,30 @@ test("parseAddCommand accepts ?add youtube urls", () => {
     parseAddCommand("add recipe https://www.youtube.com/shorts/fdSLImmLav4"),
     { url: "https://www.youtube.com/shorts/fdSLImmLav4" }
   );
+  assert.deepEqual(
+    parseAddCommand(
+      "add https://www.instagram.com/reel/Db4MquIBejD/?igsi=MXFkYWZwZTh3YmdldA=="
+    ),
+    {
+      url: "https://www.instagram.com/reel/Db4MquIBejD/?igsi=MXFkYWZwZTh3YmdldA==",
+    }
+  );
   assert.equal(parseAddCommand("add charcoal chicken tonight"), null);
   assert.equal(parseAddCommand("save https://youtu.be/abcDEF12345"), null);
+});
+
+test("instagramShortcode strips tracking params", () => {
+  assert.equal(
+    instagramShortcode(
+      "https://www.instagram.com/reel/Db4MquIBejD/?igsi=MXFkYWZwZTh3YmdldA=="
+    ),
+    "Db4MquIBejD"
+  );
+  assert.equal(
+    instagramShortcode("https://www.instagram.com/p/Db4MquIBejD/"),
+    "Db4MquIBejD"
+  );
+  assert.equal(instagramShortcode("https://youtu.be/abc"), null);
 });
 
 test("inferRecipeCategory picks soup / veg / meat", () => {

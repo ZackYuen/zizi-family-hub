@@ -1,5 +1,22 @@
 import type { DinnerRecipe } from "./types";
 
+export function instagramShortcode(url: string): string | null {
+  const u = url.trim();
+  const m =
+    u.match(
+      /(?:instagram\.com|instagr\.am)\/(?:reel|reels|p|tv)\/([A-Za-z0-9_-]{5,})/i
+    );
+  return m?.[1] ?? null;
+}
+
+export function canonicalInstagramUrl(shortcode: string): string {
+  return `https://www.instagram.com/reel/${shortcode}/`;
+}
+
+export function isRecipeMediaUrl(url: string): boolean {
+  return /youtu\.?be|youtube\.com/i.test(url) || Boolean(instagramShortcode(url));
+}
+
 export function parseAddCommand(question: string): { url: string } | null {
   const q = question.trim();
   const m = q.match(/^add(?:\s+meal|\s+recipe)?\s+([\s\S]+)$/i);
@@ -11,10 +28,10 @@ export function parseAddCommand(question: string): { url: string } | null {
     .trim();
   const raw =
     rest.match(/https?:\/\/\S+/i)?.[0]?.replace(/[),.;]+$/g, "") ||
-    rest.match(/(?:youtu\.be\/|youtube\.com\/)\S+/i)?.[0];
+    rest.match(/(?:youtu\.be\/|youtube\.com\/|instagram\.com\/|instagr\.am\/)\S+/i)?.[0];
   if (!raw) return null;
   const href = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
-  if (!/youtu\.?be|youtube\.com/i.test(href)) return null;
+  if (!isRecipeMediaUrl(href)) return null;
   return { url: href };
 }
 

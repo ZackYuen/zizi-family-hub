@@ -79,12 +79,12 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
-| `?today honey wings, cabbage` | Set **tonight** (live Admin override). Dish names from Meals, or a YouTube link (adds + assigns). Unlisted categories = none |
+| `?today honey wings, cabbage` | Set **tonight** (live Admin override). Dish names from Meals, or a YouTube / Instagram link (adds + assigns). Unlisted categories = none |
 | `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
 | `?menu` | Show tonight + tomorrow |
 | `?menu today: …` `tomorrow: …` | Set both days in one message |
 | `?today clear` | Tonight back to random |
-| `?add https://youtube.com/…` | LLM-digests the video → **Meals library** only (not a date). Duplicate YouTube ids are skipped |
+| `?add https://youtube.com/…` or `?add https://instagram.com/reel/…` | LLM-digests the video/caption → **Meals library**. Duplicate YouTube ids / Instagram reels are skipped |
 | `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
 | `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
 | Normal `? …` asks | Logged in inbox (Q&A) for review |

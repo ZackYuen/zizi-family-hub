@@ -1,4 +1,4 @@
-import { inferRecipeCategory } from "./add-youtube-parse";
+import { inferRecipeCategory, instagramShortcode, canonicalInstagramUrl } from "./add-youtube-parse";
 import { applyCookDevice, suggestCookDevice } from "./cook-device-suggest";
 import { cookDeviceMeta } from "./cook-devices";
 import { getDinnerRecipes, saveDinnerRecipes } from "./data";
@@ -46,15 +46,20 @@ export async function addYoutubeDinnerRecipe(url: string): Promise<{
   duplicate: boolean;
 }> {
   const videoId = youtubeVideoId(url);
-  if (!videoId) {
-    throw new Error("Need a YouTube link");
+  const igId = instagramShortcode(url);
+  if (!videoId && !igId) {
+    throw new Error("Need a YouTube or Instagram link");
   }
-  const canonical = `https://www.youtube.com/watch?v=${videoId}`;
+  const canonical = videoId
+    ? `https://www.youtube.com/watch?v=${videoId}`
+    : canonicalInstagramUrl(igId!);
   const recipes = await getDinnerRecipes();
-  const existing = recipes.find(
-    (r) =>
-      r.id === `d-yt-${videoId}` || youtubeVideoId(r.link || "") === videoId
-  );
+  const existing = recipes.find((r) => {
+    if (videoId) {
+      return r.id === `d-yt-${videoId}` || youtubeVideoId(r.link || "") === videoId;
+    }
+    return r.id === `d-ig-${igId}` || instagramShortcode(r.link || "") === igId;
+  });
   if (existing) {
     return { recipe: existing, duplicate: true };
   }
@@ -77,9 +82,9 @@ export async function addYoutubeDinnerRecipe(url: string): Promise<{
     : 1;
 
   let recipe: DinnerRecipe = {
-    id: `d-yt-${videoId}`,
+    id: videoId ? `d-yt-${videoId}` : `d-ig-${igId}`,
     index,
-    name: enriched.nameZh || enriched.title || "YouTube recipe",
+    name: enriched.nameZh || enriched.title || (videoId ? "YouTube recipe" : "Instagram recipe"),
     nameEn: enriched.nameEn || enriched.title,
     nameFil: enriched.nameFil || enriched.nameEn || enriched.title,
     category,
