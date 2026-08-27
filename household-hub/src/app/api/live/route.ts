@@ -22,6 +22,7 @@ export async function GET() {
       content,
       recipes,
       tonight: snapshot.tonight,
+      tomorrow: snapshot.tomorrow,
       knowledgeText: snapshotToKnowledgeText(snapshot),
     },
     {

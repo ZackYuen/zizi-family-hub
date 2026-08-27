@@ -1,6 +1,6 @@
 import { getTodayDayKey, getHongKongTimeParts } from "./i18n";
 import { isHelperDayOff } from "./hk-holidays";
-import { hongKongDateKey, resolveTonightMenu, tonightDishes } from "./dinner";
+import { hongKongDateKey, addHongKongDays, resolveTonightMenu, tonightDishes } from "./dinner";
 import {
   getContentWithSource,
   getDinnerMenuOverrides,
@@ -65,6 +65,7 @@ export interface LiveFamilySnapshot {
   appliances: ApplianceGuide[];
   monthlyTasks: AppContent["monthlyTasks"];
   tonight: TonightMenu | null;
+  tomorrow: TonightMenu | null;
   recipeCount: number;
   homeArea?: AppContent["homeArea"];
   places: PlaceMapLink[];
@@ -107,8 +108,12 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
   const recipes = await getDinnerRecipes();
   const overrides = await getDinnerMenuOverrides();
   const dateKey = hongKongDateKey();
+  const tomorrowKey = addHongKongDays(dateKey, 1);
   const tonight = recipes.length
     ? resolveTonightMenu(recipes, dateKey, overrides.byDate[dateKey] ?? null)
+    : null;
+  const tomorrow = recipes.length
+    ? resolveTonightMenu(recipes, tomorrowKey, overrides.byDate[tomorrowKey] ?? null)
     : null;
   const dayOff = isHelperDayOff();
   const dayKey = dayOff ? "sunday" : getTodayDayKey();
@@ -154,6 +159,7 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     appliances: content.appliances ?? [],
     monthlyTasks: content.monthlyTasks,
     tonight,
+    tomorrow,
     recipeCount: recipes.length,
     homeArea: content.homeArea,
     places: content.places ?? [],
@@ -417,6 +423,16 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
         );
       }
       lines.push(`  Recipe video (may be Cantonese): ${dish.link}`);
+    }
+  }
+
+  if (snap.tomorrow) {
+    lines.push("");
+    lines.push(`Tomorrow's dinner (${snap.tomorrow.date}):`);
+    for (const dish of tonightDishes(snap.tomorrow)) {
+      lines.push(
+        `- ${dish.category}: ${getRecipeDisplayName(dish, "en")} / ${getRecipeDisplayName(dish, "fil")}`
+      );
     }
   }
 

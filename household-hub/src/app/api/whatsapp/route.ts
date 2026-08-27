@@ -6,6 +6,7 @@ import {
   formatAddMealReply,
   parseAddCommand,
 } from "@/lib/add-youtube-recipe";
+import { handleWhatsAppMenu, parseMenuCommand } from "@/lib/wa-menu";
 import { isWhatsAppBotPaused } from "@/lib/whatsapp-bot-pause";
 
 export const dynamic = "force-dynamic";
@@ -115,6 +116,15 @@ export async function POST(request: Request) {
             await sendWhatsAppText(
               msg.from,
               "Send ? then your question.\nExample: ? What time pick up Zizi?"
+            );
+            continue;
+          }
+          const menuCmd = parseMenuCommand(question);
+          if (menuCmd) {
+            const menu = await handleWhatsAppMenu(question);
+            await sendWhatsAppText(
+              msg.from,
+              `${menu.answer}\n\n_(Zizi Family Hub)_`
             );
             continue;
           }
