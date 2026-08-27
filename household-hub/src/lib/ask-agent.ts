@@ -415,6 +415,46 @@ function heuristicAnswer(
   }
 
   if (
+    /tomorrow|bukas|明日|明天/.test(q) &&
+    /tonight|dinner|hapunan|今晚|晚餐|menu|ulam|kakainin|kakain|magkain|食乜|食咩/.test(
+      q
+    )
+  ) {
+    if (!snap.tomorrow) {
+      return lang === "fil"
+        ? "Wala pang dinner menu bukas."
+        : lang === "zh"
+          ? "明天尚未有晚餐菜單。"
+          : "No dinner menu for tomorrow yet.";
+    }
+    const dishes = tonightDishes(snap.tomorrow);
+    if (!dishes.length) {
+      return lang === "fil"
+        ? "Wala pang dinner dishes bukas."
+        : lang === "zh"
+          ? "明天尚未有菜式。"
+          : "No dinner dishes for tomorrow.";
+    }
+    const cat =
+      lang === "fil"
+        ? { Meat: "Karne", Vegetable: "Gulay", Soup: "Sabaw" }
+        : lang === "zh"
+          ? { Meat: "肉類", Vegetable: "蔬菜", Soup: "湯" }
+          : { Meat: "Meat", Vegetable: "Vegetable", Soup: "Soup" };
+    const line = (d: (typeof dishes)[number]) =>
+      `${cat[d.category]}: ${dishName(d, lang)}`;
+    return [
+      lang === "fil" ? "Hapunan bukas:" : lang === "zh" ? "明天晚餐：" : "Tomorrow's dinner:",
+      ...dishes.map((d) => `• ${line(d)}`),
+      lang === "fil"
+        ? "Buksan ang Meals tab para sa ingredients."
+        : lang === "zh"
+          ? "可在 Meals 分頁查看材料。"
+          : "Open the Meals tab for ingredients.",
+    ].join("\n");
+  }
+
+  if (
     /tonight|dinner|hapunan|今晚|晚餐|menu|ulam|kakainin|kakain|magkain|kain.*(gabi|hapunan)|食乜|食咩|今晚食/.test(
       q
     )
@@ -1166,9 +1206,9 @@ If the user wrote Chinese/English but asked to "reply with Filipino" (or similar
 Do not mix languages except for unavoidable dish proper names — prefer Filipino dish names (nameFil) when replying in Filipino.
 Prefer FAMILY LIVE DATA below over the internet.
 Answer policy — two buckets:
-(A) FAMILY-SPECIFIC (this household only): schedule, current/next task, tonight’s menu, House Rules, preferences, where things are stored in THIS flat, Zizi routines, salary/holidays, exact appliance buttons/models for OUR machines, pickup times, day-off. → Use FAMILY LIVE DATA only. If missing, say you are unsure and tell Charlene to ask Sir/Mum. Never invent these.
+(A) FAMILY-SPECIFIC (this household only): schedule, current/next task, tonight’s and tomorrow’s menu, House Rules, preferences, where things are stored in THIS flat, Zizi routines, salary/holidays, exact appliance buttons/models for OUR machines, pickup times, day-off. → Use FAMILY LIVE DATA only. If missing, say you are unsure and tell Charlene to ask Sir/Mum. Never invent these.
 (B) GENERAL COOKING / COMMON SENSE: brief, widely known food-safety or technique tips that are NOT about this flat’s inventory or rules (e.g. air-fryer wings: usually put food directly in the basket, or use aluminum foil / a small oven-safe tray — do not block airflow or cover the heater; no special “bake container” required). → OK to answer in 1–3 short sentences. Prefer FAMILY LIVE DATA / Tools tips when they already cover it. Do not invent long recipes. Do not claim “in our kitchen we keep X in Y”.
-For dinner questions, list tonight's dishes from FAMILY LIVE DATA (meat / vegetable / soup — may be zero or more of each) using the correct language names — never invent literal translations like "Winter Shade Public Soup".
+For dinner questions, list tonight's or tomorrow's dishes from FAMILY LIVE DATA (meat / vegetable / soup — may be zero or more of each) using the correct language names — never invent literal translations like "Winter Shade Public Soup".
 For "how to cook" / "paano magluto" of TONIGHT’s dishes, use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data. Short common-sense technique (foil, oil, don’t overcrowd) is still OK under (B).
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.

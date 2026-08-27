@@ -79,10 +79,17 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
-| `?add https://youtube.com/…` | LLM-digests the video → **Meals (live)**. Picks Meat / Vegetable / Soup and EPC17 / Easy Fry / wok. Duplicate YouTube ids are skipped. No Inbox review. |
+| `?today honey wings, cabbage` | Set **tonight** (live Admin override). Dish names from Meals, or a YouTube link (adds + assigns). Unlisted categories = none |
+| `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
+| `?menu` | Show tonight + tomorrow |
+| `?menu today: …` `tomorrow: …` | Set both days in one message |
+| `?today clear` | Tonight back to random |
+| `?add https://youtube.com/…` | LLM-digests the video → **Meals library** only (not a date). Duplicate YouTube ids are skipped |
 | `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
 | `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
 | Normal `? …` asks | Logged in inbox (Q&A) for review |
+
+**`?today` / `?tomorrow` / `?menu`:** Bot → `POST /api/meals/menu` (`INBOX_SECRET`). Fallback: Ask detects the command and writes the dinner override.
 
 **`?add`:** Bot → `POST /api/meals/add` (`INBOX_SECRET`). Fallback: Ask detects `add …` and writes Meals itself.
 
@@ -97,9 +104,10 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 | Variable | Meaning |
 |----------|---------|
 | `LIVE_ASK_URL` | Ask API URL (must end with `/`, e.g. `.../api/ask/`) |
-| `INBOX_SECRET` | Same secret as Vercel — inbox + `?add` meals path |
+| `INBOX_SECRET` | Same secret as Vercel — inbox + `?add` + `?today`/`?tomorrow` |
 | `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
 | `LIVE_MEALS_ADD_URL` | Optional override (default: Ask host `/api/meals/add`) |
+| `LIVE_MEALS_MENU_URL` | Optional override (default: Ask host `/api/meals/menu`) |
 | `BOT_NAME` | Name people type in group |
 | `TRIGGER_PREFIX` | Default `?` |
 | `GROUP_JIDS` | Fallback group(s) for **? replies** if Admin reply group is blank |

@@ -6,6 +6,7 @@ import {
   formatAddMealReply,
   parseAddCommand,
 } from "@/lib/add-youtube-recipe";
+import { handleWhatsAppMenu, parseMenuCommand } from "@/lib/wa-menu";
 import { isWhatsAppBotPaused } from "@/lib/whatsapp-bot-pause";
 
 export const dynamic = "force-dynamic";
@@ -32,6 +33,15 @@ export async function POST(request: Request) {
         silence: true,
         paused: true,
         answer: "",
+      });
+    }
+
+    const menuCmd = parseMenuCommand(question);
+    if (menuCmd) {
+      const result = await handleWhatsAppMenu(question);
+      return NextResponse.json({
+        answer: result.answer,
+        handled: result.handled,
       });
     }
 

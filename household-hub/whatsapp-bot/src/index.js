@@ -110,6 +110,11 @@ const LIVE_MEALS_ADD_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/meals/add/") ||
   "https://zizi-family-hub.vercel.app/api/meals/add/"
 ).replace(/\/?$/, "/");
+const LIVE_MEALS_MENU_URL = (
+  process.env.LIVE_MEALS_MENU_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/meals/menu/") ||
+  "https://zizi-family-hub.vercel.app/api/meals/menu/"
+).replace(/\/?$/, "/");
 /** 0 = disable 1-hour Zizi outing pings */
 const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
 const OUTING_REMINDER_MS = Math.max(
@@ -499,6 +504,34 @@ async function postMealsAdd(url) {
   }
 }
 
+function looksLikeMenuCommand(question) {
+  return /^(today|tonight|tomorrow|bukas|menu)\b/i.test(String(question || "").trim());
+}
+
+async function postMealsMenu(question) {
+  if (!INBOX_SECRET) return null;
+  try {
+    const res = await fetch(LIVE_MEALS_MENU_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-inbox-secret": INBOX_SECRET,
+      },
+      body: JSON.stringify({ question }),
+      signal: AbortSignal.timeout(70000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn({ status: res.status, t: t.slice(0, 200) }, "meals/menu failed");
+      return null;
+    }
+    return res.json();
+  } catch (err) {
+    logger.warn({ err }, "meals/menu error");
+    return null;
+  }
+}
+
 function extractText(msg) {
   const m = msg.message;
   if (!m) return "";
@@ -708,7 +741,7 @@ async function startBot() {
           await sock.sendMessage(
             jid,
             {
-              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nAdd a YouTube meal: ${TRIGGER_PREFIX}add https://youtube.com/watch?v=…\nSave a note: ${TRIGGER_PREFIX}save Charlene likes less salt`,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSet dinner: ${TRIGGER_PREFIX}today honey wings, cabbage\nTomorrow: ${TRIGGER_PREFIX}tomorrow https://youtube.com/watch?v=…\nAdd a YouTube recipe: ${TRIGGER_PREFIX}add https://youtube.com/watch?v=…\nSave a note: ${TRIGGER_PREFIX}save Charlene likes less salt`,
             },
             { quoted: msg }
           );
@@ -717,6 +750,20 @@ async function startBot() {
 
         console.log(`[ask] ${jid}: ${question}`);
         await sock.sendPresenceUpdate("composing", jid);
+
+        const menuCmd = looksLikeMenuCommand(question);
+        if (menuCmd) {
+          const menu = await postMealsMenu(question);
+          if (menu?.answer) {
+            await sock.sendMessage(
+              jid,
+              { text: String(menu.answer).slice(0, 4000) },
+              { quoted: msg }
+            );
+            continue;
+          }
+          console.warn("[menu] meals/menu failed; trying Ask API");
+        }
 
         const addCmd = parseAddCommand(question);
         if (addCmd) {
@@ -766,7 +813,7 @@ async function startBot() {
         try {
           const result = await askFamilyHub(question, {
             jid,
-            timeoutMs: addCmd ? 70000 : 30000,
+            timeoutMs: addCmd || menuCmd ? 70000 : 30000,
           });
           if (result?.silence || result?.paused) {
             console.log(`[msg] paused (Ask silence) — no reply ${jid}`);
@@ -778,7 +825,7 @@ async function startBot() {
             console.log(`[msg] empty answer — no reply ${jid}`);
             continue;
           }
-          if (result.handled === "save" || result.handled === "add") {
+          if (result.handled === "save" || result.handled === "add" || result.handled === "menu") {
             await sock.sendMessage(jid, { text: answer.slice(0, 4000) }, { quoted: msg });
             continue;
           }
