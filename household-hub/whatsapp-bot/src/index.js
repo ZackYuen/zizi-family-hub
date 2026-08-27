@@ -473,10 +473,10 @@ function parseAddCommand(question) {
     .trim();
   const raw =
     rest.match(/https?:\/\/\S+/i)?.[0]?.replace(/[),.;]+$/g, "") ||
-    rest.match(/(?:youtu\.be\/|youtube\.com\/)\S+/i)?.[0];
+    rest.match(/(?:youtu\.be\/|youtube\.com\/|instagram\.com\/|instagr\.am\/)\S+/i)?.[0];
   if (!raw) return null;
   const href = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
-  if (!/youtu\.?be|youtube\.com/i.test(href)) return null;
+  if (!/youtu\.?be|youtube\.com|instagram\.com|instagr\.am/i.test(href)) return null;
   return { url: href };
 }
 
@@ -741,7 +741,7 @@ async function startBot() {
           await sock.sendMessage(
             jid,
             {
-              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSet dinner: ${TRIGGER_PREFIX}today honey wings, cabbage\nTomorrow: ${TRIGGER_PREFIX}tomorrow https://youtube.com/watch?v=…\nAdd a YouTube recipe: ${TRIGGER_PREFIX}add https://youtube.com/watch?v=…\nSave a note: ${TRIGGER_PREFIX}save Charlene likes less salt`,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSet dinner: ${TRIGGER_PREFIX}today honey wings, cabbage\nTomorrow: ${TRIGGER_PREFIX}tomorrow https://youtube.com/watch?v=…\nAdd YouTube or Instagram: ${TRIGGER_PREFIX}add https://instagram.com/reel/…\nSave a note: ${TRIGGER_PREFIX}save Charlene likes less salt`,
             },
             { quoted: msg }
           );

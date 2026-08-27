@@ -536,19 +536,19 @@ export const adminLabels = {
     zh: "每項材料請填 EN＋FIL＋繁中（可用 →繁／→FIL 按鈕）。",
   },
   fetchYoutubeTitle: {
-    en: "Fetch YouTube → names + prep notes + ingredients",
-    fil: "Kunin mula sa YouTube → names + prep notes + ingredients",
-    zh: "從 YouTube 擷取 → 名稱＋準備說明＋材料",
+    en: "Fetch YouTube / Instagram → names + prep notes + ingredients",
+    fil: "Kunin mula sa YouTube / Instagram → names + prep notes + ingredients",
+    zh: "從 YouTube／Instagram 擷取 → 名稱＋準備說明＋材料",
   },
   fetchingTitle: {
-    en: "Fetching YouTube (title, prep, ingredients)… may take ~20s",
-    fil: "Kinukuha ang YouTube (title, prep, ingredients)… ~20s",
-    zh: "擷取 YouTube（標題、準備、材料）中…約 20 秒",
+    en: "Fetching video (title, prep, ingredients)… may take ~20s",
+    fil: "Kinukuha ang video (title, prep, ingredients)… ~20s",
+    zh: "擷取影片（標題、準備、材料）中…約 20 秒",
   },
   titleFetched: {
-    en: "YouTube fetched — review prep notes & ingredients, then Save Meals.",
-    fil: "Nakuha mula sa YouTube — i-check ang prep notes & ingredients, tapos Save Meals.",
-    zh: "已從 YouTube 擷取 — 請檢查準備說明與材料，然後儲存膳食。",
+    en: "Video fetched — review prep notes & ingredients, then Save Meals.",
+    fil: "Nakuha mula sa video — i-check ang prep notes & ingredients, tapos Save Meals.",
+    zh: "已從影片擷取 — 請檢查準備說明與材料，然後儲存膳食。",
   },
   youtubeFetchPartial: {
     en: "Title only — enrichment failed. Check OpenRouter key, or fill prep/ingredients manually.",
@@ -556,9 +556,9 @@ export const adminLabels = {
     zh: "只取得標題 — 強化失敗。請檢查 OpenRouter，或手動填準備／材料。",
   },
   youtubeReplaceConfirm: {
-    en: "Replace existing prep notes and/or ingredients with YouTube fetch?",
-    fil: "Palitan ang existing prep notes at/o ingredients ng YouTube fetch?",
-    zh: "要用 YouTube 擷取內容取代現有準備說明／材料嗎？",
+    en: "Replace existing prep notes and/or ingredients with this video fetch?",
+    fil: "Palitan ang existing prep notes at/o ingredients ng video fetch?",
+    zh: "要用這次影片擷取內容取代現有準備說明／材料嗎？",
   },
   cookDeviceLabel: {
     en: "Cook device (Tools)",

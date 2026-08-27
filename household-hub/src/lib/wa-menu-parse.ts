@@ -19,14 +19,18 @@ export function looksLikeMenuCommand(question: string): boolean {
 }
 
 export function isYoutubeDishToken(token: string): boolean {
-  return /youtu\.?be|youtube\.com/i.test(token);
+  return isRecipeMediaToken(token);
+}
+
+export function isRecipeMediaToken(token: string): boolean {
+  return /youtu\.?be|youtube\.com|instagram\.com|instagr\.am/i.test(token);
 }
 
 export function splitDishTokens(rest: string): string[] {
   const urls: string[] = [];
   const withoutUrls = rest.replace(/https?:\/\/\S+/gi, (raw) => {
     const href = raw.replace(/[),.;]+$/g, "");
-    if (/youtu\.?be|youtube\.com/i.test(href)) urls.push(href);
+    if (/youtu\.?be|youtube\.com|instagram\.com|instagr\.am/i.test(href)) urls.push(href);
     return "\n";
   });
   const parts = withoutUrls

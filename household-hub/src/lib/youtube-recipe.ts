@@ -1,5 +1,9 @@
 import type { BilingualText, RecipeIngredient } from "./types";
 import { ensureTraditionalZh } from "./translate";
+import {
+  canonicalInstagramUrl,
+  instagramShortcode,
+} from "./add-youtube-parse";
 
 export interface YoutubeRecipeEnrichment {
   title: string;
@@ -216,12 +220,12 @@ Rules:
 - If sources are thin, still give a reasonable family version from the dish title, and keep steps conservative ("ask Sir/Mum if unsure").
 - No URLs, no ads, no email.`;
 
-  const user = `YouTube URL: ${input.url}
+  const user = `Video URL: ${input.url}
 Title: ${input.title}
-Channel: ${input.author}
+Creator / channel: ${input.author}
 Category hint: ${input.categoryHint || "(none)"}
 
-VIDEO DESCRIPTION:
+VIDEO DESCRIPTION / INSTAGRAM CAPTION:
 ${input.description || "(none)"}
 
 CAPTIONS / TRANSCRIPT SNIPPET:
@@ -332,17 +336,157 @@ Extract ingredients + prep notes now.`;
   return null;
 }
 
+function parseJinaInstagram(text: string): {
+  title: string;
+  author: string;
+  description: string;
+} {
+  const titleLine = text.match(/^Title:\s*([\s\S]+?)(?=\nURL Source:|\nMarkdown Content:|\n\nURL)/i)?.[1]
+    ?.trim() || text.match(/^Title:\s*(.+)$/m)?.[1]?.trim() || "";
+  const author =
+    titleLine.match(/^(.+?)\s+on Instagram:/i)?.[1]?.trim() || "";
+  const quoted = titleLine.match(/on Instagram:\s*"([\s\S]*)/i)?.[1];
+  const caption = (quoted || titleLine)
+    .replace(/"\s*$/g, "")
+    .trim();
+  const body = text
+    .replace(/^Title:[\s\S]*?(?=\n{2,}|$)/, "")
+    .replace(/^URL Source:.*$/m, "")
+    .replace(/^Markdown Content:\s*/im, "")
+    .trim();
+  const description = [caption, body].filter(Boolean).join("\n").slice(0, 8000);
+  const firstLine = (caption.split("\n").find((l) => l.replace(/[^\p{L}\p{N}]+/gu, "").length > 4) || caption)
+    .slice(0, 180)
+    .trim();
+  return {
+    title: firstLine || "Instagram recipe",
+    author,
+    description,
+  };
+}
+
+async function fetchInstagramCaption(shortcode: string): Promise<{
+  title: string;
+  author: string;
+  description: string;
+}> {
+  const canonical = canonicalInstagramUrl(shortcode);
+  const urls = [
+    `https://r.jina.ai/${canonical}`,
+    `https://r.jina.ai/http://www.instagram.com/reel/${shortcode}/`,
+  ];
+  for (const u of urls) {
+    try {
+      const res = await fetch(u, {
+        headers: {
+          "User-Agent": "ZiziFamilyHub/1.0",
+          Accept: "text/plain",
+        },
+        signal: AbortSignal.timeout(20000),
+      });
+      if (!res.ok) continue;
+      const text = await res.text();
+      if (text.length < 80) continue;
+      if (/^Title:\s*Instagram\s*$/im.test(text) && text.length < 400) continue;
+      return parseJinaInstagram(text);
+    } catch {
+      /* try next */
+    }
+  }
+  return { title: "", author: "", description: "" };
+}
+
+async function enrichFromSources(options: {
+  url: string;
+  title: string;
+  author: string;
+  videoId: string | null;
+  description: string;
+  captions: string;
+  categoryHint?: string;
+}): Promise<YoutubeRecipeEnrichment> {
+  const webQueries = [
+    `${options.title} 食譜 材料 做法`,
+    `${options.title} recipe ingredients steps`,
+    `${options.title} ingredients how to cook`,
+  ].filter((q) => q.trim().length > 8);
+  let web = "";
+  for (const q of webQueries) {
+    web = await fetchWebSnippets(q);
+    if (web.length > 80) break;
+  }
+
+  const llm = await llmEnrichRecipe({
+    title: options.title,
+    author: options.author,
+    url: options.url,
+    description: options.description,
+    captions: options.captions,
+    web,
+    categoryHint: options.categoryHint,
+  });
+
+  if (!llm) {
+    return {
+      title: options.title,
+      author: options.author,
+      videoId: options.videoId,
+      ingredients: [],
+      prepNotes: { en: "", fil: "", zh: "" },
+      used: {
+        description: Boolean(options.description),
+        captions: Boolean(options.captions),
+        web: Boolean(web),
+        llm: false,
+      },
+    };
+  }
+
+  return {
+    title: options.title,
+    author: options.author,
+    videoId: options.videoId,
+    nameZh: llm.nameZh,
+    nameEn: llm.nameEn,
+    nameFil: llm.nameFil,
+    ingredients: llm.ingredients,
+    prepNotes: llm.prepNotes,
+    used: {
+      description: Boolean(options.description),
+      captions: Boolean(options.captions),
+      web: Boolean(web),
+      llm: true,
+    },
+  };
+}
+
 /**
- * Fetch YouTube title + best-effort description/captions/web, then LLM →
- * trilingual prep notes + ingredients for Admin Meals.
+ * Fetch YouTube / Instagram title + caption/description, then LLM →
+ * trilingual prep notes + ingredients for Admin Meals and WhatsApp ?add.
  */
 export async function enrichYoutubeRecipe(options: {
   url: string;
   categoryHint?: string;
 }): Promise<YoutubeRecipeEnrichment> {
   const url = options.url.trim();
+  const ig = instagramShortcode(url);
+  if (ig) {
+    const canonical = canonicalInstagramUrl(ig);
+    const meta = await fetchInstagramCaption(ig);
+    const title = meta.title || "Instagram recipe";
+    return enrichFromSources({
+      url: canonical,
+      title,
+      author: meta.author,
+      videoId: ig,
+      description: meta.description,
+      captions: "",
+      categoryHint: options.categoryHint,
+    });
+  }
+
   if (!/youtu\.?be|youtube\.com/i.test(url)) {
-    throw new Error("Not a YouTube URL");
+    throw new Error("Need a YouTube or Instagram link");
   }
 
   const videoId = youtubeVideoId(url);
@@ -353,57 +497,13 @@ export async function enrichYoutubeRecipe(options: {
     videoId ? fetchCaptionsSnippet(videoId) : Promise.resolve(""),
   ]);
 
-  const webQueries = [
-    `${title} 食譜 材料 做法`,
-    `${title} recipe ingredients steps`,
-    `${title} ingredients how to cook`,
-  ];
-  let web = "";
-  for (const q of webQueries) {
-    web = await fetchWebSnippets(q);
-    if (web.length > 80) break;
-  }
-
-  const llm = await llmEnrichRecipe({
-    title,
-    author,
+  return enrichFromSources({
     url,
-    description,
-    captions,
-    web,
-    categoryHint: options.categoryHint,
-  });
-
-  if (!llm) {
-    return {
-      title,
-      author,
-      videoId,
-      ingredients: [],
-      prepNotes: { en: "", fil: "", zh: "" },
-      used: {
-        description: Boolean(description),
-        captions: Boolean(captions),
-        web: Boolean(web),
-        llm: false,
-      },
-    };
-  }
-
-  return {
     title,
     author,
     videoId,
-    nameZh: llm.nameZh,
-    nameEn: llm.nameEn,
-    nameFil: llm.nameFil,
-    ingredients: llm.ingredients,
-    prepNotes: llm.prepNotes,
-    used: {
-      description: Boolean(description),
-      captions: Boolean(captions),
-      web: Boolean(web),
-      llm: true,
-    },
-  };
+    description,
+    captions,
+    categoryHint: options.categoryHint,
+  });
 }

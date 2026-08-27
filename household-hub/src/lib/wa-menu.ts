@@ -102,7 +102,7 @@ function formatMatchProblems(
     lines.push("Not in Meals:");
     for (const q of unmatched) lines.push(`• ${q}`);
     lines.push("Use a closer name, or paste a YouTube link:");
-    lines.push("?today https://youtube.com/…");
+    lines.push("?today https://youtube.com/… or Instagram reel");
   }
   if (ambiguous.length) {
     lines.push("Which one?");
@@ -129,7 +129,7 @@ export async function handleWhatsAppMenu(question: string): Promise<{
     return {
       handled: "menu",
       answer:
-        "Try:\n?today honey wings, garlic cabbage\n?tomorrow https://youtube.com/…\n?menu",
+        "Try:\n?today honey wings, garlic cabbage\n?tomorrow https://youtube.com/… or Instagram reel\n?menu",
     };
   }
 

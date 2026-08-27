@@ -66,6 +66,15 @@ test("splitDishTokens keeps youtube urls", () => {
     splitDishTokens("https://youtu.be/abcDEF12345, garlic cabbage"),
     ["https://youtu.be/abcDEF12345", "garlic cabbage"]
   );
+  assert.deepEqual(
+    splitDishTokens(
+      "https://www.instagram.com/reel/Db4MquIBejD/?igsi=abc==, cabbage"
+    ),
+    [
+      "https://www.instagram.com/reel/Db4MquIBejD/?igsi=abc==",
+      "cabbage",
+    ]
+  );
 });
 
 test("matchRecipe prefers honey wings and salmon miso", () => {
