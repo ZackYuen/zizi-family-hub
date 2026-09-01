@@ -121,7 +121,7 @@ export async function POST(request: Request) {
           }
           const menuCmd = parseMenuCommand(question);
           if (menuCmd) {
-            const menu = await handleWhatsAppMenu(question);
+            const menu = await handleWhatsAppMenu(question, { jid: msg.from });
             await sendWhatsAppText(
               msg.from,
               `${menu.answer}\n\n_(Zizi Family Hub)_`

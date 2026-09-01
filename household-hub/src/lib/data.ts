@@ -17,6 +17,7 @@ import type {
   ShoppingChecklistState,
   WhatsAppInbox,
   WhatsAppInboxItem,
+  WhatsAppMenuPickSession,
 } from "./types";
 
 const CONTENT_KEY = "content";
@@ -24,6 +25,8 @@ const RECIPES_KEY = "dinner_recipes";
 const MENU_OVERRIDES_KEY = "dinner_menu_overrides";
 const INBOX_KEY = "whatsapp_inbox";
 const INBOX_MAX = 200;
+const MENU_PICK_KEY = "whatsapp_menu_picks";
+const MENU_PICK_TTL_MS = 2 * 60 * 60 * 1000;
 const VISIT_LOG_KEY = "frontend_visit_log";
 const VISIT_LOG_MAX = 500;
 const SHOPPING_CHECKLIST_KEY = "shopping_checklist";
@@ -714,6 +717,75 @@ export async function clearDinnerMenuOverride(
   const current = await getDinnerMenuOverrides();
   delete current.byDate[date];
   return saveDinnerMenuOverrides(current);
+}
+
+type MenuPickStore = { byJid: Record<string, WhatsAppMenuPickSession> };
+
+async function readMenuPickStore(): Promise<MenuPickStore> {
+  if (!isSupabaseConfigured()) return { byJid: {} };
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from("app_data")
+    .select("data")
+    .eq("key", MENU_PICK_KEY)
+    .maybeSingle();
+  if (error) throw error;
+  const parsed = (data?.data || {}) as MenuPickStore;
+  const byJid =
+    parsed.byJid && typeof parsed.byJid === "object" ? parsed.byJid : {};
+  return { byJid };
+}
+
+async function writeMenuPickStore(store: MenuPickStore): Promise<void> {
+  if (!isSupabaseConfigured()) return;
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase.from("app_data").upsert({
+    key: MENU_PICK_KEY,
+    data: store,
+    updated_at: new Date().toISOString(),
+  });
+  if (error) throw error;
+}
+
+function pickStillValid(session: WhatsAppMenuPickSession | undefined): boolean {
+  if (!session?.createdAt) return false;
+  const ts = Date.parse(session.createdAt);
+  if (!Number.isFinite(ts)) return false;
+  return Date.now() - ts < MENU_PICK_TTL_MS;
+}
+
+export async function getWhatsAppMenuPick(
+  jid: string
+): Promise<WhatsAppMenuPickSession | null> {
+  const key = jid.trim() || "ask";
+  const store = await readMenuPickStore();
+  const session = store.byJid[key];
+  return pickStillValid(session) ? session : null;
+}
+
+export async function saveWhatsAppMenuPick(
+  session: WhatsAppMenuPickSession
+): Promise<void> {
+  const key = session.jid.trim() || "ask";
+  const store = await readMenuPickStore();
+  const next: MenuPickStore = { byJid: { ...store.byJid } };
+  const now = Date.now();
+  for (const [jid, s] of Object.entries(next.byJid)) {
+    if (!pickStillValid(s) || now - Date.parse(s.createdAt || "") > MENU_PICK_TTL_MS) {
+      delete next.byJid[jid];
+    }
+  }
+  next.byJid[key] = { ...session, jid: key };
+  await writeMenuPickStore(next);
+}
+
+export async function clearWhatsAppMenuPick(jid: string): Promise<void> {
+  const key = jid.trim() || "ask";
+  const store = await readMenuPickStore();
+  if (!store.byJid[key]) return;
+  const next = { byJid: { ...store.byJid } };
+  delete next.byJid[key];
+  await writeMenuPickStore(next);
 }
 
 export async function getWhatsAppInbox(): Promise<WhatsAppInbox> {

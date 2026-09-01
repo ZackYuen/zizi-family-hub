@@ -173,6 +173,23 @@ export interface WhatsAppInbox {
   updatedAt: string;
 }
 
+/** Pending numbered recipe list after ?today / ?tomorrow name search */
+export interface WhatsAppMenuPickOption {
+  n: number;
+  id: string;
+  category: DinnerRecipe["category"];
+  label: string;
+  query: string;
+}
+
+export interface WhatsAppMenuPickSession {
+  jid: string;
+  day: "today" | "tomorrow";
+  options: WhatsAppMenuPickOption[];
+  preselectedIds: string[];
+  createdAt: string;
+}
+
 /** Frontend app visit log (Admin → Visits) */
 export type FrontendVisitSurface =
   | "open"

@@ -5,7 +5,8 @@ export type MenuDay = "today" | "tomorrow";
 export type ParsedMenuCommand =
   | { action: "show"; days: MenuDay[] }
   | { action: "clear"; days: MenuDay[] }
-  | { action: "set"; assignments: { day: MenuDay; dishes: string[] }[] };
+  | { action: "set"; assignments: { day: MenuDay; dishes: string[] }[] }
+  | { action: "pick"; day: MenuDay | "pending"; numbers: number[] };
 
 const DAY_WORD: Record<string, MenuDay> = {
   today: "today",
@@ -15,7 +16,25 @@ const DAY_WORD: Record<string, MenuDay> = {
 };
 
 export function looksLikeMenuCommand(question: string): boolean {
-  return /^(today|tonight|tomorrow|bukas|menu)\b/i.test(question.trim());
+  const q = question.trim();
+  if (/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) return true;
+  if (/^(pick|choose)\b/i.test(q)) return true;
+  return parsePickNumbers(q) != null;
+}
+
+export function parsePickNumbers(rest: string): number[] | null {
+  const t = rest
+    .trim()
+    .replace(/^(pick|choose)\s+/i, "")
+    .replace(/[.。]+$/g, "")
+    .trim();
+  if (!t) return null;
+  if (!/^\d+(\s*[,，、]\s*\d+|\s+\d+)*$/.test(t)) return null;
+  const nums = t
+    .split(/[,，、\s]+/)
+    .map((s) => Number(s))
+    .filter((n) => Number.isInteger(n) && n >= 1 && n <= 99);
+  return nums.length ? [...new Set(nums)] : null;
 }
 
 export function isYoutubeDishToken(token: string): boolean {
@@ -70,8 +89,14 @@ export function parseMenuCommand(question: string): ParsedMenuCommand | null {
   const q = question.trim();
   if (!looksLikeMenuCommand(q)) return null;
 
+  const pickOnly = parsePickNumbers(q);
+  if (pickOnly && !/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) {
+    return { action: "pick", day: "pending", numbers: pickOnly };
+  }
+
   const first = q.match(/^(today|tonight|tomorrow|bukas|menu)\b/i)?.[1] || "";
   const rest = q.slice(first.length).trim();
+  const restPick = parsePickNumbers(rest);
 
   if (/^menu$/i.test(first)) {
     const todayChunk = labeledChunk(rest, ["today", "tonight"]);
@@ -108,12 +133,15 @@ export function parseMenuCommand(question: string): ParsedMenuCommand | null {
     }
 
     if (isClearRest(rest)) return { action: "clear", days: ["today", "tomorrow"] };
+    if (restPick) return { action: "pick", day: "pending", numbers: restPick };
     if (isShowRest(rest)) return { action: "show", days: ["today", "tomorrow"] };
 
     const loneDay = rest.match(/^(today|tonight|tomorrow|bukas)\b/i);
     if (loneDay) {
       const day = DAY_WORD[loneDay[1].toLowerCase()];
       const after = rest.slice(loneDay[0].length).trim();
+      const afterPick = parsePickNumbers(after);
+      if (afterPick) return { action: "pick", day, numbers: afterPick };
       if (isClearRest(after)) return { action: "clear", days: [day] };
       if (isShowRest(after)) return { action: "show", days: [day] };
       const dishes = splitDishTokens(after);
@@ -127,6 +155,7 @@ export function parseMenuCommand(question: string): ParsedMenuCommand | null {
   }
 
   const day = DAY_WORD[first.toLowerCase()];
+  if (restPick) return { action: "pick", day, numbers: restPick };
   if (isClearRest(rest)) return { action: "clear", days: [day] };
   if (isShowRest(rest)) return { action: "show", days: [day] };
   const dishes = splitDishTokens(rest);
@@ -193,6 +222,26 @@ export function matchRecipe(
     return { ambiguous: scored.slice(0, 4).map((s) => s.recipe) };
   }
   return { recipe: scored[0].recipe };
+}
+
+export function searchSimilarRecipes(
+  query: string,
+  recipes: DinnerRecipe[],
+  limit = 6
+): { recipe: DinnerRecipe; score: number }[] {
+  return recipes
+    .map((recipe) => ({ recipe, score: scoreRecipeMatch(query, recipe) }))
+    .filter((x) => x.score >= 35)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+}
+
+export function numberedRecipeLine(n: number, recipe: DinnerRecipe): string {
+  const zh = recipe.name?.trim() || "";
+  const en = (recipe.nameEn || recipe.nameFil || "").trim();
+  const name =
+    zh && en && zh !== en ? `${zh} / ${en}` : en || zh || recipe.id;
+  return `${n}. ${name} (${recipe.category})`;
 }
 
 export function recipeLabel(recipe: DinnerRecipe): string {

@@ -2,8 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   matchRecipe,
+  numberedRecipeLine,
   parseMenuCommand,
   scoreRecipeMatch,
+  searchSimilarRecipes,
   splitDishTokens,
 } from "./wa-menu-parse";
 import type { DinnerRecipe } from "./types";
@@ -61,6 +63,30 @@ test("parseMenuCommand today / tomorrow / menu", () => {
   assert.equal(parseMenuCommand("what is tonight dinner"), null);
 });
 
+test("parseMenuCommand pick numbers", () => {
+  assert.deepEqual(parseMenuCommand("today 1"), {
+    action: "pick",
+    day: "today",
+    numbers: [1],
+  });
+  assert.deepEqual(parseMenuCommand("today 1, 4"), {
+    action: "pick",
+    day: "today",
+    numbers: [1, 4],
+  });
+  assert.deepEqual(parseMenuCommand("1"), {
+    action: "pick",
+    day: "pending",
+    numbers: [1],
+  });
+  assert.deepEqual(parseMenuCommand("pick 2 3"), {
+    action: "pick",
+    day: "pending",
+    numbers: [2, 3],
+  });
+  assert.equal(parseMenuCommand("today honey wings")?.action, "set");
+});
+
 test("splitDishTokens keeps youtube urls", () => {
   assert.deepEqual(
     splitDishTokens("https://youtu.be/abcDEF12345, garlic cabbage"),
@@ -111,4 +137,9 @@ test("matchRecipe prefers honey wings and salmon miso", () => {
   const garlic = matchRecipe("garlic cabbage", recipes);
   assert.ok("recipe" in garlic && garlic.recipe?.id === "d-cabbage");
   assert.ok(scoreRecipeMatch("honey wings", recipes[0]) > 70);
+  const cabbageHits = searchSimilarRecipes("cabbage", recipes);
+  assert.ok(cabbageHits.length >= 2);
+  assert.ok(cabbageHits.some((h) => h.recipe.id === "d-cabbage"));
+  assert.ok(cabbageHits.some((h) => h.recipe.id === "d-napa"));
+  assert.match(numberedRecipeLine(1, recipes[0]), /^1\. /);
 });

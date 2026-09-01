@@ -38,7 +38,7 @@ export async function POST(request: Request) {
 
     const menuCmd = parseMenuCommand(question);
     if (menuCmd) {
-      const result = await handleWhatsAppMenu(question);
+    const result = await handleWhatsAppMenu(question, { jid: body.jid });
       return NextResponse.json({
         answer: result.answer,
         handled: result.handled,
