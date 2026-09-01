@@ -187,6 +187,8 @@ export interface WhatsAppMenuPickSession {
   day: "today" | "tomorrow";
   options: WhatsAppMenuPickOption[];
   preselectedIds: string[];
+  /** After a number pick, waiting for ?overwrite / ?also */
+  incomingIds?: string[];
   createdAt: string;
 }
 

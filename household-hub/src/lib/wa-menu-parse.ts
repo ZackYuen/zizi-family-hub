@@ -6,7 +6,8 @@ export type ParsedMenuCommand =
   | { action: "show"; days: MenuDay[] }
   | { action: "clear"; days: MenuDay[] }
   | { action: "set"; assignments: { day: MenuDay; dishes: string[] }[] }
-  | { action: "pick"; day: MenuDay | "pending"; numbers: number[] };
+  | { action: "pick"; day: MenuDay | "pending"; numbers: number[] }
+  | { action: "merge"; mode: "overwrite" | "also" };
 
 const DAY_WORD: Record<string, MenuDay> = {
   today: "today",
@@ -19,7 +20,23 @@ export function looksLikeMenuCommand(question: string): boolean {
   const q = question.trim();
   if (/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) return true;
   if (/^(pick|choose)\b/i.test(q)) return true;
+  if (parseMergeMode(q)) return true;
   return parsePickNumbers(q) != null;
+}
+
+export function parseMergeMode(rest: string): "overwrite" | "also" | null {
+  const t = rest
+    .trim()
+    .toLowerCase()
+    .replace(/[.。]+$/g, "")
+    .trim();
+  if (/^(overwrite|replace)(?:\s+(?:it|them|meat|veg|vegetable|soup))?$/.test(t)) {
+    return "overwrite";
+  }
+  if (/^(also|addmore|add-more|add more|keep|append)$/.test(t)) {
+    return "also";
+  }
+  return null;
 }
 
 export function parsePickNumbers(rest: string): number[] | null {
@@ -94,9 +111,15 @@ export function parseMenuCommand(question: string): ParsedMenuCommand | null {
     return { action: "pick", day: "pending", numbers: pickOnly };
   }
 
+  const mergeOnly = parseMergeMode(q);
+  if (mergeOnly && !/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) {
+    return { action: "merge", mode: mergeOnly };
+  }
+
   const first = q.match(/^(today|tonight|tomorrow|bukas|menu)\b/i)?.[1] || "";
   const rest = q.slice(first.length).trim();
   const restPick = parsePickNumbers(rest);
+  const restMerge = parseMergeMode(rest);
 
   if (/^menu$/i.test(first)) {
     const todayChunk = labeledChunk(rest, ["today", "tonight"]);
@@ -133,6 +156,7 @@ export function parseMenuCommand(question: string): ParsedMenuCommand | null {
     }
 
     if (isClearRest(rest)) return { action: "clear", days: ["today", "tomorrow"] };
+    if (restMerge) return { action: "merge", mode: restMerge };
     if (restPick) return { action: "pick", day: "pending", numbers: restPick };
     if (isShowRest(rest)) return { action: "show", days: ["today", "tomorrow"] };
 
@@ -142,6 +166,8 @@ export function parseMenuCommand(question: string): ParsedMenuCommand | null {
       const after = rest.slice(loneDay[0].length).trim();
       const afterPick = parsePickNumbers(after);
       if (afterPick) return { action: "pick", day, numbers: afterPick };
+      const afterMerge = parseMergeMode(after);
+      if (afterMerge) return { action: "merge", mode: afterMerge };
       if (isClearRest(after)) return { action: "clear", days: [day] };
       if (isShowRest(after)) return { action: "show", days: [day] };
       const dishes = splitDishTokens(after);
@@ -156,6 +182,7 @@ export function parseMenuCommand(question: string): ParsedMenuCommand | null {
 
   const day = DAY_WORD[first.toLowerCase()];
   if (restPick) return { action: "pick", day, numbers: restPick };
+  if (restMerge) return { action: "merge", mode: restMerge };
   if (isClearRest(rest)) return { action: "clear", days: [day] };
   if (isShowRest(rest)) return { action: "show", days: [day] };
   const dishes = splitDishTokens(rest);
@@ -246,4 +273,67 @@ export function numberedRecipeLine(n: number, recipe: DinnerRecipe): string {
 
 export function recipeLabel(recipe: DinnerRecipe): string {
   return recipe.nameEn || recipe.name || recipe.nameFil || recipe.id;
+}
+
+export type MenuCat = DinnerRecipe["category"];
+export const MENU_CATS: MenuCat[] = ["Meat", "Vegetable", "Soup"];
+
+export type CategoryIds = Record<MenuCat, string[]>;
+
+export function emptyCategoryIds(): CategoryIds {
+  return { Meat: [], Vegetable: [], Soup: [] };
+}
+
+export function groupRecipeIds(recipes: DinnerRecipe[]): CategoryIds {
+  const next = emptyCategoryIds();
+  for (const r of recipes) {
+    if (!next[r.category].includes(r.id)) next[r.category].push(r.id);
+  }
+  return next;
+}
+
+function uniqueIds(ids: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const id of ids) {
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    out.push(id);
+  }
+  return out;
+}
+
+/** Categories where incoming would change a cat that already has dishes. */
+export function conflictCategories(
+  existing: CategoryIds,
+  incoming: CategoryIds
+): MenuCat[] {
+  return MENU_CATS.filter((cat) => {
+    if (!incoming[cat].length || !existing[cat].length) return false;
+    return incoming[cat].some((id) => !existing[cat].includes(id));
+  });
+}
+
+/** Keep untouched cats; fill empty cats; overwrite or append conflict cats. */
+export function mergeCategoryIds(
+  existing: CategoryIds,
+  incoming: CategoryIds,
+  mode: "overwrite" | "also"
+): CategoryIds {
+  const next = emptyCategoryIds();
+  for (const cat of MENU_CATS) {
+    if (!incoming[cat].length) {
+      next[cat] = [...existing[cat]];
+      continue;
+    }
+    if (!existing[cat].length) {
+      next[cat] = uniqueIds(incoming[cat]);
+      continue;
+    }
+    next[cat] =
+      mode === "overwrite"
+        ? uniqueIds(incoming[cat])
+        : uniqueIds([...existing[cat], ...incoming[cat]]);
+  }
+  return next;
 }

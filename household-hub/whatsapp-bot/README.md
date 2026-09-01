@@ -79,7 +79,7 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
-| `?today honey wings` | Lists **similar Meals with numbers**. Then `?today 1` or `?1` (or `?today 1, 4`) to save tonight |
+| `?today honey wings` | Lists **similar Meals with numbers**. Then `?today 1` or `?1`. Same category as a dish already on that day → `?overwrite` (replace that cat only) or `?also` (keep old + new). Other cats stay |
 | `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
 | `?menu` | Show tonight + tomorrow |
 | `?menu today: …` `tomorrow: …` | Set both days in one message |
