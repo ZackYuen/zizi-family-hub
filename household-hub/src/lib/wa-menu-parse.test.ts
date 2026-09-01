@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  conflictCategories,
+  groupRecipeIds,
   matchRecipe,
+  mergeCategoryIds,
   numberedRecipeLine,
   parseMenuCommand,
   scoreRecipeMatch,
@@ -87,6 +90,30 @@ test("parseMenuCommand pick numbers", () => {
   assert.equal(parseMenuCommand("today honey wings")?.action, "set");
 });
 
+test("parseMenuCommand overwrite / also", () => {
+  assert.deepEqual(parseMenuCommand("overwrite"), {
+    action: "merge",
+    mode: "overwrite",
+  });
+  assert.deepEqual(parseMenuCommand("tonight also"), {
+    action: "merge",
+    mode: "also",
+  });
+  assert.deepEqual(parseMenuCommand("replace"), {
+    action: "merge",
+    mode: "overwrite",
+  });
+  assert.deepEqual(parseMenuCommand("keep"), {
+    action: "merge",
+    mode: "also",
+  });
+  assert.deepEqual(parseMenuCommand("addmore"), {
+    action: "merge",
+    mode: "also",
+  });
+  assert.equal(parseMenuCommand("add https://youtu.be/abc"), null);
+});
+
 test("splitDishTokens keeps youtube urls", () => {
   assert.deepEqual(
     splitDishTokens("https://youtu.be/abcDEF12345, garlic cabbage"),
@@ -142,4 +169,31 @@ test("matchRecipe prefers honey wings and salmon miso", () => {
   assert.ok(cabbageHits.some((h) => h.recipe.id === "d-cabbage"));
   assert.ok(cabbageHits.some((h) => h.recipe.id === "d-napa"));
   assert.match(numberedRecipeLine(1, recipes[0]), /^1\. /);
+});
+
+test("same category conflict vs merge keeps other cats", () => {
+  const existing = groupRecipeIds([
+    recipe({ id: "m1", name: "old meat", nameEn: "old meat", category: "Meat" }),
+    recipe({ id: "v1", name: "old veg", nameEn: "old veg", category: "Vegetable" }),
+  ]);
+  const incoming = groupRecipeIds([
+    recipe({ id: "m2", name: "new meat", nameEn: "new meat", category: "Meat" }),
+  ]);
+  assert.deepEqual(conflictCategories(existing, incoming), ["Meat"]);
+  assert.deepEqual(mergeCategoryIds(existing, incoming, "overwrite"), {
+    Meat: ["m2"],
+    Vegetable: ["v1"],
+    Soup: [],
+  });
+  assert.deepEqual(mergeCategoryIds(existing, incoming, "also"), {
+    Meat: ["m1", "m2"],
+    Vegetable: ["v1"],
+    Soup: [],
+  });
+  const soupOnly = groupRecipeIds([
+    recipe({ id: "s1", name: "soup", nameEn: "soup", category: "Soup" }),
+  ]);
+  assert.deepEqual(conflictCategories(existing, soupOnly), []);
+  assert.deepEqual(mergeCategoryIds(existing, soupOnly, "also").Soup, ["s1"]);
+  assert.deepEqual(mergeCategoryIds(existing, soupOnly, "also").Meat, ["m1"]);
 });

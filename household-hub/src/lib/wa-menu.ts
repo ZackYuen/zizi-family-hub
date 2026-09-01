@@ -22,7 +22,11 @@ import {
   parseMenuCommand,
   recipeLabel,
   searchSimilarRecipes,
+  conflictCategories,
+  groupRecipeIds,
+  mergeCategoryIds,
   type MenuDay,
+  type MenuCat,
 } from "./wa-menu-parse";
 
 export { looksLikeMenuCommand, parseMenuCommand } from "./wa-menu-parse";
@@ -56,31 +60,131 @@ export function formatMenuReply(parts: string[]): string {
   return parts.filter(Boolean).join("\n\n");
 }
 
-async function savePickedRecipes(
+function nameLine(recipe: DinnerRecipe): string {
+  const zh = recipe.name?.trim() || "";
+  const en = (recipe.nameEn || recipe.nameFil || "").trim();
+  const name = zh && en && zh !== en ? `${zh} / ${en}` : en || zh || recipe.id;
+  return `• ${name} (${recipe.category})`;
+}
+
+function recipesByIds(all: DinnerRecipe[], ids: string[]): DinnerRecipe[] {
+  const out: DinnerRecipe[] = [];
+  const seen = new Set<string>();
+  for (const id of ids) {
+    if (seen.has(id)) continue;
+    const recipe = all.find((r) => r.id === id);
+    if (recipe) {
+      out.push(recipe);
+      seen.add(id);
+    }
+  }
+  return out;
+}
+
+async function saveCategoryIds(
   day: MenuDay,
-  picked: DinnerRecipe[]
+  ids: ReturnType<typeof mergeCategoryIds>,
+  allRecipes: DinnerRecipe[]
 ): Promise<string> {
-  if (!picked.length) return "Add at least one dish.";
   const date = dateForDay(day);
-  const meatIds = picked.filter((r) => r.category === "Meat").map((r) => r.id);
-  const vegetableIds = picked
-    .filter((r) => r.category === "Vegetable")
-    .map((r) => r.id);
-  const soupIds = picked.filter((r) => r.category === "Soup").map((r) => r.id);
   await upsertDinnerMenuOverride({
     date,
-    meatIds,
-    vegetableIds,
-    soupIds,
+    meatIds: ids.Meat,
+    vegetableIds: ids.Vegetable,
+    soupIds: ids.Soup,
   });
   const latest = await getDinnerRecipes();
   const menu = resolveTonightMenu(latest, date, {
     date,
-    meatIds,
-    vegetableIds,
-    soupIds,
+    meatIds: ids.Meat,
+    vegetableIds: ids.Vegetable,
+    soupIds: ids.Soup,
   });
   return formatMenuReply([`${dayTitle(day, date)} saved.`, formatMenu(day, menu)]);
+}
+
+function formatCategoryConflict(
+  day: MenuDay,
+  existingMenu: TonightMenu,
+  incoming: DinnerRecipe[],
+  conflicts: MenuCat[]
+): string {
+  const date = dateForDay(day);
+  const lines = [
+    `${dayTitle(day, date)} already has ${conflicts.join(" / ")}. Overwrite or add?`,
+  ];
+  const existing = tonightDishes(existingMenu);
+  for (const cat of conflicts) {
+    lines.push("", `Now (${cat}):`);
+    for (const r of existing.filter((d) => d.category === cat)) {
+      lines.push(nameLine(r));
+    }
+    lines.push(`Your pick (${cat}):`);
+    for (const r of incoming.filter((d) => d.category === cat)) {
+      lines.push(nameLine(r));
+    }
+  }
+  lines.push(
+    "",
+    "?overwrite  — replace that category only (other dishes stay)",
+    "?also  — keep the old dish and add this one"
+  );
+  return lines.join("\n");
+}
+
+async function applyIncomingDishes(
+  day: MenuDay,
+  incoming: DinnerRecipe[],
+  allRecipes: DinnerRecipe[],
+  overrides: Awaited<ReturnType<typeof getDinnerMenuOverrides>>,
+  jid: string,
+  session: {
+    options: WhatsAppMenuPickOption[];
+    preselectedIds: string[];
+  },
+  mode?: "overwrite" | "also"
+): Promise<string> {
+  if (!incoming.length) return "Add at least one dish.";
+  const date = dateForDay(day);
+  const current = resolveTonightMenu(
+    allRecipes,
+    date,
+    overrides.byDate[date] ?? null
+  );
+  const existingIds = groupRecipeIds(tonightDishes(current));
+  const incomingIds = groupRecipeIds(incoming);
+  const newDishes = incoming.filter(
+    (r) => !existingIds[r.category].includes(r.id)
+  );
+
+  if (!newDishes.length) {
+    await clearWhatsAppMenuPick(jid);
+    return formatMenuReply([
+      `${dayTitle(day, date)} already has that dish.`,
+      formatMenu(day, current),
+    ]);
+  }
+
+  const conflicts = conflictCategories(existingIds, incomingIds);
+  if (conflicts.length && !mode) {
+    await saveWhatsAppMenuPick({
+      jid,
+      day,
+      options: session.options,
+      preselectedIds: session.preselectedIds,
+      incomingIds: incoming.map((r) => r.id),
+      createdAt: new Date().toISOString(),
+    });
+    return formatCategoryConflict(day, current, newDishes, conflicts);
+  }
+
+  const merged = mergeCategoryIds(
+    existingIds,
+    incomingIds,
+    mode || "also"
+  );
+  await clearWhatsAppMenuPick(jid);
+  return saveCategoryIds(day, merged, allRecipes);
 }
 
 function formatPickList(
@@ -157,6 +261,30 @@ export async function handleWhatsAppMenu(
     return { handled: "menu", answer: formatMenuReply(blocks) };
   }
 
+  if (parsed.action === "merge") {
+    const session = await getWhatsAppMenuPick(jid);
+    if (!session?.incomingIds?.length) {
+      return {
+        handled: "menu",
+        answer:
+          "Nothing waiting to confirm. Pick a dish number first, e.g. ?today 1\nThen ?overwrite or ?also",
+      };
+    }
+    const incoming = recipesByIds(recipes, session.incomingIds);
+    return {
+      handled: "menu",
+      answer: await applyIncomingDishes(
+        session.day,
+        incoming,
+        recipes,
+        overrides,
+        jid,
+        session,
+        parsed.mode
+      ),
+    };
+  }
+
   if (parsed.action === "pick") {
     const session = await getWhatsAppMenuPick(jid);
     if (!session) {
@@ -182,19 +310,18 @@ export async function handleWhatsAppMenu(
       ...session.preselectedIds,
       ...parsed.numbers.map((n) => byN.get(n)!.id),
     ];
-    const seen = new Set<string>();
-    const picked: DinnerRecipe[] = [];
-    for (const id of pickedIds) {
-      if (seen.has(id)) continue;
-      const recipe = recipes.find((r) => r.id === id);
-      if (recipe) {
-        picked.push(recipe);
-        seen.add(id);
-      }
-    }
-    const day = session.day;
-    await clearWhatsAppMenuPick(jid);
-    return { handled: "menu", answer: await savePickedRecipes(day, picked) };
+    const picked = recipesByIds(recipes, pickedIds);
+    return {
+      handled: "menu",
+      answer: await applyIncomingDishes(
+        session.day,
+        picked,
+        recipes,
+        overrides,
+        jid,
+        session
+      ),
+    };
   }
 
   const blocks: string[] = [];
@@ -219,7 +346,14 @@ export async function handleWhatsAppMenu(
         blocks.push("Add at least one dish.");
         continue;
       }
-      let text = await savePickedRecipes(assignment.day, preselected);
+      let text = await applyIncomingDishes(
+        assignment.day,
+        preselected,
+        pool,
+        overrides,
+        jid,
+        { options: [], preselectedIds: preselected.map((r) => r.id) }
+      );
       if (addedFromLink.length) {
         text = formatMenuReply([
           `Also added to Meals: ${addedFromLink.join(", ")}`,
