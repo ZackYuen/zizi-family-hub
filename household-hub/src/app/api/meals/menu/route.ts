@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const body = (await request.json()) as { question?: string };
+    const body = (await request.json()) as { question?: string; jid?: string };
     const question = body.question?.trim();
     if (!question) {
       return NextResponse.json({ error: "question required" }, { status: 400 });
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     if (!looksLikeMenuCommand(question)) {
       return NextResponse.json({ error: "not a menu command" }, { status: 400 });
     }
-    const result = await handleWhatsAppMenu(question);
+    const result = await handleWhatsAppMenu(question, { jid: body.jid });
     return NextResponse.json({
       ok: true,
       handled: result.handled,

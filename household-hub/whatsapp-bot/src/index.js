@@ -505,10 +505,13 @@ async function postMealsAdd(url) {
 }
 
 function looksLikeMenuCommand(question) {
-  return /^(today|tonight|tomorrow|bukas|menu)\b/i.test(String(question || "").trim());
+  const q = String(question || "").trim();
+  if (/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) return true;
+  if (/^(pick|choose)\b/i.test(q)) return true;
+  return /^\d+(\s*[,，、]\s*\d+|\s+\d+)*\.?$/.test(q);
 }
 
-async function postMealsMenu(question) {
+async function postMealsMenu(question, jid) {
   if (!INBOX_SECRET) return null;
   try {
     const res = await fetch(LIVE_MEALS_MENU_URL, {
@@ -517,7 +520,7 @@ async function postMealsMenu(question) {
         "Content-Type": "application/json",
         "x-inbox-secret": INBOX_SECRET,
       },
-      body: JSON.stringify({ question }),
+      body: JSON.stringify({ question, jid }),
       signal: AbortSignal.timeout(70000),
     });
     if (!res.ok) {
@@ -741,7 +744,7 @@ async function startBot() {
           await sock.sendMessage(
             jid,
             {
-              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSet dinner: ${TRIGGER_PREFIX}today honey wings, cabbage\nTomorrow: ${TRIGGER_PREFIX}tomorrow https://youtube.com/watch?v=…\nAdd YouTube or Instagram: ${TRIGGER_PREFIX}add https://instagram.com/reel/…\nSave a note: ${TRIGGER_PREFIX}save Charlene likes less salt`,
+              text: `Hi — mention me (@${BOT_NAME}) or start with ${TRIGGER_PREFIX}\nExample: ${TRIGGER_PREFIX} Tonight dinner?\nSet dinner: ${TRIGGER_PREFIX}today honey wings  then  ${TRIGGER_PREFIX}1\nTomorrow: ${TRIGGER_PREFIX}tomorrow https://youtube.com/watch?v=…\nAdd YouTube or Instagram: ${TRIGGER_PREFIX}add https://instagram.com/reel/…\nSave a note: ${TRIGGER_PREFIX}save Charlene likes less salt`,
             },
             { quoted: msg }
           );
@@ -753,7 +756,7 @@ async function startBot() {
 
         const menuCmd = looksLikeMenuCommand(question);
         if (menuCmd) {
-          const menu = await postMealsMenu(question);
+          const menu = await postMealsMenu(question, jid);
           if (menu?.answer) {
             await sock.sendMessage(
               jid,

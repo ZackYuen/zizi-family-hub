@@ -79,7 +79,7 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
-| `?today honey wings, cabbage` | Set **tonight** (live Admin override). Dish names from Meals, or a YouTube / Instagram link (adds + assigns). Unlisted categories = none |
+| `?today honey wings` | Lists **similar Meals with numbers**. Then `?today 1` or `?1` (or `?today 1, 4`) to save tonight |
 | `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
 | `?menu` | Show tonight + tomorrow |
 | `?menu today: …` `tomorrow: …` | Set both days in one message |

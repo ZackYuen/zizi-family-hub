@@ -43,7 +43,7 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 - Bot posts to `POST /api/inbox` with header `x-inbox-secret` (= Vercel `INBOX_SECRET`).
 - Admin → **WA Inbox**: review asks; promote to HK Life tip or dinner recipe.
 - **`?add <youtube or instagram reel>`** writes the recipe to **Meals live** (LLM digest + category + cook tool). `POST /api/meals/add`. Skips Inbox.
-- **`?today` / `?tomorrow` / `?menu`** set or show the dinner override for those dates (same as Admin Meals calendar). `POST /api/meals/menu`. Dish names or YouTube links.
+- **`?today` / `?tomorrow` / `?menu`** set or show the dinner override. Dish **names** return a numbered similar-recipe list; reply `?1` / `?today 1, 4` to save. YouTube / Instagram links still add + assign. `POST /api/meals/menu`.
 - Commands in group: `?save …` or `?save "…"` (LLM digests into tip/recipe/note). Legacy `?save tip` / `?save recipe` / `?note` still work.
 - After promote, edit FIL names / prep notes in Meals or HK Life, then Save.
 
