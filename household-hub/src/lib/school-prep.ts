@@ -8,7 +8,7 @@ const PREP_EN = [
   "Bring 1 dry towel + 1 wet towel",
   "Bring 2 spare masks",
   "Bring water",
-  "Bring the lunch box",
+  "Bring an empty food container for Zizi school tea time",
   "Help Zizi comb hair",
   "Put the pickup card in your own bag",
 ];
@@ -19,7 +19,7 @@ const PREP_FIL = [
   "Magdala ng 1 tuyong tuwalya + 1 basang tuwalya",
   "Magdala ng 2 extra na mask",
   "Magdala ng tubig",
-  "Magdala ng food box / lunch box",
+  "Magdala ng walang lamang food container para sa tea time ni Zizi sa eskwela",
   "Suklayin ang buhok ni Zizi",
   "Ilagay ang pickup card sa sarili mong bag",
 ];
@@ -30,7 +30,7 @@ const PREP_ZH = [
   "帶乾／濕毛巾各一",
   "帶兩個口罩備用",
   "帶水",
-  "帶食物盒",
+  "帶空食物盒給孜孜學校茶點時間",
   "幫孜孜梳頭",
   "自己袋接送卡",
 ];
@@ -140,9 +140,89 @@ export function overlayMissingTaskNotes(
   };
 }
 
+const PREP_TASK_ID_SET = new Set<string>(SCHOOL_PREP_TASK_IDS);
+
+function rewriteLunchBoxLine(notes: BilingualText): BilingualText {
+  return {
+    en: (notes.en || "").replace(
+      /Bring the lunch box/g,
+      "Bring an empty food container for Zizi school tea time"
+    ),
+    fil: (notes.fil || "").replace(
+      /Magdala ng food box \/ lunch box/g,
+      "Magdala ng walang lamang food container para sa tea time ni Zizi sa eskwela"
+    ),
+    zh: (notes.zh || "").replace(
+      /帶食物盒(?!給孜孜)/g,
+      "帶空食物盒給孜孜學校茶點時間"
+    ),
+  };
+}
+
+function mapPrepTasks(
+  days: DaySchedule[] | undefined,
+  rewrite: (task: ScheduleTask) => ScheduleTask
+): { days: DaySchedule[] | undefined; changed: boolean } {
+  if (!days) return { days, changed: false };
+  let changed = false;
+  const next = days.map((day) => ({
+    ...day,
+    tasks: (day.tasks || []).map((task) => {
+      const rewritten = rewrite(task);
+      if (rewritten !== task) changed = true;
+      return rewritten;
+    }),
+  }));
+  return { days: next, changed };
+}
+
+/** Fix already-saved school-prep notes that still say “bring lunch box”. */
+export function rewriteStaleSchoolPrepLunchBox(content: AppContent): {
+  content: AppContent;
+  changed: boolean;
+} {
+  const rewriteTask = (task: ScheduleTask): ScheduleTask => {
+    if (!PREP_TASK_ID_SET.has(task.id) || notesAreEmpty(task.notes)) return task;
+    const nextNotes = rewriteLunchBoxLine(task.notes!);
+    if (
+      nextNotes.en === (task.notes?.en || "") &&
+      nextNotes.fil === (task.notes?.fil || "") &&
+      nextNotes.zh === (task.notes?.zh || "")
+    ) {
+      return task;
+    }
+    return { ...task, notes: nextNotes };
+  };
+
+  const week = mapPrepTasks(content.weeklySchedule, rewriteTask);
+  const summer = mapPrepTasks(content.weeklyScheduleSummer, rewriteTask);
+  const overrides = { ...(content.scheduleDateOverrides || {}) };
+  let overrideChanged = false;
+  for (const [date, tasks] of Object.entries(overrides)) {
+    const next = (tasks || []).map(rewriteTask);
+    if (next.some((t, i) => t !== (tasks || [])[i])) {
+      overrides[date] = next;
+      overrideChanged = true;
+    }
+  }
+  const changed = week.changed || summer.changed || overrideChanged;
+  if (!changed) return { content, changed: false };
+  return {
+    changed: true,
+    content: {
+      ...content,
+      weeklySchedule: week.days ?? content.weeklySchedule,
+      weeklyScheduleSummer: summer.days,
+      scheduleDateOverrides: overrideChanged
+        ? overrides
+        : content.scheduleDateOverrides,
+    },
+  };
+}
+
 export function isSchoolPrepQuestion(question: string): boolean {
   const q = question.toLowerCase();
-  return /school\s*prep|go to school prep|上學準備|上学准备|prep\s*(sa\s*)?(eskwela|school)|體溫|体温|量溫度|量温度|temperature\s*(form|paper|sheet)|towel|tuwalya|毛巾|口罩|spare\s*mask|lunch\s*box|food\s*box|食物盒|接送卡|pickup\s*card|運動衫|sportswear|sukat(in)?\s*(ang\s*)?temperatura|suklay|梳頭|comb\s*(hair|zizi)|school\s*bag/.test(
+  return /school\s*prep|go to school prep|上學準備|上学准备|prep\s*(sa\s*)?(eskwela|school)|體溫|体温|量溫度|量温度|temperature\s*(form|paper|sheet)|towel|tuwalya|毛巾|口罩|spare\s*mask|lunch\s*box|food\s*box|food\s*container|tea\s*time|茶點|食物盒|接送卡|pickup\s*card|運動衫|sportswear|sukat(in)?\s*(ang\s*)?temperatura|suklay|梳頭|comb\s*(hair|zizi)|school\s*bag/.test(
     q
   );
 }
