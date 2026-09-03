@@ -19,6 +19,7 @@ import {
   parseTimeToMinutes,
   sortTasksByTime,
 } from "./schedule-utils";
+import { isDemaeIcchoQuestion, demaeIcchoAnswer } from "./demae-iccho";
 import type { HkLifeGuide, Lang, ScheduleTask } from "./types";
 import { isSchoolPrepQuestion, schoolPrepAnswer } from "./school-prep";
 
@@ -343,6 +344,10 @@ function heuristicAnswer(
       : lang === "zh"
         ? "否 — Charlene 今天要上班，請跟今日時間表。"
         : "No — Charlene works today. Follow today's schedule.";
+  }
+
+  if (isDemaeIcchoQuestion(question)) {
+    return demaeIcchoAnswer(lang);
   }
 
   if (
