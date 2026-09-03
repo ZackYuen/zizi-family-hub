@@ -306,7 +306,7 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
                   {localized(task.task, lang)}
                 </p>
                 {task.notes && (
-                  <p className="mt-0.5 text-xs leading-snug text-stone-500">
+                  <p className="mt-0.5 whitespace-pre-line text-xs leading-snug text-stone-500">
                     {localized(task.notes, lang)}
                   </p>
                 )}

@@ -7,6 +7,7 @@ import {
   isGenericWatchPrepNotes,
 } from "./cook-device-suggest";
 import { overlayOutingReminderFlags } from "./outing-reminders";
+import { overlayMissingTaskNotes } from "./school-prep";
 import type {
   AppContent,
   DinnerMenuOverride,
@@ -577,7 +578,10 @@ export async function getContent(): Promise<AppContent> {
   const content = await getContentCore();
   try {
     const local = await readLocalContent();
-    return overlayOutingReminderFlags(content, local);
+    return overlayMissingTaskNotes(
+      overlayOutingReminderFlags(content, local),
+      local
+    );
   } catch {
     return content;
   }

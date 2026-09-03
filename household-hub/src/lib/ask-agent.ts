@@ -20,6 +20,7 @@ import {
   sortTasksByTime,
 } from "./schedule-utils";
 import type { HkLifeGuide, Lang, ScheduleTask } from "./types";
+import { isSchoolPrepQuestion, schoolPrepAnswer } from "./school-prep";
 
 export interface AskResult {
   answer: string;
@@ -649,6 +650,10 @@ function heuristicAnswer(
         : `Drawing class (summer): ${daysEn} ${classRange} — ${venueEn}. Leave home ~${leaveRange}. No kindergarten until ${summerEndLabel}; school resumes ${termStartLabel} (K3 PM).`;
   }
 
+  if (isSchoolPrepQuestion(question)) {
+    return schoolPrepAnswer(lang, snap.todaySchedule?.tasks, snap.todayDayKey);
+  }
+
   if (
     /pick ?up|sundo|接送|16:30|1630|drop[- ]?off|kindergarten|eskwela|school\s*(run|walk|time)|hatid|k3\b|summer\s*holiday|balik[- ]?eskwela|復課/.test(
       q
@@ -842,6 +847,17 @@ function heuristicAnswer(
   ) {
     const tip = lifeGuideAnswer(snap, lang, (g) => g.id === "life-zizi-meals");
     if (tip) return tip;
+  }
+
+  if (
+    /scooter|iskuter|skuter|滑板車|踢滑板|kick\s*scooter/.test(q) ||
+    (/road|kalsada|馬路|行車/.test(q) && /scooter|bike|bisikleta|單車/.test(q))
+  ) {
+    return lang === "fil"
+      ? "Huwag hayaang mag-scooter (o mag-bike) si Zizi sa kalsada para sa kotse. Safe area lang na aprubado nina Sir/Mum — podium o park path. Suotin ang helmet. Samahan siya palagi."
+      : lang === "zh"
+        ? "不要讓孜孜在行車路（給汽車走的馬路）上踩滑板車或騎單車。只可在 Sir/Mum 認可的安全範圍 — 平台或公園徑。先戴頭盔。全程陪伴。"
+        : "Do not let Zizi ride the scooter (or bike) on roads for cars. Only in safe areas Sir/Mum approve — podium or park paths. Helmet on. Stay with him the whole time.";
   }
 
   if (/bicycle|bike|bisikleta|單車|helmet|helmete|頭盔/.test(q)) {
