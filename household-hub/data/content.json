@@ -1187,9 +1187,29 @@
         "fil": "If Broken: Written warning at usapan kay Sir/Mum. May coaching at follow-up — hindi automatic na agad matatapos ang kontrata (maliban sa borrow-money / Zizi-safety rules).",
         "zh": "若違反：書面警告並與 Sir/Mum 面談。會輔導與跟進 — 不是自動即時終止合約（借錢／Zizi 安全除外）。"
       }
+    },
+    {
+      "id": "rule-10",
+      "priority": 10,
+      "category": "childcare",
+      "title": {
+        "en": "Zizi scooter — never on roads for cars",
+        "zh": "孜孜滑板車 — 不可上行車路",
+        "fil": "Scooter ni Zizi — huwag sa kalsada ng kotse"
+      },
+      "description": {
+        "en": "Do not let Zizi ride the scooter (or bicycle) on roads for cars. Only in safe areas Sir/Mum approve — quiet podium or park paths. Helmet on. Stay with him the whole time.",
+        "zh": "不要讓孜孜在行車路（給汽車走的馬路）上踩滑板車或騎單車。只可在 Sir/Mum 認可的安全範圍 — 較靜的平台或公園徑。先戴頭盔。全程陪伴。",
+        "fil": "Huwag hayaang mag-scooter (o mag-bike) si Zizi sa kalsada para sa kotse. Safe area lang na aprubado nina Sir/Mum — tahimik na podium o park path. Suotin ang helmet. Samahan siya palagi."
+      },
+      "consequences": {
+        "en": "If Broken: Immediate written warning. If Zizi was on a vehicle road: this is treated as serious — contract may end the same day. Zizi’s safety has no second chance.",
+        "zh": "若違反：立即書面警告。若孜孜曾上行車路：視為嚴重 — 可即日終止合約。Zizi 的安全沒有第二次機會。",
+        "fil": "If Broken: Agad na written warning. Kung nasa kalsada ng kotse si Zizi: seryoso ito — maaaring matapos ang kontrata sa araw ding iyon. Walang second chance sa kaligtasan ni Zizi."
+      }
     }
   ],
-  "lastUpdated": "2026-08-04T15:40:00.000Z",
+  "lastUpdated": "2026-09-03T00:00:00.000Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1494,14 +1514,14 @@
       "priority": 62,
       "lastReviewed": "2026-07-27",
       "title": {
-        "en": "Zizi bicycle practice",
-        "fil": "Pagsasanay sa bisikleta ni Zizi",
-        "zh": "Zizi 單車練習"
+        "en": "Zizi bicycle / scooter practice",
+        "fil": "Pagsasanay sa bisikleta / scooter ni Zizi",
+        "zh": "Zizi 單車／滑板車練習"
       },
       "body": {
-        "en": "When Sir/Mum ask for bicycle practice: put on Zizi’s helmet first (ask Sir/Mum where the helmet and bike are kept — usually near the flat entrance / storage they show you). Ride only in safe areas Sir/Mum approve (e.g. quiet podium / park paths — not busy roads). Stay with Zizi the whole time; hold his hand or bike as needed. Stop if he is tired or the weather is bad. Ask Sir/Mum before the first practice if you are unsure of the route.",
-        "fil": "Kapag may bicycle practice ayon kay Sir/Mum: suotin muna ang helmet ni Zizi (tanungin kung nasaan ang helmet at bike — madalas malapit sa pintuan / storage na ipapakita nila). Mag-ride lang sa safe area na aprubado nina Sir/Mum (hal. tahimik na podium / park path — hindi busy na kalsada). Samahan si Zizi palagi; hawakan ang kamay o bike kung kailangan. Huminto kung pagod o masama ang panahon. Tanungin si Sir/Mum bago ang unang practice kung unsure sa route.",
-        "zh": "當 Sir/Mum 安排單車練習：先給 Zizi 戴頭盔（頭盔與單車存放處請問 Sir/Mum，通常在家門口／他們指示的儲物處）。只在 Sir/Mum 認可的安全範圍騎（例如較靜的平台／公園徑 — 不要上繁忙馬路）。全程陪伴；需要時牽手或扶車。若他累了或天氣不好就停止。第一次練習前若不熟路線，先問 Sir/Mum。"
+        "en": "When Sir/Mum ask for bicycle or scooter practice: put on Zizi’s helmet first (ask Sir/Mum where the helmet, bike and scooter are kept — usually near the flat entrance / storage they show you). Ride only in safe areas Sir/Mum approve (e.g. quiet podium / park paths). Do not let Zizi ride the scooter or bike on roads for cars (vehicle roads). Stay with Zizi the whole time; hold his hand, bike or scooter as needed. Stop if he is tired or the weather is bad. Ask Sir/Mum before the first practice if you are unsure of the route.",
+        "fil": "Kapag may bicycle o scooter practice ayon kay Sir/Mum: suotin muna ang helmet ni Zizi (tanungin kung nasaan ang helmet, bike at scooter — madalas malapit sa pintuan / storage na ipapakita nila). Mag-ride lang sa safe area na aprubado nina Sir/Mum (hal. tahimik na podium / park path). Huwag hayaang mag-scooter o mag-bike si Zizi sa kalsada para sa kotse. Samahan si Zizi palagi; hawakan ang kamay, bike o scooter kung kailangan. Huminto kung pagod o masama ang panahon. Tanungin si Sir/Mum bago ang unang practice kung unsure sa route.",
+        "zh": "當 Sir/Mum 安排單車或滑板車練習：先給 Zizi 戴頭盔（頭盔、單車與滑板車存放處請問 Sir/Mum，通常在家門口／他們指示的儲物處）。只在 Sir/Mum 認可的安全範圍騎（例如較靜的平台／公園徑）。不要讓孜孜在行車路（給汽車走的馬路）上踩滑板車或騎單車。全程陪伴；需要時牽手或扶車。若他累了或天氣不好就停止。第一次練習前若不熟路線，先問 Sir/Mum。"
       }
     },
     {
@@ -1713,7 +1733,12 @@
           },
           "time": "11:30",
           "endTime": "12:00",
-          "startTime": "11:30"
+          "startTime": "11:30",
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "m5",
@@ -1736,7 +1761,12 @@
           "time": "12:30",
           "endTime": "13:00",
           "startTime": "12:30",
-          "outingReminder": true
+          "outingReminder": true,
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "m7",
@@ -1917,7 +1947,12 @@
           },
           "time": "11:30",
           "endTime": "12:00",
-          "startTime": "11:30"
+          "startTime": "11:30",
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag\n• Tuesday: wear sportswear",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag\n• Martes: magsuot ng sportswear",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡\n• 逢星期二著運動衫"
+          }
         },
         {
           "id": "t5",
@@ -1940,7 +1975,12 @@
           "time": "12:30",
           "endTime": "13:00",
           "startTime": "12:30",
-          "outingReminder": true
+          "outingReminder": true,
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag\n• Tuesday: wear sportswear",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag\n• Martes: magsuot ng sportswear",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡\n• 逢星期二著運動衫"
+          }
         },
         {
           "id": "t7",
@@ -2122,7 +2162,12 @@
           },
           "time": "11:30",
           "endTime": "12:00",
-          "startTime": "11:30"
+          "startTime": "11:30",
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "w5",
@@ -2145,7 +2190,12 @@
           "time": "12:30",
           "endTime": "13:00",
           "startTime": "12:30",
-          "outingReminder": true
+          "outingReminder": true,
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "w7",
@@ -2343,7 +2393,12 @@
           },
           "time": "11:30",
           "endTime": "12:00",
-          "startTime": "11:30"
+          "startTime": "11:30",
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "th5",
@@ -2366,7 +2421,12 @@
           "time": "12:30",
           "endTime": "13:00",
           "startTime": "12:30",
-          "outingReminder": true
+          "outingReminder": true,
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "th7",
@@ -2548,7 +2608,12 @@
           },
           "time": "11:30",
           "endTime": "12:00",
-          "startTime": "11:30"
+          "startTime": "11:30",
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "f5",
@@ -2571,7 +2636,12 @@
           "time": "12:30",
           "endTime": "13:00",
           "startTime": "12:30",
-          "outingReminder": true
+          "outingReminder": true,
+          "notes": {
+            "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring the lunch box\n• Help Zizi comb hair\n• Put the pickup card in your own bag",
+            "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng food box / lunch box\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag",
+            "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶食物盒\n• 幫孜孜梳頭\n• 自己袋接送卡"
+          }
         },
         {
           "id": "f7",
@@ -2872,9 +2942,9 @@
           "startTime": "15:00",
           "endTime": "16:00",
           "task": {
-            "en": "Optional: Zizi bicycle practice if Sir/Mum ask (helmet on; safe area only — see HK Life)",
-            "fil": "Optional: bicycle practice ni Zizi kung sabihin ni Sir/Mum (helmet; safe area lang — tingnan ang HK Life)",
-            "zh": "可選：若 Sir/Mum 安排則練習單車（先戴頭盔；只在安全範圍 — 見香港生活）"
+            "en": "Optional: Zizi bicycle / scooter if Sir/Mum ask (helmet on; podium or park only — never on vehicle roads)",
+            "fil": "Optional: bicycle / scooter ni Zizi kung sabihin ni Sir/Mum (helmet; podium o park lang — huwag sa kalsada ng kotse)",
+            "zh": "可選：若 Sir/Mum 安排則練習單車／滑板車（先戴頭盔；只在平台或公園 — 不可上行車路）"
           }
         }
       ],
@@ -4375,9 +4445,9 @@
           "startTime": "15:00",
           "endTime": "16:00",
           "task": {
-            "en": "Optional: Zizi bicycle practice if Sir/Mum ask (helmet on; safe area only — see HK Life)",
-            "fil": "Optional: bicycle practice ni Zizi kung sabihin ni Sir/Mum (helmet; safe area lang — tingnan ang HK Life)",
-            "zh": "可選：若 Sir/Mum 安排則練習單車（先戴頭盔；只在安全範圍 — 見香港生活）"
+            "en": "Optional: Zizi bicycle / scooter if Sir/Mum ask (helmet on; podium or park only — never on vehicle roads)",
+            "fil": "Optional: bicycle / scooter ni Zizi kung sabihin ni Sir/Mum (helmet; podium o park lang — huwag sa kalsada ng kotse)",
+            "zh": "可選：若 Sir/Mum 安排則練習單車／滑板車（先戴頭盔；只在平台或公園 — 不可上行車路）"
           }
         }
       ],

@@ -128,7 +128,7 @@ After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot 
 
 ## Outing reminders (1 hour before class)
 
-When Zizi must **leave home for class**, the bot posts in the family group **1 hour before** that task’s start time — **only if the task has Admin → Schedule → Remind 1h on WhatsApp checked**. Skips Charlene’s day off.
+When Zizi must **leave home for class**, the bot posts in the family group **1 hour before** that task’s start time — **only if the task has Admin → Schedule → Remind 1h on WhatsApp checked**. Skips Charlene’s day off. School-day leave-home (12:30) includes the **Zizi school prep** checklist (temperature, form, towels, masks, water, lunch box, hair, pickup card; Tuesday sportswear). FIL + EN only.
 
 **Which groups (two separate Admin fields)**
 

@@ -199,6 +199,7 @@ test("reminder text is generic: in 1 hour + the task, no leave/出門 wrapper", 
   assert.doesNotMatch(text, /alis 11:15/);
   assert.match(text, /Maghanda/);
   assert.match(text, /Bring art bag/);
+  assert.match(text, /Dalhin ang art bag/);
   assert.doesNotMatch(text, /繪畫班/);
   assert.doesNotMatch(text, /帶畫袋/);
 });

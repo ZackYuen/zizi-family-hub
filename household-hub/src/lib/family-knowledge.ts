@@ -291,6 +291,11 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
         : `${t.startTime ?? t.time}${t.endTime ? `–${t.endTime}` : ""}`;
       lines.push(`- ${range}: ${t.task.en}`);
       if (t.task.fil) lines.push(`  (FIL: ${t.task.fil})`);
+      if (t.notes?.en) {
+        for (const noteLine of t.notes.en.split(/\n/).filter(Boolean)) {
+          lines.push(`  ${noteLine.trim()}`);
+        }
+      }
     }
   }
 

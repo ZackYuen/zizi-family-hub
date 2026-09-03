@@ -8,7 +8,7 @@
     "build:pages": "node scripts/sync-public-data.mjs && GITHUB_PAGES=true NEXT_PUBLIC_BASE_PATH=/zizi-family-hub next build",
     "start": "next start",
     "lint": "eslint",
-    "test:outing": "npx --yes tsx --test src/lib/outing-reminders.test.ts",
+    "test:outing": "npx --yes tsx --test src/lib/outing-reminders.test.ts src/lib/school-prep.test.ts",
     "test:add-meal": "npx --yes tsx --test src/lib/add-youtube-recipe.test.ts",
     "test:wa-menu": "npx --yes tsx --test src/lib/wa-menu-parse.test.ts",
     "sync-data": "node scripts/sync-public-data.mjs",

@@ -99,6 +99,13 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
     setContent(writeEditableDays(content, editSeason, nextDays));
   };
 
+  const setTaskNotes = (taskIndex: number, notes: ScheduleTask["notes"]) => {
+    const nextDays = structuredClone(days);
+    const empty = !`${notes?.en || ""}${notes?.fil || ""}${notes?.zh || ""}`.trim();
+    nextDays[dayIndex].tasks[taskIndex].notes = empty ? undefined : notes;
+    setContent(writeEditableDays(content, editSeason, nextDays));
+  };
+
   const addTask = () => {
     const nextDays = structuredClone(days);
     nextDays[dayIndex].tasks.push({
@@ -385,10 +392,18 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                     {adminT("delete", lang)}
                   </button>
                 </div>
-                <div className="pl-2">
+                <div className="pl-2 space-y-2">
                   <TrilingualFieldEditor
                     value={task.task}
                     onChange={(v) => setTaskText(taskIndex, v)}
+                  />
+                  <p className="text-[10px] font-semibold uppercase tracking-wide text-stone-400">
+                    {adminT("taskNotes", lang)}
+                  </p>
+                  <TrilingualFieldEditor
+                    value={task.notes ?? { en: "", fil: "", zh: "" }}
+                    onChange={(v) => setTaskNotes(taskIndex, v)}
+                    multiline
                   />
                 </div>
               </div>

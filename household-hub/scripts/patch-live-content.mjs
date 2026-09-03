@@ -25,6 +25,7 @@
  *   "upsertGroundRules": [ { id, consequences, ... } ],
  *   "appendFamilyPreferences": [ ... ],
  *   "upsertFamilyPreferences": [ { id, body, ... } ],
+ *   "upsertScheduleTasks": [ { id, notes, outingReminder } ],
  *   "set": { "ziziSchool": { ... }, "homeArea": { ... } },
  *   "dryRun": true
  * }
@@ -133,6 +134,30 @@ function applyPatch(content, patchObj) {
     next.groundRules = sortPriority(
       appendById(next.groundRules ?? [], patchObj.appendGroundRules)
     );
+  }
+  if (patchObj.upsertScheduleTasks?.length) {
+    const byId = new Map(
+      patchObj.upsertScheduleTasks.map((t) => [t.id, t])
+    );
+    const mergeTasks = (tasks = []) =>
+      tasks.map((task) => {
+        const patch = byId.get(task.id);
+        if (!patch) return task;
+        const next = { ...task, ...patch };
+        if (patch.task) next.task = { ...(task.task || {}), ...patch.task };
+        if (patch.notes) next.notes = { ...(task.notes || {}), ...patch.notes };
+        return next;
+      });
+    next.weeklySchedule = (next.weeklySchedule ?? []).map((day) => ({
+      ...day,
+      tasks: mergeTasks(day.tasks),
+    }));
+    if (next.weeklyScheduleSummer?.length) {
+      next.weeklyScheduleSummer = next.weeklyScheduleSummer.map((day) => ({
+        ...day,
+        tasks: mergeTasks(day.tasks),
+      }));
+    }
   }
   if (patchObj.set && typeof patchObj.set === "object") {
     for (const [key, value] of Object.entries(patchObj.set)) {
