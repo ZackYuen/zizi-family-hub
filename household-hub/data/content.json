@@ -1187,6 +1187,26 @@
         "fil": "If Broken: Written warning at usapan kay Sir/Mum. May coaching at follow-up — hindi automatic na agad matatapos ang kontrata (maliban sa borrow-money / Zizi-safety rules).",
         "zh": "若違反：書面警告並與 Sir/Mum 面談。會輔導與跟進 — 不是自動即時終止合約（借錢／Zizi 安全除外）。"
       }
+    },
+    {
+      "id": "rule-10",
+      "priority": 10,
+      "category": "childcare",
+      "title": {
+        "en": "Zizi scooter — never on roads for cars",
+        "zh": "孜孜滑板車 — 不可上行車路",
+        "fil": "Scooter ni Zizi — huwag sa kalsada ng kotse"
+      },
+      "description": {
+        "en": "Do not let Zizi ride the scooter (or bicycle) on roads for cars. Only in safe areas Sir/Mum approve — quiet podium or park paths. Helmet on. Stay with him the whole time.",
+        "zh": "不要讓孜孜在行車路（給汽車走的馬路）上踩滑板車或騎單車。只可在 Sir/Mum 認可的安全範圍 — 較靜的平台或公園徑。先戴頭盔。全程陪伴。",
+        "fil": "Huwag hayaang mag-scooter (o mag-bike) si Zizi sa kalsada para sa kotse. Safe area lang na aprubado nina Sir/Mum — tahimik na podium o park path. Suotin ang helmet. Samahan siya palagi."
+      },
+      "consequences": {
+        "en": "If Broken: Immediate written warning. If Zizi was on a vehicle road: this is treated as serious — contract may end the same day. Zizi’s safety has no second chance.",
+        "zh": "若違反：立即書面警告。若孜孜曾上行車路：視為嚴重 — 可即日終止合約。Zizi 的安全沒有第二次機會。",
+        "fil": "If Broken: Agad na written warning. Kung nasa kalsada ng kotse si Zizi: seryoso ito — maaaring matapos ang kontrata sa araw ding iyon. Walang second chance sa kaligtasan ni Zizi."
+      }
     }
   ],
   "lastUpdated": "2026-09-03T00:00:00.000Z",
@@ -3105,21 +3125,6 @@
         "en": "Stay calm. Gently remind him to chew, or start a short visual timer. Do not force food or scold. Tell Sir/Mum if this happens often. Preference tip, not a House Rule.",
         "fil": "Manatiling kalmado. Maalalahanin siyang ngumuya, o mag-start ng maikling visual timer. Huwag pilitin o pagalitan. Sabihin kay Sir/Mum kung madalas. Preference tip, hindi House Rule.",
         "zh": "保持冷靜。溫柔提醒咀嚼，或開短時間視覺計時。不要強迫或責罵。若經常發生請告知 Sir/Mum。這是偏好貼士，不是家規。"
-      }
-    },
-    {
-      "id": "pref-zizi-scooter-road",
-      "category": "general",
-      "priority": 7,
-      "title": {
-        "en": "Zizi scooter — not on vehicle roads",
-        "fil": "Scooter ni Zizi — huwag sa kalsada ng kotse",
-        "zh": "孜孜滑板車 — 不可上行車路"
-      },
-      "body": {
-        "en": "Do not let Zizi ride the scooter on roads for cars (vehicle roads). Only in safe areas Sir/Mum approve — quiet podium or park paths. Stay with him the whole time. Same for the bicycle.",
-        "fil": "Huwag hayaang mag-scooter si Zizi sa kalsada para sa kotse. Safe area lang na aprubado nina Sir/Mum — tahimik na podium o park path. Samahan siya palagi. Ganun din sa bisikleta.",
-        "zh": "不要讓孜孜在行車路（給汽車走的馬路）上踩滑板車。只可在 Sir/Mum 認可的安全範圍 — 較靜的平台或公園徑。全程陪伴。單車也一樣。"
       }
     }
   ],

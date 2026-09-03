@@ -853,6 +853,18 @@ function heuristicAnswer(
     /scooter|iskuter|skuter|滑板車|踢滑板|kick\s*scooter/.test(q) ||
     (/road|kalsada|馬路|行車/.test(q) && /scooter|bike|bisikleta|單車/.test(q))
   ) {
+    const rule = snap.groundRules.find((r) => r.id === "rule-10");
+    if (rule) {
+      return [
+        localized(rule.title, lang),
+        localized(rule.description, lang),
+        lang === "fil"
+          ? `Kung labag: ${localized(rule.consequences, lang)}`
+          : lang === "zh"
+            ? `若違反：${localized(rule.consequences, lang)}`
+            : `If Broken: ${localized(rule.consequences, lang)}`,
+      ].join("\n");
+    }
     return lang === "fil"
       ? "Huwag hayaang mag-scooter (o mag-bike) si Zizi sa kalsada para sa kotse. Safe area lang na aprubado nina Sir/Mum — podium o park path. Suotin ang helmet. Samahan siya palagi."
       : lang === "zh"

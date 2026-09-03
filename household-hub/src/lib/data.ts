@@ -539,6 +539,27 @@ async function getContentCore(): Promise<AppContent> {
     }
   }
 
+  const remoteRuleIds = new Set((remote.groundRules ?? []).map((r) => r.id));
+  const missingRules = (local.groundRules ?? []).filter(
+    (r) => !remoteRuleIds.has(r.id)
+  );
+  if (missingRules.length) {
+    const filled: AppContent = {
+      ...remote,
+      groundRules: [...(remote.groundRules ?? []), ...missingRules].sort(
+        (a, b) => (a.priority ?? 0) - (b.priority ?? 0)
+      ),
+      lastUpdated: new Date().toISOString(),
+    };
+    try {
+      await saveContent(filled);
+      return filled;
+    } catch (err) {
+      console.error("Failed to append missing ground rules from seed", err);
+      return filled;
+    }
+  }
+
   // Patch only soft borrow rule wording — do NOT replace all Admin ground rules
   const remoteBorrow = remote.groundRules?.find((r) => r.id === "rule-1");
   const localBorrow = local.groundRules?.find((r) => r.id === "rule-1");
