@@ -14,6 +14,22 @@ export function parseTimeToMinutes(time: string): number {
   return h * 60 + (m || 0);
 }
 
+export function minutesToTime(minutes: number): string {
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+}
+
+/** Clock time when a “Remind 1h on WhatsApp” ping would send. Empty if before midnight. */
+export function remindWhatsAppAt(
+  startTime: string,
+  minutesBefore = 60
+): string | null {
+  const mins = parseTimeToMinutes(startTime) - minutesBefore;
+  if (mins < 0) return null;
+  return minutesToTime(mins);
+}
+
 export function formatTime12h(time: string, locale: string): string {
   const [h, m] = time.split(":").map(Number);
   const d = new Date();
