@@ -7,7 +7,7 @@ import { localized } from "@/lib/localized-text";
 import { adminT } from "@/lib/admin-i18n";
 import { getTodayDayKey } from "@/lib/i18n";
 import { getScheduleSeason } from "@/lib/school-calendar";
-import { getTaskStartTime, sortTasksByTime } from "@/lib/schedule-utils";
+import { getTaskStartTime, sortTasksByTime, remindWhatsAppAt, formatTime12h } from "@/lib/schedule-utils";
 import { TrilingualFieldEditor } from "./TrilingualFieldEditor";
 
 const DAY_KEYS = [
@@ -306,6 +306,9 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
             {sortTasksByTime(day.tasks).map((task, ti, arr) => {
               const taskIndex = day.tasks.findIndex((t) => t.id === task.id);
               const startVal = getTaskStartTime(task);
+              const locale = lang === "fil" ? "fil-PH" : lang === "zh" ? "zh-HK" : "en-HK";
+              const pingAt = !task.fullDay ? remindWhatsAppAt(startVal) : null;
+              const pingLabel = pingAt ? formatTime12h(pingAt, locale) : "";
               return (
               <div
                 key={task.id}
@@ -340,6 +343,7 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
                         className="rounded"
                       />
                       {adminT("outingRemind", lang)}
+                      {pingLabel ? ` · ${pingLabel}` : ""}
                     </label>
                     {!task.fullDay && (
                       <>

@@ -398,14 +398,14 @@ export const adminLabels = {
     zh: "WhatsApp 1小時提醒",
   },
   outingRemindHint: {
-    en: "Ping the family group 1 hour before this start time. Save schedule after changing.",
-    fil: "I-ping ang family group 1 oras bago ang oras na ito. I-Save ang schedule pagkatapos magbago.",
-    zh: "在此開始時間前1小時發到家庭群組。改完請儲存時間表。",
+    en: "Sends 1 hour before THIS task’s Start — not when the notes appear on Schedule. Example: 12:30 leave-home → WhatsApp at 11:30. 11:30 prep (unticked) does not send. Save after changing.",
+    fil: "Ipinapadala 1 oras bago ang Start NG TASK NA ITO — hindi kung kailan lumalabas ang notes sa Schedule. Hal. 12:30 leave-home → WhatsApp 11:30. 11:30 prep (hindi naka-tick) walang send. I-Save pagkatapos magbago.",
+    zh: "在「這一項」開始時間前1小時發送 — 不是備註出現在日程上的時間。例如 12:30 出門 → 11:30 發 WhatsApp。11:30 上學準備（未勾）不會發。改完請儲存。",
   },
   taskNotes: {
-    en: "Notes (Schedule + WhatsApp reminder)",
-    fil: "Notes (Schedule + WhatsApp reminder)",
-    zh: "備註（日程＋WhatsApp 提醒）",
+    en: "Notes (Schedule always; WhatsApp only if Remind is ticked on THIS task)",
+    fil: "Notes (lagi sa Schedule; WhatsApp lang kung naka-tick ang Remind sa TASK NA ITO)",
+    zh: "備註（日程一定顯示；WhatsApp 只在「這一項」勾了提醒時發送）",
   },
   whatsappReplyGroups: {
     en: "WhatsApp group for bot replies (? / @bot)",

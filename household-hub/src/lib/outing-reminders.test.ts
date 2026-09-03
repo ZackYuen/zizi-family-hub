@@ -7,6 +7,7 @@ import {
   overlayOutingReminderFlags,
   parseWhatsAppGroupJids,
 } from "./outing-reminders";
+import { remindWhatsAppAt } from "./schedule-utils";
 import type { AppContent, ScheduleTask } from "./types";
 
 function task(
@@ -202,4 +203,10 @@ test("reminder text is generic: in 1 hour + the task, no leave/出門 wrapper", 
   assert.match(text, /Dalhin ang art bag/);
   assert.doesNotMatch(text, /繪畫班/);
   assert.doesNotMatch(text, /帶畫袋/);
+});
+
+test("WhatsApp ping clock is 1 hour before task start", () => {
+  assert.equal(remindWhatsAppAt("12:30"), "11:30");
+  assert.equal(remindWhatsAppAt("11:30"), "10:30");
+  assert.equal(remindWhatsAppAt("00:30"), null);
 });
