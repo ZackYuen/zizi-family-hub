@@ -45,6 +45,7 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 - **`?add <youtube or instagram reel>`** writes the recipe to **Meals live** (LLM digest + category + cook tool). `POST /api/meals/add`. Skips Inbox.
 - **`?today` / `?tomorrow` / `?menu`** set or show the dinner override. Dish **names** return a numbered similar-recipe list; reply `?1` / `?today 1, 4` to choose. Same category as an existing dish → confirm `?overwrite` (that category only) or `?also` (keep + add). Other categories are kept. YouTube / Instagram links still add into their category. `POST /api/meals/menu`.
 - **Zizi school prep** (K3 PM): 11:30 checklist on `m4`–`f4` + leave-home `m6`–`f6` (`outingReminder`). WhatsApp 1h before 12:30 includes FIL+EN steps (temperature, form, towels, masks, water, **empty food container for school tea time**, hair, pickup card; **Tue sportswear**). Ask `? school prep` / `? 體溫` / `? 接送卡`.
+- **出前一丁 (Demae Iccho):** family SOP — boil a pot of water; scoop 300 ml for seasoning powder; boil noodles in the rest 1½ min; put noodles into the 300 ml soup; eat within 3 minutes. Ask `? 出前一丁`. Meals recipe `d-demae-iccho`. Preference `pref-demae-iccho`.
 - **Zizi scooter / bike:** House Rule `rule-10` — never on vehicle roads (cars). Podium or park paths only. Ask `? scooter`.
 - Commands in group: `?save …` or `?save "…"` (LLM digests into tip/recipe/note). Legacy `?save tip` / `?save recipe` / `?note` still work.
 - After promote, edit FIL names / prep notes in Meals or HK Life, then Save.

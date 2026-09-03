@@ -9943,6 +9943,41 @@
         "fil": "1. Hatiin ang baby cabbage; hugasan sa pagitan ng dahon; patuyuin.\n2. Kawali medium-high, 1–2 tbsp mantika. Bawang 15–20 sec.\n3. Igisa 2–4 min hanggang malambot ang tangkay at sariwa ang dahon.\n4. Konting asin (opsyonal 1 tsp toyo). Ihain agad.",
         "zh": "1. 娃娃菜剖半，葉隙間洗淨瀝乾。\n2. 鑊中大火，1–2 湯匙油。爆香蒜蓉 15–20 秒。\n3. 下菜炒 2–4 分鐘至莖軟葉亮。\n4. 少許鹽（可加 1 茶匙豉油）。立即上碟。軟身方便 Zizi。"
       }
+    },
+    {
+      "id": "d-demae-iccho",
+      "index": 9900,
+      "name": "出前一丁",
+      "nameEn": "Nissin Demae Iccho (instant noodles)",
+      "nameFil": "Nissin Demae Iccho (instant noodles)",
+      "category": "Soup",
+      "subCategory": "Noodles",
+      "link": "",
+      "cookDevice": "app-rinnai-rb2gb",
+      "ingredients": [
+        {
+          "en": "出前一丁 (Demae Iccho) pack",
+          "qty": "1",
+          "fil": "1 pack 出前一丁",
+          "zh": "出前一丁 1 包"
+        },
+        {
+          "en": "Water",
+          "qty": "1 pot + 300 ml",
+          "fil": "Tubig (1 pot + 300 ml)",
+          "zh": "水（一兜 + 300 ml）"
+        },
+        {
+          "en": "Seasoning powder (in the pack)",
+          "fil": "Seasoning powder sa pack",
+          "zh": "包內味粉"
+        }
+      ],
+      "prepNotes": {
+        "en": "出前一丁 (Demae Iccho) — family SOP:\n1. Boil a pot of water.\n2. Scoop out 300 ml. Mix the seasoning powder into that 300 ml (this is the soup).\n3. Put the noodles into the remaining boiling water. Keep boiling.\n4. Boil 1½ minutes, then scoop the noodles out and put them into the 300 ml soup.\n5. Finish eating within 3 minutes — do not let it sit.",
+        "fil": "出前一丁 (Demae Iccho) — SOP ng pamilya:\n1. Pakuluan ang isang pot ng tubig.\n2. Kumuha ng 300 ml. Haloan ang seasoning powder sa 300 ml na iyon (ito ang sabaw).\n3. Ilagay ang noodles sa natitirang kumukulong tubig. Tuloy ang pagpakulo.\n4. Pakuluan ng 1½ minuto, saka isalok ang noodles at ilagay sa 300 ml na sabaw.\n5. Kainin lahat within 3 minutes — huwag hayaang tumagal.",
+        "zh": "出前一丁 — 家中煮法：\n1. 煲滾一兜水。\n2. 攞 300 ml 出來，撈味粉（這 300 ml 就是湯）。\n3. 淨返嘅滾水落麵，繼續煲。\n4. 煲一分半鐘撈起，放返落 300 ml 湯。\n5. 3 分鐘內要食晒 — 不要放住。"
+      }
     }
   ]
 }
