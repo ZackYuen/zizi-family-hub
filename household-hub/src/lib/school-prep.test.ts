@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   overlayMissingTaskNotes,
+  rewriteStaleSchoolPrepLunchBox,
   schoolPrepAnswer,
   schoolPrepNotes,
   isSchoolPrepQuestion,
@@ -17,7 +18,11 @@ test("school prep notes: weekday vs Tuesday sportswear", () => {
   assert.match(mon.zh || "", /乾／濕毛巾/);
   assert.match(mon.zh || "", /兩個口罩/);
   assert.match(mon.zh || "", /帶水/);
-  assert.match(mon.zh || "", /食物盒/);
+  assert.match(mon.zh || "", /空食物盒.*茶點/);
+  assert.doesNotMatch(mon.zh || "", /帶食物盒\n/);
+  assert.match(mon.en, /empty food container for Zizi school tea time/);
+  assert.doesNotMatch(mon.en, /Bring the lunch box/);
+  assert.match(mon.fil, /walang lamang food container/);
   assert.match(mon.zh || "", /梳頭/);
   assert.match(mon.zh || "", /接送卡/);
   assert.doesNotMatch(mon.zh || "", /運動衫/);
@@ -130,4 +135,48 @@ test("Ask school-prep heuristic", () => {
   assert.match(fil, /11:30/);
   assert.match(fil, /Sukatin ang temperatura/);
   assert.match(fil, /Martes/);
+});
+
+test("rewrites stale lunch-box line to empty tea-time container", () => {
+  const stale = {
+    weeklySchedule: [
+      {
+        dayKey: "monday",
+        day: { en: "Mon", fil: "Mon" },
+        tasks: [
+          {
+            id: "m4",
+            time: "11:30",
+            startTime: "11:30",
+            task: { en: "Prep", fil: "Prep" },
+            notes: {
+              en: "Zizi school prep:\n• Bring the lunch box\n• Help Zizi comb hair",
+              fil: "Prep ni Zizi sa eskwela:\n• Magdala ng food box / lunch box",
+              zh: "孜孜上學準備：\n• 帶食物盒",
+            },
+          },
+        ],
+      },
+    ],
+  } as unknown as AppContent;
+  const { content, changed } = rewriteStaleSchoolPrepLunchBox(stale);
+  assert.equal(changed, true);
+  assert.match(
+    content.weeklySchedule[0].tasks[0].notes?.en || "",
+    /empty food container for Zizi school tea time/
+  );
+  assert.doesNotMatch(
+    content.weeklySchedule[0].tasks[0].notes?.en || "",
+    /Bring the lunch box/
+  );
+  assert.match(
+    content.weeklySchedule[0].tasks[0].notes?.fil || "",
+    /walang lamang food container/
+  );
+  assert.match(
+    content.weeklySchedule[0].tasks[0].notes?.zh || "",
+    /空食物盒給孜孜學校茶點時間/
+  );
+  const again = rewriteStaleSchoolPrepLunchBox(content);
+  assert.equal(again.changed, false);
 });

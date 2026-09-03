@@ -7,7 +7,7 @@ import {
   isGenericWatchPrepNotes,
 } from "./cook-device-suggest";
 import { overlayOutingReminderFlags } from "./outing-reminders";
-import { overlayMissingTaskNotes } from "./school-prep";
+import { overlayMissingTaskNotes, rewriteStaleSchoolPrepLunchBox } from "./school-prep";
 import type {
   AppContent,
   DinnerMenuOverride,
@@ -599,10 +599,17 @@ export async function getContent(): Promise<AppContent> {
   const content = await getContentCore();
   try {
     const local = await readLocalContent();
-    return overlayMissingTaskNotes(
+    const merged = overlayMissingTaskNotes(
       overlayOutingReminderFlags(content, local),
       local
     );
+    const repaired = rewriteStaleSchoolPrepLunchBox(merged);
+    if (repaired.changed) {
+      saveContent(repaired.content).catch((err) => {
+        console.error("Failed to persist school-prep tea container notes", err);
+      });
+    }
+    return repaired.content;
   } catch {
     return content;
   }
