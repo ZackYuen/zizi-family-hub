@@ -79,6 +79,7 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
+| `?today` / `?tonight eat what?` / `?tonight dinner` | **Show** tonight’s saved/random dinner — does not change the menu |
 | `?today honey wings` | Lists **similar Meals with numbers**. Then `?today 1` or `?1`. Same category as a dish already on that day → `?overwrite` (replace that cat only) or `?also` (keep old + new). Other cats stay |
 | `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
 | `?menu` | Show tonight + tomorrow |

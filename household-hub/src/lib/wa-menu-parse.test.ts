@@ -33,6 +33,26 @@ test("parseMenuCommand today / tomorrow / menu", () => {
     action: "show",
     days: ["today"],
   });
+  assert.deepEqual(parseMenuCommand("Tonight eat what?"), {
+    action: "show",
+    days: ["today"],
+  });
+  assert.deepEqual(parseMenuCommand("tonight what's for dinner"), {
+    action: "show",
+    days: ["today"],
+  });
+  assert.deepEqual(parseMenuCommand("today what"), {
+    action: "show",
+    days: ["today"],
+  });
+  assert.deepEqual(parseMenuCommand("tonight ano ulam"), {
+    action: "show",
+    days: ["today"],
+  });
+  assert.deepEqual(parseMenuCommand("tonight 食咩"), {
+    action: "show",
+    days: ["today"],
+  });
   assert.deepEqual(parseMenuCommand("tomorrow clear"), {
     action: "clear",
     days: ["tomorrow"],
@@ -88,6 +108,7 @@ test("parseMenuCommand pick numbers", () => {
     numbers: [2, 3],
   });
   assert.equal(parseMenuCommand("today honey wings")?.action, "set");
+  assert.equal(parseMenuCommand("tonight eat honey wings")?.action, "set");
 });
 
 test("parseMenuCommand overwrite / also", () => {
