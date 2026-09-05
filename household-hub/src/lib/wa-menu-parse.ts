@@ -82,8 +82,37 @@ export function splitDishTokens(rest: string): string[] {
   return [...urls, ...parts];
 }
 
+/** Ask what’s for dinner — show the saved/random menu, do not search or overwrite. */
 function isShowRest(rest: string): boolean {
-  return /^(show|list|dinner|menu|hapunan|\?)?$/i.test(rest.trim());
+  const t = rest
+    .trim()
+    .replace(/[?？!.。]+$/g, "")
+    .replace(/\b(please|pls|po)\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+  if (!t) return true;
+  if (/^(show|list|dinner|menu|hapunan|ulam)$/.test(t)) return true;
+  if (
+    /^what('s| is| are)?( for)?( dinner| tonight| today| menu| hapunan| ulam)?$/.test(
+      t
+    )
+  ) {
+    return true;
+  }
+  if (
+    /^(eat( what)?|what to eat|what we eat|what do we eat|dinner what)$/.test(t)
+  ) {
+    return true;
+  }
+  if (/^ano('?ng)?( ang)?( ulam| hapunan| kain| kakainin| dinner)?$/.test(t)) {
+    return true;
+  }
+  if (/^(kakainin|kain ano|kain what)$/.test(t)) return true;
+  if (/^(食咩|食乜|吃什么|吃什麼|今晚食咩|今晚食乜|晚餐是?(什麼|什么)?)$/.test(t)) {
+    return true;
+  }
+  return false;
 }
 
 function isClearRest(rest: string): boolean {
