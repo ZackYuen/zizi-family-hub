@@ -135,6 +135,29 @@ test("Ask school-prep heuristic", () => {
   assert.match(fil, /11:30/);
   assert.match(fil, /Sukatin ang temperatura/);
   assert.match(fil, /Martes/);
+
+  const classDay: ScheduleTask[] = [
+    {
+      id: "m4",
+      time: "10:30",
+      startTime: "10:30",
+      task: { en: "Afternoon school prep", fil: "Prep", zh: "下午上學準備" },
+      notes: schoolPrepNotes(false),
+    },
+    {
+      id: "m6",
+      time: "11:30",
+      startTime: "11:30",
+      task: {
+        en: "Leave home for noon class",
+        fil: "Umalis para sa tanghaling klase",
+        zh: "出門上午興趣班",
+      },
+    },
+  ];
+  const zh = schoolPrepAnswer("zh", classDay, "monday");
+  assert.match(zh, /10:30/);
+  assert.match(zh, /11:30 出門/);
 });
 
 test("rewrites stale lunch-box line to empty tea-time container", () => {

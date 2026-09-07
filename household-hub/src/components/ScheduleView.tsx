@@ -11,6 +11,7 @@ import {
   sortTasksByTime,
 } from "@/lib/schedule-utils";
 import { resolveActiveSchedule, resolveTasksForDate } from "@/lib/school-calendar";
+import { interestClassForDate } from "@/lib/interest-classes";
 import type { AppContent, BilingualText } from "@/lib/types";
 import {
   formatDayMonth,
@@ -68,6 +69,10 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
 
   const sortedTasks = sortTasksByTime(resolved.tasks);
   const isOneOffDay = resolved.fromOverride;
+  const interestToday = interestClassForDate(
+    selectedInfo?.dateKey ?? todayDateKey,
+    content
+  );
   const isViewingToday =
     weekOffset === 0 && selectedInfo?.dateKey === todayDateKey;
   const activeTaskId = useMemo(
@@ -155,6 +160,15 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
             : lang === "zh"
               ? "特別日子（非平常日程）。"
               : "One-off day plan (not the usual weekly schedule)."}
+        </p>
+      )}
+      {interestToday && !dayOffSelected && !isOneOffDay && (
+        <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs leading-snug text-amber-950 ring-1 ring-amber-100">
+          {lang === "fil"
+            ? `Interest class ngayon — umalis 11:30. ${interestToday.term.noonLabel.fil}${interestToday.after ? ` · ${interestToday.term.afterLabel?.fil}` : ""}`
+            : lang === "zh"
+              ? `今日有興趣班 — 11:30 出門。${interestToday.term.noonLabel.zh || ""}${interestToday.after ? ` · ${interestToday.term.afterLabel?.zh || ""}` : ""}`
+              : `Interest class today — leave 11:30. ${interestToday.term.noonLabel.en}${interestToday.after ? ` · ${interestToday.term.afterLabel?.en}` : ""}`}
         </p>
       )}
 
