@@ -10011,7 +10011,42 @@
       "prepNotes": {
         "en": "1) Cut 1 pork fillet into small cubes (soft for Zizi).\n2) Pat dry. Pinch of salt + a little soy sauce.\n3) Pan medium heat + a little oil. Fry until cooked through and lightly golden — no pink inside.\n4) Cut smaller if still big for Zizi. Do not deep-fry.",
         "fil": "1) Gupitin ang 1 pork fillet sa maliliit na cubes (malambot para kay Zizi).\n2) Patuyuin. Konting asin + konting toyo.\n3) Kawali, medium heat + konting oil. Iprito hanggang luto at medyo golden — walang pink sa loob.\n4) Gupitin pa kung malaki para kay Zizi. Huwag i-deep fry.",
-        "zh": "1) 一條豬柳切細粒（孜孜易咬）。\n2) 印乾。少少鹽＋少少豉油。\n3) 中火少油煎至全熟、微黃 — 中間唔可以粉紅。\n4) 仍大就再切細。唔好油炸。"
+        "zh": "1) 一條豬柳切細粒（孜孜易咬）。\n2) 印乾。少少鹽＋少少豉油。\n3) 中火少油煎至全熟、微黃 — 中間唔可以粉紅。\n4) 仍大就再切細。唔好油炸。午餐用，晚餐唔好再切粒。"
+      }
+    },
+    {
+      "id": "d-fridge-pork-fillet-slices",
+      "index": 1604,
+      "link": "",
+      "name": "煎豬柳片",
+      "nameEn": "Pan-fried pork tenderloin slices",
+      "nameFil": "Pan-fried pork tenderloin slices",
+      "category": "Meat",
+      "subCategory": "Pork",
+      "ingredients": [
+        {
+          "en": "Pork tenderloin",
+          "zh": "豬柳",
+          "fil": "Pork tenderloin",
+          "qty": "1 fillet"
+        },
+        {
+          "en": "Salt / soy sauce",
+          "zh": "鹽／豉油",
+          "fil": "Asin / toyo",
+          "qty": "pinch"
+        },
+        {
+          "en": "Oil",
+          "zh": "油",
+          "fil": "Oil",
+          "qty": "1–2 tbsp"
+        }
+      ],
+      "prepNotes": {
+        "en": "DINNER — 2nd fillet. Do not cube (that was lunch).\n1) Slice the pork fillet into thin pieces (about finger-width). Pat dry. Pinch of salt + a little soy sauce.\n2) Pan medium-high heat + a little oil. Fry each side until golden and cooked through — no pink inside.\n3) Rest 1 minute, then cut into small bites for Zizi.\n4) Serve with rice + the stir-fried greens and enoki. No tomato/egg tonight.",
+        "fil": "HAPUNAN — ika-2 fillet. Huwag i-cube (yun na ang tanghalian).\n1) Hiwain nang manipis (mga lapad ng daliri). Patuyuin. Konting asin + konting toyo.\n2) Kawali, medium-high + konting oil. Iprito bawat side hanggang golden at luto — walang pink.\n3) Palamigin 1 minuto, saka gupitin nang maliit para kay Zizi.\n4) Ihain with rice + gisa gulay at enoki. Walang kamatis/itlog ngayong gabi.",
+        "zh": "晚餐 — 第二條豬柳。唔好切粒（午餐已經切粒）。\n1) 切薄片（約手指闊），印乾，少少鹽＋豉油。\n2) 中大火少油，兩面煎至金黃全熟 — 中間唔可以粉紅。\n3) 休息 1 分鐘，再切細俾孜孜。\n4) 配白飯＋炒菜本菇。今晚唔好再用番茄同蛋。"
       }
     },
     {

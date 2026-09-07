@@ -5139,17 +5139,17 @@
       {
         "id": "t3",
         "task": {
-          "en": "Prepare Zizi's lunch — tomato-egg spaghetti + pan-fried pork cubes (meat + veg)",
-          "fil": "Ihanda ang tanghalian ni Zizi — tomato-egg spaghetti + pan-fried pork cubes (meat + gulay)",
-          "zh": "準備 Zizi 午餐 — 番茄蛋意粉＋煎豬柳粒（肉＋菜）"
+          "en": "Prepare Zizi's lunch — tomato-egg spaghetti + pork cubes (no greens; save greens for dinner)",
+          "fil": "Ihanda ang tanghalian ni Zizi — tomato-egg spaghetti + pork cubes (huwag gulay; itago ang gulay sa dinner)",
+          "zh": "準備 Zizi 午餐 — 番茄蛋意粉＋豬柳粒（炒菜留晚餐）"
         },
         "time": "10:15",
         "endTime": "11:30",
         "startTime": "10:15",
         "notes": {
-          "en": "TOMORROW only (Tue 8 Sep) — Sir/Mum not home. LUNCH for Zizi:\n1) Boil spaghetti.\n2) Cut 1 pork fillet into small cubes; pan-fry until cooked (no pink).\n3) Fry chopped tomato, add 1 beaten egg, mix with spaghetti + a little of the pork.\n4) Soft, small pieces. Meat + veg required.\nKeep the 2nd pork fillet for DINNER. Do not cook the beef short ribs.",
-          "fil": "MARTES 8 Sep lang — wala sina Sir/Mum. TANGHALIAN ni Zizi:\n1) Pakuluan ang spaghetti.\n2) Gupitin ang 1 pork fillet sa maliliit na cubes; iprito hanggang luto (walang pink).\n3) Igisa ang tinadtad na kamatis, lagyan 1 itlog, haluin sa spaghetti + konting pork.\n4) Malambot, maliliit na piraso. Kailangan may meat + gulay.\nItago ang ika-2 pork fillet para sa HAPUNAN. Huwag lutuin ang beef short ribs.",
-          "zh": "只限 9月8日（二）— Sir/Mum 不在。孜孜午餐：\n1) 煮意粉。\n2) 一條豬柳切細粒，煎熟（中間唔可以粉紅）。\n3) 炒番茄粒，落 1 隻蛋，撈埋意粉同少少豬肉。\n4) 要軟、要細。必須有肉有菜。\n第二條豬柳留晚餐。不要煮牛肋條。"
+          "en": "Tue 8 Sep only — Sir/Mum not home. LUNCH for Zizi (different from dinner):\n1) Boil spaghetti until soft.\n2) Cut 1 pork fillet into small cubes. Pan-fry until cooked (no pink).\n3) Fry chopped tomato until juicy. Off heat, stir in 1 beaten egg. Mix with spaghetti + the pork cubes. Tomato is the vegetable.\n4) Do NOT cook the greens or enoki at lunch — save them for dinner.\nKeep the 2nd pork fillet for dinner: slice thin and pan-fry (not cubes). Do not cook the beef short ribs.",
+          "fil": "Martes 8 Sep lang — wala sina Sir/Mum. TANGHALIAN ni Zizi (iba sa hapunan):\n1) Pakuluan ang spaghetti hanggang lumambot.\n2) Gupitin ang 1 pork fillet sa maliliit na cubes. Iprito hanggang luto (walang pink).\n3) Igisa ang tinadtad na kamatis hanggang maging juicy. Patayin ang apoy, haluin ang 1 itlog. Haloan sa spaghetti + pork cubes. Ang kamatis ang gulay.\n4) HUWAG lutuin ang leafy greens o enoki sa tanghalian — itago sa hapunan.\nAng ika-2 pork fillet sa hapunan: hiwain nang manipis at iprito (hindi cubes). Huwag lutuin ang beef short ribs.",
+          "zh": "只限 9月8日（二）— Sir/Mum 不在。孜孜午餐（同晚餐唔好一樣）：\n1) 煮意粉至軟。\n2) 一條豬柳切細粒，煎熟（中間唔可以粉紅）。\n3) 炒番茄出汁，熄火落 1 隻蛋，撈埋意粉同豬柳粒。番茄當蔬菜。\n4) 午餐唔好炒菜同本菇 — 留晚餐。\n第二條豬柳晚餐切薄片煎，唔好再切粒。不要煮牛肋條。"
         }
       },
       {
@@ -5171,17 +5171,17 @@
       {
         "id": "t5",
         "task": {
-          "en": "ZiZi lunch at home — tomato-egg spaghetti + pork cubes",
-          "fil": "Tanghalian ni ZiZi sa bahay — tomato-egg spaghetti + pork cubes",
-          "zh": "ZiZi 在家午餐 — 番茄蛋意粉＋豬柳粒"
+          "en": "ZiZi lunch at home — tomato-egg spaghetti + pork cubes (no greens)",
+          "fil": "Tanghalian ni ZiZi sa bahay — tomato-egg spaghetti + pork cubes (walang gulay)",
+          "zh": "ZiZi 在家午餐 — 番茄蛋意粉＋豬柳粒（唔好炒菜）"
         },
         "time": "12:00",
         "endTime": "12:30",
         "startTime": "12:00",
         "notes": {
-          "en": "TOMORROW only (Tue 8 Sep) — Sir/Mum not home. LUNCH for Zizi:\n1) Boil spaghetti.\n2) Cut 1 pork fillet into small cubes; pan-fry until cooked (no pink).\n3) Fry chopped tomato, add 1 beaten egg, mix with spaghetti + a little of the pork.\n4) Soft, small pieces. Meat + veg required.\nKeep the 2nd pork fillet for DINNER. Do not cook the beef short ribs.",
-          "fil": "MARTES 8 Sep lang — wala sina Sir/Mum. TANGHALIAN ni Zizi:\n1) Pakuluan ang spaghetti.\n2) Gupitin ang 1 pork fillet sa maliliit na cubes; iprito hanggang luto (walang pink).\n3) Igisa ang tinadtad na kamatis, lagyan 1 itlog, haluin sa spaghetti + konting pork.\n4) Malambot, maliliit na piraso. Kailangan may meat + gulay.\nItago ang ika-2 pork fillet para sa HAPUNAN. Huwag lutuin ang beef short ribs.",
-          "zh": "只限 9月8日（二）— Sir/Mum 不在。孜孜午餐：\n1) 煮意粉。\n2) 一條豬柳切細粒，煎熟（中間唔可以粉紅）。\n3) 炒番茄粒，落 1 隻蛋，撈埋意粉同少少豬肉。\n4) 要軟、要細。必須有肉有菜。\n第二條豬柳留晚餐。不要煮牛肋條。"
+          "en": "Tue 8 Sep only — Sir/Mum not home. LUNCH for Zizi (different from dinner):\n1) Boil spaghetti until soft.\n2) Cut 1 pork fillet into small cubes. Pan-fry until cooked (no pink).\n3) Fry chopped tomato until juicy. Off heat, stir in 1 beaten egg. Mix with spaghetti + the pork cubes. Tomato is the vegetable.\n4) Do NOT cook the greens or enoki at lunch — save them for dinner.\nKeep the 2nd pork fillet for dinner: slice thin and pan-fry (not cubes). Do not cook the beef short ribs.",
+          "fil": "Martes 8 Sep lang — wala sina Sir/Mum. TANGHALIAN ni Zizi (iba sa hapunan):\n1) Pakuluan ang spaghetti hanggang lumambot.\n2) Gupitin ang 1 pork fillet sa maliliit na cubes. Iprito hanggang luto (walang pink).\n3) Igisa ang tinadtad na kamatis hanggang maging juicy. Patayin ang apoy, haluin ang 1 itlog. Haloan sa spaghetti + pork cubes. Ang kamatis ang gulay.\n4) HUWAG lutuin ang leafy greens o enoki sa tanghalian — itago sa hapunan.\nAng ika-2 pork fillet sa hapunan: hiwain nang manipis at iprito (hindi cubes). Huwag lutuin ang beef short ribs.",
+          "zh": "只限 9月8日（二）— Sir/Mum 不在。孜孜午餐（同晚餐唔好一樣）：\n1) 煮意粉至軟。\n2) 一條豬柳切細粒，煎熟（中間唔可以粉紅）。\n3) 炒番茄出汁，熄火落 1 隻蛋，撈埋意粉同豬柳粒。番茄當蔬菜。\n4) 午餐唔好炒菜同本菇 — 留晚餐。\n第二條豬柳晚餐切薄片煎，唔好再切粒。不要煮牛肋條。"
         }
       },
       {
@@ -5247,17 +5247,17 @@
       {
         "id": "t13",
         "task": {
-          "en": "Prepare dinner — Meals tab: pork cubes + greens/enoki + tomato egg soup (Charlene + Zizi)",
-          "fil": "Maghanda ng hapunan — Meals tab: pork cubes + gulay/enoki + tomato egg soup (Charlene + Zizi)",
-          "zh": "準備晚餐 — Meals：豬柳粒＋炒菜本菇＋番茄蛋花湯（姐姐＋孜孜）"
+          "en": "Prepare dinner — Meals: pan-fried pork slices + greens with enoki (no soup; Charlene + Zizi)",
+          "fil": "Maghanda ng hapunan — Meals: pan-fried pork slices + gulay at enoki (walang soup; Charlene + Zizi)",
+          "zh": "準備晚餐 — Meals：煎豬柳片＋炒菜本菇（唔使湯；姐姐＋孜孜）"
         },
         "time": "17:00",
         "endTime": "18:00",
         "startTime": "17:00",
         "notes": {
-          "en": "Dinner tonight = Meals tab (saved): pan-fried pork cubes + stir-fried greens with enoki + tomato egg-drop soup. 2nd pork fillet. Charlene + Zizi only. No beef short ribs.",
-          "fil": "Hapunan = Meals tab: pan-fried pork cubes + gisa gulay + enoki + tomato egg soup. Ika-2 pork fillet. Charlene + Zizi lang. Walang beef short ribs.",
-          "zh": "晚餐跟 Meals：煎豬柳粒＋炒菜炒本菇＋番茄蛋花湯。用第二條豬柳。姐姐同孜孜。不要牛肋條。"
+          "en": "Dinner = Meals tab: pan-fried pork SLICES (2nd fillet, not cubes) + stir-fried greens with enoki + rice. No tomato, no egg, no soup — those were lunch. Charlene + Zizi only. Do not cook the beef short ribs.",
+          "fil": "Hapunan = Meals tab: pan-fried pork SLICES (ika-2 fillet, hindi cubes) + gisa gulay + enoki + kanin. Walang kamatis, walang itlog, walang soup — yun na ang tanghalian. Charlene + Zizi lang. Huwag lutuin ang beef short ribs.",
+          "zh": "晚餐跟 Meals：第二條豬柳切薄片煎（唔好再切粒）＋炒菜炒本菇＋白飯。唔好再用番茄同蛋（午餐用過）。唔使湯。姐姐同孜孜。不要牛肋條。"
         }
       },
       {

@@ -3,9 +3,9 @@
   "byDate": {
     "2026-09-08": {
       "date": "2026-09-08",
-      "meatIds": ["d-fridge-pork-cubes"],
+      "meatIds": ["d-fridge-pork-fillet-slices"],
       "vegetableIds": ["d-fridge-greens-enoki"],
-      "soupIds": ["d-fridge-tomato-egg-soup"]
+      "soupIds": []
     }
   }
 }

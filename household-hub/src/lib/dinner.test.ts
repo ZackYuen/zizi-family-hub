@@ -8,14 +8,15 @@ test("seed dinner override fills a date Admin has not saved", () => {
     {
       "2026-09-08": {
         date: "2026-09-08",
-        meatIds: ["d-fridge-pork-cubes"],
+        meatIds: ["d-fridge-pork-fillet-slices"],
         vegetableIds: ["d-fridge-greens-enoki"],
-        soupIds: ["d-fridge-tomato-egg-soup"],
+        soupIds: [],
       },
     }
   );
-  assert.deepEqual(merged["2026-09-08"]?.meatIds, ["d-fridge-pork-cubes"]);
+  assert.deepEqual(merged["2026-09-08"]?.meatIds, ["d-fridge-pork-fillet-slices"]);
   assert.equal(merged["2026-09-08"]?.vegetableIds[0], "d-fridge-greens-enoki");
+  assert.deepEqual(merged["2026-09-08"]?.soupIds, []);
 });
 
 test("live Admin override wins over seed", () => {
