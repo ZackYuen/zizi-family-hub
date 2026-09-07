@@ -5097,6 +5097,229 @@
         "time": "21:45",
         "startTime": "21:45"
       }
+    ],
+    "2026-09-08": [
+      {
+        "id": "t1",
+        "task": {
+          "en": "Zizi (Seth) wake up",
+          "fil": "Gisingin si Zizi (Seth)"
+        },
+        "time": "09:30",
+        "endTime": "09:45",
+        "startTime": "09:30"
+      },
+      {
+        "id": "t2",
+        "task": {
+          "en": "ZiZi breakfast — simple (egg / pancake / siumai / sweet potato etc.) + brush teeth",
+          "zh": "ZiZi 早餐 — 簡單（蛋／pancake／燒賣／蕃薯等）＋刷牙",
+          "fil": "Almusal ni ZiZi — simple (itlog / pancake / siumai / sweet potato atbp.) + magsipilyo"
+        },
+        "time": "09:45",
+        "endTime": "10:15",
+        "startTime": "09:45"
+      },
+      {
+        "id": "t-milk",
+        "task": {
+          "en": "Zizi morning milk — boil water, warm milk in a glass, give with glass straw",
+          "zh": "Zizi 早上牛奶 — 先煲滾水，用熱水溫熱玻璃杯中的牛奶，用玻璃吸管給他喝",
+          "fil": "Gatas ni Zizi sa umaga — pakuluan ang tubig, painitin ang gatas sa baso, painumin gamit ang glass straw"
+        },
+        "time": "09:45",
+        "notes": {
+          "en": "Every morning. Use a glass + glass straw (not plastic). Warm gently — do not microwave plastic.",
+          "zh": "每天早上。用玻璃杯 + 玻璃吸管（不要用膠）。溫熱即可。",
+          "fil": "Tuwing umaga. Gumamit ng baso + glass straw (huwag plastic). Painitin nang maingat."
+        },
+        "endTime": "10:15",
+        "startTime": "09:45"
+      },
+      {
+        "id": "t3",
+        "task": {
+          "en": "Prepare Zizi's lunch — tomato-egg spaghetti + pan-fried pork cubes (meat + veg)",
+          "fil": "Ihanda ang tanghalian ni Zizi — tomato-egg spaghetti + pan-fried pork cubes (meat + gulay)",
+          "zh": "準備 Zizi 午餐 — 番茄蛋意粉＋煎豬柳粒（肉＋菜）"
+        },
+        "time": "10:15",
+        "endTime": "11:30",
+        "startTime": "10:15",
+        "notes": {
+          "en": "TOMORROW only (Tue 8 Sep) — Sir/Mum not home. LUNCH for Zizi:\n1) Boil spaghetti.\n2) Cut 1 pork fillet into small cubes; pan-fry until cooked (no pink).\n3) Fry chopped tomato, add 1 beaten egg, mix with spaghetti + a little of the pork.\n4) Soft, small pieces. Meat + veg required.\nKeep the 2nd pork fillet for DINNER. Do not cook the beef short ribs.",
+          "fil": "MARTES 8 Sep lang — wala sina Sir/Mum. TANGHALIAN ni Zizi:\n1) Pakuluan ang spaghetti.\n2) Gupitin ang 1 pork fillet sa maliliit na cubes; iprito hanggang luto (walang pink).\n3) Igisa ang tinadtad na kamatis, lagyan 1 itlog, haluin sa spaghetti + konting pork.\n4) Malambot, maliliit na piraso. Kailangan may meat + gulay.\nItago ang ika-2 pork fillet para sa HAPUNAN. Huwag lutuin ang beef short ribs.",
+          "zh": "只限 9月8日（二）— Sir/Mum 不在。孜孜午餐：\n1) 煮意粉。\n2) 一條豬柳切細粒，煎熟（中間唔可以粉紅）。\n3) 炒番茄粒，落 1 隻蛋，撈埋意粉同少少豬肉。\n4) 要軟、要細。必須有肉有菜。\n第二條豬柳留晚餐。不要煮牛肋條。"
+        }
+      },
+      {
+        "id": "t4",
+        "task": {
+          "en": "Afternoon school prep — school bag, shoes, uniform ready before lunch",
+          "fil": "Prep sa hapon para sa eskwela — school bag, sapatos, uniform bago ang tanghalian",
+          "zh": "下午上學準備 — 午餐前備好書包、鞋子、校服"
+        },
+        "time": "11:30",
+        "endTime": "12:00",
+        "startTime": "11:30",
+        "notes": {
+          "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring an empty food container for Zizi school tea time\n• Help Zizi comb hair\n• Put the pickup card in your own bag\n• Tuesday: wear sportswear",
+          "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng walang lamang food container para sa tea time ni Zizi sa eskwela\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag\n• Martes: magsuot ng sportswear",
+          "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶空食物盒給孜孜學校茶點時間\n• 幫孜孜梳頭\n• 自己袋接送卡\n• 逢星期二著運動衫"
+        }
+      },
+      {
+        "id": "t5",
+        "task": {
+          "en": "ZiZi lunch at home — tomato-egg spaghetti + pork cubes",
+          "fil": "Tanghalian ni ZiZi sa bahay — tomato-egg spaghetti + pork cubes",
+          "zh": "ZiZi 在家午餐 — 番茄蛋意粉＋豬柳粒"
+        },
+        "time": "12:00",
+        "endTime": "12:30",
+        "startTime": "12:00",
+        "notes": {
+          "en": "TOMORROW only (Tue 8 Sep) — Sir/Mum not home. LUNCH for Zizi:\n1) Boil spaghetti.\n2) Cut 1 pork fillet into small cubes; pan-fry until cooked (no pink).\n3) Fry chopped tomato, add 1 beaten egg, mix with spaghetti + a little of the pork.\n4) Soft, small pieces. Meat + veg required.\nKeep the 2nd pork fillet for DINNER. Do not cook the beef short ribs.",
+          "fil": "MARTES 8 Sep lang — wala sina Sir/Mum. TANGHALIAN ni Zizi:\n1) Pakuluan ang spaghetti.\n2) Gupitin ang 1 pork fillet sa maliliit na cubes; iprito hanggang luto (walang pink).\n3) Igisa ang tinadtad na kamatis, lagyan 1 itlog, haluin sa spaghetti + konting pork.\n4) Malambot, maliliit na piraso. Kailangan may meat + gulay.\nItago ang ika-2 pork fillet para sa HAPUNAN. Huwag lutuin ang beef short ribs.",
+          "zh": "只限 9月8日（二）— Sir/Mum 不在。孜孜午餐：\n1) 煮意粉。\n2) 一條豬柳切細粒，煎熟（中間唔可以粉紅）。\n3) 炒番茄粒，落 1 隻蛋，撈埋意粉同少少豬肉。\n4) 要軟、要細。必須有肉有菜。\n第二條豬柳留晚餐。不要煮牛肋條。"
+        }
+      },
+      {
+        "id": "t6",
+        "task": {
+          "en": "Leave home for afternoon class — walk 30 min, drop off Zizi at Lam Tin Ling Liang Kindergarten (K3) by 13:00",
+          "zh": "出門上下午班 — 步行約30分鐘，13:00 前送到藍田靈糧幼稚園（K3）",
+          "fil": "Umalis papuntang afternoon class — 30 min lakad, ihatid si Zizi sa Lam Tin Ling Liang Kindergarten (K3) bago 13:00"
+        },
+        "time": "12:30",
+        "endTime": "13:00",
+        "startTime": "12:30",
+        "outingReminder": true,
+        "notes": {
+          "en": "Zizi school prep:\n• Take temperature\n• Fill the temperature form\n• Bring 1 dry towel + 1 wet towel\n• Bring 2 spare masks\n• Bring water\n• Bring an empty food container for Zizi school tea time\n• Help Zizi comb hair\n• Put the pickup card in your own bag\n• Tuesday: wear sportswear",
+          "fil": "Prep ni Zizi sa eskwela:\n• Sukatin ang temperatura\n• Punuan ang temperature paper\n• Magdala ng 1 tuyong tuwalya + 1 basang tuwalya\n• Magdala ng 2 extra na mask\n• Magdala ng tubig\n• Magdala ng walang lamang food container para sa tea time ni Zizi sa eskwela\n• Suklayin ang buhok ni Zizi\n• Ilagay ang pickup card sa sarili mong bag\n• Martes: magsuot ng sportswear",
+          "zh": "孜孜上學準備：\n• 量溫度\n• 填體溫紙\n• 帶乾／濕毛巾各一\n• 帶兩個口罩備用\n• 帶水\n• 帶空食物盒給孜孜學校茶點時間\n• 幫孜孜梳頭\n• 自己袋接送卡\n• 逢星期二著運動衫"
+        }
+      },
+      {
+        "id": "t7",
+        "task": {
+          "en": "Clean Zizi toys, vacuum floor & living room, toilet, buy food (YATA @ apm / Shui Wo Street wet market (not Qin Dama / Kai Bo))",
+          "zh": "清潔玩具、客廳吸塵、廁所、買菜（一田／瑞和街街市（不要錢大媽））",
+          "fil": "Linisin ang mga laruan ni Zizi, vacuum ng sala, toilet, bumili ng pagkain (YATA @ apm / Shui Wo Street wet market (huwag Qin Dama / Kai Bo))"
+        },
+        "time": "13:30",
+        "endTime": "15:30",
+        "startTime": "13:30"
+      },
+      {
+        "id": "t8",
+        "task": {
+          "en": "Flexible time — pick one monthly task (see monthly list)",
+          "zh": "彈性時間 — 做一項每月任務（見每月清單）",
+          "fil": "Flexible time — pumili ng isang monthly task (tingnan ang monthly list)"
+        },
+        "time": "15:30",
+        "endTime": "16:00",
+        "startTime": "15:30"
+      },
+      {
+        "id": "t9",
+        "task": {
+          "en": "Leave home for pick-up — walk 30 min, pick up Zizi at 16:30 from Lam Tin Ling Liang Kindergarten (K3)",
+          "zh": "出門接放學 — 步行約30分鐘，16:30 於藍田靈糧幼稚園（K3）接 Zizi",
+          "fil": "Umalis para sunduin — 30 min lakad, sundo si Zizi ng 16:30 sa Lam Tin Ling Liang Kindergarten (K3)"
+        },
+        "time": "16:00",
+        "endTime": "16:30",
+        "startTime": "16:00"
+      },
+      {
+        "id": "t12",
+        "task": {
+          "en": "ZiZi tea time",
+          "fil": "Merienda ni Zizi"
+        },
+        "time": "16:30",
+        "endTime": "17:00",
+        "startTime": "16:30"
+      },
+      {
+        "id": "t13",
+        "task": {
+          "en": "Prepare dinner — Meals tab: pork cubes + greens/enoki + tomato egg soup (Charlene + Zizi)",
+          "fil": "Maghanda ng hapunan — Meals tab: pork cubes + gulay/enoki + tomato egg soup (Charlene + Zizi)",
+          "zh": "準備晚餐 — Meals：豬柳粒＋炒菜本菇＋番茄蛋花湯（姐姐＋孜孜）"
+        },
+        "time": "17:00",
+        "endTime": "18:00",
+        "startTime": "17:00",
+        "notes": {
+          "en": "Dinner tonight = Meals tab (saved): pan-fried pork cubes + stir-fried greens with enoki + tomato egg-drop soup. 2nd pork fillet. Charlene + Zizi only. No beef short ribs.",
+          "fil": "Hapunan = Meals tab: pan-fried pork cubes + gisa gulay + enoki + tomato egg soup. Ika-2 pork fillet. Charlene + Zizi lang. Walang beef short ribs.",
+          "zh": "晚餐跟 Meals：煎豬柳粒＋炒菜炒本菇＋番茄蛋花湯。用第二條豬柳。姐姐同孜孜。不要牛肋條。"
+        }
+      },
+      {
+        "id": "t14",
+        "task": {
+          "en": "Cook",
+          "fil": "Magluto"
+        },
+        "time": "18:00",
+        "endTime": "18:30",
+        "startTime": "18:00"
+      },
+      {
+        "id": "t15",
+        "task": {
+          "en": "ZiZi dinner",
+          "fil": "Hapunan ni Zizi"
+        },
+        "time": "18:30",
+        "endTime": "20:15",
+        "startTime": "18:30"
+      },
+      {
+        "id": "t16",
+        "task": {
+          "en": "Wash dishes, tidy kitchen, empty kitchen bin",
+          "zh": "洗碗、收拾廚房、清倒廚房垃圾桶",
+          "fil": "Maghugas ng plato, ayusin ang kusina, alisin ang kitchen bin"
+        },
+        "time": "20:15",
+        "endTime": "20:30",
+        "startTime": "20:15"
+      },
+      {
+        "id": "t17",
+        "task": {
+          "en": "Vacuum floor",
+          "fil": "Vacuum ng sahig"
+        },
+        "time": "20:30",
+        "endTime": "21:15",
+        "startTime": "20:30"
+      },
+      {
+        "id": "t18",
+        "task": {
+          "en": "ZiZi shower",
+          "fil": "Paligo ni Zizi"
+        },
+        "time": "21:15",
+        "endTime": "21:45",
+        "startTime": "21:15"
+      },
+      {
+        "id": "t19",
+        "task": {
+          "en": "Charlene rest time",
+          "fil": "Oras ng pahinga ni Charlene"
+        },
+        "time": "21:45",
+        "startTime": "21:45"
+      }
     ]
   }
 }

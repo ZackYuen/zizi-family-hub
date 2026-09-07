@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { getSupabaseAdmin, isSupabaseConfigured } from "./supabase";
-import { normalizeDinnerOverride } from "./dinner";
+import { normalizeDinnerOverride, mergeSeedDinnerOverrides } from "./dinner";
 import {
   hasPlaceholderIngredients,
   isGenericWatchPrepNotes,
@@ -149,6 +149,26 @@ async function readLocalRecipes(): Promise<DinnerRecipe[]> {
   );
   const parsed = JSON.parse(raw) as { recipes: DinnerRecipe[] };
   return parsed.recipes;
+}
+
+async function readLocalDinnerOverrideSeed(): Promise<
+  DinnerMenuOverrides["byDate"]
+> {
+  try {
+    const raw = await fs.readFile(
+      path.join(process.cwd(), "data", "dinner-overrides-seed.json"),
+      "utf-8"
+    );
+    const parsed = JSON.parse(raw) as DinnerMenuOverrides;
+    const byDate: DinnerMenuOverrides["byDate"] = {};
+    for (const [date, rawOv] of Object.entries(parsed.byDate || {})) {
+      const normalized = normalizeDinnerOverride(rawOv, date);
+      if (normalized) byDate[date] = normalized;
+    }
+    return byDate;
+  } catch {
+    return {};
+  }
 }
 
 /** Only for one-time bootstrap of broken pre-Admin rows — never overrides newer Admin saves */
@@ -681,7 +701,13 @@ export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
     byDate: {},
     updatedAt: new Date().toISOString(),
   };
-  if (!isSupabaseConfigured()) return empty;
+  const seedByDate = await readLocalDinnerOverrideSeed();
+  if (!isSupabaseConfigured()) {
+    return {
+      byDate: mergeSeedDinnerOverrides({}, seedByDate),
+      updatedAt: empty.updatedAt,
+    };
+  }
 
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
@@ -691,7 +717,12 @@ export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
     .maybeSingle();
 
   if (error) throw error;
-  if (!data?.data) return empty;
+  if (!data?.data) {
+    return {
+      byDate: mergeSeedDinnerOverrides({}, seedByDate),
+      updatedAt: empty.updatedAt,
+    };
+  }
   const parsed = data.data as DinnerMenuOverrides;
   const rawByDate =
     parsed.byDate && typeof parsed.byDate === "object" ? parsed.byDate : {};
@@ -701,7 +732,7 @@ export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
     if (normalized) byDate[date] = normalized;
   }
   return {
-    byDate,
+    byDate: mergeSeedDinnerOverrides(byDate, seedByDate),
     updatedAt: parsed.updatedAt || new Date().toISOString(),
   };
 }

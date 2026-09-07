@@ -9978,6 +9978,122 @@
         "fil": "出前一丁 (Demae Iccho) — SOP ng pamilya:\n1. Pakuluan ang isang pot ng tubig.\n2. Kumuha ng 300 ml. Haloan ang seasoning powder sa 300 ml na iyon (ito ang sabaw).\n3. Ilagay ang noodles sa natitirang kumukulong tubig. Tuloy ang pagpakulo.\n4. Pakuluan ng 1½ minuto, saka isalok ang noodles at ilagay sa 300 ml na sabaw.\n5. Kainin lahat within 3 minutes — huwag hayaang tumagal.",
         "zh": "出前一丁 — 家中煮法：\n1. 煲滾一兜水。\n2. 攞 300 ml 出來，撈味粉（這 300 ml 就是湯）。\n3. 淨返嘅滾水落麵，繼續煲。\n4. 煲一分半鐘撈起，放返落 300 ml 湯。\n5. 3 分鐘內要食晒 — 不要放住。"
       }
+    },
+    {
+      "id": "d-fridge-pork-cubes",
+      "index": 1601,
+      "link": "",
+      "name": "煎豬柳粒",
+      "nameEn": "Pan-fried pork tenderloin cubes",
+      "nameFil": "Pan-fried pork tenderloin cubes",
+      "category": "Meat",
+      "subCategory": "Pork",
+      "ingredients": [
+        {
+          "en": "Pork tenderloin",
+          "zh": "豬柳",
+          "fil": "Pork tenderloin",
+          "qty": "1 fillet"
+        },
+        {
+          "en": "Salt / soy sauce",
+          "zh": "鹽／豉油",
+          "fil": "Asin / toyo",
+          "qty": "pinch"
+        },
+        {
+          "en": "Oil",
+          "zh": "油",
+          "fil": "Oil",
+          "qty": "1 tbsp"
+        }
+      ],
+      "prepNotes": {
+        "en": "1) Cut 1 pork fillet into small cubes (soft for Zizi).\n2) Pat dry. Pinch of salt + a little soy sauce.\n3) Pan medium heat + a little oil. Fry until cooked through and lightly golden — no pink inside.\n4) Cut smaller if still big for Zizi. Do not deep-fry.",
+        "fil": "1) Gupitin ang 1 pork fillet sa maliliit na cubes (malambot para kay Zizi).\n2) Patuyuin. Konting asin + konting toyo.\n3) Kawali, medium heat + konting oil. Iprito hanggang luto at medyo golden — walang pink sa loob.\n4) Gupitin pa kung malaki para kay Zizi. Huwag i-deep fry.",
+        "zh": "1) 一條豬柳切細粒（孜孜易咬）。\n2) 印乾。少少鹽＋少少豉油。\n3) 中火少油煎至全熟、微黃 — 中間唔可以粉紅。\n4) 仍大就再切細。唔好油炸。"
+      }
+    },
+    {
+      "id": "d-fridge-greens-enoki",
+      "index": 1602,
+      "link": "",
+      "name": "炒菜炒本菇",
+      "nameEn": "Stir-fried greens with enoki",
+      "nameFil": "Stir-fried greens with enoki",
+      "category": "Vegetable",
+      "ingredients": [
+        {
+          "en": "Leafy greens",
+          "zh": "炒菜",
+          "fil": "Leafy greens",
+          "qty": "1 bunch"
+        },
+        {
+          "en": "Enoki mushrooms",
+          "zh": "本菇／金菇",
+          "fil": "Enoki (golden mushrooms)",
+          "qty": "1 pack"
+        },
+        {
+          "en": "Garlic (if any)",
+          "zh": "蒜（有就加）",
+          "fil": "Bawang (kung meron)",
+          "qty": "1 clove"
+        },
+        {
+          "en": "Soy sauce / salt",
+          "zh": "豉油／鹽",
+          "fil": "Toyo / asin",
+          "qty": "to taste"
+        }
+      ],
+      "prepNotes": {
+        "en": "1) Wash greens. Trim enoki root, cut enoki shorter so Zizi can chew.\n2) Hot pan + a little oil. Garlic if you have it.\n3) Stir-fry greens until just soft. Add enoki 1–2 minutes.\n4) Splash of soy sauce or pinch of salt. Do not overcook.",
+        "fil": "1) Hugasan ang gulay. Putulin ang ugat ng enoki; gupitin nang mas maikli para ngumuya si Zizi.\n2) Mainit na kawali + konting oil. Bawang kung meron.\n3) Igisa ang gulay hanggang medyo malambot. Enoki 1–2 minuto.\n4) Konting toyo o asin. Huwag sobrang luto.",
+        "zh": "1) 菜洗乾淨。本菇切去蒂，切短方便孜孜咬。\n2) 熱鑊少油，有蒜就爆香。\n3) 炒菜至剛軟，落本菇炒 1–2 分鐘。\n4) 少少豉油或鹽。唔好炒老。"
+      }
+    },
+    {
+      "id": "d-fridge-tomato-egg-soup",
+      "index": 1603,
+      "link": "",
+      "name": "番茄蛋花湯（灶上）",
+      "nameEn": "Tomato egg-drop soup (stove)",
+      "nameFil": "Tomato egg-drop soup (stove)",
+      "category": "Soup",
+      "subCategory": "Egg",
+      "ingredients": [
+        {
+          "en": "Tomato",
+          "zh": "番茄",
+          "fil": "Tomato",
+          "qty": "1–2"
+        },
+        {
+          "en": "Egg",
+          "zh": "蛋",
+          "fil": "Egg",
+          "qty": "1"
+        },
+        {
+          "en": "Water",
+          "zh": "水",
+          "fil": "Tubig",
+          "qty": "3 cups"
+        },
+        {
+          "en": "Salt",
+          "zh": "鹽",
+          "fil": "Asin",
+          "qty": "pinch"
+        }
+      ],
+      "prepNotes": {
+        "en": "Stove, 5 minutes. Do not use the pressure cooker.\n1) Chop tomato. Boil 3 cups water.\n2) Add tomato, cook 2–3 min until soft.\n3) Beat 1 egg. Pour in slowly while stirring to make egg flowers.\n4) Pinch of salt. Small pot is enough for Charlene + Zizi.",
+        "fil": "Kaldero sa stove, 5 minuto. Huwag gamitin ang pressure cooker.\n1) Gupitin ang kamatis. Pakuluan ang 3 cups tubig.\n2) Ilagay ang kamatis, 2–3 min hanggang lumambot.\n3) Haluin ang 1 itlog. Ibuhos nang dahan-dahan habang hinahalo para maging egg flower.\n4) Konting asin. Maliit na palayok sapat para kay Charlene + Zizi.",
+        "zh": "灶上 5 分鐘。唔好用壓力鍋。\n1) 番茄切粒，煲 3 杯水。\n2) 落番茄煮 2–3 分鐘至軟。\n3) 打 1 隻蛋，邊攪邊倒落做成蛋花。\n4) 少少鹽。細煲夠姐姐同孜孜。"
+      }
     }
   ]
 }
