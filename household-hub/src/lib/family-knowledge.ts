@@ -254,8 +254,9 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     lines.push("");
   }
 
+  const overrideUntil = addHongKongDays(snap.todayDateKey, 14);
   const upcomingOverrides = Object.entries(snap.scheduleDateOverrides || {})
-    .filter(([d]) => d >= snap.todayDateKey)
+    .filter(([d]) => d >= snap.todayDateKey && d <= overrideUntil)
     .sort(([a], [b]) => a.localeCompare(b));
   if (upcomingOverrides.length) {
     lines.push(
@@ -421,13 +422,19 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
       );
       const ings = ingredientLine(dish, "en");
       if (ings.length) lines.push(`  Ingredients: ${ings.join(", ")}`);
-      else lines.push(`  Ingredients: (not listed yet — check recipe link ${dish.link})`);
+      else
+        lines.push(
+          `  Ingredients: (not listed yet — check ${dish.recipePage || dish.link})`
+        );
       if (dish.prepNotes?.en || dish.prepNotes?.fil) {
         lines.push(
           `  Prep notes EN: ${dish.prepNotes.en || ""} | FIL: ${dish.prepNotes.fil || ""}`
         );
       }
       lines.push(`  Recipe video (may be Cantonese): ${dish.link}`);
+      if (dish.recipePage) {
+        lines.push(`  Written recipe page: ${dish.recipePage}`);
+      }
     }
   }
 
@@ -460,7 +467,8 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push("");
   lines.push("Important facts:");
   lines.push("- Zizi kindergarten: Mon–Fri PM class only. Walk from home is 30 minutes.");
-  lines.push("- Drop-off by 13:00; pick up at 16:30.");
+  lines.push("- Usual days: leave 12:30, drop-off by 13:00; leave 16:00, pick up 16:30.");
+  lines.push("- Term 1 interest classes (school notice dates only, from Oct): Mon percussion 12:00–13:00; Tue Sumblox 12:00–13:00 + magic 16:30–17:30; Fri fencing 12:00–13:00. On those dates leave 11:30; Tue pick-up 17:30. Follow today's schedule if it already shifted.");
   lines.push("- Sunday and HK public holidays (香港勞工假) are Charlene day off — not about Zizi.");
   lines.push("- Zizi needs breakfast and lunch prepared by Charlene every morning on work days.");
   lines.push("- Do not invent rules. If unsure, tell Charlene to ask Sir or Mum.");

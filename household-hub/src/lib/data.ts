@@ -439,6 +439,11 @@ async function getContentCore(): Promise<AppContent> {
   const needsK3Banner =
     Boolean(local.ziziSchool?.en?.includes("K3")) &&
     !remote.ziziSchool?.en?.includes("K3");
+  const needsInterestClasses =
+    !remote.interestClasses?.length && Boolean(local.interestClasses?.length);
+  const needsInterestBanner =
+    Boolean(local.ziziSchool?.en?.includes("Sumblox")) &&
+    !remote.ziziSchool?.en?.includes("Sumblox");
   const hasBrokenThuIds = remote.weeklySchedule?.some((d) =>
     d.tasks?.some((t) => t.id === "thNaN")
   );
@@ -451,7 +456,9 @@ async function getContentCore(): Promise<AppContent> {
     needsSchoolCalendar ||
     needsSummerBanner ||
     needsK3Banner ||
-    needsThuIdFix
+    needsThuIdFix ||
+    needsInterestClasses ||
+    needsInterestBanner
   ) {
     const filled: AppContent = {
       ...remote,
@@ -462,7 +469,11 @@ async function getContentCore(): Promise<AppContent> {
       ziziSchoolSummer: needsSummerBanner
         ? local.ziziSchoolSummer
         : remote.ziziSchoolSummer,
-      ziziSchool: needsK3Banner ? local.ziziSchool : remote.ziziSchool,
+      interestClasses: needsInterestClasses
+        ? local.interestClasses
+        : remote.interestClasses,
+      ziziSchool:
+        needsK3Banner || needsInterestBanner ? local.ziziSchool : remote.ziziSchool,
       weeklySchedule: needsThuIdFix
         ? remote.weeklySchedule.map((day) => {
             if (day.dayKey !== "thursday") return day;

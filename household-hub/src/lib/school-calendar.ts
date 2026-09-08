@@ -1,4 +1,5 @@
 import { getHongKongDateKey } from "./hk-holidays";
+import { applyInterestClassDay, interestClassForDate } from "./interest-classes";
 import { getTaskEndTime, getTaskStartTime } from "./schedule-utils";
 import type {
   AppContent,
@@ -156,9 +157,9 @@ export function extractSummerDrawingClass(
 }
 
 export const TERM_K3_SCHOOL_BANNER: BilingualText = {
-  en: "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30).",
-  fil: "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30).",
-  zh: "藍田靈糧幼稚園 — K3 下午班，週一至五（13:00 前送到，16:30 接）。",
+  en: "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30). Interest class days from Oct: Mon percussion / Tue Sumblox+magic / Fri fencing — leave 11:30; Tue pick-up 17:30.",
+  fil: "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30). Mula Oct: Lunes percussion / Martes Sumblox+magic / Biyernes fencing — umalis 11:30; Martes sundo 17:30.",
+  zh: "藍田靈糧幼稚園 — K3 下午班，週一至五（13:00 前送到，16:30 接）。10 月起興趣班：一鋼片琴／二 Sumblox+魔術／五劍擊 — 11:30 出門；星期二 17:30 接。",
 };
 
 export function resolveActiveSchedule(
@@ -235,10 +236,16 @@ export function resolveTasksForDate(
   }
   const day =
     active.schedule.find((d) => d.dayKey === dayKey) ?? active.schedule[0];
+  let tasks = day?.tasks ?? [];
+  const spec =
+    active.season === "term" ? interestClassForDate(dateKey, content) : null;
+  if (spec) {
+    tasks = applyInterestClassDay(tasks, spec);
+  }
   return {
     dateKey,
     dayKey,
-    tasks: day?.tasks ?? [],
+    tasks,
     fromOverride: false,
     season: active.season,
   };

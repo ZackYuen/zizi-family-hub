@@ -1,6 +1,7 @@
 import type { AppContent, BilingualText, DaySchedule, ScheduleTask } from "./types";
 import { localized } from "./localized-text";
 import type { Lang } from "./types";
+import { findLeaveHomeTask, findSchoolPrepTask } from "./interest-classes";
 
 const PREP_EN = [
   "Take temperature",
@@ -237,11 +238,19 @@ export function schoolPrepAnswer(
   );
   const notes = fromToday?.notes || schoolPrepNotes(todayDayKey === "tuesday");
   const list = localized(notes, lang);
+  const prepTime =
+    findSchoolPrepTask(todayTasks)?.startTime ||
+    findSchoolPrepTask(todayTasks)?.time ||
+    "11:30";
+  const leaveTime =
+    findLeaveHomeTask(todayTasks)?.startTime ||
+    findLeaveHomeTask(todayTasks)?.time ||
+    "12:30";
   if (lang === "fil") {
-    return `11:30 — prep ni Zizi bago umalis ng 12:30 (K3).\n\n${list}`;
+    return `${prepTime} — prep ni Zizi bago umalis ng ${leaveTime} (K3).\n\n${list}`;
   }
   if (lang === "zh") {
-    return `11:30 — 孜孜上學準備，12:30 出門（K3）。\n\n${list}`;
+    return `${prepTime} — 孜孜上學準備，${leaveTime} 出門（K3）。\n\n${list}`;
   }
-  return `11:30 — Zizi school prep, then leave home at 12:30 (K3).\n\n${list}`;
+  return `${prepTime} — Zizi school prep, then leave home at ${leaveTime} (K3).\n\n${list}`;
 }

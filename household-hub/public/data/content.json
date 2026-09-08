@@ -1003,9 +1003,9 @@
   "familyName": "Zizi Family",
   "helperName": "Charlene",
   "ziziSchool": {
-    "en": "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30).",
-    "zh": "藍田靈糧幼稚園 — K3 下午班，週一至五（13:00 前送到，16:30 接）。",
-    "fil": "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30)."
+    "en": "Lam Tin Ling Liang Kindergarten — K3 PM, Mon–Fri (drop-off by 13:00, pick-up 16:30). Interest class days from Oct: Mon percussion / Tue Sumblox+magic / Fri fencing — leave 11:30; Tue pick-up 17:30.",
+    "fil": "Lam Tin Ling Liang Kindergarten — K3 PM, Lunes–Biyernes (drop-off bago 13:00, sundo 16:30). Mula Oct: Lunes percussion / Martes Sumblox+magic / Biyernes fencing — umalis 11:30; Martes sundo 17:30.",
+    "zh": "藍田靈糧幼稚園 — K3 下午班，週一至五（13:00 前送到，16:30 接）。10 月起興趣班：一鋼片琴／二 Sumblox+魔術／五劍擊 — 11:30 出門；星期二 17:30 接。"
   },
   "groundRules": [
     {
@@ -1209,7 +1209,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-09-03T00:00:00.000Z",
+  "lastUpdated": "2026-09-07T15:34:27.680Z",
   "hkLifeGuides": [
     {
       "id": "life-emergency-999",
@@ -1405,12 +1405,29 @@
       "lastReviewed": "2026-07-27"
     },
     {
+      "id": "life-kt-interest-classes",
+      "category": "transport",
+      "priority": 39,
+      "area": "kwun-tong",
+      "lastReviewed": "2026-09-07",
+      "title": {
+        "en": "Zizi K3 interest classes (Term 1)",
+        "fil": "Interest class ni Zizi sa K3 (Term 1)",
+        "zh": "孜孜 K3 興趣班（第一期）"
+      },
+      "body": {
+        "en": "Enrolled: Mon percussion (glockenspiel) 12:00–13:00 from 12 Oct; Tue Sumblox 12:00–13:00 + magic 16:30–17:30 from 6 Oct; Fri fencing 12:00–13:00 from 2 Oct. On those school-notice dates leave home 11:30; Tue pick up 17:30. Other school days: leave 12:30, pick up 16:30. Some Mondays/Fridays have no class — follow the Schedule tab for that date.",
+        "fil": "Naka-enroll: Lunes percussion (glockenspiel) 12:00–13:00 mula 12 Oct; Martes Sumblox 12:00–13:00 + magic 16:30–17:30 mula 6 Oct; Biyernes fencing 12:00–13:00 mula 2 Oct. Sa mga petsa iyon, umalis 11:30; Martes sundo 17:30. Ibang araw ng pasok: umalis 12:30, sundo 16:30. May Lunes/Biyernes na walang class — sundin ang Schedule tab.",
+        "zh": "已報名：一 敲擊樂／鋼片琴 12:00–13:00（10月12日起）；二 Sumblox 12:00–13:00 + 魔術 16:30–17:30（10月6日起）；五 劍擊 12:00–13:00（10月2日起）。當日 11:30 出門；星期二 17:30 接。其他上學日 12:30 出門、16:30 接。部分星期一／五沒有堂 — 以當日日程為準。"
+      }
+    },
+    {
       "id": "life-kt-school-walk",
       "area": "kwun-tong",
       "body": {
-        "en": "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri. Walk from home is about 30 minutes. Leave by 12:30 to arrive by 13:00. Leave by 16:00 to pick up at 16:30. Bring Octopus / water on hot days. In severe weather, ask Sir/Mum before going out.",
-        "zh": "藍田靈糧幼稚園 — 星期一至五下午班。由家步行約 30 分鐘。12:30 出門，13:00 前到達；16:00 出門，16:30 接回。熱天帶八達通／水。惡劣天氣出門前先問 Sir/Mum。",
-        "fil": "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes. Mga 30 minuto lakad mula bahay. Umalis ng 12:30 para dumating bago 13:00. Umalis ng 16:00 para sundo ng 16:30. Magdala ng Octopus / tubig kung mainit. Sa masamang panahon, tanungin muna sina Sir/Mum."
+        "en": "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri. Walk from home is about 30 minutes. Usual: leave 12:30, pick up 16:30. Interest class days (from Oct, school dates): Mon percussion / Tue Sumblox+magic / Fri fencing — leave 11:30; Tue pick up 17:30. Bring Octopus / water on hot days. In severe weather, ask Sir/Mum before going out.",
+        "zh": "藍田靈糧幼稚園 — 星期一至五下午班。由家步行約 30 分鐘。平常：12:30 出門，16:30 接。興趣班日子（10月起，以校方日期為準）：一鋼片琴／二 Sumblox+魔術／五劍擊 — 11:30 出門；星期二 17:30 接。熱天帶八達通／水。惡劣天氣出門前先問 Sir/Mum。",
+        "fil": "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes. Mga 30 minuto lakad mula bahay. Karaniwan: umalis 12:30, sundo 16:30. Interest class (mula Oct): Lunes percussion / Martes Sumblox+magic / Biyernes fencing — umalis 11:30; Martes sundo 17:30. Magdala ng Octopus / tubig kung mainit. Sa masamang panahon, tanungin muna sina Sir/Mum."
       },
       "title": {
         "en": "Walk to Zizi's kindergarten (Kwun Tong / Lam Tin)",
@@ -1419,7 +1436,7 @@
       },
       "category": "transport",
       "priority": 40,
-      "lastReviewed": "2026-07-22"
+      "lastReviewed": "2026-09-07"
     },
     {
       "id": "life-kt-mtr",
@@ -3140,6 +3157,21 @@
         "en": "Stay calm. Gently remind him to chew, or start a short visual timer. Do not force food or scold. Tell Sir/Mum if this happens often. Preference tip, not a House Rule.",
         "fil": "Manatiling kalmado. Maalalahanin siyang ngumuya, o mag-start ng maikling visual timer. Huwag pilitin o pagalitan. Sabihin kay Sir/Mum kung madalas. Preference tip, hindi House Rule.",
         "zh": "保持冷靜。溫柔提醒咀嚼，或開短時間視覺計時。不要強迫或責罵。若經常發生請告知 Sir/Mum。這是偏好貼士，不是家規。"
+      }
+    },
+    {
+      "id": "pref-zizi-interest-classes",
+      "category": "general",
+      "priority": 8,
+      "title": {
+        "en": "Zizi Term 1 interest classes",
+        "fil": "Interest class ni Zizi (Term 1)",
+        "zh": "孜孜第一期興趣班"
+      },
+      "body": {
+        "en": "K2 choir and school drawing are paused this term. Enrolled: percussion (Mon noon), Sumblox (Tue noon), magic (Tue after school), fencing (Fri noon). Follow the Schedule tab times on class dates.",
+        "fil": "Paused muna ang choir at school drawing ngayong term. Naka-enroll: percussion (Lunes tanghali), Sumblox (Martes tanghali), magic (Martes after school), fencing (Biyernes tanghali). Sundin ang oras sa Schedule tab.",
+        "zh": "今年暫停合唱團及學校畫畫。已報：敲擊樂（一中午）、Sumblox（二中午）、魔術（二放學）、劍擊（五中午）。當日時間以日程為準。"
       }
     }
   ],
@@ -5321,5 +5353,85 @@
         "startTime": "21:45"
       }
     ]
-  }
+  },
+  "interestClasses": [
+    {
+      "id": "percussion",
+      "dayKey": "monday",
+      "dates": [
+        "2026-10-12",
+        "2026-10-26",
+        "2026-11-02",
+        "2026-11-09",
+        "2026-11-16",
+        "2026-11-23",
+        "2026-11-30",
+        "2026-12-07",
+        "2026-12-14",
+        "2027-01-11",
+        "2027-01-25"
+      ],
+      "noonLabel": {
+        "en": "Percussion (snare + glockenspiel) 12:00–13:00",
+        "fil": "Percussion (snare + glockenspiel) 12:00–13:00",
+        "zh": "敲擊樂（小鼓及鋼片琴）12:00–13:00"
+      }
+    },
+    {
+      "id": "sumblox-magic",
+      "dayKey": "tuesday",
+      "dates": [
+        "2026-10-06",
+        "2026-10-13",
+        "2026-10-20",
+        "2026-10-27",
+        "2026-11-03",
+        "2026-11-10",
+        "2026-11-17",
+        "2026-11-24",
+        "2026-12-01",
+        "2026-12-08",
+        "2026-12-15",
+        "2027-01-05",
+        "2027-01-12",
+        "2027-01-19",
+        "2027-01-26",
+        "2027-02-16"
+      ],
+      "noonLabel": {
+        "en": "Sumblox math blocks 12:00–13:00",
+        "fil": "Sumblox math blocks 12:00–13:00",
+        "zh": "Sumblox 數學積木 12:00–13:00"
+      },
+      "afterLabel": {
+        "en": "Magic class 16:30–17:30 — pick up at 17:30",
+        "fil": "Magic class 16:30–17:30 — sundo ng 17:30",
+        "zh": "魔術班 16:30–17:30 — 17:30 接"
+      }
+    },
+    {
+      "id": "fencing",
+      "dayKey": "friday",
+      "dates": [
+        "2026-10-02",
+        "2026-10-09",
+        "2026-10-16",
+        "2026-10-30",
+        "2026-11-06",
+        "2026-11-20",
+        "2026-12-04",
+        "2026-12-11",
+        "2027-01-08",
+        "2027-01-15",
+        "2027-01-22",
+        "2027-01-29",
+        "2027-02-19"
+      ],
+      "noonLabel": {
+        "en": "Fencing 12:00–13:00",
+        "fil": "Fencing 12:00–13:00",
+        "zh": "劍擊 12:00–13:00"
+      }
+    }
+  ]
 }

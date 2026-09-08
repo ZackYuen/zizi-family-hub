@@ -455,7 +455,21 @@ export const adminLabels = {
   nameEn: { en: "Name (English)", fil: "Pangalan (English)" },
   nameFil: { en: "Name (Filipino)", fil: "Pangalan (Filipino)" },
   subCategory: { en: "Sub-category", fil: "Sub-category" },
-  recipeLink: { en: "Recipe link", fil: "Link ng recipe" },
+  recipeLink: {
+    en: "Video link (YouTube / Instagram)",
+    fil: "Video link (YouTube / Instagram)",
+    zh: "影片連結（YouTube／Instagram）",
+  },
+  recipePage: {
+    en: "Written recipe page (optional)",
+    fil: "Written recipe page (optional)",
+    zh: "文字食譜頁（可選）",
+  },
+  recipePageHint: {
+    en: "Any written recipe URL (blog, recipe site — not only one brand). Fetch reads that page for ingredients and steps.",
+    fil: "Kahit anong written recipe URL (blog / recipe site). Binabasa ng Fetch ang page para sa ingredients at steps.",
+    zh: "任何文字食譜網址（網誌／食譜站，不限某一品牌）。擷取時會讀該頁的材料與步驟。",
+  },
   edit: { en: "Edit", fil: "I-edit" },
   cancel: { en: "Cancel", fil: "Kanselahin" },
   importSuccess: { en: "Imported successfully. Click Save Meals to publish.", fil: "Na-import. I-click ang Save Meals para i-publish." },
@@ -541,14 +555,34 @@ export const adminLabels = {
     zh: "每項材料請填 EN＋FIL＋繁中（可用 →繁／→FIL 按鈕）。",
   },
   fetchYoutubeTitle: {
-    en: "Fetch YouTube / Instagram → names + prep notes + ingredients",
-    fil: "Kunin mula sa YouTube / Instagram → names + prep notes + ingredients",
-    zh: "從 YouTube／Instagram 擷取 → 名稱＋準備說明＋材料",
+    en: "Fetch video + written recipe page → names + prep + ingredients",
+    fil: "Kunin mula sa video + written recipe page → names + prep + ingredients",
+    zh: "從影片＋文字食譜頁擷取 → 名稱＋準備＋材料",
   },
   fetchingTitle: {
-    en: "Fetching video (title, prep, ingredients)… may take ~20s",
-    fil: "Kinukuha ang video (title, prep, ingredients)… ~20s",
-    zh: "擷取影片（標題、準備、材料）中…約 20 秒",
+    en: "Fetching video and recipe page… may take ~20s",
+    fil: "Kinukuha ang video at recipe page… ~20s",
+    zh: "擷取影片與食譜頁中…約 20 秒",
+  },
+  fetchNeedLink: {
+    en: "Paste a YouTube / Instagram link, or a written recipe page.",
+    fil: "Mag-paste ng YouTube / Instagram link, o written recipe page.",
+    zh: "請貼上 YouTube／Instagram 連結，或文字食譜頁。",
+  },
+  youtubeFetchKeptNotes: {
+    en: "Existing prep notes & ingredients kept.",
+    fil: "Pinanatili ang existing prep notes at ingredients.",
+    zh: "已保留現有準備說明與材料。",
+  },
+  youtubeFetchFromPage: {
+    en: "Ingredients/steps taken from the written recipe page.",
+    fil: "Ingredients/steps galing sa written recipe page.",
+    zh: "材料與步驟取自文字食譜頁。",
+  },
+  youtubeFetchPageMiss: {
+    en: "Could not open the written recipe page — check the URL.",
+    fil: "Hindi mabuksan ang written recipe page — tingnan ang URL.",
+    zh: "未能開啟文字食譜頁 — 請檢查網址。",
   },
   titleFetched: {
     en: "Video fetched — review prep notes & ingredients, then Save Meals.",

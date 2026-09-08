@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { hongKongDateKey, tonightDishes } from "@/lib/dinner";
-import { getRecipeDisplayName } from "@/lib/recipe-display";
+import { adminDishPickerLabel } from "@/lib/recipe-display";
 import type { DinnerRecipe, Lang, TonightMenu } from "@/lib/types";
 
 function recipeLabel(r: DinnerRecipe, lang: Lang): string {
-  return getRecipeDisplayName(r, lang);
+  return adminDishPickerLabel(r, lang);
 }
 
 function CategorySlots({

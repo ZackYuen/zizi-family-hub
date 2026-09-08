@@ -31,6 +31,11 @@ const ui = {
     zh: "可預覽明日餐單，方便提早買菜／準備。",
   },
   recipe: { en: "Watch video", fil: "Panoorin ang video", zh: "觀看影片" },
+  recipePage: {
+    en: "Full recipe",
+    fil: "Buong recipe",
+    zh: "完整食譜",
+  },
   meat: { en: "Meat", fil: "Karne", zh: "肉類" },
   vegetable: { en: "Vegetable", fil: "Gulay", zh: "蔬菜" },
   soup: { en: "Soup", fil: "Sabaw", zh: "湯" },
@@ -347,15 +352,29 @@ function DishCard({
         </div>
       )}
 
-      {recipe.link?.trim() ? (
-        <a
-          href={recipe.link.trim()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-teal-700 underline-offset-2 hover:underline"
-        >
-          {ui.recipe[lang]} →
-        </a>
+      {recipe.link?.trim() || recipe.recipePage?.trim() ? (
+        <div className="mt-3 flex flex-col gap-1">
+          {recipe.link?.trim() ? (
+            <a
+              href={recipe.link.trim()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-teal-700 underline-offset-2 hover:underline"
+            >
+              {ui.recipe[lang]} →
+            </a>
+          ) : null}
+          {recipe.recipePage?.trim() ? (
+            <a
+              href={recipe.recipePage.trim()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-teal-700 underline-offset-2 hover:underline"
+            >
+              {ui.recipePage[lang]} →
+            </a>
+          ) : null}
+        </div>
       ) : null}
     </article>
   );
