@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { hongKongDateKey, tonightDishes } from "@/lib/dinner";
-import { getRecipeDisplayName } from "@/lib/recipe-display";
+import { adminDishPickerLabel } from "@/lib/recipe-display";
 import type { DinnerRecipe, Lang, TonightMenu } from "@/lib/types";
 
-function recipeLabel(r: DinnerRecipe, lang: Lang): string {
-  return getRecipeDisplayName(r, lang);
+function recipeLabel(r: DinnerRecipe): string {
+  return adminDishPickerLabel(r);
 }
 
 function CategorySlots({
@@ -83,7 +83,7 @@ function CategorySlots({
               className="flex min-w-0 items-center gap-2 rounded-md bg-amber-50 px-2.5 py-1.5 text-xs text-amber-950"
             >
               <span className="min-w-0 flex-1 break-words">
-                {recipeLabel(r, lang)}
+                {recipeLabel(r)}
               </span>
               <button
                 type="button"
@@ -122,7 +122,7 @@ function CategorySlots({
           ) : (
             available.map((r) => (
               <option key={r.id} value={r.id}>
-                {recipeLabel(r, lang)}
+                {recipeLabel(r)}
               </option>
             ))
           )}
@@ -394,7 +394,7 @@ export function TonightOverridePanel({
       {previewDishes.length > 0 && (
         <p className="mt-3 break-words text-xs text-amber-900">
           Preview:{" "}
-          {previewDishes.map((d) => recipeLabel(d, lang)).join(" · ")}
+          {previewDishes.map((d) => recipeLabel(d)).join(" · ")}
         </p>
       )}
     </div>
