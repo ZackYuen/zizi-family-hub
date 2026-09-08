@@ -41,7 +41,15 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
   const [filter, setFilter] = useState<Category>("All");
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState<DinnerRecipe | null>(null);
+  const [videoFetch, setVideoFetch] = useState<{
+    kind: "idle" | "loading" | "ok" | "err";
+    text: string;
+  }>({ kind: "idle", text: "" });
   const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setVideoFetch({ kind: "idle", text: "" });
+  }, [editing?.id]);
 
   const load = useCallback(() => {
     fetch("/api/admin/recipes")
@@ -264,6 +272,19 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 ? adminT("edit", lang)
                 : adminT("addMeal", lang)}
             </h3>
+            {videoFetch.kind !== "idle" && (
+              <p
+                className={`sticky top-0 z-10 mb-3 rounded-lg px-3 py-2 text-sm ${
+                  videoFetch.kind === "err"
+                    ? "bg-red-50 text-red-800"
+                    : videoFetch.kind === "loading"
+                      ? "bg-sky-50 text-sky-900"
+                      : "bg-teal-50 text-teal-800"
+                }`}
+              >
+                {videoFetch.text}
+              </p>
+            )}
             <div className="space-y-2">
               <select
                 value={editing.category}
@@ -448,8 +469,15 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
               />
               <button
                 type="button"
+                disabled={videoFetch.kind === "loading"}
                 onClick={async () => {
-                  if (!editing.link) return;
+                  const url = editing.link.trim();
+                  if (!url) {
+                    const text = adminT("fetchNeedLink", lang);
+                    setVideoFetch({ kind: "err", text });
+                    setMessage(text);
+                    return;
+                  }
                   const hasPrep = Boolean(
                     editing.prepNotes?.en?.trim() ||
                       editing.prepNotes?.fil?.trim() ||
@@ -462,67 +490,85 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                       adminT("youtubeReplaceConfirm", lang)
                     );
                   }
-                  setMessage(adminT("fetchingTitle", lang));
-                  const res = await fetch("/api/admin/youtube-title", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      url: editing.link,
-                      enrich: true,
-                      category: editing.category,
-                    }),
-                  });
-                  const data = await res.json().catch(() => ({}));
-                  if (!res.ok) {
-                    setMessage(data.error || adminT("saveFailed", lang));
-                    return;
-                  }
-                  const title = (data.title as string) || "";
-                  let next: DinnerRecipe = {
-                    ...editing,
-                    name: editing.name || (data.nameZh as string) || title,
-                    nameEn: editing.nameEn || (data.nameEn as string) || title,
-                    nameFil:
-                      editing.nameFil ||
-                      (data.nameFil as string) ||
-                      editing.nameFil,
-                  };
-                  if (replaceExtras) {
-                    if (data.prepNotes) {
-                      next.prepNotes = {
-                        en: (data.prepNotes.en as string) || "",
-                        fil: (data.prepNotes.fil as string) || "",
-                        zh: (data.prepNotes.zh as string) || "",
-                      };
+                  const loadingText = adminT("fetchingTitle", lang);
+                  setVideoFetch({ kind: "loading", text: loadingText });
+                  setMessage(loadingText);
+                  try {
+                    const res = await fetch("/api/admin/youtube-title", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        url,
+                        enrich: true,
+                        category: editing.category,
+                      }),
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok) {
+                      const text =
+                        (data.error as string) || adminT("saveFailed", lang);
+                      setVideoFetch({ kind: "err", text });
+                      setMessage(text);
+                      return;
                     }
-                    if (Array.isArray(data.ingredients) && data.ingredients.length) {
-                      next.ingredients = data.ingredients;
+                    const title = (data.title as string) || "";
+                    let next: DinnerRecipe = {
+                      ...editing,
+                      name: editing.name || (data.nameZh as string) || title,
+                      nameEn: editing.nameEn || (data.nameEn as string) || title,
+                      nameFil:
+                        editing.nameFil ||
+                        (data.nameFil as string) ||
+                        editing.nameFil,
+                    };
+                    if (replaceExtras) {
+                      if (data.prepNotes) {
+                        next.prepNotes = {
+                          en: (data.prepNotes.en as string) || "",
+                          fil: (data.prepNotes.fil as string) || "",
+                          zh: (data.prepNotes.zh as string) || "",
+                        };
+                      }
+                      if (
+                        Array.isArray(data.ingredients) &&
+                        data.ingredients.length
+                      ) {
+                        next.ingredients = data.ingredients;
+                      }
                     }
-                  }
-                  if (!next.cookDevice) {
-                    const suggestion = suggestCookDevice(next);
-                    if (suggestion) {
-                      next = applyCookDevice(next, suggestion.cookDevice);
+                    if (!next.cookDevice) {
+                      const suggestion = suggestCookDevice(next);
+                      if (suggestion) {
+                        next = applyCookDevice(next, suggestion.cookDevice);
+                      }
                     }
-                  }
-                  setEditing(next);
-                  if (data.warning || data.used?.llm === false) {
-                    setMessage(adminT("youtubeFetchPartial", lang));
-                  } else {
-                    const bits: string[] = [];
-                    if (data.used?.captions) bits.push("captions");
-                    if (data.used?.description) bits.push("description");
-                    if (data.used?.web) bits.push("web");
-                    setMessage(
-                      `${adminT("titleFetched", lang)}${
-                        bits.length ? ` (${bits.join(" + ")})` : ""
-                      }`
-                    );
+                    setEditing(next);
+                    const fetchedName =
+                      (data.nameEn as string) || title || "";
+                    let text =
+                      data.warning || data.used?.llm === false
+                        ? adminT("youtubeFetchPartial", lang)
+                        : adminT("titleFetched", lang);
+                    if (fetchedName) text += ` — ${fetchedName}`;
+                    if (!replaceExtras && (hasPrep || hasIng)) {
+                      text += ` ${adminT("youtubeFetchKeptNotes", lang)}`;
+                    }
+                    setVideoFetch({ kind: "ok", text });
+                    setMessage(text);
+                  } catch (err) {
+                    const text =
+                      err instanceof Error
+                        ? err.message
+                        : adminT("saveFailed", lang);
+                    setVideoFetch({ kind: "err", text });
+                    setMessage(text);
                   }
                 }}
-                className="w-full rounded-lg bg-sky-50 py-2 text-xs font-medium text-sky-800 ring-1 ring-sky-100"
+                className="w-full rounded-lg bg-sky-50 py-2 text-xs font-medium text-sky-800 ring-1 ring-sky-100 disabled:opacity-50"
               >
-                {adminT("fetchYoutubeTitle", lang)}
+                {videoFetch.kind === "loading"
+                  ? adminT("fetchingTitle", lang)
+                  : adminT("fetchYoutubeTitle", lang)}
               </button>
               <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-2">
                 <p className="mb-1 text-xs font-semibold text-amber-900">
