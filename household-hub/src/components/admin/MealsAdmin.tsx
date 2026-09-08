@@ -486,7 +486,8 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 disabled={videoFetch.kind === "loading"}
                 onClick={async () => {
                   const url = editing.link.trim();
-                  if (!url) {
+                  const recipePage = (editing.recipePage ?? "").trim();
+                  if (!url && !recipePage) {
                     const text = adminT("fetchNeedLink", lang);
                     setVideoFetch({ kind: "err", text });
                     setMessage(text);
@@ -515,6 +516,7 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                         url,
                         enrich: true,
                         category: editing.category,
+                        recipePage: recipePage || undefined,
                       }),
                     });
                     const data = await res.json().catch(() => ({}));
@@ -568,11 +570,10 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                         ? adminT("youtubeFetchPartial", lang)
                         : adminT("titleFetched", lang);
                     if (fetchedName) text += ` — ${fetchedName}`;
-                    if (
-                      (data.recipePage as string) &&
-                      !editing.recipePage?.trim()
-                    ) {
-                      text += ` · page: ${data.recipePage as string}`;
+                    if (data.used?.page) {
+                      text += ` ${adminT("youtubeFetchFromPage", lang)}`;
+                    } else if (recipePage) {
+                      text += ` ${adminT("youtubeFetchPageMiss", lang)}`;
                     }
                     if (!replaceExtras && (hasPrep || hasIng)) {
                       text += ` ${adminT("youtubeFetchKeptNotes", lang)}`;
