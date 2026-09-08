@@ -5,8 +5,8 @@ import { hongKongDateKey, tonightDishes } from "@/lib/dinner";
 import { adminDishPickerLabel } from "@/lib/recipe-display";
 import type { DinnerRecipe, Lang, TonightMenu } from "@/lib/types";
 
-function recipeLabel(r: DinnerRecipe): string {
-  return adminDishPickerLabel(r);
+function recipeLabel(r: DinnerRecipe, lang: Lang): string {
+  return adminDishPickerLabel(r, lang);
 }
 
 function CategorySlots({
@@ -83,7 +83,7 @@ function CategorySlots({
               className="flex min-w-0 items-center gap-2 rounded-md bg-amber-50 px-2.5 py-1.5 text-xs text-amber-950"
             >
               <span className="min-w-0 flex-1 break-words">
-                {recipeLabel(r)}
+                {recipeLabel(r, lang)}
               </span>
               <button
                 type="button"
@@ -122,7 +122,7 @@ function CategorySlots({
           ) : (
             available.map((r) => (
               <option key={r.id} value={r.id}>
-                {recipeLabel(r)}
+                {recipeLabel(r, lang)}
               </option>
             ))
           )}
@@ -394,7 +394,7 @@ export function TonightOverridePanel({
       {previewDishes.length > 0 && (
         <p className="mt-3 break-words text-xs text-amber-900">
           Preview:{" "}
-          {previewDishes.map((d) => recipeLabel(d)).join(" · ")}
+          {previewDishes.map((d) => recipeLabel(d, lang)).join(" · ")}
         </p>
       )}
     </div>

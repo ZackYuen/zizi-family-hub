@@ -11,6 +11,7 @@ import {
   suggestCookDevice,
 } from "@/lib/cook-device-suggest";
 import { localized } from "@/lib/localized-text";
+import { adminRecipeSubtitle, adminRecipeTitle } from "@/lib/recipe-display";
 
 type Category = DinnerRecipe["category"] | "All";
 
@@ -750,10 +751,10 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
             </span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-stone-900">
-                {r.nameFil || r.nameEn || r.name}
+                {adminRecipeTitle(r, lang)}
               </p>
               <p className="truncate text-xs text-stone-500">
-                {r.name !== (r.nameFil || r.nameEn) ? r.name : r.subCategory}
+                {adminRecipeSubtitle(r, lang) || r.subCategory}
                 {r.ingredients?.length
                   ? ` · ${r.ingredients.length} ingredients`
                   : ""}
