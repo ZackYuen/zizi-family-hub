@@ -550,6 +550,16 @@ export const adminLabels = {
     fil: "Kinukuha ang video (title, prep, ingredients)… ~20s",
     zh: "擷取影片（標題、準備、材料）中…約 20 秒",
   },
+  fetchNeedLink: {
+    en: "Paste a YouTube or Instagram link first.",
+    fil: "Mag-paste muna ng YouTube o Instagram link.",
+    zh: "請先貼上 YouTube 或 Instagram 連結。",
+  },
+  youtubeFetchKeptNotes: {
+    en: "Existing prep notes & ingredients kept.",
+    fil: "Pinanatili ang existing prep notes at ingredients.",
+    zh: "已保留現有準備說明與材料。",
+  },
   titleFetched: {
     en: "Video fetched — review prep notes & ingredients, then Save Meals.",
     fil: "Nakuha mula sa video — i-check ang prep notes & ingredients, tapos Save Meals.",
