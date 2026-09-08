@@ -182,9 +182,25 @@ const hkLifeGuides = [
       zh: "步行往 Zizi 幼稚園（觀塘／藍田）",
     },
     {
-      en: "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri. Walk from home is about 30 minutes. Leave by 12:30 to arrive by 13:00. Leave by 16:00 to pick up at 16:30. Bring Octopus / water on hot days. In severe weather, ask Sir/Mum before going out.",
-      fil: "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes. Mga 30 minuto lakad mula bahay. Umalis ng 12:30 para dumating bago 13:00. Umalis ng 16:00 para sundo ng 16:30. Magdala ng Octopus / tubig kung mainit. Sa masamang panahon, tanungin muna sina Sir/Mum.",
-      zh: "藍田靈糧幼稚園 — 星期一至五下午班。由家步行約 30 分鐘。12:30 出門，13:00 前到達；16:00 出門，16:30 接回。熱天帶八達通／水。惡劣天氣出門前先問 Sir/Mum。",
+      en: "Lam Tin Ling Liang Kindergarten — PM class Mon–Fri. Walk from home is about 30 minutes. Usual: leave 12:30, pick up 16:30. Interest class days (from Oct, school dates): Mon percussion / Tue Sumblox+magic / Fri fencing — leave 11:30; Tue pick up 17:30. Bring Octopus / water on hot days. In severe weather, ask Sir/Mum before going out.",
+      fil: "Lam Tin Ling Liang Kindergarten — PM class Lunes–Biyernes. Mga 30 minuto lakad mula bahay. Karaniwan: umalis 12:30, sundo 16:30. Interest class (mula Oct): Lunes percussion / Martes Sumblox+magic / Biyernes fencing — umalis 11:30; Martes sundo 17:30. Magdala ng Octopus / tubig kung mainit. Sa masamang panahon, tanungin muna sina Sir/Mum.",
+      zh: "藍田靈糧幼稚園 — 星期一至五下午班。由家步行約 30 分鐘。平常：12:30 出門，16:30 接。興趣班日子（10月起，以校方日期為準）：一鋼片琴／二 Sumblox+魔術／五劍擊 — 11:30 出門；星期二 17:30 接。熱天帶八達通／水。惡劣天氣出門前先問 Sir/Mum。",
+    }
+  ),
+  tip(
+    "life-kt-interest-classes",
+    "transport",
+    39,
+    "kwun-tong",
+    {
+      en: "Zizi K3 interest classes (Term 1)",
+      fil: "Interest class ni Zizi sa K3 (Term 1)",
+      zh: "孜孜 K3 興趣班（第一期）",
+    },
+    {
+      en: "Enrolled: Mon percussion (glockenspiel) 12:00–13:00 from 12 Oct; Tue Sumblox 12:00–13:00 + magic 16:30–17:30 from 6 Oct; Fri fencing 12:00–13:00 from 2 Oct. On those school-notice dates leave home 11:30; Tue pick up 17:30. Other school days: leave 12:30, pick up 16:30. Some Mondays/Fridays have no class — follow the Schedule tab for that date.",
+      fil: "Naka-enroll: Lunes percussion (glockenspiel) 12:00–13:00 mula 12 Oct; Martes Sumblox 12:00–13:00 + magic 16:30–17:30 mula 6 Oct; Biyernes fencing 12:00–13:00 mula 2 Oct. Sa mga petsa iyon, umalis 11:30; Martes sundo 17:30. Ibang araw ng pasok: umalis 12:30, sundo 16:30. May Lunes/Biyernes na walang class — sundin ang Schedule tab.",
+      zh: "已報名：一 敲擊樂／鋼片琴 12:00–13:00（10月12日起）；二 Sumblox 12:00–13:00 + 魔術 16:30–17:30（10月6日起）；五 劍擊 12:00–13:00（10月2日起）。當日 11:30 出門；星期二 17:30 接。其他上學日 12:30 出門、16:30 接。部分星期一／五沒有堂 — 以當日日程為準。",
     }
   ),
   tip(

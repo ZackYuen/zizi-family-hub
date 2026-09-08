@@ -22,6 +22,12 @@ import {
 import { isDemaeIcchoQuestion, demaeIcchoAnswer } from "./demae-iccho";
 import type { HkLifeGuide, Lang, ScheduleTask } from "./types";
 import { isSchoolPrepQuestion, schoolPrepAnswer } from "./school-prep";
+import {
+  findLeaveHomeTask,
+  findPickupLeaveTask,
+  interestClassOverview,
+  isInterestClassQuestion,
+} from "./interest-classes";
 
 export interface AskResult {
   answer: string;
@@ -656,6 +662,10 @@ function heuristicAnswer(
         : `Drawing class (summer): ${daysEn} ${classRange} — ${venueEn}. Leave home ~${leaveRange}. No kindergarten until ${summerEndLabel}; school resumes ${termStartLabel} (K3 PM).`;
   }
 
+  if (isInterestClassQuestion(question)) {
+    return interestClassOverview(lang, snap.todayDateKey);
+  }
+
   if (isSchoolPrepQuestion(question)) {
     return schoolPrepAnswer(lang, snap.todaySchedule?.tasks, snap.todayDayKey);
   }
@@ -687,13 +697,26 @@ function heuristicAnswer(
           ? `現正暑假（至 ${summerEndLabel}）— 無幼稚園。星期${daysZh}：繪畫班 ${classRange}（One Point Studio，觀塘工業中心一期12樓B室）。${termStartLabel} 復課 — K3 下午班（13:00 前送到，16:30 接）。`
           : `Summer holiday now (until ${summerEndLabel}) — no kindergarten. ${daysEn}: drawing class ${classRange} at One Point Studio (觀塘工業中心一期12樓B室). School resumes ${termStartLabel} — K3 PM (drop-off by 13:00, pick-up 16:30).`;
     }
+    const todayTasks = snap.todaySchedule?.tasks;
+    const leave = findLeaveHomeTask(todayTasks);
+    const pickup = findPickupLeaveTask(todayTasks);
+    if (leave || pickup) {
+      const leaveAt = leave?.startTime || leave?.time || "12:30";
+      const pickupAt = pickup?.endTime || "16:30";
+      const pickupLeave = pickup?.startTime || pickup?.time || "16:00";
+      if (lang === "fil") {
+        return `Ngayon: umalis ${leaveAt} (30 min lakad). Sundo — umalis ${pickupLeave}, sundo ${pickupAt}. ${leave?.task.fil || ""}`.trim();
+      }
+      if (lang === "zh") {
+        return `今日：${leaveAt} 出門（步行約 30 分鐘）。接放學 — ${pickupLeave} 出門，${pickupAt} 接。${leave?.task.zh || ""}`.trim();
+      }
+      return `Today: leave home ${leaveAt} (30 min walk). Pick-up — leave ${pickupLeave}, collect at ${pickupAt}. ${leave?.task.en || ""}`.trim();
+    }
+    const interest = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-interest-classes");
+    if (interest) return interest;
     const walk = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-school-walk");
     if (walk) return walk;
-    return lang === "fil"
-      ? "Zizi: K3 Mon–Fri PM class. Umalis sa bahay 12:30 (30 min lakad) — drop-off bago 13:00. Umalis 16:00 para sunduin si Zizi ng 16:30."
-      : lang === "zh"
-        ? "Zizi：K3 星期一至五下午班。12:30 出門（步行約 30 分鐘），13:00 前送到。16:00 出門，16:30 接 Zizi。"
-        : "Zizi: K3 Mon–Fri PM class. Leave home 12:30 (30 min walk) — drop off by 13:00. Leave 16:00 to pick up Zizi at 16:30.";
+    return interestClassOverview(lang, snap.todayDateKey);
   }
 
   // HK Life / FDH settling tips (deterministic from guides)

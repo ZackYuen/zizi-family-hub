@@ -39,6 +39,15 @@ export interface DaySchedule {
   tasks: ScheduleTask[];
 }
 
+/** One school interest class (dates from the kindergarten notice). */
+export interface InterestClassTerm {
+  id: string;
+  dayKey: "monday" | "tuesday" | "friday";
+  dates: string[];
+  noonLabel: BilingualText;
+  afterLabel?: BilingualText;
+}
+
 /** Term vs summer holiday dates (Hong Kong calendar dates, YYYY-MM-DD). */
 export interface SchoolCalendar {
   /** Inclusive last day of summer holiday */
@@ -244,6 +253,12 @@ export interface AppContent {
   ziziSchoolSummer?: BilingualText;
   /** Summer / term switch dates + grade */
   schoolCalendar?: SchoolCalendar;
+  /**
+   * Kindergarten interest-class dates (Term 1). On matching HK dates the
+   * school-term weekly template is shifted (leave 11:30, Tue pick-up 17:30).
+   * Admin one-off `scheduleDateOverrides` still win.
+   */
+  interestClasses?: InterestClassTerm[];
   groundRules: GroundRule[];
   /**
    * Soft family preferences / shopping tips — helpful guidance, NOT House Rules.
