@@ -79,19 +79,37 @@ export function getRecipeDisplayName(recipe: DinnerRecipe, lang: Lang): string {
 }
 
 /**
- * Admin Meals “add dish” picker — Chinese first so Sir/Mum can scan the list
- * even when Admin UI language is English.
+ * Admin dish title — follows the Admin language toggle.
+ * Never uses nameFil: Sir/Mum cannot read Filipino, and a FIL-first
+ * title cannot be changed by editing the English/Chinese fields.
  */
-export function adminDishPickerLabel(recipe: DinnerRecipe): string {
-  const zh = recipe.name?.trim() || "";
-  const en = (recipe.nameEn || "").trim();
-  if (zh && hasCjk(zh)) {
-    if (en && isMostlyLatin(en) && en !== zh) return `${zh} / ${en}`;
-    return zh;
+export function adminRecipeTitle(recipe: DinnerRecipe, lang: Lang): string {
+  return getRecipeDisplayName(recipe, lang === "zh" ? "zh" : "en");
+}
+
+export function adminRecipeSubtitle(
+  recipe: DinnerRecipe,
+  lang: Lang
+): string | null {
+  if (lang === "zh") {
+    const en = (recipe.nameEn || "").trim();
+    if (en && isMostlyLatin(en)) return en;
+    return null;
   }
-  if (en) return en;
-  if (recipe.nameFil?.trim()) return recipe.nameFil.trim();
-  return zh || recipe.id;
+  const zh = (recipe.name || "").trim();
+  if (zh && hasCjk(zh)) return zh;
+  return null;
+}
+
+/** Add-dish picker / preview: chosen language first, other name after a slash. */
+export function adminDishPickerLabel(
+  recipe: DinnerRecipe,
+  lang: Lang = "en"
+): string {
+  const primary = adminRecipeTitle(recipe, lang);
+  const other = adminRecipeSubtitle(recipe, lang);
+  if (other && other !== primary) return `${primary} / ${other}`;
+  return primary || recipe.id;
 }
 
 export function getRecipeSubtitle(recipe: DinnerRecipe, lang: Lang): string | null {
