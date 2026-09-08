@@ -22,6 +22,7 @@ export interface YoutubeRecipeEnrichment {
     captions: boolean;
     web: boolean;
     llm: boolean;
+    page: boolean;
   };
 }
 
@@ -85,6 +86,94 @@ export function extractRecipePageUrl(text: string): string | null {
     }
   }
   return null;
+}
+
+/** UTF-8 bytes that were decoded as Latin-1 (e.g. 炒飯 → ç‚’é£¯). */
+export function repairUtf8Mojibake(text: string): string {
+  try {
+    const bytes = Uint8Array.from([...text], (c) => c.charCodeAt(0) & 0xff);
+    if (bytes.some((_, i) => text.charCodeAt(i) > 255)) return text;
+    const decoded = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    return decoded || text;
+  } catch {
+    return text;
+  }
+}
+
+/** URLs to try: as pasted, decoded, and mojibake-repaired (炒飯). */
+export function recipePageUrlCandidates(raw: string): string[] {
+  const out: string[] = [];
+  const add = (value: string) => {
+    const t = value.trim();
+    if (t && !out.includes(t)) out.push(t);
+  };
+  add(raw);
+  try {
+    add(decodeURIComponent(raw));
+  } catch {
+    /* ignore */
+  }
+  try {
+    const u = new URL(raw);
+    const repairedPath = repairUtf8Mojibake(decodeURIComponent(u.pathname));
+    if (repairedPath !== u.pathname) {
+      const next = new URL(u.href);
+      next.pathname = repairedPath;
+      add(next.href);
+    }
+  } catch {
+    /* ignore */
+  }
+  return out;
+}
+
+function htmlToRecipeText(html: string): string {
+  let s = html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
+    .replace(/<[^>]+>/g, "\n")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&#39;/gi, "'")
+    .replace(/&quot;/gi, '"')
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/[ \t]+/g, " ")
+    .trim();
+  const start = s.search(
+    /\[ingredients\]|ingredients\s*\(gram\)|材料|prep time|\[instruction\]/i
+  );
+  if (start > 40 && start < s.length - 120) s = s.slice(start);
+  return s.slice(0, 9000);
+}
+
+export async function fetchRecipePageText(
+  url: string
+): Promise<{ canonical: string; text: string }> {
+  for (const href of recipePageUrlCandidates(url)) {
+    try {
+      const res = await fetch(href, {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (compatible; ZiziFamilyHub/1.0; +https://zizi-family-hub.vercel.app)",
+          Accept: "text/html,application/xhtml+xml",
+        },
+        signal: AbortSignal.timeout(15000),
+        redirect: "follow",
+      });
+      if (!res.ok) continue;
+      const html = await res.text();
+      const text = htmlToRecipeText(html);
+      if (text.length > 80) {
+        return { canonical: res.url || href, text };
+      }
+    } catch {
+      continue;
+    }
+  }
+  return { canonical: url.trim(), text: "" };
 }
 
 /** Extract YouTube video id from common URL shapes */
@@ -225,6 +314,7 @@ async function llmEnrichRecipe(input: {
   description: string;
   captions: string;
   web: string;
+  pageText?: string;
   categoryHint?: string;
 }): Promise<{
   nameZh?: string;
@@ -258,6 +348,9 @@ Rules:
 - Video may be Cantonese / Mandarin / English / Filipino — always output EN + FIL + ZH.
 - ALL Chinese fields (nameZh, ingredients[].zh, prepNotes.zh) MUST be 香港繁體中文 (Traditional Chinese).
   Never use Simplified Chinese. Examples: 雞蛋 not 鸡蛋; 麵 not 面; 醬 not 酱; 裡 not 里; 體 not 体; 萬 not 万.
+- If a WRITTEN RECIPE PAGE is provided, it is the source of truth for ingredients and cook steps (not the video).
+- Use the GRAM ingredient list if both gram and ounce are listed. Skip duplicate ounce block.
+- Skip bulk side recipes (jar of kombu salt, cooking 3–4 portions of plain rice) unless needed for this one dinner. Keep small dish amounts (e.g. kombu salt 1/3 tsp), not 50g salt batches.
 - ingredients: shopping/prep list for ONE family dinner; include qty when known (e.g. "2 pcs", "1 tbsp"). Prefer 4–14 items.
 - prepNotes: SHORT numbered steps Charlene can follow WITHOUT understanding video audio (max ~8 steps). Not a transcript.
 - Soft for a child (Zizi) when relevant (cut small, mild, de-bone).
@@ -270,6 +363,9 @@ Rules:
 Title: ${input.title}
 Creator / channel: ${input.author}
 Category hint: ${input.categoryHint || "(none)"}
+
+WRITTEN RECIPE PAGE (ingredients + steps — prefer this):
+${input.pageText || "(none)"}
 
 VIDEO DESCRIPTION / INSTAGRAM CAPTION:
 ${input.description || "(none)"}
@@ -450,16 +546,21 @@ async function enrichFromSources(options: {
   description: string;
   captions: string;
   categoryHint?: string;
+  pageText?: string;
+  recipePage?: string;
 }): Promise<YoutubeRecipeEnrichment> {
-  const webQueries = [
-    `${options.title} 食譜 材料 做法`,
-    `${options.title} recipe ingredients steps`,
-    `${options.title} ingredients how to cook`,
-  ].filter((q) => q.trim().length > 8);
+  const pageText = options.pageText?.trim() || "";
   let web = "";
-  for (const q of webQueries) {
-    web = await fetchWebSnippets(q);
-    if (web.length > 80) break;
+  if (pageText.length < 120) {
+    const webQueries = [
+      `${options.title} 食譜 材料 做法`,
+      `${options.title} recipe ingredients steps`,
+      `${options.title} ingredients how to cook`,
+    ].filter((q) => q.trim().length > 8);
+    for (const q of webQueries) {
+      web = await fetchWebSnippets(q);
+      if (web.length > 80) break;
+    }
   }
 
   const llm = await llmEnrichRecipe({
@@ -469,12 +570,23 @@ async function enrichFromSources(options: {
     description: options.description,
     captions: options.captions,
     web,
+    pageText,
     categoryHint: options.categoryHint,
   });
 
   const recipePage =
+    options.recipePage ||
     extractRecipePageUrl(options.description) ||
-    extractRecipePageUrl(options.captions);
+    extractRecipePageUrl(options.captions) ||
+    undefined;
+
+  const used = {
+    description: Boolean(options.description),
+    captions: Boolean(options.captions),
+    web: Boolean(web),
+    llm: Boolean(llm),
+    page: pageText.length > 80,
+  };
 
   if (!llm) {
     return {
@@ -483,13 +595,8 @@ async function enrichFromSources(options: {
       videoId: options.videoId,
       ingredients: [],
       prepNotes: { en: "", fil: "", zh: "" },
-      recipePage: recipePage || undefined,
-      used: {
-        description: Boolean(options.description),
-        captions: Boolean(options.captions),
-        web: Boolean(web),
-        llm: false,
-      },
+      recipePage,
+      used: { ...used, llm: false },
     };
   }
 
@@ -502,30 +609,46 @@ async function enrichFromSources(options: {
     nameFil: llm.nameFil,
     ingredients: llm.ingredients,
     prepNotes: llm.prepNotes,
-    recipePage: recipePage || undefined,
-    used: {
-      description: Boolean(options.description),
-      captions: Boolean(options.captions),
-      web: Boolean(web),
-      llm: true,
-    },
+    recipePage,
+    used: { ...used, llm: true },
   };
 }
 
 /**
  * Fetch YouTube / Instagram title + caption/description, then LLM →
  * trilingual prep notes + ingredients for Admin Meals and WhatsApp ?add.
+ * When recipePage is set, that HTML is the source of truth for ingredients/steps.
  */
 export async function enrichYoutubeRecipe(options: {
   url: string;
   categoryHint?: string;
+  recipePage?: string;
 }): Promise<YoutubeRecipeEnrichment> {
   const url = options.url.trim();
   const ig = instagramShortcode(url);
+
+  const attachPage = async (
+    description: string,
+    captions: string
+  ): Promise<{ pageText: string; recipePage?: string }> => {
+    const href =
+      options.recipePage?.trim() ||
+      extractRecipePageUrl(description) ||
+      extractRecipePageUrl(captions) ||
+      "";
+    if (!href) return { pageText: "" };
+    const fetched = await fetchRecipePageText(href);
+    return {
+      pageText: fetched.text,
+      recipePage: fetched.text ? fetched.canonical : href,
+    };
+  };
+
   if (ig) {
     const canonical = canonicalInstagramUrl(ig);
     const meta = await fetchInstagramCaption(ig);
     const title = meta.title || "Instagram recipe";
+    const page = await attachPage(meta.description, "");
     return enrichFromSources({
       url: canonical,
       title,
@@ -534,11 +657,31 @@ export async function enrichYoutubeRecipe(options: {
       description: meta.description,
       captions: "",
       categoryHint: options.categoryHint,
+      pageText: page.pageText,
+      recipePage: page.recipePage,
     });
   }
 
   if (!/youtu\.?be|youtube\.com/i.test(url)) {
-    throw new Error("Need a YouTube or Instagram link");
+    const pageHref = options.recipePage?.trim() || url;
+    if (!/^https?:\/\//i.test(pageHref)) {
+      throw new Error("Need a YouTube or Instagram link");
+    }
+    const fetched = await fetchRecipePageText(pageHref);
+    if (!fetched.text) {
+      throw new Error("Could not read that recipe page — check the URL");
+    }
+    return enrichFromSources({
+      url: fetched.canonical,
+      title: "",
+      author: "",
+      videoId: null,
+      description: "",
+      captions: "",
+      categoryHint: options.categoryHint,
+      pageText: fetched.text,
+      recipePage: fetched.canonical,
+    });
   }
 
   const videoId = youtubeVideoId(url);
@@ -549,6 +692,8 @@ export async function enrichYoutubeRecipe(options: {
     videoId ? fetchCaptionsSnippet(videoId) : Promise.resolve(""),
   ]);
 
+  const page = await attachPage(description, captions);
+
   return enrichFromSources({
     url,
     title,
@@ -557,5 +702,7 @@ export async function enrichYoutubeRecipe(options: {
     description,
     captions,
     categoryHint: options.categoryHint,
+    pageText: page.pageText,
+    recipePage: page.recipePage,
   });
 }
