@@ -466,9 +466,9 @@ export const adminLabels = {
     zh: "文字食譜頁（可選）",
   },
   recipePageHint: {
-    en: "Paste the blog/recipe URL from the video. Fetch reads this page for ingredients and steps (YouTube often hides it).",
-    fil: "I-paste ang blog/recipe URL mula sa video. Binabasa ng Fetch ang page para sa ingredients at steps.",
-    zh: "把影片裡的食譜網頁貼在這裡。擷取時會讀此頁的材料與步驟（YouTube 常常藏起連結）。",
+    en: "Any written recipe URL (blog, recipe site — not only one brand). Fetch reads that page for ingredients and steps.",
+    fil: "Kahit anong written recipe URL (blog / recipe site). Binabasa ng Fetch ang page para sa ingredients at steps.",
+    zh: "任何文字食譜網址（網誌／食譜站，不限某一品牌）。擷取時會讀該頁的材料與步驟。",
   },
   edit: { en: "Edit", fil: "I-edit" },
   cancel: { en: "Cancel", fil: "Kanselahin" },

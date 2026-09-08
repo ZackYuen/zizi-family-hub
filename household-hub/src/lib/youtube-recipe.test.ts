@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  extractJsonLdRecipe,
   extractRecipePageUrl,
   recipePageUrlCandidates,
   repairUtf8Mojibake,
@@ -39,7 +40,24 @@ test("unwrapYoutubeRedirect leaves normal URLs", () => {
   );
 });
 
-test("repairs mojibake percent-encoding of 炒飯 in chefslabo URL", () => {
+test("extractJsonLdRecipe reads schema.org Recipe from any site", () => {
+  const html = `<html><script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    name: "Tomato egg",
+    recipeIngredient: ["Eggs 2", "Tomato 2 pcs"],
+    recipeInstructions: [
+      { "@type": "HowToStep", text: "Scramble eggs." },
+      { "@type": "HowToStep", text: "Add tomato." },
+    ],
+  })}</script></html>`;
+  const text = extractJsonLdRecipe(html);
+  assert.match(text, /Tomato egg/);
+  assert.match(text, /Eggs 2/);
+  assert.match(text, /Scramble eggs/);
+});
+
+test("repairs mojibake percent-encoding of 炒飯 in recipe URLs", () => {
   const raw =
     "https://www.chefslabo.com/post/fried-rice-traditional-japanese-style-%C3%A7%C2%82%C2%92%C3%A9%C2%A3%C2%AF";
   const decoded = decodeURIComponent(new URL(raw).pathname);

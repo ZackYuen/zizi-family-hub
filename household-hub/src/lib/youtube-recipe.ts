@@ -127,7 +127,68 @@ export function recipePageUrlCandidates(raw: string): string[] {
   return out;
 }
 
+function flattenRecipeInstructions(inst: unknown): string[] {
+  if (!inst) return [];
+  if (typeof inst === "string") return [inst.trim()].filter(Boolean);
+  if (Array.isArray(inst)) return inst.flatMap(flattenRecipeInstructions);
+  if (typeof inst === "object") {
+    const o = inst as Record<string, unknown>;
+    if (typeof o.text === "string") return [o.text.trim()].filter(Boolean);
+    if (o.itemListElement) return flattenRecipeInstructions(o.itemListElement);
+  }
+  return [];
+}
+
+/** schema.org Recipe JSON-LD — used by many blogs, not only one site. */
+export function extractJsonLdRecipe(html: string): string {
+  const blocks = [
+    ...html.matchAll(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
+    ),
+  ];
+  const bits: string[] = [];
+  for (const m of blocks) {
+    try {
+      const json = JSON.parse(m[1] || "") as unknown;
+      const nodes = Array.isArray(json)
+        ? json
+        : json &&
+            typeof json === "object" &&
+            Array.isArray((json as { "@graph"?: unknown[] })["@graph"])
+          ? ((json as { "@graph": unknown[] })["@graph"] ?? [])
+          : [json];
+      for (const node of nodes) {
+        if (!node || typeof node !== "object") continue;
+        const rec = node as Record<string, unknown>;
+        const types = (
+          Array.isArray(rec["@type"]) ? rec["@type"] : [rec["@type"]]
+        )
+          .map((t) => String(t || "").toLowerCase());
+        if (!types.includes("recipe")) continue;
+        const name = typeof rec.name === "string" ? rec.name : "";
+        const ings = Array.isArray(rec.recipeIngredient)
+          ? rec.recipeIngredient.filter((x): x is string => typeof x === "string")
+          : [];
+        const steps = flattenRecipeInstructions(rec.recipeInstructions);
+        if (name) bits.push(`RECIPE NAME: ${name}`);
+        if (ings.length) {
+          bits.push(`INGREDIENTS:\n${ings.map((i) => `- ${i}`).join("\n")}`);
+        }
+        if (steps.length) {
+          bits.push(
+            `STEPS:\n${steps.map((s, i) => `${i + 1}. ${s}`).join("\n")}`
+          );
+        }
+      }
+    } catch {
+      continue;
+    }
+  }
+  return bits.join("\n\n").slice(0, 4000);
+}
+
 function htmlToRecipeText(html: string): string {
+  const jsonLd = extractJsonLdRecipe(html);
   let s = html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -143,10 +204,10 @@ function htmlToRecipeText(html: string): string {
     .replace(/[ \t]+/g, " ")
     .trim();
   const start = s.search(
-    /\[ingredients\]|ingredients\s*\(gram\)|材料|prep time|\[instruction\]/i
+    /\[ingredients\]|ingredients\s*\(|材料|食材|份量|作り方|手順|method|directions?|instructions?|prep time|\[instruction\]|how to (?:cook|make)/i
   );
   if (start > 40 && start < s.length - 120) s = s.slice(start);
-  return s.slice(0, 9000);
+  return [jsonLd, s].filter(Boolean).join("\n\n").slice(0, 10000);
 }
 
 export async function fetchRecipePageText(
@@ -349,8 +410,10 @@ Rules:
 - ALL Chinese fields (nameZh, ingredients[].zh, prepNotes.zh) MUST be 香港繁體中文 (Traditional Chinese).
   Never use Simplified Chinese. Examples: 雞蛋 not 鸡蛋; 麵 not 面; 醬 not 酱; 裡 not 里; 體 not 体; 萬 not 万.
 - If a WRITTEN RECIPE PAGE is provided, it is the source of truth for ingredients and cook steps (not the video).
-- Use the GRAM ingredient list if both gram and ounce are listed. Skip duplicate ounce block.
-- Skip bulk side recipes (jar of kombu salt, cooking 3–4 portions of plain rice) unless needed for this one dinner. Keep small dish amounts (e.g. kombu salt 1/3 tsp), not 50g salt batches.
+- Pages vary: any blog or recipe site, schema.org cards, EN/ZH/JA lists, metric or imperial. Read the format on the page — do not assume one brand’s layout.
+- If the same ingredients appear twice (gram + ounce, 公克 + 盎司), use one set — prefer metric/grams.
+- Skip pantry-batch / “make a jar of X” / cook-rice-for-4 sub-recipes unless needed for this one dinner. Use the small amount the dish actually calls for.
+- Ignore ads, navigation, related posts, comments, and newsletter signup.
 - ingredients: shopping/prep list for ONE family dinner; include qty when known (e.g. "2 pcs", "1 tbsp"). Prefer 4–14 items.
 - prepNotes: SHORT numbered steps Charlene can follow WITHOUT understanding video audio (max ~8 steps). Not a transcript.
 - Soft for a child (Zizi) when relevant (cut small, mild, de-bone).
@@ -364,7 +427,7 @@ Title: ${input.title}
 Creator / channel: ${input.author}
 Category hint: ${input.categoryHint || "(none)"}
 
-WRITTEN RECIPE PAGE (ingredients + steps — prefer this):
+WRITTEN RECIPE PAGE (any site — ingredients + steps; prefer this over the video):
 ${input.pageText || "(none)"}
 
 VIDEO DESCRIPTION / INSTAGRAM CAPTION:
