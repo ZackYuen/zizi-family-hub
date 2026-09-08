@@ -416,6 +416,7 @@ function heuristicAnswer(
         }
       }
       if (dish.link) blocks.push(`Video: ${dish.link}`);
+      if (dish.recipePage) blocks.push(`Recipe page: ${dish.recipePage}`);
     }
     return blocks.join("\n");
   }
@@ -521,10 +522,10 @@ function heuristicAnswer(
       } else {
         lines.push(
           lang === "fil"
-            ? `  - (wala pa — tingnan: ${dish.link})`
+            ? `  - (wala pa — tingnan: ${dish.recipePage || dish.link})`
             : lang === "zh"
-              ? `  - （未列出 — 見食譜：${dish.link}）`
-              : `  - (not listed — see recipe: ${dish.link})`
+              ? `  - （未列出 — 見食譜：${dish.recipePage || dish.link}）`
+              : `  - (not listed — see recipe: ${dish.recipePage || dish.link})`
         );
       }
     }

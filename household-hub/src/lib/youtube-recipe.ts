@@ -14,6 +14,8 @@ export interface YoutubeRecipeEnrichment {
   nameFil?: string;
   ingredients: RecipeIngredient[];
   prepNotes: BilingualText;
+  /** Written recipe page found in the description (not the video itself) */
+  recipePage?: string;
   /** What context the model used (for Admin message) */
   used: {
     description: boolean;
@@ -39,6 +41,50 @@ function openRouterModels(): string[] {
   ];
   if (preferred) return [preferred, ...defaults.filter((m) => m !== preferred)];
   return defaults;
+}
+
+const SKIP_RECIPE_HOST =
+  /(?:^|\.)(?:youtube\.com|youtu\.be|instagram\.com|instagr\.am|facebook\.com|fb\.com|tiktok\.com|twitter\.com|x\.com|patreon\.com|ko-fi\.com)$/i;
+
+/** Unwrap youtube.com/redirect?q=… used in video descriptions. */
+export function unwrapYoutubeRedirect(url: string): string {
+  try {
+    const u = new URL(url);
+    if (
+      /(?:^|\.)youtube\.com$/i.test(u.hostname) &&
+      u.pathname === "/redirect"
+    ) {
+      const q = u.searchParams.get("q");
+      if (q) return q;
+    }
+  } catch {
+    /* keep original */
+  }
+  return url;
+}
+
+/**
+ * First written-recipe URL in a video description / caption.
+ * Skips YouTube/Instagram/social; unwraps YouTube redirect links.
+ */
+export function extractRecipePageUrl(text: string): string | null {
+  if (!text.trim()) return null;
+  const decoded = text
+    .replace(/\\u0026/g, "&")
+    .replace(/\\n/g, "\n")
+    .replace(/\\"/g, '"');
+  const matches = decoded.match(/https?:\/\/[^\s<>"'\]\)]+/gi) ?? [];
+  for (const raw of matches) {
+    const cleaned = unwrapYoutubeRedirect(raw.replace(/[.,;:!?]+$/g, ""));
+    try {
+      const u = new URL(cleaned);
+      if (SKIP_RECIPE_HOST.test(u.hostname)) continue;
+      return u.href;
+    } catch {
+      continue;
+    }
+  }
+  return null;
 }
 
 /** Extract YouTube video id from common URL shapes */
@@ -426,6 +472,10 @@ async function enrichFromSources(options: {
     categoryHint: options.categoryHint,
   });
 
+  const recipePage =
+    extractRecipePageUrl(options.description) ||
+    extractRecipePageUrl(options.captions);
+
   if (!llm) {
     return {
       title: options.title,
@@ -433,6 +483,7 @@ async function enrichFromSources(options: {
       videoId: options.videoId,
       ingredients: [],
       prepNotes: { en: "", fil: "", zh: "" },
+      recipePage: recipePage || undefined,
       used: {
         description: Boolean(options.description),
         captions: Boolean(options.captions),
@@ -451,6 +502,7 @@ async function enrichFromSources(options: {
     nameFil: llm.nameFil,
     ingredients: llm.ingredients,
     prepNotes: llm.prepNotes,
+    recipePage: recipePage || undefined,
     used: {
       description: Boolean(options.description),
       captions: Boolean(options.captions),

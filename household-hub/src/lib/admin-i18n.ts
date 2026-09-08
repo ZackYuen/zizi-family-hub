@@ -455,7 +455,21 @@ export const adminLabels = {
   nameEn: { en: "Name (English)", fil: "Pangalan (English)" },
   nameFil: { en: "Name (Filipino)", fil: "Pangalan (Filipino)" },
   subCategory: { en: "Sub-category", fil: "Sub-category" },
-  recipeLink: { en: "Recipe link", fil: "Link ng recipe" },
+  recipeLink: {
+    en: "Video link (YouTube / Instagram)",
+    fil: "Video link (YouTube / Instagram)",
+    zh: "影片連結（YouTube／Instagram）",
+  },
+  recipePage: {
+    en: "Written recipe page (optional)",
+    fil: "Written recipe page (optional)",
+    zh: "文字食譜頁（可選）",
+  },
+  recipePageHint: {
+    en: "If the video description has a blog/recipe URL we cannot open, paste it here. Charlene will see “Full recipe” on Meals.",
+    fil: "Kung may blog/recipe URL sa video na hindi namin mabuksan, i-paste dito. Makikita ni Charlene ang “Full recipe” sa Meals.",
+    zh: "若影片說明有食譜網頁但擷取不到，請貼在這裡。Charlene 在膳食頁會看到「完整食譜」。",
+  },
   edit: { en: "Edit", fil: "I-edit" },
   cancel: { en: "Cancel", fil: "Kanselahin" },
   importSuccess: { en: "Imported successfully. Click Save Meals to publish.", fil: "Na-import. I-click ang Save Meals para i-publish." },
