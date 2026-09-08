@@ -78,6 +78,22 @@ export function getRecipeDisplayName(recipe: DinnerRecipe, lang: Lang): string {
   return categoryEn[recipe.category];
 }
 
+/**
+ * Admin Meals “add dish” picker — Chinese first so Sir/Mum can scan the list
+ * even when Admin UI language is English.
+ */
+export function adminDishPickerLabel(recipe: DinnerRecipe): string {
+  const zh = recipe.name?.trim() || "";
+  const en = (recipe.nameEn || "").trim();
+  if (zh && hasCjk(zh)) {
+    if (en && isMostlyLatin(en) && en !== zh) return `${zh} / ${en}`;
+    return zh;
+  }
+  if (en) return en;
+  if (recipe.nameFil?.trim()) return recipe.nameFil.trim();
+  return zh || recipe.id;
+}
+
 export function getRecipeSubtitle(recipe: DinnerRecipe, lang: Lang): string | null {
   const display = getRecipeDisplayName(recipe, lang);
 
