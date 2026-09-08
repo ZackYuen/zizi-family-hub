@@ -1,5 +1,6 @@
 import type {
   DinnerMenuOverride,
+  DinnerMenuOverrides,
   DinnerRecipe,
   TonightMenu,
 } from "./types";
@@ -75,6 +76,20 @@ export function normalizeDinnerOverride(
     soupIds: asIdList(raw.soupIds, raw.soupId),
     updatedAt: raw.updatedAt,
   };
+}
+
+/** Fill missing dates from seed; live Admin picks always win. */
+export function mergeSeedDinnerOverrides(
+  liveByDate: DinnerMenuOverrides["byDate"],
+  seedByDate: DinnerMenuOverrides["byDate"]
+): DinnerMenuOverrides["byDate"] {
+  const out = { ...liveByDate };
+  for (const [date, raw] of Object.entries(seedByDate || {})) {
+    if (out[date]) continue;
+    const normalized = normalizeDinnerOverride(raw, date);
+    if (normalized) out[date] = normalized;
+  }
+  return out;
 }
 
 export function generateTonightMenu(
