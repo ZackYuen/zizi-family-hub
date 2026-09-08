@@ -421,13 +421,19 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
       );
       const ings = ingredientLine(dish, "en");
       if (ings.length) lines.push(`  Ingredients: ${ings.join(", ")}`);
-      else lines.push(`  Ingredients: (not listed yet — check recipe link ${dish.link})`);
+      else
+        lines.push(
+          `  Ingredients: (not listed yet — check ${dish.recipePage || dish.link})`
+        );
       if (dish.prepNotes?.en || dish.prepNotes?.fil) {
         lines.push(
           `  Prep notes EN: ${dish.prepNotes.en || ""} | FIL: ${dish.prepNotes.fil || ""}`
         );
       }
       lines.push(`  Recipe video (may be Cantonese): ${dish.link}`);
+      if (dish.recipePage) {
+        lines.push(`  Written recipe page: ${dish.recipePage}`);
+      }
     }
   }
 

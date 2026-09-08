@@ -31,6 +31,7 @@ const emptyRecipe = (): DinnerRecipe => ({
   category: "Meat",
   subCategory: "",
   link: "",
+  recipePage: "",
   ingredients: [],
   prepNotes: { en: "", fil: "", zh: "" },
 });
@@ -66,7 +67,7 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
     if (filter !== "All" && r.category !== filter) return false;
     const q = search.toLowerCase();
     if (!q) return true;
-    return [r.name, r.nameEn, r.nameFil, r.subCategory, r.category]
+    return [r.name, r.nameEn, r.nameFil, r.subCategory, r.category, r.link, r.recipePage]
       .filter(Boolean)
       .some((s) => s!.toLowerCase().includes(q));
   });
@@ -467,6 +468,19 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                 placeholder={adminT("recipeLink", lang)}
                 className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
               />
+              <div>
+                <input
+                  value={editing.recipePage ?? ""}
+                  onChange={(e) =>
+                    setEditing({ ...editing, recipePage: e.target.value })
+                  }
+                  placeholder={adminT("recipePage", lang)}
+                  className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm"
+                />
+                <p className="mt-1 text-[10px] text-stone-500">
+                  {adminT("recipePageHint", lang)}
+                </p>
+              </div>
               <button
                 type="button"
                 disabled={videoFetch.kind === "loading"}
@@ -520,6 +534,10 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                         editing.nameFil ||
                         (data.nameFil as string) ||
                         editing.nameFil,
+                      recipePage:
+                        editing.recipePage?.trim() ||
+                        (data.recipePage as string) ||
+                        editing.recipePage,
                     };
                     if (replaceExtras) {
                       if (data.prepNotes) {
@@ -550,6 +568,12 @@ export function MealsAdmin({ lang, saving, onSave, setMessage }: Props) {
                         ? adminT("youtubeFetchPartial", lang)
                         : adminT("titleFetched", lang);
                     if (fetchedName) text += ` — ${fetchedName}`;
+                    if (
+                      (data.recipePage as string) &&
+                      !editing.recipePage?.trim()
+                    ) {
+                      text += ` · page: ${data.recipePage as string}`;
+                    }
                     if (!replaceExtras && (hasPrep || hasIng)) {
                       text += ` ${adminT("youtubeFetchKeptNotes", lang)}`;
                     }

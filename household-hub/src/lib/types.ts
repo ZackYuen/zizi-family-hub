@@ -81,7 +81,13 @@ export interface DinnerRecipe {
   nameFil?: string;
   category: "Meat" | "Vegetable" | "Soup";
   subCategory?: string;
+  /** YouTube / Instagram video */
   link: string;
+  /**
+   * Written recipe page from the video description (blog, chef site).
+   * Fetch cannot always open YouTube’s attached links — paste manually if needed.
+   */
+  recipePage?: string;
   /** Ingredients for shopping / prep reminder */
   ingredients?: RecipeIngredient[];
   /**

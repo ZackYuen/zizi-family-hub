@@ -66,6 +66,7 @@ export async function POST(request: Request) {
         nameFil: data.nameFil,
         ingredients: [],
         prepNotes: data.prepNotes,
+        recipePage: data.recipePage,
         used: data.used,
         warning:
           "Got the title, but LLM enrichment failed (check OPENROUTER_API_KEY / model). Add prep notes manually or retry.",
@@ -80,6 +81,7 @@ export async function POST(request: Request) {
       nameFil: data.nameFil,
       ingredients: data.ingredients,
       prepNotes: data.prepNotes,
+      recipePage: data.recipePage,
       used: data.used,
     });
   } catch (err) {

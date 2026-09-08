@@ -89,6 +89,7 @@ export async function addYoutubeDinnerRecipe(url: string): Promise<{
     nameFil: enriched.nameFil || enriched.nameEn || enriched.title,
     category,
     link: canonical,
+    recipePage: enriched.recipePage,
     ingredients: enriched.ingredients || [],
     prepNotes: enriched.prepNotes,
   };
