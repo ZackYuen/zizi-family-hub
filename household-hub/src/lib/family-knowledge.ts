@@ -232,7 +232,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     'For "what should I do now?" / current task: pick the schedule item whose start–end covers CURRENT Hong Kong time. If in a gap, say so and give the NEXT upcoming task only — do not dump the whole day.'
   );
   lines.push(
-    "WhatsApp: ? replies go to Admin → Settings → group for bot replies (or bot GROUP_JIDS). 1-hour outing reminders go only to Admin → Settings → group for outing reminders — a different field; blank means no reminder is sent."
+    "WhatsApp: ? replies go to Admin → Settings → group for bot replies (or bot GROUP_JIDS). 1-hour outing reminders and the 10:00 leftover-dinner ask go only to Admin → Settings → group for outing reminders — a different field; blank means no reminder is sent."
   );
   lines.push(
     "HK life / FDH tips below are general guidance. For legal/contract specifics, tell Charlene to confirm with Sir/Mum or official Labour Department sources. Never invent visa/immigration advice."

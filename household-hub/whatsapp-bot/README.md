@@ -115,9 +115,10 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 | `GROUP_JIDS` | Fallback group(s) for **? replies** if Admin reply group is blank |
 | `GROUP_ALLOW_ALL` | `1` = reply in every group (unsafe). Prefer Admin reply group / `GROUP_JIDS` |
 | `REPLY_DM` | `1` to also answer private chats |
-| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing reminders still send |
+| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover reminders still send |
 | `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
 | `OUTING_REMINDERS` | `0` = do not send 1-hour Zizi outing pings (on by default) |
+| `LEFTOVER_REMINDERS` | `0` = do not send the 10:00 leftover-fridge ask (on by default) |
 | `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
 
 ### Pause replies (no logout)
@@ -131,6 +132,10 @@ After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot 
 ## Outing reminders (1 hour before class)
 
 When Zizi must **leave home for class**, the bot posts in the family group **1 hour before** that task’s start time — **only if the task has Admin → Schedule → Remind 1h on WhatsApp checked**. Skips Charlene’s day off. Usual school-day leave-home is 12:30 (WhatsApp 11:30). Interest-class dates leave at 11:30 (WhatsApp 10:30). Message includes the **Zizi school prep** checklist (temperature, form, towels, masks, water, empty food container for school tea time, hair, pickup card; Tuesday sportswear). FIL + EN only.
+
+## Leftover dinner ask (10:00 HKT)
+
+On work days, if tonight’s dinner is **not saved**, the bot posts once from **10:00–16:00 HKT** asking Charlene what leftover fridge ingredients can be cooked. She replies `?leftover eggs tomato pork` then `?1`. If she has no idea, ask Mum. Skips day off and dates that already have a saved menu. Same reminder group as outing pings. `GET /api/reminders/leftover`.
 
 **Which groups (two separate Admin fields)**
 
