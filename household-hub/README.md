@@ -1,6 +1,6 @@
 # Zizi Family Household Hub
 
-Mobile-friendly web app for household helper **Charlene** — ground rules, task schedule, and nightly dinner randomizer. English & Filipino.
+Mobile-friendly web app for household helper **Charlene** — ground rules, task schedule, and nightly dinner (saved picks; leftover suggestions if none). English & Filipino.
 
 ## Deploy on Vercel + Supabase (recommended)
 

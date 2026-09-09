@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { mergeSeedDinnerOverrides, normalizeDinnerOverride } from "./dinner";
+import { mergeSeedDinnerOverrides, normalizeDinnerOverride, resolveTonightMenu, tonightDishes } from "./dinner";
 
 test("seed dinner override fills a date Admin has not saved", () => {
   const merged = mergeSeedDinnerOverrides(
@@ -37,4 +37,36 @@ test("live Admin override wins over seed", () => {
     },
   });
   assert.deepEqual(merged["2026-09-08"]?.meatIds, ["d-10"]);
+});
+
+test("no saved override means empty menu, not random", () => {
+  const recipes = [
+    {
+      id: "d-a",
+      index: 1,
+      name: "A",
+      nameEn: "Meat A",
+      category: "Meat" as const,
+      link: "",
+    },
+    {
+      id: "d-b",
+      index: 2,
+      name: "B",
+      nameEn: "Veg B",
+      category: "Vegetable" as const,
+      link: "",
+    },
+    {
+      id: "d-c",
+      index: 3,
+      name: "C",
+      nameEn: "Soup C",
+      category: "Soup" as const,
+      link: "",
+    },
+  ];
+  const menu = resolveTonightMenu(recipes, "2026-09-09", null);
+  assert.equal(menu.overridden, false);
+  assert.equal(tonightDishes(menu).length, 0);
 });

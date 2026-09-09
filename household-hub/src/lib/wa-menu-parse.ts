@@ -1,4 +1,5 @@
 import type { DinnerRecipe } from "./types";
+import { parseLeftoverQuery } from "./leftover-suggest";
 
 export type MenuDay = "today" | "tomorrow";
 
@@ -7,7 +8,8 @@ export type ParsedMenuCommand =
   | { action: "clear"; days: MenuDay[] }
   | { action: "set"; assignments: { day: MenuDay; dishes: string[] }[] }
   | { action: "pick"; day: MenuDay | "pending"; numbers: number[] }
-  | { action: "merge"; mode: "overwrite" | "also" };
+  | { action: "merge"; mode: "overwrite" | "also" }
+  | { action: "leftover"; query: string };
 
 const DAY_WORD: Record<string, MenuDay> = {
   today: "today",
@@ -18,6 +20,7 @@ const DAY_WORD: Record<string, MenuDay> = {
 
 export function looksLikeMenuCommand(question: string): boolean {
   const q = question.trim();
+  if (parseLeftoverQuery(q) != null) return true;
   if (/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) return true;
   if (/^(pick|choose)\b/i.test(q)) return true;
   if (parseMergeMode(q)) return true;
@@ -82,7 +85,7 @@ export function splitDishTokens(rest: string): string[] {
   return [...urls, ...parts];
 }
 
-/** Ask what’s for dinner — show the saved/random menu, do not search or overwrite. */
+/** Ask what’s for dinner — show the saved menu, do not search or overwrite. */
 function isShowRest(rest: string): boolean {
   const t = rest
     .trim()
@@ -133,6 +136,10 @@ function labeledChunk(
 
 export function parseMenuCommand(question: string): ParsedMenuCommand | null {
   const q = question.trim();
+  const leftoverQuery = parseLeftoverQuery(q);
+  if (leftoverQuery != null) {
+    return { action: "leftover", query: leftoverQuery };
+  }
   if (!looksLikeMenuCommand(q)) return null;
 
   const pickOnly = parsePickNumbers(q);

@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 /**
  * Public read-only recipe catalog for Meals search
- * (Mum asks Charlene to cook a specific dish instead of tonight’s random pick).
+ * (Mum asks Charlene to cook a specific dish instead of tonight’s leftover suggestion).
  */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

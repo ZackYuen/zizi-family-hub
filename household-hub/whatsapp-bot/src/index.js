@@ -507,6 +507,9 @@ async function postMealsAdd(url) {
 function looksLikeMenuCommand(question) {
   const q = String(question || "").trim();
   if (/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) return true;
+  if (/^(leftover|leftovers|remaining|fridge|natitira|tira)\b/i.test(q)) return true;
+  if (/what can (i|we) cook with/i.test(q)) return true;
+  if (/remaining (food|ingredient|material)/i.test(q)) return true;
   if (/^(pick|choose)\b/i.test(q)) return true;
   if (/^(overwrite|replace|also|addmore|keep|append)\b/i.test(q)) return true;
   return /^\d+(\s*[,，、]\s*\d+|\s+\d+)*\.?$/.test(q);

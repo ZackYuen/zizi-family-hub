@@ -97,9 +97,14 @@ const ui = {
     zh: "Tefal 煮食家電：餐單中有「用 EPC17 煮」（壓力鍋）或「用 Easy Fry 煮」（氣炸鍋）。面板圖：家電 → 煮食。",
   },
   customPick: {
-    en: "Custom pick (Sir/Mum chose this day)",
-    fil: "Custom pick (pinili nina Sir/Mum)",
-    zh: "自選（Sir/Mum 已選此日）",
+    en: "Saved pick (Sir/Mum or WhatsApp chose this day)",
+    fil: "Naka-save (pinili nina Sir/Mum o WhatsApp)",
+    zh: "已儲存（Sir/Mum 或 WhatsApp 已選此日）",
+  },
+  emptyMenu: {
+    en: "No dishes saved. Ask Charlene what leftover fridge ingredients can be cooked, then pick a matching Meals dish (Zizi: meat + veg, no spicy). If no idea, ask Mum.",
+    fil: "Walang naka-save na ulam. Tanong kay Charlene kung anong natitira sa fridge na pwedeng lutuin, tapos pumili sa Meals (Zizi: meat + gulay, walang spicy). Kung wala siyang idea, tanong kay Mum.",
+    zh: "尚未儲存菜式。先問 Charlene 雪櫃仲有咩可以煮，再從 Meals 選對應菜（孜孜要肉＋菜，不要辣）。如果沒主意，問 Mum。",
   },
   shoppingList: {
     en: "Shopping / prep checklist",
@@ -865,19 +870,17 @@ export function MealsView() {
 
       <p className="text-xs text-stone-500">{ui.cantoneseNote[lang]}</p>
 
-      <div className="rounded-xl bg-amber-50/90 px-3 py-2.5 ring-1 ring-amber-100">
-        <p className="text-xs leading-relaxed text-amber-950">
-          {hasDeviceDish ? ui.deviceBanner[lang] : ui.deviceBannerGeneric[lang]}
-        </p>
-      </div>
+      {hasDeviceDish && (
+        <div className="rounded-xl bg-amber-50/90 px-3 py-2.5 ring-1 ring-amber-100">
+          <p className="text-xs leading-relaxed text-amber-950">
+            {ui.deviceBanner[lang]}
+          </p>
+        </div>
+      )}
 
       {items.length === 0 ? (
-        <p className="rounded-xl bg-white px-3 py-4 text-center text-sm text-stone-500 ring-1 ring-stone-100">
-          {lang === "fil"
-            ? "Walang dish para sa araw na ito."
-            : lang === "zh"
-              ? "此日尚未有菜式。"
-              : "No dishes for this day."}
+        <p className="rounded-xl bg-white px-3 py-4 text-center text-sm text-stone-600 ring-1 ring-stone-100">
+          {ui.emptyMenu[lang]}
         </p>
       ) : (
         <div className="space-y-2.5">

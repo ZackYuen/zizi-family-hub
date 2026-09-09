@@ -10,6 +10,13 @@ import {
   applianceCategoryMeta,
 } from "./appliance-categories";
 import { tonightDishes } from "./dinner";
+import {
+  formatLeftoverSuggestions,
+  leftoverTokens,
+  noSavedMenuHint,
+  parseLeftoverQuery,
+} from "./leftover-suggest";
+import { getDinnerRecipes } from "./data";
 import { getHongKongTimeParts } from "./i18n";
 import { localized } from "./localized-text";
 import {
@@ -362,19 +369,11 @@ function heuristicAnswer(
     )
   ) {
     if (!snap.tonight) {
-      return lang === "fil"
-        ? "Wala pang dinner menu — hindi ko mabigay ang cook guide."
-        : lang === "zh"
-          ? "尚未有晚餐菜單，無法提供烹調說明。"
-          : "No dinner menu yet — cannot give cook guide.";
+      return noSavedMenuHint(lang);
     }
     const dishes = tonightDishes(snap.tonight);
     if (!dishes.length) {
-      return lang === "fil"
-        ? "Wala pang dinner dishes — hindi ko mabigay ang cook guide."
-        : lang === "zh"
-          ? "今晚尚未有菜式，無法提供烹調說明。"
-          : "No dinner dishes tonight — cannot give cook guide.";
+      return noSavedMenuHint(lang);
     }
     const cantoneseNote =
       lang === "fil"
@@ -434,19 +433,11 @@ function heuristicAnswer(
     )
   ) {
     if (!snap.tomorrow) {
-      return lang === "fil"
-        ? "Wala pang dinner menu bukas."
-        : lang === "zh"
-          ? "明天尚未有晚餐菜單。"
-          : "No dinner menu for tomorrow yet.";
+      return noSavedMenuHint(lang);
     }
     const dishes = tonightDishes(snap.tomorrow);
     if (!dishes.length) {
-      return lang === "fil"
-        ? "Wala pang dinner dishes bukas."
-        : lang === "zh"
-          ? "明天尚未有菜式。"
-          : "No dinner dishes for tomorrow.";
+      return noSavedMenuHint(lang);
     }
     const cat =
       lang === "fil"
@@ -473,19 +464,11 @@ function heuristicAnswer(
     )
   ) {
     if (!snap.tonight) {
-      return lang === "fil"
-        ? "Wala pang dinner menu ngayon."
-        : lang === "zh"
-          ? "今晚尚未有晚餐菜單。"
-          : "No dinner menu available yet.";
+      return noSavedMenuHint(lang);
     }
     const dishes = tonightDishes(snap.tonight);
     if (!dishes.length) {
-      return lang === "fil"
-        ? "Wala pang dinner dishes ngayon."
-        : lang === "zh"
-          ? "今晚尚未有菜式。"
-          : "No dinner dishes for tonight.";
+      return noSavedMenuHint(lang);
     }
     const cat =
       lang === "fil"
@@ -1265,7 +1248,8 @@ Prefer FAMILY LIVE DATA below over the internet.
 Answer policy — two buckets:
 (A) FAMILY-SPECIFIC (this household only): schedule, current/next task, tonight’s and tomorrow’s menu, House Rules, preferences, where things are stored in THIS flat, Zizi routines, salary/holidays, exact appliance buttons/models for OUR machines, pickup times, day-off. → Use FAMILY LIVE DATA only. If missing, say you are unsure and tell Charlene to ask Sir/Mum. Never invent these.
 (B) GENERAL COOKING / COMMON SENSE: brief, widely known food-safety or technique tips that are NOT about this flat’s inventory or rules (e.g. air-fryer wings: usually put food directly in the basket, or use aluminum foil / a small oven-safe tray — do not block airflow or cover the heater; no special “bake container” required). → OK to answer in 1–3 short sentences. Prefer FAMILY LIVE DATA / Tools tips when they already cover it. Do not invent long recipes. Do not claim “in our kitchen we keep X in Y”.
-For dinner questions, list tonight's or tomorrow's dishes from FAMILY LIVE DATA (meat / vegetable / soup — may be zero or more of each) using the correct language names — never invent literal translations like "Winter Shade Public Soup".
+For dinner questions: NEVER invent a random meat + vegetable + soup. If FAMILY LIVE DATA has no saved dishes for that date, ask Charlene what leftover fridge ingredients can be cooked, then suggest matching Meals dishes (Zizi needs meat + veg, no spicy). If she has no idea or nothing matches, ask Mum.
+For dinner questions with a saved menu, list tonight's or tomorrow's dishes from FAMILY LIVE DATA (meat / vegetable / soup — may be zero or more of each) using the correct language names — never invent literal translations like "Winter Shade Public Soup".
 For "how to cook" / "paano magluto" of TONIGHT’s dishes, use tonight's ingredients + prepNotes from FAMILY LIVE DATA. Warn that YouTube may be Cantonese — do not invent long cooking steps not in the data. Short common-sense technique (foil, oil, don’t overcrowd) is still OK under (B).
 For "what time is it" / current time questions, use ONLY the field "CURRENT Hong Kong date/time". Never use "Admin data lastUpdated" as the clock.
 For "what should I do now?", give only the current or next task for CURRENT Hong Kong time — not the whole day.
@@ -1330,6 +1314,22 @@ export async function answerFamilyQuestion(
   const allowInternet = options?.allowInternet !== false;
 
   const { lang, contentQuestion } = resolveReplyLang(question);
+
+  const leftoverQuery = parseLeftoverQuery(contentQuestion);
+  if (leftoverQuery != null) {
+    const recipes = await getDinnerRecipes();
+    const answer = leftoverTokens(leftoverQuery).length
+      ? formatLeftoverSuggestions(recipes, leftoverQuery, lang)
+      : noSavedMenuHint(lang);
+    return {
+      answer,
+      source: "live-web",
+      usedInternet: false,
+      dataSource: snap.source,
+      lastUpdated: snap.lastUpdated,
+    };
+  }
+
   const quick = heuristicAnswer(contentQuestion, snap, lang);
 
   // Deterministic answers (time, schedule, meals, rules) win over free LLMs

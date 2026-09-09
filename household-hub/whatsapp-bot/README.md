@@ -79,12 +79,13 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
-| `?today` / `?tonight eat what?` / `?tonight dinner` | **Show** tonight’s saved/random dinner — does not change the menu |
+| `?today` / `?tonight eat what?` / `?tonight dinner` | **Show** tonight’s saved dinner — does not change the menu. No daily random: if empty, ask Charlene leftovers |
+| `?leftover eggs tomato pork` | Suggest Meals dishes from leftover fridge ingredients; then `?1` to save tonight. No match → ask Mum |
 | `?today honey wings` | Lists **similar Meals with numbers**. Then `?today 1` or `?1`. Same category as a dish already on that day → `?overwrite` (replace that cat only) or `?also` (keep old + new). Other cats stay |
 | `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
 | `?menu` | Show tonight + tomorrow |
 | `?menu today: …` `tomorrow: …` | Set both days in one message |
-| `?today clear` | Tonight back to random |
+| `?today clear` | Tonight: no saved menu (not random) |
 | `?add https://youtube.com/…` or `?add https://instagram.com/reel/…` | LLM-digests the video/caption → **Meals library**. Duplicate YouTube ids / Instagram reels are skipped |
 | `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
 | `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |

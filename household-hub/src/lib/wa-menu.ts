@@ -14,6 +14,12 @@ import {
   resolveTonightMenu,
   tonightDishes,
 } from "./dinner";
+import {
+  formatLeftoverSuggestions,
+  leftoverTokens,
+  leftoverWhatsAppHint,
+  suggestRecipesFromLeftovers,
+} from "./leftover-suggest";
 import { getRecipeDisplayName } from "./recipe-display";
 import type { DinnerRecipe, TonightMenu, WhatsAppMenuPickOption } from "./types";
 import {
@@ -51,8 +57,10 @@ function formatMenu(day: MenuDay, menu: TonightMenu | null): string {
   const title = dayTitle(day, menu?.date || dateForDay(day));
   if (!menu) return `${title}: no dishes yet`;
   const dishes = tonightDishes(menu);
-  const kind = menu.overridden ? "saved pick" : "random";
-  if (!dishes.length) return `${title} — ${kind}: (none)`;
+  const kind = menu.overridden ? "saved pick" : "not set";
+  if (!dishes.length) {
+    return [`${title} — ${kind}: (none)`, leftoverWhatsAppHint()].join("\n");
+  }
   return [`${title} — ${kind}:`, ...dishes.map(dishLine)].join("\n");
 }
 
@@ -255,10 +263,45 @@ export async function handleWhatsAppMenu(
       const date = dateForDay(day);
       await clearDinnerMenuOverride(date);
       const menu = recipes.length ? resolveTonightMenu(recipes, date, null) : null;
-      blocks.push(`${dayTitle(day, date)} back to random.`);
+      blocks.push(`${dayTitle(day, date)} cleared — no saved menu.`);
       if (menu) blocks.push(formatMenu(day, menu));
     }
     return { handled: "menu", answer: formatMenuReply(blocks) };
+  }
+
+  if (parsed.action === "leftover") {
+    const tokens = leftoverTokens(parsed.query);
+    if (!tokens.length) {
+      return { handled: "menu", answer: leftoverWhatsAppHint() };
+    }
+    const picks = suggestRecipesFromLeftovers(recipes, parsed.query);
+    if (!picks.length) {
+      return {
+        handled: "menu",
+        answer: formatLeftoverSuggestions(recipes, parsed.query, "en"),
+      };
+    }
+    const options: WhatsAppMenuPickOption[] = picks.map((recipe, i) => ({
+      n: i + 1,
+      id: recipe.id,
+      category: recipe.category,
+      label: numberedRecipeLine(i + 1, recipe),
+      query: parsed.query,
+    }));
+    await saveWhatsAppMenuPick({
+      jid,
+      day: "today",
+      options,
+      preselectedIds: [],
+      createdAt: new Date().toISOString(),
+    });
+    return {
+      handled: "menu",
+      answer: formatMenuReply([
+        formatLeftoverSuggestions(recipes, parsed.query, "en"),
+        "Reply ?1 to save on tonight. If no idea, ask Mum.",
+      ]),
+    };
   }
 
   if (parsed.action === "merge") {

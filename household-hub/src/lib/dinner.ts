@@ -5,28 +5,6 @@ import type {
   TonightMenu,
 } from "./types";
 
-function hashSeed(input: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < input.length; i++) {
-    h ^= input.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
-function pickByDate(
-  recipes: DinnerRecipe[],
-  dateKey: string,
-  salt: string
-): DinnerRecipe {
-  const pool = [...recipes].sort((a, b) => a.index - b.index);
-  if (!pool.length) {
-    throw new Error(`No recipes for salt=${salt}`);
-  }
-  const idx = hashSeed(`${dateKey}:${salt}`) % pool.length;
-  return pool[idx];
-}
-
 /** Hong Kong calendar date YYYY-MM-DD */
 export function hongKongDateKey(date = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", {
@@ -92,19 +70,12 @@ export function mergeSeedDinnerOverrides(
   return out;
 }
 
-export function generateTonightMenu(
-  recipes: DinnerRecipe[],
-  dateKey = hongKongDateKey()
-): TonightMenu {
-  const meats = recipes.filter((r) => r.category === "Meat");
-  const vegetables = recipes.filter((r) => r.category === "Vegetable");
-  const soups = recipes.filter((r) => r.category === "Soup");
-
+export function emptyTonightMenu(dateKey = hongKongDateKey()): TonightMenu {
   return {
     date: dateKey,
-    meat: [pickByDate(meats, dateKey, "meat")],
-    vegetable: [pickByDate(vegetables, dateKey, "vegetable")],
-    soup: [pickByDate(soups, dateKey, "soup")],
+    meat: [],
+    vegetable: [],
+    soup: [],
     overridden: false,
   };
 }
@@ -112,10 +83,8 @@ export function generateTonightMenu(
 function resolveCategory(
   recipes: DinnerRecipe[],
   ids: string[],
-  category: DinnerRecipe["category"],
-  fallback: DinnerRecipe[]
+  category: DinnerRecipe["category"]
 ): DinnerRecipe[] {
-  // Explicit empty array in override = intentionally no dish in this category
   if (ids.length === 0) return [];
   const found: DinnerRecipe[] = [];
   const seen = new Set<string>();
@@ -127,33 +96,27 @@ function resolveCategory(
       seen.add(id);
     }
   }
-  // If all IDs were invalid, fall back to default random picks
-  return found.length ? found : fallback;
+  return found;
 }
 
 /**
- * Random-by-date menu (1 meat + 1 veg + 1 soup), unless Admin saved an override.
- * Override may include 0..n dishes per category.
+ * Saved Admin/WhatsApp pick only. No date-hash random menu.
+ * Missing override → empty (ask Charlene leftovers, then Mum).
  */
 export function resolveTonightMenu(
   recipes: DinnerRecipe[],
   dateKey = hongKongDateKey(),
   override?: DinnerMenuOverride | Partial<DinnerMenuOverride> | null
 ): TonightMenu {
-  const base = generateTonightMenu(recipes, dateKey);
   const normalized = normalizeDinnerOverride(override, dateKey);
-  if (!normalized) return base;
+  if (!normalized) return emptyTonightMenu(dateKey);
 
   return {
     date: dateKey,
-    meat: resolveCategory(recipes, normalized.meatIds, "Meat", base.meat),
-    vegetable: resolveCategory(
-      recipes,
-      normalized.vegetableIds,
-      "Vegetable",
-      base.vegetable
-    ),
-    soup: resolveCategory(recipes, normalized.soupIds, "Soup", base.soup),
+    meat: resolveCategory(recipes, normalized.meatIds, "Meat"),
+    vegetable: resolveCategory(recipes, normalized.vegetableIds, "Vegetable"),
+    soup: resolveCategory(recipes, normalized.soupIds, "Soup"),
     overridden: true,
   };
 }
+
