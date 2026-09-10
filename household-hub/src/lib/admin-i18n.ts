@@ -423,7 +423,7 @@ export const adminLabels = {
     zh: "剩菜晚餐 WhatsApp 提醒",
   },
   leftoverRemindersHint: {
-    en: "On work days at 10:00, if tonight has no saved dishes, ping Charlene to check the fridge and suggest dishes. Turn off to stop. Save, then wait ~1 minute.",
+    en: "On work days at 10:00, ping Charlene to check leftover fridge ingredients and suggest dishes. There is no today menu. Turn off to stop. Save, then wait ~1 minute.",
     fil: "Sa work days alas-10:00, kung walang naka-save na tonight, tanungin si Charlene na tingnan ang fridge at mag-suggest. I-off para huminto. I-Save, hintay ~1 minuto.",
     zh: "工作日上午 10:00，若今晚尚未儲存菜式，會提醒 Charlene 看看雪櫃並建議菜式。關閉則停止。儲存後約 1 分鐘生效。",
   },

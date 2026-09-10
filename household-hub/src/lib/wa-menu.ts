@@ -14,6 +14,7 @@ import {
   resolveTonightMenu,
   tonightDishes,
 } from "./dinner";
+import { formatLeftoverReminderMessage } from "./leftover-reminders";
 import {
   formatLeftoverSuggestions,
   leftoverTokens,
@@ -54,6 +55,7 @@ function dishLine(recipe: DinnerRecipe): string {
 }
 
 function formatMenu(day: MenuDay, menu: TonightMenu | null): string {
+  if (day === "today") return formatLeftoverReminderMessage();
   const title = dayTitle(day, menu?.date || dateForDay(day));
   if (!menu) return `${title}: no dishes yet`;
   const dishes = tonightDishes(menu);

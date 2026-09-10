@@ -413,38 +413,11 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     for (const m of snap.monthlyTasks) lines.push(`- ${m.en}`);
   }
 
-  if (snap.tonight) {
-    lines.push("");
-    const tonightDishesList = tonightDishes(snap.tonight);
-    if (tonightDishesList.length) {
-      lines.push(`Tonight's dinner (${snap.tonight.date}):`);
-      for (const dish of tonightDishesList) {
-        lines.push(
-          `- ${dish.category}: ${getRecipeDisplayName(dish, "en")} / ${getRecipeDisplayName(dish, "fil")}`
-        );
-        const ings = ingredientLine(dish, "en");
-        if (ings.length) lines.push(`  Ingredients: ${ings.join(", ")}`);
-        else
-          lines.push(
-            `  Ingredients: (not listed yet — check ${dish.recipePage || dish.link})`
-          );
-        if (dish.prepNotes?.en || dish.prepNotes?.fil) {
-          lines.push(
-            `  Prep notes EN: ${dish.prepNotes.en || ""} | FIL: ${dish.prepNotes.fil || ""}`
-          );
-        }
-        lines.push(`  Recipe video (may be Cantonese): ${dish.link}`);
-        if (dish.recipePage) {
-          lines.push(`  Written recipe page: ${dish.recipePage}`);
-        }
-      }
-    } else {
-      lines.push(`Tonight's dinner (${snap.tonight.date}): none saved.`);
-      lines.push(
-        "Dinner policy: do NOT invent a random meat+veg+soup. Ask Charlene what leftover fridge ingredients can be cooked, then suggest matching Meals dishes (Zizi: meat + veg, no spicy). If she has no idea or no matching recipe, ask us (Sir/Mum)."
-      );
-    }
-  }
+  lines.push("");
+  lines.push("Tonight's dinner: NO planned today menu.");
+  lines.push(
+    "Dinner policy: do NOT invent a random meat+veg+soup and do not list a today menu. Ask Charlene to check leftover fridge ingredients and suggest dishes (Zizi: meat + veg, no spicy). If she has no idea, ask us (Sir/Mum)."
+  );
 
   if (snap.tomorrow) {
     lines.push("");

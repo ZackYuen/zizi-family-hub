@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   formatLeftoverReminderMessage,
+  leftoverTonightHint,
   getLeftoverReminderState,
   LEFTOVER_REMIND_AT_MINUTES,
   LEFTOVER_REMIND_ID,
@@ -46,7 +47,7 @@ test("leftover reminder skips when Admin toggle is off", () => {
   );
 });
 
-test("leftover reminder skips day off and saved tonight menu", () => {
+test("leftover reminder skips day off; saved dishes do not block (no today menu)", () => {
   assert.equal(
     getLeftoverReminderState({
       dateKey: "2026-09-10",
@@ -63,7 +64,7 @@ test("leftover reminder skips day off and saved tonight menu", () => {
       dayOff: false,
       tonightDishCount: 2,
     }).due,
-    false
+    true
   );
   assert.equal(
     getLeftoverReminderState({
@@ -74,6 +75,12 @@ test("leftover reminder skips day off and saved tonight menu", () => {
     }).id,
     LEFTOVER_REMIND_ID
   );
+});
+
+test("leftoverTonightHint says no today menu", () => {
+  const text = leftoverTonightHint("en");
+  assert.match(text, /No today menu/i);
+  assert.match(text, /ask us/i);
 });
 
 test("leftover reminder text asks Charlene to check and suggest, no bot reply", () => {

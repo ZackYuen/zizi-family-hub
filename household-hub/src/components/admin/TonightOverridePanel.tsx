@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { hongKongDateKey, tonightDishes } from "@/lib/dinner";
+import { addHongKongDays, hongKongDateKey, tonightDishes } from "@/lib/dinner";
 import { adminDishPickerLabel } from "@/lib/recipe-display";
 import type { DinnerRecipe, Lang, TonightMenu } from "@/lib/types";
 
@@ -153,7 +153,8 @@ export function TonightOverridePanel({
   setMessage: (msg: string) => void;
 }) {
   const today = hongKongDateKey();
-  const [date, setDate] = useState(today);
+  const tomorrow = addHongKongDays(today, 1);
+  const [date, setDate] = useState(tomorrow);
   const [meatIds, setMeatIds] = useState<string[]>([]);
   const [vegetableIds, setVegetableIds] = useState<string[]>([]);
   const [soupIds, setSoupIds] = useState<string[]>([]);

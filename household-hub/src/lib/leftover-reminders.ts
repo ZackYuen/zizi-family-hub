@@ -1,3 +1,5 @@
+import type { Lang } from "./types";
+
 /** Daily WhatsApp ping: ask Charlene leftover fridge ingredients when dinner is unset. */
 
 export const LEFTOVER_REMIND_ID = "leftover-tonight";
@@ -46,7 +48,7 @@ export function getLeftoverReminderState(input: {
     enabled: settingOn,
     dayOff: input.dayOff,
     menuSaved,
-    due: settingOn && !input.dayOff && !menuSaved && inWindow,
+    due: settingOn && !input.dayOff && inWindow,
   };
 }
 
@@ -65,4 +67,15 @@ export function formatLeftoverReminderMessage(): string {
     "Please suggest a few dishes (Zizi: meat + veg, no spicy).",
     "If you have no idea, that’s fine — just ask us.",
   ].join("\n");
+}
+
+/** One-language leftover check-in (Meals / Ask). No planned today menu. */
+export function leftoverTonightHint(lang: Lang): string {
+  if (lang === "fil") {
+    return "Walang today menu. Tingnan ang fridge kung anong natitira na pwedeng lutuin tonight, tapos mag-suggest ng ulam (Zizi: meat + gulay, walang spicy). Kung wala kang idea, tanong sa amin.";
+  }
+  if (lang === "zh") {
+    return "沒有今日餐單。請看雪櫃剩下可煮的材料，再建議今晚菜式（孜孜要肉＋菜，不要辣）。沒主意就問我們。";
+  }
+  return "No today menu. Please check the fridge for leftover ingredients that can be cooked tonight, then suggest dishes (Zizi: meat + veg, no spicy). If you have no idea, ask us.";
 }

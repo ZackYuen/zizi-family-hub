@@ -10,6 +10,7 @@ import {
   applianceCategoryMeta,
 } from "./appliance-categories";
 import { tonightDishes } from "./dinner";
+import { leftoverTonightHint } from "./leftover-reminders";
 import {
   formatLeftoverSuggestions,
   leftoverTokens,
@@ -366,14 +367,20 @@ function heuristicAnswer(
   if (
     /how to cook|paano magluto|paano lutuin|lutuin|cook (this|the|tonight)|煮法|怎麼煮|怎煮|paano.*ulam|steps? to cook|cook helper/.test(
       q
+    ) &&
+    !/tomorrow|bukas|明日|明天/.test(q)
+  ) {
+    return leftoverTonightHint(lang);
+  }
+
+  if (
+    /how to cook|paano magluto|paano lutuin|lutuin|cook (this|the|tonight)|煮法|怎麼煮|怎煮|paano.*ulam|steps? to cook|cook helper/.test(
+      q
     )
   ) {
-    if (!snap.tonight) {
-      return noSavedMenuHint(lang);
-    }
-    const dishes = tonightDishes(snap.tonight);
+    const dishes = tonightDishes(snap.tomorrow);
     if (!dishes.length) {
-      return noSavedMenuHint(lang);
+      return leftoverTonightHint(lang);
     }
     const cantoneseNote =
       lang === "fil"
@@ -384,10 +391,10 @@ function heuristicAnswer(
 
     const blocks: string[] = [
       lang === "fil"
-        ? "Paano magluto (hapunan ngayong gabi):"
+        ? "Paano magluto (hapunan bukas):"
         : lang === "zh"
-          ? "今晚怎麼煮："
-          : "How to cook tonight:",
+          ? "明天怎麼煮："
+          : "How to cook tomorrow:",
       cantoneseNote,
     ];
 
@@ -463,45 +470,26 @@ function heuristicAnswer(
       q
     )
   ) {
-    if (!snap.tonight) {
-      return noSavedMenuHint(lang);
-    }
-    const dishes = tonightDishes(snap.tonight);
-    if (!dishes.length) {
-      return noSavedMenuHint(lang);
-    }
-    const cat =
-      lang === "fil"
-        ? { Meat: "Karne", Vegetable: "Gulay", Soup: "Sabaw" }
-        : lang === "zh"
-          ? { Meat: "肉類", Vegetable: "蔬菜", Soup: "湯" }
-          : { Meat: "Meat", Vegetable: "Vegetable", Soup: "Soup" };
-    const line = (d: (typeof dishes)[number]) =>
-      `${cat[d.category]}: ${dishName(d, lang)}`;
-    return [
-      lang === "fil" ? "Hapunan ngayong gabi:" : lang === "zh" ? "今晚晚餐：" : "Tonight's dinner:",
-      ...dishes.map((d) => `• ${line(d)}`),
-      lang === "fil"
-        ? "Buksan ang Meals tab para sa ingredients."
-        : lang === "zh"
-          ? "可在 Meals 分頁查看材料。"
-          : "Open the Meals tab for ingredients.",
-    ].join("\n");
+    return leftoverTonightHint(lang);
   }
 
   if (
     /ingredient|bilihin|shopping|買|材料|sangkap/.test(q) &&
     !/aeon|yata|一田|\bapm\b|yau\s*tong|supermarket|買菜/.test(q)
   ) {
-    if (!snap.tonight) return null;
+    if (!/tomorrow|bukas|明日|明天/.test(q)) {
+      return leftoverTonightHint(lang);
+    }
+    const dishes = tonightDishes(snap.tomorrow);
+    if (!dishes.length) return leftoverTonightHint(lang);
     const lines: string[] = [
       lang === "fil"
-        ? "Ingredients ngayong gabi:"
+        ? "Ingredients bukas:"
         : lang === "zh"
-          ? "今晚材料："
-          : "Tonight's ingredients:",
+          ? "明日材料："
+          : "Tomorrow's ingredients:",
     ];
-    for (const dish of tonightDishes(snap.tonight)) {
+    for (const dish of dishes) {
       lines.push(`• ${dishName(dish, lang)}`);
       if (dish.ingredients?.length) {
         for (const ing of dish.ingredients) {
