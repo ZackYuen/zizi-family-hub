@@ -23,6 +23,29 @@ test("leftover reminder is due from 10:00 until 16:00 when menu is empty", () =>
   assert.equal(at(16 * 60).due, false);
 });
 
+test("leftover reminder skips when Admin toggle is off", () => {
+  assert.equal(
+    getLeftoverReminderState({
+      dateKey: "2026-09-10",
+      nowMinutes: 11 * 60,
+      dayOff: false,
+      tonightDishCount: 0,
+      enabled: false,
+    }).due,
+    false
+  );
+  assert.equal(
+    getLeftoverReminderState({
+      dateKey: "2026-09-10",
+      nowMinutes: 11 * 60,
+      dayOff: false,
+      tonightDishCount: 0,
+      enabled: undefined,
+    }).due,
+    true
+  );
+});
+
 test("leftover reminder skips day off and saved tonight menu", () => {
   assert.equal(
     getLeftoverReminderState({

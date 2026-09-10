@@ -316,6 +316,11 @@ export interface AppContent {
    * Edited under Admin → Settings. Not used for ? replies. If empty, no reminder is sent.
    */
   whatsappReminderGroupJids?: string;
+  /**
+   * When false, skip the 10:00 leftover-dinner WhatsApp ask.
+   * Missing / true = enabled. Edited under Admin → Settings.
+   */
+  leftoverRemindersEnabled?: boolean;
 }
 
 /** One person who may use Admin and/or the Charlene frontend app */

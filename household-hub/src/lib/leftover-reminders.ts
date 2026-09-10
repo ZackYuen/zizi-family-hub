@@ -13,9 +13,17 @@ export interface LeftoverReminderState {
   dateKey: string;
   remindAtMinutes: number;
   untilMinutes: number;
+  enabled: boolean;
   dayOff: boolean;
   menuSaved: boolean;
   due: boolean;
+}
+
+/** Missing setting = on (same as first deploy). */
+export function leftoverRemindersSettingOn(
+  enabled: boolean | undefined | null
+): boolean {
+  return enabled !== false;
 }
 
 export function getLeftoverReminderState(input: {
@@ -23,8 +31,10 @@ export function getLeftoverReminderState(input: {
   nowMinutes: number;
   dayOff: boolean;
   tonightDishCount: number;
+  enabled?: boolean | null;
 }): LeftoverReminderState {
   const menuSaved = input.tonightDishCount > 0;
+  const settingOn = leftoverRemindersSettingOn(input.enabled);
   const inWindow =
     input.nowMinutes >= LEFTOVER_REMIND_AT_MINUTES &&
     input.nowMinutes < LEFTOVER_REMIND_UNTIL_MINUTES;
@@ -33,9 +43,10 @@ export function getLeftoverReminderState(input: {
     dateKey: input.dateKey,
     remindAtMinutes: LEFTOVER_REMIND_AT_MINUTES,
     untilMinutes: LEFTOVER_REMIND_UNTIL_MINUTES,
+    enabled: settingOn,
     dayOff: input.dayOff,
     menuSaved,
-    due: !input.dayOff && !menuSaved && inWindow,
+    due: settingOn && !input.dayOff && !menuSaved && inWindow,
   };
 }
 

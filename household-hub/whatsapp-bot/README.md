@@ -135,7 +135,7 @@ When Zizi must **leave home for class**, the bot posts in the family group **1 h
 
 ## Leftover dinner ask (10:00 HKT)
 
-On work days, if tonight’s dinner is **not saved**, the bot posts once from **10:00–16:00 HKT** a friendly reminder: please check the fridge leftovers and suggest dishes (Zizi: meat + veg, no spicy). No bot reply needed. If she has no idea, ask us. Skips day off and dates that already have a saved menu. Same reminder group as outing pings. `GET /api/reminders/leftover`.
+On work days, if tonight’s dinner is **not saved**, the bot posts once from **10:00–16:00 HKT** a friendly reminder: please check the fridge leftovers and suggest dishes (Zizi: meat + veg, no spicy). No bot reply needed. If she has no idea, ask us. Skips day off, dates that already have a saved menu, and when Admin → Settings → **Leftover dinner WhatsApp reminder** is off. Same reminder group as outing pings. `GET /api/reminders/leftover`.
 
 **Which groups (two separate Admin fields)**
 

@@ -417,6 +417,16 @@ export const adminLabels = {
     fil: "Saan puwedeng magtanong si Charlene (?). I-paste ang 120363…@g.us (mula sa bot logs). Marami: comma-separated. Blank = GROUP_JIDS. Hindi dito ipinapadala ang outing reminder.",
     zh: "Charlene 用 ? 提問的群組。貼上 120363…@g.us（bot 日誌）。多個用逗號分隔。留空則用 bot 的 GROUP_JIDS。不會發出門提醒。",
   },
+  leftoverReminders: {
+    en: "Leftover dinner WhatsApp reminder",
+    fil: "Leftover dinner WhatsApp reminder",
+    zh: "剩菜晚餐 WhatsApp 提醒",
+  },
+  leftoverRemindersHint: {
+    en: "On work days at 10:00, if tonight has no saved dishes, ping Charlene to check the fridge and suggest dishes. Turn off to stop. Save, then wait ~1 minute.",
+    fil: "Sa work days alas-10:00, kung walang naka-save na tonight, tanungin si Charlene na tingnan ang fridge at mag-suggest. I-off para huminto. I-Save, hintay ~1 minuto.",
+    zh: "工作日上午 10:00，若今晚尚未儲存菜式，會提醒 Charlene 看看雪櫃並建議菜式。關閉則停止。儲存後約 1 分鐘生效。",
+  },
   whatsappReminderGroups: {
     en: "WhatsApp group for outing + leftover reminders",
     fil: "WhatsApp group para sa outing + leftover reminders",

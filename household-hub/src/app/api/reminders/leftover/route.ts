@@ -35,6 +35,7 @@ export async function GET() {
     nowMinutes: getHongKongTimeParts(now).minutesSinceMidnight,
     dayOff: isHelperDayOff(now),
     tonightDishCount: tonightDishes(menu).length,
+    enabled: content.leftoverRemindersEnabled,
   });
   const due = state.due
     ? [{ ...state, text: formatLeftoverReminderMessage() }]
@@ -44,6 +45,7 @@ export async function GET() {
     {
       source,
       date: dateKey,
+      enabled: state.enabled,
       dayOff: state.dayOff,
       menuSaved: state.menuSaved,
       nowMinutes: getHongKongTimeParts(now).minutesSinceMidnight,
