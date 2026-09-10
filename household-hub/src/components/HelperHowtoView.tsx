@@ -12,7 +12,7 @@ const copy = {
       "Open Schedule first. Check today’s times: when to leave for school, pick-up, cleaning, and shopping. Follow the order on the list. If it is Sunday or a public holiday, the app will show you are on day off.",
     mealsTitle: "2. Shopping & cooking — Meals",
     mealsBody:
-      "Open Meals before you buy food or cook. See Tonight’s dinner (and Tomorrow if you want to prepare early). Open each dish for ingredients and cooking steps. Tick items on the shopping / prep list as you go so you don’t forget anything.",
+      "Open Meals before you buy food or cook. Tonight is leftovers — check the fridge and suggest dishes (ask us if no idea). Tomorrow’s dinner is for shopping / prep. Open each dish for ingredients and cooking steps. Tick items on the shopping / prep list as you go so you don’t forget anything.",
     mapsTitle: "3. Going somewhere — HK Life → Maps",
     mapsBody:
       "Need home, kindergarten, YATA, wet market, or AEON? Open HK Life → Maps and tap the place. It opens Google Maps so you can walk or take transport with confidence.",
@@ -41,7 +41,7 @@ const copy = {
       "Buksan muna ang Schedule. Tingnan ang oras ngayong araw: alis papuntang school, sundo, linis, at pamimili. Sundin ang listahan. Kung Linggo o public holiday, ipapakita ng app na day off mo.",
     mealsTitle: "2. Pamimili at pagluluto — Meals",
     mealsBody:
-      "Buksan ang Meals bago bumili o magluto. Tingnan ang hapunan Ngayon (at Bukas kung gusto mong maghanda nang maaga). Buksan ang bawat dish para sa ingredients at steps. I-tick ang shopping / prep list habang ginagawa para hindi makalimutan.",
+      "Buksan ang Meals bago bumili o magluto. Tonight = leftovers — tingnan ang fridge at mag-suggest (tanong sa amin kung wala idea). Hapunan Bukas = shopping / prep. Buksan ang bawat dish para sa ingredients at steps. I-tick ang shopping / prep list habang ginagawa para hindi makalimutan.",
     mapsTitle: "3. Papunta sa isang lugar — HK Life → Maps",
     mapsBody:
       "Kailangan ng bahay, kindergarten, YATA, wet market, o AEON? Buksan ang HK Life → Maps at i-tap ang lugar. Magbubukas ang Google Maps para madali kang makarating.",
@@ -70,7 +70,7 @@ const copy = {
       "先打開「日程」。看今天的時間：何時出門送學、接學、清潔、買餸。按列表順序做。若是星期日或公眾假期，App 會顯示你放假。",
     mealsTitle: "2. 買餸與煮食 — 膳食",
     mealsBody:
-      "買餸或煮飯前打開「膳食」。看今晚晚餐（若想提早準備可睇明日）。點開每道菜看材料與步驟。邊做邊在購物／準備清單打勾，免得漏掉。",
+      "買餸或煮飯前打開「膳食」。今晚是剩菜 — 看雪櫃再建議菜式（沒主意就問我們）。明日晚餐方便買餸／準備。點開每道菜看材料與步驟。邊做邊在購物／準備清單打勾，免得漏掉。",
     mapsTitle: "3. 要去某處 — 香港生活 → 地圖",
     mapsBody:
       "要找家、幼稚園、一田、街市或 AEON？打開「香港生活 → 地圖」並點選地點，會開啟 Google 地圖，方便步行或乘車。",

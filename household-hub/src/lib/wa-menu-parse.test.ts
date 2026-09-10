@@ -7,6 +7,7 @@ import {
   mergeCategoryIds,
   numberedRecipeLine,
   parseMenuCommand,
+  looksLikeMenuCommand,
   scoreRecipeMatch,
   searchSimilarRecipes,
   splitDishTokens,
@@ -84,6 +85,20 @@ test("parseMenuCommand today / tomorrow / menu", () => {
   });
   assert.equal(parseMenuCommand("add https://youtu.be/abc"), null);
   assert.equal(parseMenuCommand("what is tonight dinner"), null);
+});
+
+test("parseMenuCommand leftover ingredients, not dish names", () => {
+  assert.deepEqual(parseMenuCommand("leftover eggs tomato pork"), {
+    action: "leftover",
+    query: "eggs tomato pork",
+  });
+  assert.deepEqual(parseMenuCommand("tonight leftover eggs, tomato"), {
+    action: "leftover",
+    query: "eggs, tomato",
+  });
+  assert.equal(parseMenuCommand("leftover")?.action, "leftover");
+  assert.equal(looksLikeMenuCommand("leftover eggs tomato"), true);
+  assert.equal(looksLikeMenuCommand("what can I cook with eggs"), true);
 });
 
 test("parseMenuCommand pick numbers", () => {

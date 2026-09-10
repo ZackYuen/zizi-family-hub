@@ -9,6 +9,7 @@ import {
   hongKongDateKey,
   tonightDishes,
 } from "@/lib/dinner";
+import { leftoverTonightHint } from "@/lib/leftover-reminders";
 import { getRecipeDisplayName, getRecipeSubtitle } from "@/lib/recipe-display";
 import { localized } from "@/lib/localized-text";
 import { uiLocale } from "@/lib/i18n";
@@ -17,14 +18,16 @@ import type { DinnerRecipe, RecipeIngredient, TonightMenu } from "@/lib/types";
 const categoryIcons = { Meat: "🥩", Vegetable: "🥬", Soup: "🍲" } as const;
 
 const ui = {
-  tonight: { en: "Tonight's Dinner", fil: "Hapunan Ngayong Gabi", zh: "今晚晚餐" },
   tomorrow: {
     en: "Tomorrow's Dinner",
     fil: "Hapunan Bukas",
     zh: "明日晚餐",
   },
-  tabTonight: { en: "Tonight", fil: "Ngayon", zh: "今晚" },
-  tabTomorrow: { en: "Tomorrow", fil: "Bukas", zh: "明日" },
+  leftoverTitle: {
+    en: "Tonight — leftovers",
+    fil: "Tonight — leftovers",
+    zh: "今晚 — 剩菜",
+  },
   previewHint: {
     en: "Preview tomorrow to shop / prep ahead.",
     fil: "I-preview ang bukas para makapag-shop / prep nang maaga.",
@@ -97,9 +100,14 @@ const ui = {
     zh: "Tefal 煮食家電：餐單中有「用 EPC17 煮」（壓力鍋）或「用 Easy Fry 煮」（氣炸鍋）。面板圖：家電 → 煮食。",
   },
   customPick: {
-    en: "Custom pick (Sir/Mum chose this day)",
-    fil: "Custom pick (pinili nina Sir/Mum)",
-    zh: "自選（Sir/Mum 已選此日）",
+    en: "Saved pick (Sir/Mum or WhatsApp chose this day)",
+    fil: "Naka-save (pinili nina Sir/Mum o WhatsApp)",
+    zh: "已儲存（Sir/Mum 或 WhatsApp 已選此日）",
+  },
+  emptyMenu: {
+    en: "No dishes saved for tomorrow yet. Sir/Mum can pick in Admin.",
+    fil: "Wala pang naka-save na ulam para bukas. Pwede pumili sina Sir/Mum sa Admin.",
+    zh: "明日尚未儲存菜式。Sir/Mum 可在 Admin 選。",
   },
   shoppingList: {
     en: "Shopping / prep checklist",
@@ -722,33 +730,20 @@ export function MealsView() {
   const { lang } = useLanguage();
   const todayKey = hongKongDateKey();
   const tomorrowKey = addHongKongDays(todayKey, 1);
-  const [day, setDay] = useState<"tonight" | "tomorrow">("tonight");
-  const [menus, setMenus] = useState<{
-    tonight: TonightMenu | null;
-    tomorrow: TonightMenu | null;
-  }>({ tonight: null, tomorrow: null });
+  const [menu, setMenu] = useState<TonightMenu | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    Promise.all([
-      fetch(`/api/dinner/tonight?date=${encodeURIComponent(todayKey)}`).then(
-        (r) => r.json()
-      ),
-      fetch(
-        `/api/dinner/tonight?date=${encodeURIComponent(tomorrowKey)}`
-      ).then((r) => r.json()),
-    ])
-      .then(([todayData, tomorrowData]) => {
+    fetch(`/api/dinner/tonight?date=${encodeURIComponent(tomorrowKey)}`)
+      .then((r) => r.json())
+      .then((tomorrowData) => {
         if (cancelled) return;
-        setMenus({
-          tonight: todayData.tonight ?? null,
-          tomorrow: tomorrowData.tonight ?? null,
-        });
+        setMenu(tomorrowData.tonight ?? null);
       })
       .catch(() => {
-        if (!cancelled) setMenus({ tonight: null, tomorrow: null });
+        if (!cancelled) setMenu(null);
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
@@ -756,10 +751,7 @@ export function MealsView() {
     return () => {
       cancelled = true;
     };
-  }, [todayKey, tomorrowKey]);
-
-  const menu = day === "tonight" ? menus.tonight : menus.tomorrow;
-  const isTomorrow = day === "tomorrow";
+  }, [tomorrowKey]);
 
   const shopping = useMemo(() => {
     if (!menu) return [] as ShoppingRow[];
@@ -796,68 +788,18 @@ export function MealsView() {
 
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-2 gap-1 rounded-xl bg-stone-200/80 p-1">
-        <button
-          type="button"
-          onClick={() => setDay("tonight")}
-          className={`rounded-lg px-3 py-2 text-sm font-semibold ${
-            day === "tonight"
-              ? "bg-teal-600 text-white"
-              : "text-stone-600"
-          }`}
-        >
-          {ui.tabTonight[lang]}
-        </button>
-        <button
-          type="button"
-          onClick={() => setDay("tomorrow")}
-          className={`rounded-lg px-3 py-2 text-sm font-semibold ${
-            day === "tomorrow"
-              ? "bg-sky-600 text-white"
-              : "text-stone-600"
-          }`}
-        >
-          {ui.tabTomorrow[lang]}
-        </button>
+      <div className="rounded-xl bg-teal-50 px-3 py-2.5 ring-1 ring-teal-100">
+        <h2 className="text-sm font-bold text-teal-950">{ui.leftoverTitle[lang]}</h2>
+        <p className="mt-0.5 text-xs text-teal-900">{leftoverTonightHint(lang)}</p>
       </div>
 
-      <div
-        className={`rounded-xl px-3 py-2.5 ring-1 ${
-          isTomorrow
-            ? "bg-sky-50 ring-sky-100"
-            : "bg-teal-50 ring-teal-100"
-        }`}
-      >
-        <p
-          className={`text-[11px] ${
-            isTomorrow ? "text-sky-800" : "text-teal-800"
-          }`}
-        >
-          {dateStr}
-        </p>
-        <h2
-          className={`text-sm font-bold ${
-            isTomorrow ? "text-sky-950" : "text-teal-950"
-          }`}
-        >
-          {isTomorrow ? ui.tomorrow[lang] : ui.tonight[lang]}
-        </h2>
-        <p
-          className={`mt-0.5 text-xs ${
-            isTomorrow ? "text-sky-900" : "text-teal-900"
-          }`}
-        >
-          {isTomorrow ? ui.cookAtTomorrow[lang] : ui.cookAt[lang]}
-        </p>
-        {isTomorrow && (
-          <p className="mt-1 text-[11px] text-sky-800">{ui.previewHint[lang]}</p>
-        )}
+      <div className="rounded-xl bg-sky-50 px-3 py-2.5 ring-1 ring-sky-100">
+        <p className="text-[11px] text-sky-800">{dateStr}</p>
+        <h2 className="text-sm font-bold text-sky-950">{ui.tomorrow[lang]}</h2>
+        <p className="mt-0.5 text-xs text-sky-900">{ui.cookAtTomorrow[lang]}</p>
+        <p className="mt-1 text-[11px] text-sky-800">{ui.previewHint[lang]}</p>
         {menu.overridden && (
-          <p
-            className={`mt-1 text-[11px] font-semibold ${
-              isTomorrow ? "text-sky-800" : "text-teal-800"
-            }`}
-          >
+          <p className="mt-1 text-[11px] font-semibold text-sky-800">
             {ui.customPick[lang]}
           </p>
         )}
@@ -865,19 +807,17 @@ export function MealsView() {
 
       <p className="text-xs text-stone-500">{ui.cantoneseNote[lang]}</p>
 
-      <div className="rounded-xl bg-amber-50/90 px-3 py-2.5 ring-1 ring-amber-100">
-        <p className="text-xs leading-relaxed text-amber-950">
-          {hasDeviceDish ? ui.deviceBanner[lang] : ui.deviceBannerGeneric[lang]}
-        </p>
-      </div>
+      {hasDeviceDish && (
+        <div className="rounded-xl bg-amber-50/90 px-3 py-2.5 ring-1 ring-amber-100">
+          <p className="text-xs leading-relaxed text-amber-950">
+            {ui.deviceBanner[lang]}
+          </p>
+        </div>
+      )}
 
       {items.length === 0 ? (
-        <p className="rounded-xl bg-white px-3 py-4 text-center text-sm text-stone-500 ring-1 ring-stone-100">
-          {lang === "fil"
-            ? "Walang dish para sa araw na ito."
-            : lang === "zh"
-              ? "此日尚未有菜式。"
-              : "No dishes for this day."}
+        <p className="rounded-xl bg-white px-3 py-4 text-center text-sm text-stone-600 ring-1 ring-stone-100">
+          {ui.emptyMenu[lang]}
         </p>
       ) : (
         <div className="space-y-2.5">

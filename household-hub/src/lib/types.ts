@@ -130,11 +130,11 @@ export interface RecipeCookSettings {
 
 export interface TonightMenu {
   date: string;
-  /** Default random = one item; Admin override may be 0..n */
+  /** Admin / WhatsApp pick may be 0..n; no pick = empty (do not randomize). */
   meat: DinnerRecipe[];
   vegetable: DinnerRecipe[];
   soup: DinnerRecipe[];
-  /** True when Admin picked dishes for this date instead of date-hash random */
+  /** True when Admin or WhatsApp saved dishes for this date */
   overridden?: boolean;
 }
 
@@ -316,6 +316,11 @@ export interface AppContent {
    * Edited under Admin → Settings. Not used for ? replies. If empty, no reminder is sent.
    */
   whatsappReminderGroupJids?: string;
+  /**
+   * When false, skip the 10:00 leftover-dinner WhatsApp ask.
+   * Missing / true = enabled. Edited under Admin → Settings.
+   */
+  leftoverRemindersEnabled?: boolean;
 }
 
 /** One person who may use Admin and/or the Charlene frontend app */

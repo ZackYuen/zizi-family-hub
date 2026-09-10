@@ -203,7 +203,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     "Home facts: ~660 sq ft Kwun Tong flat; family of 3 (Sir, Mum, Zizi) + Charlene live-in = 4 people; Charlene has own bedroom with AC; 3 ACs total; ~3 min walk to Kwun Tong MTR; linked to apm mall; first supermarket = YATA (一田) at apm (AEON only if needed)."
   );
   lines.push(
-    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab (default 1 meat + 1 vegetable + 1 soup; Admin may add/remove dishes)."
+    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab saved pick only (no daily random). If none saved, ask Charlene leftover fridge ingredients and suggest matching dishes (Zizi: meat + veg, no spicy); if no idea, ask us (Sir/Mum)."
   );
   lines.push(`Data source: ${snap.source === "supabase" ? "live Admin" : "local"}`);
   lines.push(
@@ -232,7 +232,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     'For "what should I do now?" / current task: pick the schedule item whose start–end covers CURRENT Hong Kong time. If in a gap, say so and give the NEXT upcoming task only — do not dump the whole day.'
   );
   lines.push(
-    "WhatsApp: ? replies go to Admin → Settings → group for bot replies (or bot GROUP_JIDS). 1-hour outing reminders go only to Admin → Settings → group for outing reminders — a different field; blank means no reminder is sent."
+    "WhatsApp: ? replies go to Admin → Settings → group for bot replies (or bot GROUP_JIDS). 1-hour outing reminders and the 10:00 leftover-dinner ask go only to Admin → Settings → group for outing reminders — a different field; blank means no reminder is sent."
   );
   lines.push(
     "HK life / FDH tips below are general guidance. For legal/contract specifics, tell Charlene to confirm with Sir/Mum or official Labour Department sources. Never invent visa/immigration advice."
@@ -413,37 +413,26 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     for (const m of snap.monthlyTasks) lines.push(`- ${m.en}`);
   }
 
-  if (snap.tonight) {
-    lines.push("");
-    lines.push(`Tonight's dinner (${snap.tonight.date}):`);
-    for (const dish of tonightDishes(snap.tonight)) {
-      lines.push(
-        `- ${dish.category}: ${getRecipeDisplayName(dish, "en")} / ${getRecipeDisplayName(dish, "fil")}`
-      );
-      const ings = ingredientLine(dish, "en");
-      if (ings.length) lines.push(`  Ingredients: ${ings.join(", ")}`);
-      else
-        lines.push(
-          `  Ingredients: (not listed yet — check ${dish.recipePage || dish.link})`
-        );
-      if (dish.prepNotes?.en || dish.prepNotes?.fil) {
-        lines.push(
-          `  Prep notes EN: ${dish.prepNotes.en || ""} | FIL: ${dish.prepNotes.fil || ""}`
-        );
-      }
-      lines.push(`  Recipe video (may be Cantonese): ${dish.link}`);
-      if (dish.recipePage) {
-        lines.push(`  Written recipe page: ${dish.recipePage}`);
-      }
-    }
-  }
+  lines.push("");
+  lines.push("Tonight's dinner: NO planned today menu.");
+  lines.push(
+    "Dinner policy: do NOT invent a random meat+veg+soup and do not list a today menu. Ask Charlene to check leftover fridge ingredients and suggest dishes (Zizi: meat + veg, no spicy). If she has no idea, ask us (Sir/Mum)."
+  );
 
   if (snap.tomorrow) {
     lines.push("");
-    lines.push(`Tomorrow's dinner (${snap.tomorrow.date}):`);
-    for (const dish of tonightDishes(snap.tomorrow)) {
+    const tomorrowDishesList = tonightDishes(snap.tomorrow);
+    if (tomorrowDishesList.length) {
+      lines.push(`Tomorrow's dinner (${snap.tomorrow.date}):`);
+      for (const dish of tomorrowDishesList) {
+        lines.push(
+          `- ${dish.category}: ${getRecipeDisplayName(dish, "en")} / ${getRecipeDisplayName(dish, "fil")}`
+        );
+      }
+    } else {
+      lines.push(`Tomorrow's dinner (${snap.tomorrow.date}): none saved.`);
       lines.push(
-        `- ${dish.category}: ${getRecipeDisplayName(dish, "en")} / ${getRecipeDisplayName(dish, "fil")}`
+        "Same leftover policy as tonight — no random menu."
       );
     }
   }

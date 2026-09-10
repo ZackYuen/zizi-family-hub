@@ -79,12 +79,13 @@ Bot replies only when:
 
 | Command | Effect |
 |---------|--------|
-| `?today` / `?tonight eat what?` / `?tonight dinner` | **Show** tonight’s saved/random dinner — does not change the menu |
+| `?today` / `?tonight eat what?` / `?tonight dinner` | **No today menu** — leftover fridge check-in (does not list dishes) |
+| `?leftover eggs tomato pork` | Suggest Meals dishes from leftover fridge ingredients; then `?1` to save tonight. No match → ask us |
 | `?today honey wings` | Lists **similar Meals with numbers**. Then `?today 1` or `?1`. Same category as a dish already on that day → `?overwrite` (replace that cat only) or `?also` (keep old + new). Other cats stay |
 | `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
 | `?menu` | Show tonight + tomorrow |
 | `?menu today: …` `tomorrow: …` | Set both days in one message |
-| `?today clear` | Tonight back to random |
+| `?today clear` | Tonight: no saved menu (not random) |
 | `?add https://youtube.com/…` or `?add https://instagram.com/reel/…` | LLM-digests the video/caption → **Meals library**. Duplicate YouTube ids / Instagram reels are skipped |
 | `?save …` or `?save "…"` | Digested → Admin → WA Inbox (tip / recipe / note) |
 | `?save tip …` / `?save recipe …` / `?note …` | Same (legacy forms; still digested) |
@@ -114,9 +115,10 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 | `GROUP_JIDS` | Fallback group(s) for **? replies** if Admin reply group is blank |
 | `GROUP_ALLOW_ALL` | `1` = reply in every group (unsafe). Prefer Admin reply group / `GROUP_JIDS` |
 | `REPLY_DM` | `1` to also answer private chats |
-| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing reminders still send |
+| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover reminders still send |
 | `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
 | `OUTING_REMINDERS` | `0` = do not send 1-hour Zizi outing pings (on by default) |
+| `LEFTOVER_REMINDERS` | `0` = do not send the 10:00 leftover-fridge ask (on by default) |
 | `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
 
 ### Pause replies (no logout)
@@ -130,6 +132,10 @@ After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot 
 ## Outing reminders (1 hour before class)
 
 When Zizi must **leave home for class**, the bot posts in the family group **1 hour before** that task’s start time — **only if the task has Admin → Schedule → Remind 1h on WhatsApp checked**. Skips Charlene’s day off. Usual school-day leave-home is 12:30 (WhatsApp 11:30). Interest-class dates leave at 11:30 (WhatsApp 10:30). Message includes the **Zizi school prep** checklist (temperature, form, towels, masks, water, empty food container for school tea time, hair, pickup card; Tuesday sportswear). FIL + EN only.
+
+## Leftover dinner ask (10:00 HKT)
+
+On work days the bot posts once from **10:00–16:00 HKT** a friendly reminder: please check the fridge leftovers and suggest dishes (Zizi: meat + veg, no spicy). No today menu and no bot reply needed. If she has no idea, ask us. Skips day off and when Admin → Settings → **Leftover dinner WhatsApp reminder** is off. Same reminder group as outing pings. `GET /api/reminders/leftover`.
 
 **Which groups (two separate Admin fields)**
 

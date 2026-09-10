@@ -703,6 +703,29 @@ export default function AdminPage() {
               />
             </div>
             <div className="mt-4 rounded-lg border border-stone-200 bg-stone-50 px-3 py-3">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={content.leftoverRemindersEnabled !== false}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      leftoverRemindersEnabled: e.target.checked,
+                    })
+                  }
+                  className="mt-1 h-4 w-4 rounded border-stone-300 text-teal-600"
+                />
+                <span>
+                  <span className="block text-sm font-medium text-stone-800">
+                    {adminT("leftoverReminders", lang)}
+                  </span>
+                  <span className="mt-1 block text-xs text-stone-500">
+                    {adminT("leftoverRemindersHint", lang)}
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div className="mt-4 rounded-lg border border-stone-200 bg-stone-50 px-3 py-3">
               <label className="block text-sm font-medium text-stone-800">
                 {adminT("whatsappReminderGroups", lang)}
               </label>

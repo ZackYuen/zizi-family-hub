@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { hongKongDateKey, tonightDishes } from "@/lib/dinner";
+import { addHongKongDays, hongKongDateKey, tonightDishes } from "@/lib/dinner";
 import { adminDishPickerLabel } from "@/lib/recipe-display";
 import type { DinnerRecipe, Lang, TonightMenu } from "@/lib/types";
 
@@ -153,7 +153,8 @@ export function TonightOverridePanel({
   setMessage: (msg: string) => void;
 }) {
   const today = hongKongDateKey();
-  const [date, setDate] = useState(today);
+  const tomorrow = addHongKongDays(today, 1);
+  const [date, setDate] = useState(tomorrow);
   const [meatIds, setMeatIds] = useState<string[]>([]);
   const [vegetableIds, setVegetableIds] = useState<string[]>([]);
   const [soupIds, setSoupIds] = useState<string[]>([]);
@@ -262,10 +263,10 @@ export function TonightOverridePanel({
       applyTonight(t);
       setMessage(
         lang === "fil"
-          ? `Cleared — balik sa random menu para sa ${date}.`
+          ? `Cleared — walang naka-save na menu para sa ${date}. Tanong kay Charlene ng leftovers; kung wala idea, tanong sa amin.`
           : lang === "zh"
-            ? `已清除 — ${date} 恢复随机餐单。`
-            : `Cleared — back to random menu for ${date}.`
+            ? `已清除 — ${date} 沒有儲存餐單。先問 Charlene 剩下材料；沒主意就問我們。`
+            : `Cleared — no saved menu for ${date}. Ask Charlene leftovers; if no idea, ask us.`
       );
     } finally {
       setBusy(false);
@@ -279,9 +280,9 @@ export function TonightOverridePanel({
       zh: "每日晚餐（可自選）",
     },
     hint: {
-      en: "Pick any date above. Default random = 1 meat + 1 vegetable + 1 soup. Add or remove dishes, then Save for that date. Clear restores random for that date only.",
-      fil: "Pumili ng kahit anong date sa taas. Default random = 1 meat + 1 vegetable + 1 soup. Magdagdag o mag-alis, tapos Save para sa date na iyon. Clear = balik sa random para sa date na iyon lang.",
-      zh: "可在上方選任何日期。默認隨機＝1肉＋1菜＋1湯。加／減菜式後儲存該日。清除只恢復該日隨機。",
+      en: "Pick any date above. No daily random menu — save dishes only when you choose them. If nothing is saved, ask Charlene what leftover fridge ingredients can be cooked, then suggest Meals dishes. If no idea, ask us.",
+      fil: "Pumili ng kahit anong date sa taas. Walang araw-araw na random menu — mag-save lang kapag may pinili. Kung walang naka-save, tanong kay Charlene kung anong natitira sa fridge, tapos mag-suggest sa Meals. Kung wala idea, tanong sa amin.",
+      zh: "可在上方選任何日期。不再每日隨機餐單 — 只在選定後儲存。若沒儲存，先問 Charlene 雪櫃剩下可煮的材料，再建議 Meals 菜式。沒主意就問我們。",
     },
     search: {
       en: "Search to add…",
@@ -293,10 +294,10 @@ export function TonightOverridePanel({
       fil: "Custom pick para sa araw na ito",
       zh: "此日為自選",
     },
-    statusRandom: {
-      en: "Random for this date",
-      fil: "Random para sa araw na ito",
-      zh: "此日為隨機",
+    statusEmpty: {
+      en: "No saved dishes for this date",
+      fil: "Walang naka-save para sa araw na ito",
+      zh: "此日尚未儲存菜式",
     },
     save: {
       en: "Save picks for this date",
@@ -304,9 +305,9 @@ export function TonightOverridePanel({
       zh: "儲存此日選擇",
     },
     clear: {
-      en: "Clear → random again",
-      fil: "Clear → random ulit",
-      zh: "清除 → 恢復隨機",
+      en: "Clear saved dishes",
+      fil: "I-clear ang naka-save",
+      zh: "清除已儲存菜式",
     },
   } as const;
 
@@ -341,7 +342,7 @@ export function TonightOverridePanel({
               : "bg-stone-100 text-stone-600"
           }`}
         >
-          {overridden ? copy.statusCustom[lang] : copy.statusRandom[lang]}
+          {overridden ? copy.statusCustom[lang] : copy.statusEmpty[lang]}
         </span>
       </div>
 

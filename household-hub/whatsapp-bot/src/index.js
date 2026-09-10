@@ -105,6 +105,11 @@ const LIVE_OUTING_REMINDERS_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/outing/") ||
   "https://zizi-family-hub.vercel.app/api/reminders/outing/"
 ).replace(/\/?$/, "/");
+const LIVE_LEFTOVER_REMINDERS_URL = (
+  process.env.LIVE_LEFTOVER_REMINDERS_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/leftover/") ||
+  "https://zizi-family-hub.vercel.app/api/reminders/leftover/"
+).replace(/\/?$/, "/");
 const LIVE_MEALS_ADD_URL = (
   process.env.LIVE_MEALS_ADD_URL ||
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/meals/add/") ||
@@ -117,6 +122,8 @@ const LIVE_MEALS_MENU_URL = (
 ).replace(/\/?$/, "/");
 /** 0 = disable 1-hour Zizi outing pings */
 const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
+/** 0 = disable 10:00 leftover-fridge ask when tonight’s menu is empty */
+const LEFTOVER_REMINDERS_ENABLED = process.env.LEFTOVER_REMINDERS !== "0";
 const OUTING_REMINDER_MS = Math.max(
   30_000,
   Number(process.env.OUTING_REMINDER_POLL_MS || 60_000) || 60_000
@@ -356,62 +363,72 @@ function replyAllowlist(adminReplyJids) {
   return GROUP_ALLOWLIST;
 }
 
-async function checkOutingReminders(sock) {
-  if (!OUTING_REMINDERS_ENABLED) return;
-  if (!sock) return;
-
-  let data;
+async function fetchReminderFeed(url, label) {
   try {
-    const res = await fetch(LIVE_OUTING_REMINDERS_URL, {
-      signal: AbortSignal.timeout(15000),
-    });
+    const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
     if (!res.ok) {
-      logger.warn({ status: res.status }, "outing reminders fetch failed");
-      return;
+      logger.warn({ status: res.status }, `${label} reminders fetch failed`);
+      return null;
     }
-    data = await res.json();
+    return res.json();
   } catch (err) {
-    logger.warn({ err }, "outing reminders fetch error");
-    return;
+    logger.warn({ err }, `${label} reminders fetch error`);
+    return null;
   }
+}
 
+async function sendDueReminderItems(sock, data, kind) {
+  if (!sock || !data) return;
   const adminJids = Array.isArray(data?.groupJids)
     ? data.groupJids.map((s) => String(s).trim()).filter((s) => /@g\.us$/i.test(s))
     : [];
   const due = Array.isArray(data?.due) ? data.due : [];
   if (due.length && !adminJids.length) {
     logger.warn(
-      "outing reminder due but Admin reminder group is empty — set Settings → WhatsApp group for outing reminders (not the reply group)"
+      `${kind} reminder due but Admin reminder group is empty — set Settings → WhatsApp group for outing reminders (not the reply group)`
     );
     return;
   }
-  const jids = adminJids;
-  if (!jids.length) return;
-  if (!due.length) return;
+  if (!adminJids.length || !due.length) return;
 
   const sent = loadSentOutingKeys();
   for (const item of due) {
-    const key = `${item.dateKey || data.date}:${item.id}`;
+    const key =
+      kind === "outing"
+        ? `${item.dateKey || data.date}:${item.id}`
+        : `${kind}:${item.dateKey || data.date}:${item.id}`;
     if (sent[key]) continue;
     const text = String(item.text || "").trim();
     if (!text) continue;
     try {
-      for (const jid of jids) {
+      for (const jid of adminJids) {
         await sock.sendMessage(jid, { text: text.slice(0, 4000) });
       }
       sent[key] = new Date().toISOString();
       saveSentOutingKeys(sent);
-      console.log(`[remind] sent outing ${key} → ${jids.join(",")}`);
+      console.log(`[remind] sent ${kind} ${key} → ${adminJids.join(",")}`);
     } catch (err) {
-      logger.warn({ err, key }, "outing reminder send failed");
+      logger.warn({ err, key }, `${kind} reminder send failed`);
     }
+  }
+}
+
+async function checkOutingReminders(sock) {
+  if (!sock) return;
+  if (OUTING_REMINDERS_ENABLED) {
+    const data = await fetchReminderFeed(LIVE_OUTING_REMINDERS_URL, "outing");
+    await sendDueReminderItems(sock, data, "outing");
+  }
+  if (LEFTOVER_REMINDERS_ENABLED) {
+    const data = await fetchReminderFeed(LIVE_LEFTOVER_REMINDERS_URL, "leftover");
+    await sendDueReminderItems(sock, data, "leftover");
   }
 }
 
 function startOutingReminderLoop(sock) {
   outingSock = sock;
-  if (!OUTING_REMINDERS_ENABLED) {
-    console.log("[ok] Outing reminders off (OUTING_REMINDERS=0)");
+  if (!OUTING_REMINDERS_ENABLED && !LEFTOVER_REMINDERS_ENABLED) {
+    console.log("[ok] Outing + leftover reminders off");
     return;
   }
   if (outingTimer) return;
@@ -423,7 +440,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Outing reminders: 1h before flagged tasks · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only · ${LIVE_OUTING_REMINDERS_URL}`
+    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only`
   );
 }
 
@@ -507,6 +524,9 @@ async function postMealsAdd(url) {
 function looksLikeMenuCommand(question) {
   const q = String(question || "").trim();
   if (/^(today|tonight|tomorrow|bukas|menu)\b/i.test(q)) return true;
+  if (/^(leftover|leftovers|remaining|fridge|natitira|tira)\b/i.test(q)) return true;
+  if (/what can (i|we) cook with/i.test(q)) return true;
+  if (/remaining (food|ingredient|material)/i.test(q)) return true;
   if (/^(pick|choose)\b/i.test(q)) return true;
   if (/^(overwrite|replace|also|addmore|keep|append)\b/i.test(q)) return true;
   return /^\d+(\s*[,，、]\s*\d+|\s+\d+)*\.?$/.test(q);
