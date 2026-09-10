@@ -39,23 +39,19 @@ export function getLeftoverReminderState(input: {
   };
 }
 
-/** FIL + EN only (same as outing reminders). */
+/** FIL + EN only (same as outing reminders). Friendly check-in — no bot reply needed. */
 export function formatLeftoverReminderMessage(): string {
   return [
-    "Charlene — tonight’s dinner is not saved yet.",
+    "Hi Charlene 😊",
     "",
     "FIL:",
-    "Anong natitira sa fridge na pwedeng lutuin?",
-    "Reply: ?leftover eggs tomato pork",
-    "Tapos ?1 para i-save sa tonight.",
-    "Kung wala kang idea, tanong kay Mum.",
-    "(Zizi: meat + gulay, walang spicy.)",
+    "Pwede bang tingnan ang fridge kung anong natitira na pwedeng lutuin tonight?",
+    "Mag-suggest ka lang ng ulam (Zizi: meat + gulay, walang spicy).",
+    "Kung wala kang idea, okay lang — tanong kay Mum.",
     "",
     "EN:",
-    "What leftover fridge ingredients can be cooked?",
-    "Reply: ?leftover eggs tomato pork",
-    "Then ?1 to save tonight.",
-    "If no idea, ask Mum.",
-    "(Zizi needs meat + veg, no spicy.)",
+    "Could you check the fridge for leftover ingredients that can be cooked tonight?",
+    "Please suggest a few dishes (Zizi: meat + veg, no spicy).",
+    "If you have no idea, that’s fine — just ask Mum.",
   ].join("\n");
 }

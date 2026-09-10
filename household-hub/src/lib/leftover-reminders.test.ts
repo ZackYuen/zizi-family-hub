@@ -53,11 +53,14 @@ test("leftover reminder skips day off and saved tonight menu", () => {
   );
 });
 
-test("leftover reminder text asks Charlene then Mum, no Chinese", () => {
+test("leftover reminder text asks Charlene to check and suggest, no bot reply", () => {
   const text = formatLeftoverReminderMessage();
-  assert.match(text, /natitira sa fridge/i);
-  assert.match(text, /\?leftover /);
+  assert.match(text, /Hi Charlene/i);
+  assert.match(text, /tingnan ang fridge/i);
+  assert.match(text, /Mag-suggest/i);
   assert.match(text, /ask Mum/i);
   assert.match(text, /tanong kay Mum/i);
+  assert.equal(/\?leftover/.test(text), false);
+  assert.equal(/tomato|egg/i.test(text), false);
   assert.equal(/[\u4e00-\u9fff]/.test(text), false);
 });
