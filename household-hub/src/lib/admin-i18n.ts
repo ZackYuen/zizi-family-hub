@@ -438,9 +438,9 @@ export const adminLabels = {
   // Meals admin
   mealTitle: { en: "Dinner Menu Recipes", fil: "Mga Recipe sa Hapunan" },
   mealDesc: {
-    en: "Manage meat, vegetable and soup dishes. No daily random menu — save a date only when you pick dishes. If nothing is saved, ask Charlene leftovers, then Mum if no idea.",
-    fil: "Pamahalaan ang karne, gulay at sabaw. Walang araw-araw na random — mag-save lang kapag may pinili. Kung walang naka-save, tanong kay Charlene ng leftovers; kung wala idea, tanong kay Mum.",
-    zh: "管理肉、菜、湯食譜。不再每日隨機 — 選定菜式後才儲存該日。若沒儲存，先問 Charlene 剩下材料；沒主意就問 Mum。",
+    en: "Manage meat, vegetable and soup dishes. No daily random menu — save a date only when you pick dishes. If nothing is saved, ask Charlene leftovers, then us if no idea.",
+    fil: "Pamahalaan ang karne, gulay at sabaw. Walang araw-araw na random — mag-save lang kapag may pinili. Kung walang naka-save, tanong kay Charlene ng leftovers; kung wala idea, tanong sa amin.",
+    zh: "管理肉、菜、湯食譜。不再每日隨機 — 選定菜式後才儲存該日。若沒儲存，先問 Charlene 剩下材料；沒主意就問我們。",
   },
   addMeal: { en: "+ Add dish", fil: "+ Magdagdag ng ulam" },
   saveMeals: { en: "Save Meals", fil: "I-save ang Pagkain" },

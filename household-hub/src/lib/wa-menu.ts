@@ -299,7 +299,7 @@ export async function handleWhatsAppMenu(
       handled: "menu",
       answer: formatMenuReply([
         formatLeftoverSuggestions(recipes, parsed.query, "en"),
-        "Reply ?1 to save on tonight. If no idea, ask Mum.",
+        "Reply ?1 to save on tonight. If no idea, ask us.",
       ]),
     };
   }

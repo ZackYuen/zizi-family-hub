@@ -69,12 +69,12 @@ const STOP = new Set([
 
 export function noSavedMenuHint(lang: Lang): string {
   if (lang === "fil") {
-    return "Walang naka-save na menu. Tanong kay Charlene kung anong natitira sa fridge na pwedeng lutuin, tapos mag-suggest ng ulam (Zizi: meat + gulay, walang spicy). Kung wala siyang idea, tanong kay Mum.";
+    return "Walang naka-save na menu. Tanong kay Charlene kung anong natitira sa fridge na pwedeng lutuin, tapos mag-suggest ng ulam (Zizi: meat + gulay, walang spicy). Kung wala siyang idea, tanong sa amin.";
   }
   if (lang === "zh") {
-    return "尚未儲存今日餐單。先問 Charlene 雪櫃仲有咩可以煮，再建議菜式（孜孜要肉＋菜，不要辣）。如果她沒主意，問 Mum。";
+    return "尚未儲存今日餐單。先問 Charlene 雪櫃仲有咩可以煮，再建議菜式（孜孜要肉＋菜，不要辣）。如果她沒主意，問我們。";
   }
-  return "No menu saved. Ask Charlene what leftover ingredients in the fridge can be cooked, then suggest dishes (Zizi needs meat + veg, no spicy). If she has no idea, ask Mum.";
+  return "No menu saved. Ask Charlene what leftover ingredients in the fridge can be cooked, then suggest dishes (Zizi needs meat + veg, no spicy). If she has no idea, ask us.";
 }
 
 export function leftoverWhatsAppHint(): string {
@@ -84,7 +84,7 @@ export function leftoverWhatsAppHint(): string {
     "Charlene can reply:",
     "?leftover eggs tomato pork",
     "Then pick a number, e.g. ?1",
-    "If no idea, ask Mum.",
+    "If no idea, ask us.",
   ].join("\n");
 }
 
@@ -205,12 +205,12 @@ export function formatLeftoverSuggestions(
   const listed = tokens.join(", ");
   if (!found.length) {
     if (lang === "fil") {
-      return `Walang tumugmang ulam sa Meals para sa: ${listed}.\nKung wala kang idea, tanong kay Mum.\n(Zizi: meat + gulay, walang spicy.)`;
+      return `Walang tumugmang ulam sa Meals para sa: ${listed}.\nKung wala kang idea, tanong sa amin.\n(Zizi: meat + gulay, walang spicy.)`;
     }
     if (lang === "zh") {
-      return `Meals 沒有對應「${listed}」的菜式。\n如果沒主意，問 Mum。\n（孜孜要肉＋菜，不要辣。）`;
+      return `Meals 沒有對應「${listed}」的菜式。\n如果沒主意，問我們。\n（孜孜要肉＋菜，不要辣。）`;
     }
-    return `No matching Meals dish for: ${listed}.\nIf no idea, ask Mum.\n(Zizi needs meat + veg, no spicy.)`;
+    return `No matching Meals dish for: ${listed}.\nIf no idea, ask us.\n(Zizi needs meat + veg, no spicy.)`;
   }
   const lines = found.map((r, i) => {
     const name = getRecipeDisplayName(r, lang === "fil" ? "fil" : lang === "zh" ? "zh" : "en");
@@ -218,9 +218,9 @@ export function formatLeftoverSuggestions(
   });
   const head =
     lang === "fil"
-      ? `Pwede sa natitira (${listed}). Zizi: meat + gulay, walang spicy. Kung unsure, tanong kay Mum.`
+      ? `Pwede sa natitira (${listed}). Zizi: meat + gulay, walang spicy. Kung unsure, tanong sa amin.`
       : lang === "zh"
-        ? `用剩下的（${listed}）可以考慮。孜孜要肉＋菜、不要辣。不確定就問 Mum。`
-        : `From leftovers (${listed}), you could cook. Zizi: meat + veg, no spicy. If unsure, ask Mum.`;
+        ? `用剩下的（${listed}）可以考慮。孜孜要肉＋菜、不要辣。不確定就問我們。`
+        : `From leftovers (${listed}), you could cook. Zizi: meat + veg, no spicy. If unsure, ask us.`;
   return [head, ...lines].join("\n");
 }

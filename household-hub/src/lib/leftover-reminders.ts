@@ -47,11 +47,11 @@ export function formatLeftoverReminderMessage(): string {
     "FIL:",
     "Pwede bang tingnan ang fridge kung anong natitira na pwedeng lutuin tonight?",
     "Mag-suggest ka lang ng ulam (Zizi: meat + gulay, walang spicy).",
-    "Kung wala kang idea, okay lang — tanong kay Mum.",
+    "Kung wala kang idea, okay lang — tanong sa amin.",
     "",
     "EN:",
     "Could you check the fridge for leftover ingredients that can be cooked tonight?",
     "Please suggest a few dishes (Zizi: meat + veg, no spicy).",
-    "If you have no idea, that’s fine — just ask Mum.",
+    "If you have no idea, that’s fine — just ask us.",
   ].join("\n");
 }

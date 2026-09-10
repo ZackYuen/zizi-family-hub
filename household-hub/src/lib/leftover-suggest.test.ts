@@ -56,7 +56,7 @@ test("suggestRecipesFromLeftovers matches ingredients not random", () => {
   assert.equal(ids.includes("d-unrelated"), false);
 });
 
-test("no leftover match tells Charlene to ask Mum", () => {
+test("no leftover match tells Charlene to ask us", () => {
   const text = formatLeftoverSuggestions(
     [
       recipe({
@@ -70,11 +70,11 @@ test("no leftover match tells Charlene to ask Mum", () => {
     "dragonfruit durian",
     "en"
   );
-  assert.match(text, /ask Mum/i);
+  assert.match(text, /ask us/i);
 });
 
-test("empty leftover list asks Charlene then Mum", () => {
+test("empty leftover list asks Charlene then us", () => {
   const text = formatLeftoverSuggestions([], "", "en");
   assert.match(text, /Ask Charlene/i);
-  assert.match(text, /ask Mum/i);
+  assert.match(text, /ask us/i);
 });

@@ -203,7 +203,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     "Home facts: ~660 sq ft Kwun Tong flat; family of 3 (Sir, Mum, Zizi) + Charlene live-in = 4 people; Charlene has own bedroom with AC; 3 ACs total; ~3 min walk to Kwun Tong MTR; linked to apm mall; first supermarket = YATA (一田) at apm (AEON only if needed)."
   );
   lines.push(
-    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab saved pick only (no daily random). If none saved, ask Charlene leftover fridge ingredients and suggest matching dishes (Zizi: meat + veg, no spicy); if no idea, ask Mum."
+    "Zizi meals (work days, not Charlene day off): simple breakfast (egg/pancake/siumai/蕃薯 etc.) + morning milk with glass straw; lunch must have meat + vegetables (spaghetti/fried rice/noodle/烏冬 etc.); dinner = Meals tab saved pick only (no daily random). If none saved, ask Charlene leftover fridge ingredients and suggest matching dishes (Zizi: meat + veg, no spicy); if no idea, ask us (Sir/Mum)."
   );
   lines.push(`Data source: ${snap.source === "supabase" ? "live Admin" : "local"}`);
   lines.push(
@@ -441,7 +441,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
     } else {
       lines.push(`Tonight's dinner (${snap.tonight.date}): none saved.`);
       lines.push(
-        "Dinner policy: do NOT invent a random meat+veg+soup. Ask Charlene what leftover fridge ingredients can be cooked, then suggest matching Meals dishes (Zizi: meat + veg, no spicy). If she has no idea or no matching recipe, ask Mum."
+        "Dinner policy: do NOT invent a random meat+veg+soup. Ask Charlene what leftover fridge ingredients can be cooked, then suggest matching Meals dishes (Zizi: meat + veg, no spicy). If she has no idea or no matching recipe, ask us (Sir/Mum)."
       );
     }
   }

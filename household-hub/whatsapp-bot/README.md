@@ -80,7 +80,7 @@ Bot replies only when:
 | Command | Effect |
 |---------|--------|
 | `?today` / `?tonight eat what?` / `?tonight dinner` | **Show** tonight’s saved dinner — does not change the menu. No daily random: if empty, ask Charlene leftovers |
-| `?leftover eggs tomato pork` | Suggest Meals dishes from leftover fridge ingredients; then `?1` to save tonight. No match → ask Mum |
+| `?leftover eggs tomato pork` | Suggest Meals dishes from leftover fridge ingredients; then `?1` to save tonight. No match → ask us |
 | `?today honey wings` | Lists **similar Meals with numbers**. Then `?today 1` or `?1`. Same category as a dish already on that day → `?overwrite` (replace that cat only) or `?also` (keep old + new). Other cats stay |
 | `?tomorrow …` / `?bukas …` | Same for **tomorrow** |
 | `?menu` | Show tonight + tomorrow |
@@ -135,7 +135,7 @@ When Zizi must **leave home for class**, the bot posts in the family group **1 h
 
 ## Leftover dinner ask (10:00 HKT)
 
-On work days, if tonight’s dinner is **not saved**, the bot posts once from **10:00–16:00 HKT** a friendly reminder: please check the fridge leftovers and suggest dishes (Zizi: meat + veg, no spicy). No bot reply needed. If she has no idea, ask Mum. Skips day off and dates that already have a saved menu. Same reminder group as outing pings. `GET /api/reminders/leftover`.
+On work days, if tonight’s dinner is **not saved**, the bot posts once from **10:00–16:00 HKT** a friendly reminder: please check the fridge leftovers and suggest dishes (Zizi: meat + veg, no spicy). No bot reply needed. If she has no idea, ask us. Skips day off and dates that already have a saved menu. Same reminder group as outing pings. `GET /api/reminders/leftover`.
 
 **Which groups (two separate Admin fields)**
 

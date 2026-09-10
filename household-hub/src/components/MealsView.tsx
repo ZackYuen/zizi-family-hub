@@ -102,9 +102,9 @@ const ui = {
     zh: "已儲存（Sir/Mum 或 WhatsApp 已選此日）",
   },
   emptyMenu: {
-    en: "No dishes saved. WhatsApp asks Charlene at 10:00 (work days) what leftover fridge ingredients can be cooked — then pick a Meals dish (Zizi: meat + veg, no spicy). If no idea, ask Mum.",
-    fil: "Walang naka-save na ulam. WhatsApp magtatanong kay Charlene alas-10:00 (work days) kung anong natitira sa fridge — tapos pumili sa Meals (Zizi: meat + gulay, walang spicy). Kung wala siyang idea, tanong kay Mum.",
-    zh: "尚未儲存菜式。工作日上午 10:00 WhatsApp 會問 Charlene 雪櫃仲有咩可以煮，再從 Meals 選菜（孜孜要肉＋菜，不要辣）。沒主意就問 Mum。",
+    en: "No dishes saved. WhatsApp asks Charlene at 10:00 (work days) what leftover fridge ingredients can be cooked — then pick a Meals dish (Zizi: meat + veg, no spicy). If no idea, ask us.",
+    fil: "Walang naka-save na ulam. WhatsApp magtatanong kay Charlene alas-10:00 (work days) kung anong natitira sa fridge — tapos pumili sa Meals (Zizi: meat + gulay, walang spicy). Kung wala siyang idea, tanong sa amin.",
+    zh: "尚未儲存菜式。工作日上午 10:00 WhatsApp 會問 Charlene 雪櫃仲有咩可以煮，再從 Meals 選菜（孜孜要肉＋菜，不要辣）。沒主意就問我們。",
   },
   shoppingList: {
     en: "Shopping / prep checklist",
