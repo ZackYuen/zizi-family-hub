@@ -44,8 +44,9 @@ test("interest class dates: percussion / Sumblox / fencing", () => {
   assert.equal(interestClassForDate("2026-10-12")?.term.id, "percussion");
   assert.equal(interestClassForDate("2026-10-06")?.term.id, "sumblox-magic");
   assert.equal(interestClassForDate("2026-10-06")?.after, true);
-  assert.equal(interestClassForDate("2026-10-02")?.term.id, "fencing");
-  assert.equal(interestClassForDate("2026-10-02")?.after, false);
+  assert.equal(interestClassForDate("2026-10-02"), null); // National Day school holiday
+  assert.equal(interestClassForDate("2026-10-09")?.term.id, "fencing");
+  assert.equal(interestClassForDate("2026-10-09")?.after, false);
 });
 
 test("applyInterestClassDay shifts leave to 11:30", () => {

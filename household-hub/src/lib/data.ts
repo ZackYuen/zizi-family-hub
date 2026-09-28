@@ -8,6 +8,7 @@ import {
 } from "./cook-device-suggest";
 import { overlayOutingReminderFlags } from "./outing-reminders";
 import { overlayMissingTaskNotes, rewriteStaleSchoolPrepLunchBox } from "./school-prep";
+import { DEFAULT_FIRST_TERM_EVENTS } from "./term-calendar";
 import type {
   AppContent,
   DinnerMenuOverride,
@@ -496,6 +497,34 @@ async function getContentCore(): Promise<AppContent> {
       return filled;
     } catch (err) {
       console.error("Failed to seed summer schedule calendar", err);
+      return filled;
+    }
+  }
+
+  // APPEND-ONLY first-term calendar events (do not wipe Admin event edits)
+  const remoteCal = remote.schoolCalendar;
+  const seedEvents =
+    local.schoolCalendar?.events?.length
+      ? local.schoolCalendar.events
+      : DEFAULT_FIRST_TERM_EVENTS;
+  const remoteEventIds = new Set((remoteCal?.events ?? []).map((e) => e.id));
+  const missingCalEvents = seedEvents.filter(
+    (e) => e.id && !remoteEventIds.has(e.id)
+  );
+  if (remoteCal?.termStartsOn && missingCalEvents.length) {
+    const filled: AppContent = {
+      ...remote,
+      schoolCalendar: {
+        ...remoteCal,
+        events: [...(remoteCal.events ?? []), ...missingCalEvents],
+      },
+      lastUpdated: new Date().toISOString(),
+    };
+    try {
+      await saveContent(filled);
+      return filled;
+    } catch (err) {
+      console.error("Failed to seed schoolCalendar.events", err);
       return filled;
     }
   }

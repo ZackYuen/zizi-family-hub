@@ -1,12 +1,19 @@
 import { getHongKongDateKey } from "./hk-holidays";
 import { applyInterestClassDay, interestClassForDate } from "./interest-classes";
 import { getTaskEndTime, getTaskStartTime } from "./schedule-utils";
+import {
+  getFirstTermEvents,
+  isKindergartenClosed,
+  kindergartenClosedEvent,
+  weekdaySchoolClosedNote,
+} from "./term-calendar";
 import type {
   AppContent,
   BilingualText,
   DaySchedule,
   ScheduleTask,
   SchoolCalendar,
+  SchoolCalendarEvent,
 } from "./types";
 
 /** Default: summer through 1 Sep 2026; K3 term from 2 Sep 2026 */
@@ -26,6 +33,7 @@ export function getSchoolCalendar(content?: Pick<AppContent, "schoolCalendar"> |
     termStartsOn: c?.termStartsOn || DEFAULT_SCHOOL_CALENDAR.termStartsOn,
     grade: c?.grade || DEFAULT_SCHOOL_CALENDAR.grade,
     classSession: c?.classSession || DEFAULT_SCHOOL_CALENDAR.classSession,
+    events: getFirstTermEvents(c),
   };
 }
 
@@ -206,6 +214,48 @@ export function dayKeyFromHongKongDate(date = new Date()): string {
  * Tasks for a specific HK date — prefers scheduleDateOverrides[dateKey]
  * over the weekly summer/term template.
  */
+const SCHOOL_WEEKDAYS = new Set([
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+]);
+
+/** Home-day plan when kindergarten is closed but Charlene still works. */
+export function homeDayTasksForSchoolHoliday(
+  content: AppContent,
+  dateKey: string,
+  calendar: SchoolCalendar
+): ScheduleTask[] {
+  const saturday =
+    content.weeklySchedule?.find((d) => d.dayKey === "saturday") ??
+    content.weeklyScheduleSummer?.find((d) => d.dayKey === "saturday");
+  const closed = kindergartenClosedEvent(dateKey, calendar);
+  const note = weekdaySchoolClosedNote(
+    closed?.title || {
+      en: "school holiday",
+      fil: "school holiday",
+      zh: "學校假期",
+    }
+  );
+  const heading: ScheduleTask = {
+    id: `off-${dateKey}-note`,
+    time: "00:00",
+    startTime: "00:00",
+    fullDay: true,
+    task: note,
+  };
+  const cloned = (saturday?.tasks ?? []).map((task) => ({
+    ...task,
+    id: `off-${dateKey}-${task.id}`,
+    outingReminder: false,
+    notes: task.notes ? { ...task.notes } : undefined,
+    task: { ...task.task },
+  }));
+  return [heading, ...cloned];
+}
+
 export function resolveTasksForDate(
   content: AppContent,
   date: Date | string
@@ -215,6 +265,8 @@ export function resolveTasksForDate(
   tasks: ScheduleTask[];
   fromOverride: boolean;
   season: ScheduleSeason;
+  schoolClosed: boolean;
+  schoolClosedEvent: SchoolCalendarEvent | null;
 } {
   const dateKey =
     typeof date === "string" ? date : getHongKongDateKey(date);
@@ -224,6 +276,12 @@ export function resolveTasksForDate(
       : date;
   const active = resolveActiveSchedule(content, when);
   const dayKey = dayKeyFromHongKongDate(when);
+  const closed =
+    active.season === "term" &&
+    isKindergartenClosed(dateKey, active.calendar);
+  const closedEvent = closed
+    ? kindergartenClosedEvent(dateKey, active.calendar)
+    : null;
   const override = content.scheduleDateOverrides?.[dateKey];
   if (override?.length) {
     return {
@@ -232,13 +290,28 @@ export function resolveTasksForDate(
       tasks: override,
       fromOverride: true,
       season: active.season,
+      schoolClosed: closed,
+      schoolClosedEvent: closedEvent,
+    };
+  }
+  if (closed && SCHOOL_WEEKDAYS.has(dayKey)) {
+    return {
+      dateKey,
+      dayKey,
+      tasks: homeDayTasksForSchoolHoliday(content, dateKey, active.calendar),
+      fromOverride: false,
+      season: active.season,
+      schoolClosed: true,
+      schoolClosedEvent: closedEvent,
     };
   }
   const day =
     active.schedule.find((d) => d.dayKey === dayKey) ?? active.schedule[0];
   let tasks = day?.tasks ?? [];
   const spec =
-    active.season === "term" ? interestClassForDate(dateKey, content) : null;
+    active.season === "term" && !closed
+      ? interestClassForDate(dateKey, content)
+      : null;
   if (spec) {
     tasks = applyInterestClassDay(tasks, spec);
   }
@@ -248,6 +321,8 @@ export function resolveTasksForDate(
     tasks,
     fromOverride: false,
     season: active.season,
+    schoolClosed: closed,
+    schoolClosedEvent: closedEvent,
   };
 }
 

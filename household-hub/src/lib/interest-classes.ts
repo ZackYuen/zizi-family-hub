@@ -6,6 +6,7 @@ import type {
   ScheduleTask,
 } from "./types";
 import { localized } from "./localized-text";
+import { isKindergartenClosed } from "./term-calendar";
 
 export type { InterestClassTerm };
 
@@ -107,8 +108,9 @@ export function getInterestClasses(
 
 export function interestClassForDate(
   dateKey: string,
-  content?: Pick<AppContent, "interestClasses"> | null
+  content?: Pick<AppContent, "interestClasses" | "schoolCalendar"> | null
 ): InterestClassSpec | null {
+  if (isKindergartenClosed(dateKey, content?.schoolCalendar)) return null;
   const term = getInterestClasses(content).find((c) => c.dates.includes(dateKey));
   if (!term) return null;
   return { term, noon: true, after: Boolean(term.afterLabel) };
@@ -259,15 +261,21 @@ export function isInterestClassQuestion(question: string): boolean {
   );
 }
 
-export function interestClassOverview(lang: Lang, dateKey?: string): string {
-  const spec = dateKey ? interestClassForDate(dateKey) : null;
+export function interestClassOverview(
+  lang: Lang,
+  dateKey?: string,
+  content?: Pick<AppContent, "interestClasses" | "schoolCalendar"> | null
+): string {
+  const spec = dateKey ? interestClassForDate(dateKey, content) : null;
   if (lang === "fil") {
     const today = spec
       ? spec.after
         ? `Ngayon (${dateKey}): umalis 11:30 para sa ${spec.term.noonLabel.fil}. Sundo 17:30 (magic).`
         : `Ngayon (${dateKey}): umalis 11:30 para sa ${spec.term.noonLabel.fil}. Sundo 16:30.`
       : dateKey
-        ? `Ngayon (${dateKey}): walang interest class — umalis 12:30, sundo 16:30.`
+        ? isKindergartenClosed(dateKey, content?.schoolCalendar)
+          ? `Ngayon (${dateKey}): walang kindergarten / interest class.`
+          : `Ngayon (${dateKey}): walang interest class — umalis 12:30, sundo 16:30.`
         : "";
     return [
       today,
@@ -286,7 +294,9 @@ export function interestClassOverview(lang: Lang, dateKey?: string): string {
         ? `今日（${dateKey}）：11:30 出門上${spec.term.noonLabel.zh}。17:30 接（魔術）。`
         : `今日（${dateKey}）：11:30 出門上${spec.term.noonLabel.zh}。16:30 接。`
       : dateKey
-        ? `今日（${dateKey}）：無興趣班 — 12:30 出門，16:30 接。`
+        ? isKindergartenClosed(dateKey, content?.schoolCalendar)
+          ? `今日（${dateKey}）：幼稚園停課，無興趣班。`
+          : `今日（${dateKey}）：無興趣班 — 12:30 出門，16:30 接。`
         : "";
     return [
       today,
@@ -304,7 +314,9 @@ export function interestClassOverview(lang: Lang, dateKey?: string): string {
       ? `Today (${dateKey}): leave 11:30 for ${spec.term.noonLabel.en}. Pick up 17:30 (magic).`
       : `Today (${dateKey}): leave 11:30 for ${spec.term.noonLabel.en}. Pick up 16:30.`
     : dateKey
-      ? `Today (${dateKey}): no interest class — leave 12:30, pick up 16:30.`
+      ? isKindergartenClosed(dateKey, content?.schoolCalendar)
+        ? `Today (${dateKey}): no kindergarten / interest class.`
+        : `Today (${dateKey}): no interest class — leave 12:30, pick up 16:30.`
       : "";
   return [
     today,

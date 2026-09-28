@@ -12,6 +12,7 @@ import {
 } from "@/lib/schedule-utils";
 import { resolveActiveSchedule, resolveTasksForDate } from "@/lib/school-calendar";
 import { interestClassForDate } from "@/lib/interest-classes";
+import { isKindergartenClosed, schoolClosedBanner } from "@/lib/term-calendar";
 import type { AppContent, BilingualText } from "@/lib/types";
 import {
   formatDayMonth,
@@ -121,6 +122,12 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
             : lang === "zh"
               ? `${helperName} 放假（星期日／香港公眾假期）。`
               : `${helperName} day off (Sunday / HK public holiday).`,
+      };
+    }
+    if (resolved.schoolClosed) {
+      return {
+        tone: "amber" as const,
+        text: localized(schoolClosedBanner(resolved.schoolClosedEvent), lang),
       };
     }
     const banner = activeForSelected.ziziSchool;
@@ -238,6 +245,10 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
           const isToday = day.dateKey === todayDateKey;
           const isSelected = day.dayKey === selectedInfo.dayKey;
           const isSunday = day.dayKey === "sunday";
+          const schoolOff = isKindergartenClosed(
+            day.dateKey,
+            content.schoolCalendar
+          );
           const label =
             content.weeklySchedule.find((d) => d.dayKey === day.dayKey)?.day ||
             content.weeklyScheduleSummer?.find((d) => d.dayKey === day.dayKey)
@@ -261,7 +272,9 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
                     ? "bg-teal-50 text-teal-800 ring-1 ring-teal-300"
                     : isSunday
                       ? "bg-violet-50 text-violet-800 ring-1 ring-violet-200"
-                      : "bg-white text-stone-600 ring-1 ring-stone-200"
+                      : schoolOff
+                        ? "bg-amber-50 text-amber-900 ring-1 ring-amber-200"
+                        : "bg-white text-stone-600 ring-1 ring-stone-200"
               }`}
             >
               <span className="block">
@@ -278,6 +291,13 @@ export function ScheduleView({ content, monthlyTasks }: ScheduleViewProps) {
                 }`}
               >
                 {formatDayMonth(day.date, lang)}
+                {schoolOff && !isSunday
+                  ? lang === "zh"
+                    ? " · 停課"
+                    : lang === "fil"
+                      ? " · off"
+                      : " · off"
+                  : ""}
               </span>
             </button>
           );
