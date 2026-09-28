@@ -16,6 +16,13 @@ import {
   type SummerDrawingClassInfo,
 } from "./school-calendar";
 import {
+  formatEventLabel,
+  formatEventRange,
+  isKindergartenClosed,
+  kindergartenClosedEvent,
+  upcomingSchoolNotices,
+} from "./term-calendar";
+import {
   APPLIANCE_CATEGORY_ORDER,
   applianceCategory,
   applianceCategoryMeta,
@@ -32,6 +39,7 @@ import type {
   SalaryPaymentItem,
   ScheduleTask,
   SchoolCalendar,
+  SchoolCalendarEvent,
   SettlingCheckItem,
   StatutoryHolidayItem,
   TonightMenu,
@@ -59,6 +67,8 @@ export interface LiveFamilySnapshot {
   todayHasDrawingClass: boolean;
   /** Upcoming one-off days (date → tasks), including today */
   scheduleDateOverrides: Record<string, ScheduleTask[]>;
+  isKindergartenClosedToday: boolean;
+  schoolClosedEvent: SchoolCalendarEvent | null;
   todaySchedule: AppContent["weeklySchedule"][0] | null;
   groundRules: AppContent["groundRules"];
   familyPreferences: FamilyPreferenceTip[];
@@ -153,6 +163,8 @@ export async function buildLiveSnapshot(): Promise<LiveFamilySnapshot> {
     todayFromOverride: resolvedToday.fromOverride,
     todayHasDrawingClass: tasksIncludeDrawingClass(resolvedToday.tasks),
     scheduleDateOverrides,
+    isKindergartenClosedToday: isKindergartenClosed(dateKey, active.calendar),
+    schoolClosedEvent: kindergartenClosedEvent(dateKey, active.calendar),
     todaySchedule,
     groundRules: content.groundRules,
     familyPreferences: content.familyPreferences ?? [],
@@ -219,6 +231,31 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push(
     `School calendar: summer ends ${snap.schoolCalendar.summerEndsOn}; term starts ${snap.schoolCalendar.termStartsOn}; grade ${snap.schoolCalendar.grade} ${snap.schoolCalendar.classSession}`
   );
+  lines.push(
+    `Kindergarten closed today (school holiday / 停課 / public holiday): ${snap.isKindergartenClosedToday ? "YES" : "NO"}`
+  );
+  if (snap.schoolClosedEvent) {
+    lines.push(
+      `Closed reason: ${formatEventRange(snap.schoolClosedEvent)} ${snap.schoolClosedEvent.title.en}`
+    );
+  }
+  const notices = upcomingSchoolNotices(snap.todayDateKey, snap.schoolCalendar, 60);
+  if (notices.length) {
+    lines.push(
+      "Lam Tin Ling Liang first-term calendar (2026–2027 上學期行事曆) — upcoming:"
+    );
+    for (const ev of notices) {
+      const tag =
+        ev.kind === "activity"
+          ? "activity"
+          : ev.kind === "public"
+            ? "public holiday"
+            : "NO SCHOOL";
+      lines.push(
+        `- [${tag}] ${formatEventRange(ev)} ${formatEventLabel(ev, "en")}`
+      );
+    }
+  }
   lines.push(
     `Charlene day off today (Sunday / HK public holiday): ${snap.isHelperDayOffToday ? "YES" : "NO"}`
   );
@@ -457,6 +494,9 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push("Important facts:");
   lines.push("- Zizi kindergarten: Mon–Fri PM class only. Walk from home is 30 minutes.");
   lines.push("- Usual days: leave 12:30, drop-off by 13:00; leave 16:00, pick up 16:30.");
+  lines.push(
+    "- First-term school holidays / 停課 (no kindergarten, Charlene still works unless it is also Sunday or HK public holiday): 25–26 Sep Mid-Autumn; 1–2 Oct National Day; 19 Oct Chung Yeung; 13 Nov new-student meeting; 18 Dec Christmas party makeup; 21–31 Dec Christmas break; 1 Jan New Year; 4 Jan teacher development; 8 Jan PTA makeup (tentative)."
+  );
   lines.push("- Term 1 interest classes (school notice dates only, from Oct): Mon percussion 12:00–13:00; Tue Sumblox 12:00–13:00 + magic 16:30–17:30; Fri fencing 12:00–13:00. On those dates leave 11:30; Tue pick-up 17:30. Follow today's schedule if it already shifted.");
   lines.push("- Sunday and HK public holidays (香港勞工假) are Charlene day off — not about Zizi.");
   lines.push("- Zizi needs breakfast and lunch prepared by Charlene every morning on work days.");

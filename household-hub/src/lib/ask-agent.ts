@@ -634,7 +634,9 @@ function heuristicAnswer(
   }
 
   if (isInterestClassQuestion(question)) {
-    return interestClassOverview(lang, snap.todayDateKey);
+    return interestClassOverview(lang, snap.todayDateKey, {
+      schoolCalendar: snap.schoolCalendar,
+    });
   }
 
   if (isSchoolPrepQuestion(question)) {
@@ -642,10 +644,31 @@ function heuristicAnswer(
   }
 
   if (
-    /pick ?up|sundo|接送|16:30|1630|drop[- ]?off|kindergarten|eskwela|school\s*(run|walk|time)|hatid|k3\b|summer\s*holiday|balik[- ]?eskwela|復課/.test(
+    /pick ?up|sundo|接送|16:30|1630|drop[- ]?off|kindergarten|eskwela|school\s*(run|walk|time)|hatid|k3\b|summer\s*holiday|balik[- ]?eskwela|復課|停課|may\s*pasok|is there school|no school/.test(
       q
     )
   ) {
+    if (snap.isKindergartenClosedToday) {
+      const reason = snap.schoolClosedEvent
+        ? lang === "fil"
+          ? snap.schoolClosedEvent.title.fil
+          : lang === "zh"
+            ? snap.schoolClosedEvent.title.zh || snap.schoolClosedEvent.title.en
+            : snap.schoolClosedEvent.title.en
+        : "";
+      const tentative = snap.schoolClosedEvent?.tentative
+        ? lang === "fil"
+          ? " (tentatibo — kumpirmahin kina Sir/Mum)"
+          : lang === "zh"
+            ? "（暫定 — 請向 Sir/Mum 確認）"
+            : " (tentative — confirm with Sir/Mum)"
+        : "";
+      return lang === "fil"
+        ? `Walang kindergarten ngayon${reason ? ` — ${reason}` : ""}${tentative}. Sa bahay kasama si Zizi. Walang hatid / sundo. ${snap.isHelperDayOffToday ? "Day off din ni Charlene." : "Trabaho pa rin ni Charlene (hindi Linggo / public holiday)."}`
+        : lang === "zh"
+          ? `今日幼稚園停課${reason ? ` — ${reason}` : ""}${tentative}。在家照顧 Zizi，不用接送。${snap.isHelperDayOffToday ? "今日也是 Charlene 放假。" : "Charlene 仍要上班（不是星期日／公眾假期）。"}`
+          : `No kindergarten today${reason ? ` — ${reason}` : ""}${tentative}. Stay home with Zizi; no drop-off or pick-up. ${snap.isHelperDayOffToday ? "Charlene is also on her day off." : "Charlene still works (not Sunday / public holiday)."}`;
+    }
     if (snap.scheduleSeason === "summer") {
       const d = snap.drawingClass;
       const classRange = d
@@ -687,7 +710,9 @@ function heuristicAnswer(
     if (interest) return interest;
     const walk = lifeGuideAnswer(snap, lang, (g) => g.id === "life-kt-school-walk");
     if (walk) return walk;
-    return interestClassOverview(lang, snap.todayDateKey);
+    return interestClassOverview(lang, snap.todayDateKey, {
+      schoolCalendar: snap.schoolCalendar,
+    });
   }
 
   // HK Life / FDH settling tips (deterministic from guides)

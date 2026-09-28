@@ -48,6 +48,21 @@ export interface InterestClassTerm {
   afterLabel?: BilingualText;
 }
 
+/** First-term student calendar row (藍田靈糧幼稚園 上學期行事曆). */
+export type SchoolCalendarEventKind = "public" | "school-holiday" | "activity";
+
+export interface SchoolCalendarEvent {
+  id: string;
+  /** Inclusive start (HK YYYY-MM-DD) */
+  date: string;
+  /** Inclusive end; omit for a single day */
+  endDate?: string;
+  kind: SchoolCalendarEventKind;
+  title: BilingualText;
+  /** School marked 暫定 */
+  tentative?: boolean;
+}
+
 /** Term vs summer holiday dates (Hong Kong calendar dates, YYYY-MM-DD). */
 export interface SchoolCalendar {
   /** Inclusive last day of summer holiday */
@@ -58,6 +73,8 @@ export interface SchoolCalendar {
   grade: string;
   /** Kindergarten session */
   classSession: "AM" | "PM";
+  /** Official first-term holidays + school activities */
+  events?: SchoolCalendarEvent[];
 }
 
 export interface MealItem {

@@ -60,6 +60,7 @@ Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrout
 ## Schedule seasons (summer ↔ K3 term)
 
 - `schoolCalendar.summerEndsOn` / `termStartsOn` (HK dates) switch which week Charlene sees.
+- `schoolCalendar.events` = 藍田靈糧 2026–2027 first-term student calendar (holidays / 停課 / activities). Weekday school-off days use the Saturday home plan (no drop-off). Admin one-off `scheduleDateOverrides` still win.
 - `weeklySchedule` = school term (K3 PM from 2026-09-02).
 - `weeklyScheduleSummer` = summer holiday (no kindergarten; Wed/Fri drawing class from live schedule — currently 12:00–13:00 at One Point Studio, 觀塘工業中心一期12樓B室). Ask/bot must read times from this schedule, not hardcode.
 - App + Ask use `resolveActiveSchedule()` — do not manually wipe the inactive week.

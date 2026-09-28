@@ -7,6 +7,13 @@ import { localized } from "@/lib/localized-text";
 import { adminT } from "@/lib/admin-i18n";
 import { getTodayDayKey } from "@/lib/i18n";
 import { getScheduleSeason } from "@/lib/school-calendar";
+import {
+  formatEventLabel,
+  formatEventRange,
+  getFirstTermEvents,
+  isClosingEvent,
+} from "@/lib/term-calendar";
+import type { SchoolCalendarEvent } from "@/lib/types";
 import { getTaskStartTime, sortTasksByTime, remindWhatsAppAt, formatTime12h } from "@/lib/schedule-utils";
 import { TrilingualFieldEditor } from "./TrilingualFieldEditor";
 
@@ -188,6 +195,13 @@ export function ScheduleCalendarAdmin({ content, setContent, lang }: Props) {
           {lang === "fil" ? "School term (K3)" : lang === "zh" ? "學期 (K3)" : "School term (K3)"}
         </button>
       </div>
+
+      <FirstTermCalendarPanel
+        content={content}
+        setContent={setContent}
+        lang={lang}
+      />
+
       {/* View toggle */}
       <div className="flex rounded-xl bg-stone-100 p-1">
         <button
@@ -588,5 +602,90 @@ function DayColumn({
         )}
       </div>
     </div>
+  );
+}
+
+function FirstTermCalendarPanel({
+  content,
+  setContent,
+  lang,
+}: {
+  content: AppContent;
+  setContent: (c: AppContent) => void;
+  lang: Lang;
+}) {
+  const events = getFirstTermEvents(content.schoolCalendar);
+  const saved = Boolean(content.schoolCalendar?.events?.length);
+  const attachOfficial = () => {
+    setContent({
+      ...content,
+      schoolCalendar: {
+        ...(content.schoolCalendar || {
+          summerEndsOn: "2026-09-01",
+          termStartsOn: "2026-09-02",
+          grade: "K3",
+          classSession: "PM",
+        }),
+        events,
+      },
+    });
+  };
+
+  return (
+    <details className="rounded-xl bg-white p-3 ring-1 ring-stone-200">
+      <summary className="cursor-pointer text-sm font-semibold text-stone-800">
+        {lang === "fil"
+          ? "2026–2027 first-term school calendar"
+          : lang === "zh"
+            ? "2026–2027 上學期行事曆"
+            : "2026–2027 first-term school calendar"}
+      </summary>
+      <p className="mt-2 text-[11px] leading-snug text-stone-500">
+        {lang === "fil"
+          ? "Opisyal na calendar ng Lam Tin Ling Liang. Walang kindergarten sa NO SCHOOL / public holiday. Hindi day off ni Charlene maliban kung Linggo o HK public holiday."
+          : lang === "zh"
+            ? "藍田靈糧幼稚園上學期行事曆。停課／公眾假期日不用接送。除非星期日或香港公眾假期，Charlene 仍要上班。"
+            : "Official Lam Tin Ling Liang first-term calendar. No kindergarten on NO SCHOOL / public holidays. Charlene still works unless it is Sunday or an HK public holiday."}
+      </p>
+      {!saved && (
+        <button
+          type="button"
+          onClick={attachOfficial}
+          className="mt-2 rounded-lg bg-teal-50 px-3 py-1.5 text-xs font-medium text-teal-800 ring-1 ring-teal-100"
+        >
+          {lang === "fil"
+            ? "I-save ang opisyal na calendar"
+            : lang === "zh"
+              ? "寫入官方行事曆（再按 Save）"
+              : "Attach official calendar (then Save)"}
+        </button>
+      )}
+      <ul className="mt-2 max-h-56 space-y-1 overflow-y-auto text-xs">
+        {events.map((ev: SchoolCalendarEvent) => (
+          <li
+            key={ev.id}
+            className={`rounded-lg px-2 py-1 ${
+              isClosingEvent(ev) ? "bg-amber-50 text-amber-950" : "bg-stone-50 text-stone-700"
+            }`}
+          >
+            <span className="font-semibold">
+              {isClosingEvent(ev)
+                ? ev.kind === "public"
+                  ? lang === "zh"
+                    ? "公眾假期"
+                    : "Holiday"
+                  : lang === "zh"
+                    ? "停課"
+                    : "No school"
+                : lang === "zh"
+                  ? "活動"
+                  : "Activity"}
+            </span>
+            <span className="mx-1 text-stone-400">{formatEventRange(ev)}</span>
+            {formatEventLabel(ev, lang)}
+          </li>
+        ))}
+      </ul>
+    </details>
   );
 }

@@ -78,6 +78,7 @@ See `whatsapp-bot/README.md`. Runs on a PC/Pi/VPS with `pm2` or Docker, calls `P
 
 - Summer (through `schoolCalendar.summerEndsOn`): `weeklyScheduleSummer` + `ziziSchoolSummer`
 - Term (from `schoolCalendar.termStartsOn`): `weeklySchedule` + `ziziSchool` (K3 PM)
+- First-term holidays live in `schoolCalendar.events` (official 上學期行事曆). Closed weekdays skip the school run.
 - Rebuild: `node scripts/build-summer-k3-schedule.mjs path/to/live.json` then `npm run patch-live -- scripts/_patch-summer-k3.json`
 
 ## LLM (optional)
