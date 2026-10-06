@@ -255,7 +255,7 @@ export interface AppContent {
   schoolCalendar?: SchoolCalendar;
   /**
    * Kindergarten interest-class dates (Term 1). On matching HK dates the
-   * school-term weekly template is shifted (leave 11:30, Tue pick-up 17:30).
+   * school-term weekly template is shifted (leave 11:30; pick-up stays 16:30).
    * Admin one-off `scheduleDateOverrides` still win.
    */
   interestClasses?: InterestClassTerm[];

@@ -40,7 +40,7 @@ export const DEFAULT_INTEREST_CLASSES: InterestClassTerm[] = [
     },
   },
   {
-    id: "sumblox-magic",
+    id: "sumblox",
     dayKey: "tuesday",
     dates: [
       "2026-10-06",
@@ -64,11 +64,6 @@ export const DEFAULT_INTEREST_CLASSES: InterestClassTerm[] = [
       en: "Sumblox math blocks 12:00–13:00",
       fil: "Sumblox math blocks 12:00–13:00",
       zh: "Sumblox 數學積木 12:00–13:00",
-    },
-    afterLabel: {
-      en: "Magic class 16:30–17:30 — pick up at 17:30",
-      fil: "Magic class 16:30–17:30 — sundo ng 17:30",
-      zh: "魔術班 16:30–17:30 — 17:30 接",
     },
   },
   {
@@ -273,7 +268,7 @@ export function interestClassOverview(lang: Lang, dateKey?: string): string {
       today,
       "K3 PM interest class (Term 1, school dates only):",
       "• Lunes: percussion 12:00–13:00 (first 12 Oct) — umalis 11:30.",
-      "• Martes: Sumblox 12:00–13:00 + magic 16:30–17:30 (first 6 Oct) — umalis 11:30, sundo 17:30.",
+      "• Martes: Sumblox 12:00–13:00 (first 6 Oct) — umalis 11:30, sundo 16:30.",
       "• Biyernes: fencing 12:00–13:00 (first 2 Oct) — umalis 11:30.",
       "Wed/Thu and days with no class: umalis 12:30, sundo 16:30.",
     ]
@@ -292,7 +287,7 @@ export function interestClassOverview(lang: Lang, dateKey?: string): string {
       today,
       "K3 下午班興趣班（第一期，以校方日期為準）：",
       "• 一：敲擊樂／鋼片琴 12:00–13:00（10月12日開課）— 11:30 出門。",
-      "• 二：Sumblox 12:00–13:00 + 魔術 16:30–17:30（10月6日開課）— 11:30 出門，17:30 接。",
+      "• 二：Sumblox 12:00–13:00（10月6日開課）— 11:30 出門，16:30 接。",
       "• 五：劍擊 12:00–13:00（10月2日開課）— 11:30 出門。",
       "三／四及沒有興趣班的日子：12:30 出門，16:30 接。",
     ]
@@ -310,7 +305,7 @@ export function interestClassOverview(lang: Lang, dateKey?: string): string {
     today,
     "K3 PM interest classes (Term 1, school notice dates only):",
     "• Mon: percussion 12:00–13:00 (from 12 Oct) — leave 11:30.",
-    "• Tue: Sumblox 12:00–13:00 + magic 16:30–17:30 (from 6 Oct) — leave 11:30, pick up 17:30.",
+    "• Tue: Sumblox 12:00–13:00 (from 6 Oct) — leave 11:30, pick up 16:30.",
     "• Fri: fencing 12:00–13:00 (from 2 Oct) — leave 11:30.",
     "Wed/Thu and days with no class: leave 12:30, pick up 16:30.",
   ]
