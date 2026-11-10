@@ -1,5 +1,6 @@
-import { getHongKongDateKey } from "./hk-holidays";
+import { getHongKongDateKey, isHelperDayOff } from "./hk-holidays";
 import { applyInterestClassDay, interestClassForDate } from "./interest-classes";
+import { withOctopusCashScheduleTask } from "./octopus-reminders";
 import { getTaskEndTime, getTaskStartTime } from "./schedule-utils";
 import type {
   AppContent,
@@ -225,28 +226,31 @@ export function resolveTasksForDate(
   const active = resolveActiveSchedule(content, when);
   const dayKey = dayKeyFromHongKongDate(when);
   const override = content.scheduleDateOverrides?.[dateKey];
+  let tasks: ScheduleTask[];
+  let fromOverride = false;
   if (override?.length) {
-    return {
-      dateKey,
-      dayKey,
-      tasks: override,
-      fromOverride: true,
-      season: active.season,
-    };
+    tasks = override;
+    fromOverride = true;
+  } else {
+    const day =
+      active.schedule.find((d) => d.dayKey === dayKey) ?? active.schedule[0];
+    tasks = day?.tasks ?? [];
+    const spec =
+      active.season === "term" ? interestClassForDate(dateKey, content) : null;
+    if (spec) {
+      tasks = applyInterestClassDay(tasks, spec);
+    }
   }
-  const day =
-    active.schedule.find((d) => d.dayKey === dayKey) ?? active.schedule[0];
-  let tasks = day?.tasks ?? [];
-  const spec =
-    active.season === "term" ? interestClassForDate(dateKey, content) : null;
-  if (spec) {
-    tasks = applyInterestClassDay(tasks, spec);
-  }
+  tasks = withOctopusCashScheduleTask(tasks, {
+    dayKey,
+    dayOff: isHelperDayOff(when),
+    enabled: content.octopusRemindersEnabled,
+  });
   return {
     dateKey,
     dayKey,
     tasks,
-    fromOverride: false,
+    fromOverride,
     season: active.season,
   };
 }

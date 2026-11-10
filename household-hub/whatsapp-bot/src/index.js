@@ -110,6 +110,11 @@ const LIVE_LEFTOVER_REMINDERS_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/leftover/") ||
   "https://zizi-family-hub.vercel.app/api/reminders/leftover/"
 ).replace(/\/?$/, "/");
+const LIVE_OCTOPUS_REMINDERS_URL = (
+  process.env.LIVE_OCTOPUS_REMINDERS_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/octopus/") ||
+  "https://zizi-family-hub.vercel.app/api/reminders/octopus/"
+).replace(/\/?$/, "/");
 const LIVE_OUTBOUND_URL = (
   process.env.LIVE_OUTBOUND_URL ||
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/whatsapp/outbound/") ||
@@ -145,6 +150,8 @@ const LIVE_MEALS_MENU_URL = (
 const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
 /** 0 = disable 10:00 leftover-fridge ask when tonight’s menu is empty */
 const LEFTOVER_REMINDERS_ENABLED = process.env.LEFTOVER_REMINDERS !== "0";
+/** 0 = disable Mon/Thu 09:00 Octopus + cash check */
+const OCTOPUS_REMINDERS_ENABLED = process.env.OCTOPUS_REMINDERS !== "0";
 /** 0 = disable user-approved 1:1 outbound queue (Grok Bot / authenticated enqueue) */
 const OUTBOUND_QUEUE_ENABLED = process.env.OUTBOUND_QUEUE !== "0";
 /** 0 = disable family-group ingest + proactive follow-up nudges */
@@ -818,6 +825,10 @@ async function checkOutingReminders(sock) {
     const data = await fetchReminderFeed(LIVE_LEFTOVER_REMINDERS_URL, "leftover");
     await sendDueReminderItems(sock, data, "leftover");
   }
+  if (OCTOPUS_REMINDERS_ENABLED) {
+    const data = await fetchReminderFeed(LIVE_OCTOPUS_REMINDERS_URL, "octopus");
+    await sendDueReminderItems(sock, data, "octopus");
+  }
   if (OUTBOUND_QUEUE_ENABLED) {
     await checkOutboundQueue(sock);
   }
@@ -831,10 +842,11 @@ function startOutingReminderLoop(sock) {
   if (
     !OUTING_REMINDERS_ENABLED &&
     !LEFTOVER_REMINDERS_ENABLED &&
+    !OCTOPUS_REMINDERS_ENABLED &&
     !OUTBOUND_QUEUE_ENABLED &&
     !FAMILY_LOG_ENABLED
   ) {
-    console.log("[ok] Outing + leftover + outbound queue + family-log off");
+    console.log("[ok] Outing + leftover + octopus + outbound queue + family-log off");
     return;
   }
   if (outingTimer) return;
@@ -846,7 +858,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} outbound=${OUTBOUND_QUEUE_ENABLED ? "on" : "off"} family-log=${FAMILY_LOG_ENABLED ? "ingest+nudges" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · family-log groups=Admin reply/reminder or GROUP_JIDS only`
+    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} octopus=${OCTOPUS_REMINDERS_ENABLED ? "Mon/Thu 09:00 HKT" : "off"} outbound=${OUTBOUND_QUEUE_ENABLED ? "on" : "off"} family-log=${FAMILY_LOG_ENABLED ? "ingest+nudges" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · family-log groups=Admin reply/reminder or GROUP_JIDS only`
   );
 }
 
