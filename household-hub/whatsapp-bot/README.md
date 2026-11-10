@@ -115,10 +115,11 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 | `GROUP_JIDS` | Fallback group(s) for **? replies** if Admin reply group is blank |
 | `GROUP_ALLOW_ALL` | `1` = reply in every group (unsafe). Prefer Admin reply group / `GROUP_JIDS` |
 | `REPLY_DM` | `1` to also answer private chats |
-| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover reminders still send |
+| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover + Octopus reminders still send |
 | `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
 | `OUTING_REMINDERS` | `0` = do not send 1-hour Zizi outing pings (on by default) |
 | `LEFTOVER_REMINDERS` | `0` = do not send the 10:00 leftover-fridge ask (on by default) |
+| `OCTOPUS_REMINDERS` | `0` = do not send the Mon/Thu 09:00 Octopus + cash check (on by default) |
 | `AUTH_DIR` | Session folder (default `~/.zizi-whatsapp-auth`; project `./auth_info` is ignored) |
 
 ### Pause replies (no logout)
@@ -136,6 +137,10 @@ When Zizi must **leave home for class**, the bot posts in the family group **1 h
 ## Leftover dinner ask (10:00 HKT)
 
 On work days the bot posts once from **10:00–16:00 HKT** a friendly reminder: please check the fridge leftovers and suggest dishes (Zizi: meat + veg, no spicy). No today menu and no bot reply needed. If she has no idea, ask us. Skips day off and when Admin → Settings → **Leftover dinner WhatsApp reminder** is off. Same reminder group as outing pings. `GET /api/reminders/leftover`.
+
+## Octopus + cash check (Mon/Thu 09:00 HKT)
+
+Monday and Thursday the bot posts once from **09:00–16:00 HKT**: please check Octopus (八達通) and cash today, and tell Sir/Mum the same day if either is running low. Kind but firm; she may reply in the group. Skips her day off and when Admin → Settings → **Octopus + cash WhatsApp reminder** is off. Same reminder group as outing / leftover pings. Also shown on the weekly schedule those mornings. `GET /api/reminders/octopus`.
 
 **Which groups (two separate Admin fields)**
 

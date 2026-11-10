@@ -110,6 +110,11 @@ const LIVE_LEFTOVER_REMINDERS_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/leftover/") ||
   "https://zizi-family-hub.vercel.app/api/reminders/leftover/"
 ).replace(/\/?$/, "/");
+const LIVE_OCTOPUS_REMINDERS_URL = (
+  process.env.LIVE_OCTOPUS_REMINDERS_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/octopus/") ||
+  "https://zizi-family-hub.vercel.app/api/reminders/octopus/"
+).replace(/\/?$/, "/");
 const LIVE_MEALS_ADD_URL = (
   process.env.LIVE_MEALS_ADD_URL ||
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/meals/add/") ||
@@ -124,6 +129,8 @@ const LIVE_MEALS_MENU_URL = (
 const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
 /** 0 = disable 10:00 leftover-fridge ask when tonight’s menu is empty */
 const LEFTOVER_REMINDERS_ENABLED = process.env.LEFTOVER_REMINDERS !== "0";
+/** 0 = disable Mon/Thu 09:00 Octopus + cash check */
+const OCTOPUS_REMINDERS_ENABLED = process.env.OCTOPUS_REMINDERS !== "0";
 const OUTING_REMINDER_MS = Math.max(
   30_000,
   Number(process.env.OUTING_REMINDER_POLL_MS || 60_000) || 60_000
@@ -423,12 +430,20 @@ async function checkOutingReminders(sock) {
     const data = await fetchReminderFeed(LIVE_LEFTOVER_REMINDERS_URL, "leftover");
     await sendDueReminderItems(sock, data, "leftover");
   }
+  if (OCTOPUS_REMINDERS_ENABLED) {
+    const data = await fetchReminderFeed(LIVE_OCTOPUS_REMINDERS_URL, "octopus");
+    await sendDueReminderItems(sock, data, "octopus");
+  }
 }
 
 function startOutingReminderLoop(sock) {
   outingSock = sock;
-  if (!OUTING_REMINDERS_ENABLED && !LEFTOVER_REMINDERS_ENABLED) {
-    console.log("[ok] Outing + leftover reminders off");
+  if (
+    !OUTING_REMINDERS_ENABLED &&
+    !LEFTOVER_REMINDERS_ENABLED &&
+    !OCTOPUS_REMINDERS_ENABLED
+  ) {
+    console.log("[ok] Outing + leftover + octopus reminders off");
     return;
   }
   if (outingTimer) return;
@@ -440,7 +455,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only`
+    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} octopus=${OCTOPUS_REMINDERS_ENABLED ? "Mon/Thu 09:00 HKT" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only`
   );
 }
 

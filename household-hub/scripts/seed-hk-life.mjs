@@ -150,9 +150,9 @@ const hkLifeGuides = [
       zh: "八達通",
     },
     {
-      en: "Get an Octopus card early. Use it on MTR, buses, and many shops (7-Eleven, some supermarkets). Top up at MTR machines or 7-Eleven. Keep enough balance for school walks / shopping days. Never borrow money for top-up — ask Sir/Mum.",
-      fil: "Kumuha agad ng Octopus. Magagamit sa MTR, bus, at maraming tindahan (7-Eleven, supermarket). Mag-top up sa MTR o 7-Eleven. Mag-iwan ng sapat na balanse. Huwag humiram ng pera — tanungin si Sir/Mum.",
-      zh: "盡早辦理八達通。可用於港鐵、巴士及不少商店（7-Eleven、部分超市）。可在港鐵或 7-Eleven 增值。保持足夠餘額。不要借錢增值 — 問 Sir/Mum。",
+      en: "Get an Octopus card early. Use it on MTR, buses, and many shops (7-Eleven, some supermarkets). Top up at MTR machines or 7-Eleven. Keep enough Octopus balance and cash for school walks / shopping days. Check both regularly. The same day, tell Sir/Mum if either is running low — do not wait, and never borrow money for top-up.",
+      fil: "Kumuha agad ng Octopus. Magagamit sa MTR, bus, at maraming tindahan (7-Eleven, supermarket). Mag-top up sa MTR o 7-Eleven. Mag-iwan ng sapat na Octopus at cash para sa school walks / shopping days. Regular na tingnan ang dalawa. Sa araw ding iyon, sabihin kina Sir/Mum kung kulang na ang alinman — huwag maghintay, at huwag humiram ng pera.",
+      zh: "盡早辦理八達通。可用於港鐵、巴士及不少商店（7-Eleven、部分超市）。可在港鐵或 7-Eleven 增值。上學／買菜日請保持八達通和現金足夠。請定期檢查兩者。若其中一項不足，當天告訴 Sir/Mum，不要拖延，也不要借錢增值。",
     }
   ),
   tip(
