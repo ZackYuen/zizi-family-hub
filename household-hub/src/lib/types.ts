@@ -321,6 +321,12 @@ export interface AppContent {
    * Missing / true = enabled. Edited under Admin → Settings.
    */
   leftoverRemindersEnabled?: boolean;
+  /**
+   * When false, skip the Mon/Thu 09:00 Octopus + cash WhatsApp ask
+   * and hide that check on the weekly schedule.
+   * Missing / true = enabled. Edited under Admin → Settings.
+   */
+  octopusRemindersEnabled?: boolean;
 }
 
 /** One person who may use Admin and/or the Charlene frontend app */

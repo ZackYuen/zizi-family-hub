@@ -7,6 +7,7 @@ import {
   isGenericWatchPrepNotes,
 } from "./cook-device-suggest";
 import { overlayOutingReminderFlags } from "./outing-reminders";
+import { overlayOctopusSpeakUpGuide } from "./octopus-reminders";
 import { overlayMissingTaskNotes, rewriteStaleSchoolPrepLunchBox } from "./school-prep";
 import type {
   AppContent,
@@ -630,8 +631,11 @@ export async function getContent(): Promise<AppContent> {
   const content = await getContentCore();
   try {
     const local = await readLocalContent();
-    const merged = overlayMissingTaskNotes(
-      overlayOutingReminderFlags(content, local),
+    const merged = overlayOctopusSpeakUpGuide(
+      overlayMissingTaskNotes(
+        overlayOutingReminderFlags(content, local),
+        local
+      ),
       local
     );
     const repaired = rewriteStaleSchoolPrepLunchBox(merged);
