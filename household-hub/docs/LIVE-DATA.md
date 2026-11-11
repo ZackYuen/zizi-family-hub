@@ -56,6 +56,7 @@ Set `FORCE_SEED_FROM_LOCAL=1` on the server once, or run `npm run seed`. This **
 - `GET /api/dinner/tonight` — tonight's menu
 - `POST /api/ask` — `{ "question": "What time pick up Zizi?" }`
 - `PUT /api/admin/content` — Admin Save (cookie session) → Supabase
+- `POST /api/whatsapp/outbound` — authenticated (`x-inbox-secret`) user-approved WhatsApp send queue (Baileys bot delivers). See `whatsapp-bot/README.md`.
 
 ## Server auto-merge policy
 
