@@ -12,6 +12,7 @@
     "test:add-meal": "npx --yes tsx --test src/lib/add-youtube-recipe.test.ts",
     "test:dinner": "npx --yes tsx --test src/lib/dinner.test.ts src/lib/leftover-suggest.test.ts src/lib/leftover-reminders.test.ts",
     "test:wa-menu": "npx --yes tsx --test src/lib/wa-menu-parse.test.ts",
+    "test:outbound": "npx --yes tsx --test src/lib/whatsapp-outbound.test.ts",
     "test:recipes": "npx --yes tsx --test src/lib/recipe-display.test.ts src/lib/youtube-recipe.test.ts",
     "sync-data": "node scripts/sync-public-data.mjs",
     "seed": "node scripts/seed-supabase.mjs",

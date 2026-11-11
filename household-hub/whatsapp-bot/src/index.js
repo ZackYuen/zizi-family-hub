@@ -110,6 +110,18 @@ const LIVE_LEFTOVER_REMINDERS_URL = (
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/reminders/leftover/") ||
   "https://zizi-family-hub.vercel.app/api/reminders/leftover/"
 ).replace(/\/?$/, "/");
+const LIVE_OUTBOUND_URL = (
+  process.env.LIVE_OUTBOUND_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/whatsapp/outbound/") ||
+  "https://zizi-family-hub.vercel.app/api/whatsapp/outbound/"
+).replace(/\/?$/, "/");
+const LIVE_OUTBOUND_ACK_URL = (
+  process.env.LIVE_OUTBOUND_ACK_URL || `${LIVE_OUTBOUND_URL.replace(/\/?$/, "")}/ack/`
+).replace(/\/?$/, "/");
+const LIVE_OUTBOUND_REPLIES_URL = (
+  process.env.LIVE_OUTBOUND_REPLIES_URL ||
+  `${LIVE_OUTBOUND_URL.replace(/\/?$/, "")}/replies/`
+).replace(/\/?$/, "/");
 const LIVE_MEALS_ADD_URL = (
   process.env.LIVE_MEALS_ADD_URL ||
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/meals/add/") ||
@@ -124,6 +136,8 @@ const LIVE_MEALS_MENU_URL = (
 const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
 /** 0 = disable 10:00 leftover-fridge ask when tonight’s menu is empty */
 const LEFTOVER_REMINDERS_ENABLED = process.env.LEFTOVER_REMINDERS !== "0";
+/** 0 = disable user-approved 1:1 outbound queue (Grok Bot / authenticated enqueue) */
+const OUTBOUND_QUEUE_ENABLED = process.env.OUTBOUND_QUEUE !== "0";
 const OUTING_REMINDER_MS = Math.max(
   30_000,
   Number(process.env.OUTING_REMINDER_POLL_MS || 60_000) || 60_000
@@ -303,6 +317,7 @@ async function askFamilyHub(question, extra = {}) {
 }
 
 const SENT_LOG_PATH = path.join(AUTH_DIR, "outing-reminders-sent.json");
+const OUTBOUND_SENT_LOG_PATH = path.join(AUTH_DIR, "outbound-queue-sent.json");
 let outingTimer = null;
 let outingTimeout = null;
 let outingSock = null;
@@ -413,6 +428,202 @@ async function sendDueReminderItems(sock, data, kind) {
   }
 }
 
+function inboxHeaders() {
+  return {
+    "Content-Type": "application/json",
+    "x-inbox-secret": INBOX_SECRET,
+  };
+}
+
+function loadOutboundSentLog() {
+  try {
+    const raw = fs.readFileSync(OUTBOUND_SENT_LOG_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    return {
+      sent: parsed?.sent && typeof parsed.sent === "object" ? parsed.sent : {},
+      jids: parsed?.jids && typeof parsed.jids === "object" ? parsed.jids : {},
+    };
+  } catch {
+    return { sent: {}, jids: {} };
+  }
+}
+
+function saveOutboundSentLog(log) {
+  const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000;
+  const prune = (map) => {
+    const next = {};
+    for (const [key, ts] of Object.entries(map || {})) {
+      const t = Date.parse(String(ts));
+      if (!Number.isNaN(t) && t >= cutoff) next[key] = ts;
+    }
+    return next;
+  };
+  const pruned = { sent: prune(log.sent), jids: prune(log.jids) };
+  fs.mkdirSync(path.dirname(OUTBOUND_SENT_LOG_PATH), { recursive: true });
+  fs.writeFileSync(OUTBOUND_SENT_LOG_PATH, JSON.stringify(pruned, null, 2));
+}
+
+function jidDigits(jid) {
+  return String(jid || "")
+    .split("@")[0]
+    .split(":")[0]
+    .replace(/\D/g, "");
+}
+
+function rememberOutboundJid(jid) {
+  if (!jid) return;
+  const log = loadOutboundSentLog();
+  log.jids[jid] = new Date().toISOString();
+  saveOutboundSentLog(log);
+}
+
+function rememberOutboundSent(id, jid) {
+  const log = loadOutboundSentLog();
+  const ts = new Date().toISOString();
+  if (id) log.sent[id] = ts;
+  if (jid) log.jids[jid] = ts;
+  saveOutboundSentLog(log);
+}
+
+function alreadySentOutbound(id) {
+  if (!id) return false;
+  const log = loadOutboundSentLog();
+  return Boolean(log.sent[id]);
+}
+
+function isKnownOutboundJid(jid) {
+  if (!jid) return false;
+  const log = loadOutboundSentLog();
+  if (log.jids[jid]) return true;
+  const digits = jidDigits(jid);
+  if (!digits) return false;
+  return Object.keys(log.jids).some((key) => jidDigits(key) === digits);
+}
+
+async function fetchOutboundPending() {
+  if (!INBOX_SECRET) {
+    logger.debug("INBOX_SECRET not set — skip outbound queue");
+    return [];
+  }
+  const url = `${LIVE_OUTBOUND_URL}?status=pending&claim=1&limit=5`;
+  try {
+    const res = await fetch(url, {
+      headers: inboxHeaders(),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (res.status === 401) {
+      logger.warn("outbound queue unauthorized — check INBOX_SECRET matches Vercel");
+      return [];
+    }
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn(
+        { status: res.status, t: t.slice(0, 160) },
+        "outbound queue fetch failed"
+      );
+      return [];
+    }
+    const data = await res.json();
+    return Array.isArray(data?.messages) ? data.messages : [];
+  } catch (err) {
+    logger.warn({ err }, "outbound queue fetch error");
+    return [];
+  }
+}
+
+async function ackOutbound(id, status, extra = {}) {
+  if (!INBOX_SECRET || !id) return null;
+  try {
+    const res = await fetch(LIVE_OUTBOUND_ACK_URL, {
+      method: "POST",
+      headers: inboxHeaders(),
+      body: JSON.stringify({ id, status, ...extra }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn(
+        { status: res.status, t: t.slice(0, 160), id },
+        "outbound ack failed"
+      );
+      return null;
+    }
+    return res.json();
+  } catch (err) {
+    logger.warn({ err, id }, "outbound ack error");
+    return null;
+  }
+}
+
+async function postOutboundReply({ jid, text, fromName, waMessageId }) {
+  if (!INBOX_SECRET) return null;
+  try {
+    const res = await fetch(LIVE_OUTBOUND_REPLIES_URL, {
+      method: "POST",
+      headers: inboxHeaders(),
+      body: JSON.stringify({ jid, text, fromName, waMessageId }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn(
+        { status: res.status, t: t.slice(0, 160) },
+        "outbound reply post failed"
+      );
+      return null;
+    }
+    return res.json();
+  } catch (err) {
+    logger.warn({ err }, "outbound reply post error");
+    return null;
+  }
+}
+
+async function checkOutboundQueue(sock) {
+  if (!sock || !OUTBOUND_QUEUE_ENABLED) return;
+  const pending = await fetchOutboundPending();
+  for (const item of pending) {
+    const id = item?.id;
+    const jid = String(item?.jid || "").trim();
+    const text = String(item?.text || "").trim();
+    if (!id || !jid || !text) {
+      if (id) await ackOutbound(id, "failed", { error: "missing jid or text" });
+      continue;
+    }
+    if (alreadySentOutbound(id)) {
+      rememberOutboundJid(jid);
+      await ackOutbound(id, "sent", { jid });
+      continue;
+    }
+    try {
+      const sent = await sock.sendMessage(jid, { text: text.slice(0, 4000) });
+      const actualJid = sent?.key?.remoteJid || jid;
+      rememberOutboundSent(id, actualJid);
+      if (actualJid !== jid) rememberOutboundJid(jid);
+      await ackOutbound(id, "sent", {
+        jid: actualJid,
+        waMessageId: sent?.key?.id,
+      });
+      console.log(`[outbound] sent ${id} → ${actualJid}`);
+    } catch (err) {
+      const error = String(err?.message || err || "send failed").slice(0, 500);
+      logger.warn({ err, id, jid }, "outbound send failed");
+      await ackOutbound(id, "failed", { error, jid });
+    }
+  }
+}
+
+async function captureOutboundReply(jid, text, fromName, waMessageId) {
+  const known = isKnownOutboundJid(jid);
+  let stored = false;
+  if (text) {
+    const result = await postOutboundReply({ jid, text, fromName, waMessageId });
+    stored = Boolean(result?.stored);
+    if (stored) rememberOutboundJid(jid);
+  }
+  return stored || known;
+}
+
 async function checkOutingReminders(sock) {
   if (!sock) return;
   if (OUTING_REMINDERS_ENABLED) {
@@ -423,12 +634,19 @@ async function checkOutingReminders(sock) {
     const data = await fetchReminderFeed(LIVE_LEFTOVER_REMINDERS_URL, "leftover");
     await sendDueReminderItems(sock, data, "leftover");
   }
+  if (OUTBOUND_QUEUE_ENABLED) {
+    await checkOutboundQueue(sock);
+  }
 }
 
 function startOutingReminderLoop(sock) {
   outingSock = sock;
-  if (!OUTING_REMINDERS_ENABLED && !LEFTOVER_REMINDERS_ENABLED) {
-    console.log("[ok] Outing + leftover reminders off");
+  if (
+    !OUTING_REMINDERS_ENABLED &&
+    !LEFTOVER_REMINDERS_ENABLED &&
+    !OUTBOUND_QUEUE_ENABLED
+  ) {
+    console.log("[ok] Outing + leftover + outbound queue off");
     return;
   }
   if (outingTimer) return;
@@ -440,7 +658,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only`
+    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} outbound=${OUTBOUND_QUEUE_ENABLED ? "on" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only`
   );
 }
 
@@ -696,6 +914,9 @@ async function startBot() {
         `[ok] Inbox: ${INBOX_SECRET ? LIVE_INBOX_URL : "disabled (set INBOX_SECRET)"}`
       );
       console.log(
+        `[ok] Outbound queue: ${OUTBOUND_QUEUE_ENABLED && INBOX_SECRET ? LIVE_OUTBOUND_URL : "disabled (need INBOX_SECRET; OUTBOUND_QUEUE=0 to mute)"}`
+      );
+      console.log(
         `[ok] Reply groups: Admin → Settings (bot-status replyGroupJids) or GROUP_JIDS=${GROUP_ALLOWLIST.join(",") || "(empty)"} · reminders: Admin reminder group only · DM=${REPLY_DM ? "on" : "off"}`
       );
       if (GROUP_ALLOW_ALL) {
@@ -736,6 +957,21 @@ async function startBot() {
         if (!jid) {
           console.log(`[msg] skip type=${type} no-jid: ${preview}`);
           continue;
+        }
+        // User-approved 1:1 (landlord/hotel/booking): capture replies, never answer as CharleneBot.
+        if (OUTBOUND_QUEUE_ENABLED && !isJidGroup(jid)) {
+          const captured = await captureOutboundReply(
+            jid,
+            text,
+            msg.pushName,
+            msg.key?.id
+          );
+          if (captured) {
+            console.log(
+              `[outbound] 1:1 reply captured ${jid} — no CharleneBot: ${preview}`
+            );
+            continue;
+          }
         }
         const status = await fetchBotStatus();
         if (!allowedChat(jid, status.replyGroupJids)) {
