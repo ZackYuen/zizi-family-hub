@@ -38,6 +38,16 @@ Charlene / Sir / Mum edits in Admin must not be wiped by agents.
 
 Ask API: `POST /api/ask` (used by both). Prefer `OPENROUTER_API_KEY` + `openrouter/free` for \$0 LLM.
 
+### User-approved outbound 1:1 (Grok Bot queue)
+
+Authenticated enqueue on the hub; the always-on Baileys bot (spare/linked number) polls and sends. **Do not send unsolicited messages** — only items queued with `INBOX_SECRET`.
+
+- `POST /api/whatsapp/outbound` + header `x-inbox-secret` (= Vercel `INBOX_SECRET`) enqueues one destination (phone or JID). No broadcast.
+- Bot polls `GET /api/whatsapp/outbound?claim=1` on the same interval as outing/leftover reminders, sends with `sock.sendMessage`, then `POST /api/whatsapp/outbound/ack`.
+- 1:1 replies on those chats are stored at `/api/whatsapp/outbound/replies` and **must not** be auto-answered as CharleneBot. Family-group `?` / `@CharleneBot` is unchanged.
+- Persist in Supabase `app_data` key `whatsapp_outbound` (not git seed). After merge: deploy Vercel, then on the VM `git pull && npm run pm2:up`.
+- Exact JSON contract: `household-hub/whatsapp-bot/README.md` (copy-paste for a Grok Bot skill). Unofficial WhatsApp (Baileys) — spare number only.
+
 ### WhatsApp inbox → knowledge / meals
 
 - Bot posts to `POST /api/inbox` with header `x-inbox-secret` (= Vercel `INBOX_SECRET`).
