@@ -106,18 +106,20 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 | Variable | Meaning |
 |----------|---------|
 | `LIVE_ASK_URL` | Ask API URL (must end with `/`, e.g. `.../api/ask/`) |
-| `INBOX_SECRET` | Same secret as Vercel — inbox + `?add` + `?today`/`?tomorrow` + **outbound queue** |
+| `INBOX_SECRET` | Same secret as Vercel — inbox + `?add` + `?today`/`?tomorrow` + **outbound queue** + **family-log** |
 | `LIVE_INBOX_URL` | Optional override (default: Ask host `/api/inbox`) |
 | `LIVE_OUTBOUND_URL` | Optional override (default: Ask host `/api/whatsapp/outbound/`) |
 | `OUTBOUND_QUEUE` | `0` = do not poll/send the user-approved 1:1 queue (on by default) |
+| `LIVE_FAMILY_LOG_URL` | Optional override (default: Ask host `/api/whatsapp/family-log/`) |
+| `FAMILY_LOG` | `0` = do not ingest family-group chat or send follow-up nudges (on by default) |
+| `GROUP_JIDS` | Fallback group(s) for **? replies**, family-log ingest, and proactive nudges if Admin reply group is blank |
 | `LIVE_MEALS_ADD_URL` | Optional override (default: Ask host `/api/meals/add`) |
 | `LIVE_MEALS_MENU_URL` | Optional override (default: Ask host `/api/meals/menu`) |
 | `BOT_NAME` | Name people type in group |
 | `TRIGGER_PREFIX` | Default `?` |
-| `GROUP_JIDS` | Fallback group(s) for **? replies** if Admin reply group is blank |
 | `GROUP_ALLOW_ALL` | `1` = reply in every group (unsafe). Prefer Admin reply group / `GROUP_JIDS` |
 | `REPLY_DM` | `1` to also answer private chats |
-| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover reminders + outbound queue still send |
+| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover reminders + outbound queue + family-log nudges still send |
 | `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
 | `OUTING_REMINDERS` | `0` = do not send 1-hour Zizi outing pings (on by default) |
 | `LEFTOVER_REMINDERS` | `0` = do not send the 10:00 leftover-fridge ask (on by default) |
@@ -127,7 +129,7 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 
 1. **Admin (preferred):** Settings → **Pause WhatsApp bot replies** → Save. Live Ask returns silence; bot checks `/api/bot-status` before replying.
 2. **Local only:** set `WHATSAPP_BOT_PAUSED=1` in bot `.env`, then `npm run pm2:up`.
-3. In-app Ask is **not** muted — only WhatsApp replies.
+3. In-app Ask is **not** muted — only WhatsApp `?` / `@bot` replies. Family-group ingest and follow-up nudges still run (same as outing reminders).
 
 After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot has the pause check.
 
@@ -285,6 +287,149 @@ curl -sS 'https://zizi-family-hub.vercel.app/api/whatsapp/outbound/replies/?conv
 ```
 
 The bot `POST`s replies to `/api/whatsapp/outbound/replies` for 1:1 chats that already have an outbound item. Unknown 1:1 chats are not stored and are not auto-answered unless `REPLY_DM=1` (existing behaviour).
+
+## Family-group digest + proactive follow-ups (Grok Bot / Charlene 家務)
+
+The always-on bot **listens only in allowlisted family / reminder groups** (Admin → Settings reply group ∪ outing-reminder group ∪ `GROUP_JIDS`). It does **not** ingest or message any other group, broadcast, or 1:1 just because the linked number can see it. `GROUP_ALLOW_ALL=1` still does **not** widen ingest or proactive sends.
+
+Grok bots (Charlene 家務 / 家務跟進) can read recent group messages and a compact digest of things that were said but still look undone. The Baileys bot may also send a **short, unsolicited FIL+EN follow-up in that same allowlisted family group** when an item has sat unfinished — not on every ordinary message, and not into other chats.
+
+This is **unofficial WhatsApp** (Baileys). After merge: **deploy the Vercel hub first**, then on the always-on host:
+
+```bash
+cd ~/zizi-family-hub/household-hub/whatsapp-bot   # or your clone path
+git pull
+npm run pm2:up
+```
+
+Rows live in Supabase `app_data` key `whatsapp_family_log` (not git seed / Admin content). No new SQL migration. No new secret — reuse `INBOX_SECRET` / `x-inbox-secret`. Optionally set `GROUP_JIDS` on Vercel too so the hub allowlist matches the bot when Admin reply/reminder fields are blank.
+
+### What the bot may send on its own vs what needs approval
+
+| The bot may send by itself (allowlisted family/reminder group only) | Still needs the user’s approval |
+| --- | --- |
+| Family-group `?` / `@CharleneBot` answers (existing) | **New 1:1 conversations** (landlord, hotel, booking, …) via `POST /api/whatsapp/outbound` |
+| Outing 1h pings and the 10:00 leftover-fridge ask (existing; Admin reminder group) | One-off drafts Grok writes for a person or a **different** group |
+| A short FIL+EN “said but not done?” nudge in the **same allowlisted family group**, after ~45 minutes, if the topic still looks open | Anything to a chat that is **not** on the allowlist — never |
+
+Proactive follow-up rules (anti-spam):
+
+- Only `@g.us` JIDs on the allowlist. Never DMs, never other groups, never broadcasts.
+- Does not reply to ordinary chatter in the moment (no “echo” of every message).
+- Waits ~45 minutes so a quick “ok / 做咗” can close the item first.
+- Same topic at most once per 12 hours; at most 4 nudges per group per HK day; at least 30 minutes between nudges.
+- Quiet hours 23:00–08:00 HKT.
+- `?` / `@CharleneBot` commands are stored for context but are not treated as open household follow-ups.
+
+Grok bots should still **draft** 1:1 / new-chat messages for the user to approve on the outbound queue. They must not send unsolicited WhatsApp outside the allowlisted family/reminder group(s).
+
+### API contract (copy-paste)
+
+Base: `https://zizi-family-hub.vercel.app`  
+Auth (every call below): header `x-inbox-secret: <INBOX_SECRET>`  
+(same secret as `POST /api/inbox` and `/api/whatsapp/outbound`). Trailing slashes are fine.
+
+#### 1. Ingest (bot — do not call this for other chats)
+
+`POST /api/whatsapp/family-log`
+
+```http
+POST /api/whatsapp/family-log
+Content-Type: application/json
+x-inbox-secret: <INBOX_SECRET>
+
+{
+  "jid": "120363xxxxx@g.us",
+  "text": "Please buy milk tonight",
+  "fromName": "Mum",
+  "fromJid": "85291234567@s.whatsapp.net",
+  "waMessageId": "BAE5…"
+}
+```
+
+Success:
+
+```json
+{
+  "ok": true,
+  "stored": true,
+  "duplicate": false,
+  "autoReply": false,
+  "enqueued": false,
+  "message": {
+    "id": "fam-…",
+    "jid": "120363xxxxx@g.us",
+    "fromName": "Mum",
+    "text": "Please buy milk tonight",
+    "ts": "2026-11-16T04:00:00.000Z"
+  }
+}
+```
+
+If the JID is not an allowlisted **group**, the hub returns `200` with `"stored": false` and `"reason": "group_not_allowlisted"` | `"not_group"` | `"no_allowlisted_groups"` | `"from_me"` | `"no_human_content"`. It does **not** enqueue an outbound send. Empty text → `400`. Bad/missing secret → `401`.
+
+Cap: 200 messages, 1500 characters each. Duplicate `waMessageId` is idempotent.
+
+#### 2. List recent messages + open follow-ups (Grok Bot)
+
+`GET /api/whatsapp/family-log?limit=50`  
+`?digest=0` skips the digest · `?since=2026-11-16T00:00:00.000Z` · `?jid=120363xxxxx@g.us` · `?lookbackHours=72`
+
+```json
+{
+  "ok": true,
+  "messages": [
+    {
+      "id": "fam-…",
+      "jid": "120363xxxxx@g.us",
+      "fromName": "Mum",
+      "text": "Please buy milk tonight",
+      "ts": "2026-11-16T04:00:00.000Z"
+    }
+  ],
+  "digest": {
+    "open": [
+      {
+        "id": "fam-…",
+        "jid": "120363xxxxx@g.us",
+        "who": "Mum",
+        "text": "Please buy milk tonight",
+        "saidAt": "2026-11-16T04:00:00.000Z",
+        "whyOpen": "looks like a request; no later done/ack on the same topic"
+      }
+    ],
+    "lookbackHours": 72,
+    "scanned": 12,
+    "note": "Heuristic only. … Do not send unsolicited WhatsApp outside the allowlisted family/reminder group(s)."
+  }
+}
+```
+
+Unauthorized groups never appear, even if a row were somehow in storage. Responses never include `INBOX_SECRET`.
+
+```bash
+curl -sS 'https://zizi-family-hub.vercel.app/api/whatsapp/family-log/?limit=50' \
+  -H "x-inbox-secret: $INBOX_SECRET"
+```
+
+#### 3. Proactive nudges (bot poll + ack)
+
+`GET /api/whatsapp/family-log/nudges?claim=1&limit=1` — mark `sending`, then `sock.sendMessage` **only if** the JID is still allowlisted.  
+`GET /api/whatsapp/family-log/nudges` — preview, do not claim.
+
+```json
+{ "ok": true, "claimed": true, "nudges": [ { "id": "nudge-…", "jid": "120363xxxxx@g.us", "text": "Hi 😊\n\nFIL: …\nEN: …", "status": "sending" } ] }
+```
+
+Ack: `POST /api/whatsapp/family-log/nudges`
+
+```json
+{ "id": "nudge-…", "status": "sent", "jid": "120363xxxxx@g.us" }
+```
+
+or `{ "id": "nudge-…", "status": "failed", "error": "group not allowlisted" }`.
+
+The bot also keeps a local sent-id log so a retry does not double-send. Nudges are **not** written to the user-approved outbound 1:1 queue.
 
 ## vs official Cloud API
 

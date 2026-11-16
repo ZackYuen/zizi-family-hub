@@ -122,6 +122,15 @@ const LIVE_OUTBOUND_REPLIES_URL = (
   process.env.LIVE_OUTBOUND_REPLIES_URL ||
   `${LIVE_OUTBOUND_URL.replace(/\/?$/, "")}/replies/`
 ).replace(/\/?$/, "/");
+const LIVE_FAMILY_LOG_URL = (
+  process.env.LIVE_FAMILY_LOG_URL ||
+  process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/whatsapp/family-log/") ||
+  "https://zizi-family-hub.vercel.app/api/whatsapp/family-log/"
+).replace(/\/?$/, "/");
+const LIVE_FAMILY_LOG_NUDGES_URL = (
+  process.env.LIVE_FAMILY_LOG_NUDGES_URL ||
+  `${LIVE_FAMILY_LOG_URL.replace(/\/?$/, "")}/nudges/`
+).replace(/\/?$/, "/");
 const LIVE_MEALS_ADD_URL = (
   process.env.LIVE_MEALS_ADD_URL ||
   process.env.LIVE_ASK_URL?.replace(/\/api\/ask\/?$/, "/api/meals/add/") ||
@@ -138,6 +147,8 @@ const OUTING_REMINDERS_ENABLED = process.env.OUTING_REMINDERS !== "0";
 const LEFTOVER_REMINDERS_ENABLED = process.env.LEFTOVER_REMINDERS !== "0";
 /** 0 = disable user-approved 1:1 outbound queue (Grok Bot / authenticated enqueue) */
 const OUTBOUND_QUEUE_ENABLED = process.env.OUTBOUND_QUEUE !== "0";
+/** 0 = disable family-group ingest + proactive follow-up nudges */
+const FAMILY_LOG_ENABLED = process.env.FAMILY_LOG !== "0";
 const OUTING_REMINDER_MS = Math.max(
   30_000,
   Number(process.env.OUTING_REMINDER_POLL_MS || 60_000) || 60_000
@@ -318,6 +329,7 @@ async function askFamilyHub(question, extra = {}) {
 
 const SENT_LOG_PATH = path.join(AUTH_DIR, "outing-reminders-sent.json");
 const OUTBOUND_SENT_LOG_PATH = path.join(AUTH_DIR, "outbound-queue-sent.json");
+const FAMILY_NUDGE_SENT_LOG_PATH = path.join(AUTH_DIR, "family-log-nudges-sent.json");
 let outingTimer = null;
 let outingTimeout = null;
 let outingSock = null;
@@ -343,39 +355,74 @@ function saveSentOutingKeys(map) {
   fs.writeFileSync(SENT_LOG_PATH, JSON.stringify(pruned, null, 2));
 }
 
-let botStatusCache = { at: 0, paused: false, replyGroupJids: [] };
+let botStatusCache = { at: 0, paused: false, replyGroupJids: [], reminderGroupJids: [] };
+
+function parseGroupJidList(raw) {
+  const list = Array.isArray(raw) ? raw : [];
+  return list.map((s) => String(s).trim()).filter((s) => /@g\.us$/i.test(s));
+}
 
 async function fetchBotStatus() {
-  if (LOCAL_PAUSED) {
-    return { paused: true, replyGroupJids: botStatusCache.replyGroupJids };
-  }
+  const applyLocalPause = (status) => ({
+    ...status,
+    paused: LOCAL_PAUSED || Boolean(status?.paused),
+  });
   if (botStatusCache.at && Date.now() - botStatusCache.at < 20_000) {
-    return botStatusCache;
+    return applyLocalPause(botStatusCache);
   }
   try {
     const res = await fetch(LIVE_BOT_STATUS_URL, {
       signal: AbortSignal.timeout(8000),
     });
-    if (!res.ok) return botStatusCache.at ? botStatusCache : { paused: false, replyGroupJids: [] };
+    if (!res.ok) {
+      return applyLocalPause(
+        botStatusCache.at
+          ? botStatusCache
+          : { paused: false, replyGroupJids: [], reminderGroupJids: [] }
+      );
+    }
     const data = await res.json();
-    const replyGroupJids = Array.isArray(data?.replyGroupJids)
-      ? data.replyGroupJids.map((s) => String(s).trim()).filter((s) => /@g\.us$/i.test(s))
-      : [];
     botStatusCache = {
       at: Date.now(),
       paused: Boolean(data?.paused),
-      replyGroupJids,
+      replyGroupJids: parseGroupJidList(data?.replyGroupJids),
+      reminderGroupJids: parseGroupJidList(data?.reminderGroupJids),
     };
-    return botStatusCache;
+    return applyLocalPause(botStatusCache);
   } catch (err) {
     logger.warn({ err }, "bot-status check failed — treating as not paused");
-    return botStatusCache.at ? botStatusCache : { paused: false, replyGroupJids: [] };
+    return applyLocalPause(
+      botStatusCache.at
+        ? botStatusCache
+        : { paused: false, replyGroupJids: [], reminderGroupJids: [] }
+    );
   }
 }
 
 function replyAllowlist(adminReplyJids) {
   if (Array.isArray(adminReplyJids) && adminReplyJids.length) return adminReplyJids;
   return GROUP_ALLOWLIST;
+}
+
+/** Ingest + proactive nudges: Admin reply ∪ reminder ∪ GROUP_JIDS. Never GROUP_ALLOW_ALL. Never DMs. */
+function familyLogAllowlist(adminReplyJids, adminReminderJids) {
+  const reply = replyAllowlist(adminReplyJids);
+  const reminder = Array.isArray(adminReminderJids) ? adminReminderJids : [];
+  const seen = new Set();
+  const out = [];
+  for (const jid of [...reply, ...reminder]) {
+    const id = String(jid || "").trim();
+    if (!/@g\.us$/i.test(id) || seen.has(id)) continue;
+    seen.add(id);
+    out.push(id);
+  }
+  return out;
+}
+
+function allowedFamilyLogChat(jid, adminReplyJids, adminReminderJids) {
+  if (!isJidGroup(jid)) return false;
+  const list = familyLogAllowlist(adminReplyJids, adminReminderJids);
+  return list.includes(jid);
 }
 
 async function fetchReminderFeed(url, label) {
@@ -624,6 +671,143 @@ async function captureOutboundReply(jid, text, fromName, waMessageId) {
   return stored || known;
 }
 
+function loadFamilyNudgeSentLog() {
+  try {
+    const raw = fs.readFileSync(FAMILY_NUDGE_SENT_LOG_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveFamilyNudgeSentLog(map) {
+  const cutoff = Date.now() - 4 * 24 * 60 * 60 * 1000;
+  const pruned = {};
+  for (const [key, ts] of Object.entries(map || {})) {
+    const t = Date.parse(String(ts));
+    if (!Number.isNaN(t) && t >= cutoff) pruned[key] = ts;
+  }
+  fs.mkdirSync(path.dirname(FAMILY_NUDGE_SENT_LOG_PATH), { recursive: true });
+  fs.writeFileSync(FAMILY_NUDGE_SENT_LOG_PATH, JSON.stringify(pruned, null, 2));
+}
+
+function alreadySentFamilyNudge(id) {
+  if (!id) return false;
+  return Boolean(loadFamilyNudgeSentLog()[id]);
+}
+
+function rememberFamilyNudge(id) {
+  if (!id) return;
+  const log = loadFamilyNudgeSentLog();
+  log[id] = new Date().toISOString();
+  saveFamilyNudgeSentLog(log);
+}
+
+async function postFamilyLog(payload) {
+  if (!FAMILY_LOG_ENABLED || !INBOX_SECRET) return null;
+  try {
+    const res = await fetch(LIVE_FAMILY_LOG_URL, {
+      method: "POST",
+      headers: inboxHeaders(),
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn(
+        { status: res.status, t: t.slice(0, 160) },
+        "family-log post failed"
+      );
+      return null;
+    }
+    return res.json();
+  } catch (err) {
+    logger.warn({ err }, "family-log post error");
+    return null;
+  }
+}
+
+async function fetchFamilyLogNudges() {
+  if (!FAMILY_LOG_ENABLED || !INBOX_SECRET) return [];
+  try {
+    const url = `${LIVE_FAMILY_LOG_NUDGES_URL}?claim=1&limit=1`;
+    const res = await fetch(url, {
+      headers: inboxHeaders(),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) {
+      logger.warn({ status: res.status }, "family-log nudges fetch failed");
+      return [];
+    }
+    const data = await res.json();
+    return Array.isArray(data?.nudges) ? data.nudges : [];
+  } catch (err) {
+    logger.warn({ err }, "family-log nudges fetch error");
+    return [];
+  }
+}
+
+async function ackFamilyLogNudge(id, status, extra = {}) {
+  if (!id) return null;
+  try {
+    const res = await fetch(LIVE_FAMILY_LOG_NUDGES_URL, {
+      method: "POST",
+      headers: inboxHeaders(),
+      body: JSON.stringify({ id, status, ...extra }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      logger.warn(
+        { status: res.status, t: t.slice(0, 160) },
+        "family-log nudge ack failed"
+      );
+      return null;
+    }
+    return res.json();
+  } catch (err) {
+    logger.warn({ err }, "family-log nudge ack error");
+    return null;
+  }
+}
+
+async function checkFamilyLogNudges(sock) {
+  if (!sock || !FAMILY_LOG_ENABLED) return;
+  const status = await fetchBotStatus();
+  const allow = familyLogAllowlist(status.replyGroupJids, status.reminderGroupJids);
+  const due = await fetchFamilyLogNudges();
+  for (const item of due) {
+    const id = item?.id;
+    const jid = String(item?.jid || "").trim();
+    const text = String(item?.text || "").trim();
+    if (!id) continue;
+    if (!jid || !/@g\.us$/i.test(jid) || !allow.includes(jid)) {
+      console.log(`[family-log] skip nudge ${id} — group not allowlisted: ${jid || "(empty)"}`);
+      await ackFamilyLogNudge(id, "failed", { error: "group not allowlisted" });
+      continue;
+    }
+    if (!text) {
+      await ackFamilyLogNudge(id, "failed", { error: "empty text", jid });
+      continue;
+    }
+    if (alreadySentFamilyNudge(id)) {
+      await ackFamilyLogNudge(id, "sent", { jid });
+      continue;
+    }
+    try {
+      await sock.sendMessage(jid, { text: text.slice(0, 1500) });
+      rememberFamilyNudge(id);
+      await ackFamilyLogNudge(id, "sent", { jid });
+      console.log(`[family-log] nudge ${id} → ${jid}`);
+    } catch (err) {
+      const error = String(err?.message || err || "send failed").slice(0, 500);
+      logger.warn({ err, id, jid }, "family-log nudge send failed");
+      await ackFamilyLogNudge(id, "failed", { error, jid });
+    }
+  }
+}
+
 async function checkOutingReminders(sock) {
   if (!sock) return;
   if (OUTING_REMINDERS_ENABLED) {
@@ -637,6 +821,9 @@ async function checkOutingReminders(sock) {
   if (OUTBOUND_QUEUE_ENABLED) {
     await checkOutboundQueue(sock);
   }
+  if (FAMILY_LOG_ENABLED) {
+    await checkFamilyLogNudges(sock);
+  }
 }
 
 function startOutingReminderLoop(sock) {
@@ -644,9 +831,10 @@ function startOutingReminderLoop(sock) {
   if (
     !OUTING_REMINDERS_ENABLED &&
     !LEFTOVER_REMINDERS_ENABLED &&
-    !OUTBOUND_QUEUE_ENABLED
+    !OUTBOUND_QUEUE_ENABLED &&
+    !FAMILY_LOG_ENABLED
   ) {
-    console.log("[ok] Outing + leftover + outbound queue off");
+    console.log("[ok] Outing + leftover + outbound queue + family-log off");
     return;
   }
   if (outingTimer) return;
@@ -658,7 +846,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} outbound=${OUTBOUND_QUEUE_ENABLED ? "on" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · group=Admin reminder field only`
+    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} outbound=${OUTBOUND_QUEUE_ENABLED ? "on" : "off"} family-log=${FAMILY_LOG_ENABLED ? "ingest+nudges" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · family-log groups=Admin reply/reminder or GROUP_JIDS only`
   );
 }
 
@@ -917,10 +1105,13 @@ async function startBot() {
         `[ok] Outbound queue: ${OUTBOUND_QUEUE_ENABLED && INBOX_SECRET ? LIVE_OUTBOUND_URL : "disabled (need INBOX_SECRET; OUTBOUND_QUEUE=0 to mute)"}`
       );
       console.log(
+        `[ok] Family log: ${FAMILY_LOG_ENABLED && INBOX_SECRET ? LIVE_FAMILY_LOG_URL : "disabled (need INBOX_SECRET; FAMILY_LOG=0 to mute)"} · ingest+nudges only in Admin reply/reminder or GROUP_JIDS`
+      );
+      console.log(
         `[ok] Reply groups: Admin → Settings (bot-status replyGroupJids) or GROUP_JIDS=${GROUP_ALLOWLIST.join(",") || "(empty)"} · reminders: Admin reminder group only · DM=${REPLY_DM ? "on" : "off"}`
       );
       if (GROUP_ALLOW_ALL) {
-        console.log("[ok] GROUP_ALLOW_ALL=1 — replies in every group (unsafe)");
+        console.log("[ok] GROUP_ALLOW_ALL=1 — replies in every group (unsafe). Family-log ingest/nudges still allowlisted only.");
       }
       console.log(
         "[ok] Retest from a DIFFERENT phone in the FAMILY GROUP (bot number must be a member)."
@@ -974,6 +1165,34 @@ async function startBot() {
           }
         }
         const status = await fetchBotStatus();
+        if (
+          FAMILY_LOG_ENABLED &&
+          isJidGroup(jid) &&
+          allowedFamilyLogChat(jid, status.replyGroupJids, status.reminderGroupJids)
+        ) {
+          if (text) {
+            postFamilyLog({
+              jid,
+              text,
+              fromName: msg.pushName,
+              fromJid: msg.key?.participant,
+              waMessageId: msg.key?.id,
+            })
+              .then((result) => {
+                if (!result) return;
+                if (result.stored) {
+                  console.log(`[family-log] stored ${jid}: ${preview}`);
+                } else if (result.reason) {
+                  console.log(
+                    `[family-log] not stored ${jid} (${result.reason}): ${preview}`
+                  );
+                }
+              })
+              .catch((err) => logger.warn({ err }, "family-log ingest failed"));
+          }
+        } else if (FAMILY_LOG_ENABLED && isJidGroup(jid)) {
+          console.log(`[family-log] skip ${jid} (not allowlisted): ${preview}`);
+        }
         if (!allowedChat(jid, status.replyGroupJids)) {
           const list = replyAllowlist(status.replyGroupJids);
           const why = isJidGroup(jid)

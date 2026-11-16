@@ -48,6 +48,16 @@ Authenticated enqueue on the hub; the always-on Baileys bot (spare/linked number
 - Persist in Supabase `app_data` key `whatsapp_outbound` (not git seed). After merge: deploy Vercel, then on the VM `git pull && npm run pm2:up`.
 - Exact JSON contract: `household-hub/whatsapp-bot/README.md` (copy-paste for a Grok Bot skill). Unofficial WhatsApp (Baileys) — spare number only.
 
+### Family-group digest + proactive follow-ups (allowlisted groups only)
+
+Grok bots (Charlene 家務 / 家務跟進) can read ordinary family-group chat and a digest of unfinished follow-ups. The always-on Baileys bot may send a short FIL+EN nudge **in that same allowlisted group** when something still looks undone.
+
+- **Hard constraint:** ingest and proactive sends are **only** Admin reply group ∪ Admin reminder group ∪ bot `GROUP_JIDS`. Never other groups, DMs, or broadcasts. `GROUP_ALLOW_ALL` does not widen this.
+- `POST /api/whatsapp/family-log` (bot ingest) and `GET /api/whatsapp/family-log` (list + digest) use header `x-inbox-secret` (= Vercel `INBOX_SECRET`). Cap 200 messages.
+- Bot polls `GET /api/whatsapp/family-log/nudges?claim=1`, sends with `sock.sendMessage` **only if the JID is still allowlisted**, then `POST` ack. Rate-limited (45 min delay, 12 h same-topic cooldown, 4/day/group, 30 min gap, quiet 23:00–08:00 HKT). Not the outbound 1:1 queue.
+- Family-group `?` / `@CharleneBot`, outing/leftover reminders, and user-approved outbound 1:1 are unchanged. New chats / one-off DMs still need the outbound queue.
+- Persist in Supabase `app_data` key `whatsapp_family_log`. After merge: deploy Vercel, then on the VM `git pull && npm run pm2:up`. Contract: `whatsapp-bot/README.md`.
+
 ### WhatsApp inbox → knowledge / meals
 
 - Bot posts to `POST /api/inbox` with header `x-inbox-secret` (= Vercel `INBOX_SECRET`).
