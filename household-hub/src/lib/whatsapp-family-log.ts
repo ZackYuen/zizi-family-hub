@@ -391,11 +391,7 @@ export function looksLikeDoneAck(text: string): boolean {
   return DONE_RE.test(text);
 }
 
-function noSideEffects<T extends { autoReply: false; enqueued: false }>(
-  extra: Omit<T, "autoReply" | "enqueued">
-): T {
-  return { ...extra, autoReply: false, enqueued: false } as T;
-}
+const NO_SEND = { autoReply: false as const, enqueued: false as const };
 
 export function applyFamilyLogIngest(
   store: FamilyLogStore,
@@ -404,54 +400,52 @@ export function applyFamilyLogIngest(
   now = new Date()
 ): FamilyLogIngestResult {
   if (input.fromMe === true || input.fromMe === "true" || input.fromMe === 1) {
-    return noSideEffects({ ok: true, store, stored: false, reason: "from_me" });
+    return { ok: true, store, stored: false, reason: "from_me", ...NO_SEND };
   }
 
   const text = clip(input.text, FAMILY_LOG_TEXT_MAX);
   if (!text) {
-    return { ok: false, store, error: "text required", autoReply: false, enqueued: false };
+    return { ok: false, store, error: "text required", ...NO_SEND };
   }
   if (!hasHumanContent(text)) {
-    return noSideEffects({
-      ok: true,
-      store,
-      stored: false,
-      reason: "no_human_content",
-    });
+    return { ok: true, store, stored: false, reason: "no_human_content", ...NO_SEND };
   }
 
   const jid = normalizeFamilyGroupJid(input.jid);
   if (!jid) {
-    return noSideEffects({ ok: true, store, stored: false, reason: "not_group" });
+    return { ok: true, store, stored: false, reason: "not_group", ...NO_SEND };
   }
   if (!allowlist.length) {
-    return noSideEffects({
+    return {
       ok: true,
       store,
       stored: false,
       reason: "no_allowlisted_groups",
-    });
+      ...NO_SEND,
+    };
   }
   if (!isAllowlistedFamilyGroup(jid, allowlist)) {
-    return noSideEffects({
+    return {
       ok: true,
       store,
       stored: false,
       reason: "group_not_allowlisted",
-    });
+      ...NO_SEND,
+    };
   }
 
   const waMessageId = clip(input.waMessageId, 120);
   if (waMessageId) {
     const existing = store.messages.find((m) => m.waMessageId === waMessageId);
     if (existing) {
-      return noSideEffects({
+      return {
         ok: true,
         store,
         stored: true,
         duplicate: true,
         message: existing,
-      });
+        ...NO_SEND,
+      };
     }
   }
 
@@ -473,13 +467,14 @@ export function applyFamilyLogIngest(
     { ...store, messages: [message, ...store.messages] },
     now
   );
-  return noSideEffects({
+  return {
     ok: true,
     store: next,
     stored: true,
     duplicate: false,
     message,
-  });
+    ...NO_SEND,
+  };
 }
 
 function inAllowlist(jid: string, allowlist: string[]): boolean {
