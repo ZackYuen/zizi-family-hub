@@ -457,7 +457,7 @@ export function snapshotToKnowledgeText(snap: LiveFamilySnapshot): string {
   lines.push("Important facts:");
   lines.push("- Zizi kindergarten: Mon–Fri PM class only. Walk from home is 30 minutes.");
   lines.push("- Usual days: leave 12:30, drop-off by 13:00; leave 16:00, pick up 16:30.");
-  lines.push("- Term 1 interest classes (school notice dates only, from Oct): Mon percussion 12:00–13:00; Tue Sumblox 12:00–13:00 + magic 16:30–17:30; Fri fencing 12:00–13:00. On those dates leave 11:30; Tue pick-up 17:30. Follow today's schedule if it already shifted.");
+  lines.push("- Term 1 interest classes (school notice dates only, from Oct): Mon percussion 12:00–13:00; Tue Sumblox 12:00–13:00; Fri fencing 12:00–13:00. On those dates leave 11:30; pick-up 16:30. Follow today's schedule if it already shifted.");
   lines.push("- Sunday and HK public holidays (香港勞工假) are Charlene day off — not about Zizi.");
   lines.push("- Zizi needs breakfast and lunch prepared by Charlene every morning on work days.");
   lines.push("- Do not invent rules. If unsure, tell Charlene to ask Sir or Mum.");

@@ -42,8 +42,8 @@ test("interest class dates: percussion / Sumblox / fencing", () => {
   assert.equal(interestClassForDate("2026-09-08"), null);
   assert.equal(interestClassForDate("2026-10-05"), null);
   assert.equal(interestClassForDate("2026-10-12")?.term.id, "percussion");
-  assert.equal(interestClassForDate("2026-10-06")?.term.id, "sumblox-magic");
-  assert.equal(interestClassForDate("2026-10-06")?.after, true);
+  assert.equal(interestClassForDate("2026-10-06")?.term.id, "sumblox");
+  assert.equal(interestClassForDate("2026-10-06")?.after, false);
   assert.equal(interestClassForDate("2026-10-02")?.term.id, "fencing");
   assert.equal(interestClassForDate("2026-10-02")?.after, false);
 });
@@ -62,17 +62,17 @@ test("applyInterestClassDay shifts leave to 11:30", () => {
   assert.ok(out.some((t) => t.id === "m-noon-class"));
 });
 
-test("Tuesday Sumblox + magic: leave 11:30, pick up 17:30", () => {
+test("Tuesday Sumblox noon: leave 11:30, pick up 16:30", () => {
   const tue = monday.map((t) => ({ ...t, id: t.id.replace(/^m/, "t") }));
   const spec = interestClassForDate("2026-10-06");
   assert.ok(spec);
   const out = applyInterestClassDay(tue, spec);
   assert.equal(out.find((t) => t.id === "t6")?.startTime, "11:30");
-  assert.equal(out.find((t) => t.id === "t9")?.startTime, "17:00");
-  assert.equal(out.find((t) => t.id === "t9")?.endTime, "17:30");
-  assert.equal(out.find((t) => t.id === "t9")?.outingReminder, true);
-  assert.equal(out.find((t) => t.id === "t12")?.startTime, "17:30");
-  assert.ok(out.some((t) => t.id === "t-magic-class"));
+  assert.equal(out.find((t) => t.id === "t9")?.startTime, "16:00");
+  assert.equal(out.find((t) => t.id === "t9")?.endTime, "16:30");
+  assert.equal(out.find((t) => t.id === "t12")?.startTime, "16:30");
+  assert.equal(out.some((t) => t.id === "t-magic-class"), false);
+  assert.ok(out.some((t) => t.id === "t-noon-class"));
 });
 
 test("resolveTasksForDate overlays interest class on term days", () => {
@@ -117,6 +117,8 @@ test("interest class question heuristic", () => {
   assert.equal(isInterestClassQuestion("Sumblox"), true);
   assert.equal(isInterestClassQuestion("興趣班"), true);
   assert.equal(isInterestClassQuestion("劍擊"), true);
-  assert.match(interestClassOverview("zh", "2026-10-06"), /17:30/);
+  assert.match(interestClassOverview("zh", "2026-10-06"), /16:30/);
+  assert.doesNotMatch(interestClassOverview("zh", "2026-10-06"), /魔術|17:30/);
+  assert.doesNotMatch(interestClassOverview("en", "2026-10-06"), /magic|17:30/);
   assert.match(interestClassOverview("en", "2026-09-08"), /no interest class/);
 });
