@@ -1,4 +1,4 @@
-/** Shared secret for bot → hub writes (inbox, meals, outbound queue). */
+/** Shared secret for bot → hub writes (inbox, meals, outbound queue, family-log). */
 export function inboxAuthorized(request: Request): boolean {
   const secret = process.env.INBOX_SECRET || process.env.BOT_INBOX_SECRET;
   if (!secret) return false;
