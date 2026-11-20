@@ -25,3 +25,15 @@ test("outing reminder API reads cached content, not the recipe library", () => {
   assert.match(src, /getContentWithSource/);
   assert.match(src, /X-App-Data-Cache/);
 });
+
+test("octopus reminder API reads cached content, not the recipe library", () => {
+  const src = fs.readFileSync(
+    path.join(process.cwd(), "src/app/api/reminders/octopus/route.ts"),
+    "utf8"
+  );
+  assert.equal(src.includes("getDinnerRecipes"), false);
+  assert.equal(src.includes("getDinnerMenuOverrides"), false);
+  assert.match(src, /getContentWithSource/);
+  assert.match(src, /buildOctopusCashReminderFeed/);
+  assert.match(src, /X-App-Data-Cache/);
+});
