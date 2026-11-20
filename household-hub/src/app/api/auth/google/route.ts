@@ -9,6 +9,8 @@ import { setAuthenticated, setFrontendSession } from "@/lib/auth";
 import { getContent } from "@/lib/data";
 import { createClient } from "@supabase/supabase-js";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   const body = (await request.json().catch(() => ({}))) as {
     access_token?: string;

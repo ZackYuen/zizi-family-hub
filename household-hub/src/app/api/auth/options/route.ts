@@ -6,6 +6,8 @@ import {
 } from "@/lib/admin-auth-settings";
 import { getContent } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 /** Public — login screens need method flags (no full user list). */
 export async function GET() {
   try {

@@ -12,6 +12,8 @@ import {
 import { getContent } from "@/lib/data";
 import { resolveFrontendDisplayName } from "@/lib/frontend-display-name";
 
+export const dynamic = "force-dynamic";
+
 /** Public status for the family app gate */
 export async function GET() {
   const content = await getContent();

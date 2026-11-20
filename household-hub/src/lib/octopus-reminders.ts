@@ -1,6 +1,6 @@
 import { getHongKongDateKey, isHelperDayOff } from "./hk-holidays";
 import { getHongKongTimeParts } from "./i18n";
-import { parseWhatsAppGroupJids } from "./outing-reminders";
+import { parseWhatsAppGroupJids } from "./whatsapp-jids";
 import type { AppContent, BilingualText, ScheduleTask } from "./types";
 
 /** Mon/Thu WhatsApp ping: Charlene checks Octopus + cash and tells Sir/Mum if low. */

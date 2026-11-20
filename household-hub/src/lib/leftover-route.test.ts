@@ -37,3 +37,13 @@ test("octopus reminder API reads cached content, not the recipe library", () => 
   assert.match(src, /buildOctopusCashReminderFeed/);
   assert.match(src, /X-App-Data-Cache/);
 });
+
+test("octopus reminders do not import outing-reminders (breaks school-calendar cycle)", () => {
+  const src = fs.readFileSync(
+    path.join(process.cwd(), "src/lib/octopus-reminders.ts"),
+    "utf8"
+  );
+  assert.equal(src.includes('from "./outing-reminders"'), false);
+  assert.equal(src.includes('from "./school-calendar"'), false);
+  assert.match(src, /from "\.\/whatsapp-jids"/);
+});
