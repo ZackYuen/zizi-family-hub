@@ -1,61 +1,31 @@
 import { NextResponse } from "next/server";
-import {
-  getContentWithSource,
-  getDinnerMenuOverrides,
-  getDinnerRecipes,
-} from "@/lib/data";
-import { hongKongDateKey, resolveTonightMenu, tonightDishes } from "@/lib/dinner";
-import { getHongKongTimeParts } from "@/lib/i18n";
-import { isHelperDayOff } from "@/lib/hk-holidays";
-import {
-  formatLeftoverReminderMessage,
-  getLeftoverReminderState,
-} from "@/lib/leftover-reminders";
-import { parseWhatsAppGroupJids } from "@/lib/outing-reminders";
+import { getContentWithSource } from "@/lib/data";
+import { buildLeftoverReminderFeed } from "@/lib/leftover-reminders";
 
 export const dynamic = "force-dynamic";
 
 /**
- * Daily leftover-ingredient ask when tonight’s dinner is not saved.
+ * Daily leftover-ingredient ask (10:00–16:00 HKT on work days).
  * Used by the always-on Baileys bot (same reminder group as outing pings).
+ *
+ * Does not read dinner_recipes — `due` only needs leftoverRemindersEnabled,
+ * the reminder group JIDs, and the clock. Cached getContent() avoids a full
+ * Supabase document download on every 60s poll when Admin data is unchanged.
  */
 export async function GET() {
-  const now = new Date();
-  const [{ content, source }, recipes, overrides] = await Promise.all([
-    getContentWithSource(),
-    getDinnerRecipes(),
-    getDinnerMenuOverrides(),
-  ]);
-  const dateKey = hongKongDateKey(now);
-  const menu = recipes.length
-    ? resolveTonightMenu(recipes, dateKey, overrides.byDate[dateKey] ?? null)
-    : null;
-  const state = getLeftoverReminderState({
-    dateKey,
-    nowMinutes: getHongKongTimeParts(now).minutesSinceMidnight,
-    dayOff: isHelperDayOff(now),
-    tonightDishCount: tonightDishes(menu).length,
-    enabled: content.leftoverRemindersEnabled,
-  });
-  const due = state.due
-    ? [{ ...state, text: formatLeftoverReminderMessage() }]
-    : [];
+  const { content, source, cache } = await getContentWithSource();
+  const feed = buildLeftoverReminderFeed(content);
 
   return NextResponse.json(
     {
       source,
-      date: dateKey,
-      enabled: state.enabled,
-      dayOff: state.dayOff,
-      menuSaved: state.menuSaved,
-      nowMinutes: getHongKongTimeParts(now).minutesSinceMidnight,
-      groupJids: parseWhatsAppGroupJids(content.whatsappReminderGroupJids),
-      due,
+      ...feed,
     },
     {
       headers: {
         "Cache-Control": "no-store",
         "X-Data-Source": source,
+        "X-App-Data-Cache": cache,
       },
     }
   );

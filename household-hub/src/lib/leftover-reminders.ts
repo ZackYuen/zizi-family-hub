@@ -1,4 +1,7 @@
-import type { Lang } from "./types";
+import { getHongKongDateKey, isHelperDayOff } from "./hk-holidays";
+import { getHongKongTimeParts } from "./i18n";
+import { parseWhatsAppGroupJids } from "./outing-reminders";
+import type { AppContent, Lang } from "./types";
 
 /** Daily WhatsApp ping: ask Charlene leftover fridge ingredients when dinner is unset. */
 
@@ -49,6 +52,53 @@ export function getLeftoverReminderState(input: {
     dayOff: input.dayOff,
     menuSaved,
     due: settingOn && !input.dayOff && inWindow,
+  };
+}
+
+/** Settings the leftover poller needs — not the recipe library or tonight menu. */
+export type LeftoverReminderContent = Pick<
+  AppContent,
+  "leftoverRemindersEnabled" | "whatsappReminderGroupJids"
+>;
+
+export interface LeftoverReminderFeed {
+  date: string;
+  enabled: boolean;
+  dayOff: boolean;
+  /** Informational only. Due does not depend on tonight's menu / recipes. */
+  menuSaved: boolean;
+  nowMinutes: number;
+  groupJids: string[];
+  due: Array<LeftoverReminderState & { text: string }>;
+}
+
+/**
+ * Bot poll payload. `due` is setting + work day + 10:00–16:00 HKT.
+ * Does not load or require dinner recipes (including when the setting is off).
+ */
+export function buildLeftoverReminderFeed(
+  content: LeftoverReminderContent,
+  now = new Date()
+): LeftoverReminderFeed {
+  const dateKey = getHongKongDateKey(now);
+  const nowMinutes = getHongKongTimeParts(now).minutesSinceMidnight;
+  const state = getLeftoverReminderState({
+    dateKey,
+    nowMinutes,
+    dayOff: isHelperDayOff(now),
+    tonightDishCount: 0,
+    enabled: content.leftoverRemindersEnabled,
+  });
+  return {
+    date: dateKey,
+    enabled: state.enabled,
+    dayOff: state.dayOff,
+    menuSaved: false,
+    nowMinutes,
+    groupJids: parseWhatsAppGroupJids(content.whatsappReminderGroupJids),
+    due: state.due
+      ? [{ ...state, text: formatLeftoverReminderMessage() }]
+      : [],
   };
 }
 
