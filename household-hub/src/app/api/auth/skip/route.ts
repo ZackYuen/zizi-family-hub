@@ -6,6 +6,8 @@ import {
 import { setAuthenticated } from "@/lib/auth";
 import { getContent } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export async function POST() {
   const content = await getContent();
   const methods = effectiveAuthMethods(adminAuthFromContent(content));

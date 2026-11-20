@@ -5,6 +5,8 @@ import type { Lang } from "@/lib/types";
 
 const LANGS: Lang[] = ["en", "fil", "zh"];
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   const authed = await isAuthenticated();
   if (!authed) {

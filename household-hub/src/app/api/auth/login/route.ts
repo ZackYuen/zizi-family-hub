@@ -6,6 +6,8 @@ import {
 import { getAdminPassword, setAuthenticated } from "@/lib/auth";
 import { getContent } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   const body = await request.json();
   const { password } = body as { password?: string };
