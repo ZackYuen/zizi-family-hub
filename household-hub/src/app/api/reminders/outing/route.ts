@@ -12,9 +12,13 @@ export const dynamic = "force-dynamic";
 /**
  * Today's Zizi outing leave-home tasks and which are due for a 1-hour WhatsApp ping.
  * Used by the always-on Baileys bot (same live schedule as Schedule / Ask).
+ *
+ * Response stays tiny; the schedule document is served from a short-lived
+ * server cache so unchanged Admin content is not re-fetched from Supabase
+ * on every 60s poll. `due` is still computed from the current HK clock.
  */
 export async function GET() {
-  const { content, source } = await getContentWithSource();
+  const { content, source, cache } = await getContentWithSource();
   const snapshot = getOutingRemindersForDate(content);
   const due = snapshot.items.filter((item) => item.due);
 
@@ -36,6 +40,7 @@ export async function GET() {
       headers: {
         "Cache-Control": "no-store",
         "X-Data-Source": source,
+        "X-App-Data-Cache": cache,
       },
     }
   );

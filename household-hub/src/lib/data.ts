@@ -8,6 +8,11 @@ import {
 } from "./cook-device-suggest";
 import { overlayOutingReminderFlags } from "./outing-reminders";
 import { overlayMissingTaskNotes, rewriteStaleSchoolPrepLunchBox } from "./school-prep";
+import {
+  invalidateAppDataCache,
+  rememberAppData,
+  type AppDataCacheState,
+} from "./app-data-cache";
 import type {
   AppContent,
   DinnerMenuOverride,
@@ -264,6 +269,19 @@ function repairKindergartenNames(content: AppContent): {
   return { content: fixed, changed: true };
 }
 
+/** Tiny `updated_at` peek — used after TTL so unchanged rows skip a full JSONB download. */
+async function peekAppDataUpdatedAt(key: string): Promise<string | null> {
+  if (!isSupabaseConfigured()) return null;
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from("app_data")
+    .select("updated_at")
+    .eq("key", key)
+    .maybeSingle();
+  if (error) throw error;
+  return typeof data?.updated_at === "string" ? data.updated_at : null;
+}
+
 /**
  * Live source of truth:
  * - With Supabase: Admin-saved rows win. Repo JSON is seed/fallback only.
@@ -272,19 +290,33 @@ function repairKindergartenNames(content: AppContent): {
  * - Auto-merge may APPEND missing ids from seed; it must not wipe Admin collections.
  * - Agents: fetch /api/live → patch-live (Admin Save). Never treat content.json as live.
  */
-async function getContentCore(): Promise<AppContent> {
+async function getContentCore(): Promise<{
+  content: AppContent;
+  updatedAt: string | null;
+}> {
+  const finish = (
+    content: AppContent,
+    updatedAt?: string | null
+  ): { content: AppContent; updatedAt: string | null } => ({
+    content,
+    updatedAt: updatedAt ?? content.lastUpdated ?? null,
+  });
+
   if (!isSupabaseConfigured()) {
-    return readLocalContent();
+    return finish(await readLocalContent());
   }
 
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from("app_data")
-    .select("data")
+    .select("data, updated_at")
     .eq("key", CONTENT_KEY)
     .maybeSingle();
 
   if (error) throw error;
+
+  const rowUpdatedAt =
+    typeof data?.updated_at === "string" ? data.updated_at : null;
 
   const local = await readLocalContent();
   const forceSeed = process.env.FORCE_SEED_FROM_LOCAL === "1";
@@ -293,7 +325,7 @@ async function getContentCore(): Promise<AppContent> {
     if (forceSeed) {
       await saveContent(local);
     }
-    return local;
+    return finish(local, rowUpdatedAt);
   }
 
   const remote = data.data as AppContent;
@@ -301,14 +333,14 @@ async function getContentCore(): Promise<AppContent> {
   if (forceSeed) {
     const seeded = { ...local, lastUpdated: new Date().toISOString() };
     await saveContent(seeded);
-    return seeded;
+    return finish(seeded, seeded.lastUpdated);
   }
 
   // One-time repair of legacy broken rows only — Admin saves always win after that
   if (isBrokenLegacyContent(remote)) {
     const fixed = bootstrapFromLocal(remote, local);
     saveContent(fixed).catch(() => {});
-    return fixed;
+    return finish(fixed, rowUpdatedAt);
   }
 
   // Fix misspelled kindergarten name (Liang Leung → Ling Liang / 靈糧) in live data
@@ -329,10 +361,10 @@ async function getContentCore(): Promise<AppContent> {
     };
     try {
       await saveContent(withSchool);
-      return withSchool;
+      return finish(withSchool, rowUpdatedAt);
     } catch (err) {
       console.error("Failed to repair kindergarten name", err);
-      return withSchool;
+      return finish(withSchool, rowUpdatedAt);
     }
   } else if (local.ziziSchool?.zh && !remote.ziziSchool?.zh) {
     const withSchool: AppContent = {
@@ -342,9 +374,9 @@ async function getContentCore(): Promise<AppContent> {
     };
     try {
       await saveContent(withSchool);
-      return withSchool;
+      return finish(withSchool, rowUpdatedAt);
     } catch {
-      return withSchool;
+      return finish(withSchool, rowUpdatedAt);
     }
   }
 
@@ -425,7 +457,7 @@ async function getContentCore(): Promise<AppContent> {
       homeArea: remote.homeArea ?? local.homeArea,
     };
     saveContent(filled).catch(() => {});
-    return filled;
+    return finish(filled, rowUpdatedAt);
   }
 
   // Soft-fill summer/term calendar fields from seed if Admin never had them
@@ -493,10 +525,10 @@ async function getContentCore(): Promise<AppContent> {
     };
     try {
       await saveContent(filled);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     } catch (err) {
       console.error("Failed to seed summer schedule calendar", err);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     }
   }
 
@@ -518,10 +550,10 @@ async function getContentCore(): Promise<AppContent> {
     };
     try {
       await saveContent(filled);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     } catch (err) {
       console.error("Failed to seed scheduleDateOverrides", err);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     }
   }
 
@@ -563,10 +595,10 @@ async function getContentCore(): Promise<AppContent> {
     };
     try {
       await saveContent(filled);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     } catch (err) {
       console.error("Failed to seed preferences/appliances", err);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     }
   }
 
@@ -584,10 +616,10 @@ async function getContentCore(): Promise<AppContent> {
     };
     try {
       await saveContent(filled);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     } catch (err) {
       console.error("Failed to append missing ground rules from seed", err);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     }
   }
 
@@ -616,18 +648,21 @@ async function getContentCore(): Promise<AppContent> {
     };
     try {
       await saveContent(filled);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     } catch (err) {
       console.error("Failed to refresh ground rules from seed", err);
-      return filled;
+      return finish(filled, rowUpdatedAt);
     }
   }
 
-  return remote;
+  return finish(remote, rowUpdatedAt);
 }
 
-export async function getContent(): Promise<AppContent> {
-  const content = await getContentCore();
+async function loadContentUncached(): Promise<{
+  value: AppContent;
+  updatedAt: string | null;
+}> {
+  const { content, updatedAt } = await getContentCore();
   try {
     const local = await readLocalContent();
     const merged = overlayMissingTaskNotes(
@@ -640,23 +675,43 @@ export async function getContent(): Promise<AppContent> {
         console.error("Failed to persist school-prep tea container notes", err);
       });
     }
-    return repaired.content;
+    return { value: repaired.content, updatedAt };
   } catch {
-    return content;
+    return { value: content, updatedAt };
   }
+}
+
+async function rememberContent(): Promise<{
+  value: AppContent;
+  state: AppDataCacheState;
+}> {
+  return rememberAppData({
+    key: CONTENT_KEY,
+    load: loadContentUncached,
+    peekUpdatedAt: isSupabaseConfigured()
+      ? () => peekAppDataUpdatedAt(CONTENT_KEY)
+      : undefined,
+  });
+}
+
+export async function getContent(): Promise<AppContent> {
+  const { value } = await rememberContent();
+  return value;
 }
 
 export async function getContentWithSource(): Promise<{
   content: AppContent;
   source: DataSource;
+  cache: AppDataCacheState;
 }> {
   const source: DataSource = isSupabaseConfigured() ? "supabase" : "local";
-  const content = await getContent();
-  return { content, source };
+  const { value, state } = await rememberContent();
+  return { content: value, source, cache: state };
 }
 
 export async function saveContent(content: AppContent): Promise<AppContent> {
-  const updated = { ...content, lastUpdated: new Date().toISOString() };
+  const now = new Date().toISOString();
+  const updated = { ...content, lastUpdated: now };
 
   if (!isSupabaseConfigured()) {
     throw new Error("Live database is not configured — cannot save");
@@ -666,30 +721,50 @@ export async function saveContent(content: AppContent): Promise<AppContent> {
   const { error } = await supabase.from("app_data").upsert({
     key: CONTENT_KEY,
     data: updated,
-    updated_at: new Date().toISOString(),
+    updated_at: now,
   });
 
   if (error) throw error;
+  invalidateAppDataCache(CONTENT_KEY);
   return updated;
 }
 
-export async function getDinnerRecipes(): Promise<DinnerRecipe[]> {
+async function loadDinnerRecipesUncached(): Promise<{
+  value: DinnerRecipe[];
+  updatedAt: string | null;
+}> {
   if (!isSupabaseConfigured()) {
-    return readLocalRecipes();
+    return { value: await readLocalRecipes(), updatedAt: null };
   }
 
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from("app_data")
-    .select("data")
+    .select("data, updated_at")
     .eq("key", RECIPES_KEY)
     .maybeSingle();
 
   if (error) throw error;
-  if (!data) return readLocalRecipes();
+  const updatedAt =
+    typeof data?.updated_at === "string" ? data.updated_at : null;
+  if (!data) return { value: await readLocalRecipes(), updatedAt };
   const parsed = data.data as { recipes: DinnerRecipe[] };
   const local = await readLocalRecipes();
-  return mergeRecipeTranslations(parsed.recipes, local);
+  return {
+    value: mergeRecipeTranslations(parsed.recipes, local),
+    updatedAt,
+  };
+}
+
+export async function getDinnerRecipes(): Promise<DinnerRecipe[]> {
+  const { value } = await rememberAppData({
+    key: RECIPES_KEY,
+    load: loadDinnerRecipesUncached,
+    peekUpdatedAt: isSupabaseConfigured()
+      ? () => peekAppDataUpdatedAt(RECIPES_KEY)
+      : undefined,
+  });
+  return value;
 }
 
 export async function saveDinnerRecipes(recipes: DinnerRecipe[]): Promise<void> {
@@ -697,42 +772,51 @@ export async function saveDinnerRecipes(recipes: DinnerRecipe[]): Promise<void> 
     throw new Error("Live database is not configured");
   }
 
+  const now = new Date().toISOString();
   const supabase = getSupabaseAdmin();
   const { error } = await supabase.from("app_data").upsert({
     key: RECIPES_KEY,
     data: { recipes },
-    updated_at: new Date().toISOString(),
+    updated_at: now,
   });
 
   if (error) throw error;
+  invalidateAppDataCache(RECIPES_KEY);
 }
 
-export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
+async function loadDinnerMenuOverridesUncached(): Promise<{
+  value: DinnerMenuOverrides;
+  updatedAt: string | null;
+}> {
   const empty: DinnerMenuOverrides = {
     byDate: {},
     updatedAt: new Date().toISOString(),
   };
   const seedByDate = await readLocalDinnerOverrideSeed();
   if (!isSupabaseConfigured()) {
-    return {
+    const value = {
       byDate: mergeSeedDinnerOverrides({}, seedByDate),
       updatedAt: empty.updatedAt,
     };
+    return { value, updatedAt: value.updatedAt };
   }
 
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from("app_data")
-    .select("data")
+    .select("data, updated_at")
     .eq("key", MENU_OVERRIDES_KEY)
     .maybeSingle();
 
   if (error) throw error;
+  const rowUpdatedAt =
+    typeof data?.updated_at === "string" ? data.updated_at : null;
   if (!data?.data) {
-    return {
+    const value = {
       byDate: mergeSeedDinnerOverrides({}, seedByDate),
       updatedAt: empty.updatedAt,
     };
+    return { value, updatedAt: rowUpdatedAt ?? value.updatedAt };
   }
   const parsed = data.data as DinnerMenuOverrides;
   const rawByDate =
@@ -742,10 +826,22 @@ export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
     const normalized = normalizeDinnerOverride(raw, date);
     if (normalized) byDate[date] = normalized;
   }
-  return {
+  const value = {
     byDate: mergeSeedDinnerOverrides(byDate, seedByDate),
     updatedAt: parsed.updatedAt || new Date().toISOString(),
   };
+  return { value, updatedAt: rowUpdatedAt ?? value.updatedAt };
+}
+
+export async function getDinnerMenuOverrides(): Promise<DinnerMenuOverrides> {
+  const { value } = await rememberAppData({
+    key: MENU_OVERRIDES_KEY,
+    load: loadDinnerMenuOverridesUncached,
+    peekUpdatedAt: isSupabaseConfigured()
+      ? () => peekAppDataUpdatedAt(MENU_OVERRIDES_KEY)
+      : undefined,
+  });
+  return value;
 }
 
 export async function saveDinnerMenuOverrides(
@@ -767,6 +863,7 @@ export async function saveDinnerMenuOverrides(
     updated_at: updated.updatedAt,
   });
   if (error) throw error;
+  invalidateAppDataCache(MENU_OVERRIDES_KEY);
   return updated;
 }
 

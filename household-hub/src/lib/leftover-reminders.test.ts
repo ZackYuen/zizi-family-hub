@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  buildLeftoverReminderFeed,
   formatLeftoverReminderMessage,
   leftoverTonightHint,
   getLeftoverReminderState,
@@ -81,6 +82,51 @@ test("leftoverTonightHint says no today menu", () => {
   const text = leftoverTonightHint("en");
   assert.match(text, /No today menu/i);
   assert.match(text, /ask us/i);
+});
+
+test("leftover feed is due at 10:00 HKT on a work day without loading recipes", () => {
+  const content = {
+    leftoverRemindersEnabled: true,
+    whatsappReminderGroupJids: "120363abc@g.us",
+  };
+  const due = buildLeftoverReminderFeed(
+    content,
+    new Date("2026-09-10T10:00:00+08:00")
+  );
+  assert.equal(due.enabled, true);
+  assert.equal(due.dayOff, false);
+  assert.equal(due.menuSaved, false);
+  assert.equal(due.due.length, 1);
+  assert.equal(due.due[0].id, LEFTOVER_REMIND_ID);
+  assert.deepEqual(due.groupJids, ["120363abc@g.us"]);
+  assert.match(due.due[0].text, /fridge/i);
+
+  const before = buildLeftoverReminderFeed(
+    content,
+    new Date("2026-09-10T09:59:00+08:00")
+  );
+  assert.equal(before.due.length, 0);
+});
+
+test("leftover feed is empty and recipe-free when leftoverRemindersEnabled is false", () => {
+  const feed = buildLeftoverReminderFeed(
+    {
+      leftoverRemindersEnabled: false,
+      whatsappReminderGroupJids: "120363abc@g.us",
+    },
+    new Date("2026-09-10T11:00:00+08:00")
+  );
+  assert.equal(feed.enabled, false);
+  assert.equal(feed.due.length, 0);
+  assert.deepEqual(Object.keys(feed).sort(), [
+    "date",
+    "dayOff",
+    "due",
+    "enabled",
+    "groupJids",
+    "menuSaved",
+    "nowMinutes",
+  ]);
 });
 
 test("leftover reminder text asks Charlene to check and suggest, no bot reply", () => {
