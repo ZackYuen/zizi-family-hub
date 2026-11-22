@@ -10,6 +10,7 @@ export async function GET() {
     paused: runtime.paused,
     replyGroupJids: runtime.replyGroupJids,
     reminderGroupJids: runtime.reminderGroupJids,
+    familyLogNudgesEnabled: runtime.familyLogNudgesEnabled,
     ok: true,
   });
 }

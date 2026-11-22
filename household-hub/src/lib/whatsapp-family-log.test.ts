@@ -16,12 +16,18 @@ import {
   buildFamilyLogDigest,
   emptyFamilyLogStore,
   familyLogAllowlist,
+  familyLogNudgesSettingOn,
   formatFollowUpNudge,
   isAllowlistedFamilyGroup,
   isFamilyBotCommandText,
   isFamilyLogQuietHours,
+  isPreviousNightDinnerFollowUp,
+  isSameNightDinnerFollowUp,
   listFamilyLogMessages,
+  looksLikeDoneAck,
   looksLikeOpenFollowUp,
+  looksLikeSelfPurchaseReport,
+  looksLikeStandaloneAck,
   normalizeFamilyGroupJid,
   publicFamilyLogMessage,
   type FamilyLogStore,
@@ -62,6 +68,15 @@ function request(
     waMessageId: extra.waMessageId || "BAE5-1",
     ...extra,
   }, allowlist(), now);
+}
+
+/** Existing claim tests describe send logic; they opt in explicitly. */
+function claim(
+  store: FamilyLogStore,
+  list: string[],
+  opts: Parameters<typeof applyClaimDueFamilyLogNudges>[2] = {}
+) {
+  return applyClaimDueFamilyLogNudges(store, list, { enabled: true, ...opts });
 }
 
 test("FAMILY_LOG_USES_OUTBOUND_QUEUE is false — nudges are not the 1:1 queue", () => {
@@ -351,13 +366,13 @@ test("proactive nudge is allowed only in the allowlisted group after min age", (
   assert.equal(stored.ok && stored.stored, true);
   if (!stored.ok || !stored.stored) return;
 
-  const tooSoon = applyClaimDueFamilyLogNudges(stored.store, allowlist(), {
+  const tooSoon = claim(stored.store, allowlist(), {
     now: new Date(saidAt.getTime() + 5 * 60 * 1000),
     quietHours: false,
   });
   assert.equal(tooSoon.claimed.length, 0);
 
-  const due = applyClaimDueFamilyLogNudges(stored.store, allowlist(), {
+  const due = claim(stored.store, allowlist(), {
     now: DAY,
     quietHours: false,
   });
@@ -384,13 +399,13 @@ test("proactive nudge is not sent to other chats even if a request is in the sto
     nudges: [],
     updatedAt: DAY.toISOString(),
   };
-  const claimed = applyClaimDueFamilyLogNudges(poisoned, allowlist(), {
+  const claimed = claim(poisoned, allowlist(), {
     now: DAY,
     quietHours: false,
   });
   assert.equal(claimed.claimed.length, 0);
 
-  const emptyAllow = applyClaimDueFamilyLogNudges(poisoned, [], {
+  const emptyAllow = claim(poisoned, [], {
     now: DAY,
     quietHours: false,
   });
@@ -408,7 +423,7 @@ test("proactive nudge is not sent to other chats even if a request is in the sto
     nudges: [],
     updatedAt: DAY.toISOString(),
   };
-  const dmClaim = applyClaimDueFamilyLogNudges(
+  const dmClaim = claim(
     dmStore,
     ["85291234567@s.whatsapp.net", FAMILY],
     { now: DAY, quietHours: false }
@@ -426,13 +441,13 @@ test("rate and dedup limits prevent spam of the same open item", () => {
   assert.equal(stored.ok && stored.stored, true);
   if (!stored.ok || !stored.stored) return;
 
-  const first = applyClaimDueFamilyLogNudges(stored.store, allowlist(), {
+  const first = claim(stored.store, allowlist(), {
     now: DAY,
     quietHours: false,
   });
   assert.equal(first.claimed.length, 1);
 
-  const againSameTick = applyClaimDueFamilyLogNudges(first.store, allowlist(), {
+  const againSameTick = claim(first.store, allowlist(), {
     now: DAY,
     quietHours: false,
   });
@@ -447,13 +462,13 @@ test("rate and dedup limits prevent spam of the same open item", () => {
   if (!("nudge" in afterAck)) return;
   assert.equal(afterAck.nudge.status, "sent");
 
-  const stillCooling = applyClaimDueFamilyLogNudges(afterAck.store, allowlist(), {
+  const stillCooling = claim(afterAck.store, allowlist(), {
     now: new Date(DAY.getTime() + FAMILY_LOG_NUDGE_MIN_GAP_MS + 1000),
     quietHours: false,
   });
   assert.equal(stillCooling.claimed.length, 0);
 
-  const afterCooldown = applyClaimDueFamilyLogNudges(afterAck.store, allowlist(), {
+  const afterCooldown = claim(afterAck.store, allowlist(), {
     now: new Date(DAY.getTime() + FAMILY_LOG_NUDGE_COOLDOWN_MS + 1000),
     quietHours: false,
   });
@@ -490,7 +505,7 @@ test("rate and dedup limits prevent spam of the same open item", () => {
     const now = new Date(
       DAY.getTime() + i * (FAMILY_LOG_NUDGE_MIN_GAP_MS + 60_000)
     );
-    const claimed = applyClaimDueFamilyLogNudges(cursor, allowlist(), {
+    const claimed = claim(cursor, allowlist(), {
       now,
       quietHours: false,
     });
@@ -516,7 +531,7 @@ test("quiet hours skip proactive nudges; format is FIL + EN like outing/leftover
   const stored = request("Please buy milk tonight", { waMessageId: "quiet-1" }, saidAt);
   assert.equal(stored.ok && stored.stored, true);
   if (!stored.ok || !stored.stored) return;
-  const quiet = applyClaimDueFamilyLogNudges(stored.store, allowlist(), {
+  const quiet = claim(stored.store, allowlist(), {
     now: DAY,
     quietHours: true,
   });
@@ -531,4 +546,182 @@ test("quiet hours skip proactive nudges; format is FIL + EN like outing/leftover
   assert.match(text, /EN:/);
   assert.match(text, /Mum/);
   assert.equal(text.includes("? Tonight"), false);
+});
+
+test("auto-nudges are opt-in: missing or false enabled claims nothing", () => {
+  assert.equal(familyLogNudgesSettingOn(undefined), false);
+  assert.equal(familyLogNudgesSettingOn(false), false);
+  assert.equal(familyLogNudgesSettingOn(true), true);
+
+  const saidAt = new Date(DAY.getTime() - FAMILY_LOG_NUDGE_MIN_AGE_MS - 60_000);
+  const stored = request("Please buy milk tonight", { waMessageId: "flag-1" }, saidAt);
+  assert.equal(stored.ok && stored.stored, true);
+  if (!stored.ok || !stored.stored) return;
+
+  const implicit = applyClaimDueFamilyLogNudges(stored.store, allowlist(), {
+    now: DAY,
+    quietHours: false,
+  });
+  assert.equal(implicit.claimed.length, 0);
+
+  const off = applyClaimDueFamilyLogNudges(stored.store, allowlist(), {
+    now: DAY,
+    quietHours: false,
+    enabled: false,
+  });
+  assert.equal(off.claimed.length, 0);
+
+  const on = applyClaimDueFamilyLogNudges(stored.store, allowlist(), {
+    now: DAY,
+    quietHours: false,
+    enabled: true,
+  });
+  assert.equal(on.claimed.length, 1);
+});
+
+test("day off and previous-night dinner never auto-claim, even when enabled", () => {
+  const sunday = new Date("2026-11-22T04:00:00.000Z"); // 12:00 HKT Sunday
+  const saidAt = new Date(sunday.getTime() - FAMILY_LOG_NUDGE_MIN_AGE_MS - 60_000);
+  const milk = request("Please buy milk tonight", { waMessageId: "sun-1" }, saidAt);
+  assert.equal(milk.ok && milk.stored, true);
+  if (!milk.ok || !milk.stored) return;
+
+  const sundayClaim = applyClaimDueFamilyLogNudges(milk.store, allowlist(), {
+    now: sunday,
+    quietHours: false,
+    enabled: true,
+  });
+  assert.equal(sundayClaim.claimed.length, 0);
+
+  const weekdayOff = applyClaimDueFamilyLogNudges(milk.store, allowlist(), {
+    now: DAY,
+    quietHours: false,
+    enabled: true,
+    dayOff: true,
+  });
+  assert.equal(weekdayOff.claimed.length, 0);
+
+  assert.equal(isSameNightDinnerFollowUp("Please reheat and fry the last dish"), true);
+  assert.equal(isSameNightDinnerFollowUp("tonight dinner please"), true);
+  assert.equal(isSameNightDinnerFollowUp("Please buy milk tonight"), false);
+
+  // Friday night → Saturday morning: within 24h nudge lookback, not a day off,
+  // so an empty claim is the previous-night dinner skip — not lookback or Sunday.
+  const friNight = new Date("2026-11-20T11:08:00.000Z"); // 19:08 HKT Fri
+  const satMorning = new Date("2026-11-21T01:02:00.000Z"); // 09:02 HKT Sat
+  assert.equal(
+    isPreviousNightDinnerFollowUp(
+      "Please reheat and fry the last dish",
+      friNight,
+      satMorning
+    ),
+    true
+  );
+  const dinner = request(
+    "Please reheat and fry the last dish",
+    { waMessageId: "din-1" },
+    friNight
+  );
+  assert.equal(dinner.ok && dinner.stored, true);
+  if (!dinner.ok || !dinner.stored) return;
+  const nextMorning = applyClaimDueFamilyLogNudges(dinner.store, allowlist(), {
+    now: satMorning,
+    quietHours: false,
+    enabled: true,
+    dayOff: false,
+  });
+  assert.equal(nextMorning.claimed.length, 0);
+  const morningDigest = buildFamilyLogDigest(dinner.store, {
+    allowlist: allowlist(),
+    now: satMorning,
+  });
+  assert.equal(morningDigest.open.some((item) => /last dish/i.test(item.text)), false);
+
+  const sameNight = applyClaimDueFamilyLogNudges(dinner.store, allowlist(), {
+    now: new Date("2026-11-20T12:00:00.000Z"), // 20:00 HKT Fri, after 45 min
+    quietHours: false,
+    enabled: true,
+    dayOff: false,
+  });
+  assert.equal(sameNight.claimed.length, 1);
+});
+
+test("self-purchase reports and short acks are not open; standalone Okay maam closes the last request", () => {
+  assert.equal(looksLikeSelfPurchaseReport("I use my money to buy sorrow"), true);
+  assert.equal(looksLikeOpenFollowUp("I use my money to buy sorrow"), false);
+  assert.equal(looksLikeOpenFollowUp("I used my money to buy tissues"), false);
+  assert.equal(looksLikeStandaloneAck("Okay maam"), true);
+  assert.equal(looksLikeStandaloneAck("Okay sir"), true);
+  assert.equal(looksLikeStandaloneAck("OK"), true);
+  assert.equal(looksLikeStandaloneAck("Done"), true);
+  assert.equal(looksLikeStandaloneAck("haha ok"), false);
+  assert.equal(looksLikeDoneAck("Okay maam"), true);
+  assert.equal(looksLikeDoneAck("I gave u back"), true);
+
+  const t0 = DAY;
+  const first = request(
+    "Please buy the white carrot and herb pack",
+    { waMessageId: "ack-1" },
+    t0
+  );
+  assert.equal(first.ok && first.stored, true);
+  if (!first.ok || !first.stored) return;
+  const open = buildFamilyLogDigest(first.store, { allowlist: allowlist(), now: t0 });
+  assert.equal(open.open.some((item) => /white carrot/i.test(item.text)), true);
+
+  const acked = applyFamilyLogIngest(
+    first.store,
+    {
+      jid: FAMILY,
+      text: "Okay maam",
+      fromName: "Charlene",
+      waMessageId: "ack-2",
+    },
+    allowlist(),
+    new Date(t0.getTime() + 60_000)
+  );
+  assert.equal(acked.ok && acked.stored, true);
+  if (!acked.ok || !acked.stored) return;
+  const after = buildFamilyLogDigest(acked.store, { allowlist: allowlist(), now: t0 });
+  assert.equal(after.open.some((item) => /white carrot/i.test(item.text)), false);
+
+  const money = request(
+    "I use my money to buy sorrow",
+    { waMessageId: "pay-1" },
+    t0
+  );
+  assert.equal(money.ok && money.stored, true);
+  if (!money.ok || !money.stored) return;
+  const moneyDigest = buildFamilyLogDigest(money.store, {
+    allowlist: allowlist(),
+    now: t0,
+  });
+  assert.equal(moneyDigest.open.some((item) => /sorrow/i.test(item.text)), false);
+
+  // Casual "ok" in a longer message must not topic-close an open shop request.
+  const shop = request(
+    "Please buy apples at Wellcome",
+    { waMessageId: "ack-3" },
+    t0
+  );
+  assert.equal(shop.ok && shop.stored, true);
+  if (!shop.ok || !shop.stored) return;
+  const casual = applyFamilyLogIngest(
+    shop.store,
+    {
+      jid: FAMILY,
+      text: "ok going to Wellcome later",
+      fromName: "Charlene",
+      waMessageId: "ack-4",
+    },
+    allowlist(),
+    new Date(t0.getTime() + 60_000)
+  );
+  assert.equal(casual.ok && casual.stored, true);
+  if (!casual.ok || !casual.stored) return;
+  const stillOpen = buildFamilyLogDigest(casual.store, {
+    allowlist: allowlist(),
+    now: t0,
+  });
+  assert.equal(stillOpen.open.some((item) => /apples at Wellcome/i.test(item.text)), true);
 });

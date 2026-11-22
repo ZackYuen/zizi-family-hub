@@ -1,10 +1,12 @@
 import { getContent } from "./data";
 import { parseWhatsAppGroupJids } from "./outing-reminders";
+import { familyLogNudgesSettingOn } from "./whatsapp-family-log";
 
 export async function getWhatsAppBotRuntime(): Promise<{
   paused: boolean;
   replyGroupJids: string[];
   reminderGroupJids: string[];
+  familyLogNudgesEnabled: boolean;
 }> {
   const envPaused = process.env.WHATSAPP_BOT_PAUSED === "1";
   try {
@@ -15,12 +17,16 @@ export async function getWhatsAppBotRuntime(): Promise<{
       reminderGroupJids: parseWhatsAppGroupJids(
         content.whatsappReminderGroupJids
       ),
+      familyLogNudgesEnabled: familyLogNudgesSettingOn(
+        content.familyLogNudgesEnabled
+      ),
     };
   } catch {
     return {
       paused: envPaused,
       replyGroupJids: [],
       reminderGroupJids: [],
+      familyLogNudgesEnabled: false,
     };
   }
 }

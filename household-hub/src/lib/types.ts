@@ -327,6 +327,12 @@ export interface AppContent {
    * Missing / true = enabled. Edited under Admin → Settings.
    */
   octopusRemindersEnabled?: boolean;
+  /**
+   * When true, the always-on bot may auto-send family-group follow-up nudges.
+   * Missing / false = disabled. Follow-ups are decided by Charlene 家務 and
+   * only sent after a draft is approved. Edited under Admin → Settings.
+   */
+  familyLogNudgesEnabled?: boolean;
 }
 
 /** One person who may use Admin and/or the Charlene frontend app */

@@ -57,7 +57,7 @@ Set `FORCE_SEED_FROM_LOCAL=1` on the server once, or run `npm run seed`. This **
 - `POST /api/ask` — `{ "question": "What time pick up Zizi?" }`
 - `PUT /api/admin/content` — Admin Save (cookie session) → Supabase
 - `POST /api/whatsapp/outbound` — authenticated (`x-inbox-secret`) user-approved WhatsApp send queue (Baileys bot delivers). See `whatsapp-bot/README.md`.
-- `GET`/`POST /api/whatsapp/family-log` — authenticated family-group message log + unfinished-follow-up digest (allowlisted groups only). Bot polls `/api/whatsapp/family-log/nudges` for proactive FIL+EN nudges in that same group. See `whatsapp-bot/README.md`.
+- `GET`/`POST /api/whatsapp/family-log` — authenticated family-group message log + unfinished-follow-up digest (allowlisted groups only). Bot polls `/api/whatsapp/family-log/nudges` for follow-up nudges; those claims are empty unless Admin `familyLogNudgesEnabled` is on (and not a day off). See `whatsapp-bot/README.md`.
 
 ## Server auto-merge policy
 

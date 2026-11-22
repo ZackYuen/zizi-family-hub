@@ -154,8 +154,10 @@ const LEFTOVER_REMINDERS_ENABLED = process.env.LEFTOVER_REMINDERS !== "0";
 const OCTOPUS_REMINDERS_ENABLED = process.env.OCTOPUS_REMINDERS !== "0";
 /** 0 = disable user-approved 1:1 outbound queue (Grok Bot / authenticated enqueue) */
 const OUTBOUND_QUEUE_ENABLED = process.env.OUTBOUND_QUEUE !== "0";
-/** 0 = disable family-group ingest + proactive follow-up nudges */
+/** 0 = disable family-group ingest (nudges also off) */
 const FAMILY_LOG_ENABLED = process.env.FAMILY_LOG !== "0";
+/** 0 = disable proactive follow-up nudges only; ingest stays on */
+const FAMILY_LOG_NUDGES_ENABLED = FAMILY_LOG_ENABLED && process.env.FAMILY_LOG_NUDGES !== "0";
 const OUTING_REMINDER_MS = Math.max(
   30_000,
   Number(process.env.OUTING_REMINDER_POLL_MS || 60_000) || 60_000
@@ -736,7 +738,7 @@ async function postFamilyLog(payload) {
 }
 
 async function fetchFamilyLogNudges() {
-  if (!FAMILY_LOG_ENABLED || !INBOX_SECRET) return [];
+  if (!FAMILY_LOG_NUDGES_ENABLED || !INBOX_SECRET) return [];
   try {
     const url = `${LIVE_FAMILY_LOG_NUDGES_URL}?claim=1&limit=1`;
     const res = await fetch(url, {
@@ -748,6 +750,8 @@ async function fetchFamilyLogNudges() {
       return [];
     }
     const data = await res.json();
+    // Hub is the gate: explicit off / day off must not send (empty claims).
+    if (data?.enabled === false || data?.dayOff === true) return [];
     return Array.isArray(data?.nudges) ? data.nudges : [];
   } catch (err) {
     logger.warn({ err }, "family-log nudges fetch error");
@@ -780,7 +784,7 @@ async function ackFamilyLogNudge(id, status, extra = {}) {
 }
 
 async function checkFamilyLogNudges(sock) {
-  if (!sock || !FAMILY_LOG_ENABLED) return;
+  if (!sock || !FAMILY_LOG_NUDGES_ENABLED) return;
   const status = await fetchBotStatus();
   const allow = familyLogAllowlist(status.replyGroupJids, status.reminderGroupJids);
   const due = await fetchFamilyLogNudges();
@@ -832,7 +836,7 @@ async function checkOutingReminders(sock) {
   if (OUTBOUND_QUEUE_ENABLED) {
     await checkOutboundQueue(sock);
   }
-  if (FAMILY_LOG_ENABLED) {
+  if (FAMILY_LOG_NUDGES_ENABLED) {
     await checkFamilyLogNudges(sock);
   }
 }
@@ -844,9 +848,9 @@ function startOutingReminderLoop(sock) {
     !LEFTOVER_REMINDERS_ENABLED &&
     !OCTOPUS_REMINDERS_ENABLED &&
     !OUTBOUND_QUEUE_ENABLED &&
-    !FAMILY_LOG_ENABLED
+    !FAMILY_LOG_NUDGES_ENABLED
   ) {
-    console.log("[ok] Outing + leftover + octopus + outbound queue + family-log off");
+    console.log("[ok] Outing + leftover + octopus + outbound queue + family-log nudges off");
     return;
   }
   if (outingTimer) return;
@@ -858,7 +862,7 @@ function startOutingReminderLoop(sock) {
   outingTimer = setInterval(tick, OUTING_REMINDER_MS);
   outingTimeout = setTimeout(tick, 8000);
   console.log(
-    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} octopus=${OCTOPUS_REMINDERS_ENABLED ? "Mon/Thu 09:00 HKT" : "off"} outbound=${OUTBOUND_QUEUE_ENABLED ? "on" : "off"} family-log=${FAMILY_LOG_ENABLED ? "ingest+nudges" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · family-log groups=Admin reply/reminder or GROUP_JIDS only`
+    `[ok] Reminders: outing=${OUTING_REMINDERS_ENABLED ? "on" : "off"} leftover=${LEFTOVER_REMINDERS_ENABLED ? "10:00 HKT if no menu" : "off"} octopus=${OCTOPUS_REMINDERS_ENABLED ? "Mon/Thu 09:00 HKT" : "off"} outbound=${OUTBOUND_QUEUE_ENABLED ? "on" : "off"} family-log-ingest=${FAMILY_LOG_ENABLED ? "on" : "off"} family-log-nudges=${FAMILY_LOG_NUDGES_ENABLED ? "on (hub flag still required)" : "off"} · poll ${OUTING_REMINDER_MS / 1000}s · family-log groups=Admin reply/reminder or GROUP_JIDS only`
   );
 }
 
@@ -1117,7 +1121,7 @@ async function startBot() {
         `[ok] Outbound queue: ${OUTBOUND_QUEUE_ENABLED && INBOX_SECRET ? LIVE_OUTBOUND_URL : "disabled (need INBOX_SECRET; OUTBOUND_QUEUE=0 to mute)"}`
       );
       console.log(
-        `[ok] Family log: ${FAMILY_LOG_ENABLED && INBOX_SECRET ? LIVE_FAMILY_LOG_URL : "disabled (need INBOX_SECRET; FAMILY_LOG=0 to mute)"} · ingest+nudges only in Admin reply/reminder or GROUP_JIDS`
+        `[ok] Family log: ${FAMILY_LOG_ENABLED && INBOX_SECRET ? LIVE_FAMILY_LOG_URL : "disabled (need INBOX_SECRET; FAMILY_LOG=0 to mute ingest)"} · ingest=${FAMILY_LOG_ENABLED ? "on" : "off"} nudges=${FAMILY_LOG_NUDGES_ENABLED ? "poll (hub flag/day-off still apply)" : "off"} · only in Admin reply/reminder or GROUP_JIDS`
       );
       console.log(
         `[ok] Reply groups: Admin → Settings (bot-status replyGroupJids) or GROUP_JIDS=${GROUP_ALLOWLIST.join(",") || "(empty)"} · reminders: Admin reminder group only · DM=${REPLY_DM ? "on" : "off"}`

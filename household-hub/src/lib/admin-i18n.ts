@@ -437,6 +437,16 @@ export const adminLabels = {
     fil: "Lunes at Huwebes alas-9:00, tanungin si Charlene na tingnan ang Octopus (八達通) at cash, at sabihin kina Sir/Mum sa araw ding iyon kung kulang na. Lumabas sa weekly schedule. Skip ang day off. I-off para huminto. I-Save, hintay ~1 minuto.",
     zh: "逢星期一、四上午 09:00，提醒 Charlene 檢查八達通和現金；若其中一項不足，當天告訴 Sir/Mum。該日日程會顯示此項。放假日跳過。關閉則停止。儲存後約 1 分鐘生效。",
   },
+  familyLogNudges: {
+    en: "Auto family-group follow-up nudges",
+    fil: "Auto family-group follow-up nudges",
+    zh: "家庭群組自動跟進訊息",
+  },
+  familyLogNudgesHint: {
+    en: "Off by default. When off, the always-on bot will not auto-chase unfinished chores in the family group. Charlene 家務 drafts any follow-up for approval instead. Outing reminders stay on. Even if this is turned back on: no auto messages on Sunday / day off, and tonight’s dinner / reheat / last dish is same-night only. Save, then wait ~1 minute.",
+    fil: "Naka-off by default. Kapag off, hindi auto mag-follow-up ang always-on bot sa family group. Si Charlene 家務 ang magda-draft ng follow-up para i-approve. Outing reminders tuloy pa rin. Kahit i-on ulit: walang auto message tuwing Linggo / day off, at ang tonight dinner / reheat / last dish ay same-night only. I-Save, hintay ~1 minuto.",
+    zh: "預設關閉。關閉後，常駐 bot 不會在家庭群組自動追未做事項；改由 Charlene 家務草擬跟進，批准後才發出。出門提醒不受影響。即使之後重新開啟：星期日／放假日不會自動出，今晚晚餐／加熱／煎最後一碟只限當晚追，不會第二朝再出。儲存後約 1 分鐘生效。",
+  },
   whatsappReminderGroups: {
     en: "WhatsApp group for outing + leftover + Octopus reminders",
     fil: "WhatsApp group para sa outing + leftover + Octopus reminders",
