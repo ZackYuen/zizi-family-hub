@@ -111,7 +111,8 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 | `LIVE_OUTBOUND_URL` | Optional override (default: Ask host `/api/whatsapp/outbound/`) |
 | `OUTBOUND_QUEUE` | `0` = do not poll/send the user-approved 1:1 queue (on by default) |
 | `LIVE_FAMILY_LOG_URL` | Optional override (default: Ask host `/api/whatsapp/family-log/`) |
-| `FAMILY_LOG` | `0` = do not ingest family-group chat or send follow-up nudges (on by default) |
+| `FAMILY_LOG` | `0` = do not ingest family-group chat (also turns nudges off). On by default — keep on so ingest continues. |
+| `FAMILY_LOG_NUDGES` | `0` = do not poll/send proactive follow-up nudges (ingest stays on). On by default, but the live hub flag `familyLogNudgesEnabled` must also be true or the API returns no claims. |
 | `GROUP_JIDS` | Fallback group(s) for **? replies**, family-log ingest, and proactive nudges if Admin reply group is blank |
 | `LIVE_MEALS_ADD_URL` | Optional override (default: Ask host `/api/meals/add`) |
 | `LIVE_MEALS_MENU_URL` | Optional override (default: Ask host `/api/meals/menu`) |
@@ -119,7 +120,7 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 | `TRIGGER_PREFIX` | Default `?` |
 | `GROUP_ALLOW_ALL` | `1` = reply in every group (unsafe). Prefer Admin reply group / `GROUP_JIDS` |
 | `REPLY_DM` | `1` to also answer private chats |
-| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover + Octopus reminders + outbound queue + family-log nudges still send |
+| `WHATSAPP_BOT_PAUSED` | `1` = local force-mute of **replies**. Outing + leftover + Octopus reminders + outbound queue + family-log ingest still run. Auto family-log nudges stay off unless Admin enables them. |
 | `LIVE_BOT_STATUS_URL` | Optional; default = Ask host `/api/bot-status/` |
 | `OUTING_REMINDERS` | `0` = do not send 1-hour Zizi outing pings (on by default) |
 | `LEFTOVER_REMINDERS` | `0` = do not send the 10:00 leftover-fridge ask (on by default) |
@@ -130,7 +131,7 @@ Then open Admin → **WA Inbox** and promote `?save` items to HK Life or Meals.
 
 1. **Admin (preferred):** Settings → **Pause WhatsApp bot replies** → Save. Live Ask returns silence; bot checks `/api/bot-status` before replying.
 2. **Local only:** set `WHATSAPP_BOT_PAUSED=1` in bot `.env`, then `npm run pm2:up`.
-3. In-app Ask is **not** muted — only WhatsApp `?` / `@bot` replies. Family-group ingest and follow-up nudges still run (same as outing reminders).
+3. In-app Ask is **not** muted — only WhatsApp `?` / `@bot` replies. Family-group ingest still runs (same as outing reminders). Auto follow-up nudges stay off unless Admin enables them.
 
 After deploying hub changes: on the VPS `git pull && npm run pm2:up` so the bot has the pause check.
 
@@ -315,16 +316,19 @@ Rows live in Supabase `app_data` key `whatsapp_family_log` (not git seed / Admin
 | --- | --- |
 | Family-group `?` / `@CharleneBot` answers (existing) | **New 1:1 conversations** (landlord, hotel, booking, …) via `POST /api/whatsapp/outbound` |
 | Outing 1h pings and the 10:00 leftover-fridge ask (existing; Admin reminder group) | One-off drafts Grok writes for a person or a **different** group |
-| A short FIL+EN “said but not done?” nudge in the **same allowlisted family group**, after ~45 minutes, if the topic still looks open | Anything to a chat that is **not** on the allowlist — never |
+| A short FIL+EN “said but not done?” nudge in the **same allowlisted family group**, after ~45 minutes, **only if** Admin → Settings → Auto family-group follow-up nudges is on and it is not a day off | Anything to a chat that is **not** on the allowlist — never. No auto-nudge when the setting is off, on Sunday / day off, or for previous-night dinner / reheat / last dish |
 
-Proactive follow-up rules (anti-spam):
+Proactive follow-up rules (anti-spam). **Default is off** (`familyLogNudgesEnabled` missing/false). Even if later re-enabled:
 
 - Only `@g.us` JIDs on the allowlist. Never DMs, never other groups, never broadcasts.
 - Does not reply to ordinary chatter in the moment (no “echo” of every message).
-- Waits ~45 minutes so a quick “ok / 做咗” can close the item first.
+- Waits ~45 minutes so a quick “ok / Okay maam / 做咗” can close the item first.
 - Same topic at most once per 12 hours; at most 4 nudges per group per HK day; at least 30 minutes between nudges.
-- Quiet hours 23:00–08:00 HKT.
+- Quiet hours 23:00–08:00 HKT. No auto messages on Sunday / Charlene’s day off.
+- Tonight dinner / reheat / fry-last-dish is same-night only — never auto-chased the next morning.
+- Do not auto-chase items already acked (Done / OK / Okay / Okay maam / Okay sir) or settled (reimbursed / “I used my money to buy…”).
 - `?` / `@CharleneBot` commands are stored for context but are not treated as open household follow-ups.
+- Do not use `FAMILY_LOG=0` or `whatsappBotPaused` just to stop nudges (those also stop ingest or replies; outing reminders must stay on). Prefer the Admin flag or `FAMILY_LOG_NUDGES=0`.
 
 Grok bots should still **draft** 1:1 / new-chat messages for the user to approve on the outbound queue. They must not send unsolicited WhatsApp outside the allowlisted family/reminder group(s).
 

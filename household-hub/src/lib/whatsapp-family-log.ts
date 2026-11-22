@@ -1,4 +1,4 @@
-import { getHongKongDateKey } from "./hk-holidays";
+import { getHongKongDateKey, isHelperDayOff } from "./hk-holidays";
 import { getHongKongTimeParts } from "./i18n";
 
 export const FAMILY_LOG_KEY = "whatsapp_family_log";
@@ -76,7 +76,14 @@ export interface FamilyLogDigest {
 }
 
 export const FAMILY_LOG_DIGEST_NOTE =
-  "Heuristic only. The always-on bot may send a short FIL+EN follow-up in the allowlisted family group when an item still looks undone (rate-limited). New chats and one-off messages still need the user-approved outbound queue. Do not send unsolicited WhatsApp outside the allowlisted family/reminder group(s).";
+  "Heuristic only. Auto family-group follow-ups stay off unless Admin enables them. Charlene 家務 may draft a short follow-up for approval. When the setting is on, the always-on bot may send a short FIL+EN follow-up in the allowlisted family group if an item still looks undone (rate-limited; skipped on day off and for previous-night dinner). New chats and one-off messages still need the user-approved outbound queue. Do not send unsolicited WhatsApp outside the allowlisted family/reminder group(s).";
+
+/** Missing / false = off. Auto-nudges are opt-in only. */
+export function familyLogNudgesSettingOn(
+  enabled: boolean | undefined | null
+): boolean {
+  return enabled === true;
+}
 
 export type FamilyLogIngestInput = {
   jid?: unknown;
@@ -307,7 +314,21 @@ const REQUEST_RE =
   /\b(please|pls|plz|can you|could you|don't forget|dont forget|remember to|need to|make sure|follow up|follow-up|pick up|bring |buy |check |call |ask mum|ask sir)\b|\bpaki(?:usap)?\b|huwag kalimutan|bilhin|kunin|dalhin|tingnan|gawin|alalahanin|記得|唔好唔記得|唔好忘記|幫我|要買|做咗未|買咗未|搞掂未|有冇/i;
 
 const DONE_RE =
-  /\b(done|already|bought|finished|fixed|completed|ok na|okay na|tapos na|sige na)\b|做咗|買咗|搞掂|得喇|得啦|唔使了|算啦|tapos na|ok na/i;
+  /\b(done|already|bought|finished|fixed|completed|reimbursed|ok na|okay na|tapos na|sige na)\b|做咗|買咗|搞掂|得喇|得啦|唔使了|算啦|tapos na|ok na/i;
+
+/** Past-tense / self-report of already spending own money — not a new purchase request. */
+const SELF_PURCHASE_RE =
+  /\bi\s+(?:just\s+)?(?:use[d]?|spent)\s+(?:my\s+)?(?:own\s+)?money\s+to\s+buy\b|\bi\s+(?:already\s+)?(?:just\s+)?bought\b/i;
+
+const REIMBURSED_RE =
+  /\b(reimbursed|i\s+gave\s+y(?:ou|u)\s+back|gave\s+you\s+back|already\s+paid\s+you|i\s+gave\s+u\s+back)\b/i;
+
+/** Tonight dinner / reheat / fry-last-dish — chase the same night only, never the next morning. */
+const SAME_NIGHT_DINNER_RE =
+  /\b(tonight(?:['’]s)?\s+dinner|dinner\s+tonight|reheat|fry(?:\s+the)?\s+last\s+dish|last\s+dish|heat\s+up\s+(?:the\s+)?(?:dinner|leftovers?))\b|今晚(?:晚餐|飯|食)|加熱|翻熱|最後一碟/i;
+
+const STANDALONE_ACK_RE =
+  /^(?:ok(?:ay)?|done|sige(?:\s+na)?|ok(?:ay)?\s+na|tapos\s+na)(?:\s+(?:ma'?am|maam|sir|thanks|thank\s+you|ty|po))?[.!]*$/i;
 
 const STOP_WORDS = new Set([
   "the",
@@ -379,16 +400,72 @@ function sharesTopic(request: string, later: string): boolean {
   return laterChars.some((c) => requestChars.has(c));
 }
 
+export function looksLikeSelfPurchaseReport(text: string): boolean {
+  return SELF_PURCHASE_RE.test(text);
+}
+
+export function looksLikeReimbursementAck(text: string): boolean {
+  return REIMBURSED_RE.test(text);
+}
+
+export function looksLikeStandaloneAck(text: string): boolean {
+  const trimmed = text.trim().replace(/^["'“”‘’]+|["'“”‘’]+$/g, "");
+  return STANDALONE_ACK_RE.test(trimmed);
+}
+
+export function isSameNightDinnerFollowUp(text: string): boolean {
+  return SAME_NIGHT_DINNER_RE.test(text);
+}
+
+/** True when a tonight-dinner / reheat / last-dish request was said on a previous HK date. */
+export function isPreviousNightDinnerFollowUp(
+  text: string,
+  saidAt: string | Date,
+  now = new Date()
+): boolean {
+  if (!isSameNightDinnerFollowUp(text)) return false;
+  const said = typeof saidAt === "string" ? new Date(saidAt) : saidAt;
+  if (!Number.isFinite(said.getTime())) return false;
+  return getHongKongDateKey(said) !== getHongKongDateKey(now);
+}
+
 export function looksLikeOpenFollowUp(text: string): boolean {
   const trimmed = text.trim();
   if (trimmed.length < 4) return false;
   if (isFamilyBotCommandText(trimmed)) return false;
   if (!hasHumanContent(trimmed)) return false;
+  if (looksLikeSelfPurchaseReport(trimmed)) return false;
+  if (looksLikeStandaloneAck(trimmed)) return false;
+  if (looksLikeReimbursementAck(trimmed)) return false;
   return REQUEST_RE.test(trimmed);
 }
 
 export function looksLikeDoneAck(text: string): boolean {
-  return DONE_RE.test(text);
+  return (
+    DONE_RE.test(text) ||
+    looksLikeStandaloneAck(text) ||
+    looksLikeReimbursementAck(text)
+  );
+}
+
+function ackClosesRequest(
+  request: string,
+  later: { text: string; ts: string }[],
+  ack: { text: string; ts: string }
+): boolean {
+  if (looksLikeReimbursementAck(ack.text) && looksLikeSelfPurchaseReport(request)) {
+    return true;
+  }
+  if (looksLikeStandaloneAck(ack.text)) {
+    const inBetween = later.filter(
+      (other) =>
+        Date.parse(other.ts) < Date.parse(ack.ts) &&
+        looksLikeOpenFollowUp(other.text)
+    );
+    return inBetween.length === 0;
+  }
+  if (!looksLikeDoneAck(ack.text)) return false;
+  return sharesTopic(request, ack.text);
 }
 
 const NO_SEND = { autoReply: false as const, enqueued: false as const };
@@ -533,14 +610,14 @@ export function buildFamilyLogDigest(
   const open: FamilyLogOpenItem[] = [];
   for (const message of messages) {
     if (!looksLikeOpenFollowUp(message.text)) continue;
+    if (isPreviousNightDinnerFollowUp(message.text, message.ts, now)) continue;
     const later = messages.filter(
       (other) =>
         other.jid === message.jid && Date.parse(other.ts) > Date.parse(message.ts)
     );
-    const closed = later.some((other) => {
-      if (!looksLikeDoneAck(other.text)) return false;
-      return sharesTopic(message.text, other.text);
-    });
+    const closed = later.some((other) =>
+      ackClosesRequest(message.text, later, other)
+    );
     if (closed) continue;
     open.push({
       id: message.id,
@@ -645,15 +722,21 @@ export function applyClaimDueFamilyLogNudges(
     now?: Date;
     limit?: number;
     quietHours?: boolean;
+    /** Opt-in. Missing / false = do not claim or send. */
+    enabled?: boolean;
+    /** Sunday / HK public holiday (Charlene day off). Missing = isHelperDayOff(now). */
+    dayOff?: boolean;
   } = {}
 ): { store: FamilyLogStore; claimed: FamilyLogNudge[] } {
   const now = opts.now || new Date();
   const limit = Math.min(5, Math.max(1, opts.limit ?? 1));
   const quiet =
     opts.quietHours ?? isFamilyLogQuietHours(now);
+  const enabled = familyLogNudgesSettingOn(opts.enabled);
+  const dayOff = opts.dayOff ?? isHelperDayOff(now);
   const recycled = recycleStaleFamilyLogClaims(store.nudges, now);
 
-  if (!allowlist.length || quiet) {
+  if (!allowlist.length || quiet || !enabled || dayOff) {
     return {
       store: { ...store, nudges: recycled, updatedAt: now.toISOString() },
       claimed: [],
@@ -679,6 +762,7 @@ export function applyClaimDueFamilyLogNudges(
     if (claimed.length >= limit) break;
     if (!isAllowlistedFamilyGroup(item.jid, allowlist)) continue;
     if (Date.parse(item.saidAt) > minAgeCutoff) continue;
+    if (isPreviousNightDinnerFollowUp(item.text, item.saidAt, now)) continue;
     if (recentlyNudged(nextNudges, item.itemKey, now)) continue;
     const dayCount = sentOrSendingOnDay(nextNudges, item.jid, dateKey).length;
     if (dayCount >= FAMILY_LOG_NUDGE_MAX_PER_GROUP_PER_DAY) continue;
